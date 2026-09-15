@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Produto Skincare — achados de beleza do TikTok Shop</title>
+<meta name="description" content="Produtos de beleza e skincare do TikTok Shop, escolhidos a dedo, com preço datado e link direto para a loja.">
+<link rel="canonical" href="https://produtoskincare.com.br/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fundo:#faf6f1; --papel:#fffdfa; --tinta:#2b2320; --suave:#6f625c;
+    --linha:#e8ddd3; --rosa:#b4546a; --rosa-claro:#f4e3e5; --verde:#3f6b55;
+    --raio:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fundo);color:var(--tinta);
+    font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    padding-inline:20px}
+  .casca{max-width:1080px;margin:0 auto}
+  a{color:inherit}
+  header{padding-block:28px 8px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .marca{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;text-decoration:none}
+  .marca span{color:var(--rosa)}
+  .aviso-topo{font-size:.85rem;color:var(--suave)}
+  .abertura{padding-block:40px 28px}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px;max-width:18ch}
+  .abertura p{margin:0;max-width:56ch;color:var(--suave);font-size:1.05rem}
+  .filtros{display:flex;gap:8px;flex-wrap:wrap;padding-block:8px 24px}
+  .filtros[hidden]{display:none}
+  .filtros button{font:inherit;font-size:.92rem;min-height:44px;padding:0 16px;border-radius:999px;
+    border:1px solid var(--linha);background:var(--papel);color:var(--tinta);cursor:pointer}
+  .filtros button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+  .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding-block:0 48px}
+  .card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;display:flex;flex-direction:column;gap:10px}
+  .foto{aspect-ratio:1/1;max-width:100%;border-radius:10px;background:var(--rosa-claro);object-fit:cover;width:100%;height:auto}
+  .cat{font-size:.78rem;font-weight:600;color:var(--rosa);text-transform:uppercase;letter-spacing:.06em}
+  .card h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.25rem;line-height:1.2;margin:0}
+  .marca-prod{font-size:.9rem;color:var(--suave);margin:0}
+  .porque{margin:0;font-size:.95rem}
+  .preco{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-top:6px;border-top:1px solid var(--linha)}
+  .preco strong{font-size:1.2rem}
+  .preco small{color:var(--suave);font-size:.8rem}
+  .botao{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:10px;background:var(--rosa);color:#fff;
+    text-decoration:none;font-weight:600}
+  .botao:hover{filter:brightness(.93)}
+  .botao[aria-disabled="true"]{background:var(--linha);color:var(--suave);pointer-events:none}
+  .vazio{grid-column:1/-1;background:var(--papel);border:1px dashed var(--linha);border-radius:var(--raio);padding:40px 24px;text-align:center;color:var(--suave)}
+  .vazio strong{display:block;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.4rem;color:var(--tinta);margin-bottom:6px}
+  footer{border-top:1px solid var(--linha);padding-block:28px 40px;font-size:.88rem;color:var(--suave)}
+  footer p{margin:0 0 10px;max-width:70ch}
+  .painel{background:#fff;border:2px solid var(--verde);border-radius:var(--raio);padding:16px;margin-bottom:24px;font-size:.9rem;overflow-x:auto}
+  .painel table{border-collapse:collapse;width:100%}
+  .painel td,.painel th{padding:6px 8px;border-bottom:1px solid var(--linha);text-align:left;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="casca">
+  <header>
+    <a class="marca" href="./">Produto<span>Skincare</span></a>
+    <span class="aviso-topo">Contém links de afiliado</span>
+  </header>
+
+  <section class="abertura">
+    <h1>Achados de beleza do TikTok Shop</h1>
+    <p>Produtos de skincare e beleza que eu separei, com o preço do dia em que conferi e link direto para a loja do TikTok.</p>
+  </section>
+
+  <div id="painel"></div>
+  <nav class="filtros" id="filtros" aria-label="Filtrar por categoria"></nav>
+  <main class="grade" id="grade" aria-live="polite"></main>
+
+  <footer>
+    <p><strong>Links de afiliado.</strong> Os botões levam ao TikTok Shop. Se você comprar por eles, posso receber comissão, sem custo extra para você.</p>
+    <p><strong>Preços</strong> são os vistos na data indicada em cada produto e podem mudar. Vale o preço mostrado na loja na hora da compra.</p>
+    <p><strong>Não é orientação médica.</strong> Cosméticos agem de forma diferente em cada pele. Leia o rótulo, faça o teste de sensibilidade e, em caso de problema de pele, procure um dermatologista.</p>
+    <p>Este site não usa cookies nem ferramentas de rastreamento próprias. A compra acontece no TikTok Shop, sob as regras e a política de privacidade do TikTok.</p>
+  </footer>
+</div>
+
+<script>
+// Validade oficial do link de afiliado no TikTok Shop BR: até 100 dias (guia seller-br, atualização 20/01/2026).
+const VALIDADE_DIAS = 100;
+const DIA = 86400000;
+
+const $grade = document.getElementById('grade');
+const $filtros = document.getElementById('filtros');
+let produtos = [];
+let filtro = 'Todos';
+
+function hostOficial(url){
+  try{
+    const h = new URL(url).hostname.toLowerCase();
+    return h === 'tiktok.com' || h.endsWith('.tiktok.com');
+  }catch(e){ return false; }
+}
+function diasRestantes(p){
+  if(!p.link_gerado_em) return null;
+  const gerado = new Date(p.link_gerado_em + 'T00:00:00');
+  if(isNaN(gerado)) return null;
+  return Math.floor((gerado.getTime() + VALIDADE_DIAS*DIA - Date.now()) / DIA);
+}
+function linkValido(p){
+  const d = diasRestantes(p);
+  return hostOficial(p.link) && d !== null && d >= 0;
+}
+function dataBR(iso){
+  const [a,m,d] = String(iso||'').split('-');
+  return d ? `${d}/${m}/${a}` : '';
+}
+function brl(v){
+  return typeof v === 'number' ? v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}) : '';
+}
+function el(tag, attrs={}, texto){
+  const n = document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)) n.setAttribute(k,v);
+  if(texto != null) n.textContent = texto;
+  return n;
+}
+
+function desenharFiltros(){
+  const cats = ['Todos', ...new Set(produtos.map(p => p.categoria).filter(Boolean))];
+  $filtros.hidden = cats.length <= 2;
+  $filtros.replaceChildren(...cats.map(c => {
+    const b = el('button', {type:'button','aria-pressed': String(c === filtro)}, c);
+    b.onclick = () => { filtro = c; desenharFiltros(); desenharGrade(); };
+    return b;
+  }));
+}
+
+function desenharGrade(){
+  const lista = produtos.filter(p => filtro === 'Todos' || p.categoria === filtro);
+  if(!lista.length){
+    const v = el('div', {class:'vazio'});
+    v.append(el('strong', {}, 'Em breve'), el('span', {}, 'Os primeiros achados estão sendo separados.'));
+    $grade.replaceChildren(v);
+    return;
+  }
+  $grade.replaceChildren(...lista.map(p => {
+    const c = el('article', {class:'card'});
+    if(p.foto) c.append(el('img', {class:'foto', src:p.foto, alt:p.nome, loading:'lazy', decoding:'async'}));
+    if(p.categoria) c.append(el('span', {class:'cat'}, p.categoria));
+    c.append(el('h2', {}, p.nome));
+    if(p.marca) c.append(el('p', {class:'marca-prod'}, p.marca));
+    if(p.porque) c.append(el('p', {class:'porque'}, p.porque));
+    const pr = el('div', {class:'preco'});
+    pr.append(el('strong', {}, brl(p.preco)));
+    if(p.preco_em) pr.append(el('small', {}, `preço visto em ${dataBR(p.preco_em)}`));
+    c.append(pr);
+    if(linkValido(p)){
+      c.append(el('a', {class:'botao', href:p.link, target:'_blank', rel:'sponsored nofollow noopener'}, 'Ver no TikTok Shop'));
+    }else{
+      c.append(el('a', {class:'botao','aria-disabled':'true'}, 'Link indisponível'));
+    }
+    return c;
+  }));
+}
+
+// Painel de manutenção: abrir com ?vencimento=1
+function desenharPainel(){
+  if(new URLSearchParams(location.search).get('vencimento') !== '1') return;
+  const box = el('div', {class:'painel'});
+  box.append(el('strong', {}, 'Vencimento dos links (validade de ' + VALIDADE_DIAS + ' dias)'));
+  const t = el('table');
+  const cab = el('tr'); ['Produto','Gerado em','Dias restantes','Situação'].forEach(h => cab.append(el('th', {}, h)));
+  t.append(cab);
+  [...produtos].sort((a,b) => (diasRestantes(a) ?? -999) - (diasRestantes(b) ?? -999)).forEach(p => {
+    const d = diasRestantes(p);
+    const sit = !hostOficial(p.link) ? 'link fora do domínio tiktok.com'
+      : d === null ? 'sem data de geração'
+      : d < 0 ? 'VENCIDO — gerar de novo'
+      : d <= 14 ? 'vence em breve' : 'ok';
+    const tr = el('tr');
+    [p.nome, dataBR(p.link_gerado_em), d ?? '—', sit].forEach(x => tr.append(el('td', {}, String(x))));
+    t.append(tr);
+  });
+  box.append(t);
+  document.getElementById('painel').append(box);
+}
+
+fetch('produtos.json', {cache:'no-cache'})
+  .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(dados => { produtos = Array.isArray(dados) ? dados : []; })
+  .catch(err => { console.error('produtos.json não carregou:', err); produtos = []; })
+  .finally(() => { desenharPainel(); desenharFiltros(); desenharGrade(); });
+</script>
+</body>
+</html>
