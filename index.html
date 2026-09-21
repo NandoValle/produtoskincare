@@ -146,7 +146,7 @@ function desenharGrade(){
     if(p.marca) c.append(el('p', {class:'marca-prod'}, p.marca));
     if(p.porque) c.append(el('p', {class:'porque'}, p.porque));
     const pr = el('div', {class:'preco'});
-    pr.append(el('strong', {}, brl(p.preco)));
+    pr.append(el('strong', {}, typeof p.preco === 'number' ? brl(p.preco) : 'Preço na loja'));
     if(p.preco_em) pr.append(el('small', {}, `preço visto em ${dataBR(p.preco_em)}`));
     c.append(pr);
     if(linkValido(p)){
