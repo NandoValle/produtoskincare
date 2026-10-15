@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#040607">
+  <meta name="description" content="Entre no universo do Sérum Repair GHK-Cu FortSkin: explore a fórmula, o ritual e o produto em uma experiência interativa.">
+  <title>FortSkin GHK-Cu — O universo em uma gota</title>
+  <link rel="canonical" href="https://produtoskincare.com.br/fortskin/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #040607;
+      --abyss: #0b1114;
+      --deep: #182529;
+      --pearl: #f1eee8;
+      --mist: #bfc5c2;
+      --aqua: #9db7bc;
+      --copper: #caa57b;
+      --line: rgba(188, 198, 197, .15);
+      --display: "EB Garamond", "Iowan Old Style", Georgia, serif;
+      --body: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 18%, #11191b, #020304 68%);
+      color: var(--pearl);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font: inherit; cursor: pointer; }
+    button:disabled { cursor: default; }
+    button:focus-visible, h1:focus-visible, h2:focus-visible, video:focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 3px;
+    }
+    h1:focus:not(:focus-visible), h2:focus:not(:focus-visible) { outline: none; }
+    #stage.pointer-navigation h1:focus-visible, #stage.pointer-navigation h2:focus-visible { outline: none; }
+    h1, h2, h3, p, figure { margin: 0; }
+    img { display: block; }
+
+    #stage {
+      position: relative;
+      isolation: isolate;
+      width: min(100vw, 56.25dvh);
+      height: min(100dvh, 177.777vw);
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      container-type: inline-size;
+      --signal: var(--aqua);
+      --shift-x: 0px;
+      --shift-y: 0px;
+      background:
+        radial-gradient(ellipse 75% 38% at 50% 35%, rgba(52, 83, 89, .07), transparent 74%),
+        radial-gradient(ellipse 85% 48% at 50% 110%, rgba(35, 68, 70, .08), transparent 76%),
+        linear-gradient(165deg, #0d1417 0%, #080d0f 45%, #040607 100%);
+      box-shadow: 0 38px 100px rgba(0, 0, 0, .76), 0 0 0 1px rgba(188, 198, 197, .08);
+    }
+    #stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .55;
+      background:
+        radial-gradient(1px 1px at 14% 19%, rgba(226, 247, 248, .8) 99%, transparent),
+        radial-gradient(1px 1px at 78% 13%, rgba(226, 247, 248, .75) 99%, transparent),
+        radial-gradient(1px 1px at 87% 47%, rgba(226, 247, 248, .55) 99%, transparent),
+        radial-gradient(1px 1px at 22% 66%, rgba(226, 247, 248, .62) 99%, transparent),
+        radial-gradient(1px 1px at 75% 79%, rgba(226, 247, 248, .48) 99%, transparent);
+    }
+    #stage::after {
+      content: "";
+      position: absolute;
+      inset: 2.2cqw;
+      z-index: 9;
+      border: 1px solid rgba(211, 235, 233, .12);
+      pointer-events: none;
+    }
+    .atmosphere {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .atmosphere::before {
+      content: "";
+      position: absolute;
+      top: 20%; left: 50%;
+      width: 120cqw; height: 120cqw;
+      border: 1px solid rgba(155, 176, 178, .06);
+      border-radius: 50%;
+      transform: translate(calc(-50% + var(--shift-x)), calc(-2% + var(--shift-y))) rotate(-22deg);
+      box-shadow: 0 0 0 19cqw rgba(155, 176, 178, .009), 0 0 0 39cqw rgba(155, 176, 178, .006);
+      transition: transform 1.2s ease, border-color 1.2s ease;
+    }
+    .atmosphere::after {
+      content: "";
+      position: absolute;
+      width: 80cqw; height: 80cqw;
+      left: 10%; top: 23%;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--signal) 7%, transparent), transparent 70%);
+      filter: blur(14px);
+      opacity: .42;
+      animation: breathe 8s ease-in-out infinite alternate;
+      transition: background 1s ease;
+    }
+    #stage[data-chapter="3"] .atmosphere::before { transform: translate(-50%, 18%) rotate(18deg) scale(.85); }
+    #stage[data-chapter="4"] .atmosphere::before { transform: translate(-50%, 6%) rotate(40deg) scale(1.2); }
+    @keyframes breathe { from { transform: scale(.9); opacity: .42; } to { transform: scale(1.12); opacity: .72; } }
+
+    .topbar {
+      position: absolute;
+      top: 0; right: 0; left: 0;
+      z-index: 7;
+      padding: 5.4cqw 7cqw 0;
+      background: linear-gradient(to bottom, rgba(4, 6, 7, .98), rgba(4, 6, 7, 0));
+    }
+    .brandline { display: flex; justify-content: space-between; align-items: baseline; gap: 3cqw; }
+    .wordmark {
+      font-family: var(--display);
+      font-size: clamp(19px, 5.6cqw, 30px);
+      font-weight: 500;
+      letter-spacing: .22em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .wordmark strong { color: var(--copper); font-weight: 500; }
+    .edition {
+      color: var(--mist);
+      font-size: clamp(10px, 2.5cqw, 13px);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .progress { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.6cqw; margin-top: 4.5cqw; }
+    .progress span { height: 2px; background: rgba(197, 228, 230, .16); transition: background .6s ease; }
+    .progress span.done { background: linear-gradient(90deg, #7d654d, var(--copper)); }
+
+    .scene {
+      position: absolute;
+      inset: 21cqw 7cqw 21cqw;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 2.7cqw;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      filter: blur(9px);
+      transform: scale(.985);
+      transition: opacity .65s ease, filter .65s ease, transform .65s ease, visibility 0s .65s;
+    }
+    .scene::-webkit-scrollbar { display: none; }
+    .scene.active {
+      opacity: 1; visibility: visible; pointer-events: auto; filter: none; transform: none;
+      transition: opacity .65s ease, filter .65s ease, transform .65s ease;
+    }
+    .scene > * { flex-shrink: 0; }
+    .scene.active > * { animation: rise .8s both; }
+    .scene.active > *:nth-child(2) { animation-delay: .07s; }
+    .scene.active > *:nth-child(3) { animation-delay: .14s; }
+    .scene.active > *:nth-child(4) { animation-delay: .21s; }
+    .scene.active > *:nth-child(5) { animation-delay: .28s; }
+    .scene.active > *:nth-child(n + 6) { animation-delay: .35s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .eyebrow {
+      color: var(--copper);
+      font-size: clamp(10px, 2.55cqw, 13px);
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+    h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+    h1 { font-size: clamp(35px, 10.7cqw, 61px); line-height: .92; letter-spacing: -.025em; }
+    h2 { font-size: clamp(32px, 8.8cqw, 53px); line-height: .98; letter-spacing: -.02em; }
+    h1 em, h2 em { color: var(--copper); font-weight: 400; }
+    .copy {
+      color: var(--mist);
+      font-size: clamp(13px, 3.4cqw, 18px);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .micro {
+      color: #aeb9b6;
+      font-size: clamp(11px, 2.8cqw, 14px);
+      font-weight: 300;
+      line-height: 1.45;
+    }
+    .action {
+      position: relative;
+      width: 100%;
+      min-height: max(48px, 12.4cqw);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3cqw;
+      padding: 0 5.5cqw;
+      border: 1px solid rgba(202, 165, 123, .48);
+      border-radius: 999px;
+      background: linear-gradient(110deg, #192021 0%, #0b1113 54%, #171d1e 100%);
+      box-shadow: inset 0 1px rgba(245, 235, 220, .055), 0 10px 30px rgba(0, 0, 0, .32);
+      color: var(--pearl);
+      font-size: clamp(11px, 3cqw, 15px);
+      font-weight: 600;
+      letter-spacing: .12em;
+      line-height: 1.2;
+      text-align: left;
+      text-transform: uppercase;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .action:hover { transform: translateY(-2px); border-color: var(--copper); box-shadow: inset 0 1px rgba(245, 235, 220, .08), 0 13px 34px rgba(0, 0, 0, .42); }
+    .action .arrow { color: var(--copper); font-size: 1.5em; font-weight: 300; line-height: 1; letter-spacing: 0; }
+    .action:active { transform: translateY(1px); }
+
+    .scene-intro { align-items: center; justify-content: center; text-align: center; }
+    .portal {
+      position: relative;
+      width: 43cqw;
+      height: 76cqw;
+      margin: 2cqw auto 3cqw;
+      isolation: isolate;
+    }
+    .portal::before {
+      content: "";
+      position: absolute;
+      inset: -4cqw;
+      border: 1px solid rgba(202, 165, 123, .22);
+      border-left-color: transparent;
+      border-bottom-color: rgba(202, 165, 123, .42);
+      border-radius: 49% 49% 4px 4px;
+      transform: rotate(-25deg);
+      animation: orbit 20s linear infinite;
+    }
+    .portal::after {
+      content: "";
+      position: absolute;
+      inset: -12cqw;
+      z-index: -1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(122, 141, 143, .07), transparent 62%);
+      filter: blur(7px);
+    }
+    @keyframes orbit { to { transform: rotate(335deg); } }
+    .portal-media {
+      position: relative;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(204, 178, 149, .35);
+      border-radius: 49% 49% 4px 4px;
+      background: #111b1e;
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, .035), 0 0 20px rgba(110, 142, 146, .04), 0 22px 55px rgba(0, 0, 0, .58);
+    }
+    .portal-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, .12), transparent 32%, rgba(0, 0, 0, .2)), radial-gradient(ellipse at 50% 46%, transparent 45%, rgba(1, 4, 5, .54) 100%);
+      pointer-events: none;
+    }
+    .portal-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; filter: contrast(1.06) saturate(.9); }
+    .portal-label {
+      position: absolute;
+      right: -9cqw;
+      bottom: 4cqw;
+      padding: 1.4cqw 2cqw;
+      border: 1px solid var(--line);
+      background: rgba(7, 11, 12, .94);
+      color: var(--pearl);
+      font-family: var(--display);
+      font-size: clamp(13px, 3.4cqw, 18px);
+      font-style: italic;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .scene-intro h1 { max-width: 86cqw; }
+    .scene-intro .copy { max-width: 75cqw; }
+    .scene-intro .action { margin-top: 1.5cqw; }
+
+    .scene-formula h2, .scene-ritual h2, .scene-video h2, .scene-final h2 { max-width: 82cqw; }
+    .constellation {
+      position: relative;
+      width: 86cqw;
+      height: 48cqw;
+      align-self: center;
+      margin: 1cqw 0;
+    }
+    .constellation::before {
+      content: "";
+      position: absolute;
+      width: 48cqw; height: 48cqw;
+      top: 0; left: 50%;
+      border: 1px solid rgba(157, 183, 188, .12);
+      border-radius: 50%;
+      transform: translateX(-50%) rotate(-25deg);
+      box-shadow: 0 0 0 5cqw rgba(157, 183, 188, .014);
+    }
+    .constellation::after {
+      content: "";
+      position: absolute;
+      width: 1px; height: 89%;
+      left: 50%; top: 5%;
+      background: linear-gradient(transparent, rgba(157, 183, 188, .1), transparent);
+    }
+    .constellation-core {
+      position: absolute;
+      z-index: 1;
+      width: 31cqw; height: 31cqw;
+      top: 50%; left: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(166, 183, 185, .35);
+      border-radius: 50%;
+      background: radial-gradient(circle at 42% 35%, #1b3037, #101d23 58%, #080e11 100%);
+      box-shadow: 0 0 28px rgba(92, 127, 132, .08), inset 0 0 18px rgba(117, 148, 153, .06);
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .constellation-core small {
+      color: #d0e5e7;
+      font-size: clamp(9px, 2.2cqw, 12px);
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .constellation-core strong { font-family: var(--display); font-size: clamp(35px, 10cqw, 55px); font-weight: 400; line-height: .9; }
+    .constellation-core strong span { color: var(--copper); font-size: .6em; }
+    .constellation-core em { color: #d2e9e9; font-size: clamp(8px, 2cqw, 11px); font-style: normal; letter-spacing: .08em; text-transform: uppercase; }
+    .orbit-node {
+      position: absolute;
+      z-index: 2;
+      width: 27cqw;
+      min-height: max(48px, 13cqw);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      padding: 1.4cqw 2.1cqw;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: rgba(8, 29, 40, .92);
+      color: var(--pearl);
+      font-size: clamp(11px, 2.8cqw, 14px);
+      font-weight: 400;
+      line-height: 1.15;
+      text-align: left;
+      transition: border-color .3s ease, background .3s ease, transform .3s ease;
+    }
+    .orbit-node small { color: var(--copper); font-size: clamp(9px, 2.1cqw, 11px); letter-spacing: .12em; }
+    .orbit-node:hover { transform: translateY(-2px); border-color: var(--aqua); }
+    .orbit-node[aria-pressed="true"] { border-color: var(--copper); background: linear-gradient(145deg, #252522, #111717); box-shadow: 0 0 16px rgba(176, 152, 120, .07); }
+    .orbit-node:nth-of-type(1) { top: 0; left: 0; }
+    .orbit-node:nth-of-type(2) { top: 0; right: 0; }
+    .orbit-node:nth-of-type(3) { bottom: 0; left: 0; }
+    .orbit-node:nth-of-type(4) { bottom: 0; right: 0; }
+    .insight {
+      min-height: 17cqw;
+      padding: 2.8cqw 3.7cqw;
+      border-left: 2px solid var(--copper);
+      background: linear-gradient(90deg, rgba(48, 43, 37, .34), rgba(13, 18, 19, .08));
+    }
+    .insight small { display: block; color: var(--copper); font-size: clamp(9px, 2.2cqw, 11px); letter-spacing: .2em; text-transform: uppercase; }
+    .insight h3 { margin-top: .5cqw; color: var(--pearl); font-size: clamp(19px, 5cqw, 26px); line-height: 1; }
+    .insight p { margin-top: .8cqw; color: var(--mist); font-size: clamp(11px, 2.75cqw, 14px); line-height: 1.35; }
+    .scene-formula .action, .scene-ritual .action {
+      position: sticky;
+      bottom: 0;
+      z-index: 4;
+      margin-top: auto;
+      box-shadow: 0 -16px 28px rgba(5, 9, 12, .72), 0 10px 30px rgba(0, 0, 0, .24);
+    }
+
+    .ritual-visual {
+      position: relative;
+      width: 45cqw;
+      height: 45cqw;
+      align-self: center;
+      margin: 1cqw 0;
+      border: 1px solid rgba(131, 216, 238, .32);
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 65%, rgba(67, 111, 123, .14), transparent 63%);
+      box-shadow: 0 0 0 7cqw rgba(157, 183, 188, .014);
+    }
+    .ritual-visual::before, .ritual-visual::after {
+      content: "";
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--copper);
+      box-shadow: 0 0 8px var(--copper);
+    }
+    .ritual-visual::before { transform: translate(-23cqw, -1px); }
+    .ritual-visual::after { transform: translate(21cqw, -1px); }
+    .drop {
+      position: absolute;
+      top: 48%; left: 50%;
+      width: 21cqw; height: 26cqw;
+      border: 1px solid rgba(202, 247, 252, .74);
+      border-radius: 65% 8% 60% 60%;
+      background: radial-gradient(circle at 75% 78%, rgba(196, 228, 229, .8), rgba(100, 170, 185, .58) 30%, rgba(19, 66, 80, .85) 68%, rgba(7, 28, 35, .96));
+      box-shadow: inset 5px 7px 16px rgba(255, 255, 255, .22), 0 8px 28px rgba(79, 134, 145, .18);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      transition: transform .7s cubic-bezier(.2, .7, .2, 1), box-shadow .7s ease;
+    }
+    .ritual-visual[data-step="1"] .drop { transform: translate(-50%, -54%) rotate(-30deg) scale(1.07); }
+    .ritual-visual[data-step="2"] .drop { transform: translate(-50%, -56%) rotate(-18deg) scale(.96); box-shadow: inset 5px 7px 16px rgba(255, 255, 255, .22), 0 8px 36px rgba(79, 134, 145, .26); }
+    .step-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; }
+    .step-track button {
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(8, 33, 45, .55);
+      color: var(--mist);
+      font-family: var(--display);
+      font-size: clamp(20px, 5.2cqw, 27px);
+      font-style: italic;
+      line-height: 1;
+      transition: background .3s, border-color .3s, color .3s;
+    }
+    .step-track button[aria-pressed="true"] { border-color: var(--copper); background: rgba(63, 56, 48, .4); color: var(--pearl); }
+    .step-display { min-height: 15cqw; text-align: center; }
+    .step-display span { display: block; color: var(--copper); font-size: clamp(10px, 2.5cqw, 12px); letter-spacing: .22em; text-transform: uppercase; }
+    .step-display strong { display: block; margin-top: 1cqw; font-family: var(--display); font-size: clamp(22px, 6.2cqw, 34px); font-weight: 400; line-height: 1.05; }
+    .scene-ritual .micro { text-align: center; }
+
+    .scene-video { align-items: center; text-align: center; }
+    .film-frame {
+      position: relative;
+      width: 46cqw;
+      height: 73cqw;
+      flex: 0 0 73cqw;
+      margin: 1.5cqw 0;
+      border: 1px solid rgba(184, 229, 234, .45);
+      border-radius: 3px;
+      background: #050a10;
+      box-shadow: 0 0 0 6px rgba(131, 216, 238, .035), 0 20px 50px rgba(0, 0, 0, .48), 0 0 32px rgba(101, 199, 225, .14);
+    }
+    .film-frame::before, .film-frame::after {
+      content: "";
+      position: absolute;
+      width: 5cqw; height: 1px;
+      top: 50%;
+      background: var(--copper);
+      pointer-events: none;
+    }
+    .film-frame::before { right: calc(100% + 3cqw); }
+    .film-frame::after { left: calc(100% + 3cqw); }
+    video { display: block; width: 100%; height: 100%; object-fit: contain; background: #050a10; }
+    .scene-video .micro { max-width: 76cqw; }
+
+    .scene-final { align-items: center; text-align: center; }
+    .real-frame {
+      position: relative;
+      width: 49cqw;
+      height: 60cqw;
+      margin: 1cqw 0;
+      overflow: hidden;
+      border: 1px solid rgba(199, 230, 231, .45);
+      border-radius: 2px;
+      background: #1b1c1b;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .42), 0 0 0 6px rgba(214, 173, 139, .04);
+    }
+    .real-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 20, 27, .04) 35%, rgba(7, 20, 27, .16));
+      pointer-events: none;
+    }
+    .real-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+    .real-caption { color: var(--copper); font-size: clamp(10px, 2.55cqw, 13px); letter-spacing: .21em; text-transform: uppercase; }
+    .scene-final h2 { max-width: 81cqw; }
+    .product-spec { color: var(--aqua); font-size: clamp(11px, 2.7cqw, 14px); font-weight: 500; letter-spacing: .17em; text-transform: uppercase; }
+    .shop-note {
+      width: 100%;
+      padding: 3.1cqw 4cqw;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    .shop-note strong { display: block; font-family: var(--display); font-size: clamp(21px, 5.4cqw, 28px); font-weight: 400; line-height: 1.08; }
+    .shop-note p { margin-top: 1cqw; color: var(--mist); font-size: clamp(11px, 2.75cqw, 14px); line-height: 1.35; }
+    .replay {
+      min-height: 44px;
+      padding: 0 1cqw;
+      border: 0;
+      border-bottom: 1px solid var(--copper);
+      background: transparent;
+      color: var(--copper);
+      font-size: clamp(11px, 2.8cqw, 14px);
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .replay:hover { color: var(--pearl); border-color: var(--pearl); }
+    .scene-intro .action, .scene-video .action, .scene-final .replay {
+      position: sticky;
+      bottom: 0;
+      z-index: 4;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      z-index: 7;
+      right: 7cqw; bottom: 4.2cqw; left: 7cqw;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2cqw;
+      padding-top: 2.2cqw;
+      border-top: 1px solid var(--line);
+    }
+    .bottom-nav button {
+      min-height: 44px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--pearl);
+      font-size: clamp(11px, 2.7cqw, 14px);
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .3s;
+    }
+    .bottom-nav button:hover:not(:disabled) { color: var(--aqua); }
+    .bottom-nav button:first-child { text-align: left; }
+    .bottom-nav button:last-child { text-align: right; }
+    .bottom-nav button:disabled { opacity: .28; }
+    .counter { color: var(--copper); font-family: var(--display); font-size: clamp(17px, 4cqw, 22px); font-style: italic; white-space: nowrap; }
+
+    @media (max-height: 660px) {
+      .scene { gap: 2cqw; }
+      .portal { width: 38cqw; height: 67cqw; }
+      .film-frame { width: 41cqw; height: 65cqw; flex-basis: 65cqw; }
+      .real-frame { width: 43cqw; height: 53cqw; }
+      .ritual-visual { width: 38cqw; height: 38cqw; }
+    }
+    @media (max-height: 540px) {
+      .scene { bottom: calc(21cqw + 10px); }
+      .scene-intro { justify-content: flex-start; }
+      .scene-final .replay { background: var(--void); }
+    }
+    @media (max-width: 340px) {
+      .edition { letter-spacing: .08em; }
+      .scene { inset-block: 20cqw; }
+      .orbit-node { font-size: 10px; }
+    }
+    @media (max-width: 340px) and (max-height: 540px) {
+      .scene { bottom: calc(21cqw + 10px); }
+    }
+    @container (max-width: 320px) {
+      .edition-full { display: none; }
+    }
+    @media (min-width: 700px) { #stage { border-radius: 5px; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
+      .scene { filter: none; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main id="stage" data-chapter="0" aria-label="Experiência interativa FortSkin GHK-Cu">
+    <div class="atmosphere" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brandline">
+        <div class="wordmark" aria-label="FortSkin">FORT<strong>SKIN</strong></div>
+        <span class="edition"><span class="edition-full">Sérum Repair · </span>30 ml</span>
+      </div>
+      <div class="progress" id="progress" role="progressbar" aria-label="Etapa da experiência" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"></div>
+    </header>
+
+    <section class="scene scene-intro" data-scene="0" aria-labelledby="intro-title">
+      <p class="eyebrow">Uma experiência em cinco atos</p>
+      <div class="portal">
+        <div class="portal-media">
+          <img src="referencia/frasco-e-caixa-real.jpg" alt="Fotografia real do frasco e da caixa do Sérum Repair GHK-Cu FortSkin sobre uma mesa escura" width="900" height="2000" fetchpriority="high">
+        </div>
+        <span class="portal-label" aria-hidden="true">GHK-Cu · 30 ml</span>
+      </div>
+      <h1 id="intro-title" tabindex="-1">O universo<br>em uma <em>gota.</em></h1>
+      <p class="copy">Atravesse a fórmula, conheça o ritual e veja o sérum em movimento.</p>
+      <button class="action" type="button" data-go="1">Começar a experiência <span class="arrow" aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="scene scene-formula" data-scene="1" aria-labelledby="formula-title" aria-hidden="true" inert>
+      <p class="eyebrow">A composição · toque para explorar</p>
+      <h2 id="formula-title" tabindex="-1">Cada ativo, <em>um ponto de luz.</em></h2>
+      <p class="copy">Selecione uma órbita para conhecer os destaques da fórmula.</p>
+      <div class="constellation" role="group" aria-label="Ingredientes em destaque">
+        <div class="constellation-core" aria-label="O rótulo destaca 10% de Smart GHK-Cu">
+          <small>No rótulo</small><strong>10<span>%</span></strong><em>Smart GHK-Cu</em>
+        </div>
+        <button class="orbit-node" type="button" data-ingredient="0" aria-pressed="true"><small>01 / complexo</small>Smart GHK-Cu</button>
+        <button class="orbit-node" type="button" data-ingredient="1" aria-pressed="false"><small>02 / ativo</small>Ácido hialurônico</button>
+        <button class="orbit-node" type="button" data-ingredient="2" aria-pressed="false"><small>03 / ativo</small>Niacinamida</button>
+        <button class="orbit-node" type="button" data-ingredient="3" aria-pressed="false"><small>04 / ativo</small>Pantenol</button>
+      </div>
+      <div class="insight" id="ingredient-detail" aria-live="polite">
+        <small>Em foco</small>
+        <h3>Smart GHK-Cu</h3>
+        <p>O rótulo destaca 10% de Smart GHK-Cu. Consulte a composição completa na embalagem.</p>
+      </div>
+      <p class="micro">Os destaques não substituem a lista completa de ingredientes.</p>
+      <button class="action" type="button" data-go="2">Conhecer o ritual <span class="arrow" aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="scene scene-ritual" data-scene="2" aria-labelledby="ritual-title" aria-hidden="true" inert>
+      <p class="eyebrow">O ritual · três gestos</p>
+      <h2 id="ritual-title" tabindex="-1">O cuidado acontece <em>no gesto.</em></h2>
+      <p class="copy">Percorra as etapas de aplicação, no seu ritmo.</p>
+      <div class="ritual-visual" id="ritual-visual" data-step="0" aria-hidden="true"><span class="drop"></span></div>
+      <div class="step-track" role="group" aria-label="Etapas do ritual">
+        <button type="button" data-step="0" aria-pressed="true" aria-label="Etapa 1: aplique algumas gotas">01</button>
+        <button type="button" data-step="1" aria-pressed="false" aria-label="Etapa 2: espalhe com a ponta dos dedos">02</button>
+        <button type="button" data-step="2" aria-pressed="false" aria-label="Etapa 3: massageie até absorver">03</button>
+      </div>
+      <div class="step-display" id="step-display" aria-live="polite"><span>Gesto 01</span><strong>Aplique algumas gotas</strong></div>
+      <p class="micro">Para frequência de uso e precauções, siga as instruções da embalagem.</p>
+      <button class="action" type="button" id="next-step"><span id="ritual-cta">Próximo gesto</span><span class="arrow" aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="scene scene-video" data-scene="3" aria-labelledby="video-title" aria-hidden="true" inert>
+      <p class="eyebrow">O filme · veja de perto</p>
+      <h2 id="video-title" tabindex="-1">A gota ganha <em>movimento.</em></h2>
+      <div class="film-frame">
+        <video id="product-video" controls playsinline preload="metadata" poster="referencia/frasco-e-caixa-real.jpg" aria-label="Vídeo de apresentação do Sérum Repair FortSkin">
+          <source src="FortSkin-GHKCu-30s-voz-feminina-2026-10-15.mp4" type="video/mp4">
+          Seu navegador não oferece suporte a vídeo.
+        </video>
+      </div>
+      <p class="micro">Vídeo ilustrativo gerado com IA. A experiência de uso pode variar.</p>
+      <button class="action" type="button" data-go="4">Conhecer o produto <span class="arrow" aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="scene scene-final" data-scene="4" aria-labelledby="final-title" aria-hidden="true" inert>
+      <p class="eyebrow">De volta ao real · FortSkin</p>
+      <figure class="real-frame">
+        <img src="referencia/frasco-na-mao-real.jpg" alt="Fotografia real do frasco de Sérum Repair GHK-Cu FortSkin na mão" width="900" height="2000" loading="lazy">
+      </figure>
+      <p class="real-caption">O frasco real · 30 ml</p>
+      <h2 id="final-title" tabindex="-1">Seu próximo <em>ritual.</em></h2>
+      <p class="product-spec">Sérum Repair GHK-Cu · FortLife</p>
+      <div class="shop-note">
+        <strong>Encontre o produto no TikTok Shop.</strong>
+        <p>Toque no produto vinculado ao vídeo e confira preço, vendedor e condições no anúncio.</p>
+      </div>
+      <button class="replay" type="button" data-go="0">Rever a experiência ↗</button>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Navegar entre etapas">
+      <button id="prev" type="button" aria-label="Voltar à etapa anterior">← Voltar</button>
+      <span class="counter" id="counter" aria-live="polite">01 / 05</span>
+      <button id="next" type="button" aria-label="Ir para a próxima etapa">Próximo →</button>
+    </nav>
+  </main>
+
+  <script>
+    (() => {
+      const stage = document.getElementById("stage");
+      const scenes = Array.from(document.querySelectorAll(".scene"));
+      const progress = document.getElementById("progress");
+      const counter = document.getElementById("counter");
+      const previous = document.getElementById("prev");
+      const next = document.getElementById("next");
+      const video = document.getElementById("product-video");
+      const ingredientButtons = Array.from(document.querySelectorAll("[data-ingredient]"));
+      const ingredientDetail = document.getElementById("ingredient-detail");
+      const ritualButtons = Array.from(document.querySelectorAll("[data-step]"));
+      const ritualVisual = document.getElementById("ritual-visual");
+      const stepDisplay = document.getElementById("step-display");
+      const nextStep = document.getElementById("next-step");
+      const ritualCta = document.getElementById("ritual-cta");
+      const ingredients = [
+        ["Smart GHK-Cu", "O rótulo destaca 10% de Smart GHK-Cu. Consulte a composição completa na embalagem."],
+        ["Ácido hialurônico", "Também aparece como hialuronato de sódio nos materiais do produto."],
+        ["Niacinamida", "Forma de vitamina B3 destacada na apresentação do sérum."],
+        ["Pantenol", "Também citado como dexpantenol nos materiais do produto."]
+      ];
+      const steps = [
+        "Aplique algumas gotas",
+        "Espalhe com a ponta dos dedos",
+        "Massageie até absorver"
+      ];
+      let current = 0;
+      let currentStep = 0;
+
+      scenes.forEach(() => progress.appendChild(document.createElement("span")));
+
+      function go(index, focusHeading = true) {
+        const nextIndex = Math.max(0, Math.min(scenes.length - 1, index));
+        if (nextIndex !== 3 && !video.paused) video.pause();
+        current = nextIndex;
+        stage.dataset.chapter = String(current);
+        scenes.forEach((scene, sceneIndex) => {
+          const active = sceneIndex === current;
+          scene.classList.toggle("active", active);
+          scene.inert = !active;
+          scene.setAttribute("aria-hidden", String(!active));
+          if (active) scene.scrollTop = 0;
+        });
+        Array.from(progress.children).forEach((bar, barIndex) => {
+          bar.classList.toggle("done", barIndex <= current);
+        });
+        progress.setAttribute("aria-valuenow", String(current + 1));
+        progress.setAttribute("aria-valuetext", `Etapa ${current + 1} de ${scenes.length}`);
+        counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
+        previous.disabled = current === 0;
+        next.disabled = current === scenes.length - 1;
+        if (focusHeading) {
+          requestAnimationFrame(() => {
+            scenes[current].querySelector("h1, h2").focus({ preventScroll: true });
+          });
+        }
+      }
+
+      document.addEventListener("click", (event) => {
+        const trigger = event.target.closest("[data-go]");
+        if (trigger) go(Number(trigger.dataset.go));
+      });
+      previous.addEventListener("click", () => go(current - 1));
+      next.addEventListener("click", () => go(current + 1));
+      document.addEventListener("pointerdown", () => stage.classList.add("pointer-navigation"), true);
+      document.addEventListener("keydown", () => stage.classList.remove("pointer-navigation"), true);
+
+      ingredientButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const selected = Number(button.dataset.ingredient);
+          ingredientButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+          ingredientDetail.querySelector("h3").textContent = ingredients[selected][0];
+          ingredientDetail.querySelector("p").textContent = ingredients[selected][1];
+          stage.style.setProperty("--signal", selected === 0 ? "#9bbfc8" : selected === 1 ? "#9fb8c4" : selected === 2 ? "#b5afc3" : "#a6c0b3");
+          const scene = scenes[1];
+          const hiddenByFooter = ingredientDetail.getBoundingClientRect().bottom - (scene.getBoundingClientRect().bottom - 54);
+          if (hiddenByFooter > 0) {
+            scene.scrollBy({ top: hiddenByFooter + 8, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+          }
+        });
+      });
+
+      function selectStep(index) {
+        currentStep = index;
+        ritualVisual.dataset.step = String(index);
+        ritualButtons.forEach((button, buttonIndex) => button.setAttribute("aria-pressed", String(buttonIndex === index)));
+        stepDisplay.querySelector("span").textContent = `Gesto ${String(index + 1).padStart(2, "0")}`;
+        stepDisplay.querySelector("strong").textContent = steps[index];
+        ritualCta.textContent = index === steps.length - 1 ? "Assistir ao filme" : "Próximo gesto";
+      }
+      ritualButtons.forEach((button) => button.addEventListener("click", () => selectStep(Number(button.dataset.step))));
+      nextStep.addEventListener("click", () => {
+        if (currentStep === steps.length - 1) go(3);
+        else selectStep(currentStep + 1);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (["BUTTON", "VIDEO", "INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)) return;
+        if (event.key === "ArrowRight") { event.preventDefault(); go(current + 1); }
+        if (event.key === "ArrowLeft") { event.preventDefault(); go(current - 1); }
+      });
+
+      if (window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)").matches) {
+        stage.addEventListener("pointermove", (event) => {
+          const bounds = stage.getBoundingClientRect();
+          stage.style.setProperty("--shift-x", `${((event.clientX - bounds.left) / bounds.width - .5) * 10}px`);
+          stage.style.setProperty("--shift-y", `${((event.clientY - bounds.top) / bounds.height - .5) * 10}px`);
+        });
+        stage.addEventListener("pointerleave", () => {
+          stage.style.setProperty("--shift-x", "0px");
+          stage.style.setProperty("--shift-y", "0px");
+        });
+      }
+
+      selectStep(0);
+      go(0, false);
+    })();
+  </script>
+</body>
+</html>
