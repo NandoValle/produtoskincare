@@ -469,8 +469,8 @@
     .scene-final { align-items: center; text-align: center; }
     .real-frame {
       position: relative;
-      width: 49cqw;
-      height: 60cqw;
+      width: 42cqw;
+      height: 50cqw;
       margin: 1cqw 0;
       overflow: hidden;
       border: 1px solid rgba(199, 230, 231, .45);
@@ -498,6 +498,28 @@
     }
     .shop-note strong { display: block; font-family: var(--display); font-size: clamp(21px, 5.4cqw, 28px); font-weight: 400; line-height: 1.08; }
     .shop-note p { margin-top: 1cqw; color: var(--mist); font-size: clamp(11px, 2.75cqw, 14px); line-height: 1.35; }
+    .buy-links { width: 100%; display: grid; gap: 2.4cqw; }
+    .buy {
+      min-height: max(48px, 12.4cqw);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5.5cqw;
+      border-radius: 999px;
+      color: #140f0a;
+      font-size: clamp(11px, 3cqw, 15px);
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform .3s ease, filter .3s ease;
+    }
+    .buy .arrow { font-size: 1.5em; font-weight: 300; line-height: 1; }
+    .buy.amazon { background: linear-gradient(110deg, #e2c193, var(--copper)); }
+    .buy.shopee { border: 1px solid rgba(202, 165, 123, .55); background: linear-gradient(110deg, #192021, #0b1113); color: var(--pearl); }
+    .buy.shopee .arrow { color: var(--copper); }
+    .buy:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .buy:focus-visible { outline: 2px solid var(--pearl); outline-offset: 3px; }
     .replay {
       min-height: 44px;
       padding: 0 1cqw;
@@ -511,7 +533,7 @@
       text-transform: uppercase;
     }
     .replay:hover { color: var(--pearl); border-color: var(--pearl); }
-    .scene-intro .action, .scene-video .action, .scene-final .replay {
+    .scene-intro .action, .scene-video .action {
       position: sticky;
       bottom: 0;
       z-index: 4;
@@ -658,10 +680,11 @@
       <p class="real-caption">O frasco real · 30 ml</p>
       <h2 id="final-title" tabindex="-1">Seu próximo <em>ritual.</em></h2>
       <p class="product-spec">Sérum Repair GHK-Cu · FortLife</p>
-      <div class="shop-note">
-        <strong>Encontre o produto no TikTok Shop.</strong>
-        <p>Toque no produto vinculado ao vídeo e confira preço, vendedor e condições no anúncio.</p>
+      <div class="buy-links" role="group" aria-label="Onde comprar">
+        <a class="buy amazon" href="https://link.amazon/B0im3zFIX" target="_blank" rel="sponsored noopener">Comprar na Amazon <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="buy shopee" href="https://s.shopee.com.br/gQUMpoSAF" target="_blank" rel="sponsored noopener">Comprar na Shopee <span class="arrow" aria-hidden="true">↗</span></a>
       </div>
+      <p class="micro">Links de afiliado: posso receber comissão pelas compras, sem custo extra para você. Confira preço, vendedor e condições no anúncio.</p>
       <button class="replay" type="button" data-go="0">Rever a experiência ↗</button>
     </section>
 
