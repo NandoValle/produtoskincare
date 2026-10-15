@@ -47,6 +47,15 @@
     text-decoration:none;font-weight:600}
   .botao:hover{filter:brightness(.93)}
   .botao[aria-disabled="true"]{background:var(--linha);color:var(--suave);pointer-events:none}
+  .destaque{display:grid;grid-template-columns:minmax(110px,180px) 1fr;gap:20px;align-items:center;margin-bottom:28px;padding:16px;
+    background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);text-decoration:none}
+  .destaque img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:var(--rosa-claro)}
+  .destaque-texto{display:flex;flex-direction:column;gap:8px}
+  .destaque-texto strong{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.25rem,3vw,1.6rem);line-height:1.15}
+  .destaque-texto>span:not(.cat):not(.botao){color:var(--suave);font-size:.95rem}
+  .destaque .botao{align-self:flex-start;padding:0 20px;margin-top:4px}
+  .destaque:hover .botao{filter:brightness(.93)}
+  @media(max-width:520px){.destaque{grid-template-columns:96px 1fr;gap:14px;padding:14px}.destaque-texto>span:not(.cat):not(.botao){font-size:.88rem}.destaque .botao{align-self:stretch;padding:0 12px}}
   .vazio{grid-column:1/-1;background:var(--papel);border:1px dashed var(--linha);border-radius:var(--raio);padding:40px 24px;text-align:center;color:var(--suave)}
   .vazio strong{display:block;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.4rem;color:var(--tinta);margin-bottom:6px}
   footer{border-top:1px solid var(--linha);padding-block:28px 40px;font-size:.88rem;color:var(--suave)}
@@ -67,6 +76,16 @@
     <h1>Achados de beleza do TikTok Shop</h1>
     <p>Produtos de skincare e beleza que eu separei, com o preço do dia em que conferi e link direto para a loja do TikTok.</p>
   </section>
+
+  <a class="destaque" href="fortskin/">
+    <img src="fortskin/assets/frasco-na-mao-real.webp" alt="Mão segurando o frasco do Sérum Repair GHK-Cu FortSkin" width="540" height="1200" loading="lazy" decoding="async">
+    <span class="destaque-texto">
+      <span class="cat">Em destaque</span>
+      <strong>Sérum Repair GHK-Cu FortSkin</strong>
+      <span>Conheça o sérum de peptídeo de cobre em uma experiência interativa, com vídeo e fotos.</span>
+      <span class="botao">Conhecer o sérum →</span>
+    </span>
+  </a>
 
   <div id="painel"></div>
   <nav class="filtros" id="filtros" aria-label="Filtrar por categoria"></nav>
