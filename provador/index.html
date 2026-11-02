@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provador de pele: descubra seu tipo de pele e sua rotina | Produto Skincare</title>
+<meta name="description" content="Responda algumas perguntas rápidas, descubra seu tipo de pele e receba uma rotina de skincare de manhã e de noite com produtos do TikTok Shop. Leva cerca de 1 minuto, sem cadastro.">
+<link rel="canonical" href="https://produtoskincare.com.br/provador/">
+<meta property="og:title" content="Provador de pele: qual a rotina certa para sua pele?">
+<meta property="og:description" content="Descubra seu tipo de pele em cerca de 1 minuto e receba uma rotina de manhã e de noite.">
+<meta property="og:url" content="https://produtoskincare.com.br/provador/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fundo:#faf6f1; --papel:#fffdfa; --tinta:#2b2320; --suave:#6f625c;
+    --linha:#e8ddd3; --rosa:#b4546a; --rosa-claro:#f4e3e5; --verde:#3f6b55;
+    --raio:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fundo);color:var(--tinta);
+    font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    padding-inline:20px}
+  .casca{max-width:720px;margin:0 auto}
+  a{color:inherit}
+  header{padding-block:28px 8px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .marca{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;text-decoration:none}
+  .marca span{color:var(--rosa)}
+  .aviso-topo{font-size:.85rem;color:var(--suave)}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;letter-spacing:-.01em}
+  h1{font-size:clamp(1.9rem,5.5vw,2.8rem);line-height:1.1;margin:28px 0 12px}
+  .sub{color:var(--suave);margin:0 0 20px;font-size:1.05rem}
+  .tela{padding-block:12px 40px}
+  .tela[hidden]{display:none}
+  :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+
+  .progresso{height:6px;background:var(--linha);border-radius:999px;overflow:hidden;margin:16px 0 8px}
+  .progresso span{display:block;height:100%;background:var(--rosa);width:0;transition:width .25s}
+  .passo-n{font-size:.85rem;color:var(--suave)}
+
+  fieldset{border:0;margin:0;padding:0}
+  legend{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.35rem,4vw,1.7rem);line-height:1.2;margin:8px 0 8px;padding:0}
+  .ajuda{color:var(--suave);font-size:.95rem;margin:0 0 16px}
+  .opcoes{display:grid;gap:10px;margin-top:12px}
+  .opcao{display:flex;align-items:center;gap:12px;min-height:56px;padding:12px 16px;background:var(--papel);
+    border:1px solid var(--linha);border-radius:12px;cursor:pointer}
+  .opcao:has(input:checked){border-color:var(--rosa);background:var(--rosa-claro)}
+  .opcao input{width:20px;height:20px;accent-color:var(--rosa);flex:none;margin:0}
+
+  .acoes{display:flex;gap:10px;margin-top:24px;position:sticky;bottom:0;padding:12px 0;background:linear-gradient(transparent,var(--fundo) 30%)}
+  .btn{font:inherit;font-weight:600;min-height:48px;padding:0 22px;border-radius:10px;border:1px solid var(--linha);
+    background:var(--papel);color:var(--tinta);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+  .btn-principal{background:var(--rosa);border-color:var(--rosa);color:#fff;flex:1}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .link-sec{background:none;border:0;font:inherit;color:var(--suave);text-decoration:underline;cursor:pointer;padding:12px 0;min-height:44px}
+  .erro{color:var(--rosa);font-size:.9rem;min-height:1.4em;margin:8px 0 0}
+
+  .garantias{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--suave);font-size:.9rem;margin:0 0 24px;padding:0;list-style:none}
+  .garantias li::before{content:"✓ ";color:var(--verde);font-weight:600}
+
+  .cartao{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin-bottom:16px}
+  .cartao h2{margin:0 0 6px;font-size:1.6rem}
+  .rotulo{font-size:.78rem;font-weight:600;color:var(--rosa);text-transform:uppercase;letter-spacing:.06em}
+  .alerta{border-left:4px solid var(--rosa);background:var(--rosa-claro);border-radius:10px;padding:14px 16px;margin-bottom:12px;font-size:.95rem}
+  .alerta strong{display:block;margin-bottom:2px}
+
+  .abas{display:flex;gap:8px;margin:24px 0 12px}
+  .abas button{font:inherit;font-weight:600;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--linha);background:var(--papel);cursor:pointer}
+  .abas button[aria-selected="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+  .etapa{display:grid;grid-template-columns:96px 1fr;gap:14px;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:14px;margin-bottom:12px}
+  .etapa img{width:96px;height:96px;object-fit:cover;border-radius:10px;background:var(--rosa-claro)}
+  .etapa .num{font-size:.78rem;font-weight:600;color:var(--rosa);text-transform:uppercase;letter-spacing:.06em}
+  .etapa h3{margin:2px 0 4px;font-size:1.1rem;line-height:1.25}
+  .etapa p{margin:0 0 6px;font-size:.92rem}
+  .etapa .meta{color:var(--suave);font-size:.82rem}
+  .etapa .botao{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:10px;background:var(--rosa);color:#fff;text-decoration:none;font-weight:600;margin-top:8px}
+  .etapa .alt{font-size:.85rem;color:var(--suave);margin-top:8px}
+  .etapa.lacuna{grid-template-columns:1fr;border-style:dashed}
+  .selo{display:inline-block;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--fundo);border:1px solid var(--linha);color:var(--suave);margin-left:6px;vertical-align:middle}
+  @media(max-width:420px){.etapa{grid-template-columns:72px 1fr}.etapa img{width:72px;height:72px}}
+
+  .comecar ol{margin:8px 0 0;padding-left:20px}
+  .comecar li{margin-bottom:6px}
+  .aviso-legal{font-size:.88rem;color:var(--suave)}
+  .linha-acoes{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+  footer{border-top:1px solid var(--linha);padding-block:28px 40px;font-size:.88rem;color:var(--suave)}
+  footer p{margin:0 0 10px}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="casca">
+  <header>
+    <a class="marca" href="../">Produto<span>Skincare</span></a>
+    <span class="aviso-topo">Contém links de afiliado</span>
+  </header>
+
+  <!-- Tela inicial -->
+  <section class="tela" id="tela-inicio">
+    <h1>Qual a rotina certa para a sua pele?</h1>
+    <p class="sub">Responda algumas perguntas rápidas e receba uma rotina simples de manhã e de noite, com produtos da vitrine.</p>
+    <ul class="garantias">
+      <li>Leva cerca de 1 minuto</li>
+      <li>Sem cadastro</li>
+      <li>Nada é salvo</li>
+    </ul>
+    <div class="cartao">
+      <strong>Dica para um resultado melhor</strong>
+      <p class="aviso-legal" style="margin:6px 0 0">Lave o rosto com um sabonete suave, seque sem esfregar e não passe nada. Responda depois de 45 a 60 minutos: é quando a pele mostra como ela realmente é.</p>
+    </div>
+    <div class="linha-acoes">
+      <button class="btn btn-principal" type="button" id="btn-comecar">Começar</button>
+    </div>
+    <button class="link-sec" type="button" id="btn-sei-tipo">Já sei meu tipo de pele</button>
+  </section>
+
+  <!-- Já sei meu tipo -->
+  <section class="tela" id="tela-sei" hidden>
+    <form id="form-sei">
+      <fieldset>
+        <legend>Qual é o seu tipo de pele?</legend>
+        <div class="opcoes" id="opcoes-sei"></div>
+      </fieldset>
+      <fieldset style="margin-top:20px">
+        <legend style="font-size:1.15rem">Sua pele é sensível?</legend>
+        <div class="opcoes">
+          <label class="opcao"><input type="checkbox" name="sensivel" value="1"> Sim, arde ou fica vermelha com facilidade</label>
+        </div>
+      </fieldset>
+      <p class="erro" id="erro-sei" role="alert"></p>
+      <div class="acoes">
+        <button class="btn" type="button" data-voltar-inicio>Voltar</button>
+        <button class="btn btn-principal" type="submit">Próximo</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Perguntas (uma por tela) -->
+  <section class="tela" id="tela-perguntas" hidden>
+    <div class="progresso" aria-hidden="true"><span id="barra"></span></div>
+    <p class="passo-n" id="passo-n"></p>
+    <form id="form-pergunta">
+      <div id="pergunta"></div>
+      <p class="erro" id="erro-pergunta" role="alert"></p>
+      <div class="acoes">
+        <button class="btn" type="button" id="btn-voltar">Voltar</button>
+        <button class="btn btn-principal" type="submit" id="btn-proximo">Próximo</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Resultado -->
+  <section class="tela" id="tela-resultado" hidden aria-live="polite"></section>
+
+  <footer>
+    <p><strong>Não é diagnóstico.</strong> Isto é uma sugestão de cosméticos, não uma avaliação médica, e não substitui a consulta com dermatologista. Em caso de lesões, dor, acne intensa ou irritação que não passa, procure um médico.</p>
+    <p><strong>Links de afiliado.</strong> Os botões levam ao TikTok Shop. Se você comprar por eles, posso receber comissão, sem custo extra para você.</p>
+    <p><strong>Privacidade.</strong> Suas respostas ficam só no seu navegador e no endereço da página. Nada é enviado nem salvo, e este site não usa cookies.</p>
+  </footer>
+</div>
+<script src="provador.js"></script>
+</body>
+</html>

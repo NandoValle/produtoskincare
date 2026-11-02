@@ -55,6 +55,7 @@
   .destaque-texto>span:not(.cat):not(.botao){color:var(--suave);font-size:.95rem}
   .destaque .botao{align-self:flex-start;padding:0 20px;margin-top:4px}
   .destaque:hover .botao{filter:brightness(.93)}
+  .destaque.destaque-provador{grid-template-columns:1fr;background:var(--rosa-claro);border-color:var(--rosa)}
   @media(max-width:520px){.destaque{grid-template-columns:96px 1fr;gap:14px;padding:14px}.destaque-texto>span:not(.cat):not(.botao){font-size:.88rem}.destaque .botao{align-self:stretch;padding:0 12px}}
   .vazio{grid-column:1/-1;background:var(--papel);border:1px dashed var(--linha);border-radius:var(--raio);padding:40px 24px;text-align:center;color:var(--suave)}
   .vazio strong{display:block;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.4rem;color:var(--tinta);margin-bottom:6px}
@@ -76,6 +77,15 @@
     <h1>Achados de beleza do TikTok Shop</h1>
     <p>Produtos de skincare e beleza que eu separei, com o preço do dia em que conferi e link direto para a loja do TikTok.</p>
   </section>
+
+  <a class="destaque destaque-provador" href="provador/">
+    <span class="destaque-texto">
+      <span class="cat">Novo · Provador de pele</span>
+      <strong>Qual a rotina certa para a sua pele?</strong>
+      <span>Responda algumas perguntas rápidas, descubra seu tipo de pele e receba uma rotina de manhã e de noite. Leva cerca de 1 minuto, sem cadastro.</span>
+      <span class="botao">Fazer o teste →</span>
+    </span>
+  </a>
 
   <a class="destaque" href="fortskin/">
     <img src="fortskin/assets/frasco-na-mao-real.webp" alt="Mão segurando o frasco do Sérum Repair GHK-Cu FortSkin" width="540" height="1200" loading="lazy" decoding="async">

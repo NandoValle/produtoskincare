@@ -1,0 +1,90 @@
+{
+  "versao": 1,
+  "tipos": {
+    "oleosa": { "nome": "Oleosa", "explicacao": "Sua pele produz bastante sebo: brilho espalhado pelo rosto e poros mais visíveis. Texturas leves, em gel, costumam funcionar melhor." },
+    "mista": { "nome": "Mista", "explicacao": "Brilho concentrado na zona T (testa, nariz e queixo) e bochechas normais ou mais secas. O ideal é hidratar o rosto todo com algo leve e cuidar da oleosidade só onde ela aparece." },
+    "seca": { "nome": "Seca", "explicacao": "Sua pele produz pouco sebo: tende a repuxar, ficar opaca ou descamar. Limpeza suave e hidratação mais reforçada ajudam a proteger a barreira da pele." },
+    "normal": { "nome": "Normal", "explicacao": "Sua pele está equilibrada: pouco brilho, pouco repuxamento e poros discretos. Uma rotina básica bem feita, com protetor todo dia, já cuida bem dela." }
+  },
+  "perguntas": [
+    {
+      "id": "rosto_limpo",
+      "titulo": "Cerca de 1 hora depois de lavar o rosto, sem passar nenhum produto, como ele fica?",
+      "ajuda": "Se der, faça o teste agora: lave com um sabonete suave, seque sem esfregar e espere 45 a 60 minutos. É a pergunta que mais pesa no resultado.",
+      "opcoes": [
+        { "texto": "Repuxa no rosto todo", "pontos": { "seca": 3 } },
+        { "texto": "Brilha só na testa, no nariz e no queixo", "pontos": { "mista": 3 } },
+        { "texto": "Brilha também nas bochechas", "pontos": { "oleosa": 3 } },
+        { "texto": "Fica confortável e uniforme", "pontos": { "normal": 3 } },
+        { "texto": "Não sei dizer", "pontos": {} }
+      ]
+    },
+    {
+      "id": "brilho_tarde",
+      "titulo": "No fim da tarde, onde aparece brilho no seu rosto?",
+      "opcoes": [
+        { "texto": "Em quase nenhum lugar, a pele fica opaca", "pontos": { "seca": 2 } },
+        { "texto": "Só na testa e no nariz", "pontos": { "mista": 2 } },
+        { "texto": "No rosto todo", "pontos": { "oleosa": 2 } },
+        { "texto": "Um brilho leve e natural", "pontos": { "normal": 2 } }
+      ]
+    },
+    {
+      "id": "repuxa",
+      "titulo": "Sua pele costuma repuxar ou descamar?",
+      "opcoes": [
+        { "texto": "Sim, com frequência", "pontos": { "seca": 2 } },
+        { "texto": "Às vezes, só nas bochechas", "pontos": { "mista": 1, "seca": 1 } },
+        { "texto": "Quase nunca", "pontos": { "oleosa": 1, "normal": 1 } }
+      ]
+    },
+    {
+      "id": "poros",
+      "titulo": "Como são seus poros, olhando no espelho?",
+      "opcoes": [
+        { "texto": "Visíveis no rosto todo, inclusive nas bochechas", "pontos": { "oleosa": 2 } },
+        { "texto": "Visíveis só no nariz e no centro da testa", "pontos": { "mista": 2 } },
+        { "texto": "Quase invisíveis", "pontos": { "seca": 1, "normal": 1 } }
+      ]
+    },
+    {
+      "id": "sensibilidade",
+      "titulo": "Sua pele arde, coça ou fica vermelha quando você usa um produto novo?",
+      "opcoes": [
+        { "texto": "Sim, com frequência", "sensivel": 2 },
+        { "texto": "Às vezes", "sensivel": 1 },
+        { "texto": "Quase nunca", "sensivel": 0 }
+      ]
+    }
+  ],
+  "preocupacoes": [
+    { "id": "acne", "texto": "Acne e cravos" },
+    { "id": "manchas", "texto": "Manchas e tom irregular" },
+    { "id": "poros", "texto": "Poros e oleosidade" },
+    { "id": "idade", "texto": "Linhas finas e firmeza" },
+    { "id": "desidratacao", "texto": "Pele desidratada, sem viço" }
+  ],
+  "situacoes": [
+    { "id": "gestante", "texto": "Estou grávida ou amamentando" },
+    { "id": "receita", "texto": "Uso remédio ou ácido receitado por médico para a pele (ex.: isotretinoína, tretinoína)" },
+    { "id": "vasinhos", "texto": "Tenho vermelhidão que não passa ou vasinhos aparentes no rosto" }
+  ],
+  "orcamentos": [
+    { "id": "50", "texto": "Até R$ 50 por produto", "max": 50 },
+    { "id": "100", "texto": "Até R$ 100 por produto", "max": 100 },
+    { "id": "livre", "texto": "Sem limite", "max": null }
+  ],
+  "o_que_procurar": {
+    "limpeza": "Um gel ou sabonete facial suave, sem fragrância.",
+    "hidratacao": "Um hidratante facial leve; para pele seca, prefira um com ceramidas.",
+    "protetor": "Um protetor solar facial FPS 30 ou mais, com proteção UVA. Para manchas, prefira um com cor.",
+    "acne": "Um sérum ou sabonete com ácido salicílico, ou um sérum com niacinamida.",
+    "manchas": "Um sérum de vitamina C ou de niacinamida, e protetor solar com cor todos os dias.",
+    "poros": "Um sérum com niacinamida ou com ácido salicílico (BHA).",
+    "idade": "Um retinol ou retinal para usar à noite, começando 2 a 3 vezes por semana.",
+    "desidratacao": "Um sérum de ácido hialurônico ou um hidratante com ceramidas."
+  },
+  "ingredientes_vetados": {
+    "gestante": ["retinol", "retinal", "tretinoina", "adapaleno", "acido-salicilico", "hidroquinona"]
+  }
+}
