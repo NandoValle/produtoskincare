@@ -2,208 +2,926 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Produto Skincare — achados de beleza do TikTok Shop</title>
-<meta name="description" content="Produtos de beleza e skincare do TikTok Shop, escolhidos a dedo, com preço datado e link direto para a loja.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Produto Skincare — Descubra seu tipo de pele e a rotina ideal</title>
+<meta name="description" content="Descubra seu tipo de pele em 2 minutos e receba uma rotina de skincare personalizada com produtos reais. Quiz gratuito, guias por tipo e curadoria de produtos.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://produtoskincare.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Produto Skincare — Descubra seu tipo de pele">
+<meta property="og:description" content="Quiz gratuito de 2 minutos para descobrir seu tipo de pele e receber uma rotina personalizada.">
+<meta property="og:url" content="https://produtoskincare.com.br/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --fundo:#faf6f1; --papel:#fffdfa; --tinta:#2b2320; --suave:#6f625c;
-    --linha:#e8ddd3; --rosa:#b4546a; --rosa-claro:#f4e3e5; --verde:#3f6b55;
-    --raio:14px;
+/* ===== DESIGN SYSTEM — ULTRA PREMIUM ===== */
+:root {
+  /* Cores */
+  --fundo: #faf7f2;
+  --fundo-grad: linear-gradient(165deg, #faf7f2 0%, #f5f0e8 50%, #faf7f2 100%);
+  --papel: #ffffff;
+  --papel-2: #fdfcfa;
+  --tinta: #1a1614;
+  --tinta-2: #2d2825;
+  --suave: #7a6e65;
+  --suave-2: #a39890;
+  --linha: rgba(26, 22, 20, 0.08);
+  --linha-2: rgba(26, 22, 20, 0.12);
+  --rosa: #b4546a;
+  --rosa-2: #c96b80;
+  --rosa-claro: #fdf2f4;
+  --rosa-glow: rgba(180, 84, 106, 0.15);
+  --verde: #3f6b55;
+  --verde-2: #4a7d63;
+  --verde-claro: #eef4f0;
+  --dourado: #c9a96e;
+  --dourado-claro: #faf6ee;
+
+  /* Tipografia */
+  --fonte-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fonte-corpo: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Espaçamento */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 40px;
+  --sp-2xl: 64px;
+  --sp-3xl: 96px;
+
+  /* Raios */
+  --raio-sm: 8px;
+  --raio-md: 14px;
+  --raio-lg: 20px;
+  --raio-xl: 28px;
+  --raio-full: 999px;
+
+  /* Sombras */
+  --sombra-1: 0 1px 3px rgba(26, 22, 20, 0.04), 0 1px 2px rgba(26, 22, 20, 0.03);
+  --sombra-2: 0 4px 16px rgba(26, 22, 20, 0.06), 0 2px 4px rgba(26, 22, 20, 0.04);
+  --sombra-3: 0 12px 40px rgba(26, 22, 20, 0.1), 0 4px 12px rgba(26, 22, 20, 0.05);
+  --sombra-rosa: 0 8px 32px rgba(180, 84, 106, 0.18);
+  --sombra-verde: 0 8px 32px rgba(63, 107, 85, 0.15);
+
+  /* Transições */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur: 0.25s;
+  --dur-slow: 0.4s;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--fundo-grad);
+  background-attachment: fixed;
+  color: var(--tinta);
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 400;
+  min-height: 100vh;
+}
+
+/* ===== TIPOGRAFIA ===== */
+h1, h2, h3, h4 {
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--tinta);
+}
+
+h1 {
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--rosa);
+  font-weight: 400;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: var(--sp-md);
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: var(--sp-sm);
+}
+
+p { margin-bottom: var(--sp-md); }
+
+.lead {
+  font-size: 1.18rem;
+  line-height: 1.7;
+  color: var(--suave);
+  max-width: 580px;
+  font-weight: 300;
+}
+
+.sub { color: var(--suave); }
+.sub-sm { font-size: 0.88rem; color: var(--suave-2); }
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 40px);
+}
+
+.section {
+  padding: var(--sp-2xl) 0;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--linha-2), transparent);
+  margin: var(--sp-xl) 0;
+}
+
+/* ===== NAVEGAÇÃO / MARCA ===== */
+.nav-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-lg) 0;
+}
+
+.marca {
+  font-family: var(--fonte-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--tinta);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marca-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-2));
+  border-radius: var(--raio-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--fonte-corpo);
+}
+
+.marca span { color: var(--rosa); font-weight: 600; }
+
+.nav-links {
+  display: flex;
+  gap: var(--sp-lg);
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--suave);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color var(--dur) var(--ease);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rosa);
+  border-radius: 1px;
+  transition: width var(--dur) var(--ease);
+}
+
+.nav-links a:hover { color: var(--tinta); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: var(--sp-3xl) 0 var(--sp-2xl);
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-full);
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--suave);
+  margin-bottom: var(--sp-lg);
+  box-shadow: var(--sombra-1);
+}
+
+.hero-badge .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--verde);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hero h1 {
+  max-width: 700px;
+  margin: 0 auto var(--sp-lg);
+}
+
+.hero .lead {
+  margin: 0 auto var(--sp-xl);
+  text-align: center;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--sp-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-xl);
+  margin-top: var(--sp-2xl);
+  padding-top: var(--sp-xl);
+  border-top: 1px solid var(--linha);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: var(--fonte-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--tinta);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--suave-2);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  min-height: 52px;
+  padding: 0 32px;
+  border-radius: var(--raio-md);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--dur) var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--tinta);
+  color: var(--fundo);
+  box-shadow: var(--sombra-2);
+}
+
+.btn-primary:hover {
+  background: var(--tinta-2);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--sombra-1);
+}
+
+.btn-rosa {
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-2));
+  color: white;
+  box-shadow: var(--sombra-rosa);
+}
+
+.btn-rosa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(180, 84, 106, 0.25);
+}
+
+.btn-secondary {
+  background: var(--papel);
+  color: var(--tinta);
+  border: 1.5px solid var(--linha-2);
+  box-shadow: var(--sombra-1);
+}
+
+.btn-secondary:hover {
+  border-color: var(--tinta);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--suave);
+  padding: 0 16px;
+}
+
+.btn-ghost:hover { color: var(--tinta); }
+
+.btn:focus-visible {
+  outline: 3px solid var(--rosa);
+  outline-offset: 3px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-lg);
+  padding: var(--sp-lg);
+  box-shadow: var(--sombra-1);
+  transition: all var(--dur) var(--ease);
+}
+
+.card:hover {
+  box-shadow: var(--sombra-2);
+  border-color: var(--linha-2);
+}
+
+.card-elevated {
+  box-shadow: var(--sombra-2);
+  border: none;
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ===== BLOCO QUIZ (destaque) ===== */
+.bloco-quiz {
+  background: linear-gradient(145deg, var(--tinta) 0%, var(--tinta-2) 100%);
+  border-radius: var(--raio-xl);
+  padding: clamp(32px, 6vw, 56px);
+  color: var(--fundo);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--sombra-3);
+}
+
+.bloco-quiz::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(180, 84, 106, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.bloco-quiz h2 {
+  color: var(--fundo);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin-bottom: var(--sp-sm);
+  position: relative;
+}
+
+.bloco-quiz p {
+  color: rgba(250, 247, 242, 0.7);
+  max-width: 480px;
+  position: relative;
+}
+
+.bloco-quiz .passos {
+  display: flex;
+  gap: var(--sp-lg);
+  margin: var(--sp-xl) 0;
+  position: relative;
+}
+
+.passo-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--raio-md);
+  padding: var(--sp-lg);
+  backdrop-filter: blur(10px);
+}
+
+.passo-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--rosa);
+  color: white;
+  border-radius: var(--raio-full);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: var(--sp-md);
+}
+
+.passo-card strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+  color: var(--fundo);
+}
+
+.passo-card span {
+  font-size: 0.88rem;
+  color: rgba(250, 247, 242, 0.6);
+  line-height: 1.5;
+}
+
+/* ===== GRADE DE TIPOS ===== */
+.grade-tipos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-md);
+}
+
+.tipo-card {
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-lg);
+  padding: var(--sp-lg);
+  text-align: center;
+  text-decoration: none;
+  color: var(--tinta);
+  transition: all var(--dur-slow) var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.tipo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rosa), var(--dourado));
+  transform: scaleX(0);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.tipo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-3);
+  border-color: transparent;
+}
+
+.tipo-card:hover::before {
+  transform: scaleX(1);
+}
+
+.tipo-emoji {
+  font-size: 2.2rem;
+  margin-bottom: var(--sp-md);
+  display: block;
+}
+
+.tipo-card strong {
+  display: block;
+  font-family: var(--fonte-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.tipo-card span {
+  font-size: 0.85rem;
+  color: var(--suave);
+  line-height: 1.5;
+}
+
+/* ===== FEATURES ===== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-lg);
+}
+
+.feature {
+  padding: var(--sp-lg);
+  border-radius: var(--raio-lg);
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  transition: all var(--dur) var(--ease);
+}
+
+.feature:hover {
+  box-shadow: var(--sombra-2);
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--raio-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: var(--sp-md);
+}
+
+.feature-icon.rosa { background: var(--rosa-claro); }
+.feature-icon.verde { background: var(--verde-claro); }
+.feature-icon.dourado { background: var(--dourado-claro); }
+
+.feature strong {
+  display: block;
+  font-family: var(--fonte-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.feature span {
+  font-size: 0.92rem;
+  color: var(--suave);
+  line-height: 1.6;
+}
+
+/* ===== AVISO ===== */
+.aviso {
+  border-left: 3px solid var(--verde);
+  background: var(--verde-claro);
+  border-radius: 0 var(--raio-md) var(--raio-md) 0;
+  padding: var(--sp-lg);
+}
+
+.aviso-rosa {
+  border-left-color: var(--rosa);
+  background: var(--rosa-claro);
+}
+
+/* ===== CTA FINAL ===== */
+.cta-final {
+  text-align: center;
+  padding: var(--sp-2xl) 0;
+}
+
+.cta-final h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: var(--sp-md);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: var(--sp-2xl) 0 var(--sp-xl);
+  border-top: 1px solid var(--linha);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-lg);
+  flex-wrap: wrap;
+  margin: var(--sp-lg) 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--suave);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--dur) var(--ease);
+}
+
+.footer-links a:hover { color: var(--rosa); }
+
+/* ===== ANIMAÇÕES ===== */
+.fade-in {
+  animation: fadeIn 0.6s var(--ease) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s var(--ease) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--ease) forwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger > *:nth-child(4) { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--fundo);color:var(--tinta);
-    font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    padding-inline:20px}
-  .casca{max-width:1080px;margin:0 auto}
-  a{color:inherit}
-  header{padding-block:28px 8px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  .marca{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;text-decoration:none}
-  .marca span{color:var(--rosa)}
-  .aviso-topo{font-size:.85rem;color:var(--suave)}
-  .abertura{padding-block:40px 28px}
-  h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px;max-width:18ch}
-  .abertura p{margin:0;max-width:56ch;color:var(--suave);font-size:1.05rem}
-  .filtros{display:flex;gap:8px;flex-wrap:wrap;padding-block:8px 24px}
-  .filtros[hidden]{display:none}
-  .filtros button{font:inherit;font-size:.92rem;min-height:44px;padding:0 16px;border-radius:999px;
-    border:1px solid var(--linha);background:var(--papel);color:var(--tinta);cursor:pointer}
-  .filtros button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
-  .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding-block:0 48px}
-  .card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;display:flex;flex-direction:column;gap:10px}
-  .foto{aspect-ratio:1/1;max-width:100%;border-radius:10px;background:var(--rosa-claro);object-fit:cover;width:100%;height:auto}
-  .cat{font-size:.78rem;font-weight:600;color:var(--rosa);text-transform:uppercase;letter-spacing:.06em}
-  .card h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.25rem;line-height:1.2;margin:0}
-  .marca-prod{font-size:.9rem;color:var(--suave);margin:0}
-  .porque{margin:0;font-size:.95rem}
-  .preco{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-top:6px;border-top:1px solid var(--linha)}
-  .preco strong{font-size:1.2rem}
-  .preco small{color:var(--suave);font-size:.8rem}
-  .botao{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:10px;background:var(--rosa);color:#fff;
-    text-decoration:none;font-weight:600}
-  .botao:hover{filter:brightness(.93)}
-  .botao[aria-disabled="true"]{background:var(--linha);color:var(--suave);pointer-events:none}
-  .destaque{display:grid;grid-template-columns:minmax(110px,180px) 1fr;gap:20px;align-items:center;margin-bottom:28px;padding:16px;
-    background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);text-decoration:none}
-  .destaque img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:var(--rosa-claro)}
-  .destaque-texto{display:flex;flex-direction:column;gap:8px}
-  .destaque-texto strong{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.25rem,3vw,1.6rem);line-height:1.15}
-  .destaque-texto>span:not(.cat):not(.botao){color:var(--suave);font-size:.95rem}
-  .destaque .botao{align-self:flex-start;padding:0 20px;margin-top:4px}
-  .destaque:hover .botao{filter:brightness(.93)}
-  @media(max-width:520px){.destaque{grid-template-columns:96px 1fr;gap:14px;padding:14px}.destaque-texto>span:not(.cat):not(.botao){font-size:.88rem}.destaque .botao{align-self:stretch;padding:0 12px}}
-  .vazio{grid-column:1/-1;background:var(--papel);border:1px dashed var(--linha);border-radius:var(--raio);padding:40px 24px;text-align:center;color:var(--suave)}
-  .vazio strong{display:block;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.4rem;color:var(--tinta);margin-bottom:6px}
-  footer{border-top:1px solid var(--linha);padding-block:28px 40px;font-size:.88rem;color:var(--suave)}
-  footer p{margin:0 0 10px;max-width:70ch}
-  .painel{background:#fff;border:2px solid var(--verde);border-radius:var(--raio);padding:16px;margin-bottom:24px;font-size:.9rem;overflow-x:auto}
-  .painel table{border-collapse:collapse;width:100%}
-  .painel td,.painel th{padding:6px 8px;border-bottom:1px solid var(--linha);text-align:left;white-space:nowrap}
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 640px) {
+  .hero { padding: var(--sp-xl) 0; }
+  .hero-stats { gap: var(--sp-lg); }
+  .bloco-quiz .passos { flex-direction: column; }
+  .nav-links { display: none; }
+  .grade-tipos { grid-template-columns: repeat(2, 1fr); }
+  .features { grid-template-columns: 1fr; }
+}
+
+/* ===== MODO ESCURO ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #141210;
+    --fundo-grad: linear-gradient(165deg, #141210 0%, #1a1714 50%, #141210 100%);
+    --papel: #1e1b18;
+    --papel-2: #242019;
+    --tinta: #f0ebe6;
+    --tinta-2: #e8e2dc;
+    --suave: #a89e96;
+    --suave-2: #7a6e65;
+    --linha: rgba(240, 235, 230, 0.08);
+    --linha-2: rgba(240, 235, 230, 0.12);
+    --rosa-claro: rgba(180, 84, 106, 0.15);
+    --verde-claro: rgba(63, 107, 85, 0.15);
+    --dourado-claro: rgba(201, 169, 110, 0.1);
+    --sombra-1: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --sombra-2: 0 4px 16px rgba(0, 0, 0, 0.25);
+    --sombra-3: 0 12px 40px rgba(0, 0, 0, 0.35);
+    --sombra-rosa: 0 8px 32px rgba(180, 84, 106, 0.2);
+    --sombra-verde: 0 8px 32px rgba(63, 107, 85, 0.2);
+  }
+  .bloco-quiz {
+    background: linear-gradient(145deg, #2a2420 0%, #1e1b18 100%);
+  }
+  .card-glass {
+    background: rgba(30, 27, 24, 0.7);
+    border-color: rgba(240, 235, 230, 0.1);
+  }
+}
 </style>
 </head>
 <body>
-<div class="casca">
-  <header>
-    <a class="marca" href="./">Produto<span>Skincare</span></a>
-    <span class="aviso-topo">Contém links de afiliado</span>
-  </header>
 
-  <section class="abertura">
-    <h1>Achados de beleza do TikTok Shop</h1>
-    <p>Produtos de skincare e beleza que eu separei, com o preço do dia em que conferi e link direto para a loja do TikTok.</p>
+<div class="container">
+
+  <!-- NAVEGAÇÃO -->
+  <nav class="nav-topo">
+    <a href="/" class="marca">
+      <div class="marca-icon">PS</div>
+      Produto <span>Skincare</span>
+    </a>
+    <div class="nav-links">
+      <a href="/provador/">Provador</a>
+      <a href="#tipos">Tipos de pele</a>
+      <a href="/achados/">Achados</a>
+      <a href="/privacidade/">Privacidade</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge fade-in">
+      <div class="dot"></div>
+      Quiz gratuito · 2 minutos
+    </div>
+    <h1 class="fade-in-up" style="animation-delay: 0.1s">
+      Descubra seu tipo de pele<br>e a <em>rotina ideal</em>
+    </h1>
+    <p class="lead fade-in-up" style="animation-delay: 0.2s">
+      Responda 5 perguntas rápidas e receba uma rotina de skincare feita para você — com produtos reais, links diretos e sem enrolação.
+    </p>
+    <div class="hero-actions fade-in-up" style="animation-delay: 0.3s">
+      <a href="/provador/" class="btn btn-primary">
+        Começar o quiz
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#tipos" class="btn btn-secondary">Explorar por tipo</a>
+    </div>
+
+    <div class="hero-stats fade-in-up" style="animation-delay: 0.4s">
+      <div class="stat">
+        <div class="stat-num">2 min</div>
+        <div class="stat-label">Para descobrir</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Perguntas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Produtos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Gratuito</div>
+      </div>
+    </div>
   </section>
 
-  <a class="destaque" href="fortskin/">
-    <img src="fortskin/assets/frasco-na-mao-real.webp" alt="Mão segurando o frasco do Sérum Repair GHK-Cu FortSkin" width="540" height="1200" loading="lazy" decoding="async">
-    <span class="destaque-texto">
-      <span class="cat">Em destaque</span>
-      <strong>Sérum Repair GHK-Cu FortSkin</strong>
-      <span>Conheça o sérum de peptídeo de cobre em uma experiência interativa, com vídeo e fotos.</span>
-      <span class="botao">Conhecer o sérum →</span>
-    </span>
-  </a>
+  <!-- BLOCO QUIZ -->
+  <section class="section">
+    <div class="bloco-quiz fade-in-up">
+      <h2>Como funciona o provador</h2>
+      <p>Em menos de 2 minutos você descobre seu tipo de pele e recebe uma rotina personalizada de manhã e noite.</p>
+      <div class="passos stagger">
+        <div class="passo-card">
+          <div class="passo-num">1</div>
+          <strong>Responda</strong>
+          <span>5 perguntas rápidas sobre sua pele, sem enrolação</span>
+        </div>
+        <div class="passo-card">
+          <div class="passo-num">2</div>
+          <strong>Descubra</strong>
+          <span>Seu tipo: oleosa, seca, mista ou normal + código Baumann</span>
+        </div>
+        <div class="passo-card">
+          <div class="passo-num">3</div>
+          <strong>Receba</strong>
+          <span>Rotina completa com produtos reais e links diretos</span>
+        </div>
+      </div>
+      <a href="/provador/" class="btn btn-rosa" style="position:relative">
+        Fazer o quiz agora
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
 
-  <div id="painel"></div>
-  <nav class="filtros" id="filtros" aria-label="Filtrar por categoria"></nav>
-  <main class="grade" id="grade" aria-live="polite"></main>
+  <!-- TIPOS DE PELE -->
+  <section class="section" id="tipos">
+    <div style="text-align:center; margin-bottom: var(--sp-xl)">
+      <h2>Qual é o seu tipo de pele?</h2>
+      <p class="sub" style="max-width:500px; margin:0 auto">Cada tipo tem necessidades diferentes. Clique no seu para ver o guia completo com rotina, ingredientes e produtos.</p>
+    </div>
 
+    <div class="grade-tipos stagger">
+      <a href="/pele/oleosa/" class="tipo-card">
+        <span class="tipo-emoji">💧</span>
+        <strong>Oleosa</strong>
+        <span>Brilho constante, poros dilatados, espinhas frequentes</span>
+      </a>
+      <a href="/pele/seca/" class="tipo-card">
+        <span class="tipo-emoji">🍂</span>
+        <strong>Seca</strong>
+        <span>Repuxa, descama, linhas finas, sem brilho</span>
+      </a>
+      <a href="/pele/mista/" class="tipo-card">
+        <span class="tipo-emoji">🌗</span>
+        <strong>Mista</strong>
+        <span>Zona T oleosa, bochechas normais ou secas</span>
+      </a>
+      <a href="/pele/normal/" class="tipo-card">
+        <span class="tipo-emoji">✨</span>
+        <strong>Normal</strong>
+        <span>Equilibrada, poros finos, raramente irrita</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div style="text-align:center; margin-bottom: var(--sp-xl)">
+      <h2>O que você encontra aqui</h2>
+    </div>
+
+    <div class="features stagger">
+      <div class="feature">
+        <div class="feature-icon rosa">🎯</div>
+        <strong>Quiz inteligente</strong>
+        <span>5 perguntas indiretas + teste do rosto limpo. Pontuação por tipo, sem achismo.</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon verde">🧴</div>
+        <strong>Rotina personalizada</strong>
+        <span>Manhã e noite, 1 produto por passo + alternativa. Com preço e link direto.</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon dourado">🧬</div>
+        <strong>Código Baumann</strong>
+        <span>4 eixos de análise: Oleosidade, Reatividade, Pigmentação e Elasticidade.</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon rosa">📚</div>
+        <strong>Guias por tipo</strong>
+        <span>Causas, sinais, ingredientes que funcionam e erros comuns — para cada tipo.</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon verde">🇧🇷</div>
+        <strong>Curadoria real</strong>
+        <span>Produtos nacionais e internacionais, com ativos estudados e resultados comprovados.</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon dourado">🔒</div>
+        <strong>Privacidade total</strong>
+        <span>Tudo roda no seu navegador. Nada é enviado para servidores. Sem cookies.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVISO -->
+  <section class="section" style="padding-top:0">
+    <div class="aviso">
+      <strong>Não é diagnóstico médico.</strong> O provador é uma estimativa cosmética para escolher produtos de skincare. Se tem acne intensa, lesões, dor ou irritação persistente, procure um dermatologista. Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <h2>Pronto para descobrir?</h2>
+    <p class="lead" style="margin: 0 auto var(--sp-xl)">Leva menos de 2 minutos. Sem cadastro, sem spam — só o resultado na hora.</p>
+    <a href="/provador/" class="btn btn-primary" style="font-size:1.05rem; padding: 0 40px">
+      Começar o quiz
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p><strong>Links de afiliado.</strong> Os botões levam ao TikTok Shop. Se você comprar por eles, posso receber comissão, sem custo extra para você.</p>
-    <p><strong>Preços</strong> são os vistos na data indicada em cada produto e podem mudar. Vale o preço mostrado na loja na hora da compra.</p>
-    <p><strong>Não é orientação médica.</strong> Cosméticos agem de forma diferente em cada pele. Leia o rótulo, faça o teste de sensibilidade e, em caso de problema de pele, procure um dermatologista.</p>
-    <p>Este site não usa cookies nem ferramentas de rastreamento próprias. A compra acontece no TikTok Shop, sob as regras e a política de privacidade do TikTok.</p>
+    <a href="/" class="marca" style="justify-content:center">
+      <div class="marca-icon">PS</div>
+      Produto <span>Skincare</span>
+    </a>
+    <div class="footer-links">
+      <a href="/provador/">Provador</a>
+      <a href="/pele/oleosa/">Oleosa</a>
+      <a href="/pele/seca/">Seca</a>
+      <a href="/pele/mista/">Mista</a>
+      <a href="/pele/normal/">Normal</a>
+      <a href="/achados/">Achados</a>
+      <a href="/fortskin/">FortSkin</a>
+      <a href="/privacidade/">Privacidade</a>
+    </div>
+    <p class="sub-sm">Curadoria de skincare para todos os tipos de pele</p>
+    <p class="sub-sm" style="margin-top:8px">© 2026 Produto Skincare. Preços e disponibilidade podem mudar.</p>
   </footer>
+
 </div>
 
-<script>
-// Validade oficial do link de afiliado no TikTok Shop BR: até 100 dias (guia seller-br, atualização 20/01/2026).
-const VALIDADE_DIAS = 100;
-const DIA = 86400000;
-
-const $grade = document.getElementById('grade');
-const $filtros = document.getElementById('filtros');
-let produtos = [];
-let filtro = 'Todos';
-
-function hostOficial(url){
-  try{
-    const h = new URL(url).hostname.toLowerCase();
-    return h === 'tiktok.com' || h.endsWith('.tiktok.com');
-  }catch(e){ return false; }
-}
-function diasRestantes(p){
-  if(!p.link_gerado_em) return null;
-  const gerado = new Date(p.link_gerado_em + 'T00:00:00');
-  if(isNaN(gerado)) return null;
-  return Math.floor((gerado.getTime() + VALIDADE_DIAS*DIA - Date.now()) / DIA);
-}
-function linkValido(p){
-  const d = diasRestantes(p);
-  return hostOficial(p.link) && d !== null && d >= 0;
-}
-function dataBR(iso){
-  const [a,m,d] = String(iso||'').split('-');
-  return d ? `${d}/${m}/${a}` : '';
-}
-function brl(v){
-  return typeof v === 'number' ? v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}) : '';
-}
-function el(tag, attrs={}, texto){
-  const n = document.createElement(tag);
-  for(const [k,v] of Object.entries(attrs)) n.setAttribute(k,v);
-  if(texto != null) n.textContent = texto;
-  return n;
-}
-
-function desenharFiltros(){
-  const cats = ['Todos', ...new Set(produtos.map(p => p.categoria).filter(Boolean))];
-  $filtros.hidden = cats.length <= 2;
-  $filtros.replaceChildren(...cats.map(c => {
-    const b = el('button', {type:'button','aria-pressed': String(c === filtro)}, c);
-    b.onclick = () => { filtro = c; desenharFiltros(); desenharGrade(); };
-    return b;
-  }));
-}
-
-function desenharGrade(){
-  const lista = produtos.filter(p => filtro === 'Todos' || p.categoria === filtro);
-  if(!lista.length){
-    const v = el('div', {class:'vazio'});
-    v.append(el('strong', {}, 'Em breve'), el('span', {}, 'Os primeiros achados estão sendo separados.'));
-    $grade.replaceChildren(v);
-    return;
-  }
-  $grade.replaceChildren(...lista.map(p => {
-    const c = el('article', {class:'card'});
-    if(p.foto) c.append(el('img', {class:'foto', src:p.foto, alt:p.nome, loading:'lazy', decoding:'async'}));
-    if(p.categoria) c.append(el('span', {class:'cat'}, p.categoria));
-    c.append(el('h2', {}, p.nome));
-    if(p.marca) c.append(el('p', {class:'marca-prod'}, p.marca));
-    if(p.porque) c.append(el('p', {class:'porque'}, p.porque));
-    const pr = el('div', {class:'preco'});
-    pr.append(el('strong', {}, typeof p.preco === 'number' ? brl(p.preco) : 'Preço na loja'));
-    if(p.preco_em) pr.append(el('small', {}, `preço visto em ${dataBR(p.preco_em)}`));
-    c.append(pr);
-    if(linkValido(p)){
-      c.append(el('a', {class:'botao', href:p.link, target:'_blank', rel:'sponsored nofollow noopener'}, 'Ver no TikTok Shop'));
-    }else{
-      c.append(el('a', {class:'botao','aria-disabled':'true'}, 'Link indisponível'));
-    }
-    return c;
-  }));
-}
-
-// Painel de manutenção: abrir com ?vencimento=1
-function desenharPainel(){
-  if(new URLSearchParams(location.search).get('vencimento') !== '1') return;
-  const box = el('div', {class:'painel'});
-  box.append(el('strong', {}, 'Vencimento dos links (validade de ' + VALIDADE_DIAS + ' dias)'));
-  const t = el('table');
-  const cab = el('tr'); ['Produto','Gerado em','Dias restantes','Situação'].forEach(h => cab.append(el('th', {}, h)));
-  t.append(cab);
-  [...produtos].sort((a,b) => (diasRestantes(a) ?? -999) - (diasRestantes(b) ?? -999)).forEach(p => {
-    const d = diasRestantes(p);
-    const sit = !hostOficial(p.link) ? 'link fora do domínio tiktok.com'
-      : d === null ? 'sem data de geração'
-      : d < 0 ? 'VENCIDO — gerar de novo'
-      : d <= 14 ? 'vence em breve' : 'ok';
-    const tr = el('tr');
-    [p.nome, dataBR(p.link_gerado_em), d ?? '—', sit].forEach(x => tr.append(el('td', {}, String(x))));
-    t.append(tr);
-  });
-  box.append(t);
-  document.getElementById('painel').append(box);
-}
-
-fetch('produtos.json', {cache:'no-cache'})
-  .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-  .then(dados => { produtos = Array.isArray(dados) ? dados : []; })
-  .catch(err => { console.error('produtos.json não carregou:', err); produtos = []; })
-  .finally(() => { desenharPainel(); desenharFiltros(); desenharGrade(); });
-</script>
 </body>
 </html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://produtoskincare.com.br/sitemap.xml
