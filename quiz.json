@@ -1,0 +1,200 @@
+{
+  "versao": "1.0",
+  "descricao": "Perguntas do provador virtual de tipo de pele. Cada opção pontua os 4 tipos; sensível é marcação extra.",
+  "perguntas": [
+    {
+      "id": "q1",
+      "etapa": "tipo",
+      "obrigatoria": true,
+      "texto": "Umas horas depois de lavar o rosto, sua pele costuma…",
+      "ajuda": "Pense num dia normal, sem produtos novos.",
+      "opcoes": [
+        { "valor": "seca",    "rotulo": "Repuxar ou descamar",           "pontos": { "seca": 3 } },
+        { "valor": "normal",  "rotulo": "Ficar confortável, sem mudanças", "pontos": { "normal": 3 } },
+        { "valor": "mista",   "rotulo": "Brilhar só na testa e no nariz", "pontos": { "mista": 3 } },
+        { "valor": "oleosa",  "rotulo": "Brilhar no rosto todo",         "pontos": { "oleosa": 3 } }
+      ]
+    },
+    {
+      "id": "q2",
+      "etapa": "tipo",
+      "obrigatoria": true,
+      "texto": "Quando você usa um produto novo (creme, sabonete, sérum), o que costuma acontecer?",
+      "ajuda": "Produtos comuns de farmácia ou mercado, não necessariamente cosméticos caros.",
+      "opcoes": [
+        { "valor": "frequente", "rotulo": "Arde, fica vermelha ou escurece com frequência", "pontos": {}, "marca": { "sensivel": true } },
+        { "valor": "as_vezes",  "rotulo": "Às vezes sente algo, mas passa rápido",           "pontos": {}, "marca": { "sensivel": "parcial" } },
+        { "valor": "quase_nunca","rotulo": "Quase nunca tem reação",                        "pontos": { "normal": 1, "oleosa": 1 } }
+      ]
+    },
+    {
+      "id": "q3",
+      "etapa": "tipo",
+      "obrigatoria": true,
+      "texto": "Com que frequência aparecem espinhas ou cravos inflamados?",
+      "ajuda": "Conte os pontos que doem ou ficam vermelhos, não só os cravos pretos.",
+      "opcoes": [
+        { "valor": "sempre",  "rotulo": "Toda semana, quase sempre tem alguma", "pontos": { "oleosa": 2, "mista": 1 }, "preocupacao": "acne" },
+        { "valor": "as_vezes","rotulo": "De vez em quando, principalmente antes da menstruação ou no estresse", "pontos": { "mista": 1, "oleosa": 1 }, "preocupacao": "acne" },
+        { "valor": "raro",    "rotulo": "Raramente ou nunca",                    "pontos": { "seca": 1, "normal": 1 } }
+      ]
+    },
+    {
+      "id": "q4",
+      "etapa": "tipo",
+      "obrigatoria": true,
+      "texto": "Se você passasse a mão nas bochechas agora, como estaria?",
+      "ajuda": "Sem esfregar. Só encostar de leve.",
+      "opcoes": [
+        { "valor": "seca",    "rotulo": "Áspera, com descamação ou repuxando",       "pontos": { "seca": 3 } },
+        { "valor": "normal",  "rotulo": "Macia e confortável",                       "pontos": { "normal": 3 } },
+        { "valor": "mista",   "rotulo": "Lisa na parte perto do nariz, mais seca nas laterais", "pontos": { "mista": 3 } },
+        { "valor": "oleosa",  "rotulo": "Lisa mas com um filme de oleosidade",       "pontos": { "oleosa": 3 } }
+      ]
+    },
+    {
+      "id": "q5",
+      "etapa": "tipo",
+      "obrigatoria": true,
+      "texto": "No fim do dia, como está o brilho do rosto?",
+      "ajuda": "Depois de um dia normal, sem retoque.",
+      "opcoes": [
+        { "valor": "seca",    "rotulo": "Sem brilho, às vezes com áreas descamando", "pontos": { "seca": 3 } },
+        { "valor": "normal",  "rotulo": "Brilho suave e uniforme",                   "pontos": { "normal": 3 } },
+        { "valor": "mista",   "rotulo": "Brilho forte na testa e nariz, bochechas ok", "pontos": { "mista": 3 } },
+        { "valor": "oleosa",  "rotulo": "Brilho intenso no rosto inteiro",           "pontos": { "oleosa": 3 } }
+      ]
+    },
+    {
+      "id": "q6",
+      "etapa": "tipo",
+      "obrigatoria": false,
+      "texto": "Teste do rosto limpo (opcional, mas vale mais que as outras perguntas)",
+      "ajuda": "Lave o rosto só com gel suave, seque sem esfregar, não aplique nada e espere 45 a 60 minutos. Depois observe no espelho.",
+      "peso": 4,
+      "opcoes": [
+        { "valor": "seca",    "rotulo": "Repuxa no rosto todo",                         "pontos": { "seca": 4 } },
+        { "valor": "mista",   "rotulo": "Brilho só no centro (testa, nariz, queixo)",    "pontos": { "mista": 4 } },
+        { "valor": "oleosa",  "rotulo": "Brilho nas bochechas e na testa",               "pontos": { "oleosa": 4 } },
+        { "valor": "normal",  "rotulo": "Confortável e uniforme",                        "pontos": { "normal": 4 } },
+        { "valor": "nao_fiz", "rotulo": "Ainda não fiz o teste",                         "pontos": {} }
+      ]
+    },
+    {
+      "id": "q7",
+      "etapa": "extras",
+      "obrigatoria": false,
+      "texto": "O cabelo ou a franja que encosta na testa fica colado ou com aspecto molhado no fim do dia?",
+      "opcoes": [
+        { "valor": "sim", "rotulo": "Sim, fica colado ou molhado", "pontos": { "oleosa": 1 } },
+        { "valor": "nao", "rotulo": "Não",                         "pontos": { "seca": 1 } }
+      ]
+    },
+    {
+      "id": "q8",
+      "etapa": "extras",
+      "obrigatoria": false,
+      "texto": "Se você usa óculos: como ficam as marcas do apoio no nariz?",
+      "opcoes": [
+        { "valor": "vermelha", "rotulo": "Vermelho-escuras, com brilho em volta", "pontos": { "oleosa": 1 }, "marca": { "sensivel": "parcial" } },
+        { "valor": "branca",   "rotulo": "Esbranquiçadas ou descamando",           "pontos": { "seca": 2 } },
+        { "valor": "nao",      "rotulo": "Não uso óculos / nada de especial",      "pontos": {} }
+      ]
+    },
+    {
+      "id": "q9",
+      "etapa": "extras",
+      "obrigatoria": false,
+      "texto": "Aparecem escamas brancas ou amareladas entre os pelos da sobrancelha?",
+      "opcoes": [
+        { "valor": "sim", "rotulo": "Sim", "pontos": { "oleosa": 1 }, "marca": { "sensivel": true }, "nota": "Pode indicar dermatite seborreica (pele oleosa e sensível). Vale procurar dermatologista." },
+        { "valor": "nao", "rotulo": "Não", "pontos": {} }
+      ]
+    },
+    {
+      "id": "q10",
+      "etapa": "extras",
+      "obrigatoria": false,
+      "texto": "Se você menstrua: está entre 7 e 10 dias antes da menstruação?",
+      "ajuda": "A fase lútea aumenta o sebo e pode dar uma falsa ideia de pele oleosa.",
+      "opcoes": [
+        { "valor": "lutea", "rotulo": "Sim, estou nessa fase",    "pontos": {}, "ajuste": { "oleosa": 0.5 } },
+        { "valor": "outra", "rotulo": "Não, estou em outra fase", "pontos": {} },
+        { "valor": "na",    "rotulo": "Não se aplica",            "pontos": {} }
+      ]
+    }
+  ],
+  "preocupacoes": {
+    "texto": "Qual é a sua maior preocupação com a pele? (escolha até 2)",
+    "maximo": 2,
+    "opcoes": [
+      { "valor": "acne",          "rotulo": "Acne / espinhas" },
+      { "valor": "manchas",       "rotulo": "Manchas / tom irregular" },
+      { "valor": "poros",         "rotulo": "Poros dilatados" },
+      { "valor": "idade",         "rotulo": "Sinais de idade / linhas finas" },
+      { "valor": "desidratacao",  "rotulo": "Desidratação / repuxamento" }
+    ]
+  },
+  "preferencias": {
+    "faixa_preco": {
+      "texto": "Faixa de preço preferida (opcional)",
+      "opcoes": [
+        { "valor": "economico",  "rotulo": "Até R$ 60",        "limite": 60 },
+        { "valor": "intermediario","rotulo": "R$ 60 a R$ 120", "limite": 120 },
+        { "valor": "premium",    "rotulo": "Acima de R$ 120",  "limite": 9999 },
+        { "valor": "qualquer",   "rotulo": "Sem preferência",  "limite": 9999 }
+      ]
+    },
+    "rotina": {
+      "texto": "Quantos passos você quer na rotina?",
+      "opcoes": [
+        { "valor": 3, "rotulo": "3 passos (essencial)" },
+        { "valor": 5, "rotulo": "5 passos (completa)" }
+      ]
+    }
+  },
+  "opcao_ja_sei": {
+    "texto": "Já sei meu tipo de pele",
+    "descricao": "Pule o quiz e vá direto para as recomendações.",
+    "valores": ["oleosa", "seca", "mista", "normal"]
+  },
+  "resultado": {
+    "explicacoes": {
+      "oleosa": "Sua pele produz mais sebo do que o necessário, principalmente na zona T (testa, nariz, queixo) e às vezes nas bochechas. Isso dá aquele brilho, amplia a aparência dos poros e favorece cravos e espinhas. A boa notícia: pele oleosa envelhece mais devagar, porque o sebo protege.",
+      "seca": "Sua pele produz pouco sebo e perde água com facilidade. Ela pode repuxar, descamar ou ficar áspera, especialmente em dias frios ou com ar-condicionado. Linhas finas aparecem mais cedo quando falta hidratação. O segredo é hidratar bem e não agredir a barreira da pele.",
+      "mista": "Sua pele é uma combinação: oleosa na zona T (testa, nariz, queixo) e normal ou seca nas bochechas. É o tipo mais comum. A chave é tratar cada região com o que ela precisa — produtos mais leves na zona T e mais nutritivos nas laterais.",
+      "normal": "Sua pele está equilibrada: nem muito oleosa, nem seca. Os poros são finos, o tom é uniforme e raramente há irritações. Não é comum, e vale manter os bons hábitos para preservar esse equilíbrio."
+    },
+    "dicas": {
+      "oleosa": [
+        "Lave o rosto 2 vezes por dia com gel suave — esfregar demais piora a oleosidade (efeito rebote).",
+        "Prefira texturas em gel ou fluido, sem óleo (oil-free).",
+        "Niacinamida e ácido salicílico ajudam a controlar o sebo e limpar os poros.",
+        "Nunca pule o protetor solar. Prefira fórmulas toque seco ou fluídas.",
+        "Hidrate mesmo a pele oleosa: falta de água gera mais sebo ainda."
+      ],
+      "seca": [
+        "Use limpeza cremosa ou em loção, sem sulfatos agressivos.",
+        "Hidratante com ceramidas, ácido hialurônico ou manteiga de karité restaura a barreira.",
+        "Evite água quente no rosto — ela remove os óleos naturais.",
+        "Ácido hialurônico funciona melhor em pele úmida: aplique após lavar, sem secar completamente.",
+        "Protetor solar hidratante ou com acabamento luminoso ajuda a manter a maciez."
+      ],
+      "mista": [
+        "Use produtos leves na zona T e mais nutritivos nas bochechas (multirrotina).",
+        "Gel de limpeza equilibrado funciona bem para o rosto inteiro.",
+        "Niacinamida é a grande aliada: regula o sebo sem ressecar.",
+        "Protetor solar toque seco na zona T, hidratante nas laterais.",
+        "Máscaras de argila só na zona T, nunca no rosto inteiro."
+      ],
+      "normal": [
+        "Mantenha a rotina simples: limpeza suave, hidratação e protetor solar.",
+        "Previna com antioxidantes (vitamina C de manhã) e retinol (à noite, 2-3x/semana).",
+        "Não troque de produto toda hora — pele equilibrada não precisa de muita coisa.",
+        "Protetor solar todo dia é o melhor antienvelhecimento que existe.",
+        "Fique atenta a mudanças sazonais: até pele normal muda no inverno ou verão."
+      ]
+    },
+    "aviso_sensivel": "Pele sensível: introduza um produto novo por vez e faça teste atrás da orelha antes de usar no rosto. Se houver vermelhidão persistente, vasinhos ou irritação frequente, procure um dermatologista — pode ser rosácea ou outra condição."
+  }
+}
