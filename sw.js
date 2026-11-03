@@ -1,6 +1,12 @@
-const CACHE = "provador-premium-20261103-final";
+const CACHE = "provador-premium-20261103-editorial";
 const ASSETS = [
   "/premium.css",
+  "/premium.js",
+  "/fonts/cormorant-500.ttf",
+  "/fonts/manrope-400.ttf",
+  "/fonts/manrope-600.ttf",
+  "/img/ritual-face.jpg",
+  "/img/cream-texture.jpg",
   "/img/skincare-editorial.jpg",
   "/",
   "/index.html",

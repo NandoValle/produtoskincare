@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Provador Virtual — Descubra seu tipo de pele | Produto Skincare</title>
-<meta name="description" content="Descubra seu tipo de pele em 5 perguntas rápidas e receba uma rotina personalizada de skincare com produtos reais. Quiz gratuito, sem cadastro.">
+<meta name="description" content="Responda ao quiz sobre sua pele e receba um perfil estimado e sugestões de rotina com produtos reais. Gratuito, sem cadastro.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://produtoskincare.com.br/provador/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Provador Virtual — Descubra seu tipo de pele">
-<meta property="og:description" content="5 perguntas rápidas para descobrir seu tipo de pele e receber uma rotina personalizada. Gratuito, sem cadastro.">
+<meta property="og:description" content="Conheça seu perfil de pele e explore sugestões de cuidados para manhã e noite. Quiz gratuito, sem cadastro.">
 <meta property="og:url" content="https://produtoskincare.com.br/provador/">
 <meta property="og:site_name" content="Produto Skincare">
 <meta property="og:locale" content="pt_BR">
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Provador Virtual — Descubra seu tipo de pele">
-<meta name="twitter:description" content="5 perguntas rápidas para descobrir seu tipo de pele e receber uma rotina personalizada.">
+<meta name="twitter:description" content="Conheça seu perfil de pele e explore sugestões de cuidados para manhã e noite.">
 <!-- JSON-LD -->
 <script type="application/ld+json">
 {
@@ -235,15 +235,15 @@ html[data-tema="claro"]{
 </style>
 <link rel="stylesheet" href="/premium.css">
 </head>
-<body>
+<body class="ps-quiz">
 <button class="btn-tema" id="btnTema" aria-label="Alternar tema claro/escuro" title="Alternar tema">🌙</button>
 <main role="main" aria-label="Provador virtual de tipo de pele">
-<div class="marca"><div class="marca-icon">PS</div>Produto <span>Skincare</span> · Provador</div>
+<a class="ps-back-home" href="/">← Voltar ao site</a><div class="marca"><div class="marca-icon">PS</div>Produto <span>Skincare</span> · Provador</div>
 
 <!-- ===== TELA INICIAL ===== -->
 <div id="telaInicio">
-<h1>Descubra seu tipo de pele</h1>
-<p class="sub">São só 5 perguntinhas rápidas. No final, você recebe uma rotina de skincare feita sob medida — com produtos reais que você encontra pra comprar hoje.</p>
+<p class="ps-eyebrow">Seu ritual começa aqui</p><h1>Descubra seu<br>tipo de pele.</h1>
+<p class="sub">Conte como sua pele se comporta no dia a dia. A partir das suas respostas, descubra um perfil estimado e sugestões de cuidados para manhã e noite.</p>
 
 <div class="card aviso"><strong>⏱️ Leva menos de 2 minutos.</strong> É uma estimativa cosmética para ajudar na escolha de produtos — não é diagnóstico médico. Se tem acne intensa ou irritação persistente, procure um dermatologista.</div>
 
@@ -771,7 +771,8 @@ function mostrarTela(nome) {
   const el = $(mapa[nome]); if (el) el.hidden = false;
   ESTADO.etapa = nome;
   track("screen_view", { tela: nome });
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  if (el && nome !== "quiz") { const heading = el.querySelector("h1,h2"); if (heading) { heading.tabIndex = -1; heading.focus({preventScroll:true}); } }
 }
 
 function voltarInicio() { mostrarTela("inicio"); }
@@ -823,8 +824,11 @@ function renderPergunta() {
   });
 
   $("btnAvancar").disabled = !ESTADO.respostas[p.id];
-  $("btnAvancar").textContent = idx === todas.length - 1 ? "Ver resultado →" : "Continuar →";
+  $("btnAvancar").textContent = "Continuar →";
   $("btnVoltar").hidden = idx === 0;
+  const legend = $("areaPergunta").querySelector("legend");
+  legend.tabIndex = -1;
+  legend.focus({preventScroll:true});
 }
 
 $("btnComecar").onclick = () => { track("quiz_start", { modo: "completo" }); iniciarQuiz(); };
