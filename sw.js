@@ -1,5 +1,7 @@
-const CACHE = "provador-v3";
+const CACHE = "provador-premium-20261103-final";
 const ASSETS = [
+  "/premium.css",
+  "/img/skincare-editorial.jpg",
   "/",
   "/index.html",
   "/provador/",
