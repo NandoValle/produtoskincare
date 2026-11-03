@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="24" fill="#e8eaf6"/>
+  <rect x="30" y="30" width="60" height="60" rx="16" fill="#5c6bc0" opacity="0.12"/>
+  <rect x="30" y="30" width="60" height="60" rx="16" stroke="#5c6bc0" stroke-width="2.5"/>
+  <path d="M50 55c0-5.5 4.5-10 10-10s10 4.5 10 10c0 8-10 18-10 18s-10-10-10-18z" fill="#5c6bc0" opacity="0.2" stroke="#5c6bc0" stroke-width="1.5"/>
+  <text x="60" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#5c6bc0">HIDRATAÇÃO</text>
+</svg>

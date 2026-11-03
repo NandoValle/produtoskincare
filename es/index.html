@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Producto Skincare — Descubre Tu Tipo de Piel y Rutina Ideal</title>
+<meta name="description" content="Descubre tu tipo de piel en 2 minutos y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:780px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(2.2rem,6vw,3.5rem);font-weight:300;line-height:1.05;letter-spacing:-0.03em;margin:.3em 0}
+h1 em{font-style:italic;color:var(--rosa)}
+h2{font-family:var(--fonte-display);font-size:clamp(1.5rem,4vw,2rem);margin:2em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.marca-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--rosa),#c96b80);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:.75rem;font-weight:600}
+.marca span{color:var(--rosa);font-weight:600}
+.sub{color:var(--suave)}
+.lead{font-size:1.15rem;line-height:1.7;color:var(--suave);max-width:540px;margin:0 auto 24px;font-weight:300}
+.btn{font:inherit;font-weight:600;min-height:52px;padding:0 32px;border-radius:12px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s;font-size:1rem}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,22,20,0.15)}
+.btn.sec{background:var(--papel);color:var(--tinta);border:1.5px solid var(--linha)}
+.hero{text-align:center;padding:40px 0}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--papel);border:1px solid var(--linha);border-radius:999px;padding:8px 20px;font-size:.85rem;font-weight:500;color:var(--suave);margin-bottom:24px}
+.hero-badge .dot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:24px}
+.tipo-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;text-align:center;text-decoration:none;color:var(--tinta);transition:all .3s}
+.tipo-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(26,22,20,0.1)}
+.tipo-card .emoji{font-size:2rem;margin-bottom:8px;display:block}
+.tipo-card strong{display:block;font-family:var(--fonte-display);font-size:1.1rem;margin-bottom:4px}
+.tipo-card span{font-size:.85rem;color:var(--suave)}
+.lang-switch{display:flex;gap:8px;justify-content:center;margin:20px 0}
+.lang-switch a{padding:8px 16px;border-radius:999px;border:1px solid var(--linha);text-decoration:none;color:var(--suave);font-size:.88rem;font-weight:500}
+.lang-switch a.ativo{background:var(--tinta);color:var(--fundo);border-color:var(--tinta)}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin-top:40px}
+</style>
+</head>
+<body>
+<main>
+<div class="marca"><div class="marca-icon">PS</div>Producto <span>Skincare</span></div>
+
+<div class="lang-switch">
+<a href="/">Português</a>
+<a href="/en/">English</a>
+<a href="/es/" class="ativo">Español</a>
+</div>
+
+<section class="hero">
+<div class="hero-badge"><div class="dot"></div>Cuestionario gratis · 2 minutos</div>
+<h1>Descubre tu tipo de piel<br>y la <em>rutina ideal</em></h1>
+<p class="lead">Responde 5 preguntas rápidas y recibe una rutina de skincare personalizada — con productos reales, enlaces directos y sin relleno.</p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+<a href="/provador/" class="btn">Comenzar el quiz →</a>
+<a href="#tipos" class="btn sec">Explorar por tipo</a>
+</div>
+</section>
+
+<section id="tipos">
+<h2>¿Cuál es tu tipo de piel?</h2>
+<div class="grade">
+<a href="/pele/oleosa/" class="tipo-card"><span class="emoji">💧</span><strong>Grasa</strong><span>Brillo, poros dilatados, granitos frecuentes</span></a>
+<a href="/pele/seca/" class="tipo-card"><span class="emoji">🍂</span><strong>Seca</strong><span>Tirantez, descamación, líneas finas</span></a>
+<a href="/pele/mista/" class="tipo-card"><span class="emoji">🌗</span><strong>Mixta</strong><span>Zona T grasa, mejillas secas</span></a>
+<a href="/pele/normal/" class="tipo-card"><span class="emoji">✨</span><strong>Normal</strong><span>Equilibrada, poros finos</span></a>
+</div>
+</section>
+
+<section>
+<h2>Qué encontrarás aquí</h2>
+<div class="grade">
+<div class="card">🎯 <strong>Quiz inteligente</strong><br><span class="sub">5 preguntas indirectas + test de piel limpia</span></div>
+<div class="card">🧴 <strong>Rutina personalizada</strong><br><span class="sub">Mañana y noche, 1 producto por paso</span></div>
+<div class="card">🧬 <strong>Código Baumann</strong><br><span class="sub">Análisis de piel en 4 ejes</span></div>
+<div class="card">📚 <strong>Guías por tipo</strong><br><span class="sub">Causas, señales, ingredientes, productos</span></div>
+</div>
+</section>
+
+<footer>
+<p class="sub">Producto Skincare · Cuidado de la piel para cada tipo</p>
+<p class="sub" style="margin-top:8px">© 2026 Producto Skincare. Contiene enlaces de afiliado.</p>
+</footer>
+</main>
+</body>
+</html>
