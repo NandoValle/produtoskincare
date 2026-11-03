@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comparar Produtos de Skincare | Produto Skincare</title>
+<meta name="description" content="Compare produtos de skincare lado a lado: preço, ativos, avaliação e para que tipo de pele servem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:800px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.25rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+select{width:100%;min-height:52px;padding:0 16px;border:1.5px solid var(--linha);border-radius:12px;font:15px var(--fonte-corpo);background:var(--papel);color:var(--tinta)}
+select:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:16px 0}
+.produto-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px}
+.produto-card .nome{font-weight:600;font-size:1.05rem;margin:8px 0}
+.produto-card .preco{font-size:1.3rem;font-weight:600;color:var(--rosa)}
+.produto-card .estrelas{color:#c9a96e;font-size:.88rem;margin:4px 0}
+.produto-card .tags{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.produto-card .tag{background:var(--verde-claro);color:var(--verde);border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:600}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+td,th{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left}
+th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<div class="marca">Produto <span>Skincare</span> · Ferramentas</div>
+<p class="sub"><a href="/" style="color:var(--rosa)">← Voltar ao início</a></p>
+
+<h1>Comparar produtos</h1>
+<p class="sub">Selecione 2 ou 3 produtos para comparar lado a lado.</p>
+
+<div class="card">
+<div class="grade">
+<div>
+<label style="font-weight:600;display:block;margin-bottom:6px">Produto 1</label>
+<select id="p1"><option value="">Selecione...</option></select>
+</div>
+<div>
+<label style="font-weight:600;display:block;margin-bottom:6px">Produto 2</label>
+<select id="p2"><option value="">Selecione...</option></select>
+</div>
+<div>
+<label style="font-weight:600;display:block;margin-bottom:6px">Produto 3 (opcional)</label>
+<select id="p3"><option value="">Selecione...</option></select>
+</div>
+</div>
+<button class="btn" onclick="comparar()">📊 Comparar</button>
+</div>
+
+<div id="resultado"></div>
+
+<script>
+const PRODUTOS = [
+  { id:"cerave-gel-limpeza", nome:"CeraVe Gel de Limpeza Facial", passo:"limpeza", preco:96.90, avaliacao:4.8, reviews:12759, tipos:["todos"], ativos:["ceramidas","hialurônico","niacinamida"] },
+  { id:"lrp-effaclar-gel", nome:"La Roche-Posay Effaclar Gel", passo:"limpeza", preco:73.57, avaliacao:4.8, reviews:12128, tipos:["oleosa","mista"], ativos:["PCA zinco","glicerina"] },
+  { id:"hada-labo-oil", nome:"Hada Labo Gokujyun Oil Cleansing", passo:"limpeza", preco:64.90, avaliacao:4.7, reviews:24402, tipos:["todos"], ativos:["hialurônico"] },
+  { id:"neutrogena-hydro-boost", nome:"Neutrogena Hydro Boost Water Gel", passo:"hidratacao", preco:55.16, avaliacao:4.8, reviews:78609, tipos:["oleosa","mista","normal"], ativos:["hialurônico"] },
+  { id:"lrp-cicaplast", nome:"La Roche-Posay Cicaplast Baume B5+", passo:"hidratacao", preco:71.52, avaliacao:4.8, reviews:27628, tipos:["seca","normal","sensivel"], ativos:["pantenol","madecassoside"] },
+  { id:"cetaphil-creme", nome:"Cetaphil Creme Hidratante", passo:"hidratacao", preco:85.90, avaliacao:4.8, reviews:32379, tipos:["seca","normal"], ativos:["glicerina"] },
+  { id:"isdin-fusion-water", nome:"ISDIN Fusion Water FPS 60", passo:"protetor", preco:89.00, avaliacao:4.8, reviews:17915, tipos:["todos"], ativos:["filtros químicos"] },
+  { id:"neutrogena-sun-fresh", nome:"Neutrogena Sun Fresh FPS 70", passo:"protetor", preco:47.70, avaliacao:4.8, reviews:43838, tipos:["oleosa","mista"], ativos:["antioxidantes"] },
+  { id:"skin-aqua-milk", nome:"Skin Aqua Super Moisture Milk FPS 50", passo:"protetor", preco:50.26, avaliacao:4.8, reviews:4578, tipos:["seca","normal","sensivel"], ativos:["hialurônico"] },
+  { id:"principia-vc10", nome:"Principia VC-10 Vitamina C 10%", passo:"tratamento", preco:49.90, avaliacao:4.7, reviews:8500, tipos:["todos"], ativos:["vitamina C 10%","ácido ferúlico"] },
+  { id:"principia-niacinamida", nome:"Principia Niacinamida NC-10", passo:"tratamento", preco:45.90, avaliacao:4.8, reviews:12000, tipos:["oleosa","mista","normal"], ativos:["niacinamida 10%","zinco 1%"] },
+  { id:"ordinary-niacinamide", nome:"The Ordinary Niacinamide 10% + Zinc", passo:"tratamento", preco:39.90, avaliacao:4.6, reviews:45000, tipos:["oleosa","mista","normal"], ativos:["niacinamida 10%","zinco 1%"] },
+  { id:"eucerin-anti-pigment", nome:"Eucerin Anti-Pigment Dual Sérum", passo:"tratamento", preco:226.99, avaliacao:4.7, reviews:12662, tipos:["todos"], ativos:["thiamidol","hialurônico"] },
+  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", passo:"tratamento", preco:149.90, avaliacao:4.7, reviews:8200, tipos:["normal","oleosa","mista","seca"], ativos:["retinol","vitamina B3"] },
+];
+
+// Preencher selects
+["p1","p2","p3"].forEach(id => {
+  const sel = document.getElementById(id);
+  PRODUTOS.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p.id;
+    opt.textContent = `${p.nome} — R$ ${p.preco.toFixed(2)}`;
+    sel.appendChild(opt);
+  });
+});
+
+function comparar() {
+  const ids = ["p1","p2","p3"].map(id => document.getElementById(id).value).filter(Boolean);
+  if (ids.length < 2) {
+    document.getElementById("resultado").innerHTML = '<div class="card" style="border-left:3px solid var(--rosa);background:var(--rosa-claro)">⚠️ Selecione pelo menos 2 produtos para comparar.</div>';
+    return;
+  }
+
+  const prods = ids.map(id => PRODUTOS.find(p => p.id === id));
+
+  const tabela = `
+    <div class="card">
+    <h2 style="margin-top:0">Comparação</h2>
+    <div style="overflow-x:auto">
+    <table>
+    <tr><th></th>${prods.map(p => `<th>${p.nome}</th>`).join("")}</tr>
+    <tr><td><strong>Preço</strong></td>${prods.map(p => `<td><strong style="color:var(--rosa);font-size:1.15rem">R$ ${p.preco.toFixed(2)}</strong></td>`).join("")}</tr>
+    <tr><td><strong>Avaliação</strong></td>${prods.map(p => `<td>⭐ ${p.avaliacao} (${p.reviews.toLocaleString("pt-BR")} avaliações)</td>`).join("")}</tr>
+    <tr><td><strong>Passo</strong></td>${prods.map(p => `<td>${p.passo.charAt(0).toUpperCase()+p.passo.slice(1)}</td>`).join("")}</tr>
+    <tr><td><strong>Tipos de pele</strong></td>${prods.map(p => `<td>${p.tipos.join(", ")}</td>`).join("")}</tr>
+    <tr><td><strong>Ativos principais</strong></td>${prods.map(p => `<td>${p.ativos.join(", ")}</td>`).join("")}</tr>
+    </table>
+    </div>
+    </div>
+  `;
+
+  document.getElementById("resultado").innerHTML = tabela;
+}
+</script>
+</main>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const CACHE = "provador-v2";
+const CACHE = "provador-v3";
 const ASSETS = [
   "/",
   "/index.html",

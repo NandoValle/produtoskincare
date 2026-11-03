@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="24" fill="#faf6ee"/>
+  <circle cx="60" cy="48" r="22" fill="#c9a96e" opacity="0.15"/>
+  <circle cx="60" cy="48" r="22" stroke="#c9a96e" stroke-width="2.5"/>
+  <path d="M60 30v-6M60 72v-6M78 48h6M36 48h6M73 35l4-4M43 65l4-4M73 61l4 4M43 35l4 4" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="60" cy="48" r="8" fill="#c9a96e" opacity="0.25"/>
+  <text x="60" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#c9a96e">PROTETOR</text>
+</svg>

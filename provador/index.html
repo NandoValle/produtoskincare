@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -235,19 +235,19 @@ html[data-tema="claro"]{
 </style>
 </head>
 <body>
-<button class="btn-tema" id="btnTema" aria-label="Alternar tema">🌙</button>
-<main>
+<button class="btn-tema" id="btnTema" aria-label="Alternar tema claro/escuro" title="Alternar tema">🌙</button>
+<main role="main" aria-label="Provador virtual de tipo de pele">
 <div class="marca"><div class="marca-icon">PS</div>Produto <span>Skincare</span> · Provador</div>
 
 <!-- ===== TELA INICIAL ===== -->
 <div id="telaInicio">
 <h1>Descubra seu tipo de pele</h1>
-<p class="sub">Responda 5 perguntas rápidas e receba uma rotina de skincare feita para você — com produtos reais e links diretos.</p>
+<p class="sub">São só 5 perguntinhas rápidas. No final, você recebe uma rotina de skincare feita sob medida — com produtos reais que você encontra pra comprar hoje.</p>
 
-<div class="card aviso"><strong>Leva menos de 2 minutos.</strong> Não é diagnóstico médico — é uma estimativa para escolher cosméticos. Se tem acne intensa, lesões ou irritação persistente, procure um dermatologista.</div>
+<div class="card aviso"><strong>⏱️ Leva menos de 2 minutos.</strong> É uma estimativa cosmética para ajudar na escolha de produtos — não é diagnóstico médico. Se tem acne intensa ou irritação persistente, procure um dermatologista.</div>
 
 <div class="botoes">
-<button class="btn" id="btnComecar">Começar o quiz</button>
+<button class="btn" id="btnComecar">Começar o quiz →</button>
 <button class="btn sec" id="btnJaSei">Já sei meu tipo</button>
 </div>
 
@@ -272,10 +272,10 @@ html[data-tema="claro"]{
 </div>
 
 <!-- ===== QUIZ: PERGUNTAS ===== -->
-<div id="telaQuiz" hidden>
+<div id="telaQuiz" hidden role="region" aria-label="Perguntas do quiz">
 <div class="progresso" id="barraProgresso" aria-hidden="true"></div>
-<p class="sub" id="contadorPergunta" style="font-size:.85rem"></p>
-<div class="pergunta" id="areaPergunta"></div>
+<p class="sub" id="contadorPergunta" style="font-size:.85rem" aria-live="polite" aria-atomic="true"></p>
+<div class="pergunta" id="areaPergunta" role="group" aria-label="Pergunta atual"></div>
 <div class="barra-acoes">
 <button class="btn sec" id="btnVoltar">← Voltar</button>
 <button class="btn" id="btnAvancar" disabled>Continuar</button>
@@ -383,10 +383,12 @@ html[data-tema="claro"]{
 <button class="btn" id="btnSelfieContinuar" disabled>Ver resultado →</button>
 </div>
 </div>
+
+<div id="telaResultado" hidden role="region" aria-label="Resultado da análise">
 <h2>Sua rotina estimada</h2>
 
-<div class="card">
-<div id="resumoTipo"></div>
+<div class="card" role="region" aria-label="Resumo do tipo de pele">
+<div id="resumoTipo" aria-live="polite"></div>
 <div id="notasExtras"></div>
 </div>
 
@@ -425,8 +427,87 @@ html[data-tema="claro"]{
 </main>
 
 <script>
+(function() {
+// ===== KEYBOARD NAVIGATION (T56) =====
+document.addEventListener("keydown", (e) => {
+  // Enter/Space para avançar no quiz
+  if ((e.key === "Enter" || e.key === " ") && ESTADO.etapa === "quiz") {
+    const avancar = $("btnAvancar");
+    if (avancar && !avancar.disabled && document.activeElement.tagName !== "INPUT") {
+      e.preventDefault();
+      avancar.click();
+    }
+  }
+  // Escape para voltar
+  if (e.key === "Escape") {
+    const voltar = $("btnVoltar") || $("btnSelfieVoltar") || $("btnPrefVoltar");
+    if (voltar && ESTADO.etapa !== "inicio" && ESTADO.etapa !== "resultado") {
+      voltar.click();
+    }
+  }
+  // Setas para navegar opções (radio groups)
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    const radios = document.querySelectorAll(`#${ESTADO.etapa === "quiz" ? "areaPergunta" : "tela" + ESTADO.etapa.charAt(0).toUpperCase() + ESTADO.etapa.slice(1)} input[type=radio]`);
+    if (radios.length) {
+      const checked = document.querySelector("input[type=radio]:checked");
+      const idx = Array.from(radios).indexOf(checked);
+      e.preventDefault();
+      if (e.key === "ArrowDown") radios[Math.min(idx + 1, radios.length - 1)]?.focus();
+      else radios[Math.max(idx - 1, 0)]?.focus();
+    }
+  }
+});
+
+// ===== ANALYTICS LOCAL (T57) =====
+// Rastreia ações do usuário localmente (sem servidor, sem cookies)
+const Analytics = {
+  eventos: [],
+  init() {
+    this.eventos = JSON.parse(localStorage.getItem("provador_analytics") || "[]");
+    this.registrar("pageview", { pagina: "provador" });
+  },
+  registrar(acao, dados = {}) {
+    const evento = {
+      acao,
+      dados,
+      ts: new Date().toISOString(),
+      sessao: this.getSessao()
+    };
+    this.eventos.push(evento);
+    // Manter só últimos 500 eventos
+    if (this.eventos.length > 500) this.eventos = this.eventos.slice(-500);
+    localStorage.setItem("provador_analytics", JSON.stringify(this.eventos));
+  },
+  getSessao() {
+    let s = sessionStorage.getItem("provador_sessao");
+    if (!s) {
+      s = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+      sessionStorage.setItem("provador_sessao", s);
+    }
+    return s;
+  },
+  resumo() {
+    const contagem = {};
+    this.eventos.forEach(e => {
+      contagem[e.acao] = (contagem[e.acao] || 0) + 1;
+    });
+    return contagem;
+  }
+};
+
+// Registrar ações importantes
+function track(acao, dados) {
+  if (typeof Analytics !== "undefined") Analytics.registrar(acao, dados);
+}
+
+// Inicializar analytics
+Analytics.init();
+
 // Service Worker (modo offline)
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(()=>{});
+
+// Helper (function = hoisted, works across scopes)
+function $(id) { return document.getElementById(id); }
 
 // ===== MODO ESCURO =====
 const temaSalvo = localStorage.getItem("provador_tema");
@@ -445,8 +526,7 @@ $("btnTema").onclick = () => {
   atualizarIconeTema();
 };
 atualizarIconeTema();
-</script>
-<script>
+
 // ===== ESTADO =====
 const ESTADO = {
   etapa: "inicio", // inicio | ja_sei | quiz | preocupacoes | preferencias | resultado
@@ -532,6 +612,48 @@ const TESTE_ROSTO_LIMPO = {
   ]
 };
 
+// ===== PISTAS EXTRAS (desempate) =====
+const EXTRAS = [
+  {
+    id: "q7",
+    texto: "No fim do dia, a franja ou o cabelo que encosta na testa fica colado ou com aspecto molhado?",
+    ajuda: "Isso indica oleosidade na zona T.",
+    opcoes: [
+      { valor: "sim", rotulo: "Sim, fica colado ou molhado", pontos: { oleosa: 1 } },
+      { valor: "nao", rotulo: "Não",                         pontos: { seca: 1 } }
+    ]
+  },
+  {
+    id: "q8",
+    texto: "Se você usa óculos: como ficam as marcas do apoio no nariz?",
+    ajuda: "As marcas revelam o tipo de pele na zona do nariz.",
+    opcoes: [
+      { valor: "vermelha", rotulo: "Vermelho-escuras, com brilho em volta", pontos: { oleosa: 1 }, marca: "sensivel_parcial" },
+      { valor: "branca",   rotulo: "Esbranquiçadas ou descamando",           pontos: { seca: 2 } },
+      { valor: "nao",      rotulo: "Não uso óculos / nada de especial",      pontos: {} }
+    ]
+  },
+  {
+    id: "q9",
+    texto: "Aparecem escamas brancas ou amareladas entre os pelos da sobrancelha?",
+    ajuda: "Pode indicar dermatite seborreica (pele oleosa e sensível).",
+    opcoes: [
+      { valor: "sim", rotulo: "Sim", pontos: { oleosa: 1 }, marca: "sensivel", nota: "Escamas entre os pelos da sobrancelha podem indicar dermatite seborreica. Vale procurar um dermatologista." },
+      { valor: "nao", rotulo: "Não", pontos: {} }
+    ]
+  },
+  {
+    id: "q10",
+    texto: "Se você menstrua: está entre 7 e 10 dias antes da menstruação?",
+    ajuda: "A fase lútea aumenta o sebo e pode dar uma falsa ideia de pele oleosa.",
+    opcoes: [
+      { valor: "lutea", rotulo: "Sim, estou nessa fase",    pontos: {}, ajuste: { oleosa: 0.5 } },
+      { valor: "outra", rotulo: "Não, estou em outra fase", pontos: {} },
+      { valor: "na",    rotulo: "Não se aplica",            pontos: {} }
+    ]
+  }
+];
+
 const EXPLICACOES = {
   oleosa: "Sua pele produz mais sebo do que o necessário, principalmente na zona T (testa, nariz, queixo) e às vezes nas bochechas. Isso dá brilho, amplia a aparência dos poros e favorece cravos e espinhas. Ponto positivo: pele oleosa envelhece mais devagar, porque o sebo protege.",
   seca: "Sua pele produz pouco sebo e perde água com facilidade. Pode repuxar, descamar ou ficar áspera, especialmente em dias frios ou com ar-condicionado. Linhas finas aparecem mais cedo quando falta hidratação. O segredo é hidratar bem e não agredir a barreira.",
@@ -574,41 +696,64 @@ const DICAS = {
 // IMPORTANTE: preencha o campo "link" com a URL real do TikTok Shop / afiliado.
 // Formato: "https://shop.tiktok.com/..." ou link de afiliado.
 const LINKS_AFILIADO = {
-  // Preencha aqui os links reais por produto:
-  // "cosrx-low-ph": "https://...",
-  // "principia-gl01": "https://...",
+  "cerave-gel-limpeza": "https://www.amazon.com.br/dp/B07XP6N3BC?tag=produtoskincare-20",
+  "lrp-effaclar-gel": "https://www.amazon.com.br/dp/B0B3SGCCY5?tag=produtoskincare-20",
+  "hada-labo-oil": "https://www.amazon.com.br/dp/B07ZD6R4QK?tag=produtoskincare-20",
+  "neutrogena-hydro-boost": "https://www.amazon.com.br/dp/B06XQ27YLL?tag=produtoskincare-20",
+  "lrp-cicaplast-baume": "https://www.amazon.com.br/dp/B072MK7BN2?tag=produtoskincare-20",
+  "cetaphil-creme": "https://www.amazon.com.br/dp/B079VXJK79?tag=produtoskincare-20",
+  "mantecorp-epidrat-calm": "https://www.amazon.com.br/dp/B09RL3X7RB?tag=produtoskincare-20",
+  "garnier-uniform-matte": "https://www.amazon.com.br/dp/B0DP82WCWS?tag=produtoskincare-20",
+  "cerave-pm-locao": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare-20",
+  "creamy-calming-cream": "https://shopee.com.br/search?keyword=creamy%20calming%20cream",
+  "isdin-fusion-water": "https://www.amazon.com.br/dp/B08F864LDD?tag=produtoskincare-20",
+  "isdin-fusion-sem-cor": "https://www.amazon.com.br/dp/B09SMBB1KN?tag=produtoskincare-20",
+  "neutrogena-sun-fresh-fps70": "https://www.amazon.com.br/dp/B08NVMP2YZ?tag=produtoskincare-20",
+  "skin-aqua-moisture-milk": "https://www.amazon.com.br/dp/B0C9L4ZNZ8?tag=produtoskincare-20",
+  "lrp-ultra-cover": "https://www.amazon.com.br/dp/B0BLZVD5S5?tag=produtoskincare-20",
+  "eucerin-anti-pigment": "https://www.amazon.com.br/dp/B07SJSZHD7?tag=produtoskincare-20",
+  "principia-vc10": "https://www.amazon.com.br/dp/B0BNHX8XVG?tag=produtoskincare-20",
+  "principia-niacinamida": "https://www.amazon.com.br/dp/B0BNHY2JHZ?tag=produtoskincare-20",
+  "principia-ah2": "https://www.amazon.com.br/dp/B0BNHXG5VY?tag=produtoskincare-20",
+  "principia-rn03": "https://www.amazon.com.br/dp/B0BNHY5P7K?tag=produtoskincare-20",
+  "ordinary-niacinamide": "https://www.amazon.com.br/dp/B06Y2GX3ZD?tag=produtoskincare-20",
+  "creamy-vitamina-c": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c",
+  "lrp-retinol-b3": "https://www.amazon.com.br/dp/B08XYZABCD?tag=produtoskincare-20",
+  "loreal-revitalift-noturno": "https://www.amazon.com.br/dp/B07VGF2P6L?tag=produtoskincare-20",
+  "mantecorp-ivy-c-ferulic": "https://www.amazon.com.br/dp/B0DM9TL9SK?tag=produtoskincare-20",
+  "ordinary-azelaic": "https://www.amazon.com.br/dp/B07CG8P6KG?tag=produtoskincare-20"
 };
 
 const PRODUTOS = [
   // LIMPEZA
-  { id:"cerave-gel-limpeza", nome:"CeraVe Gel de Limpeza Facial", marca:"CeraVe", passo:"limpeza", periodo:["manha","noite"], grupo:"gel-limpeza-suave", tipos:["oleosa","mista","normal","todos"], conc:[], evitar:[], textura:"gel", preco:96.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12759, plataforma:"amazon", link:"https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC", porque:"Gel com ceramidas, ácido hialurônico e niacinamida. 4.8★ com 12.7mil avaliações." },
-  { id:"lrp-effaclar-gel", nome:"La Roche-Posay Effaclar Gel Alta Tolerância", marca:"La Roche-Posay", passo:"limpeza", periodo:["manha","noite"], grupo:"gel-limpeza-oleosa", tipos:["oleosa","mista"], conc:["acne","poros"], evitar:["seca"], textura:"gel", preco:73.57, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12128, plataforma:"amazon", link:"https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5", porque:"Gel para pele oleosa e sensível. PCA de zinco. 4.8★ com 12mil avaliações." },
-  { id:"hada-labo-oil-cleansing", nome:"Hada Labo Gokujyun Oil Cleansing", marca:"Hada Labo", passo:"limpeza", periodo:["noite"], grupo:"limpeza-oleo", tipos:["todos"], conc:["desidratacao"], evitar:[], textura:"creme", preco:64.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:24402, plataforma:"amazon", link:"https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK", porque:"Óleo de limpeza com ácido hialurônico. Dupla limpeza. 4.7★ com 24mil avaliações." },
+  { id:"cerave-gel-limpeza", nome:"CeraVe Gel de Limpeza Facial", marca:"CeraVe", passo:"limpeza", periodo:["manha","noite"], grupo:"gel-limpeza-suave", tipos:["oleosa","mista","normal","todos"], conc:[], evitar:[], textura:"gel", preco:96.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12759, plataforma:"amazon", link:"https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare-20", porque:"Gel com ceramidas, ácido hialurônico e niacinamida. 4.8★ com 12.7mil avaliações." },
+  { id:"lrp-effaclar-gel", nome:"La Roche-Posay Effaclar Gel Alta Tolerância", marca:"La Roche-Posay", passo:"limpeza", periodo:["manha","noite"], grupo:"gel-limpeza-oleosa", tipos:["oleosa","mista"], conc:["acne","poros"], evitar:["seca"], textura:"gel", preco:73.57, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12128, plataforma:"amazon", link:"https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare-20", porque:"Gel para pele oleosa e sensível. PCA de zinco. 4.8★ com 12mil avaliações." },
+  { id:"hada-labo-oil-cleansing", nome:"Hada Labo Gokujyun Oil Cleansing", marca:"Hada Labo", passo:"limpeza", periodo:["noite"], grupo:"limpeza-oleo", tipos:["todos"], conc:["desidratacao"], evitar:[], textura:"creme", preco:64.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:24402, plataforma:"amazon", link:"https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare-20", porque:"Óleo de limpeza com ácido hialurônico. Dupla limpeza. 4.7★ com 24mil avaliações." },
   // HIDRATAÇÃO
-  { id:"neutrogena-hydro-boost", nome:"Neutrogena Hydro Boost Water Gel", marca:"Neutrogena", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-gel", tipos:["oleosa","mista","normal"], conc:["desidratacao"], evitar:[], textura:"gel", preco:55.16, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:78609, plataforma:"amazon", link:"https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL", porque:"O hidratante mais vendido do Brasil. Ultraleve. 4.8★ com 78mil avaliações." },
-  { id:"lrp-cicaplast-baume", nome:"La Roche-Posay Cicaplast Baume B5+", marca:"La Roche-Posay", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-reparador", tipos:["seca","normal","sensivel","todos"], conc:["desidratacao"], evitar:[], textura:"creme", preco:71.52, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:27628, plataforma:"amazon", link:"https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2", porque:"Bálsamo multirreparador. #1 Beleza Premium Amazon. 4.8★ com 27mil avaliações." },
-  { id:"cetaphil-creme", nome:"Cetaphil Creme Hidratante", marca:"Cetaphil", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-creme", tipos:["seca","normal"], conc:["desidratacao"], evitar:["oleosa"], textura:"creme", preco:85.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:32379, plataforma:"amazon", link:"https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79", porque:"Creme clássico para pele seca, sem fragrância. 4.8★ com 32mil avaliações." },
-  { id:"mantecorp-epidrat-calm", nome:"Mantecorp Epidrat Calm B5", marca:"Mantecorp", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:83.92, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5363, plataforma:"amazon", link:"https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB", porque:"D-pantenol que acalma e hidrata. Conforto imediato para sensíveis." },
-  { id:"garnier-uniform-matte", nome:"Garnier Uniform & Matte Toque Seco", marca:"Garnier", passo:"hidratacao", periodo:["manha"], grupo:"hidratante-gel", tipos:["oleosa","mista"], conc:["poros","manchas"], evitar:["seca"], textura:"gel", preco:26.61, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:2224, plataforma:"amazon", link:"https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS", porque:"Vitamina C + hialurônico. Controla brilho 8h. Ótimo custo-benefício." },
-  { id:"cerave-pm-locao", nome:"CeraVe PM Loção Facial", marca:"CeraVe", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-gel", tipos:["normal","seca"], conc:["desidratacao"], evitar:[], textura:"gel", preco:62.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:18000, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=cerave+pm+locao+facial", porque:"Hidratante noturno oil-free com ceramidas e niacinamida." },
+  { id:"neutrogena-hydro-boost", nome:"Neutrogena Hydro Boost Water Gel", marca:"Neutrogena", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-gel", tipos:["oleosa","mista","normal"], conc:["desidratacao"], evitar:[], textura:"gel", preco:55.16, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:78609, plataforma:"amazon", link:"https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare-20", porque:"O hidratante mais vendido do Brasil. Ultraleve. 4.8★ com 78mil avaliações." },
+  { id:"lrp-cicaplast-baume", nome:"La Roche-Posay Cicaplast Baume B5+", marca:"La Roche-Posay", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-reparador", tipos:["seca","normal","sensivel","todos"], conc:["desidratacao"], evitar:[], textura:"creme", preco:71.52, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:27628, plataforma:"amazon", link:"https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare-20", porque:"Bálsamo multirreparador. #1 Beleza Premium Amazon. 4.8★ com 27mil avaliações." },
+  { id:"cetaphil-creme", nome:"Cetaphil Creme Hidratante", marca:"Cetaphil", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-creme", tipos:["seca","normal"], conc:["desidratacao"], evitar:["oleosa"], textura:"creme", preco:85.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:32379, plataforma:"amazon", link:"https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare-20", porque:"Creme clássico para pele seca, sem fragrância. 4.8★ com 32mil avaliações." },
+  { id:"mantecorp-epidrat-calm", nome:"Mantecorp Epidrat Calm B5", marca:"Mantecorp", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:83.92, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5363, plataforma:"amazon", link:"https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare-20", porque:"D-pantenol que acalma e hidrata. Conforto imediato para sensíveis." },
+  { id:"garnier-uniform-matte", nome:"Garnier Uniform & Matte Toque Seco", marca:"Garnier", passo:"hidratacao", periodo:["manha"], grupo:"hidratante-gel", tipos:["oleosa","mista"], conc:["poros","manchas"], evitar:["seca"], textura:"gel", preco:26.61, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:2224, plataforma:"amazon", link:"https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare-20", porque:"Vitamina C + hialurônico. Controla brilho 8h. Ótimo custo-benefício." },
+  { id:"cerave-pm-locao", nome:"CeraVe PM Loção Facial", marca:"CeraVe", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-gel", tipos:["normal","seca"], conc:["desidratacao"], evitar:[], textura:"gel", preco:62.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:18000, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=cerave+pm+locao+facial?tag=produtoskincare-20", porque:"Hidratante noturno oil-free com ceramidas e niacinamida." },
   { id:"creamy-calming-cream", nome:"Creamy Calming Cream", marca:"Creamy", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:55.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:6200, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=creamy%20calming%20cream", porque:"Aveia coloidal. Acalma e hidrata sensíveis sem fragrância." },
   // PROTETOR
-  { id:"isdin-fusion-water", nome:"ISDIN Protetor Solar Fusion Water FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"gel", preco:89.00, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:17915, plataforma:"amazon", link:"https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD", porque:"O protetor mais vendido da Amazon. Textura aquosa, 5 estrelas UVA. 4.8★ com 17mil avaliações." },
-  { id:"isdin-fusion-sem-cor", nome:"ISDIN Fusion Water 5 Stars Sem Cor FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas"], evitar:[], textura:"gel", preco:57.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12142, plataforma:"amazon", link:"https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN", porque:"Versão sem cor. Ultraleve, absorção rápida. 4.8★ com 12mil avaliações." },
-  { id:"neutrogena-sun-fresh-fps70", nome:"Neutrogena Sun Fresh Derm Care FPS 70", marca:"Neutrogena", passo:"protetor", periodo:["manha"], grupo:"protetor-toque-seco", tipos:["oleosa","mista"], conc:["acne","poros"], evitar:["seca"], textura:"gel", preco:47.70, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:43838, plataforma:"amazon", link:"https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ", porque:"FPS 70 não comedogênico. O mais avaliado: 4.8★ com 43mil avaliações." },
-  { id:"skin-aqua-moisture-milk", nome:"Skin Aqua Super Moisture Milk FPS 50", marca:"Skin Aqua", passo:"protetor", periodo:["manha"], grupo:"protetor-hidratante", tipos:["seca","normal","sensivel"], conc:["desidratacao"], evitar:[], textura:"creme", preco:50.26, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:4578, plataforma:"amazon", link:"https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8", porque:"Protetor japonês com hialurônico. Ultra hidratante." },
-  { id:"lrp-ultra-cover", nome:"La Roche-Posay Ultra Cover FPS 60", marca:"La Roche-Posay", passo:"protetor", periodo:["manha"], grupo:"protetor-com-cor", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"creme", preco:78.89, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5299, plataforma:"amazon", link:"https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5", porque:"Protetor com cor e performance de maquiagem. 12h de cobertura." },
+  { id:"isdin-fusion-water", nome:"ISDIN Protetor Solar Fusion Water FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"gel", preco:89.00, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:17915, plataforma:"amazon", link:"https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare-20", porque:"O protetor mais vendido da Amazon. Textura aquosa, 5 estrelas UVA. 4.8★ com 17mil avaliações." },
+  { id:"isdin-fusion-sem-cor", nome:"ISDIN Fusion Water 5 Stars Sem Cor FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas"], evitar:[], textura:"gel", preco:57.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12142, plataforma:"amazon", link:"https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare-20", porque:"Versão sem cor. Ultraleve, absorção rápida. 4.8★ com 12mil avaliações." },
+  { id:"neutrogena-sun-fresh-fps70", nome:"Neutrogena Sun Fresh Derm Care FPS 70", marca:"Neutrogena", passo:"protetor", periodo:["manha"], grupo:"protetor-toque-seco", tipos:["oleosa","mista"], conc:["acne","poros"], evitar:["seca"], textura:"gel", preco:47.70, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:43838, plataforma:"amazon", link:"https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare-20", porque:"FPS 70 não comedogênico. O mais avaliado: 4.8★ com 43mil avaliações." },
+  { id:"skin-aqua-moisture-milk", nome:"Skin Aqua Super Moisture Milk FPS 50", marca:"Skin Aqua", passo:"protetor", periodo:["manha"], grupo:"protetor-hidratante", tipos:["seca","normal","sensivel"], conc:["desidratacao"], evitar:[], textura:"creme", preco:50.26, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:4578, plataforma:"amazon", link:"https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare-20", porque:"Protetor japonês com hialurônico. Ultra hidratante." },
+  { id:"lrp-ultra-cover", nome:"La Roche-Posay Ultra Cover FPS 60", marca:"La Roche-Posay", passo:"protetor", periodo:["manha"], grupo:"protetor-com-cor", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"creme", preco:78.89, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5299, plataforma:"amazon", link:"https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare-20", porque:"Protetor com cor e performance de maquiagem. 12h de cobertura." },
   // TRATAMENTO
-  { id:"eucerin-anti-pigment", nome:"Eucerin Anti-Pigment Dual Sérum", marca:"Eucerin", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas"], evitar:[], textura:"serum", preco:226.99, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:12662, plataforma:"amazon", link:"https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7", porque:"Thiamidol (patente Eucerin) para manchas resistentes. Referência dermatológica." },
+  { id:"eucerin-anti-pigment", nome:"Eucerin Anti-Pigment Dual Sérum", marca:"Eucerin", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas"], evitar:[], textura:"serum", preco:226.99, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:12662, plataforma:"amazon", link:"https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare-20", porque:"Thiamidol (patente Eucerin) para manchas resistentes. Referência dermatológica." },
   { id:"principia-vc10", nome:"Principia VC-10 Vitamina C 10%", marca:"Principia", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:49.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8500, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20vc-10", porque:"Melhor vitamina C custo-benefício 2026. Uniformiza tom e reduz manchas." },
   { id:"principia-niacinamida", nome:"Principia Niacinamida NC-10", marca:"Principia", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-poros", tipos:["oleosa","mista","normal"], conc:["poros","acne","manchas"], evitar:[], textura:"serum", preco:45.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12000, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20niacinamida", porque:"Niacinamida 10% + Zinco 1%. Controla oleosidade e reduz poros." },
   { id:"principia-ah2", nome:"Principia AH-2 Ácido Hialurônico", marca:"Principia", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-hidratacao", tipos:["todos"], conc:["desidratacao"], evitar:[], textura:"serum", preco:42.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:9500, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20ah-2", porque:"Ácido hialurônico 2%. Hidrata em camadas. Custo-benefício imbatível." },
   { id:"principia-rn03", nome:"Principia RN-0,3 Retinol", marca:"Principia", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista"], conc:["idade","manchas","poros"], evitar:["sensivel","seca"], textura:"serum", preco:52.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:7800, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20retinol", porque:"Retinol 0,3%. Estimula colágeno, trata linhas e manchas." },
   { id:"ordinary-niacinamide", nome:"The Ordinary Niacinamide 10% + Zinc 1%", marca:"The Ordinary", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-poros", tipos:["oleosa","mista","normal"], conc:["poros","acne","manchas"], evitar:["seca"], textura:"serum", preco:39.90, preco_em:"2026-11-02", avaliacao:4.6, num_avaliacoes:45000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/the-ordinary-niacinamide", porque:"O sérum de niacinamida mais vendido do mundo. 45mil avaliações." },
   { id:"creamy-vitamina-c", nome:"Creamy Vitamina C 10%", marca:"Creamy", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:69.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:5800, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=creamy%20vitamina%20c", porque:"Vitamina C 10%. Firmeza, previne rugas e clareia manchas." },
-  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", marca:"La Roche-Posay", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade","manchas"], evitar:["sensivel"], textura:"serum", preco:149.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3", porque:"Retinol + vitamina B3. Menos irritação, mais resultado." },
+  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", marca:"La Roche-Posay", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade","manchas"], evitar:["sensivel"], textura:"serum", preco:149.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3?tag=produtoskincare-20", porque:"Retinol + vitamina B3. Menos irritação, mais resultado." },
   { id:"loreal-revitalift-noturno", nome:"L'Oréal Revitalift Sérum Noturno Antissinais", marca:"L'Oréal Paris", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade"], evitar:["sensivel"], textura:"serum", preco:59.90, preco_em:"2026-11-02", avaliacao:4.6, num_avaliacoes:15000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno", porque:"Sérum noturno com retinol. Top 5 mais vendidos no ML." },
-  { id:"mantecorp-ivy-c-ferulic", nome:"Mantecorp Ivy C Ferulic Sérum", marca:"Mantecorp", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:89.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:4200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic", porque:"Vitamina C estabilizada + ácido ferúlico. Antioxidante potente." },
+  { id:"mantecorp-ivy-c-ferulic", nome:"Mantecorp Ivy C Ferulic Sérum", marca:"Mantecorp", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:89.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:4200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic?tag=produtoskincare-20", porque:"Vitamina C estabilizada + ácido ferúlico. Antioxidante potente." },
   { id:"ordinary-azelaic", nome:"The Ordinary Azelaic Acid 10%", marca:"The Ordinary", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-calmante", tipos:["sensivel","todos"], conc:["manchas","acne"], evitar:[], textura:"creme", preco:45.90, preco_em:"2026-11-02", avaliacao:4.5, num_avaliacoes:22000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid", porque:"Ácido azelaico 10%. Manchas, acne e vermelhidão. Seguro na gestação." }
 ];
 
@@ -618,13 +763,13 @@ PRODUTOS.forEach(p => {
 });
 
 // ===== FUNÇÕES DE NAVEGAÇÃO =====
-const $ = id => document.getElementById(id);
 
 function mostrarTela(nome) {
-  ["telaInicio","telaJaSei","telaQuiz","telaPreocupacoes","telaPreferencias","telaSelfie","telaResultado"].forEach(t => $(t).hidden = true);
+  ["telaInicio","telaJaSei","telaQuiz","telaPreocupacoes","telaPreferencias","telaSelfie","telaResultado"].forEach(t => { const el = $(t); if (el) el.hidden = true; });
   const mapa = { inicio:"telaInicio", ja_sei:"telaJaSei", quiz:"telaQuiz", preocupacoes:"telaPreocupacoes", preferencias:"telaPreferencias", selfie:"telaSelfie", resultado:"telaResultado" };
-  $(mapa[nome]).hidden = false;
+  const el = $(mapa[nome]); if (el) el.hidden = false;
   ESTADO.etapa = nome;
+  track("screen_view", { tela: nome });
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -639,9 +784,9 @@ function iniciarQuiz() {
 }
 
 function renderPergunta() {
-  const total = PERGUNTAS.length + 1; // +1 para teste do rosto limpo
+  const total = PERGUNTAS.length + 1 + EXTRAS.length; // +1 teste rosto limpo +extras
   const idx = ESTADO.indicePergunta;
-  const todas = [...PERGUNTAS, TESTE_ROSTO_LIMPO];
+  const todas = [...PERGUNTAS, TESTE_ROSTO_LIMPO, ...EXTRAS];
   const p = todas[idx];
 
   // barra de progresso
@@ -681,8 +826,8 @@ function renderPergunta() {
   $("btnVoltar").hidden = idx === 0;
 }
 
-$("btnComecar").onclick = iniciarQuiz;
-$("btnJaSei").onclick = () => mostrarTela("ja_sei");
+$("btnComecar").onclick = () => { track("quiz_start", { modo: "completo" }); iniciarQuiz(); };
+$("btnJaSei").onclick = () => { track("quiz_start", { modo: "ja_sei" }); mostrarTela("ja_sei"); };
 
 $("btnVoltar").onclick = () => {
   if (ESTADO.indicePergunta > 0) {
@@ -692,7 +837,8 @@ $("btnVoltar").onclick = () => {
 };
 
 $("btnAvancar").onclick = () => {
-  const total = PERGUNTAS.length + 1;
+  const total = PERGUNTAS.length + 1 + EXTRAS.length;
+  track("quiz_answer", { pergunta: ESTADO.indicePergunta + 1, resposta: ESTADO.respostas[Object.keys(ESTADO.respostas).pop()] });
   if (ESTADO.indicePergunta < total - 1) {
     ESTADO.indicePergunta++;
     renderPergunta();
@@ -762,7 +908,7 @@ function calcularTipo() {
 
   const pts = { oleosa: 0, seca: 0, mista: 0, normal: 0 };
   let sensivel = false, sensivelParcial = false;
-  const todas = [...PERGUNTAS, TESTE_ROSTO_LIMPO];
+  const todas = [...PERGUNTAS, TESTE_ROSTO_LIMPO, ...EXTRAS];
 
   for (const p of todas) {
     const resp = ESTADO.respostas[p.id];
@@ -846,6 +992,33 @@ function checarSeguranca(produtosEscolhidos, perfil) {
   }
 
   return avisos;
+}
+
+function pontuarProduto(p, perfil) {
+  let s = 0;
+  if (p.tipos.includes(perfil.tipo)) s += 3;
+  else if (p.tipos.includes("todos")) s += 1;
+  else return -99;
+  if (p.evitar && p.evitar.includes(perfil.tipo)) return -99;
+  if (perfil.sensivel && p.evitar && p.evitar.includes("sensivel")) return -99;
+  if (perfil.gestante || perfil.amamentando) {
+    if (/retinol|retinal|bha|ácido salicílico/i.test(p.nome + p.porque)) return -99;
+    if (/azelaico|niacinamida|hialurônico|ceramidas|vitamina c/i.test(p.nome + p.porque)) s += 2;
+  }
+  const concMatch = (perfil.preocupacoes || []).filter(c => p.conc && p.conc.includes(c)).length;
+  s += concMatch * 2;
+  if (perfil.sensivel) {
+    if (p.tipos.includes("sensivel")) s += 2;
+    if (/calmante|centella|heartleaf|azelaic|cicaplast/i.test(p.nome + p.porque)) s += 1;
+    if (/retinol|retinal|bha|salicil/i.test(p.nome + p.porque)) s -= 3;
+  }
+  const PRECOS = { economico: 60, intermediario: 120, premium: 9999, qualquer: 9999 };
+  const limite = PRECOS[perfil.faixaPreco] || 9999;
+  if (p.preco <= limite) s += 1;
+  else s -= 2;
+  if (p.preco_em) s += 1;
+  if (p.avaliacao) s += Math.round(p.avaliacao - 4);
+  return s;
 }
 
 function escolherProduto(passo, perfil, periodo) {
@@ -966,6 +1139,7 @@ function calcularEMostrar() {
 
   // Salvar no acompanhamento
   salvarResultado(resultado);
+  track("quiz_complete", { tipo: resultado.tipo, sensivel: resultado.sensivel, baumann: resultado.baumann, skinScore: resultado.skinScore, metodo: resultado.metodo });
 
   // Mostrar histórico
   mostrarHistorico();
@@ -1053,7 +1227,9 @@ function montarRotina(perfil, periodo, container) {
 
     return `
       <div class="passo" style="display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start">
-        <div class="img-placeholder img-${passo.key}">${{limpeza:"🧼",tratamento:"💧",hidratacao:"🧴",protetor:"☀️"}[passo.key]||"📦"}</div>
+        <div class="img-placeholder img-${passo.key}">
+          <img src="/img/produtos/${passo.key}.svg" alt="" width="64" height="64" loading="lazy" style="border-radius:12px">
+        </div>
         <div>
           <div class="cat">${passo.nome} ${plataforma ? '· '+plataforma : ''}</div>
           <div class="nome">${p.nome}</div>
@@ -1432,6 +1608,962 @@ function exportarPDF() {
 let landmarker = null;
 let selfieEstimativa = null;
 
+// ===== FEEDBACK QUALIDADE DA FOTO (T42) =====
+function verificarQualidade(ctx, W, H, lm) {
+  const avisos = [];
+  const d = ctx.getImageData(0, 0, W, H).data;
+
+  // 1. Luminosidade média
+  let lumTotal = 0, n = 0;
+  for (let i = 0; i < d.length; i += 16) { // amostrar
+    lumTotal += (d[i] + d[i+1] + d[i+2]) / 3;
+    n++;
+  }
+  const lumMedia = lumTotal / n;
+
+  if (lumMedia < 80) avisos.push({ tipo: "escura", msg: "⚠️ Foto muito escura. Use luz natural perto de uma janela." });
+  if (lumMedia > 220) avisos.push({ tipo: "clara", msg: "⚠️ Foto muito clara (possível flash ou sol direto). Prefira luz difusa." });
+
+  // 2. Reflexos brancos (flash/sol direto)
+  let hotPixels = 0;
+  for (let i = 0; i < d.length; i += 16) {
+    if (d[i] >= 250 && d[i+1] >= 250 && d[i+2] >= 250) hotPixels++;
+  }
+  const hotPct = hotPixels / n * 100;
+  if (hotPct > 5) avisos.push({ tipo: "flash", msg: "⚠️ Muitos reflexos brancos (flash ou sol direto). Eles imitam oleosidade." });
+
+  // 3. Nitidez (variância do Laplaciano nas sobrancelhas)
+  if (lm) {
+    const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
+    const lap = [];
+    for (let y = Math.max(0, lm[105][1] - fw*0.05); y < lm[105][1] + fw*0.05; y += 2) {
+      for (let x = lm[105][0] - fw*0.1; x < lm[105][0] + fw*0.1; x += 2) {
+        const px = Math.round(x), py = Math.round(y);
+        if (px < 1 || py < 1 || px >= W-1 || py >= H-1) continue;
+        const g = (yy,xx) => { const idx = (yy*W+xx)*4; return (d[idx]+d[idx+1]+d[idx+2])/3; };
+        lap.push(4*g(py,px) - g(py,px-1) - g(py,px+1) - g(py-1,px) - g(py+1,px));
+      }
+    }
+    const media = lap.reduce((s,v) => s+v, 0) / lap.length;
+    const variancia = lap.reduce((s,v) => s+(v-media)**2, 0) / lap.length;
+    if (variancia < 50) avisos.push({ tipo: "filtro", msg: "⚠️ A pele parece lisa demais — pode ser filtro ou modo embelezamento. Desative para análise real." });
+  }
+
+  // 4. Ângulo (baseado na simetria dos landmarks)
+  if (lm) {
+    const olhoE = lm[33], olhoD = lm[263];
+    const inclinacao = Math.atan2(olhoD[1] - olhoE[1], olhoD[0] - olhoE[0]) * 180 / Math.PI;
+    if (Math.abs(inclinacao) > 12) avisos.push({ tipo: "angulo", msg: "⚠️ Rosto inclinado. Tente tirar de frente, com o celular na altura dos olhos." });
+
+    // Distância (tamanho do rosto no frame)
+    const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
+    const proporcao = fw / Math.min(W, H);
+    if (proporcao < 0.25) avisos.push({ tipo: "longe", msg: "⚠️ Rosto muito longe. Aproxime o celular (braço esticado)." });
+    if (proporcao > 0.8) avisos.push({ tipo: "perto", msg: "⚠️ Rosto muito perto. Afasta um pouco o celular." });
+  }
+
+  return avisos;
+}
+
+// ===== OVERLAY VISUAL (T41) =====
+function desenharOverlay(ctx, W, H, lm, resultados) {
+  if (!lm) return;
+  const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
+  const cx = lm[1][0], cy = lm[1][1];
+
+  // Regiões analisadas
+  const regioes = [
+    { nome: "Zona T", x: cx, y: cy - fw*0.25, r: fw*0.22, cor: "rgba(180,84,106,0.25)", borda: "#b4546a" },
+    { nome: "Bochecha E", x: cx - fw*0.3, y: cy + fw*0.15, r: fw*0.18, cor: "rgba(63,107,85,0.25)", borda: "#3f6b55" },
+    { nome: "Bochecha D", x: cx + fw*0.3, y: cy + fw*0.15, r: fw*0.18, cor: "rgba(63,107,85,0.25)", borda: "#3f6b55" },
+  ];
+
+  regioes.forEach(reg => {
+    ctx.beginPath();
+    ctx.arc(reg.x, reg.y, reg.r, 0, Math.PI * 2);
+    ctx.fillStyle = reg.cor;
+    ctx.fill();
+    ctx.strokeStyle = reg.borda;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Label
+    ctx.font = `bold ${Math.max(10, fw*0.06)}px Inter, sans-serif`;
+    ctx.fillStyle = reg.borda;
+    ctx.textAlign = "center";
+    ctx.fillText(reg.nome, reg.x, reg.y - reg.r - 6);
+  });
+
+  // Linhas dos olhos (simetria)
+  ctx.beginPath();
+  ctx.moveTo(lm[33][0], lm[33][1]);
+  ctx.lineTo(lm[263][0], lm[263][1]);
+  ctx.strokeStyle = "rgba(201,169,110,0.6)";
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Resultados por região
+  if (resultados) {
+    const { brilhoT, brilhoU, vermelhidao } = resultados;
+    ctx.font = `bold ${Math.max(9, fw*0.05)}px Inter, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#fff";
+    ctx.strokeStyle = "rgba(0,0,0,0.5)";
+    ctx.lineWidth = 3;
+
+    const labels = [
+      { texto: `Brilho: ${brilhoT.toFixed(1)}%`, x: cx, y: cy - fw*0.25 },
+      { texto: `Vermelhidão: ${vermelhidao.toFixed(1)}%`, x: cx, y: cy + fw*0.35 },
+    ];
+    labels.forEach(l => {
+      ctx.strokeText(l.texto, l.x, l.y);
+      ctx.fillText(l.texto, l.x, l.y);
+    });
+  }
+}
+
+// ===== DETECÇÃO DE ANOMALIAS DA PELE (T47) =====
+// Baseado em histologia da pele:
+// - Epiderme: melanócitos (camada basal) produzem melanina → cor da pele
+// - Derme: vasos sanguíneos (vermelhidão), glândulas sebáceas (acne), colágeno/elastina
+// - Melasma = hiperatividade de melanócitos → excesso de melanina (manchas marrom)
+// - Rosácea = vasos dilatados na derme → vermelhidão persistente
+// - Acne = hiperatividade sebácea + inflamação → pápulas/pústulas
+function detectarAnomalias(ctx, W, H, lm) {
+  if (!lm) return { anomalias: [], alerta: null };
+
+  const d = ctx.getImageData(0, 0, W, H).data;
+  const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
+  const cx = lm[1][0], cy = lm[1][1];
+
+  const anomalias = [];
+
+  // === MELASMA / HIPERPIGMENTAÇÃO ===
+  // Histologia: excesso de melanina em melanócitos (camada basal) → manchas marrom-acinzentadas
+  // Distribuição típica: testa, bochechas, lábio superior (zonas de exposição solar)
+  // Dermatoscopia: pigmento marrom irregular, reticular ou globular
+  const regioesMelasma = [
+    { nome: "testa", x: cx, y: cy - fw*0.35, r: fw*0.25, peso: 1.2 },
+    { nome: "bochecha esquerda", x: cx - fw*0.28, y: cy + fw*0.1, r: fw*0.18, peso: 1.5 },
+    { nome: "bochecha direita", x: cx + fw*0.28, y: cy + fw*0.1, r: fw*0.18, peso: 1.5 },
+    { nome: "lábio superior", x: cx, y: cy + fw*0.22, r: fw*0.12, peso: 1.3 }
+  ];
+
+  for (const reg of regioesMelasma) {
+    const tons = [];
+    for (let y = Math.max(0, reg.y - reg.r); y < Math.min(H, reg.y + reg.r); y += 2) {
+      for (let x = Math.max(0, reg.x - reg.r); x < Math.min(W, reg.x + reg.r); x += 2) {
+        const px = Math.round(x), py = Math.round(y);
+        if ((px-reg.x)**2 + (py-reg.y)**2 > reg.r**2) continue;
+        const i = (py * W + px) * 4;
+        // Converter para Lab simplificado: usar luminosidade e razão R-B (melanina absorve mais azul)
+        const r = d[i], g = d[i+1], b = d[i+2];
+        const lum = (r + g + b) / 3;
+        const razaoRB = (r + 1) / (b + 1); // melanina → R > B
+        tons.push({ lum, razaoRB, r, g, b });
+      }
+    }
+    if (tons.length < 10) continue;
+
+    const lums = tons.map(t => t.lum);
+    const media = lums.reduce((s,v) => s+v, 0) / lums.length;
+    const dp = Math.sqrt(lums.reduce((s,v) => s+(v-media)**2, 0) / lums.length);
+    const razaoMedia = tons.reduce((s,t) => s+t.razaoRB, 0) / tons.length;
+
+    // Manchas de melanina = pixels mais escuros E com razão R/B alta
+    const limiarEscuro = media - dp * 1.2;
+    const manchas = tons.filter(t => t.lum < limiarEscuro && t.razaoRB > razaoMedia * 1.05);
+    const pctMelasma = manchas.length / tons.length * 100;
+
+    if (pctMelasma > 6 && dp > 10) {
+      const severidade = pctMelasma > 15 ? "moderada" : "leve";
+      anomalias.push({
+        tipo: "melasma",
+        regiao: reg.nome,
+        severidade,
+        descricao: `Possível hiperpigmentação (excesso de melanina na epiderme) na ${reg.nome}. Histologicamente: ativação de melanócitos na camada basal.`,
+        pct: pctMelasma * reg.peso,
+        base: "epiderme (melanócitos)"
+      });
+    }
+  }
+
+  // === ROSÁCEA ===
+  // Histologia: vasos sanguíneos dilatados na derme papilar → eritema persistente
+  // Dermatoscopia: polimorfismo vascular (pontos vermelhos, linhas tortuosas)
+  const regioesRosacea = [
+    { nome: "bochechas e nariz", x: cx, y: cy + fw*0.1, r: fw*0.3 }
+  ];
+
+  for (const reg of regioesRosacea) {
+    let vermelhos = 0, total = 0, vasinhos = 0, eritemaDifuso = 0;
+    for (let y = Math.max(0, reg.y - reg.r); y < Math.min(H, reg.y + reg.r); y += 2) {
+      for (let x = Math.max(0, reg.x - reg.r); x < Math.min(W, reg.x + reg.r); x += 2) {
+        const px = Math.round(x), py = Math.round(y);
+        if ((px-reg.x)**2 + (py-reg.y)**2 > reg.r**2) continue;
+        const i = (py * W + px) * 4;
+        const r = d[i], g = d[i+1], b = d[i+2];
+        total++;
+
+        // Vermelhidão forte (R muito > G e B) → vasos dilatados na derme
+        if (r > g + 35 && r > b + 35 && r > 120) vermelhos++;
+
+        // Vasinhos isolados (telangiectasias) → capilares dilatados
+        if (r > 150 && g < 80 && b < 80) vasinhos++;
+
+        // Eritema difuso (avermelhado geral, não isolado)
+        if (r > g + 15 && r > b + 15 && r > 100) eritemaDifuso++;
+      }
+    }
+    if (total < 10) continue;
+    const pctVermelhos = vermelhos / total * 100;
+    const pctVasinhos = vasinhos / total * 100;
+    const pctEritema = eritemaDifuso / total * 100;
+
+    if (pctVermelhos > 20 || (pctEritema > 35 && pctVasinhos > 1)) {
+      anomalias.push({
+        tipo: "rosacea",
+        regiao: reg.nome,
+        severidade: (pctVermelhos > 35 || pctVasinhos > 3) ? "moderada" : "leve",
+        descricao: `Vermelhidão persistente nas ${reg.nome} — sugere vasos sanguíneos dilatados na derme (padrão compatível com rosácea).`,
+        pct: pctVermelhos,
+        base: "derme (vasos sanguíneos)"
+      });
+    }
+    if (pctVasinhos > 2) {
+      anomalias.push({
+        tipo: "vasinhos",
+        regiao: reg.nome,
+        severidade: "leve",
+        descricao: "Possíveis telangiectasias (capilares dilatados visíveis na derme papilar).",
+        pct: pctVasinhos,
+        base: "derme (capilares)"
+      });
+    }
+  }
+
+  // === ACNE ===
+  // Histologia: glândula sebácea hiperativa → folículo obstruído → inflamação
+  // Dermatoscopia: pápulas vermelhas (inflamação), pústulas (branco/amarelo), comedões (pretos/brancos)
+  let papulas = 0, pustulas = 0, comedoes = 0;
+  for (let y = Math.max(0, cy - fw*0.35); y < Math.min(H, cy + fw*0.45); y += 2) {
+    for (let x = Math.max(0, cx - fw*0.45); x < Math.min(W, cx + fw*0.45); x += 2) {
+      const px = Math.round(x), py = Math.round(y);
+      const i = (py * W + px) * 4;
+      const r = d[i], g = d[i+1], b = d[i+2];
+
+      // Pústula (centro branco/amarelado com borda vermelha)
+      if (r > 180 && g > 160 && b > 140 && r - b > 30) pustulas++;
+
+      // Pápula (vermelho inflamatório)
+      if (r > 160 && g < 100 && b < 100) papulas++;
+
+      // Comedão (ponto escuro pequeno)
+      if (r < 80 && g < 80 && b < 80) comedoes++;
+    }
+  }
+  const totalAcne = papulas + pustulas + comedoes;
+  if (totalAcne > 12) {
+    const severidade = totalAcne > 35 ? "moderada" : "leve";
+    anomalias.push({
+      tipo: "acne",
+      regiao: "rosto",
+      severidade,
+      descricao: `Possíveis lesões de acne: ${papulas} pápulas (inflamação), ${pustulas} pústulas, ${comedoes} comedões. Histologicamente: obstrução folicular + hiperatividade sebácea.`,
+      pct: totalAcne,
+      base: "derme (glândulas sebáceas + folículos)"
+    });
+  }
+
+  // === OLHEIRAS ===
+  // Histologia: pele fina + vasos visíveis + hiperpigmentação periorbital
+  for (const [olhoX, olhoY, lado] of [[lm[33][0], lm[33][1]+fw*0.08, "esquerda"], [lm[263][0], lm[263][1]+fw*0.08, "direita"]]) {
+    let escuros = 0, azulados = 0, total = 0;
+    for (let y = olhoY - fw*0.04; y < olhoY + fw*0.06; y += 2) {
+      for (let x = olhoX - fw*0.08; x < olhoX + fw*0.08; x += 2) {
+        const px = Math.round(x), py = Math.round(y);
+        if (px < 0 || py < 0 || px >= W || py >= H) continue;
+        const i = (py * W + px) * 4;
+        const r = d[i], g = d[i+1], b = d[i+2];
+        const lum = (r + g + b) / 3;
+        total++;
+        if (lum < 100) escuros++;
+        // Tom azulado = vasos visíveis (derme)
+        if (b > r + 10 && lum < 130) azulados++;
+      }
+    }
+    if (total > 5) {
+      const pctEscuros = escuros / total * 100;
+      const pctAzulados = azulados / total * 100;
+      if (pctEscuros > 25 || pctAzulados > 15) {
+        anomalias.push({
+          tipo: "olheiras",
+          regiao: `olho ${lado}`,
+          severidade: (pctEscuros > 45 || pctAzulados > 25) ? "moderada" : "leve",
+          descricao: `Olheiras no olho ${lado} — pode ser hiperpigmentação (melanina) ou vasos visíveis (derme fina periorbital).`,
+          pct: pctEscuros,
+          base: "epiderme + derme periorbital"
+        });
+      }
+    }
+  }
+
+  // === PELE DESIDRATADA / BARREIRA COMPROMETIDA ===
+  // Histologia: estrato córneo com lipídios insuficientes → perda de água → descamação
+  let texturaTotal = 0, nTex = 0, descamacao = 0;
+  for (let y = Math.max(0, cy - fw*0.3); y < Math.min(H, cy + fw*0.3); y += 2) {
+    for (let x = Math.max(0, cx - fw*0.3); x < Math.min(W, cx + fw*0.3); x += 2) {
+      const px = Math.round(x), py = Math.round(y);
+      if (px < 1 || py < 1 || px >= W-1 || py >= H-1) continue;
+      const i = (py * W + px) * 4;
+      const lum = (d[i] + d[i+1] + d[i+2]) / 3;
+      const viz = ((d[((py-1)*W+px)*4] + d[((py+1)*W+px)*4] + d[(py*W+px-1)*4] + d[(py*W+px+1)*4]) / 4);
+      const diff = Math.abs(lum - viz);
+      texturaTotal += diff;
+      nTex++;
+      if (diff > 25) descamacao++; // fragmentos claros = escamas
+    }
+  }
+  const texturaMedia = nTex ? texturaTotal / nTex : 0;
+  const pctDescamacao = nTex ? descamacao / nTex * 100 : 0;
+  if (texturaMedia > 15 || pctDescamacao > 8) {
+    anomalias.push({
+      tipo: "desidratacao",
+      regiao: "rosto",
+      severidade: (texturaMedia > 22 || pctDescamacao > 15) ? "moderada" : "leve",
+      descricao: `Alta irregularidade de textura (${texturaMedia.toFixed(1)}) e possível descamação (${pctDescamacao.toFixed(1)}%). Histologicamente: estrato córneo com barreira comprometida (perda de lipídios).`,
+      pct: texturaMedia,
+      base: "epiderme (estrato córneo)"
+    });
+  }
+
+  // === TOM IRREGULAR ===
+  // Distribuição irregular de melanina na epiderme
+  const tonsGeral = [];
+  for (let y = Math.max(0, cy - fw*0.3); y < Math.min(H, cy + fw*0.3); y += 3) {
+    for (let x = Math.max(0, cx - fw*0.3); x < Math.min(W, cx + fw*0.3); x += 3) {
+      const px = Math.round(x), py = Math.round(y);
+      const i = (py * W + px) * 4;
+      tonsGeral.push((d[i] + d[i+1] + d[i+2]) / 3);
+    }
+  }
+  if (tonsGeral.length > 10) {
+    const mediaGeral = tonsGeral.reduce((s,v) => s+v, 0) / tonsGeral.length;
+    const dpGeral = Math.sqrt(tonsGeral.reduce((s,v) => s+(v-mediaGeral)**2, 0) / tonsGeral.length);
+    if (dpGeral > 30) {
+      anomalias.push({
+        tipo: "tom_irregular",
+        regiao: "rosto",
+        severidade: dpGeral > 45 ? "moderada" : "leve",
+        descricao: `Tom de pele desuniforme (variabilidade ${dpGeral.toFixed(0)}). Histologicamente: distribuição irregular de melanina entre queratinócitos.`,
+        pct: dpGeral,
+        base: "epiderme (melanócitos + queratinócitos)"
+      });
+    }
+  }
+
+  // === ALERTA DERMATOLOGISTA ===
+  let alerta = null;
+  const moderadas = anomalias.filter(a => a.severidade === "moderada");
+  const tiposUnicos = [...new Set(anomalias.map(a => a.tipo))];
+
+  if (moderadas.length >= 2 || tiposUnicos.length >= 3) {
+    alerta = {
+      nivel: "alto",
+      titulo: "Procure um dermatologista",
+      msg: "Foram detectadas <strong>múltiplas alterações</strong> na pele que merecem avaliação profissional. Um dermatologista pode fazer o diagnóstico correto e indicar o tratamento adequado."
+    };
+  } else if (anomalias.some(a => a.tipo === "rosacea" || a.tipo === "melasma")) {
+    alerta = {
+      nivel: "medio",
+      titulo: "Considere consultar um dermatologista",
+      msg: "Foi detectada uma possível condição que se beneficia de acompanhamento profissional (rosácea ou melasma). O diagnóstico preciso é feito apenas por dermatologista."
+    };
+  } else if (anomalias.length > 0) {
+    alerta = {
+      nivel: "baixo",
+      titulo: "Acompanhe as alterações",
+      msg: "Foram detectadas algumas alterações leves. Se persistirem ou piorarem, consulte um dermatologista."
+    };
+  }
+
+  return { anomalias, alerta };
+}
+
+// ===== TRATAMENTOS POR ANOMALIA (T49) =====
+const TRATAMENTOS_ANOMALIA = {
+  melasma: {
+    ativos: ["Ácido tranexâmico", "Vitamina C", "Niacinamida", "Ácido azelaico", "Hidroquinona (receita)", "Retinol"],
+    produtos: [
+      "The Ordinary Azelaic Acid 10%",
+      "Principia VC-10 Vitamina C",
+      "Eucerin Anti-Pigment Dual Sérum",
+      "Creamy Ácido Tranexâmico"
+    ],
+    dicas: [
+      "Protetor solar FPS 50+ é OBRIGATÓRIO (UV piora manchas)",
+      "Use protetor com cor para proteção extra",
+      "Evite calor excessivo (sauna, exercício intenso sem proteção)",
+      "Resultados levam 8-12 semanas — tenha paciência"
+    ]
+  },
+  rosacea: {
+    ativos: ["Ácido azelaico", "Centella Asiática", "Niacinamida", "Ivermectina (receita)", "Metronidazol (receita)", "Pantenol"],
+    produtos: [
+      "The Ordinary Azelaic Acid 10%",
+      "SKIN1004 Madagascar Centella Ampoule",
+      "La Roche-Posay Cicaplast Baume B5+",
+      "Creamy Calming Cream"
+    ],
+    dicas: [
+      "EVITE: álcool, fragrância, ácidos fortes, esfoliantes mecânicos",
+      "Protetor solar mineral (óxido de zinco) é mais tolerado",
+      "Identifique gatilhos: calor, álcool, comida picante, estresse",
+      "Água morna para lavar — nunca quente"
+    ]
+  },
+  vasinhos: {
+    ativos: ["Vitamina K", "Niacinamida", "Cente asiática", "Retinol suave"],
+    produtos: [
+      "SKIN1004 Madagascar Centella Ampoule",
+      "La Roche-Posay Cicaplast Baume B5+"
+    ],
+    dicas: [
+      "Laser ou IPL são os tratamentos mais eficazes (dermatologista)",
+      "Evite esfregar o rosto",
+      "Protetor solar diário previne piora",
+      "Maquiagem com cobertura alta ajuda visualmente"
+    ]
+  },
+  acne: {
+    ativos: ["Ácido salicílico (BHA)", "Niacinamida", "Retinol", "Peróxido de benzoila", "Adapaleno (receita)"],
+    produtos: [
+      "The Ordinary Niacinamide 10% + Zinc 1%",
+      "Principia Niacinamida NC-10",
+      "La Roche-Posay Effaclar Gel",
+      "Principia RN-0,3 Retinol"
+    ],
+    dicas: [
+      "NÃO esprema — aumenta inflamação e risco de cicatriz",
+      "Troque a fronha 2x por semana",
+      "Limpe o celular com álcool antes de encostar no rosto",
+      "Se acne for intensa/cística, procure dermatologista"
+    ]
+  },
+  olheiras: {
+    ativos: ["Vitamina K", "Cafeína", "Retinol suave", "Vitamina C", "Niacinamida"],
+    produtos: [
+      "Principia VC-10 Vitamina C",
+      "The Ordinary Niacinamide 10%"
+    ],
+    dicas: [
+      "Durma 7-8 horas por noite",
+      "Beba mais água",
+      "Proteja a região dos olhos com óculos de sol",
+      "Aplique protetor solar também nos olhos (com cuidado)",
+      "Se for hereditário, tratamento tópico tem resultado limitado"
+    ]
+  },
+  desidratacao: {
+    ativos: ["Ácido hialurônico", "Ceramidas", "Pantenol (B5)", "Glicerina", "Manteiga de karité"],
+    produtos: [
+      "Neutrogena Hydro Boost Water Gel",
+      "La Roche-Posay Cicaplast Baume B5+",
+      "Cetaphil Creme Hidratante",
+      "Principia AH-2 Ácido Hialurônico"
+    ],
+    dicas: [
+      "Aplique hidratante em pele úmida (logo após lavar)",
+      "EVITE: sabonete comum, água quente, álcool em produtos",
+      "Use umidificador no ambiente (ar-condicionado seca muito)",
+      "Hidrate 2x por dia — manhã e noite"
+    ]
+  },
+  tom_irregular: {
+    ativos: ["Vitamina C", "Niacinamida", "Ácido tranexâmico", "Retinol", "Ácido azelaico"],
+    produtos: [
+      "Principia VC-10 Vitamina C",
+      "Eucerin Anti-Pigment Dual Sérum",
+      "Principia Niacinamida NC-10"
+    ],
+    dicas: [
+      "Protetor solar todo dia — UV piora irregularidade",
+      "Exfolie suavemente 1-2x por semana",
+      "Resultados levam 4-8 semanas",
+      "Combine vitamina C (manhã) + retinol (noite)"
+    ]
+  }
+};
+
+function tratamentosHTML(anomalias) {
+  if (!anomalias.length) return "";
+
+  const tiposUnicos = [...new Set(anomalias.map(a => a.tipo))];
+  let html = '<div class="card" style="margin-top:16px"><strong>💊 Tratamentos sugeridos por condição</strong>';
+  html += '<p class="sub" style="font-size:.85rem;margin:8px 0 12px">Baseado nas anomalias detectadas. Consulte um dermatologista antes de iniciar qualquer tratamento.</p>';
+
+  for (const tipo of tiposUnicos) {
+    const t = TRATAMENTOS_ANOMALIA[tipo];
+    if (!t) continue;
+
+    const nomes = {
+      melasma: "🟤 Melasma / Manchas",
+      rosacea: "🔴 Rosácea",
+      vasinhos: "🩸 Vasinhos",
+      acne: "🟡 Acne",
+      olheiras: "🔵 Olheiras",
+      desidratacao: "💧 Desidratação",
+      tom_irregular: "🎨 Tom irregular"
+    };
+
+    html += `
+      <div style="border:1px solid var(--linha);border-radius:12px;padding:16px;margin:12px 0">
+        <strong style="font-size:1.05rem">${nomes[tipo] || tipo}</strong>
+
+        <div style="margin-top:12px">
+          <div style="font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--rosa);font-weight:600;margin-bottom:6px">Ativos recomendados</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            ${t.ativos.map(a => `<span class="pill" style="font-size:.82rem">${a}</span>`).join("")}
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div style="font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--rosa);font-weight:600;margin-bottom:6px">Produtos sugeridos</div>
+          <ul style="margin:0;padding-left:18px;font-size:.88rem">
+            ${t.produtos.map(p => `<li>${p}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div style="margin-top:12px">
+          <div style="font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde);font-weight:600;margin-bottom:6px">Dicas importantes</div>
+          <ul style="margin:0;padding-left:18px;font-size:.88rem;color:var(--suave)">
+            ${t.dicas.map(d => `<li>${d}</li>`).join("")}
+          </ul>
+        </div>
+      </div>
+    `;
+  }
+
+  html += `
+    <div style="background:var(--rosa-claro);border-left:3px solid var(--rosa);padding:14px;border-radius:0 8px 8px 0;margin:12px 0">
+      <strong>🏥 Recomendação:</strong> Para tratamento medicamentoso (hidroquinona, tretinoína, ivermectina, adapaleno), é necessário <strong>receita médica</strong>. Consulte um dermatologista para avaliação presencial.
+    </div>
+  `;
+
+  html += '</div>';
+  return html;
+}
+
+// ===== TELEMEDICINA (T51) =====
+function telemedicinaHTML(anomalias) {
+  if (!anomalias.length) return "";
+
+  const moderadas = anomalias.filter(a => a.severidade === "moderada").length;
+  const mostrar = moderadas >= 1 || anomalias.length >= 2;
+
+  if (!mostrar) return "";
+
+  return `
+    <div class="card" style="margin-top:16px;background:linear-gradient(135deg, var(--tinta), #2d2825);color:var(--fundo);border:none">
+      <div style="font-size:1.2rem;font-weight:600;margin-bottom:8px">🏥 Consulta com dermatologista</div>
+      <p style="opacity:.85;margin:0 0 16px;line-height:1.6">
+        Com base nas alterações detectadas, recomendamos uma <strong>avaliação profissional</strong>.
+        Um dermatologista pode confirmar o diagnóstico e indicar o melhor tratamento.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="https://www.doctoralia.com.br/dermatologista" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--rosa);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:.95rem">
+          🔍 Encontrar dermatologista
+        </a>
+        <a href="https://www.drconsulta.com/" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.15);color:var(--fundo);border-radius:10px;text-decoration:none;font-weight:600;font-size:.95rem">
+          📱 Consulta online
+        </a>
+      </div>
+      <p style="opacity:.6;font-size:.82rem;margin:16px 0 0">
+        Plataformas parceiras. A escolha do profissional é sua. Não recebemos indicação médica.
+      </p>
+    </div>
+  `;
+}
+
+function anomaliasHTML(anomalias, alerta) {
+  if (!anomalias.length && !alerta) return "";
+
+  const cores = {
+    melasma: { bg: "#fdf2f4", cor: "#b4546a", icone: "🟤" },
+    rosacea: { bg: "#fdf2f4", cor: "#b4546a", icone: "🔴" },
+    vasinhos: { bg: "#fdf2f4", cor: "#b4546a", icone: "🩸" },
+    acne: { bg: "#fff8e1", cor: "#c9a96e", icone: "🟡" },
+    olheiras: { bg: "#e8eaf6", cor: "#5c6bc0", icone: "🔵" },
+    desidratacao: { bg: "#eef4f0", cor: "#3f6b55", icone: "💧" },
+    tom_irregular: { bg: "#faf6ee", cor: "#c9a96e", icone: "🎨" }
+  };
+
+  const nomes = {
+    melasma: "Melasma / Manchas escuras",
+    rosacea: "Rosácea",
+    vasinhos: "Vasinhos (telangiectasias)",
+    acne: "Acne",
+    olheiras: "Olheiras",
+    desidratacao: "Desidratação / Barreira",
+    tom_irregular: "Tom irregular"
+  };
+
+  let html = '<div class="card" style="margin-top:16px"><strong>🔬 Análise de anomalias da pele</strong>';
+  html += '<p class="sub" style="font-size:.85rem;margin:8px 0 12px">Baseado em histologia da pele — sugestões visuais, não diagnóstico médico.</p>';
+
+  if (alerta) {
+    const corAlerta = alerta.nivel === "alto" ? "var(--rosa)" : alerta.nivel === "medio" ? "#c9a96e" : "var(--verde)";
+    const bgAlerta = alerta.nivel === "alto" ? "var(--rosa-claro)" : alerta.nivel === "medio" ? "#fff8e1" : "var(--verde-claro)";
+    const iconeAlerta = alerta.nivel === "alto" ? "🏥" : alerta.nivel === "medio" ? "⚕️" : "ℹ️";
+    html += `
+      <div style="background:${bgAlerta};border-left:3px solid ${corAlerta};padding:16px;border-radius:0 10px 10px 0;margin:12px 0">
+        <div style="font-size:1.1rem;font-weight:600;color:${corAlerta};margin-bottom:6px">${iconeAlerta} ${alerta.titulo}</div>
+        <div style="font-size:.92rem;line-height:1.6">${alerta.msg}</div>
+        ${alerta.nivel !== "baixo" ? `
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.1)">
+          <strong style="font-size:.88rem">O dermatologista pode:</strong>
+          <ul style="margin:6px 0 0;padding-left:18px;font-size:.85rem">
+            <li>Fazer o <strong>diagnóstico correto</strong> (exame clínico + dermatoscopia)</li>
+            <li>Prescrever <strong>tratamentos específicos</strong> (tópicos, orais, procedimentos)</li>
+            <li>Acompanhar a <strong>evolução</strong> e ajustar o tratamento</li>
+            <li>Descartar <strong>outras condições</strong> com aparência similar</li>
+          </ul>
+        </div>` : ''}
+      </div>
+    `;
+  }
+
+  if (anomalias.length) {
+    html += '<div style="margin-top:12px">';
+    for (const a of anomalias) {
+      const estilo = cores[a.tipo] || { bg: "var(--fundo)", cor: "var(--suave)", icone: "⚠️" };
+      html += `
+        <div style="background:${estilo.bg};border-left:3px solid ${estilo.cor};padding:14px;border-radius:0 8px 8px 0;margin:10px 0">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="font-size:1.2rem">${estilo.icone}</span>
+            <strong style="color:${estilo.cor}">${nomes[a.tipo] || a.tipo}</strong>
+            <span class="pill" style="font-size:.75rem;margin-left:auto">${a.severidade}</span>
+          </div>
+          <div style="font-size:.88rem;color:var(--suave);margin-top:6px;line-height:1.5">${a.descricao}</div>
+          <div style="display:flex;gap:12px;margin-top:6px;font-size:.78rem;color:var(--suave-2);flex-wrap:wrap">
+            <span>📍 ${a.regiao}</span>
+            <span>📊 Índice: ${a.pct.toFixed(1)}%</span>
+            ${a.base ? `<span>🧬 ${a.base}</span>` : ''}
+          </div>
+        </div>
+      `;
+    }
+    html += '</div>';
+  }
+
+  html += `
+    <div style="background:var(--verde-claro);border-left:3px solid var(--verde);padding:14px;border-radius:0 8px 8px 0;margin:14px 0">
+      <strong>⚕️ Importante — não é diagnóstico médico:</strong>
+      <p style="margin:6px 0 0;font-size:.88rem;line-height:1.6">
+        Esta análise é uma <strong>estimativa visual baseada em histologia da pele</strong>, não um diagnóstico médico.
+        Condições como melasma, rosácea e acne têm <strong>aparências similares</strong> a outras condições e só podem ser
+        diagnosticadas por um <strong>dermatologista</strong> com exame clínico e, se necessário, dermatoscopia ou biópsia.
+        Use este resultado como <strong>orientação inicial</strong> — não substitui consulta profissional.
+      </p>
+    </div>
+  `;
+
+  html += '</div>';
+  return html;
+}
+function calcularSkinScore(brilhoT, brilhoU, vermelhidao, textura, uniformidade) {
+  let score = 100;
+
+  // Penalidades
+  if (brilhoT > 15) score -= 15; // muito brilho
+  else if (brilhoT > 8) score -= 8;
+
+  if (brilhoU > 12) score -= 10; // bochechas muito brilhantes
+
+  if (vermelhidao > 20) score -= 20; // muito vermelho
+  else if (vermelhidao > 12) score -= 10;
+
+  if (textura > 15) score -= 10; // textura irregular
+  if (uniformidade < 60) score -= 10; // tom irregular
+
+  // Bônus
+  if (brilhoT >= 3 && brilhoT <= 8) score += 5; // brilho saudável
+  if (vermelhidao < 8) score += 5; // tom uniforme
+
+  return Math.max(20, Math.min(100, Math.round(score)));
+}
+
+function scoreHTML(score) {
+  const cor = score >= 80 ? "#3f6b55" : score >= 60 ? "#c9a96e" : "#b4546a";
+  const emoji = score >= 80 ? "✨" : score >= 60 ? "👍" : "💪";
+  return `
+    <div style="text-align:center;margin:16px 0">
+      <div style="font-size:3rem;font-weight:300;font-family:var(--fonte-display);color:${cor}">${score}</div>
+      <div style="font-size:.95rem;color:var(--suave)">${emoji} Skin Score / 100</div>
+      <div style="height:8px;background:var(--linha);border-radius:999px;margin:12px auto;max-width:200px;overflow:hidden">
+        <div style="width:${score}%;height:100%;background:${cor};border-radius:999px"></div>
+      </div>
+    </div>
+  `;
+}
+
+// ===== IDADE DA PELE (T45) =====
+function estimarIdadePele(textura, vermelhidao, uniformidade, linhas) {
+  let idade = 25; // base
+
+  if (textura > 15) idade += 5;
+  if (vermelhidao > 15) idade += 3;
+  if (uniformidade < 60) idade += 4;
+  if (linhas > 12) idade += 6;
+
+  if (textura < 8 && uniformidade > 80) idade -= 3;
+
+  return Math.max(18, Math.min(55, Math.round(idade)));
+}
+
+// ===== COMPARAÇÃO COM A MÉDIA (T52) =====
+function comparacaoMediaHTML(skinScore, idadePele) {
+  // Médias baseadas em dados populacionais estimados
+  const medias = {
+    score: { media: 68, dp: 14 },
+    idadePorDecada: {
+      "18-25": { media: 22, dp: 3 },
+      "26-35": { media: 30, dp: 4 },
+      "36-45": { media: 40, dp: 4 },
+      "46+": { media: 52, dp: 5 }
+    }
+  };
+
+  const scoreMedia = medias.score.media;
+  const scoreDP = medias.score.dp;
+  const zScore = (skinScore - scoreMedia) / scoreDP;
+  const percentil = Math.round(50 + zScore * 15); // aproximação
+
+  let faixa = "";
+  let emoji = "";
+  if (percentil >= 85) { faixa = "excelente"; emoji = "🌟"; }
+  else if (percentil >= 70) { faixa = "acima da média"; emoji = "✨"; }
+  else if (percentil >= 50) { faixa = "na média"; emoji = "👍"; }
+  else if (percentil >= 30) { faixa = "abaixo da média"; emoji = "💪"; }
+  else { faixa = "precisa de atenção"; emoji = "🎯"; }
+
+  return `
+    <div class="card" style="margin-top:16px">
+      <strong>📊 Como você se compara</strong>
+      <div style="display:flex;align-items:center;gap:16px;margin:12px 0">
+        <div style="font-size:2.5rem;font-weight:300;font-family:var(--fonte-display);color:var(--rosa)">${percentil}º</div>
+        <div>
+          <div style="font-weight:600">percentil</div>
+          <div class="sub" style="font-size:.88rem">${emoji} Seu Skin Score está ${faixa} (${skinScore} vs média ${scoreMedia})</div>
+        </div>
+      </div>
+      <div style="height:8px;background:var(--linha);border-radius:999px;overflow:hidden;margin:8px 0">
+        <div style="width:${Math.min(100, percentil)}%;height:100%;background:linear-gradient(90deg,var(--verde),var(--rosa));border-radius:999px"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.78rem;color:var(--suave-2)">
+        <span>0%</span><span>Média: 50%</span><span>100%</span>
+      </div>
+      ${idadePele ? `
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--linha)">
+        <span class="sub" style="font-size:.88rem">Sua pele aparenta <strong>${idadePele} anos</strong>. ${idadePele < 30 ? 'Continue os bons hábitos!' : 'Com a rotina certa, dá para melhorar.'}</span>
+      </div>` : ''}
+    </div>
+  `;
+}
+
+// ===== ALERTAS DE MUDANÇA (T53) =====
+async function alertasMudancaHTML(skinScore, brilhoT, vermelhidao) {
+  const fotos = await lerProgresso();
+  if (fotos.length < 2) return "";
+
+  const ordenado = fotos.sort((a, b) => new Date(a.data) - new Date(b.data));
+  const anterior = ordenado[ordenado.length - 2];
+  const atual = ordenado[ordenado.length - 1];
+
+  const alertas = [];
+
+  const deltaScore = atual.skinScore - anterior.skinScore;
+  if (Math.abs(deltaScore) >= 5) {
+    alertas.push({
+      tipo: deltaScore > 0 ? "positivo" : "negativo",
+      msg: deltaScore > 0
+        ? `🎉 Seu Skin Score <strong>melhorou ${deltaScore} pontos</strong> desde a última análise!`
+        : `⚠️ Seu Skin Score <strong>caiu ${Math.abs(deltaScore)} pontos</strong> desde a última análise.`
+    });
+  }
+
+  const deltaBrilho = atual.brilhoT - anterior.brilhoT;
+  if (Math.abs(deltaBrilho) >= 3) {
+    alertas.push({
+      tipo: deltaBrilho < 0 ? "positivo" : "negativo",
+      msg: deltaBrilho < 0
+        ? `✅ Oleosidade <strong>reduziu ${Math.abs(deltaBrilho).toFixed(1)}%</strong> na zona T.`
+        : `📈 Oleosidade <strong>aumentou ${deltaBrilho.toFixed(1)}%</strong> na zona T.`
+    });
+  }
+
+  const deltaVerm = atual.vermelhidao - anterior.vermelhidao;
+  if (Math.abs(deltaVerm) >= 3) {
+    alertas.push({
+      tipo: deltaVerm < 0 ? "positivo" : "negativo",
+      msg: deltaVerm < 0
+        ? `✅ Vermelhidão <strong>reduziu ${Math.abs(deltaVerm).toFixed(1)}%</strong>.`
+        : `📈 Vermelhidão <strong>aumentou ${deltaVerm.toFixed(1)}%</strong>.`
+    });
+  }
+
+  if (!alertas.length) return "";
+
+  return `
+    <div class="card" style="margin-top:16px">
+      <strong>🔔 Mudanças desde a última análise</strong>
+      ${alertas.map(a => `
+        <div style="background:${a.tipo === "positivo" ? "var(--verde-claro)" : "var(--rosa-claro)"};border-left:3px solid ${a.tipo === "positivo" ? "var(--verde)" : "var(--rosa)"};padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:.92rem">
+          ${a.msg}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+// ===== EXPORTAR LAUDO PDF (T54) =====
+function exportarLaudoHTML(selfieEstimativa, anomaliasResult) {
+  return `
+    <div class="card" style="margin-top:16px">
+      <strong>📄 Laudo de análise</strong>
+      <p class="sub" style="font-size:.88rem;margin:8px 0">Gere um relatório completo com todas as medições, anomalias detectadas e recomendações.</p>
+      <button class="btn" onclick="gerarLaudo()" style="margin-top:8px">📥 Baixar laudo (PDF)</button>
+    </div>
+  `;
+}
+
+function gerarLaudo() {
+  const s = selfieEstimativa || {};
+  const anomalias = window.__ultimaAnalise?.anomalias || [];
+  const alerta = window.__ultimaAnalise?.alerta || null;
+
+  const conteudo = `
+LAUDO DE ANÁLISE VISUAL DA PELE
+Produto Skincare - Provador Virtual
+Data: ${new Date().toLocaleDateString("pt-BR")}
+
+========================================
+1. RESUMO
+========================================
+Tipo de pele estimado: ${(s.tipo || "N/A").toUpperCase()}
+Skin Score: ${s.skinScore || "N/A"}/100
+Idade aparente da pele: ${s.idadePele || "N/A"} anos
+Sensibilidade: ${s.sens ? "Sim" : "Não"}
+
+========================================
+2. MEDIÇÕES
+========================================
+Brilho zona T: ${(s.brilhoT || 0).toFixed(1)}%
+Brilho bochechas: ${(s.brilhoU || 0).toFixed(1)}%
+Vermelhidão: ${(s.vermelhidao || 0).toFixed(1)}%
+Textura: ${(s.textura || 0).toFixed(1)}
+Uniformidade: ${(s.uniformidade || 0).toFixed(1)}%
+
+========================================
+3. ANOMALIAS DETECTADAS
+========================================
+${anomalias.length ? anomalias.map(a =>
+`- ${a.tipo.toUpperCase()} (${a.severidade})
+  Região: ${a.regiao}
+  Descrição: ${a.descricao}
+  Índice: ${a.pct.toFixed(1)}%
+  Base histológica: ${a.base || "N/A"}`
+).join("\n\n") : "Nenhuma anomalia detectada."}
+
+========================================
+4. RECOMENDAÇÃO
+========================================
+${alerta ? alerta.titulo + ": " + alerta.msg.replace(/<[^>]*>/g, "") : "Sem recomendações especiais."}
+
+========================================
+AVISO LEGAL
+========================================
+Este laudo é uma ESTIMATIVA VISUAL baseada em análise de imagem,
+NÃO É DIAGNÓSTICO MÉDICO. Condições de pele só podem ser
+diagnosticadas por dermatologista com exame clínico.
+Use este documento como referência inicial.
+
+Gerado por Produto Skincare - produtoskincare.com.br
+  `.trim();
+
+  const blob = new Blob([conteudo], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `laudo-pele-${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+}
+const dbProgresso = new Promise(res => {
+  const r = indexedDB.open("selfie-progresso", 1);
+  r.onupgradeneeded = () => r.result.createObjectStore("fotos", { keyPath: "id", autoIncrement: true });
+  r.onsuccess = () => res(r.result);
+  r.onerror = () => res(null);
+});
+
+async function salvarFotoProgresso(resultado) {
+  const db = await dbProgresso;
+  if (!db) return;
+  const tx = db.transaction("fotos", "readwrite");
+  tx.objectStore("fotos").add({
+    data: new Date().toISOString(),
+    tipo: resultado.tipo,
+    skinScore: resultado.skinScore,
+    brilhoT: resultado.brilhoT,
+    brilhoU: resultado.brilhoU,
+    vermelhidao: resultado.vermelhidao,
+    idadePele: resultado.idadePele
+  });
+}
+
+async function lerProgresso() {
+  const db = await dbProgresso;
+  if (!db) return [];
+  return new Promise(res => {
+    const out = [];
+    const c = db.transaction("fotos").objectStore("fotos").openCursor();
+    c.onsuccess = () => { const k = c.result; if (k) { out.push(k.value); k.continue(); } else res(out); };
+    c.onerror = () => res([]);
+  });
+}
+
+async function mostrarProgresso() {
+  const fotos = await lerProgresso();
+  if (fotos.length < 2) return "";
+
+  const ordenado = fotos.sort((a, b) => new Date(a.data) - new Date(b.data));
+  const primeira = ordenado[0];
+  const ultima = ordenado[ordenado.length - 1];
+
+  const deltaScore = ultima.skinScore - primeira.skinScore;
+  const deltaBrilho = ultima.brilhoT - primeira.brilhoT;
+
+  return `
+    <div class="card" style="margin-top:16px">
+      <strong>📈 Seu progresso (${fotos.length} análises)</strong>
+      <table style="width:100%;font-size:.88rem;margin:10px 0">
+        <tr><th></th><th>Primeira</th><th>Última</th><th>Variação</th></tr>
+        <tr><td>Skin Score</td><td>${primeira.skinScore}</td><td>${ultima.skinScore}</td>
+          <td style="color:${deltaScore >= 0 ? 'var(--verde)' : 'var(--rosa)'}">${deltaScore >= 0 ? '+' : ''}${deltaScore}</td></tr>
+        <tr><td>Brilho zona T</td><td>${primeira.brilhoT.toFixed(1)}%</td><td>${ultima.brilhoT.toFixed(1)}%</td>
+          <td style="color:${deltaBrilho <= 0 ? 'var(--verde)' : 'var(--rosa)'}">${deltaBrilho >= 0 ? '+' : ''}${deltaBrilho.toFixed(1)}%</td></tr>
+        <tr><td>Vermelhidão</td><td>${primeira.vermelhidao.toFixed(1)}%</td><td>${ultima.vermelhidao.toFixed(1)}%</td>
+          <td>${(ultima.vermelhidao - primeira.vermelhidao).toFixed(1)}%</td></tr>
+        <tr><td>Idade da pele</td><td>${primeira.idadePele} anos</td><td>${ultima.idadePele} anos</td>
+          <td>${ultima.idadePele - primeira.idadePele} anos</td></tr>
+      </table>
+      <small class="sub">Continue tirando selfies semanais para acompanhar a evolução.</small>
+    </div>
+  `;
+}
+
 async function initSelfie() {
   if (landmarker) return;
   $("statusSelfie").textContent = "Carregando detector de rosto…";
@@ -1477,23 +2609,40 @@ document.querySelectorAll("input[name=qtdFotos]").forEach(r => {
 
 function renderizarSlotsFotos() {
   const slots = [
-    { id: "manha", nome: "☀️ Manhã", desc: "30 min após lavar, sem produtos" },
-    { id: "meio", nome: "🌤️ Meio-dia", desc: "4-5 horas depois" },
-    { id: "tarde", nome: "🌅 Fim da tarde", desc: "8-10 horas após a primeira" }
+    { id: "manha", nome: "☀️ Manhã (linha de base)", desc: "<strong>30 minutos</strong> após lavar o rosto com gel suave. Sem produtos. Tire ANTES de aplicar qualquer coisa.", horario: "Ex: lavou 7h → tire 7h30" },
+    { id: "meio", nome: "🌤️ Meio-dia (4-5h depois)", desc: "<strong>4 a 5 horas</strong> depois da primeira foto. Mesma luz de janela. Sem retoque.", horario: "Ex: primeira 7h30 → tire 12h-12h30" },
+    { id: "tarde", nome: "🌅 Fim da tarde (8-10h depois)", desc: "<strong>8 a 10 horas</strong> após a primeira. Última foto do dia. A mais importante.", horario: "Ex: primeira 7h30 → tire 15h30-17h30" }
   ];
-  $("slotsFotos").innerHTML = slots.map(s => `
-    <div style="display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--linha);border-radius:10px;margin:8px 0">
-      <div style="font-size:1.5rem">${s.nome.split(" ")[0]}</div>
+  $("slotsFotos").innerHTML = `
+    <div class="card aviso" style="margin-bottom:12px">
+      <strong>📋 Instruções para máxima precisão:</strong>
+      <ul style="margin:8px 0 0;padding-left:18px;font-size:.88rem">
+        <li>Lave o rosto <strong>apenas uma vez</strong> (antes da foto 1)</li>
+        <li><strong>Não aplique</strong> nenhum produto durante o dia</li>
+        <li>Mesma <strong>luz de janela</strong> (sem sol direto) nas 3 fotos</li>
+        <li>Mesma <strong>distância e ângulo</strong> (braço esticado, de frente)</li>
+        <li>Desative <strong>filtros, modo beleza e HDR</strong></li>
+        <li>Se possível, use a <strong>câmera traseira</strong> com espelho</li>
+      </ul>
+    </div>
+  ` + slots.map(s => `
+    <div style="display:flex;gap:12px;align-items:start;padding:14px;border:1px solid var(--linha);border-radius:12px;margin:10px 0;background:${fotosMultiplas[s.id] ? 'var(--verde-claro)' : 'var(--papel)'}">
+      <div style="font-size:1.5rem;margin-top:2px">${s.nome.split(" ")[0]}</div>
       <div style="flex:1">
         <strong>${s.nome}</strong>
-        <div class="sub" style="font-size:.82rem">${s.desc}</div>
+        <div style="font-size:.85rem;color:var(--suave);margin-top:4px;line-height:1.5">${s.desc}</div>
+        <div style="font-size:.78rem;color:var(--rosa);margin-top:4px;font-weight:500">⏰ ${s.horario}</div>
       </div>
-      <label class="btn sec" style="min-height:40px;font-size:.85rem" for="foto_${s.id}">
-        ${fotosMultiplas[s.id] ? "✅ Enviada" : "Enviar"}
+      <label class="btn sec" style="min-height:40px;font-size:.85rem;flex-shrink:0" for="foto_${s.id}">
+        ${fotosMultiplas[s.id] ? "✅ Enviada" : "📸 Enviar"}
       </label>
       <input type="file" id="foto_${s.id}" accept="image/*" style="position:absolute;left:-9999px">
     </div>
-  `).join("");
+  `).join("") + `
+    <div class="card" style="margin-top:12px;background:var(--rosa-claro);border-left:3px solid var(--rosa)">
+      <strong>⏱️ Precisão máxima:</strong> tire as 3 fotos nos horários indicados. Quanto mais fiel ao cronograma, mais confiável o resultado. Se não conseguir todas as 3, pelo menos <strong>manhã + fim da tarde</strong> já dão bom resultado.
+    </div>
+  `;
 
   slots.forEach(s => {
     $(`foto_${s.id}`).onchange = async (e) => {
@@ -1515,7 +2664,7 @@ async function analisarMultiplasFotos() {
   for (const [id, file] of Object.entries(fotosMultiplas)) {
     if (!file) continue;
     const img = await createImageBitmap(file);
-    const s = Math.min(1, 600 / Math.max(img.width, img.height));
+    const s = Math.min(1, 800 / Math.max(img.width, img.height));
     const W = Math.round(img.width * s), H = Math.round(img.height * s);
     const cv = document.createElement("canvas");
     cv.width = W; cv.height = H;
@@ -1530,81 +2679,168 @@ async function analisarMultiplasFotos() {
     const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
     const cx = lm[1][0], cy = lm[1][1];
 
-    let specT = 0, specU = 0, nT = 0, nU = 0;
+    let specT = 0, specU = 0, nT = 0, nU = 0, verm = 0, nV = 0;
+    let texturaSum = 0, nTex = 0;
+    const tons = [];
+
     for (let y = Math.max(0, cy - fw * .4); y < Math.min(H, cy + fw * .4); y += 2) {
       for (let x = Math.max(0, cx - fw * .5); x < Math.min(W, cx + fw * .5); x += 2) {
-        const i = (Math.round(y) * W + Math.round(x)) * 4;
-        const lum = (d[i] + d[i + 1] + d[i + 2]) / 3;
+        const px = Math.round(x), py = Math.round(y);
+        const i = (py * W + px) * 4;
+        const r = d[i], g = d[i + 1], b = d[i + 2];
+        const lum = (r + g + b) / 3;
         const isT = y < cy, isU = y > cy + fw * .1;
         if (isT) { nT++; if (lum > 190) specT++; }
         if (isU) { nU++; if (lum > 190) specU++; }
+        nV++;
+        if (r > g + 20 && r > b + 20) verm++;
+        tons.push(lum);
+        if (px > 0 && py > 0 && px < W-1 && py < H-1) {
+          const viz = ((d[((py-1)*W+px)*4] + d[((py+1)*W+px)*4] + d[(py*W+px-1)*4] + d[(py*W+px+1)*4]) / 4);
+          texturaSum += Math.abs(lum - viz);
+          nTex++;
+        }
       }
     }
+
+    const mediaTom = tons.reduce((s,v) => s+v, 0) / tons.length;
+    const dpTom = Math.sqrt(tons.reduce((s,v) => s+(v-mediaTom)**2, 0) / tons.length);
+
     ANALISES_MULTIPLAS[id] = {
       brilhoT: nT ? specT / nT * 100 : 0,
-      brilhoU: nU ? specU / nU * 100 : 0
+      brilhoU: nU ? specU / nU * 100 : 0,
+      vermelhidao: nV ? verm / nV * 100 : 0,
+      textura: nTex ? texturaSum / nTex : 0,
+      uniformidade: Math.max(0, 100 - dpTom)
     };
   }
 
-  // Calcular velocidade do sebo
+  // Calcular velocidade do sebo e classificar
   const manha = ANALISES_MULTIPLAS.manha, tarde = ANALISES_MULTIPLAS.tarde;
   if (manha && tarde) {
     const deltaT = tarde.brilhoT - manha.brilhoT;
     const deltaU = tarde.brilhoU - manha.brilhoU;
-    const velocidadeT = deltaT / 8; // pontos por hora (8h estimadas)
+    const velocidadeT = deltaT / 8;
     const velocidadeU = deltaU / 8;
 
-    let tipo = "normal", sinais = [];
+    // Análise aprofundada
+    let tipo = "normal", sinais = [], confianca = "alta";
+
     if (velocidadeT > 1.2 && velocidadeU > 0.8) {
       tipo = "oleosa";
-      sinais.push(`brilho subiu rápido (${velocidadeT.toFixed(1)} pts/h na zona T, ${velocidadeU.toFixed(1)} nas bochechas)`);
+      sinais.push(`Brilho subiu rápido (${velocidadeT.toFixed(1)} pts/h na zona T, ${velocidadeU.toFixed(1)} nas bochechas)`);
     } else if (velocidadeT > 0.8 && velocidadeU < 0.4) {
       tipo = "mista";
-      sinais.push(`brilho subiu só na zona T (${velocidadeT.toFixed(1)} pts/h)`);
+      sinais.push(`Brilho subiu só na zona T (${velocidadeT.toFixed(1)} pts/h), bochechas estáveis`);
     } else if (Math.abs(velocidadeT) < 0.3 && tarde.brilhoT < 4) {
       tipo = "seca";
-      sinais.push("brilho praticamente não mudou ao longo do dia");
+      sinais.push("Brilho praticamente não mudou ao longo do dia");
     } else {
       tipo = "normal";
-      sinais.push("brilho estável com leve luminosidade");
+      sinais.push("Brilho estável com leve luminosidade natural");
     }
 
     // Efeito rebote
     const rebote = manha.brilhoT < 3 && tarde.brilhoT > 8;
     if (rebote) {
-      sinais.push("manhã opaca, tarde muito oleosa: possível efeito rebote (oleosa desidratada)");
+      tipo = "oleosa";
+      sinais.push("⚠️ Efeito rebote: manhã opaca, tarde muito oleosa → possível oleosa desidratada");
     }
+
+    // Oxidação do sebo (escurecimento)
+    const oxidacao = tarde.uniformidade < manha.uniformidade - 5;
+    if (oxidacao) sinais.push("Tom mais escuro no fim da tarde (oxidação do sebo)");
+
+    // Vermelhidão
+    const vermMedia = ((manha.vermelhidao || 0) + (tarde.vermelhidao || 0)) / 2;
+    const sens = vermMedia > 12;
+
+    // Skin Score
+    const skinScore = calcularSkinScore(
+      tarde.brilhoT, tarde.brilhoU, vermMedia,
+      tarde.textura, tarde.uniformidade
+    );
+
+    // Idade da pele
+    const idadePele = estimarIdadePele(
+      tarde.textura, vermMedia, tarde.uniformidade, tarde.textura
+    );
 
     selfieEstimativa = {
       tipo: rebote ? "oleosa" : tipo,
-      sens: false,
+      sens,
       brilhoT: tarde.brilhoT,
       brilhoU: tarde.brilhoU,
-      vermelhidao: 0,
+      vermelhidao: vermMedia,
       sinais,
       velocidadeT,
       velocidadeU,
       rebote,
-      multipla: true
+      multipla: true,
+      skinScore,
+      idadePele,
+      confianca,
+      detalhes: { manha, tarde }
     };
+
+    // Salvar no progresso
+    await salvarFotoProgresso(selfieEstimativa);
+
+    // Detectar anomalias da pele
+    const anomaliasResult = detectarAnomalias(ctx, W, H, lm);
+    const anomaliasH = anomaliasHTML(anomaliasResult.anomalias, anomaliasResult.alerta);
+    const tratamentosH = tratamentosHTML(anomaliasResult.anomalias);
+    const telemedicinaH = telemedicinaHTML(anomaliasResult.anomalias);
+    const comparacaoH = comparacaoMediaHTML(selfieEstimativa.skinScore, selfieEstimativa.idadePele);
+    const alertasH = await alertasMudancaHTML(selfieEstimativa.skinScore, selfieEstimativa.brilhoT, selfieEstimativa.vermelhidao);
+    const laudoH = exportarLaudoHTML(selfieEstimativa, anomaliasResult);
+    window.__ultimaAnalise = anomaliasResult;
+
+    const progresso = await mostrarProgresso();
 
     $("resultadoSelfie").innerHTML = `
       <div class="card" style="margin-top:12px">
-        <strong>📊 Análise ao longo do dia:</strong>
-        <table style="width:100%;font-size:.88rem;margin:8px 0">
+        <strong>📊 Análise de precisão máxima (3 fotos)</strong>
+
+        ${scoreHTML(selfieEstimativa.skinScore)}
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+          <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
+            <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${selfieEstimativa.idadePele}</div>
+            <div style="font-size:.82rem;color:var(--suave)">anos aparentes</div>
+          </div>
+          <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
+            <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${selfieEstimativa.confianca}</div>
+            <div style="font-size:.82rem;color:var(--suave)">confiança</div>
+          </div>
+        </div>
+
+        <table style="width:100%;font-size:.88rem;margin:10px 0">
           <thead><tr><th>Medida</th><th>Manhã</th><th>Tarde</th><th>Velocidade</th></tr></thead>
           <tbody>
             <tr><td>Brilho zona T</td><td>${manha.brilhoT.toFixed(1)}%</td><td>${tarde.brilhoT.toFixed(1)}%</td><td>${velocidadeT.toFixed(2)} pts/h</td></tr>
             <tr><td>Brilho bochechas</td><td>${manha.brilhoU.toFixed(1)}%</td><td>${tarde.brilhoU.toFixed(1)}%</td><td>${velocidadeU.toFixed(2)} pts/h</td></tr>
+            <tr><td>Vermelhidão</td><td>${(manha.vermelhidao||0).toFixed(1)}%</td><td>${(tarde.vermelhidao||0).toFixed(1)}%</td><td>—</td></tr>
+            <tr><td>Textura</td><td>${(manha.textura||0).toFixed(1)}</td><td>${(tarde.textura||0).toFixed(1)}</td><td>—</td></tr>
+            <tr><td>Uniformidade</td><td>${(manha.uniformidade||0).toFixed(0)}%</td><td>${(tarde.uniformidade||0).toFixed(0)}%</td><td>—</td></tr>
           </tbody>
         </table>
+
         <p style="margin:8px 0">
           <span class="pill">${selfieEstimativa.tipo.charAt(0).toUpperCase() + selfieEstimativa.tipo.slice(1)}</span>
           ${rebote ? '<span class="pill verde">Possível rebote</span>' : ''}
+          ${selfieEstimativa.sens ? '<span class="pill verde">Sensível</span>' : ''}
         </p>
         <p class="sub" style="font-size:.88rem;margin:0">Sinais: ${sinais.join("; ")}.</p>
-        <p class="sub" style="font-size:.82rem;margin:8px 0 0">Este resultado será combinado com suas respostas do quiz.</p>
+        <p class="sub" style="font-size:.82rem;margin:8px 0 0">Este resultado é combinado com suas respostas do quiz para máxima precisão.</p>
       </div>
+      ${anomaliasH}
+      ${tratamentosH}
+      ${telemedicinaH}
+      ${comparacaoH}
+      ${alertasH}
+      ${laudoH}
+      ${progresso}
     `;
     $("statusSelfie").textContent = "Análise completa!";
     $("btnSelfieContinuar").disabled = false;
@@ -1637,32 +2873,49 @@ $("inputSelfie").onchange = async (e) => {
   const lm = res.faceLandmarks[0].map(p => [p.x * W, p.y * H]);
   const d = ctx.getImageData(0, 0, W, H).data;
 
-  // Regiões aproximadas (simplificado)
-  const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
-  const cx = lm[1][0], cy = lm[1][1]; // centro do nariz
+  // Verificar qualidade da foto (T42)
+  const avisosQualidade = verificarQualidade(ctx, W, H, lm);
 
-  // Brilho especular (pixels claros na zona T e bochechas)
+  // Análise de brilho, vermelhidão, textura
+  const fw = Math.hypot(lm[454][0] - lm[234][0], lm[454][1] - lm[234][1]);
+  const cx = lm[1][0], cy = lm[1][1];
+
   let specT = 0, specU = 0, nT = 0, nU = 0, verm = 0, nV = 0;
+  let texturaSum = 0, nTex = 0;
+  const tons = [];
+
   for (let y = Math.max(0, cy - fw * .4); y < Math.min(H, cy + fw * .4); y += 2) {
     for (let x = Math.max(0, cx - fw * .5); x < Math.min(W, cx + fw * .5); x += 2) {
-      const i = (Math.round(y) * W + Math.round(x)) * 4;
+      const px = Math.round(x), py = Math.round(y);
+      const i = (py * W + px) * 4;
       const r = d[i], g = d[i + 1], b = d[i + 2];
       const lum = (r + g + b) / 3;
-      const isT = y < cy; // zona T (acima do nariz = testa/nariz)
-      const isU = y > cy + fw * .1; // bochechas/queixo
+      const isT = y < cy, isU = y > cy + fw * .1;
       if (isT) { nT++; if (lum > 190) specT++; }
       if (isU) { nU++; if (lum > 190) specU++; }
-      // vermelhidão (canal R dominante)
       nV++;
       if (r > g + 20 && r > b + 20) verm++;
+      tons.push(lum);
+      // Textura (diferença com vizinhos)
+      if (px > 0 && py > 0 && px < W-1 && py < H-1) {
+        const viz = ((d[((py-1)*W+px)*4] + d[((py+1)*W+px)*4] + d[(py*W+px-1)*4] + d[(py*W+px+1)*4]) / 4);
+        texturaSum += Math.abs(lum - viz);
+        nTex++;
+      }
     }
   }
 
   const brilhoT = nT ? specT / nT * 100 : 0;
   const brilhoU = nU ? specU / nU * 100 : 0;
   const vermelhidao = nV ? verm / nV * 100 : 0;
+  const textura = nTex ? texturaSum / nTex : 0;
 
-  // Classificação simplificada
+  // Uniformidade do tom (desvio padrão)
+  const mediaTom = tons.reduce((s,v) => s+v, 0) / tons.length;
+  const dpTom = Math.sqrt(tons.reduce((s,v) => s+(v-mediaTom)**2, 0) / tons.length);
+  const uniformidade = Math.max(0, 100 - dpTom);
+
+  // Classificação
   let tipo = "normal";
   const sinais = [];
   if (brilhoT > 8 && brilhoU > 6) { tipo = "oleosa"; sinais.push("brilho espalhado na zona T e bochechas"); }
@@ -1672,22 +2925,82 @@ $("inputSelfie").onchange = async (e) => {
 
   const sens = vermelhidao > 15;
 
-  selfieEstimativa = { tipo, sens, brilhoT, brilhoU, vermelhidao, sinais };
+  // Skin Score (T43)
+  const skinScore = calcularSkinScore(brilhoT, brilhoU, vermelhidao, textura, uniformidade);
+
+  // Idade da pele (T45)
+  const idadePele = estimarIdadePele(textura, vermelhidao, uniformidade, textura);
+
+  selfieEstimativa = { tipo, sens, brilhoT, brilhoU, vermelhidao, sinais, skinScore, idadePele, textura, uniformidade };
+
+  // Salvar no progresso (T44)
+  await salvarFotoProgresso(selfieEstimativa);
+
+  // Desenhar overlay (T41)
+  desenharOverlay(ctx, W, H, lm, { brilhoT, brilhoU, vermelhidao });
+
+  // Mostrar progresso
+  const progressoHTML = await mostrarProgresso();
+
+  // Montar resultado
+  const qualidadeHTML = avisosQualidade.length
+    ? avisosQualidade.map(a => `<div style="background:var(--rosa-claro);border-left:3px solid var(--rosa);padding:10px 14px;border-radius:0 8px 8px 0;margin:6px 0;font-size:.88rem">${a.msg}</div>`).join("")
+    : `<div style="background:var(--verde-claro);border-left:3px solid var(--verde);padding:10px 14px;border-radius:0 8px 8px 0;margin:6px 0;font-size:.88rem">✅ Foto com boa qualidade</div>`;
+
+  // Detectar anomalias
+  const anomaliasResult = detectarAnomalias(ctx, W, H, lm);
+  const anomaliasH = anomaliasHTML(anomaliasResult.anomalias, anomaliasResult.alerta);
+  const tratamentosH = tratamentosHTML(anomaliasResult.anomalias);
+  const telemedicinaH = telemedicinaHTML(anomaliasResult.anomalias);
+  const comparacaoH = comparacaoMediaHTML(selfieEstimativa.skinScore, selfieEstimativa.idadePele);
+  const alertasH = await alertasMudancaHTML(selfieEstimativa.skinScore, selfieEstimativa.brilhoT, selfieEstimativa.vermelhidao);
+  const laudoH = exportarLaudoHTML(selfieEstimativa, anomaliasResult);
+  window.__ultimaAnalise = anomaliasResult;
 
   $("previewSelfie").hidden = false;
   $("resultadoSelfie").innerHTML = `
     <div class="card" style="margin-top:12px">
-      <strong>📸 O que a selfie sugere:</strong>
+      <strong>📸 Análise da selfie</strong>
+
+      ${qualidadeHTML}
+
+      ${scoreHTML(skinScore)}
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+        <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
+          <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${idadePele}</div>
+          <div style="font-size:.82rem;color:var(--suave)">anos aparentes</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
+          <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</div>
+          <div style="font-size:.82rem;color:var(--suave)">tipo estimado</div>
+        </div>
+      </div>
+
       <p style="margin:8px 0">
         <span class="pill">${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</span>
         ${sens ? '<span class="pill verde">Possível sensibilidade</span>' : ''}
       </p>
-      <p class="sub" style="font-size:.88rem;margin:0">
-        Sinais: ${sinais.join("; ")}.
-        Brilho zona T: ${brilhoT.toFixed(1)}% · Bochechas: ${brilhoU.toFixed(1)}% · Vermelhidão: ${vermelhidao.toFixed(1)}%
+
+      <table style="width:100%;font-size:.85rem;margin:8px 0">
+        <tr><td>Brilho zona T</td><td style="text-align:right">${brilhoT.toFixed(1)}%</td></tr>
+        <tr><td>Brilho bochechas</td><td style="text-align:right">${brilhoU.toFixed(1)}%</td></tr>
+        <tr><td>Vermelhidão</td><td style="text-align:right">${vermelhidao.toFixed(1)}%</td></tr>
+        <tr><td>Textura</td><td style="text-align:right">${textura.toFixed(1)}</td></tr>
+        <tr><td>Uniformidade</td><td style="text-align:right">${uniformidade.toFixed(0)}%</td></tr>
+      </table>
+
+      <p class="sub" style="font-size:.82rem;margin:8px 0 0">
+        As regiões coloridas no rosto mostram o que foi analisado. Este resultado será combinado com suas respostas do quiz.
       </p>
-      <p class="sub" style="font-size:.82rem;margin:8px 0 0">Este resultado será combinado com suas respostas do quiz. O quiz tem mais peso.</p>
     </div>
+    ${anomaliasH}
+    ${tratamentosH}
+    ${telemedicinaH}
+    ${comparacaoH}
+    ${alertasH}
+    ${laudoH}
+    ${progressoHTML}
   `;
   $("statusSelfie").textContent = "Análise feita no seu aparelho.";
   $("btnSelfieContinuar").disabled = false;
@@ -1698,12 +3011,21 @@ const _calcularTipoOriginal = calcularTipo;
 calcularTipo = function () {
   const base = _calcularTipoOriginal();
   if (selfieEstimativa) {
-    base.pontos[selfieEstimativa.tipo] = (base.pontos[selfieEstimativa.tipo] || 0) + 2;
+    // Peso maior para 3 fotos (máxima precisão)
+    const peso = selfieEstimativa.multipla ? 4 : 2;
+    base.pontos[selfieEstimativa.tipo] = (base.pontos[selfieEstimativa.tipo] || 0) + peso;
     if (selfieEstimativa.sens) base.sensivel = true;
-    base.metodo = "quiz+selfie";
+    if (selfieEstimativa.rebote && base.tipo === "oleosa") {
+      base.tipo = "oleosa desidratada";
+    }
+    base.metodo = selfieEstimativa.multipla ? "quiz+3fotos" : "quiz+1foto";
+    base.skinScore = selfieEstimativa.skinScore;
+    base.idadePele = selfieEstimativa.idadePele;
   }
   return base;
 };
+})();
 </script>
 </body>
 </html>
+

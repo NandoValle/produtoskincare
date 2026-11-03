@@ -1,0 +1,32 @@
+﻿{
+  "name": "Produto Skincare — Provador Virtual",
+  "short_name": "Skincare",
+  "description": "Descubra seu tipo de pele e receba uma rotina personalizada",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#b4546a",
+  "orientation": "portrait",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icones/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icones/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icones/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["health", "beauty", "lifestyle"],
+  "prefer_related_applications": false
+}
+

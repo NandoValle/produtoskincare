@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tracker de Rotina Diária | Produto Skincare</title>
+<meta name="description" content="Acompanhe sua rotina de skincare dia a dia. Checklist de manhã e noite com persistência local.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.item:last-child{border-bottom:0}
+.item input{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.item label{cursor:pointer;flex:1;font-size:1rem}
+.item.feito label{text-decoration:line-through;color:var(--suave)}
+.streak{background:linear-gradient(135deg,var(--tinta),#2d2825);color:var(--fundo);border-radius:var(--raio);padding:20px;text-align:center;margin:16px 0}
+.streak .num{font-family:var(--fonte-display);font-size:3rem;font-weight:300;line-height:1}
+.streak .label{font-size:.9rem;opacity:.7;margin-top:4px}
+.progresso-bar{background:var(--linha);border-radius:999px;height:8px;margin:12px 0;overflow:hidden}
+.progresso-fill{background:var(--verde);height:100%;border-radius:999px;transition:width 0.3s}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<div class="marca">Produto <span>Skincare</span> · Ferramentas</div>
+<p class="sub"><a href="/" style="color:var(--rosa)">← Voltar ao início</a></p>
+
+<h1>Tracker de rotina</h1>
+<p class="sub">Marque o que fez hoje. Seus dados ficam só neste aparelho.</p>
+
+<div class="streak">
+<div class="num" id="streakNum">0</div>
+<div class="label">dias seguidos de rotina completa 🔥</div>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">☀️ Manhã</h2>
+<div class="progresso-bar"><div class="progresso-fill" id="progManha" style="width:0%"></div></div>
+<div id="listaManha"></div>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">🌙 Noite</h2>
+<div class="progresso-bar"><div class="progresso-fill" id="progNoite" style="width:0%"></div></div>
+<div id="listaNoite"></div>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">📊 Hoje</h2>
+<p id="resumoHoje" style="margin:0">Complete sua rotina para ver o resumo.</p>
+</div>
+
+<button class="btn" onclick="resetarDia()">🔄 Começar novo dia</button>
+
+<script>
+const ITENS = {
+  manha: [
+    { id: "m1", label: "Limpeza facial" },
+    { id: "m2", label: "Tratamento (sérum)" },
+    { id: "m3", label: "Hidratante" },
+    { id: "m4", label: "Protetor solar ☀️" }
+  ],
+  noite: [
+    { id: "n1", label: "Limpeza facial" },
+    { id: "n2", label: "Tratamento (sérum/retinol)" },
+    { id: "n3", label: "Hidratante" }
+  ]
+};
+
+function getHoje() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function carregarEstado() {
+  const dados = JSON.parse(localStorage.getItem("rotina_tracker") || "{}");
+  const hoje = getHoje();
+  return dados[hoje] || {};
+}
+
+function salvarEstado(estado) {
+  const dados = JSON.parse(localStorage.getItem("rotina_tracker") || "{}");
+  dados[getHoje()] = estado;
+  // Limpar registros antigos (manter só 30 dias)
+  const chaves = Object.keys(dados).sort();
+  while (chaves.length > 30) delete dados[chaves.shift()];
+  localStorage.setItem("rotina_tracker", JSON.stringify(dados));
+}
+
+function renderizar() {
+  const estado = carregarEstado();
+
+  ["manha","noite"].forEach(periodo => {
+    const container = document.getElementById(`lista${periodo.charAt(0).toUpperCase()+periodo.slice(1)}`);
+    container.innerHTML = ITENS[periodo].map(item => `
+      <div class="item ${estado[item.id] ? 'feito' : ''}">
+        <input type="checkbox" id="${item.id}" ${estado[item.id] ? 'checked' : ''} onchange="toggle('${item.id}')">
+        <label for="${item.id}">${item.label}</label>
+      </div>
+    `).join("");
+  });
+
+  atualizarProgresso();
+  atualizarStreak();
+}
+
+function toggle(id) {
+  const estado = carregarEstado();
+  estado[id] = !estado[id];
+  salvarEstado(estado);
+  renderizar();
+}
+
+function atualizarProgresso() {
+  const estado = carregarEstado();
+  const totalManha = ITENS.manha.length;
+  const totalNoite = ITENS.noite.length;
+  const feitosManha = ITENS.manha.filter(i => estado[i.id]).length;
+  const feitosNoite = ITENS.noite.filter(i => estado[i.id]).length;
+
+  document.getElementById("progManha").style.width = `${(feitosManha/totalManha)*100}%`;
+  document.getElementById("progNoite").style.width = `${(feitosNoite/totalNoite)*100}%`;
+
+  const total = feitosManha + feitosNoite;
+  const totalGeral = totalManha + totalNoite;
+  const pct = Math.round((total/totalGeral)*100);
+
+  document.getElementById("resumoHoje").innerHTML = `
+    <strong>${total}/${totalGeral}</strong> passos concluídos (${pct}%)
+    ${pct === 100 ? ' 🎉 <strong>Rotina completa!</strong>' : ''}
+  `;
+}
+
+function atualizarStreak() {
+  const dados = JSON.parse(localStorage.getItem("rotina_tracker") || "{}");
+  const hoje = getHoje();
+  let streak = 0;
+  let data = new Date();
+
+  while (true) {
+    const chave = data.toISOString().slice(0, 10);
+    const dia = dados[chave];
+    if (!dia) break;
+
+    const total = ITENS.manha.length + ITENS.noite.length;
+    const feitos = Object.values(dia).filter(Boolean).length;
+    if (feitos >= total) {
+      streak++;
+      data.setDate(data.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  document.getElementById("streakNum").textContent = streak;
+}
+
+function resetarDia() {
+  if (confirm("Começar um novo dia? Isso limpa as marcações de hoje.")) {
+    const dados = JSON.parse(localStorage.getItem("rotina_tracker") || "{}");
+    delete dados[getHoje()];
+    localStorage.setItem("rotina_tracker", JSON.stringify(dados));
+    renderizar();
+  }
+}
+
+renderizar();
+</script>
+</main>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verificador de Ingredientes — Conflitos de Ativos | Produto Skincare</title>
+<meta name="description" content="Cole a lista de ingredientes e verifique se há conflitos entre ativos (retinol, ácidos, vitamina C, etc.).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:700px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.25rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.aviso{border-left:3px solid var(--verde);background:var(--verde-claro);border-radius:0 var(--raio) var(--raio) 0}
+.aviso-rosa{border-left-color:var(--rosa);background:var(--rosa-claro)}
+.btn{font:inherit;font-weight:600;min-height:52px;padding:0 28px;border-radius:12px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,22,20,0.1)}
+.btn:disabled{opacity:.45;transform:none}
+textarea{width:100%;min-height:140px;padding:16px;border:1.5px solid var(--linha);border-radius:12px;font:15px/1.6 var(--fonte-corpo);resize:vertical;background:var(--papel);color:var(--tinta)}
+textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var(--rosa)}
+.resultado{margin-top:16px}
+.conflito{background:var(--rosa-claro);border-left:3px solid var(--rosa);border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
+.ok{background:var(--verde-claro);border-left:3px solid var(--verde);border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<div class="marca">Produto <span>Skincare</span> · Ferramentas</div>
+<p class="sub"><a href="/" style="color:var(--rosa)">← Voltar ao início</a></p>
+
+<h1>Verificador de ingredientes</h1>
+<p class="sub">Cole a lista de ingredientes dos seus produtos e descubra se há conflitos entre ativos.</p>
+
+<div class="card aviso">
+<strong>Como usar:</strong> Cole a lista de ingredientes (INCI) ou os nomes dos ativos principais. Separe por vírgula ou quebra de linha. Ex: "retinol, ácido salicílico, vitamina C"
+</div>
+
+<div class="card">
+<label for="ingredientes" style="font-weight:600;display:block;margin-bottom:8px">Lista de ingredientes:</label>
+<textarea id="ingredientes" placeholder="Ex: retinol, niacinamida, ácido hialurônico, vitamina C, ácido salicílico..."></textarea>
+<div style="margin-top:12px">
+<button class="btn" id="btnVerificar" onclick="verificar()">🔍 Verificar conflitos</button>
+</div>
+</div>
+
+<div id="resultado" class="resultado"></div>
+
+<h2>Conflitos conhecidos</h2>
+<div class="card">
+<ul>
+<li><strong>Retinol + Ácidos (BHA/AHA)</strong> → muita irritação. Alterne dias.</li>
+<li><strong>Retinol + Vitamina C</strong> → pHs incompatíveis. Use C de manhã, retinol à noite.</li>
+<li><strong>Retinol + Peróxido de benzoila</strong> → inativa o retinol.</li>
+<li><strong>Vitamina C + Niacinamida</strong> → ✅ PODE usar juntos (mito que não pode).</li>
+<li><strong>Ácido hialurônico + qualquer ativo</strong> → ✅ Compatível com tudo.</li>
+</ul>
+</div>
+
+<div class="card aviso">
+<strong>Não é aconselhamento médico.</strong> Em caso de irritação, pare o uso e consulte um dermatologista.
+</div>
+
+<script>
+const CONFLITOS = [
+  { a: /retinol|retinal|tretinoína|adapaleno/i, b: /ácido salicílico|salicylic|bha|ácido glicólico|glycolic|aha|ácido láctico|lactic/i, msg: "Retinol + Ácidos (BHA/AHA) = muita irritação. Use em dias alternados." },
+  { a: /retinol|retinal|tretinoína/i, b: /vitamina c|ascorbic|ascórbico/i, msg: "Retinol + Vitamina C = pHs incompatíveis. Use C de manhã e retinol à noite." },
+  { a: /retinol|retinal/i, b: /peróxido de benzoila|benzoyl/i, msg: "Retinol + Peróxido de benzoila = o peróxido inativa o retinol. Use em horários diferentes." },
+  { a: /ácido salicílico|bha/i, b: /ácido glicólico|aha|ácido láctico/i, msg: "BHA + AHA = exfoliação dupla. Pode causar irritação. Alterne dias." },
+  { a: /vitamina c|ascorbic/i, b: /niacinamida/i, msg: "Vitamina C + Niacinamida = ✅ PODE usar juntos! (é mito que não pode)", tipo: "ok" },
+];
+
+const ATIVOS_RECONHECIDOS = [
+  /retinol|retinal|tretinoína|adapaleno/i,
+  /vitamina c|ascorbic|ácido ascórbico/i,
+  /niacinamida|vitamina b3/i,
+  /ácido hialurônico|hialuronic/i,
+  /ácido salicílico|salicylic|bha/i,
+  /ácido glicólico|glycolic|aha/i,
+  /ácido láctico|lactic/i,
+  /ácido azelaico|azelaic/i,
+  /peróxido de benzoila|benzoyl/i,
+  /ceramidas|ceramide/i,
+  /pantenol|panthenol|vitamina b5/i,
+  /centella|madecassoside/i,
+  /zinco|zinc/i,
+  /peptídeos|peptide/i,
+];
+
+function verificar() {
+  const texto = document.getElementById("ingredientes").value;
+  const resultado = document.getElementById("resultado");
+
+  if (!texto.trim()) {
+    resultado.innerHTML = '<div class="conflito">⚠️ Cole a lista de ingredientes primeiro.</div>';
+    return;
+  }
+
+  // Reconhecer ativos presentes
+  const encontrados = [];
+  for (const regex of ATIVOS_RECONHECIDOS) {
+    const match = texto.match(regex);
+    if (match) encontrados.push(match[0]);
+  }
+
+  // Verificar conflitos
+  const conflitos = [];
+  const oks = [];
+  for (const c of CONFLITOS) {
+    const temA = c.a.test(texto);
+    const temB = c.b.test(texto);
+    if (temA && temB) {
+      if (c.tipo === "ok") oks.push(c.msg);
+      else conflitos.push(c.msg);
+    }
+  }
+
+  let html = "";
+
+  if (encontrados.length) {
+    html += `<div class="ok"><strong>✅ Ativos reconhecidos:</strong> ${encontrados.join(", ")}</div>`;
+  } else {
+    html += `<div class="conflito">⚠️ Nenhum ativo reconhecido. Tente usar nomes como "retinol", "vitamina C", "niacinamida", "ácido hialurônico", etc.</div>`;
+  }
+
+  if (conflitos.length) {
+    html += conflitos.map(m => `<div class="conflito">⚠️ <strong>Conflito:</strong> ${m}</div>`).join("");
+  }
+
+  if (oks.length) {
+    html += oks.map(m => `<div class="ok">${m}</div>`).join("");
+  }
+
+  if (encontrados.length && !conflitos.length && !oks.length) {
+    html += `<div class="ok">✅ Nenhum conflito detectado entre os ativos encontrados.</div>`;
+  }
+
+  resultado.innerHTML = html;
+}
+
+// Enter para verificar
+document.getElementById("ingredientes").addEventListener("keydown", e => {
+  if (e.key === "Enter" && e.ctrlKey) verificar();
+});
+</script>
+</main>
+</body>
+</html>
