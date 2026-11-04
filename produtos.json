@@ -1,5 +1,5 @@
-﻿{
-  "versao": "2.0",
+{
+  "versao": "2.1",
   "atualizado_em": "2026-11-02",
   "fonte": "Pesquisa Amazon, Shopee, Mercado Livre e TikTok Shop — novembro 2026",
   "produtos": [
@@ -21,6 +21,11 @@
       "num_avaliacoes": 12759,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/cerave-gel-de-limpeza-facial", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=CeraVe%20Gel%20de%20Limpeza%20Facial", "afiliado": "" }
+      ],
       "porque": "Gel com ceramidas, ácido hialurônico e niacinamida. Limpa sem comprometer a barreira. 4.8★ com 12.7mil avaliações na Amazon."
     },
     {
@@ -41,6 +46,11 @@
       "num_avaliacoes": 12128,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/la-roche-posay-effaclar-gel-alta-tolerancia", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=La%20Roche-Posay%20Effaclar%20Gel%20Alta%20Toler%C3%A2ncia", "afiliado": "" }
+      ],
       "porque": "Gel para pele oleosa e sensível. Reduz oleosidade com PCA de zinco. 4.8★ com 12mil avaliações."
     },
     {
@@ -61,6 +71,11 @@
       "num_avaliacoes": 24402,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/hada-labo-gokujyun-oil-cleansing", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Hada%20Labo%20Gokujyun%20Oil%20Cleansing", "afiliado": "" }
+      ],
       "porque": "Óleo de limpeza com ácido hialurônico. Primeiro passo da dupla limpeza. 4.7★ com 24mil avaliações."
     },
     {
@@ -81,6 +96,11 @@
       "num_avaliacoes": 78609,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/neutrogena-hydro-boost-water-gel", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Neutrogena%20Hydro%20Boost%20Water%20Gel", "afiliado": "" }
+      ],
       "porque": "O hidratante facial mais vendido do Brasil. Textura ultraleve com ácido hialurônico. 4.8★ com 78mil avaliações."
     },
     {
@@ -101,6 +121,11 @@
       "num_avaliacoes": 27628,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/la-roche-posay-cicaplast-baume-b5", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=La%20Roche-Posay%20Cicaplast%20Baume%20B5%2B", "afiliado": "" }
+      ],
       "porque": "Bálsamo multirreparador com pantenol e madecassoside. #1 em Beleza Premium da Amazon. 4.8★ com 27mil avaliações."
     },
     {
@@ -121,6 +146,11 @@
       "num_avaliacoes": 32379,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/cetaphil-creme-hidratante", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Cetaphil%20Creme%20Hidratante", "afiliado": "" }
+      ],
       "porque": "Creme hidratante clássico para pele seca. Sem fragrância. 4.8★ com 32mil avaliações."
     },
     {
@@ -141,6 +171,11 @@
       "num_avaliacoes": 5363,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/mantecorp-epidrat-calm-b5", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Mantecorp%20Epidrat%20Calm%20B5", "afiliado": "" }
+      ],
       "porque": "Hidratante com D-pantenol que acalma e hidrata. Conforto imediato para peles sensíveis. 4.8★."
     },
     {
@@ -161,6 +196,11 @@
       "num_avaliacoes": 2224,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/garnier-uniform-matte-toque-seco", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Garnier%20Uniform%20%26%20Matte%20Toque%20Seco", "afiliado": "" }
+      ],
       "porque": "Creme com vitamina C e ácido hialurônico. Controla brilho por 8h, reduz poros. Ótimo custo-benefício."
     },
     {
@@ -181,6 +221,11 @@
       "num_avaliacoes": 17915,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/isdin-protetor-solar-fusion-water-fps-60", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=ISDIN%20Protetor%20Solar%20Fusion%20Water%20FPS%2060", "afiliado": "" }
+      ],
       "porque": "Protetor mais vendido da Amazon. Textura aquosa, sem resíduo branco. 5 estrelas de proteção UVA. 4.8★ com 17mil avaliações."
     },
     {
@@ -201,6 +246,11 @@
       "num_avaliacoes": 12142,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/isdin-fusion-water-5-stars-sem-cor-fps-60", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=ISDIN%20Fusion%20Water%205%20Stars%20Sem%20Cor%20FPS%2060", "afiliado": "" }
+      ],
       "porque": "Versão sem cor do Fusion Water. Textura ultraleve, absorção rápida. 4.8★ com 12mil avaliações."
     },
     {
@@ -221,6 +271,11 @@
       "num_avaliacoes": 43838,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/neutrogena-sun-fresh-derm-care-fps-70", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Neutrogena%20Sun%20Fresh%20Derm%20Care%20FPS%2070", "afiliado": "" }
+      ],
       "porque": "FPS 70 para pele oleosa, não comedogênico, antioxidante. 4.8★ com 43mil avaliações — o mais avaliado."
     },
     {
@@ -241,6 +296,11 @@
       "num_avaliacoes": 4578,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/skin-aqua-super-moisture-milk-fps-50", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Skin%20Aqua%20Super%20Moisture%20Milk%20FPS%2050", "afiliado": "" }
+      ],
       "porque": "Protetor japonês com ácido hialurônico. Ultra hidratante, sem cor. Favorito dos entusiastas de skincare coreano/japonês."
     },
     {
@@ -261,6 +321,11 @@
       "num_avaliacoes": 5299,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/la-roche-posay-ultra-cover-fps-60", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=La%20Roche-Posay%20Ultra%20Cover%20FPS%2060", "afiliado": "" }
+      ],
       "porque": "Protetor com cor e performance de maquiagem. 12h de cobertura. Oil-free, toque seco."
     },
     {
@@ -281,6 +346,11 @@
       "num_avaliacoes": 12662,
       "plataforma": "amazon",
       "link": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/eucerin-anti-pigment-dual-serum", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Eucerin%20Anti-Pigment%20Dual%20S%C3%A9rum", "afiliado": "" }
+      ],
       "porque": "Sérum com Thiamidol (patente Eucerin) para manchas resistentes. Referência dermatológica. 4.7★ com 12mil avaliações."
     },
     {
@@ -301,6 +371,11 @@
       "num_avaliacoes": 8500,
       "plataforma": "shopee",
       "link": "https://shopee.com.br/search?keyword=principia%20vc-10",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=Principia+VC-10+Vitamina+C+10%25&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/principia-vc-10-vitamina-c-10", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=principia%20vc-10", "afiliado": "" }
+      ],
       "porque": "Eleito melhor sérum de vitamina C custo-benefício de 2026. Fórmula minimalista, uniformiza tom e reduz manchas."
     },
     {
@@ -321,6 +396,11 @@
       "num_avaliacoes": 12000,
       "plataforma": "shopee",
       "link": "https://shopee.com.br/search?keyword=principia%20niacinamida%20nc-10",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=Principia+Niacinamida+NC-10&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/principia-niacinamida-nc-10", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=principia%20niacinamida%20nc-10", "afiliado": "" }
+      ],
       "porque": "Niacinamida 10% + Zinco 1%. Controla oleosidade, melhora textura e reduz poros. Top dermatologistas recomendam."
     },
     {
@@ -341,6 +421,11 @@
       "num_avaliacoes": 9500,
       "plataforma": "shopee",
       "link": "https://shopee.com.br/search?keyword=principia%20ah-2",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=Principia+AH-2+%C3%81cido+Hialur%C3%B4nico&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/principia-ah-2-acido-hialuronico", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=principia%20ah-2", "afiliado": "" }
+      ],
       "porque": "Ácido hialurônico 2% de alto e baixo peso molecular. Hidrata em camadas. Custo-benefício imbatível."
     },
     {
@@ -361,6 +446,11 @@
       "num_avaliacoes": 7800,
       "plataforma": "shopee",
       "link": "https://shopee.com.br/search?keyword=principia%20retinol%20rn-0%2C3",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=Principia+RN-0%2C3+Retinol&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/principia-rn-0-3-retinol", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=principia%20retinol%20rn-0%2C3", "afiliado": "" }
+      ],
       "porque": "Retinol 0,3% para começar o antienvelhecimento. Estimula colágeno, trata linhas e manchas."
     },
     {
@@ -381,6 +471,11 @@
       "num_avaliacoes": 45000,
       "plataforma": "mercadolivre",
       "link": "https://lista.mercadolivre.com.br/the-ordinary-niacinamide",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=The+Ordinary+Niacinamide+10%25+%2B+Zinc+1%25&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/the-ordinary-niacinamide", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=The%20Ordinary%20Niacinamide%2010%25%20%2B%20Zinc%201%25", "afiliado": "" }
+      ],
       "porque": "O sérum de niacinamida mais vendido do mundo. Reduz poros, controla sebo e uniformiza o tom."
     },
     {
@@ -401,6 +496,11 @@
       "num_avaliacoes": 6200,
       "plataforma": "shopee",
       "link": "https://shopee.com.br/search?keyword=creamy%20calming%20cream",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=Creamy+Calming+Cream&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/creamy-calming-cream", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=creamy%20calming%20cream", "afiliado": "" }
+      ],
       "porque": "Gel creme calmante com aveia coloidal. Acalma irritações e hidrata peles sensíveis sem fragrância."
     },
     {
@@ -421,6 +521,11 @@
       "num_avaliacoes": 5800,
       "plataforma": "shopee",
       "link": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=Creamy+Vitamina+C+10%25&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/creamy-vitamina-c-10", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c", "afiliado": "" }
+      ],
       "porque": "Vitamina C 10% que aumenta firmeza, previne rugas e clareia manchas. Marca brasileira queridinha."
     },
     {
@@ -440,7 +545,12 @@
       "avaliacao": 4.7,
       "num_avaliacoes": 8200,
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3?tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3&tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/la-roche-posay-retinol-b3", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=La%20Roche-Posay%20Retinol%20B3", "afiliado": "" }
+      ],
       "porque": "Retinol com vitamina B3 (niacinamida). Reduz linhas e uniformiza o tom com menos irritação."
     },
     {
@@ -461,6 +571,11 @@
       "num_avaliacoes": 15000,
       "plataforma": "mercadolivre",
       "link": "https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=L%27Or%C3%A9al+Revitalift+S%C3%A9rum+Noturno+Antissinais&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=L%27Or%C3%A9al%20Revitalift%20S%C3%A9rum%20Noturno%20Antissinais", "afiliado": "" }
+      ],
       "porque": "Sérum noturno com retinol. Top 5 mais vendidos em cuidado facial no Mercado Livre."
     },
     {
@@ -480,7 +595,12 @@
       "avaliacao": 4.7,
       "num_avaliacoes": 4200,
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic?tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/mantecorp-ivy-c-ferulic-serum", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=Mantecorp%20Ivy%20C%20Ferulic%20S%C3%A9rum", "afiliado": "" }
+      ],
       "porque": "Sérum antioxidante com vitamina C estabilizada e ácido ferúlico. Referência em antienvelhecimento."
     },
     {
@@ -500,7 +620,12 @@
       "avaliacao": 4.8,
       "num_avaliacoes": 18000,
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=cerave+pm+locao+facial?tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=cerave+pm+locao+facial&tag=produtoskincare-20",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=cerave+pm+locao+facial&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/cerave-pm-locao-facial", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=CeraVe%20PM%20Lo%C3%A7%C3%A3o%20Facial", "afiliado": "" }
+      ],
       "porque": "Hidratante noturno oil-free com ceramidas, ácido hialurônico e niacinamida. Repara a barreira durante o sono."
     },
     {
@@ -521,6 +646,11 @@
       "num_avaliacoes": 22000,
       "plataforma": "mercadolivre",
       "link": "https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid",
+      "lojas": [
+        { "loja": "amazon", "url": "https://www.amazon.com.br/s?k=The+Ordinary+Azelaic+Acid+10%25&tag=produtoskincare-20" },
+        { "loja": "mercadolivre", "url": "https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid", "afiliado": "" },
+        { "loja": "shopee", "url": "https://shopee.com.br/search?keyword=The%20Ordinary%20Azelaic%20Acid%2010%25", "afiliado": "" }
+      ],
       "porque": "Ácido azelaico 10% em creme. Trata manchas, acne e vermelhidão. Seguro na gestação."
     }
   ]

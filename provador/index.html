@@ -165,6 +165,8 @@ legend{font-family:var(--fonte-display);font-size:1.35rem;font-weight:400;letter
 .outras-lojas{margin-top:8px;font-size:.85rem;color:var(--suave);padding:8px 12px;background:var(--fundo);border-radius:8px}
 .link-produto{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--rosa);text-decoration:none;min-height:44px}
 .link-produto:hover{text-decoration:underline}
+.lojas-produto{display:flex;flex-wrap:wrap;gap:4px 16px}
+.link-produto.secundaria{font-weight:500;color:var(--suave)}
 [hidden]{display:none!important}
 :focus-visible{outline:3px solid var(--verde);outline-offset:2px}
 /* barra fixa inferior no mobile */
@@ -427,6 +429,7 @@ html[data-tema="claro"]{
 <p class="sub" style="font-size:.78rem;margin-top:40px;text-align:center">Critérios de análise definidos pelo projeto Produto Skincare. Protótipo de teste.</p>
 </main>
 
+<script src="/lojas.js"></script>
 <script>
 (function() {
 // ===== KEYBOARD NAVIGATION (T56) =====
@@ -719,7 +722,6 @@ const LINKS_AFILIADO = {
   "principia-rn03": "https://www.amazon.com.br/dp/B0BNHY5P7K?tag=produtoskincare-20",
   "ordinary-niacinamide": "https://www.amazon.com.br/dp/B06Y2GX3ZD?tag=produtoskincare-20",
   "creamy-vitamina-c": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c",
-  "lrp-retinol-b3": "https://www.amazon.com.br/dp/B08XYZABCD?tag=produtoskincare-20",
   "loreal-revitalift-noturno": "https://www.amazon.com.br/dp/B07VGF2P6L?tag=produtoskincare-20",
   "mantecorp-ivy-c-ferulic": "https://www.amazon.com.br/dp/B0DM9TL9SK?tag=produtoskincare-20",
   "ordinary-azelaic": "https://www.amazon.com.br/dp/B07CG8P6KG?tag=produtoskincare-20"
@@ -762,6 +764,26 @@ const PRODUTOS = [
 PRODUTOS.forEach(p => {
   if (LINKS_AFILIADO[p.id]) p.link = LINKS_AFILIADO[p.id];
 });
+
+// Várias lojas por produto: usa a lista "lojas" do /produtos.json quando o id bate.
+// Sem ela, lojas.js monta Amazon/Shopee/Mercado Livre a partir do link e do nome.
+fetch("/produtos.json", { cache: "no-cache" })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d || !Array.isArray(d.produtos)) return;
+    const porId = {};
+    d.produtos.forEach(x => { if (x.id && Array.isArray(x.lojas)) porId[x.id] = x.lojas; });
+    PRODUTOS.forEach(p => { if (porId[p.id]) p.lojas = porId[p.id]; });
+  })
+  .catch(() => {});
+
+function botoesLojas(p) {
+  const lojas = (window.LOJAS ? window.LOJAS.lojasDoProduto(p) : (p.link ? [{ nome: "loja", url: p.link }] : []));
+  if (!lojas.length) return '<span class="falta">link em breve</span>';
+  return '<div class="lojas-produto">' + lojas.map(l =>
+    `<a class="link-produto${l.principal ? '' : ' secundaria'}" href="${l.url}" target="_blank" rel="noopener sponsored nofollow" data-loja="${l.loja}">${l.busca ? 'Buscar' : 'Ver'} ${l.em} ${l.nome} →</a>`
+  ).join("") + '</div>';
+}
 
 // ===== FUNÇÕES DE NAVEGAÇÃO =====
 
@@ -1241,7 +1263,7 @@ function montarRotina(perfil, periodo, container) {
           <div class="porque">${p.porque}</div>
           ${estrelas ? `<div style="font-size:.85rem;color:var(--dourado,#c9a96e);margin-top:4px">${estrelas}</div>` : ''}
           <div class="preco">${preco}</div>
-          ${p.link ? `<a class="link-produto" href="${p.link}" target="_blank" rel="noopener sponsored">Ver na ${plataforma||"loja"} →</a>` : '<span class="falta">link em breve</span>'}
+          ${botoesLojas(p)}
           ${alt}
           ${outras}
         </div>
