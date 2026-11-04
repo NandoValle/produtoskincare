@@ -21,6 +21,11 @@ h1{font-family:var(--fonte-display);font-size:clamp(1.8rem,5vw,2.6rem);font-weig
 .artigo p{color:var(--suave);margin:0;font-size:.92rem}
 .artigo .tag{display:inline-block;background:var(--rosa-claro);color:var(--rosa);border-radius:999px;padding:2px 12px;font-size:.78rem;font-weight:600;margin-bottom:8px}
 :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+a.artigo{padding:0;overflow:hidden;display:block}
+.artigo .capa{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--rosa-claro);transition:transform .6s ease}
+.artigo:hover .capa{transform:scale(1.03)}
+.artigo .corpo{display:block;padding:22px 26px 26px}
+@media (prefers-reduced-motion:reduce){.artigo .capa,.artigo{transition:none}.artigo:hover .capa{transform:none}.artigo:hover{transform:none}}
 </style>
 <link rel="stylesheet" href="/premium.css">
 </head>
@@ -31,30 +36,55 @@ h1{font-family:var(--fonte-display);font-size:clamp(1.8rem,5vw,2.6rem);font-weig
 <p class="sub">Artigos para cuidar melhor da sua pele</p>
 
 <a class="artigo" href="/blog/como-saber-tipo-de-pele/">
+<img class="capa" src="/img/blog/como-saber-tipo-de-pele-1600.webp" srcset="/img/blog/como-saber-tipo-de-pele-800.webp 800w, /img/blog/como-saber-tipo-de-pele-1600.webp 1600w, /img/blog/como-saber-tipo-de-pele-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Três texturas de skincare — gel, creme e emulsão — em pequenos potes de vidro sobre pedra clara" fetchpriority="high" decoding="async">
+<span class="corpo">
 <span class="tag">Fundamentos</span>
 <h2>Como saber se sua pele é oleosa, seca ou mista</h2>
 <p>Guia completo para identificar seu tipo de pele: sinais, testes caseiros e como diferenciar os tipos.</p>
+</span>
 </a>
 
 <a class="artigo" href="/blog/retinol-como-comecar/">
+<img class="capa" src="/img/blog/retinol-como-comecar-1600.webp" srcset="/img/blog/retinol-como-comecar-800.webp 800w, /img/blog/retinol-como-comecar-1600.webp 1600w, /img/blog/retinol-como-comecar-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Frasco âmbar de sérum com o conta-gotas deitado ao lado, sobre pedra escura, à luz quente de um abajur" loading="lazy" decoding="async">
+<span class="corpo">
 <span class="tag">Ativos</span>
 <h2>Retinol: como começar sem irritar a pele</h2>
 <p>Benefícios, progressão por semanas, erros comuns e produtos recomendados.</p>
+</span>
 </a>
 
 <a class="artigo" href="/blog/vitamina-c-skincare/">
+<img class="capa" src="/img/blog/vitamina-c-skincare-1600.webp" srcset="/img/blog/vitamina-c-skincare-800.webp 800w, /img/blog/vitamina-c-skincare-1600.webp 1600w, /img/blog/vitamina-c-skincare-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Frasco de sérum de vitamina C ao lado de laranjas cortadas, sobre mármore claro sob luz do sol" loading="lazy" decoding="async">
+<span class="corpo">
 <span class="tag">Ativos</span>
 <h2>Vitamina C: para que serve e como usar</h2>
 <p>Ilumina, trata manchas e protege. Saiba a concentração ideal e o horário certo.</p>
+</span>
 </a>
 
 <a class="artigo" href="/blog/protetor-solar-importancia/">
+<img class="capa" src="/img/blog/protetor-solar-importancia-1600.webp" srcset="/img/blog/protetor-solar-importancia-800.webp 800w, /img/blog/protetor-solar-importancia-1600.webp 1600w, /img/blog/protetor-solar-importancia-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Bisnaga de protetor solar e uma porção de creme sobre pedra clara, com sombras de folhas de palmeira" loading="lazy" decoding="async">
+<span class="corpo">
 <span class="tag">Essencial</span>
 <h2>Protetor solar: o passo mais importante do skincare</h2>
 <p>Por que 90% do envelhecimento vem do sol e como escolher o FPS ideal.</p>
+</span>
 </a>
 
 <p style="margin-top:30px"><a href="/" style="color:var(--rosa);font-weight:600">← Voltar ao início</a></p>
 </main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><a href="/privacidade/">Privacidade</a></div>
+</footer>
 </body>
 </html>
