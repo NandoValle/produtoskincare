@@ -152,6 +152,31 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/rotina-de-skincare/</loc>
+    <loc>https://produtoskincare.com.br/rotinas/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/rotinas/acne/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/rotinas/rosacea/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/rotinas/melasma/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/rotinas/anti-age/</loc>
     <lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

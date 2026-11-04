@@ -411,6 +411,8 @@ html[data-tema="claro"]{
 <div id="painelManha" role="tabpanel"></div>
 <div id="painelNoite" role="tabpanel" hidden></div>
 
+<div id="rotinasProntas"></div>
+
 <div class="card" style="margin-top:20px">
 <p class="sub" style="font-size:.82rem;margin:0">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar. Faça teste de sensibilidade antes de usar um produto novo. Este resultado é uma estimativa cosmética, não um diagnóstico médico.</p>
 </div>
@@ -736,7 +738,7 @@ const PRODUTOS = [
   { id:"cetaphil-creme", nome:"Cetaphil Creme Hidratante", marca:"Cetaphil", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-creme", tipos:["seca","normal"], conc:["desidratacao"], evitar:["oleosa"], textura:"creme", preco:85.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:32379, plataforma:"amazon", link:"https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare-20", porque:"Creme clássico para pele seca, sem fragrância. 4.8★ com 32mil avaliações." },
   { id:"mantecorp-epidrat-calm", nome:"Mantecorp Epidrat Calm B5", marca:"Mantecorp", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:83.92, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5363, plataforma:"amazon", link:"https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare-20", porque:"D-pantenol que acalma e hidrata. Conforto imediato para sensíveis." },
   { id:"garnier-uniform-matte", nome:"Garnier Uniform & Matte Toque Seco", marca:"Garnier", passo:"hidratacao", periodo:["manha"], grupo:"hidratante-gel", tipos:["oleosa","mista"], conc:["poros","manchas"], evitar:["seca"], textura:"gel", preco:26.61, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:2224, plataforma:"amazon", link:"https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare-20", porque:"Vitamina C + hialurônico. Controla brilho 8h. Ótimo custo-benefício." },
-  { id:"cerave-pm-locao", nome:"CeraVe PM Loção Facial", marca:"CeraVe", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-gel", tipos:["normal","seca"], conc:["desidratacao"], evitar:[], textura:"gel", preco:62.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:18000, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=cerave+pm+locao+facial?tag=produtoskincare-20", porque:"Hidratante noturno oil-free com ceramidas e niacinamida." },
+  { id:"cerave-pm-locao", nome:"CeraVe PM Loção Facial", marca:"CeraVe", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-gel", tipos:["normal","seca"], conc:["desidratacao"], evitar:[], textura:"gel", preco:62.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:18000, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=cerave+pm+locao+facial&tag=produtoskincare-20", porque:"Hidratante noturno oil-free com ceramidas e niacinamida." },
   { id:"creamy-calming-cream", nome:"Creamy Calming Cream", marca:"Creamy", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:55.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:6200, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=creamy%20calming%20cream", porque:"Aveia coloidal. Acalma e hidrata sensíveis sem fragrância." },
   // PROTETOR
   { id:"isdin-fusion-water", nome:"ISDIN Protetor Solar Fusion Water FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"gel", preco:89.00, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:17915, plataforma:"amazon", link:"https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare-20", porque:"O protetor mais vendido da Amazon. Textura aquosa, 5 estrelas UVA. 4.8★ com 17mil avaliações." },
@@ -752,9 +754,9 @@ const PRODUTOS = [
   { id:"principia-rn03", nome:"Principia RN-0,3 Retinol", marca:"Principia", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista"], conc:["idade","manchas","poros"], evitar:["sensivel","seca"], textura:"serum", preco:52.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:7800, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20retinol", porque:"Retinol 0,3%. Estimula colágeno, trata linhas e manchas." },
   { id:"ordinary-niacinamide", nome:"The Ordinary Niacinamide 10% + Zinc 1%", marca:"The Ordinary", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-poros", tipos:["oleosa","mista","normal"], conc:["poros","acne","manchas"], evitar:["seca"], textura:"serum", preco:39.90, preco_em:"2026-11-02", avaliacao:4.6, num_avaliacoes:45000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/the-ordinary-niacinamide", porque:"O sérum de niacinamida mais vendido do mundo. 45mil avaliações." },
   { id:"creamy-vitamina-c", nome:"Creamy Vitamina C 10%", marca:"Creamy", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:69.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:5800, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=creamy%20vitamina%20c", porque:"Vitamina C 10%. Firmeza, previne rugas e clareia manchas." },
-  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", marca:"La Roche-Posay", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade","manchas"], evitar:["sensivel"], textura:"serum", preco:149.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3?tag=produtoskincare-20", porque:"Retinol + vitamina B3. Menos irritação, mais resultado." },
+  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", marca:"La Roche-Posay", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade","manchas"], evitar:["sensivel"], textura:"serum", preco:149.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3&tag=produtoskincare-20", porque:"Retinol + vitamina B3. Menos irritação, mais resultado." },
   { id:"loreal-revitalift-noturno", nome:"L'Oréal Revitalift Sérum Noturno Antissinais", marca:"L'Oréal Paris", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade"], evitar:["sensivel"], textura:"serum", preco:59.90, preco_em:"2026-11-02", avaliacao:4.6, num_avaliacoes:15000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno", porque:"Sérum noturno com retinol. Top 5 mais vendidos no ML." },
-  { id:"mantecorp-ivy-c-ferulic", nome:"Mantecorp Ivy C Ferulic Sérum", marca:"Mantecorp", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:89.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:4200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic?tag=produtoskincare-20", porque:"Vitamina C estabilizada + ácido ferúlico. Antioxidante potente." },
+  { id:"mantecorp-ivy-c-ferulic", nome:"Mantecorp Ivy C Ferulic Sérum", marca:"Mantecorp", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:89.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:4200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&tag=produtoskincare-20", porque:"Vitamina C estabilizada + ácido ferúlico. Antioxidante potente." },
   { id:"ordinary-azelaic", nome:"The Ordinary Azelaic Acid 10%", marca:"The Ordinary", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-calmante", tipos:["sensivel","todos"], conc:["manchas","acne"], evitar:[], textura:"creme", preco:45.90, preco_em:"2026-11-02", avaliacao:4.5, num_avaliacoes:22000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid", porque:"Ácido azelaico 10%. Manchas, acne e vermelhidão. Seguro na gestação." }
 ];
 
@@ -1116,6 +1118,9 @@ function calcularEMostrar() {
   montarRotina(perfil, "manha", $("painelManha"));
   montarRotina(perfil, "noite", $("painelNoite"));
 
+  // rotinas prontas por dor e faixa de preço (/rotinas/)
+  $("rotinasProntas").innerHTML = rotinasProntasHTML(perfil);
+
   // SEGURANÇA: coletar produtos escolhidos e checar avisos
   const produtosEscolhidos = [];
   ["manha","noite"].forEach(per => {
@@ -1150,6 +1155,39 @@ function calcularEMostrar() {
   mostrarHistorico();
 
   mostrarTela("resultado");
+}
+
+// ===== ROTINAS PRONTAS POR FAIXA DE PREÇO =====
+// Liga as preocupações do quiz (e as anomalias da selfie, se houver) às páginas /rotinas/<dor>/#<faixa>.
+function rotinasProntasHTML(perfil) {
+  const DORES = {
+    acne: { slug: "acne", nome: "Acne" },
+    manchas: { slug: "melasma", nome: "Melasma e manchas" },
+    melasma: { slug: "melasma", nome: "Melasma e manchas" },
+    idade: { slug: "anti-age", nome: "Anti-age" },
+    rosacea: { slug: "rosacea", nome: "Rosácea e vermelhidão" }
+  };
+  const FAIXA = { economico: "economica", intermediario: "media", premium: "premium" };
+  const NOMES_FAIXA = { economica: "Econômica", media: "Intermediária", premium: "Premium" };
+  const daSelfie = ((window.__ultimaAnalise && window.__ultimaAnalise.anomalias) || []).map(a => a.tipo);
+  const chaves = [...(perfil.preocupacoes || []), ...daSelfie].filter(c => DORES[c]);
+  const slugs = [...new Set(chaves.map(c => DORES[c].slug))];
+  const faixa = FAIXA[perfil.faixaPreco];
+  if (!slugs.length) {
+    const extra = perfil.sensivel ? ' Se você tem vermelhidão que não passa, veja a <a href="/rotinas/rosacea/">rotina para rosácea</a>.' : "";
+    return `<div class="card" style="margin-top:20px"><strong>📋 Rotinas prontas por faixa de preço</strong>
+      <p class="sub" style="margin:6px 0 0;font-size:.92rem">Temos rotinas completas para acne, rosácea, melasma e anti-age, cada uma em versão econômica, intermediária e premium. <a href="/rotinas/">Ver todas</a>.${extra}</p></div>`;
+  }
+  const itens = slugs.map(slug => {
+    const nome = Object.values(DORES).find(d => d.slug === slug).nome;
+    const botoes = Object.keys(NOMES_FAIXA).map(f =>
+      `<a class="chip${f === faixa ? " on" : ""}" style="text-decoration:none" href="/rotinas/${slug}/#${f}">${NOMES_FAIXA[f]}${f === faixa ? " ✓" : ""}</a>`
+    ).join(" ");
+    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div></div>`;
+  }).join("");
+  return `<div class="card" style="margin-top:20px"><strong>📋 Rotina pronta para a sua preocupação</strong>
+    <p class="sub" style="margin:6px 0 0;font-size:.92rem">Manhã e noite completas, com ativos que têm comprovação científica, em três faixas de preço.${faixa ? " A faixa que você escolheu está marcada." : ""}</p>
+    ${itens}</div>`;
 }
 
 async function mostrarHistorico() {
