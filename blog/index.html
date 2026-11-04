@@ -21,6 +21,11 @@ h1{font-family:var(--fonte-display);font-size:clamp(1.8rem,5vw,2.6rem);font-weig
 .artigo p{color:var(--suave);margin:0;font-size:.92rem}
 .artigo .tag{display:inline-block;background:var(--rosa-claro);color:var(--rosa);border-radius:999px;padding:2px 12px;font-size:.78rem;font-weight:600;margin-bottom:8px}
 :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+a.artigo{padding:0;overflow:hidden;display:block}
+.artigo .capa{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--rosa-claro);transition:transform .6s ease}
+.artigo:hover .capa{transform:scale(1.03)}
+.artigo .corpo{display:block;padding:22px 26px 26px}
+@media (prefers-reduced-motion:reduce){.artigo .capa,.artigo{transition:none}.artigo:hover .capa{transform:none}.artigo:hover{transform:none}}
 </style>
 <link rel="stylesheet" href="/premium.css">
 </head>
@@ -31,27 +36,39 @@ h1{font-family:var(--fonte-display);font-size:clamp(1.8rem,5vw,2.6rem);font-weig
 <p class="sub">Artigos para cuidar melhor da sua pele</p>
 
 <a class="artigo" href="/blog/como-saber-tipo-de-pele/">
+<img class="capa" src="/img/blog/como-saber-tipo-de-pele-1600.webp" srcset="/img/blog/como-saber-tipo-de-pele-800.webp 800w, /img/blog/como-saber-tipo-de-pele-1600.webp 1600w, /img/blog/como-saber-tipo-de-pele-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Três texturas de skincare — gel, creme e emulsão — em pequenos potes de vidro sobre pedra clara" fetchpriority="high" decoding="async">
+<span class="corpo">
 <span class="tag">Fundamentos</span>
 <h2>Como saber se sua pele é oleosa, seca ou mista</h2>
 <p>Guia completo para identificar seu tipo de pele: sinais, testes caseiros e como diferenciar os tipos.</p>
+</span>
 </a>
 
 <a class="artigo" href="/blog/retinol-como-comecar/">
+<img class="capa" src="/img/blog/retinol-como-comecar-1600.webp" srcset="/img/blog/retinol-como-comecar-800.webp 800w, /img/blog/retinol-como-comecar-1600.webp 1600w, /img/blog/retinol-como-comecar-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Frasco âmbar de sérum com o conta-gotas deitado ao lado, sobre pedra escura, à luz quente de um abajur" loading="lazy" decoding="async">
+<span class="corpo">
 <span class="tag">Ativos</span>
 <h2>Retinol: como começar sem irritar a pele</h2>
 <p>Benefícios, progressão por semanas, erros comuns e produtos recomendados.</p>
+</span>
 </a>
 
 <a class="artigo" href="/blog/vitamina-c-skincare/">
+<img class="capa" src="/img/blog/vitamina-c-skincare-1600.webp" srcset="/img/blog/vitamina-c-skincare-800.webp 800w, /img/blog/vitamina-c-skincare-1600.webp 1600w, /img/blog/vitamina-c-skincare-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Frasco de sérum de vitamina C ao lado de laranjas cortadas, sobre mármore claro sob luz do sol" loading="lazy" decoding="async">
+<span class="corpo">
 <span class="tag">Ativos</span>
 <h2>Vitamina C: para que serve e como usar</h2>
 <p>Ilumina, trata manchas e protege. Saiba a concentração ideal e o horário certo.</p>
+</span>
 </a>
 
 <a class="artigo" href="/blog/protetor-solar-importancia/">
+<img class="capa" src="/img/blog/protetor-solar-importancia-1600.webp" srcset="/img/blog/protetor-solar-importancia-800.webp 800w, /img/blog/protetor-solar-importancia-1600.webp 1600w, /img/blog/protetor-solar-importancia-3840.webp 3840w" sizes="(max-width: 736px) calc(100vw - 36px), 700px" width="1600" height="900" alt="Bisnaga de protetor solar e uma porção de creme sobre pedra clara, com sombras de folhas de palmeira" loading="lazy" decoding="async">
+<span class="corpo">
 <span class="tag">Essencial</span>
 <h2>Protetor solar: o passo mais importante do skincare</h2>
 <p>Por que 90% do envelhecimento vem do sol e como escolher o FPS ideal.</p>
+</span>
 </a>
 
 <p style="margin-top:30px"><a href="/" style="color:var(--rosa);font-weight:600">← Voltar ao início</a></p>
