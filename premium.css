@@ -190,5 +190,6 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-rodape-numeros strong{display:block;font-family:var(--fonte-display);font-size:30px;font-weight:500;line-height:1.1;color:var(--rosa)}
 .ps-rodape-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;margin-top:40px;padding-top:20px;border-top:1px solid var(--linha);font-size:12px}
 .ps-rodape .ps-rodape-base a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.ps-rodape-links{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media(max-width:900px){.ps-rodape-grid{grid-template-columns:1fr 1fr}.ps-rodape-marca{grid-column:1/-1}}
 @media(max-width:560px){.ps-rodape{padding-top:40px}.ps-rodape-grid{grid-template-columns:1fr;gap:32px}}

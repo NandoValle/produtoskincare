@@ -6,7 +6,6 @@
 <title>Verificador de Ingredientes — Conflitos de Ativos | Produto Skincare</title>
 <meta name="description" content="Cole a lista de ingredientes e verifique se há conflitos entre ativos (retinol, ácidos, vitamina C, etc.).">
 
-
 <style>
 :root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -30,6 +29,22 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
 </style>
 <link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/ingredientes/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verificador de Ingredientes — Conflitos de Ativos">
+<meta property="og:description" content="Cole a lista de ingredientes e verifique se há conflitos entre ativos (retinol, ácidos, vitamina C, etc.).">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/ingredientes/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-ingredientes.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Verificador de ingredientes">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Verificador de ingredientes", "item": "https://produtoskincare.com.br/ferramentas/ingredientes/"}]}</script>
+<script src="/analytics.js" defer></script>
+<!-- seo:fim -->
 </head>
 <body>
 <main>
@@ -53,6 +68,8 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 </div>
 
 <div id="resultado" class="resultado"></div>
+<div id="areaEnviar" hidden></div>
+<p class="sub">Quer saber mais de cada ativo? Veja as <a href="/ingredientes/" style="color:var(--rosa)">fichas de ingredientes</a>, com o nível de evidência e as fontes.</p>
 
 <h2>Conflitos conhecidos</h2>
 <div class="card">
@@ -69,6 +86,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <strong>Não é aconselhamento médico.</strong> Em caso de irritação, pare o uso e consulte um dermatologista.
 </div>
 
+<script src="/compartilhar.js"></script>
 <script>
 const CONFLITOS = [
   { a: /retinol|retinal|tretinoína|adapaleno/i, b: /ácido salicílico|salicylic|bha|ácido glicólico|glycolic|aha|ácido láctico|lactic/i, msg: "Retinol + Ácidos (BHA/AHA) = muita irritação. Use em dias alternados." },
@@ -144,7 +162,20 @@ function verificar() {
   }
 
   resultado.innerHTML = html;
+  ULTIMO = { texto, encontrados, conflitos, oks };
+  document.getElementById("areaEnviar").hidden = false;
 }
+let ULTIMO = null;
+if (window.PSEnviar) PSEnviar.montar(document.getElementById("areaEnviar"), () => {
+  if (!ULTIMO) return { texto: "" };
+  const t = ["Verificação de ingredientes no Produto Skincare", "",
+    "Ativos reconhecidos: " + (ULTIMO.encontrados.join(", ") || "nenhum")];
+  ULTIMO.conflitos.forEach(m => t.push("⚠️ " + m));
+  ULTIMO.oks.forEach(m => t.push(m));
+  if (ULTIMO.encontrados.length && !ULTIMO.conflitos.length && !ULTIMO.oks.length) t.push("Nenhum conflito detectado entre os ativos encontrados.");
+  t.push("", "Não é aconselhamento médico. Em caso de irritação, pare o uso e consulte um dermatologista.");
+  return { assunto: "Verificação de ingredientes", texto: t.join("\n"), url: location.origin + location.pathname };
+}, { titulo: "📩 Receber esta verificação" });
 
 // Enter para verificar
 document.getElementById("ingredientes").addEventListener("keydown", e => {
@@ -161,9 +192,9 @@ document.getElementById("ingredientes").addEventListener("keydown", e => {
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/" aria-current="page">Verificar ingredientes</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/" aria-current="page">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><a href="/privacidade/">Privacidade</a></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
 </footer>
 </body>
 </html>

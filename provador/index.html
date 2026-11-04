@@ -8,16 +8,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://produtoskincare.com.br/provador/">
 <!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Provador Virtual — Descubra seu tipo de pele">
-<meta property="og:description" content="Conheça seu perfil de pele e explore sugestões de cuidados para manhã e noite. Quiz gratuito, sem cadastro.">
-<meta property="og:url" content="https://produtoskincare.com.br/provador/">
-<meta property="og:site_name" content="Produto Skincare">
-<meta property="og:locale" content="pt_BR">
 <!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Provador Virtual — Descubra seu tipo de pele">
-<meta name="twitter:description" content="Conheça seu perfil de pele e explore sugestões de cuidados para manhã e noite.">
 <!-- JSON-LD -->
 <script type="application/ld+json">
 {
@@ -32,7 +23,6 @@
   "author": { "@type": "Organization", "name": "Produto Skincare" }
 }
 </script>
-
 
 <style>
 :root {
@@ -234,6 +224,30 @@ html[data-tema="claro"]{
 .btn-tema:hover{transform:scale(1.1);box-shadow:var(--sombra-2)}
 </style>
 <link rel="stylesheet" href="/premium.css">
+<style>
+.selo-evidencia{display:inline-block;margin-top:6px;font-size:.76rem;font-weight:600;padding:3px 10px;border-radius:999px;text-decoration:none;border:1px solid var(--linha-2,#c8d0cb);color:var(--tinta,#252b2a)}
+.selo-evidencia.selo-forte{background:var(--verde-claro,#e7efea);color:var(--verde,#375d4e);border-color:transparent}
+.selo-evidencia.selo-moderada{background:#eef2f8;color:#2f4a6d;border-color:transparent}
+.selo-evidencia.selo-emergente{background:#fff4dd;color:#7a5200;border-color:#ecd9a8}
+@media (prefers-color-scheme:dark){.selo-evidencia.selo-moderada{background:#24324a;color:#cfdcf0}.selo-evidencia.selo-emergente{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
+.outras-lojas a{color:var(--rosa)}
+@media print{#areaEnviar{display:none}}
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Provador Virtual — Descubra seu tipo de pele">
+<meta property="og:description" content="Conheça seu perfil de pele e explore sugestões de cuidados para manhã e noite. Quiz gratuito, sem cadastro.">
+<meta property="og:url" content="https://produtoskincare.com.br/provador/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/provador.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Descubra seu tipo de pele.">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubra seu tipo de pele.", "item": "https://produtoskincare.com.br/provador/"}]}</script>
+<script src="/analytics.js" defer></script>
+<!-- seo:fim -->
 </head>
 <body class="ps-quiz">
 <button class="btn-tema" id="btnTema" aria-label="Alternar tema claro/escuro" title="Alternar tema">🌙</button>
@@ -415,11 +429,14 @@ html[data-tema="claro"]{
 <p class="sub" style="font-size:.82rem;margin:0">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar. Faça teste de sensibilidade antes de usar um produto novo. Este resultado é uma estimativa cosmética, não um diagnóstico médico.</p>
 </div>
 
+<div id="areaEnviar"></div>
+
 <div class="botoes">
 <button class="btn sec" id="btnRefazer">🔄 Refazer o quiz</button>
 <button class="btn sec" id="btnCopiarLink">🔗 Copiar link</button>
 <button class="btn sec" id="btnImprimir">🖨️ Imprimir</button>
 <button class="btn sec" id="btnCompartilhar">📤 Compartilhar</button>
+<a class="btn sec" href="/pergunte/">💬 Tirar dúvida com a IA</a>
 <a class="btn" href="/" target="_blank">Ver todos os produtos</a>
 </div>
 </div>
@@ -427,6 +444,7 @@ html[data-tema="claro"]{
 <p class="sub" style="font-size:.78rem;margin-top:40px;text-align:center">Critérios de análise definidos pelo projeto Produto Skincare. Protótipo de teste.</p>
 </main>
 
+<script src="/compartilhar.js"></script>
 <script>
 (function() {
 // ===== KEYBOARD NAVIGATION (T56) =====
@@ -694,74 +712,35 @@ const DICAS = {
 };
 
 // ===== CATÁLOGO DE PRODUTOS (curadoria) =====
-// IMPORTANTE: preencha o campo "link" com a URL real do TikTok Shop / afiliado.
-// Formato: "https://shop.tiktok.com/..." ou link de afiliado.
-const LINKS_AFILIADO = {
-  "cerave-gel-limpeza": "https://www.amazon.com.br/dp/B07XP6N3BC?tag=produtoskincare-20",
-  "lrp-effaclar-gel": "https://www.amazon.com.br/dp/B0B3SGCCY5?tag=produtoskincare-20",
-  "hada-labo-oil": "https://www.amazon.com.br/dp/B07ZD6R4QK?tag=produtoskincare-20",
-  "neutrogena-hydro-boost": "https://www.amazon.com.br/dp/B06XQ27YLL?tag=produtoskincare-20",
-  "lrp-cicaplast-baume": "https://www.amazon.com.br/dp/B072MK7BN2?tag=produtoskincare-20",
-  "cetaphil-creme": "https://www.amazon.com.br/dp/B079VXJK79?tag=produtoskincare-20",
-  "mantecorp-epidrat-calm": "https://www.amazon.com.br/dp/B09RL3X7RB?tag=produtoskincare-20",
-  "garnier-uniform-matte": "https://www.amazon.com.br/dp/B0DP82WCWS?tag=produtoskincare-20",
-  "cerave-pm-locao": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare-20",
-  "creamy-calming-cream": "https://shopee.com.br/search?keyword=creamy%20calming%20cream",
-  "isdin-fusion-water": "https://www.amazon.com.br/dp/B08F864LDD?tag=produtoskincare-20",
-  "isdin-fusion-sem-cor": "https://www.amazon.com.br/dp/B09SMBB1KN?tag=produtoskincare-20",
-  "neutrogena-sun-fresh-fps70": "https://www.amazon.com.br/dp/B08NVMP2YZ?tag=produtoskincare-20",
-  "skin-aqua-moisture-milk": "https://www.amazon.com.br/dp/B0C9L4ZNZ8?tag=produtoskincare-20",
-  "lrp-ultra-cover": "https://www.amazon.com.br/dp/B0BLZVD5S5?tag=produtoskincare-20",
-  "eucerin-anti-pigment": "https://www.amazon.com.br/dp/B07SJSZHD7?tag=produtoskincare-20",
-  "principia-vc10": "https://www.amazon.com.br/dp/B0BNHX8XVG?tag=produtoskincare-20",
-  "principia-niacinamida": "https://www.amazon.com.br/dp/B0BNHY2JHZ?tag=produtoskincare-20",
-  "principia-ah2": "https://www.amazon.com.br/dp/B0BNHXG5VY?tag=produtoskincare-20",
-  "principia-rn03": "https://www.amazon.com.br/dp/B0BNHY5P7K?tag=produtoskincare-20",
-  "ordinary-niacinamide": "https://www.amazon.com.br/dp/B06Y2GX3ZD?tag=produtoskincare-20",
-  "creamy-vitamina-c": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c",
-  "lrp-retinol-b3": "https://www.amazon.com.br/dp/B08XYZABCD?tag=produtoskincare-20",
-  "loreal-revitalift-noturno": "https://www.amazon.com.br/dp/B07VGF2P6L?tag=produtoskincare-20",
-  "mantecorp-ivy-c-ferulic": "https://www.amazon.com.br/dp/B0DM9TL9SK?tag=produtoskincare-20",
-  "ordinary-azelaic": "https://www.amazon.com.br/dp/B07CG8P6KG?tag=produtoskincare-20"
+// Fonte única: /produtos.json (preço, data do preço, loja e link de afiliado).
+// Para mudar um produto ou link, edite só o produtos.json.
+let PRODUTOS = [];
+let FICHAS = {};
+const catalogoPronto = Promise.all([
+  fetch("/produtos.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => { PRODUTOS = Array.isArray(d.produtos) ? d.produtos : []; })
+    .catch(e => console.error("produtos.json não carregou:", e)),
+  fetch("/ingredientes/ingredientes.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : [])
+    .then(l => { (Array.isArray(l) ? l : []).forEach(f => { FICHAS[f.slug] = f; }); })
+    .catch(() => {})
+]);
+
+const SELO_EVIDENCIA = {
+  forte: "Ativo com evidência forte",
+  moderada: "Ativo com evidência moderada",
+  emergente: "Ativo com evidência emergente"
 };
-
-const PRODUTOS = [
-  // LIMPEZA
-  { id:"cerave-gel-limpeza", nome:"CeraVe Gel de Limpeza Facial", marca:"CeraVe", passo:"limpeza", periodo:["manha","noite"], grupo:"gel-limpeza-suave", tipos:["oleosa","mista","normal","todos"], conc:[], evitar:[], textura:"gel", preco:96.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12759, plataforma:"amazon", link:"https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare-20", porque:"Gel com ceramidas, ácido hialurônico e niacinamida. 4.8★ com 12.7mil avaliações." },
-  { id:"lrp-effaclar-gel", nome:"La Roche-Posay Effaclar Gel Alta Tolerância", marca:"La Roche-Posay", passo:"limpeza", periodo:["manha","noite"], grupo:"gel-limpeza-oleosa", tipos:["oleosa","mista"], conc:["acne","poros"], evitar:["seca"], textura:"gel", preco:73.57, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12128, plataforma:"amazon", link:"https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare-20", porque:"Gel para pele oleosa e sensível. PCA de zinco. 4.8★ com 12mil avaliações." },
-  { id:"hada-labo-oil-cleansing", nome:"Hada Labo Gokujyun Oil Cleansing", marca:"Hada Labo", passo:"limpeza", periodo:["noite"], grupo:"limpeza-oleo", tipos:["todos"], conc:["desidratacao"], evitar:[], textura:"creme", preco:64.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:24402, plataforma:"amazon", link:"https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare-20", porque:"Óleo de limpeza com ácido hialurônico. Dupla limpeza. 4.7★ com 24mil avaliações." },
-  // HIDRATAÇÃO
-  { id:"neutrogena-hydro-boost", nome:"Neutrogena Hydro Boost Water Gel", marca:"Neutrogena", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-gel", tipos:["oleosa","mista","normal"], conc:["desidratacao"], evitar:[], textura:"gel", preco:55.16, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:78609, plataforma:"amazon", link:"https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare-20", porque:"O hidratante mais vendido do Brasil. Ultraleve. 4.8★ com 78mil avaliações." },
-  { id:"lrp-cicaplast-baume", nome:"La Roche-Posay Cicaplast Baume B5+", marca:"La Roche-Posay", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-reparador", tipos:["seca","normal","sensivel","todos"], conc:["desidratacao"], evitar:[], textura:"creme", preco:71.52, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:27628, plataforma:"amazon", link:"https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare-20", porque:"Bálsamo multirreparador. #1 Beleza Premium Amazon. 4.8★ com 27mil avaliações." },
-  { id:"cetaphil-creme", nome:"Cetaphil Creme Hidratante", marca:"Cetaphil", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-creme", tipos:["seca","normal"], conc:["desidratacao"], evitar:["oleosa"], textura:"creme", preco:85.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:32379, plataforma:"amazon", link:"https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare-20", porque:"Creme clássico para pele seca, sem fragrância. 4.8★ com 32mil avaliações." },
-  { id:"mantecorp-epidrat-calm", nome:"Mantecorp Epidrat Calm B5", marca:"Mantecorp", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:83.92, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5363, plataforma:"amazon", link:"https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare-20", porque:"D-pantenol que acalma e hidrata. Conforto imediato para sensíveis." },
-  { id:"garnier-uniform-matte", nome:"Garnier Uniform & Matte Toque Seco", marca:"Garnier", passo:"hidratacao", periodo:["manha"], grupo:"hidratante-gel", tipos:["oleosa","mista"], conc:["poros","manchas"], evitar:["seca"], textura:"gel", preco:26.61, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:2224, plataforma:"amazon", link:"https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare-20", porque:"Vitamina C + hialurônico. Controla brilho 8h. Ótimo custo-benefício." },
-  { id:"cerave-pm-locao", nome:"CeraVe PM Loção Facial", marca:"CeraVe", passo:"hidratacao", periodo:["noite"], grupo:"hidratante-gel", tipos:["normal","seca"], conc:["desidratacao"], evitar:[], textura:"gel", preco:62.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:18000, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=cerave+pm+locao+facial?tag=produtoskincare-20", porque:"Hidratante noturno oil-free com ceramidas e niacinamida." },
-  { id:"creamy-calming-cream", nome:"Creamy Calming Cream", marca:"Creamy", passo:"hidratacao", periodo:["manha","noite"], grupo:"hidratante-calmante", tipos:["sensivel","seca","normal"], conc:["desidratacao"], evitar:[], textura:"creme", preco:55.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:6200, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=creamy%20calming%20cream", porque:"Aveia coloidal. Acalma e hidrata sensíveis sem fragrância." },
-  // PROTETOR
-  { id:"isdin-fusion-water", nome:"ISDIN Protetor Solar Fusion Water FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"gel", preco:89.00, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:17915, plataforma:"amazon", link:"https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare-20", porque:"O protetor mais vendido da Amazon. Textura aquosa, 5 estrelas UVA. 4.8★ com 17mil avaliações." },
-  { id:"isdin-fusion-sem-cor", nome:"ISDIN Fusion Water 5 Stars Sem Cor FPS 60", marca:"ISDIN", passo:"protetor", periodo:["manha"], grupo:"protetor-gel", tipos:["todos"], conc:["manchas"], evitar:[], textura:"gel", preco:57.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12142, plataforma:"amazon", link:"https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare-20", porque:"Versão sem cor. Ultraleve, absorção rápida. 4.8★ com 12mil avaliações." },
-  { id:"neutrogena-sun-fresh-fps70", nome:"Neutrogena Sun Fresh Derm Care FPS 70", marca:"Neutrogena", passo:"protetor", periodo:["manha"], grupo:"protetor-toque-seco", tipos:["oleosa","mista"], conc:["acne","poros"], evitar:["seca"], textura:"gel", preco:47.70, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:43838, plataforma:"amazon", link:"https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare-20", porque:"FPS 70 não comedogênico. O mais avaliado: 4.8★ com 43mil avaliações." },
-  { id:"skin-aqua-moisture-milk", nome:"Skin Aqua Super Moisture Milk FPS 50", marca:"Skin Aqua", passo:"protetor", periodo:["manha"], grupo:"protetor-hidratante", tipos:["seca","normal","sensivel"], conc:["desidratacao"], evitar:[], textura:"creme", preco:50.26, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:4578, plataforma:"amazon", link:"https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare-20", porque:"Protetor japonês com hialurônico. Ultra hidratante." },
-  { id:"lrp-ultra-cover", nome:"La Roche-Posay Ultra Cover FPS 60", marca:"La Roche-Posay", passo:"protetor", periodo:["manha"], grupo:"protetor-com-cor", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"creme", preco:78.89, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:5299, plataforma:"amazon", link:"https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare-20", porque:"Protetor com cor e performance de maquiagem. 12h de cobertura." },
-  // TRATAMENTO
-  { id:"eucerin-anti-pigment", nome:"Eucerin Anti-Pigment Dual Sérum", marca:"Eucerin", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas"], evitar:[], textura:"serum", preco:226.99, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:12662, plataforma:"amazon", link:"https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare-20", porque:"Thiamidol (patente Eucerin) para manchas resistentes. Referência dermatológica." },
-  { id:"principia-vc10", nome:"Principia VC-10 Vitamina C 10%", marca:"Principia", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:49.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8500, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20vc-10", porque:"Melhor vitamina C custo-benefício 2026. Uniformiza tom e reduz manchas." },
-  { id:"principia-niacinamida", nome:"Principia Niacinamida NC-10", marca:"Principia", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-poros", tipos:["oleosa","mista","normal"], conc:["poros","acne","manchas"], evitar:[], textura:"serum", preco:45.90, preco_em:"2026-11-02", avaliacao:4.8, num_avaliacoes:12000, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20niacinamida", porque:"Niacinamida 10% + Zinco 1%. Controla oleosidade e reduz poros." },
-  { id:"principia-ah2", nome:"Principia AH-2 Ácido Hialurônico", marca:"Principia", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-hidratacao", tipos:["todos"], conc:["desidratacao"], evitar:[], textura:"serum", preco:42.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:9500, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20ah-2", porque:"Ácido hialurônico 2%. Hidrata em camadas. Custo-benefício imbatível." },
-  { id:"principia-rn03", nome:"Principia RN-0,3 Retinol", marca:"Principia", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista"], conc:["idade","manchas","poros"], evitar:["sensivel","seca"], textura:"serum", preco:52.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:7800, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=principia%20retinol", porque:"Retinol 0,3%. Estimula colágeno, trata linhas e manchas." },
-  { id:"ordinary-niacinamide", nome:"The Ordinary Niacinamide 10% + Zinc 1%", marca:"The Ordinary", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-poros", tipos:["oleosa","mista","normal"], conc:["poros","acne","manchas"], evitar:["seca"], textura:"serum", preco:39.90, preco_em:"2026-11-02", avaliacao:4.6, num_avaliacoes:45000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/the-ordinary-niacinamide", porque:"O sérum de niacinamida mais vendido do mundo. 45mil avaliações." },
-  { id:"creamy-vitamina-c", nome:"Creamy Vitamina C 10%", marca:"Creamy", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:69.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:5800, plataforma:"shopee", link:"https://shopee.com.br/search?keyword=creamy%20vitamina%20c", porque:"Vitamina C 10%. Firmeza, previne rugas e clareia manchas." },
-  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", marca:"La Roche-Posay", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade","manchas"], evitar:["sensivel"], textura:"serum", preco:149.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:8200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3?tag=produtoskincare-20", porque:"Retinol + vitamina B3. Menos irritação, mais resultado." },
-  { id:"loreal-revitalift-noturno", nome:"L'Oréal Revitalift Sérum Noturno Antissinais", marca:"L'Oréal Paris", passo:"tratamento", periodo:["noite"], grupo:"serum-idade", tipos:["normal","oleosa","mista","seca"], conc:["idade"], evitar:["sensivel"], textura:"serum", preco:59.90, preco_em:"2026-11-02", avaliacao:4.6, num_avaliacoes:15000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno", porque:"Sérum noturno com retinol. Top 5 mais vendidos no ML." },
-  { id:"mantecorp-ivy-c-ferulic", nome:"Mantecorp Ivy C Ferulic Sérum", marca:"Mantecorp", passo:"tratamento", periodo:["manha"], grupo:"serum-manchas", tipos:["todos"], conc:["manchas","idade"], evitar:[], textura:"serum", preco:89.90, preco_em:"2026-11-02", avaliacao:4.7, num_avaliacoes:4200, plataforma:"amazon", link:"https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic?tag=produtoskincare-20", porque:"Vitamina C estabilizada + ácido ferúlico. Antioxidante potente." },
-  { id:"ordinary-azelaic", nome:"The Ordinary Azelaic Acid 10%", marca:"The Ordinary", passo:"tratamento", periodo:["manha","noite"], grupo:"serum-calmante", tipos:["sensivel","todos"], conc:["manchas","acne"], evitar:[], textura:"creme", preco:45.90, preco_em:"2026-11-02", avaliacao:4.5, num_avaliacoes:22000, plataforma:"mercadolivre", link:"https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid", porque:"Ácido azelaico 10%. Manchas, acne e vermelhidão. Seguro na gestação." }
-];
-
-// Aplicar links de afiliado aos produtos
-PRODUTOS.forEach(p => {
-  if (LINKS_AFILIADO[p.id]) p.link = LINKS_AFILIADO[p.id];
-});
+const NOME_LOJA = { amazon:"Amazon", shopee:"Shopee", mercadolivre:"Mercado Livre", tiktok:"TikTok Shop" };
+function brl(v) { return "R$ " + v.toFixed(2).replace(".", ","); }
+function dataBR(iso) { return String(iso || "").split("-").reverse().join("/"); }
+function escHTML(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]); }
+function seloHTML(p) {
+  const f = p.ficha && FICHAS[p.ficha];
+  // p.evidencia sobrepõe a ficha quando a forma do ativo no produto tem menos estudos (ex.: retinol cosmético)
+  const nivel = p.evidencia || (f && f.evidencia);
+  if (!f || !SELO_EVIDENCIA[nivel]) return "";
+  return `<a class="selo-evidencia selo-${nivel}" href="${escHTML(f.url || "/ingredientes/" + p.ficha + "/")}" title="${escHTML(f.evidencia_motivo || "")} O selo avalia o ativo, não a fórmula deste produto.">${SELO_EVIDENCIA[nivel]}: ${escHTML(f.nome)}</a>`;
+}
 
 // ===== FUNÇÕES DE NAVEGAÇÃO =====
 
@@ -1076,9 +1055,6 @@ function calcularEMostrar() {
   // Subtom
   const subtom = estimarSubtom(perfil, resultado);
 
-  // Social proof
-  const totalAnalises = incrementarContador();
-
   // Ajuste sazonal
   const sazonal = dicaSazonal(resultado.tipo);
 
@@ -1102,7 +1078,6 @@ function calcularEMostrar() {
     ${baumannHTML(baumann)}
     ${subtomHTML(subtom)}
     <div id="areaLembrete"></div>
-    <p class="sub" style="font-size:.82rem;margin-top:12px">📊 ${totalAnalises} ${totalAnalises === 1 ? "pessoa já descobriu" : "pessoas já descobriram"} seu tipo de pele aqui.</p>
   `;
 
   // Adicionar botão de lembrete
@@ -1140,7 +1115,9 @@ function calcularEMostrar() {
     comparacao
   ].join("");
 
-  $("notasExtras").innerHTML = extrasHTML;
+  $("notasExtras").innerHTML = extrasHTML + custoRotinaHTML(perfil);
+  ULTIMO_PERFIL = perfil;
+  ULTIMO_RESULTADO = resultado;
 
   // Salvar no acompanhamento
   salvarResultado(resultado);
@@ -1150,6 +1127,101 @@ function calcularEMostrar() {
   mostrarHistorico();
 
   mostrarTela("resultado");
+}
+
+// ===== CUSTO DA ROTINA E VERSÃO ECONÔMICA =====
+let ULTIMO_PERFIL = null, ULTIMO_RESULTADO = null;
+function passosDaRotina(periodo) {
+  const base = periodo === "manha" ? ["limpeza","tratamento","hidratacao","protetor"] : ["limpeza","tratamento","hidratacao"];
+  return ESTADO.rotina === 3 ? base.filter(p => p !== "tratamento") : base;
+}
+function produtosDaRotina(perfil, economica) {
+  const lista = [];
+  ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+    const r = escolherProduto(passo, perfil, per);
+    let escolhido = r.principal && r.principal.p;
+    if (economica) {
+      const todos = [r.principal, r.alternativa, ...r.outrasLojas].filter(Boolean).map(x => x.p).filter(p => p.preco);
+      if (todos.length) escolhido = todos.sort((a, b) => a.preco - b.preco)[0];
+    }
+    if (escolhido && !lista.some(p => p.id === escolhido.id)) lista.push({ ...escolhido, _periodo: per, _passo: passo });
+  }));
+  return lista;
+}
+function somaPrecos(lista) {
+  const com = lista.filter(p => typeof p.preco === "number");
+  const datas = [...new Set(com.map(p => p.preco_em).filter(Boolean))].sort();
+  return { total: com.reduce((s, p) => s + p.preco, 0), n: com.length, faltam: lista.length - com.length, datas };
+}
+function custoRotinaHTML(perfil) {
+  const rec = somaPrecos(produtosDaRotina(perfil, false));
+  const eco = somaPrecos(produtosDaRotina(perfil, true));
+  if (!rec.n) return "";
+  const quando = rec.datas.length ? ` Preços vistos em ${rec.datas.map(dataBR).join(", ")}; podem ter mudado.` : "";
+  const economia = eco.total < rec.total - 0.5
+    ? `<li><strong>Versão econômica:</strong> ${brl(eco.total)} trocando cada passo pela opção compatível mais barata do catálogo.</li>` : "";
+  return `<div class="card" style="margin:12px 0;font-size:.92rem">
+    <strong>💰 Quanto custa esta rotina</strong>
+    <ul style="margin:6px 0 0;padding-left:20px">
+      <li><strong>Rotina sugerida:</strong> ${brl(rec.total)} (${rec.n} ${rec.n === 1 ? "produto" : "produtos"}${rec.faltam ? `, ${rec.faltam} sem preço conferido` : ""}).</li>
+      ${economia}
+    </ul>
+    <p class="sub" style="font-size:.82rem;margin:6px 0 0">Soma de um frasco de cada produto; a maioria dura de 1 a 3 meses.${quando}</p>
+  </div>`;
+}
+function textoDoResultado() {
+  const r = ULTIMO_RESULTADO, perfil = ULTIMO_PERFIL;
+  if (!r || !perfil) return "";
+  const nomeTipo = r.tipo.charAt(0).toUpperCase() + r.tipo.slice(1);
+  const linhas = [`Meu resultado no Provador da Produto Skincare`, ``,
+    `Pele estimada: ${nomeTipo}${r.sensivel ? " e sensível" : ""}`];
+  if (perfil.preocupacoes.length) linhas.push(`Foco: ${perfil.preocupacoes.join(", ")}`);
+  const NOME_PASSO = { limpeza:"Limpeza", tratamento:"Tratamento", hidratacao:"Hidratação", protetor:"Protetor solar" };
+  const lista = produtosDaRotina(perfil, false);
+  [["manha","MANHÃ"],["noite","NOITE"]].forEach(([per, rotulo]) => {
+    linhas.push("", rotulo);
+    passosDaRotina(per).forEach((passo, i) => {
+      const { principal } = escolherProduto(passo, perfil, per);
+      if (!principal) { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ainda sem produto na vitrine`); return; }
+      const p = principal.p;
+      linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ${p.nome}` + (p.preco ? ` (${brl(p.preco)} em ${dataBR(p.preco_em)})` : ""));
+      if (p.link) linhas.push(`   ${p.link}`);
+    });
+  });
+  const soma = somaPrecos(lista);
+  if (soma.n) linhas.push("", `Custo estimado: ${brl(soma.total)} (preços podem ter mudado).`);
+  linhas.push("", "Contém links de afiliado. Estimativa cosmética, não é diagnóstico: em caso de acne intensa, lesões ou irritação persistente, procure um dermatologista.");
+  return linhas.join("\n");
+}
+function urlDoResultado() {
+  const params = new URLSearchParams({
+    tipo: (ULTIMO_RESULTADO || calcularTipo()).tipo,
+    conc: ESTADO.preocupacoes.join(","),
+    preco: ESTADO.faixaPreco,
+    rotina: ESTADO.rotina
+  });
+  if (ULTIMO_RESULTADO && ULTIMO_RESULTADO.sensivel) params.set("sensivel", "1");
+  return `${location.origin}${location.pathname}?${params}`;
+}
+function lembretesDoResultado() {
+  const amanha8 = new Date(); amanha8.setDate(amanha8.getDate() + 1); amanha8.setHours(8, 0, 0, 0);
+  const refazer = new Date(); refazer.setDate(refazer.getDate() + 56); refazer.setHours(10, 0, 0, 0);
+  return [
+    { titulo: "☀️ Protetor solar", descricao: "Aplique o protetor solar antes de sair e reaplique ao longo do dia.", inicio: amanha8, diario: true },
+    { titulo: "Refazer o teste de pele", descricao: "Já se passaram 8 semanas. Refaça o provador e compare: " + urlDoResultado(), inicio: refazer, diario: false }
+  ];
+}
+if (window.PSEnviar && $("areaEnviar")) {
+  PSEnviar.montar($("areaEnviar"), () => ({
+    assunto: "Minha rotina de skincare (Produto Skincare)",
+    texto: textoDoResultado(),
+    url: urlDoResultado()
+  }), {
+    titulo: "📩 Receber minha rotina no WhatsApp ou e-mail",
+    lembretes: lembretesDoResultado,
+    arquivoICS: "lembretes-skincare.ics",
+    notaLembretes: "Os lembretes (protetor todo dia às 8h e refazer o teste em 8 semanas) ficam na sua agenda: Google Agenda, Calendário do iPhone ou Outlook."
+  });
 }
 
 async function mostrarHistorico() {
@@ -1215,7 +1287,7 @@ function montarRotina(perfil, periodo, container) {
       : '<small class="sub">ver preço na loja</small>';
 
     const estrelas = p.avaliacao ? `⭐ ${p.avaliacao} (${(p.num_avaliacoes||0).toLocaleString("pt-BR")} avaliações)` : "";
-    const plataforma = { amazon:"Amazon", shopee:"Shopee", mercadolivre:"Mercado Livre", tiktok:"TikTok Shop" }[p.plataforma] || "";
+    const plataforma = NOME_LOJA[p.plataforma] || "";
 
     const alt = alternativa ? `
       <div class="alternativa">
@@ -1226,7 +1298,9 @@ function montarRotina(perfil, periodo, container) {
     // OUTRAS LOJAS (deduplicação)
     const outras = outrasLojas.length ? `
       <div class="outras-lojas">
-        <strong>Outras lojas:</strong> ${outrasLojas.map(x => x.p.nome).join("; ")}
+        <strong>Opções parecidas em outras lojas:</strong> ${outrasLojas.map(x => x.p.link
+          ? `<a href="${escHTML(x.p.link)}" target="_blank" rel="noopener sponsored" data-produto="${escHTML(x.p.nome)}">${escHTML(x.p.nome)}</a> (${NOME_LOJA[x.p.plataforma] || "loja"}${x.p.preco ? ", " + brl(x.p.preco) : ""})`
+          : escHTML(x.p.nome)).join("; ")}
       </div>
     ` : "";
 
@@ -1239,9 +1313,10 @@ function montarRotina(perfil, periodo, container) {
           <div class="cat">${passo.nome} ${plataforma ? '· '+plataforma : ''}</div>
           <div class="nome">${p.nome}</div>
           <div class="porque">${p.porque}</div>
+          ${seloHTML(p)}
           ${estrelas ? `<div style="font-size:.85rem;color:var(--dourado,#c9a96e);margin-top:4px">${estrelas}</div>` : ''}
           <div class="preco">${preco}</div>
-          ${p.link ? `<a class="link-produto" href="${p.link}" target="_blank" rel="noopener sponsored">Ver na ${plataforma||"loja"} →</a>` : '<span class="falta">link em breve</span>'}
+          ${p.link ? `<a class="link-produto" href="${p.link}" target="_blank" rel="noopener sponsored" data-produto="${escHTML(p.nome)}">Ver na ${plataforma||"loja"} →</a>` : '<span class="falta">link em breve</span>'}
           ${alt}
           ${outras}
         </div>
@@ -1276,13 +1351,7 @@ $("btnRefazer").onclick = () => {
 };
 
 $("btnCopiarLink").onclick = () => {
-  const params = new URLSearchParams({
-    tipo: calcularTipo().tipo,
-    conc: ESTADO.preocupacoes.join(","),
-    preco: ESTADO.faixaPreco,
-    rotina: ESTADO.rotina
-  });
-  const url = `${location.origin}${location.pathname}?${params}`;
+  const url = urlDoResultado();
   navigator.clipboard.writeText(url).then(() => {
     $("btnCopiarLink").textContent = "✅ Link copiado!";
     setTimeout(() => { $("btnCopiarLink").textContent = "🔗 Copiar link"; }, 2000);
@@ -1307,9 +1376,11 @@ $("btnCompartilhar").onclick = async () => {
 };
 
 // ===== QUERY STRING (restaurar estado) =====
-(function restaurar() {
+(async function restaurar() {
+  await catalogoPronto;
   const params = new URLSearchParams(location.search);
   if (params.has("tipo")) {
+    ESTADO.sensivelJaSei = params.get("sensivel") === "1";
     ESTADO.tipoJaSei = params.get("tipo");
     ESTADO.preocupacoes = (params.get("conc") || "").split(",").filter(Boolean);
     ESTADO.faixaPreco = params.get("preco") || "qualquer";
@@ -1456,50 +1527,14 @@ function subtomHTML(st) {
 
 // ===== LEMBRETE PUSH (Protetor Solar) =====
 function configurarLembrete() {
-  if (!("Notification" in window)) return;
-
-  const btn = document.createElement("button");
-  btn.className = "btn sec";
-  btn.id = "btnLembrete";
-  btn.style.cssText = "margin-top:8px;font-size:.88rem";
-
-  const ativo = localStorage.getItem("provador_lembrete") === "on";
-  btn.textContent = ativo ? "🔔 Lembrete ativado" : "🔔 Lembrar do protetor solar";
-
-  btn.onclick = async () => {
-    if (localStorage.getItem("provador_lembrete") === "on") {
-      localStorage.removeItem("provador_lembrete");
-      btn.textContent = "🔔 Lembrar do protetor solar";
-      return;
-    }
-
-    const permissao = await Notification.requestPermission();
-    if (permissao === "granted") {
-      localStorage.setItem("provador_lembrete", "on");
-      btn.textContent = "🔔 Lembrete ativado";
-
-      // Notificação imediata de confirmação
-      new Notification("✅ Lembrete ativado!", {
-        body: "Vamos lembrar você de usar protetor solar todo dia às 8h.",
-        icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>"
-      });
-
-      // Agendar via setInterval (enquanto a página estiver aberta)
-      if (!window._lembreteInterval) {
-        window._lembreteInterval = setInterval(() => {
-          const agora = new Date();
-          if (agora.getHours() === 8 && agora.getMinutes() === 0) {
-            new Notification("☀️ Protetor solar!", {
-              body: "Não esqueça de aplicar seu protetor solar antes de sair.",
-              icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>"
-            });
-          }
-        }, 60000); // checa a cada minuto
-      }
-    }
-  };
-
-  return btn;
+  // O antigo lembrete por notificação só funcionava com a página aberta.
+  // Agora os lembretes vão para a agenda da pessoa (.ics), na caixa "Receber minha rotina".
+  const a = document.createElement("a");
+  a.href = "#areaEnviar";
+  a.className = "btn sec";
+  a.style.cssText = "margin-top:8px;font-size:.88rem";
+  a.textContent = "🔔 Lembrete do protetor na sua agenda";
+  return a;
 }
 
 // ===== SOCIAL PROOF (contador local) =====
@@ -3040,9 +3075,9 @@ calcularTipo = function () {
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><a href="/privacidade/">Privacidade</a></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
 </footer>
 </body>
 </html>

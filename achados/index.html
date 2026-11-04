@@ -7,8 +7,6 @@
 <meta name="description" content="Produtos de beleza e skincare do TikTok Shop, escolhidos a dedo, com preço datado e link direto para a loja.">
 <link rel="canonical" href="https://produtoskincare.com.br/achados/">
 
-
-
 <style>
   :root{
     --fundo:#faf6f1; --papel:#fffdfa; --tinta:#2b2320; --suave:#6f625c;
@@ -56,6 +54,14 @@
   .destaque .botao{align-self:flex-start;padding:0 20px;margin-top:4px}
   .destaque:hover .botao{filter:brightness(.93)}
   @media(max-width:520px){.destaque{grid-template-columns:96px 1fr;gap:14px;padding:14px}.destaque-texto>span:not(.cat):not(.botao){font-size:.88rem}.destaque .botao{align-self:stretch;padding:0 12px}}
+  .selo{align-self:flex-start;font-size:.74rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff4dd;color:#7a5200;border:1px solid #ecd9a8}
+  .selo a{color:inherit}
+  .velho{display:block;color:#8a5a00;font-size:.78rem}
+  .ofertas{font-size:.88rem}
+  .ofertas summary{cursor:pointer;color:var(--rosa);font-weight:600;min-height:44px;display:flex;align-items:center}
+  .ofertas ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .ofertas a{color:var(--tinta)}
+  @media (prefers-color-scheme:dark){.selo{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}.velho{color:#f3c56b}}
   .vazio{grid-column:1/-1;background:var(--papel);border:1px dashed var(--linha);border-radius:var(--raio);padding:40px 24px;text-align:center;color:var(--suave)}
   .vazio strong{display:block;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.4rem;color:var(--tinta);margin-bottom:6px}
   footer{border-top:1px solid var(--linha);padding-block:28px 40px;font-size:.88rem;color:var(--suave)}
@@ -65,17 +71,32 @@
   .painel td,.painel th{padding:6px 8px;border-bottom:1px solid var(--linha);text-align:left;white-space:nowrap}
 </style>
 <link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Produto Skincare — achados de beleza do TikTok Shop">
+<meta property="og:description" content="Produtos de beleza e skincare do TikTok Shop, escolhidos a dedo, com preço datado e link direto para a loja.">
+<meta property="og:url" content="https://produtoskincare.com.br/achados/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/achados.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Achados de beleza do TikTok Shop">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Achados de beleza do TikTok Shop", "item": "https://produtoskincare.com.br/achados/"}]}</script>
+<script src="/analytics.js" defer></script>
+<!-- seo:fim -->
 </head>
 <body>
 <div class="casca">
   <header>
-    <a class="marca" href="./">Produto<span>Skincare</span></a>
+    <a class="marca" href="/">Produto<span>Skincare</span></a>
     <span class="aviso-topo">Contém links de afiliado</span>
   </header>
 
   <section class="abertura">
     <h1>Achados de beleza do TikTok Shop</h1>
-    <p>Produtos de skincare e beleza que eu separei, com o preço do dia em que conferi e link direto para a loja do TikTok.</p>
+    <p>Produtos de skincare e beleza que eu separei, com o preço do dia em que conferi e link direto para a loja do TikTok. Quando o mesmo produto aparece em várias lojas, ele fica num card só.</p>
   </section>
 
   <a class="destaque" href="/fortskin/">
@@ -96,13 +117,21 @@
     <p><strong>Links de afiliado.</strong> Os botões levam ao TikTok Shop. Se você comprar por eles, posso receber comissão, sem custo extra para você.</p>
     <p><strong>Preços</strong> são os vistos na data indicada em cada produto e podem mudar. Vale o preço mostrado na loja na hora da compra.</p>
     <p><strong>Não é orientação médica.</strong> Cosméticos agem de forma diferente em cada pele. Leia o rótulo, faça o teste de sensibilidade e, em caso de problema de pele, procure um dermatologista.</p>
-    <p>Este site não usa cookies nem ferramentas de rastreamento próprias. A compra acontece no TikTok Shop, sob as regras e a política de privacidade do TikTok.</p>
+    <p>Este site não usa cookies. Podemos contar visitas e cliques nos botões de forma anônima, sem identificar você (veja a <a href="/privacidade/">privacidade</a>). A compra acontece no TikTok Shop, sob as regras e a política de privacidade do TikTok.</p>
+    <p><strong>Selo de evidência:</strong> avalia o ativo principal (por exemplo, o peptídeo de cobre), não a fórmula de cada produto. Veja as <a href="/ingredientes/">fichas de ingredientes</a>.</p>
   </footer>
 </div>
 
 <script>
 // Validade oficial do link de afiliado no TikTok Shop BR: até 100 dias (guia seller-br, atualização 20/01/2026).
 const VALIDADE_DIAS = 100;
+// Preço com mais de 30 dias ganha aviso para conferir na loja.
+const PRECO_VELHO_DIAS = 30;
+const SELOS = {
+  forte: 'Ativo com evidência forte',
+  moderada: 'Ativo com evidência moderada',
+  emergente: 'Ativo com evidência emergente'
+};
 const DIA = 86400000;
 
 const $grade = document.getElementById('grade');
@@ -165,14 +194,41 @@ function desenharGrade(){
     c.append(el('h2', {}, p.nome));
     if(p.marca) c.append(el('p', {class:'marca-prod'}, p.marca));
     if(p.porque) c.append(el('p', {class:'porque'}, p.porque));
+    if(p.evidencia && SELOS[p.evidencia]){
+      const selo = el('span', {class:'selo', title:'O selo avalia o ativo principal, não a fórmula deste produto.'});
+      const a = el('a', {href:'/ingredientes/peptideo-de-cobre/'}, SELOS[p.evidencia]);
+      selo.append(a);
+      c.append(selo);
+    }
     const pr = el('div', {class:'preco'});
-    pr.append(el('strong', {}, typeof p.preco === 'number' ? brl(p.preco) : 'Preço na loja'));
-    if(p.preco_em) pr.append(el('small', {}, `preço visto em ${dataBR(p.preco_em)}`));
+    pr.append(el('strong', {}, typeof p.preco === 'number' ? brl(p.preco) : 'Preço não conferido'));
+    if(p.preco_em){
+      const sm = el('small', {}, `preço visto em ${dataBR(p.preco_em)}`);
+      const idade = (Date.now() - new Date(p.preco_em + 'T00:00:00').getTime()) / DIA;
+      if(idade > PRECO_VELHO_DIAS) sm.append(el('span', {class:'velho'}, 'pode ter mudado: confira na loja'));
+      pr.append(sm);
+    } else {
+      pr.append(el('small', {}, 'veja o preço atual na loja'));
+    }
     c.append(pr);
     if(linkValido(p)){
-      c.append(el('a', {class:'botao', href:p.link, target:'_blank', rel:'sponsored nofollow noopener'}, 'Ver no TikTok Shop'));
+      c.append(el('a', {class:'botao', href:p.link, target:'_blank', rel:'sponsored nofollow noopener', 'data-produto': p.nome}, 'Ver no TikTok Shop'));
     }else{
       c.append(el('a', {class:'botao','aria-disabled':'true'}, 'Link indisponível'));
+    }
+    const outras = (p.ofertas || []).filter(linkValido);
+    if(outras.length){
+      const d = el('details', {class:'ofertas'});
+      d.append(el('summary', {}, `Outras lojas com este produto (${outras.length})`));
+      const ul = el('ul');
+      outras.forEach((o, i) => {
+        const li = el('li');
+        const txt = `Loja ${i + 2}` + (typeof o.preco === 'number' ? ` · ${brl(o.preco)} em ${dataBR(o.preco_em)}` : '');
+        li.append(el('a', {href:o.link, target:'_blank', rel:'sponsored nofollow noopener', 'data-produto': p.nome}, txt + ' ↗'));
+        ul.append(li);
+      });
+      d.append(ul);
+      c.append(d);
     }
     return c;
   }));
@@ -186,7 +242,8 @@ function desenharPainel(){
   const t = el('table');
   const cab = el('tr'); ['Produto','Gerado em','Dias restantes','Situação'].forEach(h => cab.append(el('th', {}, h)));
   t.append(cab);
-  [...produtos].sort((a,b) => (diasRestantes(a) ?? -999) - (diasRestantes(b) ?? -999)).forEach(p => {
+  const todos = produtos.flatMap(p => [p, ...(p.ofertas || []).map(o => ({...o, nome: o.nome + ' (oferta de ' + p.nome + ')'}))]);
+  [...todos].sort((a,b) => (diasRestantes(a) ?? -999) - (diasRestantes(b) ?? -999)).forEach(p => {
     const d = diasRestantes(p);
     const sit = !hostOficial(p.link) ? 'link fora do domínio tiktok.com'
       : d === null ? 'sem data de geração'
@@ -215,9 +272,9 @@ fetch('produtos.json', {cache:'no-cache'})
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/" aria-current="page">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/" aria-current="page">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><a href="/privacidade/">Privacidade</a></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
 </footer>
 </body>
 </html>

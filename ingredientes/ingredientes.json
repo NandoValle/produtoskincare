@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "niacinamida",
+    "nome": "Niacinamida",
+    "resumo": "Vitamina B3 tópica, bem tolerada; estudos sugerem ajuda com manchas, oleosidade e barreira.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "Há ensaios clínicos randomizados com resultados favoráveis, mas em geral pequenos, de curta duração e, em boa parte, conduzidos por fabricantes.",
+    "url": "/ingredientes/niacinamida/"
+  },
+  {
+    "slug": "retinol",
+    "nome": "Retinol e retinoides",
+    "resumo": "Família da vitamina A; os de receita são os mais estudados para acne e fotoenvelhecimento. Evitar na gestação.",
+    "evidencia": "forte",
+    "evidencia_motivo": "Os retinoides de receita (como tretinoína e adapaleno) têm décadas de estudos e recomendação forte na diretriz americana de acne. O retinol cosmético tem menos estudos e é considerado menos potente que a tretinoína.",
+    "url": "/ingredientes/retinol/"
+  },
+  {
+    "slug": "vitamina-c",
+    "nome": "Vitamina C",
+    "resumo": "Antioxidante usado de manhã para viço e manchas; o resultado depende muito da fórmula.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "Os mecanismos são bem descritos, mas revisões apontam que os estudos clínicos com fórmulas tópicas ainda são limitados e que o efeito depende muito da formulação e da estabilidade.",
+    "url": "/ingredientes/vitamina-c/"
+  },
+  {
+    "slug": "acido-hialuronico",
+    "nome": "Ácido hialurônico",
+    "resumo": "Atrai e retém água; estudos mostram melhora da hidratação, com efeito em rugas menos consistente.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "Ensaios randomizados mostram melhora de hidratação e elasticidade, mas são pequenos e de curta duração; parte da literatura é ligada a fabricantes, e o efeito sobre rugas é menos consistente.",
+    "url": "/ingredientes/acido-hialuronico/"
+  },
+  {
+    "slug": "acido-azelaico",
+    "nome": "Ácido azelaico",
+    "resumo": "Estudado em rosácea, acne e melasma; costuma ser opção para pele sensível.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "Há ensaios randomizados em rosácea e metanálise em melasma, mas uma revisão Cochrane aponta alto risco de viés em boa parte dos estudos de rosácea, e as versões cosméticas são menos estudadas que as de uso médico.",
+    "url": "/ingredientes/acido-azelaico/"
+  },
+  {
+    "slug": "acido-salicilico",
+    "nome": "Ácido salicílico",
+    "resumo": "Esfoliante usado para cravos, acne leve e oleosidade; recomendação condicional em diretriz de acne.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "A diretriz americana de acne faz recomendação condicional para o ácido salicílico, e muitos estudos testam o ativo combinado a outros, o que dificulta isolar o efeito dele.",
+    "url": "/ingredientes/acido-salicilico/"
+  },
+  {
+    "slug": "ceramidas",
+    "nome": "Ceramidas",
+    "resumo": "Lipídios da barreira da pele; estudos sugerem conforto e menos ressecamento em pele fragilizada.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "A base biológica é sólida e há estudos clínicos favoráveis, mas muitos são pequenos, financiados por fabricantes e testam a fórmula inteira, não a ceramida isolada.",
+    "url": "/ingredientes/ceramidas/"
+  },
+  {
+    "slug": "acido-tranexamico",
+    "nome": "Ácido tranexâmico",
+    "resumo": "Estudado no melasma por via oral, injetável e tópica; o creme é a forma de venda livre mais comum.",
+    "evidencia": "moderada",
+    "evidencia_motivo": "Há muitos ensaios randomizados com resultados favoráveis no melasma, mas são em geral pequenos e heterogêneos, e a via oral é mais estudada que a tópica.",
+    "url": "/ingredientes/acido-tranexamico/"
+  },
+  {
+    "slug": "peptideo-de-cobre",
+    "nome": "Peptídeo de cobre (GHK-Cu)",
+    "resumo": "Muito estudado em laboratório e em animais; em pessoas, a evidência ainda é pequena.",
+    "evidencia": "emergente",
+    "evidencia_motivo": "A maior parte dos dados vem de laboratório e de animais; os estudos em pessoas são pequenos, as revisões mais citadas são de autores ligados à indústria, e testes in vitro mostram penetração limitada na pele intacta.",
+    "url": "/ingredientes/peptideo-de-cobre/"
+  },
+  {
+    "slug": "protetor-solar",
+    "nome": "Protetor solar (filtros UV)",
+    "resumo": "Uso diário tem ensaio randomizado mostrando menos envelhecimento; com cor, ajuda no melasma.",
+    "evidencia": "forte",
+    "evidencia_motivo": "Há ensaio randomizado de longo prazo mostrando menos envelhecimento da pele com uso diário, e ensaio randomizado em melasma favorecendo protetor que também bloqueia luz visível.",
+    "url": "/ingredientes/protetor-solar/"
+  }
+]

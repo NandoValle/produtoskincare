@@ -8,7 +8,6 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://produtoskincare.com.br/privacidade/">
 
-
 <style>
 :root{--fundo:#faf7f2;--papel:#ffffff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px}
 *{box-sizing:border-box}
@@ -27,65 +26,83 @@ a{color:var(--rosa)}
 :focus-visible{outline:3px solid var(--verde);outline-offset:2px}
 </style>
 <link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Política de Privacidade">
+<meta property="og:description" content="Como o Provador Virtual da Produto Skincare trata seus dados. Nada sai do seu navegador.">
+<meta property="og:url" content="https://produtoskincare.com.br/privacidade/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/privacidade.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Política de Privacidade">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Política de Privacidade", "item": "https://produtoskincare.com.br/privacidade/"}]}</script>
+<script src="/analytics.js" defer></script>
+<!-- seo:fim -->
 </head>
 <body>
 <main>
 <div class="marca">Produto <span>Skincare</span> · Privacidade</div>
 
 <h1>Política de Privacidade</h1>
-<p class="sub">Última atualização: 2 de novembro de 2026</p>
+<p class="sub">Última atualização: 4 de novembro de 2026</p>
 
 <div class="card aviso">
-<strong>Resumo: seus dados não saem do seu navegador.</strong> Não temos servidor, não coletamos informações pessoais, não usamos cookies de rastreamento e não vendemos dados para ninguém.
+<strong>Resumo:</strong> o quiz, a selfie e os seus resultados ficam no seu navegador. Não usamos cookies e não vendemos dados. Só saem do seu aparelho: as perguntas que você faz à IA (para gerar a resposta) e, se ligada, uma contagem anônima de visitas e cliques.
 </div>
 
-<h2>1. O que coletamos</h2>
-<p><strong>Nada.</strong> O Provador Virtual roda 100% no seu navegador (client-side). Suas respostas do quiz, fotos de selfie e resultado ficam apenas no seu aparelho.</p>
+<h2>1. O que fica só no seu aparelho</h2>
+<p>O Provador roda no seu navegador. Suas respostas do quiz, as fotos da selfie e o resultado ficam apenas no seu aparelho. Usamos armazenamento local (localStorage, sessionStorage e IndexedDB) para:</p>
+<ul>
+<li><strong>Histórico de resultados</strong>, para você acompanhar seu tipo de pele ao longo do tempo;</li>
+<li><strong>Preferências</strong>, como o tema claro ou escuro e o tipo de pele escolhido na página de rotina;</li>
+<li><strong>Tracker de rotina</strong>, com as marcações dos últimos 30 dias;</li>
+<li><strong>Conversa com a IA</strong>, guardada só enquanto a aba estiver aberta.</li>
+</ul>
+<p>Para apagar tudo, limpe os dados deste site nas configurações do navegador.</p>
 
 <h2>2. Fotos de selfie</h2>
 <ul>
-<li>As fotos são analisadas <strong>localmente no seu navegador</strong> usando tecnologia do MediaPipe (Google).</li>
-<li><strong>Nenhuma imagem é enviada para servidores</strong> — nem nossos, nem de terceiros.</li>
-<li>A análise acontece na memória do navegador e é descartada ao fechar a aba.</li>
-<li>Você pode recusar o uso da câmera sem perder nenhuma funcionalidade do quiz.</li>
+<li>As fotos são analisadas <strong>no seu navegador</strong>, com a tecnologia MediaPipe (Google).</li>
+<li><strong>Nenhuma imagem é enviada para servidores</strong>, nem nossos, nem de terceiros.</li>
+<li>Para funcionar, o navegador baixa o código do MediaPipe (jsDelivr) e o modelo de rosto (Google Cloud Storage). Esses serviços recebem o pedido de download, como em qualquer site, mas não a sua foto.</li>
+<li>Você pode recusar a câmera sem perder nenhuma função do quiz.</li>
 </ul>
 
-<h2>3. Armazenamento local</h2>
-<p>Usamos armazenamento local (localStorage e IndexedDB) para:</p>
+<h2>3. Receber resultados por WhatsApp ou e-mail</h2>
+<p>Os botões "Enviar no WhatsApp" e "Enviar por e-mail" abrem o <strong>seu</strong> WhatsApp ou o <strong>seu</strong> aplicativo de e-mail com o texto pronto. O envio é feito por você. O site não recebe nem guarda seu número, seu endereço ou o conteúdo enviado. O arquivo de lembretes (.ics) é gerado no navegador e vai só para a sua agenda.</p>
+
+<h2>4. Pergunte à IA</h2>
+<p>Quando você faz uma pergunta na página <a href="/pergunte/">Pergunte à IA</a>, a pergunta e as mensagens anteriores da mesma conversa são enviadas ao nosso servidor (Supabase) e dele à <strong>Anthropic</strong>, empresa da IA Claude, que gera a resposta. Nós não gravamos as conversas. A Anthropic trata esses dados conforme a <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">política de privacidade dela</a>. Não escreva dados pessoais (nome, telefone, documentos) nas perguntas. Para limitar abusos, o servidor conta por alguns minutos quantas perguntas chegam de cada endereço IP, só na memória, sem gravar.</p>
+
+<h2>5. Estatística de visitas</h2>
+<p>Podemos usar o <strong>GoatCounter</strong>, uma ferramenta de estatística sem cookies, para contar visitas às páginas e cliques nos botões de loja e de envio. Ela não identifica você e não cria perfil. Enquanto essa contagem não estiver ligada, nenhum dado é enviado. Detalhes na <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">política do GoatCounter</a>.</p>
+
+<h2>6. Cookies</h2>
+<p><strong>Não usamos cookies</strong> de rastreamento, publicidade ou estatística.</p>
+
+<h2>7. Links de afiliado</h2>
+<p>Alguns links de produtos são de afiliado (Amazon, TikTok Shop e outras lojas). Se você comprar por eles, podemos receber uma comissão, <strong>sem custo extra para você</strong>. Ao clicar, você sai do nosso site e entra na loja, que tem a própria política de privacidade.</p>
+
+<h2>8. Outros serviços de terceiros</h2>
 <ul>
-<li><strong>Histórico de resultados</strong> — para você acompanhar seu tipo de pele ao longo do tempo. Só você tem acesso, no seu aparelho.</li>
-<li><strong>Preferências</strong> — tema (claro/escuro) e ativação do lembrete de protetor solar.</li>
-<li><strong>Contador de análises</strong> — um número anônimo de quantas vezes o quiz foi feito neste aparelho.</li>
-</ul>
-<p>Você pode apagar tudo a qualquer momento limpando os dados do navegador ou usando o botão "Apagar meus dados" no quiz.</p>
-
-<h2>4. Cookies</h2>
-<p><strong>Não usamos cookies.</strong> Não temos cookies de rastreamento, publicidade ou analytics.</p>
-
-<h2>5. Links de afiliado</h2>
-<p>Alguns links de produtos são de afiliado (TikTok Shop, etc.). Se você comprar por eles, podemos receber uma comissão — <strong>sem custo extra para você</strong>. Ao clicar num link de afiliado, você sai do nosso site e entra na loja do parceiro, que tem a própria política de privacidade.</p>
-
-<h2>6. Notificações</h2>
-<p>O lembrete de protetor solar usa a API de Notificações do navegador. As notificações são geradas <strong>localmente</strong> — não enviamos push notifications por servidor. Você pode desativar a qualquer momento nas configurações do navegador.</p>
-
-<h2>7. Serviços de terceiros</h2>
-<p>O site carrega:</p>
-<ul>
-<li><strong>Google Fonts</strong> (Fraunces e Inter) — o Google pode coletar dados conforme a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidade do Google</a>.</li>
-<li><strong>MediaPipe</strong> (CDN jsDelivr) — para análise de rosto. Roda localmente, mas o script é carregado de um CDN.</li>
+<li>As fontes do site ficam no nosso próprio servidor, exceto na página da FortSkin, que carrega fontes do <strong>Google Fonts</strong> (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política do Google</a>).</li>
+<li>O site é hospedado no <strong>GitHub Pages</strong>, que registra dados técnicos de acesso (como o endereço IP) por segurança, conforme a política do GitHub.</li>
 </ul>
 
-<h2>8. Menores de idade</h2>
-<p>O site não coleta dados de ninguém. Pais e responsáveis podem supervisionar o uso normalmente.</p>
+<h2>9. Menores de idade</h2>
+<p>O site não pede cadastro. Pais e responsáveis podem supervisionar o uso normalmente.</p>
 
-<h2>9. Seus direitos (LGPD)</h2>
-<p>Como não coletamos dados pessoais em servidores, não temos dados para fornecer, corrigir ou excluir. Os dados locais no seu aparelho são de sua propriedade e controle total.</p>
+<h2>10. Seus direitos (LGPD)</h2>
+<p>Não mantemos cadastro nem banco de dados com informações pessoais. Os dados guardados no seu aparelho são seus e você pode apagá-los quando quiser. Sobre dados tratados pela Anthropic, pelo GoatCounter ou pelas lojas, procure esses serviços diretamente.</p>
 
-<h2>10. Mudanças nesta política</h2>
-<p>Se mudarmos esta política, atualizaremos a data no topo da página. Recomendamos revisar periodicamente.</p>
+<h2>11. Mudanças nesta política</h2>
+<p>Se mudarmos esta política, atualizaremos a data no topo da página.</p>
 
-<h2>11. Contato</h2>
-<p>Dúvidas sobre privacidade? Entre em contato pelo site <a href="https://produtoskincare.com.br/">produtoskincare.com.br</a>.</p>
+<h2>12. Contato</h2>
+<p>Um canal de contato para dúvidas sobre privacidade será publicado aqui em breve. Veja também a página <a href="/sobre/">Sobre o site</a>.</p>
 
 <div class="card aviso">
 <strong>Disclaimer:</strong> Este site é uma ferramenta cosmética de estimativa. Não é diagnóstico médico e não substitui consulta com dermatologista.
@@ -103,9 +120,9 @@ a{color:var(--rosa)}
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><a href="/privacidade/">Privacidade</a></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/" aria-current="page">Privacidade</a></span></div>
 </footer>
 </body>
 </html>
