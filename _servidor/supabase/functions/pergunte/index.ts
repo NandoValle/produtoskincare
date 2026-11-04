@@ -3,14 +3,14 @@
 //
 // Segredos/variáveis (supabase secrets set ...):
 //   ANTHROPIC_API_KEY  obrigatório
-//   CLAUDE_MODEL       opcional (padrão claude-opus-5-5; claude-haiku-5-5 custa bem menos)
+//   CLAUDE_MODEL       opcional (padrão claude-haiku-5-5; claude-opus-5-5 é mais capaz e bem mais caro)
 //   ALLOWED_ORIGINS    opcional, separado por vírgula (padrão: o domínio do site)
 //
 // Não guardamos as perguntas: nada é gravado em banco nem em log por esta função.
 import Anthropic from "npm:@anthropic-ai/sdk";
 
 const SITE = "https://produtoskincare.com.br";
-const MODELO = Deno.env.get("CLAUDE_MODEL") ?? "claude-opus-5-5";
+const MODELO = Deno.env.get("CLAUDE_MODEL") ?? "claude-haiku-5-5";
 const ORIGENS = (Deno.env.get("ALLOWED_ORIGINS") ?? `${SITE},https://www.produtoskincare.com.br`)
   .split(",").map((o) => o.trim()).filter(Boolean);
 
@@ -111,16 +111,14 @@ Deno.serve(async (req) => {
   const corpoResposta = new ReadableStream({
     async start(controller) {
       try {
-        const stream = client.beta.messages.stream({
+        // O Haiku não tem modelo de reserva quando recusa: a recusa é tratada abaixo (stop_reason "refusal").
+        const stream = client.messages.stream({
           model: MODELO,
           max_tokens: 2000,
           output_config: { effort: "low" }, // conversa curta: esforço baixo é suficiente e mais rápido
-          // Se o filtro de segurança recusar, a API tenta de novo num modelo de reserva.
-          betas: ["server-side-fallback-2026-07-01"],
-          fallbacks: "default",
           system: sistema,
           messages: mensagens,
-        } as Parameters<typeof client.beta.messages.stream>[0]);
+        });
 
         for await (const ev of stream) {
           if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
