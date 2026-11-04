@@ -1,7 +1,8 @@
-const CACHE = "provador-premium-20261103-editorial";
+const CACHE = "provador-premium-20261104-rodape";
 const ASSETS = [
   "/premium.css",
   "/premium.js",
+  "/compartilhar.js",
   "/fonts/cormorant-500.ttf",
   "/fonts/manrope-400.ttf",
   "/fonts/manrope-600.ttf",
