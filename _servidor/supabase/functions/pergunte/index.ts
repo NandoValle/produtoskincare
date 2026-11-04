@@ -7,7 +7,7 @@
 //   ALLOWED_ORIGINS    opcional, separado por vírgula (padrão: o domínio do site)
 //
 // Não guardamos as perguntas: nada é gravado em banco nem em log por esta função.
-import Anthropic from "npm:@anthropic-ai/sdk";
+import Anthropic from "npm:@anthropic-ai/sdk@1.4.0";
 
 const SITE = "https://produtoskincare.com.br";
 const MODELO = Deno.env.get("CLAUDE_MODEL") ?? "claude-haiku-5-5";

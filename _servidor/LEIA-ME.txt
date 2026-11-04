@@ -4,6 +4,14 @@ IA "Pergunte" do Produto Skincare — como ligar
 A página /pergunte/ do site é estática e precisa deste pequeno servidor para
 falar com a IA (Claude, da Anthropic) sem expor a chave da API.
 
+Situação atual (4/11/2026): a função já está publicada no projeto Supabase
+"produtoskincare" (ref zzjeaeauggbflxdahtkk, região São Paulo), em
+https://zzjeaeauggbflxdahtkk.supabase.co/functions/v1/pergunte
+e a página /pergunte/ já aponta para ela. Falta só o passo 1 e o segredo
+ANTHROPIC_API_KEY (Painel do Supabase > Edge Functions > Secrets).
+Para republicar depois de mudar o código: passo 2 com
+"supabase link --project-ref zzjeaeauggbflxdahtkk".
+
 1. Crie uma chave em https://console.anthropic.com (Settings > API keys) e
    defina um limite de gasto mensal lá mesmo.
 2. No terminal, com a CLI do Supabase instalada e logada:
