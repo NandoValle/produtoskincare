@@ -1,0 +1,24 @@
+IA "Pergunte" do Produto Skincare — como ligar
+==============================================
+
+A página /pergunte/ do site é estática e precisa deste pequeno servidor para
+falar com a IA (Claude, da Anthropic) sem expor a chave da API.
+
+1. Crie uma chave em https://console.anthropic.com (Settings > API keys) e
+   defina um limite de gasto mensal lá mesmo.
+2. No terminal, com a CLI do Supabase instalada e logada:
+     cd _servidor
+     supabase link --project-ref SEU_PROJETO
+     supabase secrets set ANTHROPIC_API_KEY=sk-ant-...
+     # opcional: modelo mais barato
+     supabase secrets set CLAUDE_MODEL=claude-haiku-5-5
+     supabase functions deploy pergunte --no-verify-jwt
+3. Copie a URL da função (https://SEU_PROJETO.supabase.co/functions/v1/pergunte)
+   para a constante ENDPOINT em /pergunte/index.html e publique o site.
+
+Custos: cada pergunta é cobrada pela Anthropic por tokens. O padrão é o
+Claude Opus 5.5; o Claude Haiku 5.5 custa bem menos e costuma bastar para
+dúvidas curtas. Confira os preços atuais em https://www.anthropic.com/pricing.
+
+Privacidade: a função não grava perguntas nem respostas. Elas passam pela
+Anthropic para gerar a resposta, sob a política de dados da Anthropic.

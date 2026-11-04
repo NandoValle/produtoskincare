@@ -6,7 +6,6 @@
 <title>Comparar Produtos de Skincare | Produto Skincare</title>
 <meta name="description" content="Compare produtos de skincare lado a lado: preço, ativos, avaliação e para que tipo de pele servem.">
 
-
 <style>
 :root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -34,6 +33,22 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
 </style>
 <link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/comparar/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Comparar Produtos de Skincare">
+<meta property="og:description" content="Compare produtos de skincare lado a lado: preço, ativos, avaliação e para que tipo de pele servem.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/comparar/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-comparar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Comparar produtos">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Comparar produtos", "item": "https://produtoskincare.com.br/ferramentas/comparar/"}]}</script>
+<script src="/analytics.js" defer></script>
+<!-- seo:fim -->
 </head>
 <body>
 <main>
@@ -63,34 +78,51 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 
 <div id="resultado"></div>
 
+<div id="areaEnviar"></div>
+<p class="sub" style="font-size:.85rem">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar. O selo de evidência avalia o ativo principal, não a fórmula do produto.</p>
+<script src="/compartilhar.js"></script>
 <script>
-const PRODUTOS = [
-  { id:"cerave-gel-limpeza", nome:"CeraVe Gel de Limpeza Facial", passo:"limpeza", preco:96.90, avaliacao:4.8, reviews:12759, tipos:["todos"], ativos:["ceramidas","hialurônico","niacinamida"] },
-  { id:"lrp-effaclar-gel", nome:"La Roche-Posay Effaclar Gel", passo:"limpeza", preco:73.57, avaliacao:4.8, reviews:12128, tipos:["oleosa","mista"], ativos:["PCA zinco","glicerina"] },
-  { id:"hada-labo-oil", nome:"Hada Labo Gokujyun Oil Cleansing", passo:"limpeza", preco:64.90, avaliacao:4.7, reviews:24402, tipos:["todos"], ativos:["hialurônico"] },
-  { id:"neutrogena-hydro-boost", nome:"Neutrogena Hydro Boost Water Gel", passo:"hidratacao", preco:55.16, avaliacao:4.8, reviews:78609, tipos:["oleosa","mista","normal"], ativos:["hialurônico"] },
-  { id:"lrp-cicaplast", nome:"La Roche-Posay Cicaplast Baume B5+", passo:"hidratacao", preco:71.52, avaliacao:4.8, reviews:27628, tipos:["seca","normal","sensivel"], ativos:["pantenol","madecassoside"] },
-  { id:"cetaphil-creme", nome:"Cetaphil Creme Hidratante", passo:"hidratacao", preco:85.90, avaliacao:4.8, reviews:32379, tipos:["seca","normal"], ativos:["glicerina"] },
-  { id:"isdin-fusion-water", nome:"ISDIN Fusion Water FPS 60", passo:"protetor", preco:89.00, avaliacao:4.8, reviews:17915, tipos:["todos"], ativos:["filtros químicos"] },
-  { id:"neutrogena-sun-fresh", nome:"Neutrogena Sun Fresh FPS 70", passo:"protetor", preco:47.70, avaliacao:4.8, reviews:43838, tipos:["oleosa","mista"], ativos:["antioxidantes"] },
-  { id:"skin-aqua-milk", nome:"Skin Aqua Super Moisture Milk FPS 50", passo:"protetor", preco:50.26, avaliacao:4.8, reviews:4578, tipos:["seca","normal","sensivel"], ativos:["hialurônico"] },
-  { id:"principia-vc10", nome:"Principia VC-10 Vitamina C 10%", passo:"tratamento", preco:49.90, avaliacao:4.7, reviews:8500, tipos:["todos"], ativos:["vitamina C 10%","ácido ferúlico"] },
-  { id:"principia-niacinamida", nome:"Principia Niacinamida NC-10", passo:"tratamento", preco:45.90, avaliacao:4.8, reviews:12000, tipos:["oleosa","mista","normal"], ativos:["niacinamida 10%","zinco 1%"] },
-  { id:"ordinary-niacinamide", nome:"The Ordinary Niacinamide 10% + Zinc", passo:"tratamento", preco:39.90, avaliacao:4.6, reviews:45000, tipos:["oleosa","mista","normal"], ativos:["niacinamida 10%","zinco 1%"] },
-  { id:"eucerin-anti-pigment", nome:"Eucerin Anti-Pigment Dual Sérum", passo:"tratamento", preco:226.99, avaliacao:4.7, reviews:12662, tipos:["todos"], ativos:["thiamidol","hialurônico"] },
-  { id:"lrp-retinol-b3", nome:"La Roche-Posay Retinol B3", passo:"tratamento", preco:149.90, avaliacao:4.7, reviews:8200, tipos:["normal","oleosa","mista","seca"], ativos:["retinol","vitamina B3"] },
-];
+// Catálogo único: /produtos.json (mesmo do provador), com preço datado e link.
+const NOME_LOJA = { amazon:"Amazon", shopee:"Shopee", mercadolivre:"Mercado Livre", tiktok:"TikTok Shop" };
+const NOME_PASSO = { limpeza:"Limpeza", hidratacao:"Hidratação", protetor:"Protetor solar", tratamento:"Tratamento" };
+const SELO = { forte:"Evidência forte", moderada:"Evidência moderada", emergente:"Evidência emergente" };
+let PRODUTOS = [], FICHAS = {}, ULTIMA = [];
+const esc = t => String(t == null ? "" : t).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]);
+const brl = v => "R$ " + v.toFixed(2).replace(".", ",");
+const dataBR = iso => String(iso || "").split("-").reverse().join("/");
 
-// Preencher selects
-["p1","p2","p3"].forEach(id => {
-  const sel = document.getElementById(id);
-  PRODUTOS.forEach(p => {
-    const opt = document.createElement("option");
-    opt.value = p.id;
-    opt.textContent = `${p.nome} — R$ ${p.preco.toFixed(2)}`;
-    sel.appendChild(opt);
+Promise.all([
+  fetch("/produtos.json", { cache:"no-cache" }).then(r => r.json()).then(d => { PRODUTOS = d.produtos || []; }),
+  fetch("/ingredientes/ingredientes.json", { cache:"no-cache" }).then(r => r.ok ? r.json() : []).then(l => l.forEach(f => FICHAS[f.slug] = f)).catch(() => {})
+]).then(() => {
+  ["p1","p2","p3"].forEach(id => {
+    const sel = document.getElementById(id);
+    Object.keys(NOME_PASSO).forEach(passo => {
+      const g = document.createElement("optgroup");
+      g.label = NOME_PASSO[passo];
+      PRODUTOS.filter(p => p.passo === passo).forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = `${p.nome} — ${brl(p.preco)}`;
+        g.appendChild(opt);
+      });
+      sel.appendChild(g);
+    });
   });
+  const ids = new URLSearchParams(location.search).get("p");
+  if (ids) {
+    ids.split(",").slice(0, 3).forEach((id, i) => { const s = document.getElementById("p" + (i + 1)); if (s) s.value = id; });
+    comparar();
+  }
+}).catch(() => {
+  document.getElementById("resultado").innerHTML = '<div class="card">Não foi possível carregar o catálogo agora. Tente recarregar a página.</div>';
 });
+
+function evidencia(p) {
+  const f = p.ficha && FICHAS[p.ficha];
+  const nivel = p.evidencia || (f && f.evidencia);
+  return f && SELO[nivel] ? `<a href="${esc(f.url)}">${SELO[nivel]} (${esc(f.nome)})</a>` : "—";
+}
 
 function comparar() {
   const ids = ["p1","p2","p3"].map(id => document.getElementById(id).value).filter(Boolean);
@@ -98,27 +130,41 @@ function comparar() {
     document.getElementById("resultado").innerHTML = '<div class="card" style="border-left:3px solid var(--rosa);background:var(--rosa-claro)">⚠️ Selecione pelo menos 2 produtos para comparar.</div>';
     return;
   }
-
-  const prods = ids.map(id => PRODUTOS.find(p => p.id === id));
-
-  const tabela = `
+  const prods = ids.map(id => PRODUTOS.find(p => p.id === id)).filter(Boolean);
+  ULTIMA = prods;
+  const linha = (rotulo, f) => `<tr><td><strong>${rotulo}</strong></td>${prods.map(p => `<td>${f(p)}</td>`).join("")}</tr>`;
+  document.getElementById("resultado").innerHTML = `
     <div class="card">
     <h2 style="margin-top:0">Comparação</h2>
     <div style="overflow-x:auto">
     <table>
-    <tr><th></th>${prods.map(p => `<th>${p.nome}</th>`).join("")}</tr>
-    <tr><td><strong>Preço</strong></td>${prods.map(p => `<td><strong style="color:var(--rosa);font-size:1.15rem">R$ ${p.preco.toFixed(2)}</strong></td>`).join("")}</tr>
-    <tr><td><strong>Avaliação</strong></td>${prods.map(p => `<td>⭐ ${p.avaliacao} (${p.reviews.toLocaleString("pt-BR")} avaliações)</td>`).join("")}</tr>
-    <tr><td><strong>Passo</strong></td>${prods.map(p => `<td>${p.passo.charAt(0).toUpperCase()+p.passo.slice(1)}</td>`).join("")}</tr>
-    <tr><td><strong>Tipos de pele</strong></td>${prods.map(p => `<td>${p.tipos.join(", ")}</td>`).join("")}</tr>
-    <tr><td><strong>Ativos principais</strong></td>${prods.map(p => `<td>${p.ativos.join(", ")}</td>`).join("")}</tr>
+    <tr><th></th>${prods.map(p => `<th>${esc(p.nome)}</th>`).join("")}</tr>
+    ${linha("Preço", p => `<strong style="color:var(--rosa);font-size:1.15rem">${brl(p.preco)}</strong><br><small class="sub">visto em ${dataBR(p.preco_em)}</small>`)}
+    ${linha("Loja", p => NOME_LOJA[p.plataforma] || "—")}
+    ${linha("Avaliação", p => p.avaliacao ? `⭐ ${p.avaliacao} (${(p.num_avaliacoes || 0).toLocaleString("pt-BR")} avaliações)` : "—")}
+    ${linha("Passo", p => NOME_PASSO[p.passo] || p.passo)}
+    ${linha("Tipos de pele", p => esc(p.tipos.filter(t => t !== "todos").join(", ") || "todos"))}
+    ${linha("Ativos principais", p => esc((p.ativos || []).join(", ")))}
+    ${linha("Evidência do ativo", evidencia)}
+    ${linha("Por que está aqui", p => esc(p.porque))}
+    ${linha("", p => p.link ? `<a class="btn" style="min-height:40px;padding:0 14px;font-size:.88rem" href="${esc(p.link)}" target="_blank" rel="sponsored nofollow noopener" data-produto="${esc(p.nome)}">Ver na ${NOME_LOJA[p.plataforma] || "loja"} →</a>` : "")}
     </table>
     </div>
-    </div>
-  `;
-
-  document.getElementById("resultado").innerHTML = tabela;
+    </div>`;
+  history.replaceState(null, "", "?p=" + prods.map(p => p.id).join(","));
 }
+
+if (window.PSEnviar) PSEnviar.montar(document.getElementById("areaEnviar"), () => {
+  if (ULTIMA.length < 2) return { assunto: "Comparação de produtos", texto: "Ainda não comparei produtos.", url: location.href };
+  const t = ["Minha comparação no Produto Skincare", ""];
+  ULTIMA.forEach(p => {
+    t.push(`• ${p.nome}: ${brl(p.preco)} em ${dataBR(p.preco_em)} (${NOME_LOJA[p.plataforma] || "loja"})`);
+    if ((p.ativos || []).length) t.push(`  Ativos: ${p.ativos.join(", ")}`);
+    if (p.link) t.push(`  ${p.link}`);
+  });
+  t.push("", "Contém links de afiliado. Preços podem ter mudado.");
+  return { assunto: "Comparação de produtos de skincare", texto: t.join("\n"), url: location.href };
+}, { titulo: "📩 Receber esta comparação" });
 </script>
 </main>
 </body>
