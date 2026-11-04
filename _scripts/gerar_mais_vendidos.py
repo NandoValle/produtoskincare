@@ -5,6 +5,7 @@ Rode de novo sempre que atualizar o JSON:
 """
 import html
 import json
+import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -24,12 +25,24 @@ def brl(v):
     return "R$ " + f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
+# Rodapé do site: o mesmo do artigo-modelo, para a página não perder o rodapé ao ser regerada.
+_modelo = (RAIZ / "blog" / "protetor-solar-pele-oleosa" / "index.html").read_text(encoding="utf-8")
+rodape = re.search(r'(<footer class="ps-rodape">.*?</footer>)', _modelo, re.S).group(1)
+rodape = rodape.replace('<a href="/mais-vendidos/">', '<a href="/mais-vendidos/" aria-current="page">', 1)
+
+
+def eh_refil(p):
+    return "refil" in p["nome"].lower()
+
+
+tem_refil = any(eh_refil(p) for p in produtos)
 cards = []
 for p in produtos:
-    cards.append(f"""<li class="mv-item" data-cat="{e(p['categoria'])}">
+    selo_refil = ' <span class="mv-refil">Refil</span>' if eh_refil(p) else ""
+    cards.append(f"""<li class="mv-item" data-cat="{e(p['categoria'])}" data-refil="{'1' if eh_refil(p) else ''}">
 <span class="mv-pos" aria-label="Posição {p['rank']}">{p['rank']}</span>
 <div class="mv-corpo">
-<span class="mv-cat">{e(p['categoria'])}</span>
+<span class="mv-cat">{e(p['categoria'])}</span>{selo_refil}
 <h2 class="mv-nome">{e(p['nome'])}</h2>
 <p class="mv-meta">{e(p['marca'])} · ⭐ {str(p['avaliacao']).replace('.', ',')} ({f"{p['reviews']:,}".replace(",", ".")} avaliações)</p>
 <p class="mv-preco"><strong>{brl(p['preco'])}</strong> <small>em {data_br}</small></p>
@@ -42,6 +55,10 @@ ld = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "name": 
                  "numberOfItems": len(produtos), "itemListElement": itens_ld}, ensure_ascii=False)
 
 botoes = "".join(f'<button type="button" class="rt-chip" data-cat="{e(c)}" aria-pressed="false">{e(c)}</button>' for c in categorias)
+if tem_refil:
+    botoes += '<button type="button" class="rt-chip" data-cat="__refil" aria-pressed="false">Só refil</button>'
+nota_refil = ('<p class="mv-aviso">Refil é a versão de reposição do produto. Costuma custar menos que a embalagem original '
+              'e usar menos plástico. Confira no anúncio se ele serve na embalagem que você tem.</p>') if tem_refil else ""
 
 pagina = f"""<!doctype html>
 <html lang="pt-BR">
@@ -71,6 +88,7 @@ pagina = f"""<!doctype html>
 .mv-item[hidden]{{display:none}}
 .mv-pos{{font-family:var(--fonte-display);font-size:1.3rem;width:44px;height:44px;border-radius:50%;background:var(--rosa-claro);color:var(--rosa);display:grid;place-items:center}}
 .mv-corpo{{display:flex;flex-direction:column;gap:6px;min-width:0}}
+.mv-refil{{display:inline-block;margin-left:6px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--verde-claro);color:var(--verde)}}
 .mv-cat{{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--verde)}}
 .mv-nome{{font-size:1.15rem;margin:0;line-height:1.25}}
 .mv-meta{{font-size:.86rem;color:var(--suave)}}
@@ -80,6 +98,8 @@ pagina = f"""<!doctype html>
 .mv-foot{{display:flex;flex-direction:column;gap:10px;font-size:.86rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:20px}}
 </style>
 <script type="application/ld+json">{ld}</script>
+<!-- seo:inicio -->
+<!-- seo:fim -->
 </head>
 <body>
 <main class="mv" id="conteudo">
@@ -91,6 +111,7 @@ pagina = f"""<!doctype html>
 <p class="mv-aviso">Preços e posições são os de {data_br} e mudam todo dia. Vale o preço mostrado na Amazon na hora da compra. Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</p>
 </header>
 <div class="rt-chips" role="group" aria-label="Filtrar por categoria"><button type="button" class="rt-chip" data-cat="" aria-pressed="true">Todos</button>{botoes}</div>
+{nota_refil}
 <ol class="mv-lista" id="lista">
 {chr(10).join(cards)}
 </ol>
@@ -99,13 +120,14 @@ pagina = f"""<!doctype html>
 <p>Conteúdo informativo, não substitui consulta com dermatologista. <a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o site</a></p>
 </footer>
 </main>
+{rodape}
 <script>
 (function(){{
   var chips = document.querySelectorAll(".rt-chip"), itens = document.querySelectorAll(".mv-item");
   chips.forEach(function(c){{ c.addEventListener("click", function(){{
     var cat = c.dataset.cat;
     chips.forEach(function(x){{ x.setAttribute("aria-pressed", String(x === c)); }});
-    itens.forEach(function(i){{ i.hidden = !!cat && i.dataset.cat !== cat; }});
+    itens.forEach(function(i){{ i.hidden = cat === "__refil" ? !i.dataset.refil : (!!cat && i.dataset.cat !== cat); }});
   }}); }});
 }})();
 </script>
