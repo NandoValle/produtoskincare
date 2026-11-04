@@ -156,12 +156,21 @@ def montar_bloco(arq, url, info, texto):
     secao = ROTULOS.get(rel.split("/")[0], MARCA) if rel else MARCA
     titulo_img = sem_marca(limpar(info.h1) or og_title)
 
-    og_path = nome_og(url)
-    chave = hashlib.sha1((titulo_img + "|" + secao).encode()).hexdigest()[:10]
-    destino = RAIZ / og_path
-    if not destino.exists() or CACHE_OG.get(og_path) != chave:
-        gerar_og(titulo_img, secao if secao != MARCA else "", destino)
-        CACHE_OG[og_path] = chave
+    # Se a página define a própria og:image (ex.: capa do post), ela vale; senão geramos uma.
+    propria = limpar(info.meta.get("og:image"))
+    if propria and "/img/og/" not in propria:
+        og_url = propria
+        og_w = limpar(info.meta.get("og:image:width")) or "1200"
+        og_h = limpar(info.meta.get("og:image:height")) or "630"
+        og_alt = limpar(info.meta.get("og:image:alt")) or titulo_img
+    else:
+        og_path = nome_og(url)
+        chave = hashlib.sha1((titulo_img + "|" + secao).encode()).hexdigest()[:10]
+        destino = RAIZ / og_path
+        if not destino.exists() or CACHE_OG.get(og_path) != chave:
+            gerar_og(titulo_img, secao if secao != MARCA else "", destino)
+            CACHE_OG[og_path] = chave
+        og_url, og_w, og_h, og_alt = f"{SITE}/{og_path}", "1200", "630", titulo_img
 
     tags = []
     if 'rel="canonical"' not in texto:
@@ -177,10 +186,10 @@ def montar_bloco(arq, url, info, texto):
         f'<meta property="og:url" content="{SITE}{url}">',
         f'<meta property="og:site_name" content="{MARCA}">',
         f'<meta property="og:locale" content="{idioma}">',
-        f'<meta property="og:image" content="{SITE}/{og_path}">',
-        '<meta property="og:image:width" content="1200">',
-        '<meta property="og:image:height" content="630">',
-        f'<meta property="og:image:alt" content="{e(titulo_img)}">',
+        f'<meta property="og:image" content="{e(og_url)}">',
+        f'<meta property="og:image:width" content="{og_w}">',
+        f'<meta property="og:image:height" content="{og_h}">',
+        f'<meta property="og:image:alt" content="{e(og_alt)}">',
         '<meta name="twitter:card" content="summary_large_image">',
     ]
 
@@ -206,7 +215,7 @@ def montar_bloco(arq, url, info, texto):
             pub = data_publicacao(texto)
             mod = data_atualizacao(texto) or pub
             art = {"@context": "https://schema.org", "@type": "Article", "headline": sem_marca(limpar(info.h1) or og_title)[:110],
-                   "description": descricao, "image": f"{SITE}/{og_path}", "inLanguage": "pt-BR",
+                   "description": descricao, "image": og_url, "inLanguage": "pt-BR",
                    "mainEntityOfPage": f"{SITE}{url}",
                    "author": {"@type": "Organization", "name": "Equipe " + MARCA, "url": SITE + "/sobre/"},
                    "publisher": {"@type": "Organization", "name": MARCA, "url": SITE + "/"}}
