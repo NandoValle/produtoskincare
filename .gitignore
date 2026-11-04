@@ -1,2 +1,5 @@
 # Documentos internos: não publicar
 *.md
+
+# Cache do Python
+__pycache__/
