@@ -425,6 +425,8 @@ html[data-tema="claro"]{
 <div id="painelManha" role="tabpanel"></div>
 <div id="painelNoite" role="tabpanel" hidden></div>
 
+<div id="rotinasProntas"></div>
+
 <div class="card" style="margin-top:20px">
 <p class="sub" style="font-size:.82rem;margin:0">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar. Faça teste de sensibilidade antes de usar um produto novo. Este resultado é uma estimativa cosmética, não um diagnóstico médico.</p>
 </div>
@@ -1091,6 +1093,9 @@ function calcularEMostrar() {
   montarRotina(perfil, "manha", $("painelManha"));
   montarRotina(perfil, "noite", $("painelNoite"));
 
+  // rotinas prontas por dor e faixa de preço (/rotinas/)
+  $("rotinasProntas").innerHTML = rotinasProntasHTML(perfil);
+
   // SEGURANÇA: coletar produtos escolhidos e checar avisos
   const produtosEscolhidos = [];
   ["manha","noite"].forEach(per => {
@@ -1127,6 +1132,39 @@ function calcularEMostrar() {
   mostrarHistorico();
 
   mostrarTela("resultado");
+}
+
+// ===== ROTINAS PRONTAS POR FAIXA DE PREÇO =====
+// Liga as preocupações do quiz (e as anomalias da selfie, se houver) às páginas /rotinas/<dor>/#<faixa>.
+function rotinasProntasHTML(perfil) {
+  const DORES = {
+    acne: { slug: "acne", nome: "Acne" },
+    manchas: { slug: "melasma", nome: "Melasma e manchas" },
+    melasma: { slug: "melasma", nome: "Melasma e manchas" },
+    idade: { slug: "anti-age", nome: "Anti-age" },
+    rosacea: { slug: "rosacea", nome: "Rosácea e vermelhidão" }
+  };
+  const FAIXA = { economico: "economica", intermediario: "media", premium: "premium" };
+  const NOMES_FAIXA = { economica: "Econômica", media: "Intermediária", premium: "Premium" };
+  const daSelfie = ((window.__ultimaAnalise && window.__ultimaAnalise.anomalias) || []).map(a => a.tipo);
+  const chaves = [...(perfil.preocupacoes || []), ...daSelfie].filter(c => DORES[c]);
+  const slugs = [...new Set(chaves.map(c => DORES[c].slug))];
+  const faixa = FAIXA[perfil.faixaPreco];
+  if (!slugs.length) {
+    const extra = perfil.sensivel ? ' Se você tem vermelhidão que não passa, veja a <a href="/rotinas/rosacea/">rotina para rosácea</a>.' : "";
+    return `<div class="card" style="margin-top:20px"><strong>📋 Rotinas prontas por faixa de preço</strong>
+      <p class="sub" style="margin:6px 0 0;font-size:.92rem">Temos rotinas completas para acne, rosácea, melasma e anti-age, cada uma em versão econômica, intermediária e premium. <a href="/rotinas/">Ver todas</a>.${extra}</p></div>`;
+  }
+  const itens = slugs.map(slug => {
+    const nome = Object.values(DORES).find(d => d.slug === slug).nome;
+    const botoes = Object.keys(NOMES_FAIXA).map(f =>
+      `<a class="chip${f === faixa ? " on" : ""}" style="text-decoration:none" href="/rotinas/${slug}/#${f}">${NOMES_FAIXA[f]}${f === faixa ? " ✓" : ""}</a>`
+    ).join(" ");
+    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div></div>`;
+  }).join("");
+  return `<div class="card" style="margin-top:20px"><strong>📋 Rotina pronta para a sua preocupação</strong>
+    <p class="sub" style="margin:6px 0 0;font-size:.92rem">Manhã e noite completas, com ativos que têm comprovação científica, em três faixas de preço.${faixa ? " A faixa que você escolheu está marcada." : ""}</p>
+    ${itens}</div>`;
 }
 
 // ===== CUSTO DA ROTINA E VERSÃO ECONÔMICA =====
