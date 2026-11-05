@@ -119,7 +119,7 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-quiz .pill{border-radius:4px;font-size:12px}
 .ps-quiz .btn-tema{border-radius:8px;box-shadow:none;width:44px;height:44px}
 
-@media(max-width:1120px){
+@media(max-width:1240px){
  .ps-header{display:flex;flex-wrap:wrap;gap:16px;min-height:80px}
  .ps-menu{margin-left:auto}
  .ps-navigation{width:100%;margin:0;display:block;padding:8px 0 12px;border-top:1px solid var(--linha)}
@@ -127,6 +127,9 @@ h1,h2,h3{letter-spacing:-.025em}
  .ps-nav a{font-size:14px;padding:12px 0;min-height:44px}
  .ps-langs{border:0;padding:14px 0 0;gap:10px}
  .ps-langs a{min-width:44px;min-height:44px;text-align:center}
+}
+/* O menu vira botão até 1240px (11 itens); o resto do layout da página inicial só muda até 1120px, como antes. */
+@media(max-width:1120px){
  .ps-hero{gap:38px}
  .ps-photo .ps-portrait{height:460px}
  .ps-skin-grid{grid-template-columns:repeat(2,1fr)}
@@ -193,5 +196,5 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-rodape-links{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media(max-width:900px){.ps-rodape-grid{grid-template-columns:1fr 1fr}.ps-rodape-marca{grid-column:1/-1}}
 @media(max-width:560px){.ps-rodape{padding-top:40px}.ps-rodape-grid{grid-template-columns:1fr;gap:32px}}
-/* Menu com 10 itens: aperta o espaço entre os links logo acima do ponto em que ele vira menu de celular (1120px). */
-@media(min-width:1121px) and (max-width:1200px){.ps-nav{gap:14px}}
+/* Menu com 11 itens: aperta o espaço entre os links logo acima do ponto em que ele vira menu de celular (1240px). */
+@media(min-width:1241px) and (max-width:1320px){.ps-nav{gap:14px}}
