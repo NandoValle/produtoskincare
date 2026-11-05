@@ -71,7 +71,7 @@
 
   /* Estado da pele (não é ativo, mas entra no verificador como item). */
   var ESTADOS = {
-    irritada: { id: "irritada", nome: "Pele irritada agora (ardendo, vermelha ou descamando)", classe: "irritada" }
+    irritada: { id: "irritada", nome: "Pele irritada agora", classe: "irritada" }
   };
 
   var CLASSES = {
@@ -241,6 +241,10 @@
         regra: r.id,
         porSensibilidade: sens
       };
+    }
+    if (x.classe === "irritada" || y.classe === "irritada") {
+      return { resultado: "ok", regra: "irritada-sem-regra", nota: "", porSensibilidade: false,
+        motivo: "Sem restrição nas regras para a pele irritada. Mesmo assim, enquanto ela se recupera, prefira uma rotina mínima: limpeza suave, hidratante e protetor." };
     }
     var neutra = NEUTRAS[x.classe] ? x.classe : NEUTRAS[y.classe] ? y.classe : null;
     if (neutra) return { resultado: "ok", motivo: NEUTRAS[neutra], nota: "", regra: "neutra-" + neutra, porSensibilidade: false };

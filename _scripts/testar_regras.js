@@ -50,6 +50,47 @@ caso("sensível: ácido glicólico 5% fica, com aviso", regras({ nome: "Tônico"
 caso("todos: ácido salicílico 2% não é 'forte'", regras({ nome: "Gel", ativos: ["ácido salicílico 2%"] }, comum), []);
 caso("todos: ácido salicílico 5% é 'forte'", regras({ nome: "Peeling", ativos: ["ácido salicílico 5%"] }, comum), ["avisar:acido-forte"]);
 
+/* ===== Feature 4: combinações documentadas (critério de pronto) =====
+ * Entrada → resultado esperado (regra). As 6 primeiras também estão como "Exemplos para
+ * testar" em /ferramentas/ingredientes/, para conferir na página.
+ *
+ *  #  Entrada                                   Resultado              Regra
+ *  1  retinol + ácido glicólico                 horários diferentes    retinoide-aha
+ *  2  retinol + ácido salicílico                horários diferentes    retinoide-bha
+ *  3  retinol + vitamina C                      horários diferentes    retinoide-vitc
+ *  4  peróxido de benzoíla + tretinoína         horários diferentes    bpo-retinoide (com nota)
+ *  5  ácido glicólico + pele irritada           não combine            irritada-aha
+ *  6  vitamina C + niacinamida                  pode usar junto        vitc-niacinamida
+ *  7  ácido salicílico + pele irritada          não combine            irritada-bha
+ *  8  retinol + tretinoína                      não combine            retinoide-retinoide
+ *  9  retinol + ácido glicólico, pele sensível  não combine            retinoide-aha (mais rígida)
+ * 10  niacinamida + ácido hialurônico           pode usar junto        neutra-hidratante
+ * 11  INCI colado com retinol e glycolic acid   horários diferentes    (geral)
+ * 12  retinol + vitamina C + niacinamida        horários diferentes    (geral, 3 pares)
+ */
+console.log("\nCombinações documentadas");
+const A = id => { const a = R.ATIVOS.find(x => x.id === id); if (!a) throw new Error("ativo desconhecido: " + id); return a; };
+const IRRITADA = R.ESTADOS.irritada;
+const par = (x, y, ctx) => { const r = R.avaliarPar(x, y, ctx); return [r.resultado, r.regra]; };
+caso("1  retinol + ácido glicólico", par(A("retinol"), A("glicolico")), ["horarios", "retinoide-aha"]);
+caso("2  retinol + ácido salicílico", par(A("retinol"), A("salicilico")), ["horarios", "retinoide-bha"]);
+caso("3  retinol + vitamina C", par(A("retinol"), A("vitc")), ["horarios", "retinoide-vitc"]);
+caso("4  peróxido de benzoíla + tretinoína", par(A("bpo"), A("tretinoina")), ["horarios", "bpo-retinoide"]);
+caso("4b tem nota sobre o medicamento combinado", /adapaleno/.test(R.avaliarPar(A("bpo"), A("tretinoina")).nota), true);
+caso("5  ácido glicólico + pele irritada", par(A("glicolico"), IRRITADA), ["nao", "irritada-aha"]);
+caso("6  vitamina C + niacinamida", par(A("vitc"), A("niacinamida")), ["ok", "vitc-niacinamida"]);
+caso("7  ácido salicílico + pele irritada", par(IRRITADA, A("salicilico")), ["nao", "irritada-bha"]);
+caso("8  retinol + tretinoína (dois retinoides)", par(A("retinol"), A("tretinoina")), ["nao", "retinoide-retinoide"]);
+caso("9  retinol + ácido glicólico em pele sensível", par(A("retinol"), A("glicolico"), { sensivel: true }), ["nao", "retinoide-aha"]);
+caso("10 niacinamida + ácido hialurônico", par(A("niacinamida"), A("hialuronico")), ["ok", "neutra-hidratante"]);
+const inci = R.avaliar(R.detectar("Aqua, Glycerin, Glycolic Acid, Retinol, Sodium Hyaluronate, Citric Acid"));
+caso("11 INCI colado: resultado geral", inci.resultado, "horarios");
+const tres = R.avaliar([A("retinol"), A("vitc"), A("niacinamida")]);
+caso("12 três ativos: geral e número de pares", [tres.resultado, tres.pares.length, tres.pares[0].regra], ["horarios", 3, "retinoide-vitc"]);
+caso("a ordem dos ativos não muda o resultado", par(A("glicolico"), A("retinol")), par(A("retinol"), A("glicolico")));
+caso("pele irritada + ativo sem regra: ok, com recomendação de rotina mínima", par(IRRITADA, A("niacinamida")), ["ok", "irritada-sem-regra"]);
+caso("motivo curto (até 280 caracteres) em toda combinação", R.COMBINACOES.filter(c => c.motivo.length > 280 || (c.sensivelMotivo || "").length > 280).map(c => c.id), []);
+
 /* ===== Integridade da lista ===== */
 console.log("\nIntegridade");
 const classes = new Set([...R.ATIVOS.map(a => a.classe), ...Object.values(R.ESTADOS).map(e => e.classe)]);
