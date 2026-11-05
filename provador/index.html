@@ -231,6 +231,9 @@ html[data-tema="claro"]{
 .selo-evidencia.selo-emergente{background:#fff4dd;color:#7a5200;border-color:#ecd9a8}
 @media (prefers-color-scheme:dark){.selo-evidencia.selo-moderada{background:#24324a;color:#cfdcf0}.selo-evidencia.selo-emergente{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
 .outras-lojas a{color:var(--rosa)}
+.selo-cuidado{display:block;width:fit-content;margin-top:6px;font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff4dd;color:#7a5200;border:1px solid #ecd9a8}
+@media (prefers-color-scheme:dark){html:not([data-tema=claro]) .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
+html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}
 @media print{#areaEnviar{display:none}}
 .so-impressao{display:none}
 .link-botao{background:none;border:0;padding:0;font:inherit;color:var(--rosa);text-decoration:underline;cursor:pointer}
@@ -395,6 +398,7 @@ html[data-tema="claro"]{
 <div class="card aviso">
 <fieldset>
 <legend style="font-size:1.05rem">Segurança</legend>
+<label class="opcao"><input type="checkbox" id="chkSensivel"><span><span class="rotulo">Tenho pele sensível</span><div class="desc">Arde, fica vermelha com facilidade ou reage a muitos produtos. Tiramos retinol, ácidos fortes e produtos com fragrância, e avisamos o que pede cuidado. <span id="notaSensivelQuiz"></span></div></span></label>
 <label class="opcao"><input type="checkbox" id="chkIsotretinoina"><span><span class="rotulo">Faço tratamento com isotretinoína oral (Roacutan e similares)</span><div class="desc">Vamos tirar ácidos e retinol da rotina. Durante o tratamento, siga o que o dermatologista orientar.</div></span></label>
 <label class="opcao"><input type="checkbox" id="chkGestante"><span><span class="rotulo">Estou gestante ou amamentando</span><div class="desc">Vamos evitar retinol e ácido salicílico, e sugerir alternativas seguras.</div></span></label>
 </fieldset>
@@ -517,6 +521,7 @@ html[data-tema="claro"]{
 </main>
 
 <script src="/compartilhar.js"></script>
+<script src="/regras-ativos.js"></script>
 <script>
 (function() {
 // ===== KEYBOARD NAVIGATION (T56) =====
@@ -631,6 +636,7 @@ const ESTADO = {
   gestante: false,
   amamentando: false,
   idade: "nd", sol: "nd", clima: "nd", exp: "nd", isotretinoina: false,
+  sensivelMarcado: null, // true/false: caixa "Tenho pele sensível" das preferências (null = ainda não respondeu)
   restaurado: null, // { tipo, sensivel, desidratada, pontos } quando o resultado vem de um link
   fixos: null,      // { "manha:limpeza": "id-do-produto", ... } produtos gravados no link
   doresSelfie: []   // dores vistas na selfie que viram rotinas prontas (acne, melasma, rosacea…)
@@ -946,7 +952,14 @@ document.querySelectorAll("#chipsPreocupacoes .chip").forEach(c => {
   };
 });
 
-$("btnPreocupacoesContinuar").onclick = () => mostrarTela("preferencias");
+$("btnPreocupacoesContinuar").onclick = () => {
+  // Pré-marca "Tenho pele sensível" com o que as respostas indicaram; a pessoa pode mudar.
+  ESTADO.sensivelMarcado = null;
+  const indicado = calcularTipo().sensivel;
+  $("chkSensivel").checked = indicado;
+  $("notaSensivelQuiz").textContent = indicado && !ESTADO.tipoJaSei ? "Marcamos pelas suas respostas; desmarque se não for o seu caso." : "";
+  mostrarTela("preferencias");
+};
 $("btnPreocupacoesVoltar").onclick = () => {
   if (ESTADO.tipoJaSei) mostrarTela("ja_sei");
   else mostrarTela("quiz");
@@ -961,6 +974,7 @@ $("btnVerResultado").onclick = () => {
   const marcado = nome => (document.querySelector(`input[name=${nome}]:checked`) || {}).value || "nd";
   ESTADO.idade = marcado("idade"); ESTADO.sol = marcado("sol"); ESTADO.clima = marcado("clima"); ESTADO.exp = marcado("exp");
   ESTADO.isotretinoina = $("chkIsotretinoina").checked;
+  ESTADO.sensivelMarcado = $("chkSensivel").checked;
   mostrarTela("selfie");
 };
 $("btnPrefVoltar").onclick = () => mostrarTela("preocupacoes");
@@ -971,8 +985,11 @@ function calcularTipo() {
     const r = ESTADO.restaurado;
     return { tipo: r.tipo, sensivel: r.sensivel, desidratada: r.desidratada, pontos: { ...r.pontos }, metodo: "link" };
   }
+  // A caixa "Tenho pele sensível" das preferências tem a palavra final; antes dela, vale o que
+  // a pessoa marcou no "Já sei meu tipo" ou o que as respostas do quiz indicaram.
+  const marcado = typeof ESTADO.sensivelMarcado === "boolean" ? ESTADO.sensivelMarcado : null;
   if (ESTADO.tipoJaSei) {
-    return { tipo: ESTADO.tipoJaSei, sensivel: ESTADO.sensivelJaSei, pontos: { [ESTADO.tipoJaSei]: 10 }, metodo: "informado" };
+    return { tipo: ESTADO.tipoJaSei, sensivel: marcado ?? ESTADO.sensivelJaSei, pontos: { [ESTADO.tipoJaSei]: 10 }, metodo: "informado" };
   }
 
   const pts = { oleosa: 0, seca: 0, mista: 0, normal: 0 };
@@ -1008,7 +1025,7 @@ function calcularTipo() {
   }
 
   const tipo = Object.entries(pts).sort((a, b) => b[1] - a[1])[0][0];
-  return { tipo, sensivel, pontos: pts, metodo: "quiz" };
+  return { tipo, sensivel: marcado ?? sensivel, pontos: pts, metodo: "quiz" };
 }
 
 // ===== MOTOR DE RECOMENDAÇÃO =====
@@ -1019,17 +1036,14 @@ const SEGURANCA = {
   // ativos proibidos na gestação/amamentação
   gestacao_proibido: /retinol|retinal|tretinoína|adapaleno|isotretinoína|bha|ácido salicílico|hidroquinona/i,
   gestacao_ok: /azelaico|niacinamida|hialurônico|ceramidas|vitamina c|pantenol|centella|heartleaf/i,
-  // conflitos: não usar no mesmo período
-  conflitos: [
-    { a: /retinol|retinal/i, b: /ácido salicílico|bha|aha|glicólico|láctico/i, msg: "Retinol e ácidos (BHA/AHA) não devem ser usados na mesma rotina — use em dias alternados." },
-    { a: /retinol|retinal/i, b: /vitamina c/i, msg: "Vitamina C e retinol têm pHs incompatíveis — use C de manhã e retinol à noite." }
-  ],
+  // Combinações e contraindicações por perfil: /regras-ativos.js (lista versionada, PSRegras)
   // progressão: semanas 1-2 só base, semana 3+ um ativo
   ativos_fortes: /retinol|retinal|bha|ácido salicílico|aha|glicólico/i
 };
 
+// Devolve { avisos, infos }: avisos pedem atenção; infos só explicam o que a rotina já faz.
 function checarSeguranca(produtosEscolhidos, perfil) {
-  const avisos = [];
+  const avisos = [], infos = [], semInfoFragrancia = [];
   const nomes = produtosEscolhidos.map(x => x.nome).join(" ");
 
   // gestação/amamentação
@@ -1040,12 +1054,54 @@ function checarSeguranca(produtosEscolhidos, perfil) {
     }
   }
 
-  // conflitos entre produtos
-  for (const c of SEGURANCA.conflitos) {
-    const temA = produtosEscolhidos.find(p => c.a.test(p.nome + p.porque));
-    const temB = produtosEscolhidos.find(p => c.b.test(p.nome + p.porque));
-    if (temA && temB) {
-      avisos.push(`⚠️ <strong>Conflito de ativos:</strong> ${c.msg}`);
+  // Combinações entre os produtos da rotina (regras de /regras-ativos.js). Ativos do mesmo
+  // produto não contam: já vêm formulados juntos. "Horários diferentes" só vira aviso quando
+  // os dois produtos caem no mesmo período; se a rotina já separa, vira uma nota informativa.
+  const R = window.PSRegras;
+  if (R) {
+    const NOME_PERIODO = { manha: "manhã", noite: "noite" };
+    const vistos = new Set();
+    produtosEscolhidos.forEach((A, i) => produtosEscolhidos.slice(i + 1).forEach(B => {
+      if (A.id === B.id) return;
+      R.detectar(R.textoDoProduto(A)).forEach(x => R.detectar(R.textoDoProduto(B)).forEach(y => {
+        const r = R.avaliarPar(x, y, { sensivel: perfil.sensivel });
+        if (r.resultado === "ok") return;
+        const mesmo = A._periodo === B._periodo;
+        const chave = r.regra + "|" + (mesmo ? A._periodo : "separado");
+        if (vistos.has(chave)) return;
+        vistos.add(chave);
+        const nomes = `${escHTML(A.nome)} (${NOME_PERIODO[A._periodo]}) e ${escHTML(B.nome)} (${NOME_PERIODO[B._periodo]})`;
+        if (r.resultado === "nao" || mesmo) {
+          avisos.push(`⚠️ <strong>${R.ROTULOS[r.resultado]}:</strong> ${nomes}. ${escHTML(r.motivo)}${r.nota ? " " + escHTML(r.nota) : ""}`);
+        } else {
+          infos.push(`✅ <strong>Combinação já separada:</strong> ${nomes}. ${escHTML(r.motivo)}`);
+        }
+      }));
+    }));
+
+    // Contraindicações que deixam o produto na rotina, mas pedem cuidado
+    const avisados = new Set();
+    produtosEscolhidos.forEach(p => R.contraindicacoes(p, perfil).filter(c => c.acao === "avisar").forEach(c => {
+      if (c.regra === "sens-fragrancia-desconhecida") { semInfoFragrancia.push(p.nome); return; }
+      if (avisados.has(c.regra + p.id)) return;
+      avisados.add(c.regra + p.id);
+      avisos.push(`⚠️ <strong>${escHTML(p.nome)}:</strong> ${escHTML(c.motivo)}`);
+    }));
+    const semInfo = [...new Set(semInfoFragrancia)];
+    if (semInfo.length) {
+      avisos.push(`🌸 <strong>Fragrância:</strong> ainda não conferimos se ${semInfo.map(escHTML).join(", ")} ${semInfo.length === 1 ? "tem" : "têm"} perfume. Para pele sensível, prefira os "sem fragrância" e evite "parfum", "fragrance" e óleos essenciais na lista de ingredientes.`);
+    }
+
+    // O que saiu da rotina por ser pele sensível (compara com a rotina sem a marca de sensível)
+    if (perfil.sensivel) {
+      const semSens = { ...perfil, sensivel: false }, saiu = new Map();
+      ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+        const r = escolherProduto(passo, semSens, per, { semFixos: true }).principal;
+        if (!r || produtosEscolhidos.some(x => x.id === r.p.id)) return;
+        const motivo = R.contraindicacoes(r.p, perfil).find(c => c.acao === "remover");
+        if (motivo) saiu.set(r.p.id, `${escHTML(r.p.nome)}: ${escHTML(motivo.motivo)}`);
+      }));
+      if (saiu.size) avisos.push(`🔬 <strong>Saíram da rotina por ser pele sensível:</strong><br>${[...saiu.values()].join("<br>")}`);
     }
   }
 
@@ -1060,7 +1116,7 @@ function checarSeguranca(produtosEscolhidos, perfil) {
     avisos.push(`🔬 <strong>Pele sensível:</strong> introduza <strong>um produto novo por vez</strong> e faça teste atrás da orelha antes de usar no rosto. Espere 3-4 dias antes de adicionar outro.`);
   }
 
-  return avisos;
+  return { avisos, infos };
 }
 
 function pontuarProduto(p, perfil) {
@@ -1086,6 +1142,9 @@ function pontuarProduto(p, perfil) {
       (perfil.sol === "escura" || (perfil.preocupacoes || []).includes("manchas"))) s += 1;
   const concMatch = (perfil.preocupacoes || []).filter(c => p.conc && p.conc.includes(c)).length;
   s += concMatch * 2;
+  // Contraindicações por perfil (/regras-ativos.js): retinoide e ácido forte em pele sensível,
+  // produto com fragrância em pele sensível etc.
+  if (window.PSRegras && PSRegras.contraindicacoes(p, perfil).some(c => c.acao === "remover")) return -99;
   if (perfil.sensivel) {
     if (p.tipos.includes("sensivel")) s += 2;
     if (/calmante|centella|heartleaf|azelaic|cicaplast/i.test(p.nome + p.porque)) s += 1;
@@ -1100,7 +1159,8 @@ function pontuarProduto(p, perfil) {
   return s;
 }
 
-function escolherProduto(passo, perfil, periodo) {
+// opcoes.semFixos: ignora os produtos gravados no link (usado para comparar "como seria sem X").
+function escolherProduto(passo, perfil, periodo, opcoes = {}) {
   let cands = PRODUTOS
     .filter(p => p.passo === passo)
     .map(p => ({ p, s: pontuarProduto(p, perfil) }))
@@ -1112,7 +1172,7 @@ function escolherProduto(passo, perfil, periodo) {
 
   // Resultado salvo (link): o produto gravado volta para o topo, desde que ainda exista no
   // catálogo e passe nas regras acima (tipo, segurança, faixa). Se não passar, a escolha é refeita.
-  const idFixo = ESTADO.fixos && periodo && ESTADO.fixos[periodo + ":" + passo];
+  const idFixo = !opcoes.semFixos && ESTADO.fixos && periodo && ESTADO.fixos[periodo + ":" + passo];
   if (idFixo) {
     const i = doPeriodo.findIndex(x => x.p.id === idFixo);
     if (i > 0) doPeriodo.unshift(doPeriodo.splice(i, 1)[0]);
@@ -1210,15 +1270,13 @@ function calcularEMostrar(opcoes = {}) {
   $("rotinasProntas").innerHTML = perfil.isotretinoina ? "" : rotinasProntasHTML(perfil);
 
   // SEGURANÇA: coletar produtos escolhidos e checar avisos
+  // (só os passos que aparecem na tela: rotina de 3 passos e isotretinoína não têm tratamento)
   const produtosEscolhidos = [];
-  ["manha","noite"].forEach(per => {
-    const passos = per === "manha" ? ["limpeza","tratamento","hidratacao","protetor"] : ["limpeza","tratamento","hidratacao"];
-    passos.forEach(passo => {
-      const { principal } = escolherProduto(passo, perfil, per);
-      if (principal) produtosEscolhidos.push(principal.p);
-    });
-  });
-  const avisos = checarSeguranca(produtosEscolhidos, perfil);
+  ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+    const { principal } = escolherProduto(passo, perfil, per);
+    if (principal) produtosEscolhidos.push({ ...principal.p, _periodo: per });
+  }));
+  const { avisos, infos } = checarSeguranca(produtosEscolhidos, perfil);
 
   // Progressão 4 semanas
   const temAtivoForte = produtosEscolhidos.some(p => /retinol|retinal|bha|salicil/i.test(p.nome + p.porque));
@@ -1230,6 +1288,7 @@ function calcularEMostrar(opcoes = {}) {
   const extrasHTML = [
     ...notasDoPerfil(perfil, temAtivoForte).map(a => `<div class="card aviso" style="margin:10px 0;font-size:.92rem">${a}</div>`),
     ...avisos.map(a => `<div class="card aviso rosa" style="margin:10px 0;font-size:.92rem">${a}</div>`),
+    ...infos.map(a => `<div class="card" style="margin:10px 0;font-size:.92rem">${a}</div>`),
     perfil.isotretinoina ? "" : progressaoHTML(resultado.tipo, temAtivoForte),
     comparacao
   ].join("");
@@ -1536,6 +1595,7 @@ function montarRotina(perfil, periodo, container) {
           <div class="nome">${p.nome}</div>
           <div class="porque">${p.porque}</div>
           ${seloHTML(p)}
+          ${cuidadoHTML(p, perfil)}
           ${estrelas ? `<div style="font-size:.85rem;color:var(--dourado,#c9a96e);margin-top:4px">${estrelas}</div>` : ''}
           <div class="preco">${preco}</div>
           ${p.link ? `<a class="link-produto" href="${p.link}" target="_blank" rel="noopener sponsored" data-produto="${escHTML(p.nome)}">Ver na ${plataforma||"loja"} →</a>` : '<span class="falta">link em breve</span>'}
@@ -1547,6 +1607,13 @@ function montarRotina(perfil, periodo, container) {
   }).join("");
 
   container.innerHTML = html;
+}
+
+// Selo curto de cuidado no card do produto (o texto completo fica nos avisos do resumo).
+function cuidadoHTML(p, perfil) {
+  if (!window.PSRegras) return "";
+  const c = PSRegras.contraindicacoes(p, perfil).filter(x => x.acao === "avisar" && x.curto);
+  return c.length ? `<div class="selo-cuidado">⚠️ ${c.map(x => escHTML(x.curto)).join(" · ")}</div>` : "";
 }
 
 // ===== TABS MANHÃ/NOITE =====
@@ -1570,6 +1637,7 @@ $("btnRefazer").onclick = () => {
   ESTADO.preocupacoes = [];
   ESTADO.restaurado = null;
   ESTADO.fixos = null;
+  ESTADO.sensivelMarcado = null;
   ESTADO.doresSelfie = [];
   $("avisoLink").hidden = true;
   try { history.replaceState(null, "", location.pathname); } catch (e) {}
