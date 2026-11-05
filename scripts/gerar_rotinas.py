@@ -8,6 +8,7 @@ Depois rode  python3 _scripts/seo.py  para refazer Open Graph, JSON-LD e sitemap
 import html
 import json
 import pathlib
+import re
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://produtoskincare.com.br"
@@ -156,10 +157,19 @@ def cabeca(titulo, descricao, caminho):
 """
 
 
-RODAPE = f"""
+# Rodapé do site: o mesmo do artigo-modelo (igual a _scripts/pagina_base.py), para as rotinas
+# terem os mesmos links de navegação que o resto do site.
+_modelo = (RAIZ / "blog" / "protetor-solar-pele-oleosa" / "index.html").read_text(encoding="utf-8")
+_RODAPE_SITE = re.search(r'(<footer class="ps-rodape">.*?</footer>)', _modelo, re.S).group(1)
+
+
+def rodape(caminho):
+    site = _RODAPE_SITE.replace(f'<a href="{caminho}">', f'<a href="{caminho}" aria-current="page">', 1)
+    return f"""
 <p class="sub" style="margin-top:30px;font-size:.82rem">{AFILIADO}</p>
 <p class="sub" style="font-size:.82rem">© 2026 Produto Skincare.</p>
 </main>
+{site}
 </body>
 </html>
 """
@@ -214,7 +224,7 @@ def pagina_rotina(slug, r):
     if r.get("condicao"):
         links.append(f'<a href="{r["condicao"]}" style="margin-left:12px">Entenda a {e(r["titulo"].lower())} →</a>')
     partes.append(f'<p style="margin-top:24px">{"".join(links)}</p>')
-    partes.append(RODAPE)
+    partes.append(rodape(caminho))
     return "\n".join(partes)
 
 
@@ -233,7 +243,7 @@ def pagina_indice():
 <p class="sub" style="margin:6px 0 0;font-size:.92rem">Rotina completa a partir de {brl(minimo)}</p></a>''')
     partes.append('''</div>
 <div class="card aviso">Não sabe por onde começar? O <a href="/provador/">provador</a> estima seu tipo de pele e indica a rotina certa. Se quer só o básico por tipo de pele, veja a <a href="/rotina-de-skincare/">rotina passo a passo</a>.</div>''')
-    partes.append(RODAPE)
+    partes.append(rodape("/rotinas/"))
     return "\n".join(partes)
 
 
