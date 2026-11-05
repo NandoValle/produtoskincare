@@ -29,7 +29,8 @@ MESES = {m: i + 1 for i, m in enumerate(["janeiro", "fevereiro", "março", "abri
 ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condições", "pele": "Tipos de pele",
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
            "privacidade": "Privacidade", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
-           "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español"}
+           "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
+           "contato": "Contato", "produtos": "Produtos"}
 SECOES_ARTIGO = ("blog/", "ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
 
 
@@ -227,6 +228,7 @@ def montar_bloco(arq, url, info, texto):
     for bloco in ld:
         tags.append('<script type="application/ld+json">' + json.dumps(bloco, ensure_ascii=False) + "</script>")
     tags.append('<script src="/analytics.js" defer></script>')
+    tags.append('<script src="/canais.js" defer></script>')
     return "<!-- seo:inicio -->\n" + "\n".join(t for t in tags if t) + "\n<!-- seo:fim -->\n"
 
 

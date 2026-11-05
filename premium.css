@@ -193,3 +193,5 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-rodape-links{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media(max-width:900px){.ps-rodape-grid{grid-template-columns:1fr 1fr}.ps-rodape-marca{grid-column:1/-1}}
 @media(max-width:560px){.ps-rodape{padding-top:40px}.ps-rodape-grid{grid-template-columns:1fr;gap:32px}}
+/* Menu com 10 itens: aperta o espaço entre os links logo acima do ponto em que ele vira menu de celular (1120px). */
+@media(min-width:1121px) and (max-width:1200px){.ps-nav{gap:14px}}

@@ -26,6 +26,7 @@
 .mv-item[hidden]{display:none}
 .mv-pos{font-family:var(--fonte-display);font-size:1.3rem;width:44px;height:44px;border-radius:50%;background:var(--rosa-claro);color:var(--rosa);display:grid;place-items:center}
 .mv-corpo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.mv-refil{display:inline-block;margin-left:6px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--verde-claro);color:var(--verde)}
 .mv-cat{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--verde)}
 .mv-nome{font-size:1.15rem;margin:0;line-height:1.25}
 .mv-meta{font-size:.86rem;color:var(--suave)}
@@ -49,6 +50,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Os 50 produtos de skincare mais vendidos na Amazon", "item": "https://produtoskincare.com.br/mais-vendidos/"}]}</script>
 <script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
 <!-- seo:fim -->
 </head>
 <body>
@@ -60,9 +62,10 @@
 <p class="mv-lede">Lista montada em 02/11/2026 a partir das páginas de mais vendidos da Amazon Brasil em Pele, Dermocosméticos e Premium Beauty. Mais vendido não quer dizer melhor para a sua pele: use a lista como ponto de partida e confira no <a href="/provador/">provador</a> o que combina com você.</p>
 <p class="mv-aviso">Preços e posições são os de 02/11/2026 e mudam todo dia. Vale o preço mostrado na Amazon na hora da compra. Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</p>
 </header>
-<div class="rt-chips" role="group" aria-label="Filtrar por categoria"><button type="button" class="rt-chip" data-cat="" aria-pressed="true">Todos</button><button type="button" class="rt-chip" data-cat="Hidratante" aria-pressed="false">Hidratante</button><button type="button" class="rt-chip" data-cat="Hidratante corporal" aria-pressed="false">Hidratante corporal</button><button type="button" class="rt-chip" data-cat="Protetor solar" aria-pressed="false">Protetor solar</button><button type="button" class="rt-chip" data-cat="Hidratante reparador" aria-pressed="false">Hidratante reparador</button><button type="button" class="rt-chip" data-cat="Limpeza" aria-pressed="false">Limpeza</button><button type="button" class="rt-chip" data-cat="Sérum" aria-pressed="false">Sérum</button><button type="button" class="rt-chip" data-cat="Labial" aria-pressed="false">Labial</button><button type="button" class="rt-chip" data-cat="Kit skincare" aria-pressed="false">Kit skincare</button><button type="button" class="rt-chip" data-cat="Máscara" aria-pressed="false">Máscara</button><button type="button" class="rt-chip" data-cat="BB Cream" aria-pressed="false">BB Cream</button><button type="button" class="rt-chip" data-cat="Capilar" aria-pressed="false">Capilar</button><button type="button" class="rt-chip" data-cat="Tratamento acne" aria-pressed="false">Tratamento acne</button></div>
+<div class="rt-chips" role="group" aria-label="Filtrar por categoria"><button type="button" class="rt-chip" data-cat="" aria-pressed="true">Todos</button><button type="button" class="rt-chip" data-cat="Hidratante" aria-pressed="false">Hidratante</button><button type="button" class="rt-chip" data-cat="Hidratante corporal" aria-pressed="false">Hidratante corporal</button><button type="button" class="rt-chip" data-cat="Protetor solar" aria-pressed="false">Protetor solar</button><button type="button" class="rt-chip" data-cat="Hidratante reparador" aria-pressed="false">Hidratante reparador</button><button type="button" class="rt-chip" data-cat="Limpeza" aria-pressed="false">Limpeza</button><button type="button" class="rt-chip" data-cat="Sérum" aria-pressed="false">Sérum</button><button type="button" class="rt-chip" data-cat="Labial" aria-pressed="false">Labial</button><button type="button" class="rt-chip" data-cat="Kit skincare" aria-pressed="false">Kit skincare</button><button type="button" class="rt-chip" data-cat="Máscara" aria-pressed="false">Máscara</button><button type="button" class="rt-chip" data-cat="BB Cream" aria-pressed="false">BB Cream</button><button type="button" class="rt-chip" data-cat="Capilar" aria-pressed="false">Capilar</button><button type="button" class="rt-chip" data-cat="Tratamento acne" aria-pressed="false">Tratamento acne</button><button type="button" class="rt-chip" data-cat="__refil" aria-pressed="false">Só refil</button></div>
+<p class="mv-aviso">Refil é a versão de reposição do produto. Costuma custar menos que a embalagem original e usar menos plástico. Confira no anúncio se ele serve na embalagem que você tem.</p>
 <ol class="mv-lista" id="lista">
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 1">1</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -72,17 +75,17 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B06XQ27YLL?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Neutrogena Hydro Boost Water Gel 50g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="1">
 <span class="mv-pos" aria-label="Posição 2">2</span>
 <div class="mv-corpo">
-<span class="mv-cat">Hidratante</span>
+<span class="mv-cat">Hidratante</span> <span class="mv-refil">Refil</span>
 <h2 class="mv-nome">Neutrogena Hydro Boost Water Gel Refil 50g</h2>
 <p class="mv-meta">Neutrogena · ⭐ 4,9 (12.680 avaliações)</p>
 <p class="mv-preco"><strong>R$ 43,71</strong> <small>em 02/11/2026</small></p>
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0CB716LLZ?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Neutrogena Hydro Boost Water Gel Refil 50g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante corporal">
+<li class="mv-item" data-cat="Hidratante corporal" data-refil="">
 <span class="mv-pos" aria-label="Posição 3">3</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante corporal</span>
@@ -92,7 +95,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07RK4HST7?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="CeraVe Loção Hidratante Corporal 453g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 4">4</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -102,7 +105,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B08NVMP2YZ?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Neutrogena Sun Fresh Derm Care FPS 70 Facial 40g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 5">5</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -112,7 +115,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0DP82WCWS?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Garnier Uniform &amp; Matte Toque Seco 85g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 6">6</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -122,7 +125,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B079VXJK79?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Cetaphil Creme Hidratante 453g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 7">7</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -132,7 +135,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B08F864LDD?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="ISDIN Fusion Water 5 Stars FPS 60 50ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 8">8</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -142,7 +145,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B09SMBB1KN?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="ISDIN Fusion Water 5 Stars FPS 60">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante reparador">
+<li class="mv-item" data-cat="Hidratante reparador" data-refil="">
 <span class="mv-pos" aria-label="Posição 9">9</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante reparador</span>
@@ -152,7 +155,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B072MK7BN2?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Cicaplast Baume B5+ 40ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Limpeza">
+<li class="mv-item" data-cat="Limpeza" data-refil="">
 <span class="mv-pos" aria-label="Posição 10">10</span>
 <div class="mv-corpo">
 <span class="mv-cat">Limpeza</span>
@@ -162,7 +165,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0B3SGCCY5?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Effaclar Gel Alta Tolerância">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Limpeza">
+<li class="mv-item" data-cat="Limpeza" data-refil="">
 <span class="mv-pos" aria-label="Posição 11">11</span>
 <div class="mv-corpo">
 <span class="mv-cat">Limpeza</span>
@@ -172,7 +175,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07XP6N3BC?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="CeraVe Gel de Limpeza Facial 236ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Limpeza">
+<li class="mv-item" data-cat="Limpeza" data-refil="">
 <span class="mv-pos" aria-label="Posição 12">12</span>
 <div class="mv-corpo">
 <span class="mv-cat">Limpeza</span>
@@ -182,7 +185,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07ZD6R4QK?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Hada Labo Gokujyun Oil Cleansing 200ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 13">13</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -192,7 +195,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BD6755LC?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="NIVEA SUN Protetor Facial Toque Seco FPS 70 40ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 14">14</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -202,7 +205,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BLZVD5S5?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Ultra Cover FPS 60 com Cor 30g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 15">15</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -212,7 +215,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07Y2BK4GJ?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Minesol Oil Control FPS 70 Facial 40g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 16">16</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -222,7 +225,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0C9L4ZNZ8?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Skin Aqua Super Moisture Milk FPS 50 40g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 17">17</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -232,7 +235,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BJ347WND?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Anthelios Airlicium FPS 70">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 18">18</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -242,7 +245,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="CeraVe PM Loção Facial 52ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 19">19</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -252,7 +255,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07SJSZHD7?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Eucerin Anti-Pigment Dual Sérum 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 20">20</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -262,7 +265,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B09RL3X7RB?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Mantecorp Epidrat Calm B5 50ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 21">21</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -272,7 +275,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07VGF2P6L?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="L&#x27;Oréal Revitalift Hialurônico Noturno 49g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 22">22</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -282,7 +285,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07Y38NFPS?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Bepantol Derma Toque Seco 30g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 23">23</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -292,7 +295,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0DPB55MCY?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Bepantol Derma Rosa Mosqueta 20g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 24">24</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -302,7 +305,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B08YZJZF3S?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Neutrogena Matte 3 em 1 Sem Perfume 100g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 25">25</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -312,7 +315,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0FBDLYLSZ?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Principia Hidratante Karité + Niacinamida 50g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante corporal">
+<li class="mv-item" data-cat="Hidratante corporal" data-refil="">
 <span class="mv-pos" aria-label="Posição 26">26</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante corporal</span>
@@ -322,7 +325,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B079VPMXHF?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Cetaphil Loção Hidratante 473ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 27">27</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -332,7 +335,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B079VVY5FG?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Neutrogena Sun Fresh Corporal FPS 70 200ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante corporal">
+<li class="mv-item" data-cat="Hidratante corporal" data-refil="">
 <span class="mv-pos" aria-label="Posição 28">28</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante corporal</span>
@@ -342,7 +345,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07XP8K162?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="CeraVe Creme Hidratante Corporal 453g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante corporal">
+<li class="mv-item" data-cat="Hidratante corporal" data-refil="">
 <span class="mv-pos" aria-label="Posição 29">29</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante corporal</span>
@@ -352,7 +355,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0D8RHX3C6?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Dove Sérum Niacinamida Corporal 380ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante corporal">
+<li class="mv-item" data-cat="Hidratante corporal" data-refil="">
 <span class="mv-pos" aria-label="Posição 30">30</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante corporal</span>
@@ -362,7 +365,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B08YZGMQ3S?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Neutrogena Body Care Hidrata&amp;Repara 400ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Labial">
+<li class="mv-item" data-cat="Labial" data-refil="">
 <span class="mv-pos" aria-label="Posição 31">31</span>
 <div class="mv-corpo">
 <span class="mv-cat">Labial</span>
@@ -372,7 +375,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07LFLRQXP?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="NIVEA Hidratante Labial Amora Shine 4.8g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Labial">
+<li class="mv-item" data-cat="Labial" data-refil="">
 <span class="mv-pos" aria-label="Posição 32">32</span>
 <div class="mv-corpo">
 <span class="mv-cat">Labial</span>
@@ -382,7 +385,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B079VRBQ23?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="NIVEA Hidratante Labial Morango Shine 4.8g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 33">33</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -392,7 +395,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07JR55K68?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Vasenol Geleia de Vaselina 50g">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Kit skincare">
+<li class="mv-item" data-cat="Kit skincare" data-refil="">
 <span class="mv-pos" aria-label="Posição 34">34</span>
 <div class="mv-corpo">
 <span class="mv-cat">Kit skincare</span>
@@ -402,7 +405,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B08BZ89KKR?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="SKIN1004 Madagascar Centella Kit Viagem">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Máscara">
+<li class="mv-item" data-cat="Máscara" data-refil="">
 <span class="mv-pos" aria-label="Posição 35">35</span>
 <div class="mv-corpo">
 <span class="mv-cat">Máscara</span>
@@ -412,7 +415,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BRMYHMS5?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="medicube Colágeno Night Wrapping Mask">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 36">36</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -422,7 +425,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0DM9TL9SK?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Pure Vitamin C12 Sérum">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="BB Cream">
+<li class="mv-item" data-cat="BB Cream" data-refil="">
 <span class="mv-pos" aria-label="Posição 37">37</span>
 <div class="mv-corpo">
 <span class="mv-cat">BB Cream</span>
@@ -432,7 +435,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07WRSH9L4?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="M Perfect Cover Missha BB Cream 50ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Protetor solar">
+<li class="mv-item" data-cat="Protetor solar" data-refil="">
 <span class="mv-pos" aria-label="Posição 38">38</span>
 <div class="mv-corpo">
 <span class="mv-cat">Protetor solar</span>
@@ -442,7 +445,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0CTR4FL63?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Anthelios FPS 70 Gel Creme">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Labial">
+<li class="mv-item" data-cat="Labial" data-refil="">
 <span class="mv-pos" aria-label="Posição 39">39</span>
 <div class="mv-corpo">
 <span class="mv-cat">Labial</span>
@@ -452,7 +455,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07DBS1RV9?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="KIKO MILANO 3D Hydra Lipgloss">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Hidratante">
+<li class="mv-item" data-cat="Hidratante" data-refil="">
 <span class="mv-pos" aria-label="Posição 40">40</span>
 <div class="mv-corpo">
 <span class="mv-cat">Hidratante</span>
@@ -462,7 +465,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="CeraVe Loção Hidratante PM Ceramidas 52ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Capilar">
+<li class="mv-item" data-cat="Capilar" data-refil="">
 <span class="mv-pos" aria-label="Posição 41">41</span>
 <div class="mv-corpo">
 <span class="mv-cat">Capilar</span>
@@ -472,7 +475,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0CZ4BTRYR?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Vichy Dercos Shampoo Anticaspa 200ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Tratamento acne">
+<li class="mv-item" data-cat="Tratamento acne" data-refil="">
 <span class="mv-pos" aria-label="Posição 42">42</span>
 <div class="mv-corpo">
 <span class="mv-cat">Tratamento acne</span>
@@ -482,7 +485,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B01N7TGV3L?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="La Roche-Posay Effaclar Duo+ 40ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 43">43</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -492,7 +495,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B06Y2GX3ZD?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="The Ordinary Niacinamide 10% + Zinc 1% 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 44">44</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -502,7 +505,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B075GB4KM5?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="The Ordinary Hyaluronic Acid 2% + B5 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 45">45</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -512,7 +515,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B07CG8P6KG?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="The Ordinary Azelaic Acid 10% 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 46">46</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -522,7 +525,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BNHX8XVG?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Principia VC-10 Vitamina C 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 47">47</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -532,7 +535,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BNHY2JHZ?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Principia NC-10 Niacinamida 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 48">48</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -542,7 +545,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BNHXG5VY?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Principia AH-2 Ácido Hialurônico 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 49">49</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -552,7 +555,7 @@
 <a class="mv-btn" href="https://www.amazon.com.br/dp/B0BNHY5P7K?tag=produtoskincare-20" target="_blank" rel="sponsored nofollow noopener" data-produto="Principia RN-0,3 Retinol 30ml">Ver na Amazon ↗</a>
 </div>
 </li>
-<li class="mv-item" data-cat="Sérum">
+<li class="mv-item" data-cat="Sérum" data-refil="">
 <span class="mv-pos" aria-label="Posição 50">50</span>
 <div class="mv-corpo">
 <span class="mv-cat">Sérum</span>
@@ -577,7 +580,7 @@
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/" aria-current="page">50 mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/" aria-current="page">50 mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
 </footer>
@@ -587,7 +590,7 @@
   chips.forEach(function(c){ c.addEventListener("click", function(){
     var cat = c.dataset.cat;
     chips.forEach(function(x){ x.setAttribute("aria-pressed", String(x === c)); });
-    itens.forEach(function(i){ i.hidden = !!cat && i.dataset.cat !== cat; });
+    itens.forEach(function(i){ i.hidden = cat === "__refil" ? !i.dataset.refil : (!!cat && i.dataset.cat !== cat); });
   }); });
 })();
 </script>

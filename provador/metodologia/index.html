@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Como o provador analisa a sua foto: metodologia | Produto Skincare</title>
+<meta name="description" content="O que a selfie do provador mede (brilho, vermelhidão, textura, tom), como vira resultado, o que retiramos e os limites da análise. Tudo roda no seu aparelho.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/provador/metodologia/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Como o provador analisa a sua foto: metodologia">
+<meta property="og:description" content="O que a selfie do provador mede (brilho, vermelhidão, textura, tom), como vira resultado, o que retiramos e os limites da análise. Tudo roda no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/provador/metodologia/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/provador-metodologia.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Como o provador analisa a sua foto">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Provador", "item": "https://produtoskincare.com.br/provador/"}, {"@type": "ListItem", "position": 3, "name": "Como o provador analisa a sua foto", "item": "https://produtoskincare.com.br/provador/metodologia/"}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/provador/">Provador</a></li>
+<li aria-current="page">Como a foto é analisada</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Como o provador analisa a sua foto</h1>
+<p class="ig-meta">Por Equipe Produto Skincare · Atualizado em <time datetime="2026-11-04">4 de novembro de 2026</time></p>
+<p class="ig-lede">A selfie do provador é opcional e é analisada só no seu aparelho. Esta página explica, sem rodeios, o que a análise mede, como chega ao resultado e o que ela não consegue fazer.</p>
+</div>
+<div class="ig-caixa ig-resumo">
+<p class="ig-rotulo">Em poucas palavras</p>
+<ul>
+<li>A análise mede <b>brilho, vermelhidão, textura e uniformidade do tom</b> a partir das cores da foto.</li>
+<li>Os limites e a pontuação são <b>critérios do próprio site</b>. Eles ainda não foram validados em estudo clínico nem revisados por um dermatologista.</li>
+<li>O resultado é uma estimativa cosmética para ajudar a escolher produtos. <b>Não é diagnóstico.</b></li>
+</ul>
+</div>
+<section aria-labelledby="onde">
+<h2 id="onde">Onde a foto é processada</h2>
+<p>No seu navegador. O site carrega um detector de rosto (MediaPipe, do Google) a partir de um CDN público, e a foto nunca é enviada para servidor nenhum. Os números da análise ficam salvos só neste aparelho, para você acompanhar a evolução. Detalhes na <a href="/privacidade/">política de privacidade</a>.</p>
+</section>
+<section aria-labelledby="mede">
+<h2 id="mede">O que é medido</h2>
+<p>O detector encontra pontos de referência do rosto, como nariz e contorno. A partir deles, a análise olha uma área em volta do centro do rosto e calcula:</p>
+<table class="ig-tabela">
+<thead><tr><th>Medida</th><th>Como é calculada</th></tr></thead>
+<tbody>
+<tr><td>Brilho na zona T</td><td>Porcentagem de pontos muito claros acima da ponta do nariz (testa e nariz).</td></tr>
+<tr><td>Brilho nas bochechas</td><td>A mesma conta, abaixo do nariz.</td></tr>
+<tr><td>Vermelhidão</td><td>Porcentagem de pontos em que o vermelho fica bem acima do verde e do azul.</td></tr>
+<tr><td>Textura</td><td>Diferença média de claridade entre cada ponto e os vizinhos. Quanto maior, mais irregular parece a superfície.</td></tr>
+<tr><td>Uniformidade do tom</td><td>Quanto a claridade varia no rosto. Menos variação, tom mais uniforme.</td></tr>
+</tbody>
+</table>
+<p>No modo de 3 fotos (manhã, meio-dia e fim da tarde), a análise compara o brilho ao longo do dia para estimar se a oleosidade aparece rápido ou devagar.</p>
+</section>
+<section aria-labelledby="resultado">
+<h2 id="resultado">Como vira resultado</h2>
+<ul>
+<li><b>Tipo de pele pela foto:</b> brilho alto na zona T e nas bochechas sugere pele oleosa; brilho só no centro, mista; quase nenhum brilho, seca; o resto, normal. Esse palpite se soma às respostas do quiz, que pesam mais.</li>
+<li><b>Skin Score:</b> começa em 100 e perde pontos por brilho alto, vermelhidão, textura irregular e tom irregular. Fica sempre entre 20 e 100. É uma forma de acompanhar a sua própria evolução com fotos parecidas, não uma nota de saúde da pele nem uma comparação com outras pessoas.</li>
+<li><b>Alterações destacadas</b> (áreas mais escuras, vermelhidão, pontos, olheiras, textura): são padrões de cor que valem atenção. A foto não diz o que eles são.</li>
+</ul>
+</section>
+<section aria-labelledby="retiramos">
+<h2 id="retiramos">O que retiramos</h2>
+<p>Versões anteriores mostravam uma "idade aparente da pele" e uma comparação em percentil com uma "média da população". Retiramos as duas em novembro de 2026: a idade vinha de uma regra simples, sem estudo por trás, e a média não tinha fonte. Também tiramos frases que descreviam o que acontece nas camadas da pele, algo que uma foto não consegue ver.</p>
+</section>
+<section aria-labelledby="limites">
+<h2 id="limites">Limites que você precisa saber</h2>
+<ul>
+<li><b>Luz e câmera mudam tudo.</b> Reflexo de luz conta como brilho, sombra parece mancha, e filtros e o "modo beleza" alisam a textura. Por isso o provador pede luz natural, sem filtro e sem maquiagem.</li>
+<li><b>Os limites são fixos.</b> Eles não foram testados em todos os tons de pele. Em peles mais escuras, por exemplo, a vermelhidão costuma aparecer menos na foto, e a medida pode subestimá-la.</li>
+<li><b>Não substitui o exame.</b> Acne, melasma, rosácea e outras condições só são confirmadas por um dermatologista, que examina a pele de perto e conhece o seu histórico.</li>
+</ul>
+<div class="ig-caixa ig-alerta">
+<p><b>Procure um dermatologista</b> se tiver lesões que doem, sangram, mudam de cor ou de tamanho, acne que deixa marcas, vermelhidão que não passa ou qualquer irritação persistente, independentemente do que a análise mostrar.</p>
+</div>
+</section>
+<section aria-labelledby="validacao">
+<h2 id="validacao">Como ferramentas validadas fazem</h2>
+<p>Algumas marcas grandes treinam os algoritmos com fotos avaliadas por dermatologistas e testam o resultado em estudos. A L'Oréal, por exemplo, informa que o Spotscan+, da La Roche-Posay, foi desenvolvido com dermatologistas e testado em um estudo clínico. Mesmo assim, a própria marca diz que a ferramenta não substitui a consulta. O nosso provador ainda não passou por esse tipo de validação, e é por isso que tratamos o resultado como estimativa.</p>
+<p>Especialistas também alertam que análises de pele por inteligência artificial não devem ser usadas para diagnóstico ou aconselhamento médico.</p>
+</section>
+<section aria-labelledby="relacionados">
+<h2 id="relacionados">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/provador/">Voltar ao provador</a></li>
+<li><a href="/blog/como-saber-tipo-de-pele/">Como saber seu tipo de pele</a></li>
+<li><a href="/privacidade/">Privacidade</a></li>
+</ul>
+</section>
+<section class="ig-fontes" aria-labelledby="fontes">
+<h2 id="fontes">Fontes</h2>
+<ol>
+<li>L'Oréal. <cite>La Roche-Posay Spotscan+</cite>. <a href="https://www.loreal.com/en/articles/science-and-technology/la-roche-posay-spotscan">loreal.com</a> (informações da própria fabricante).</li>
+<li>Patient.info. <cite>AI skin analysis: what it is and why experts warn against it</cite>. <a href="https://patient.info/features/skin-conditions/ai-skin-analysis-what-it-is-and-why-experts-warn-against-it">patient.info</a></li>
+</ol>
+<p class="ig-nota">Fontes consultadas em novembro de 2026. A descrição das medidas corresponde ao código do provador nesta data.</p>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+</footer>
+</main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+</footer>
+
+</body>
+</html>

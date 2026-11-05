@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lembrete de reposição: quando seu skincare vai acabar | Produto Skincare</title>
+<meta name="description" content="Calcule quando seu protetor, sérum ou hidratante vai acabar e crie um lembrete na agenda uma semana antes. Grátis, sem cadastro, salvo só no seu aparelho.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/reposicao/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+
+.rp-form{display:flex;flex-direction:column;gap:8px}
+.rp-form label{font-weight:600;font-size:.95rem}
+.rp-form input,.rp-form select{width:100%;min-height:46px;padding:0 12px;border:1px solid var(--linha-2);border-radius:12px;background:var(--papel);color:var(--tinta)}
+.rp-grade{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+.rp-linha{display:flex;gap:8px;align-items:center}
+.rp-linha input{flex:1}.rp-linha select{width:auto;flex:0 0 76px}
+.rp-previa{font-weight:600;min-height:1.6em;margin:6px 0}
+.rp-btn{min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--rosa);color:#fff;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.rp-sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
+.rp-mini{min-height:40px;padding:0 14px;font-size:.9rem}
+@media(prefers-color-scheme:dark){.rp-btn:not(.rp-sec){color:#28131b}}
+html[data-tema=claro] .rp-btn:not(.rp-sec){color:#fff}html[data-tema=escuro] .rp-btn:not(.rp-sec){color:#28131b}
+.rp-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.rp-item{margin:0;padding:16px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);display:flex;flex-direction:column;gap:8px}
+.rp-item.perto{border-color:var(--rosa)}
+.rp-item h3{margin:0;font-size:1.25rem}
+.rp-meta{font-size:.9rem;color:var(--suave);margin:0}
+.rp-barra{height:8px;border-radius:999px;background:var(--papel-2);overflow:hidden}
+.rp-barra span{display:block;height:100%;background:var(--verde);border-radius:999px}
+.rp-item.perto .rp-barra span{background:var(--rosa)}
+.rp-botoes,.rp-acoes{display:flex;flex-wrap:wrap;gap:8px}
+@media(min-width:600px){.rp-grade{grid-template-columns:1fr 1fr}}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lembrete de reposição: quando seu skincare vai acabar">
+<meta property="og:description" content="Calcule quando seu protetor, sérum ou hidratante vai acabar e crie um lembrete na agenda uma semana antes. Grátis, sem cadastro, salvo só no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/reposicao/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-reposicao.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Quando meu produto vai acabar?">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Quando meu produto vai acabar?", "item": "https://produtoskincare.com.br/ferramentas/reposicao/"}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li aria-current="page">Lembrete de reposição</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Quando meu produto vai acabar?</h1>
+<p class="ig-lede">Informe o tamanho e como você usa. A ferramenta estima quando o produto acaba e cria um lembrete na sua agenda uma semana antes, para você não ficar sem protetor ou sem o sérum no meio da rotina.</p>
+</div>
+<div class="ig-caixa ig-resumo">
+<p class="ig-rotulo">Como funciona</p>
+<ul>
+<li>A conta é simples: tamanho da embalagem dividido pelo quanto você usa por dia.</li>
+<li>As quantidades por uso são <b>estimativas médias</b>. Ajuste ao seu jeito de usar.</li>
+<li>Quando um produto acabar, marque "Acabou". A ferramenta guarda quantos dias ele durou de verdade e usa isso na próxima vez.</li>
+<li>Tudo fica salvo só neste aparelho. Nada é enviado para o site.</li>
+</ul>
+</div>
+
+<section aria-labelledby="novo">
+<h2 id="novo">Adicionar um produto</h2>
+<form id="rp-form" class="ig-caixa rp-form" autocomplete="off">
+<label for="rp-nome">Produto</label>
+<input id="rp-nome" list="rp-catalogo" required placeholder="Comece a digitar: CeraVe, protetor, sérum…">
+<datalist id="rp-catalogo"></datalist>
+<p class="ig-nota" id="rp-dica-cat">Escolha um produto da lista para preencher sozinho, ou digite qualquer nome.</p>
+
+<div class="rp-grade">
+<div>
+<label for="rp-cat">Tipo</label>
+<select id="rp-cat">
+<option value="limpeza">Limpeza facial</option>
+<option value="tratamento">Sérum ou tratamento</option>
+<option value="hidratacao">Hidratante facial</option>
+<option value="protetor">Protetor solar facial</option>
+<option value="olhos">Área dos olhos</option>
+<option value="corpo">Hidratante corporal</option>
+<option value="outro">Outro</option>
+</select>
+</div>
+<div>
+<label for="rp-tam">Tamanho da embalagem</label>
+<div class="rp-linha"><input id="rp-tam" type="number" min="1" max="2000" step="1" required inputmode="decimal" placeholder="Ex.: 50"><select id="rp-un" aria-label="Unidade"><option>ml</option><option>g</option></select></div>
+</div>
+<div>
+<label for="rp-porcao">Quanto você usa por vez</label>
+<div class="rp-linha"><input id="rp-porcao" type="number" min="0.05" max="50" step="0.05" required inputmode="decimal"><span id="rp-porcao-un">ml</span></div>
+<p class="ig-nota" id="rp-porcao-dica"></p>
+</div>
+<div>
+<label for="rp-vezes">Vezes por dia</label>
+<select id="rp-vezes"><option value="1">1 vez</option><option value="2">2 vezes (manhã e noite)</option><option value="3">3 vezes (com reaplicação)</option></select>
+</div>
+<div>
+<label for="rp-dias">Dias por semana</label>
+<select id="rp-dias"><option value="7">Todo dia</option><option value="5">5 dias</option><option value="3">3 dias</option><option value="2">2 dias</option><option value="1">1 dia</option></select>
+</div>
+<div>
+<label for="rp-inicio">Comecei a usar em</label>
+<input id="rp-inicio" type="date" required>
+</div>
+</div>
+<p class="rp-previa" id="rp-previa" role="status"></p>
+<button type="submit" class="rp-btn">Adicionar à minha lista</button>
+</form>
+</section>
+
+<section aria-labelledby="lista">
+<h2 id="lista">Minha lista</h2>
+<div id="rp-lista"><p class="ig-nota">Nenhum produto ainda. Adicione o primeiro acima.</p></div>
+<div class="rp-acoes" id="rp-acoes" hidden>
+<button type="button" class="rp-btn rp-sec" id="rp-ics-todos">Lembretes de todos na agenda (.ics)</button>
+<button type="button" class="rp-btn rp-sec" id="rp-limpar">Apagar a lista</button>
+</div>
+<p class="ig-nota" id="rp-status" role="status"></p>
+<p class="ig-nota">O arquivo .ics abre no Google Agenda, no Calendário do iPhone e no Outlook. O lembrete fica só na sua agenda.</p>
+</section>
+
+<section aria-labelledby="economia">
+<h2 id="economia">Para pagar menos na recompra</h2>
+<ul>
+<li><b>Programe e Poupe (Amazon):</b> muitos produtos de beleza aceitam entrega recorrente com desconto. O desconto e os produtos participantes mudam, então confira no anúncio antes de assinar. Dá para pular ou cancelar uma entrega.</li>
+<li><b>Refil:</b> quando o produto tem versão refil, ela costuma custar menos e usar menos embalagem. Veja os marcados com "Refil" nos <a href="/mais-vendidos/">mais vendidos</a>.</li>
+<li><b>Preço por ml:</b> embalagens maiores nem sempre saem mais baratas. Compare o preço dividido pelo tamanho.</li>
+</ul>
+<p class="ig-nota">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</p>
+</section>
+
+<section aria-labelledby="validade">
+<h2 id="validade">E a validade depois de aberto?</h2>
+<p>Além de acabar, o produto pode vencer. Muitas embalagens trazem um símbolo de pote aberto com um número, como "12M", que indica por quantos meses ele pode ser usado depois de aberto. Se o produto mudar de cor, cheiro ou textura, descarte antes. Vitamina C pura, por exemplo, escurece quando oxida.</p>
+</section>
+
+<section aria-labelledby="relacionados">
+<h2 id="relacionados">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/rotina/">Tracker de rotina</a></li>
+<li><a href="/rotina-de-skincare/">Rotina passo a passo</a></li>
+<li><a href="/blog/rotina-de-skincare-barata/">Rotina barata</a></li>
+<li><a href="/mais-vendidos/">50 mais vendidos</a></li>
+</ul>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+</footer>
+</main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/" aria-current="page">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+</footer>
+<script src="/compartilhar.js" defer></script>
+<script>
+(function () {
+  "use strict";
+  var CHAVE = "ps_reposicao_v1";
+  var TAG = "produtoskincare-20";
+  // Quantidade média por uso (estimativa, editável). Unidade segue a da embalagem.
+  var PORCAO = {
+    limpeza: [1, "cerca de uma avelã de gel ou espuma"],
+    tratamento: [0.3, "4 a 6 gotas de sérum"],
+    hidratacao: [0.5, "um pouco menos que uma ervilha grande"],
+    protetor: [1, "a regra dos dois dedos para rosto e pescoço; ajuste se usar mais"],
+    olhos: [0.1, "um grão de arroz para os dois olhos"],
+    corpo: [5, "uma camada no corpo todo depois do banho"],
+    outro: [0.5, "ajuste ao seu uso"]
+  };
+  var DE_CATEGORIA = {
+    "Hidratante": "hidratacao", "Hidratante reparador": "hidratacao", "Hidratante corporal": "corpo",
+    "Protetor solar": "protetor", "Limpeza": "limpeza", "Sérum": "tratamento", "Tratamento acne": "tratamento"
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var catalogo = [];
+
+  function ler() {
+    try { var d = JSON.parse(localStorage.getItem(CHAVE) || "{}"); d.itens = d.itens || []; d.duracoes = d.duracoes || {}; return d; }
+    catch (e) { return { itens: [], duracoes: {} }; }
+  }
+  function salvar(d) { try { localStorage.setItem(CHAVE, JSON.stringify(d)); } catch (e) {} }
+  function chaveNome(n) { return String(n || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim(); }
+  function hojeISO() { var d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); }
+  function dataLocal(iso) { var p = iso.split("-"); return new Date(+p[0], +p[1] - 1, +p[2], 9, 0, 0); }
+  function fmt(d) { return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+  function addDias(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + Math.round(n)); return x; }
+  function nDias(n) { return n + (n === 1 ? " dia" : " dias"); }
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+
+  function tamanhoDoNome(nome) {
+    var m = String(nome).match(/(\d+(?:[.,]\d+)?)\s?(ml|g)\b/i);
+    return m ? { v: parseFloat(m[1].replace(",", ".")), un: m[2].toLowerCase() } : null;
+  }
+
+  function carregarCatalogo() {
+    return Promise.all([
+      fetch("/produtos.json").then(function (r) { return r.json(); }).catch(function () { return { produtos: [] }; }),
+      fetch("/top50-skincare-amazon.json").then(function (r) { return r.json(); }).catch(function () { return { produtos: [] }; })
+    ]).then(function (res) {
+      var vistos = {};
+      (res[0].produtos || []).forEach(function (p) {
+        var k = chaveNome(p.nome); if (vistos[k]) return; vistos[k] = 1;
+        catalogo.push({ nome: p.nome, cat: p.passo, link: p.link, tam: tamanhoDoNome(p.nome) });
+      });
+      (res[1].produtos || []).forEach(function (p) {
+        var k = chaveNome(p.nome); if (vistos[k]) return; vistos[k] = 1;
+        catalogo.push({ nome: p.nome, cat: DE_CATEGORIA[p.categoria] || "outro", link: p.link, tam: tamanhoDoNome(p.nome) });
+      });
+      var dl = $("rp-catalogo");
+      dl.innerHTML = catalogo.map(function (p) { return '<option value="' + esc(p.nome) + '"></option>'; }).join("");
+    });
+  }
+
+  function doCatalogo(nome) {
+    var k = chaveNome(nome);
+    for (var i = 0; i < catalogo.length; i++) if (chaveNome(catalogo[i].nome) === k) return catalogo[i];
+    return null;
+  }
+
+  function atualizarPorcao(forcar) {
+    var cat = $("rp-cat").value, un = $("rp-un").value;
+    var p = PORCAO[cat] || PORCAO.outro;
+    if (forcar || !$("rp-porcao").value) $("rp-porcao").value = p[0];
+    $("rp-porcao-un").textContent = un;
+    $("rp-porcao-dica").textContent = "Estimativa: " + p[1] + ".";
+  }
+
+  function calcular(v) {
+    var porDia = v.porcao * v.vezes * (v.dias / 7);
+    if (!(porDia > 0) || !(v.tam > 0)) return null;
+    return v.tam / porDia;
+  }
+
+  function valoresForm() {
+    return {
+      nome: $("rp-nome").value.trim(), cat: $("rp-cat").value,
+      tam: parseFloat($("rp-tam").value), un: $("rp-un").value,
+      porcao: parseFloat($("rp-porcao").value), vezes: +$("rp-vezes").value, dias: +$("rp-dias").value,
+      inicio: $("rp-inicio").value || hojeISO()
+    };
+  }
+
+  function previa() {
+    var v = valoresForm(), d = ler();
+    var real = d.duracoes[chaveNome(v.nome)];
+    var dias = real || calcular(v);
+    if (!dias) { $("rp-previa").textContent = ""; return; }
+    var fim = addDias(dataLocal(v.inicio), dias);
+    $("rp-previa").textContent = (real ? "Da última vez, este produto durou " + nDias(real) + ". " : "") +
+      "Deve acabar por volta de " + fmt(fim) + " (cerca de " + nDias(Math.round(dias)) + " de uso).";
+  }
+
+  function linkRecompra(item) {
+    if (item.link) return item.link;
+    return "https://www.amazon.com.br/s?k=" + encodeURIComponent(item.nome) + "&tag=" + TAG;
+  }
+
+  function lembretesDe(itens) {
+    return itens.map(function (it) {
+      var fim = new Date(it.fim);
+      var aviso = addDias(fim, -7);
+      if (aviso < new Date()) aviso = addDias(new Date(), 1);
+      aviso.setHours(9, 0, 0, 0);
+      return {
+        titulo: "Repor: " + it.nome,
+        descricao: "Seu " + it.nome + " deve acabar por volta de " + fmt(fim) + ". Recomprar: " + linkRecompra(it) + "\nLembrete criado em produtoskincare.com.br/ferramentas/reposicao/",
+        inicio: aviso
+      };
+    });
+  }
+
+  function baixar(itens, nome) {
+    if (!window.PSEnviar || !window.PSEnviar.baixarICS) { $("rp-status").textContent = "Não deu para gerar o arquivo agora. Recarregue a página."; return; }
+    window.PSEnviar.baixarICS(lembretesDe(itens), nome);
+    $("rp-status").textContent = "Arquivo baixado. Abra-o para adicionar o lembrete à sua agenda.";
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("reposicao/agenda"); } catch (e) {}
+  }
+
+  function desenhar() {
+    var d = ler(), alvo = $("rp-lista");
+    $("rp-acoes").hidden = !d.itens.length;
+    if (!d.itens.length) { alvo.innerHTML = '<p class="ig-nota">Nenhum produto ainda. Adicione o primeiro acima.</p>'; return; }
+    var agora = Date.now();
+    var itens = d.itens.slice().sort(function (a, b) { return a.fim - b.fim; });
+    alvo.innerHTML = '<ul class="rp-itens">' + itens.map(function (it) {
+      var total = it.fim - it.inicio, resta = Math.ceil((it.fim - agora) / 86400000);
+      var pct = Math.max(0, Math.min(100, 100 * (it.fim - agora) / total));
+      var perto = resta <= 7;
+      var txt = resta > 1 ? "Faltam cerca de " + resta + " dias" : resta === 1 ? "Deve acabar amanhã" : resta === 0 ? "Deve acabar hoje" : "Pela estimativa, já deveria ter acabado";
+      return '<li class="rp-item' + (perto ? " perto" : "") + '" data-id="' + it.id + '">' +
+        '<h3>' + esc(it.nome) + '</h3>' +
+        '<p class="rp-meta">' + esc(txt) + " · acaba por volta de " + fmt(new Date(it.fim)) + " · " + esc(it.tam + " " + it.un) + (it.real ? " · estimativa pela duração real" : "") + '</p>' +
+        '<div class="rp-barra" aria-hidden="true"><span style="width:' + pct.toFixed(0) + '%"></span></div>' +
+        '<div class="rp-botoes">' +
+        '<a class="rp-btn rp-mini" href="' + esc(linkRecompra(it)) + '" target="_blank" rel="sponsored noopener" data-produto="' + esc(it.nome) + '">Recomprar</a>' +
+        '<button type="button" class="rp-btn rp-sec rp-mini" data-acao="ics">Lembrete (.ics)</button>' +
+        '<button type="button" class="rp-btn rp-sec rp-mini" data-acao="acabou">Acabou</button>' +
+        '<button type="button" class="rp-btn rp-sec rp-mini" data-acao="remover">Remover</button>' +
+        '</div></li>';
+    }).join("") + "</ul>";
+  }
+
+  $("rp-lista").addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-acao]"); if (!b) return;
+    var li = b.closest("[data-id]"), id = li && li.getAttribute("data-id");
+    var d = ler(), it = d.itens.filter(function (x) { return String(x.id) === id; })[0];
+    if (!it) return;
+    var acao = b.getAttribute("data-acao");
+    if (acao === "ics") { baixar([it], "repor-" + chaveNome(it.nome).replace(/[^a-z0-9]+/g, "-").slice(0, 40) + ".ics"); return; }
+    if (acao === "acabou") {
+      var dias = Math.max(1, Math.round((Date.now() - it.inicio) / 86400000));
+      d.itens = d.itens.filter(function (x) { return x !== it; });
+      if (dias < 7 && !confirm("Faz só " + nDias(dias) + " que você começou este produto. Usar essa duração nas próximas estimativas?\n\n(Cancelar tira o produto da lista sem anotar.)")) {
+        salvar(d); desenhar(); $("rp-status").textContent = it.nome + " saiu da lista.";
+        return;
+      }
+      d.duracoes[chaveNome(it.nome)] = dias;
+      salvar(d); desenhar();
+      $("rp-status").textContent = "Anotado: durou " + nDias(dias) + ". Na próxima vez que adicionar " + it.nome + ", a estimativa usa esse número.";
+      $("rp-nome").value = it.nome; preencherDoCatalogo(); previa();
+      return;
+    }
+    if (acao === "remover") { d.itens = d.itens.filter(function (x) { return x !== it; }); salvar(d); desenhar(); }
+  });
+
+  $("rp-ics-todos").addEventListener("click", function () { baixar(ler().itens, "repor-skincare.ics"); });
+  $("rp-limpar").addEventListener("click", function () {
+    if (!confirm("Apagar todos os produtos da lista? As durações anotadas também serão apagadas.")) return;
+    try { localStorage.removeItem(CHAVE); } catch (e) {}
+    desenhar(); $("rp-status").textContent = "Lista apagada.";
+  });
+
+  function preencherDoCatalogo() {
+    var p = doCatalogo($("rp-nome").value);
+    if (!p) return;
+    $("rp-cat").value = p.cat in PORCAO ? p.cat : "outro";
+    if (p.tam) { $("rp-tam").value = p.tam.v; $("rp-un").value = p.tam.un; }
+    atualizarPorcao(true);
+    $("rp-dica-cat").textContent = p.tam ? "Preenchido pelo catálogo. Confira o tamanho na sua embalagem." : "Do catálogo, mas sem tamanho no nome: confira na embalagem e preencha.";
+  }
+
+  $("rp-nome").addEventListener("change", function () { preencherDoCatalogo(); previa(); });
+  $("rp-cat").addEventListener("change", function () { atualizarPorcao(true); previa(); });
+  $("rp-un").addEventListener("change", function () { atualizarPorcao(false); previa(); });
+  ["rp-tam", "rp-porcao", "rp-vezes", "rp-dias", "rp-inicio", "rp-nome"].forEach(function (id) { $(id).addEventListener("input", previa); });
+
+  $("rp-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var v = valoresForm(), d = ler();
+    var real = d.duracoes[chaveNome(v.nome)];
+    var dias = real || calcular(v);
+    if (!dias) { $("rp-previa").textContent = "Confira o tamanho e a quantidade por uso."; return; }
+    var ini = dataLocal(v.inicio), p = doCatalogo(v.nome);
+    d.itens.push({ id: Date.now(), nome: v.nome, tam: v.tam, un: v.un, inicio: ini.getTime(), fim: addDias(ini, dias).getTime(), link: p ? p.link : "", real: !!real });
+    salvar(d); desenhar();
+    $("rp-status").textContent = v.nome + " adicionado. Toque em \"Lembrete (.ics)\" para colocar na agenda.";
+    $("rp-form").reset(); $("rp-inicio").value = hojeISO(); atualizarPorcao(true); $("rp-previa").textContent = "";
+    $("rp-dica-cat").textContent = "Escolha um produto da lista para preencher sozinho, ou digite qualquer nome.";
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("reposicao/adicionar"); } catch (e) {}
+  });
+
+  $("rp-inicio").value = hojeISO();
+  atualizarPorcao(true);
+  desenhar();
+  carregarCatalogo().then(function () {
+    var q = new URLSearchParams(location.search).get("produto");
+    if (q) { $("rp-nome").value = q; preencherDoCatalogo(); previa(); }
+  });
+})();
+</script>
+</body>
+</html>
