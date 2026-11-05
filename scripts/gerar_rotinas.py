@@ -3,6 +3,7 @@
 
 Uso (na raiz do repositório):  python3 scripts/gerar_rotinas.py
 Rode de novo sempre que mudar rotinas.json ou os preços/links do produtos.json.
+Depois rode  python3 _scripts/seo.py  para refazer Open Graph, JSON-LD e sitemap.
 """
 import html
 import json
@@ -146,10 +147,6 @@ def cabeca(titulo, descricao, caminho):
 <title>{e(titulo)}</title>
 <meta name="description" content="{e(descricao)}">
 <link rel="canonical" href="{SITE}{caminho}">
-<meta property="og:title" content="{e(titulo)}">
-<meta property="og:description" content="{e(descricao)}">
-<meta property="og:type" content="article">
-<meta property="og:url" content="{SITE}{caminho}">
 <!-- Gerado por scripts/gerar_rotinas.py a partir de rotinas/rotinas.json. Edite o JSON, não este arquivo. -->
 {ESTILO}
 <link rel="stylesheet" href="/premium.css">
