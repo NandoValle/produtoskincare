@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contato | Produto Skincare</title>
+<meta name="description" content="Fale com o Produto Skincare: sugira um produto para analisarmos, avise um erro ou um preço desatualizado.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/contato/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+
+.ct-form{display:flex;flex-direction:column;gap:10px}
+.ct-form[hidden]{display:none}
+.ct-form fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.ct-form legend,.ct-form>label{font-weight:600;font-size:.95rem;padding:0}
+.ct-form fieldset label{display:flex;gap:10px;align-items:center;min-height:40px}
+.ct-form textarea,.ct-form input[type=url]{width:100%;padding:12px 14px;border:1px solid var(--linha-2);border-radius:12px}
+.ct-botoes{display:flex;flex-wrap:wrap;gap:8px}
+.ct-btn{min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--rosa);color:#fff;font-weight:600;cursor:pointer}
+.ct-btn[hidden]{display:none}
+.ct-sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
+@media(prefers-color-scheme:dark){.ct-btn:not(.ct-sec){color:#28131b}}
+html[data-tema=claro] .ct-btn:not(.ct-sec){color:#fff}html[data-tema=escuro] .ct-btn:not(.ct-sec){color:#28131b}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contato">
+<meta property="og:description" content="Fale com o Produto Skincare: sugira um produto para analisarmos, avise um erro ou um preço desatualizado.">
+<meta property="og:url" content="https://produtoskincare.com.br/contato/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/contato.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fale com o Produto Skincare">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Fale com o Produto Skincare", "item": "https://produtoskincare.com.br/contato/"}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li aria-current="page">Contato</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Fale com o Produto Skincare</h1>
+<p class="ig-lede">Encontrou um erro, um preço desatualizado ou um link quebrado? Quer sugerir um produto para analisarmos? Use um dos canais abaixo.</p>
+</div>
+<section aria-labelledby="canais">
+<h2 id="canais">Canais</h2>
+<div data-ps-canais>
+<p class="ig-caixa">Os canais de contato estão sendo configurados e aparecem aqui assim que estiverem prontos.</p>
+</div>
+</section>
+<section aria-labelledby="sugerir">
+<h2 id="sugerir">Sugira um produto ou avise um erro</h2>
+<p>As sugestões ajudam a decidir o que analisar a seguir. Correções de preço, link ou informação são feitas assim que conferidas, e a data de atualização da página muda.</p>
+<form class="ig-caixa ct-form" data-ps-sugerir hidden>
+<fieldset>
+<legend>Sobre o quê?</legend>
+<label><input type="radio" name="tipo" value="Sugestão de produto" checked> Sugerir um produto para analisarmos</label>
+<label><input type="radio" name="tipo" value="Correção"> Avisar um erro, preço ou link quebrado</label>
+<label><input type="radio" name="tipo" value="Dúvida"> Tirar uma dúvida sobre o site</label>
+</fieldset>
+<label for="ct-msg">Mensagem</label>
+<textarea id="ct-msg" name="mensagem" rows="5" required minlength="5" placeholder="Ex.: Vocês podem analisar o protetor X? Tenho pele oleosa e..."></textarea>
+<label for="ct-pag">Página do site (opcional)</label>
+<input id="ct-pag" name="pagina" type="url" inputmode="url" placeholder="https://produtoskincare.com.br/...">
+<div class="ct-botoes">
+<button type="button" class="ct-btn" data-via="whatsapp">Enviar pelo WhatsApp</button>
+<button type="button" class="ct-btn ct-sec" data-via="email">Enviar por e-mail</button>
+</div>
+<p class="ig-nota">A mensagem sai do seu WhatsApp ou do seu e-mail. O site não guarda o que você escreve. Não mande fotos de lesões nem dados de saúde: para isso, procure um dermatologista.</p>
+</form>
+</section>
+<div data-ps-newsletter></div>
+<section aria-labelledby="duvidas">
+<h2 id="duvidas">Dúvidas de skincare</h2>
+<p>Para dúvidas sobre rotina, ativos e protetor solar, comece pelo <a href="/provador/">provador</a>, pelas <a href="/ingredientes/">fichas de ingredientes</a> ou pela <a href="/pergunte/">Pergunte à IA</a>. O site não faz atendimento de saúde: em caso de lesão, dor, alergia ou irritação persistente, procure um dermatologista.</p>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+</footer>
+</main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+</footer>
+
+</body>
+</html>
