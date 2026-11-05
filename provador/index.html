@@ -231,6 +231,8 @@ html[data-tema="claro"]{
 .selo-evidencia.selo-emergente{background:#fff4dd;color:#7a5200;border-color:#ecd9a8}
 @media (prefers-color-scheme:dark){.selo-evidencia.selo-moderada{background:#24324a;color:#cfdcf0}.selo-evidencia.selo-emergente{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
 .outras-lojas a{color:var(--rosa)}
+.papel{font-size:.82rem;color:var(--suave);margin:2px 0 4px}
+.tipo-link{font-size:.78rem}
 .selo-cuidado{display:block;width:fit-content;margin-top:6px;font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff4dd;color:#7a5200;border:1px solid #ecd9a8}
 @media (prefers-color-scheme:dark){html:not([data-tema=claro]) .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
 html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}
@@ -337,11 +339,12 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 
 <div class="card">
 <fieldset>
-<legend style="font-size:1.05rem">Faixa de preço preferida</legend>
-<label class="opcao"><input type="radio" name="preco" value="economico"><span class="rotulo">Até R$ 60</span></label>
-<label class="opcao"><input type="radio" name="preco" value="intermediario"><span class="rotulo">R$ 60 a R$ 120</span></label>
-<label class="opcao"><input type="radio" name="preco" value="premium"><span class="rotulo">Acima de R$ 120</span></label>
-<label class="opcao"><input type="radio" name="preco" value="qualquer" checked><span class="rotulo">Sem preferência</span></label>
+<legend style="font-size:1.05rem">Quanto quer gastar por produto?</legend>
+<p class="sub" style="font-size:.85rem;margin:0 0 8px">Mostramos só produtos com preço conferido dentro da faixa. Dá para mudar depois, na tela do resultado.</p>
+<label class="opcao"><input type="radio" name="preco" value="ate50"><span class="rotulo">Até R$ 50</span></label>
+<label class="opcao"><input type="radio" name="preco" value="ate100"><span class="rotulo">Até R$ 100</span></label>
+<label class="opcao"><input type="radio" name="preco" value="ate200"><span class="rotulo">Até R$ 200</span></label>
+<label class="opcao"><input type="radio" name="preco" value="qualquer" checked><span class="rotulo">Sem limite</span></label>
 </fieldset>
 </div>
 
@@ -480,6 +483,12 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 
 <div class="card aviso rosa" id="avisoSensivel" hidden>
 <strong>Pele sensível:</strong> introduza um produto novo por vez e faça teste atrás da orelha antes de usar no rosto. Se houver vermelhidão persistente ou vasinhos, procure um dermatologista — pode ser rosácea.
+</div>
+
+<div class="card" id="cardOrcamento">
+<strong>💸 Orçamento por produto</strong>
+<div class="chips" id="chipsOrcamento" role="radiogroup" aria-label="Orçamento por produto" style="margin-top:8px"></div>
+<p class="sub" id="notaOrcamento" style="font-size:.82rem;margin:8px 0 0" aria-live="polite"></p>
 </div>
 
 <div class="rotina-tabs" role="tablist">
@@ -1029,7 +1038,42 @@ function calcularTipo() {
 }
 
 // ===== MOTOR DE RECOMENDAÇÃO =====
-const PRECOS = { economico: 60, intermediario: 120, premium: 9999, qualquer: 9999 };
+// Orçamento: teto de preço POR PRODUTO. Produto acima do teto (ou sem preço conferido)
+// não entra na rotina; o mais barato compatível aparece como referência, sem inventar preço.
+const FAIXAS_PRECO = {
+  ate50:    { teto: 50,       nome: "Até R$ 50",  frase: "até R$ 50" },
+  ate100:   { teto: 100,      nome: "Até R$ 100", frase: "até R$ 100" },
+  ate200:   { teto: 200,      nome: "Até R$ 200", frase: "até R$ 200" },
+  qualquer: { teto: Infinity, nome: "Sem limite", frase: "sem limite" }
+};
+// Links antigos (antes de 05/11/2026) usavam outras faixas: Até R$ 60, R$ 60 a 120 e acima de 120.
+const FAIXA_ANTIGA = { economico: "ate50", intermediario: "ate100", premium: "qualquer" };
+function normalizarFaixa(v) { v = FAIXA_ANTIGA[v] || v; return FAIXAS_PRECO[v] ? v : "qualquer"; }
+function tetoDaFaixa(faixa) { return (FAIXAS_PRECO[normalizarFaixa(faixa)] || FAIXAS_PRECO.qualquer).teto; }
+function cabeNaFaixa(p, faixa) {
+  const teto = tetoDaFaixa(faixa);
+  return teto === Infinity || (typeof p.preco === "number" && p.preco <= teto);
+}
+// Faixa do próprio item, mostrada no card.
+function faixaDoItem(preco) {
+  if (typeof preco !== "number") return "";
+  return preco <= 50 ? "até R$ 50" : preco <= 100 ? "R$ 50 a 100" : preco <= 200 ? "R$ 100 a 200" : "acima de R$ 200";
+}
+// Tipo de link, para dizer com honestidade o que a pessoa vai abrir. Só a tag de afiliado
+// da Amazon é reconhecida; as buscas da Shopee e do Mercado Livre do catálogo não têm.
+function tipoDeLink(link) {
+  const u = String(link || "");
+  const afiliado = /amazon\.com\.br\/.*[?&]tag=/.test(u);
+  const busca = /amazon\.com\.br\/s[?/]|shopee\.com\.br\/search|lista\.mercadolivre\.com\.br/.test(u);
+  return { afiliado, busca };
+}
+// Papel de cada passo na rotina, mostrado em cada item.
+const PAPEL_DO_PASSO = {
+  limpeza: "Tira oleosidade, suor, protetor e resíduos sem agredir a barreira da pele.",
+  tratamento: "O passo com o ativo escolhido para a sua preocupação.",
+  hidratacao: "Repõe água e ajuda a manter a barreira da pele, inclusive na pele oleosa.",
+  protetor: "Protege dos raios UVA e UVB. Indispensável de manhã, com qualquer rotina."
+};
 
 // ===== REGRAS DE SEGURANÇA (spec) =====
 const SEGURANCA = {
@@ -1150,10 +1194,7 @@ function pontuarProduto(p, perfil) {
     if (/calmante|centella|heartleaf|azelaic|cicaplast/i.test(p.nome + p.porque)) s += 1;
     if (/retinol|retinal|bha|salicil/i.test(p.nome + p.porque)) s -= 3;
   }
-  const PRECOS = { economico: 60, intermediario: 120, premium: 9999, qualquer: 9999 };
-  const limite = PRECOS[perfil.faixaPreco] || 9999;
-  if (p.preco <= limite) s += 1;
-  else s -= 2;
+  // (o orçamento é um filtro em escolherProduto, não um peso)
   if (p.preco_em) s += 1;
   if (p.avaliacao) s += Math.round(p.avaliacao - 4);
   return s;
@@ -1168,7 +1209,11 @@ function escolherProduto(passo, perfil, periodo, opcoes = {}) {
     .sort((a, b) => b.s - a.s || a.p.preco - b.p.preco);
 
   // filtrar por período se especificado
-  const doPeriodo = cands.filter(x => !periodo || x.p.periodo.includes(periodo));
+  const doPeriodoTodos = cands.filter(x => !periodo || x.p.periodo.includes(periodo));
+  // Orçamento: só entra o que cabe na faixa; o mais barato que não coube vira referência.
+  const doPeriodo = doPeriodoTodos.filter(x => cabeNaFaixa(x.p, perfil.faixaPreco));
+  const foraDaFaixa = doPeriodoTodos.filter(x => !cabeNaFaixa(x.p, perfil.faixaPreco) && typeof x.p.preco === "number")
+    .sort((a, b) => a.p.preco - b.p.preco)[0] || null;
 
   // Resultado salvo (link): o produto gravado volta para o topo, desde que ainda exista no
   // catálogo e passe nas regras acima (tipo, segurança, faixa). Se não passar, a escolha é refeita.
@@ -1195,7 +1240,8 @@ function escolherProduto(passo, perfil, periodo, opcoes = {}) {
   return {
     principal: deduplicados[0] || null,
     alternativa: deduplicados[1] || null,
-    outrasLojas: outrasLojas
+    outrasLojas: outrasLojas,
+    foraDaFaixa: foraDaFaixa
   };
 }
 
@@ -1306,10 +1352,37 @@ function calcularEMostrar(opcoes = {}) {
   // Mostrar histórico
   mostrarHistorico();
 
-  $("avisoLink").hidden = !ESTADO.restaurado;
+  // "Resultado salvo" só quando os produtos são mesmo os gravados no link
+  $("avisoLink").hidden = !(ESTADO.restaurado && ESTADO.fixos);
+  montarOrcamento(perfil);
   atualizarEnderecoEImpressao();
   if (trocarTela) mostrarTela("resultado");
 }
+
+// Seletor de orçamento na tela do resultado: trocar a faixa refaz a lista na hora.
+function montarOrcamento(perfil) {
+  const atual = normalizarFaixa(ESTADO.faixaPreco);
+  $("chipsOrcamento").innerHTML = Object.entries(FAIXAS_PRECO).map(([k, f]) =>
+    `<button type="button" class="chip${k === atual ? " on" : ""}" role="radio" aria-checked="${k === atual}" data-faixa="${k}">${f.nome}</button>`).join("");
+  const lista = produtosDaRotina(perfil, false), chaves = chavesDosPassos();
+  const vazios = chaves.filter(ch => { const [per, passo] = ch.split(":"); return !escolherProduto(passo, perfil, per).principal; }).length;
+  const datas = [...new Set(lista.map(p => p.preco_em).filter(Boolean))].sort().map(dataBR);
+  $("notaOrcamento").textContent = (atual === "qualquer" ? "Sem limite de preço. " : `Cada produto custa ${FAIXAS_PRECO[atual].frase}. `) +
+    (vazios ? `${vazios} de ${chaves.length} passos ficaram sem produto nesta faixa. ` : "") +
+    (datas.length ? `Preços vistos em ${datas.join(", ")}; confira na loja antes de comprar.` : "");
+}
+$("chipsOrcamento").addEventListener("click", e => {
+  const b = e.target.closest("[data-faixa]");
+  if (!b || b.dataset.faixa === normalizarFaixa(ESTADO.faixaPreco)) return;
+  ESTADO.faixaPreco = b.dataset.faixa;
+  ESTADO.fixos = null; // nova faixa, nova escolha de produtos
+  const radio = document.querySelector(`input[name=preco][value="${b.dataset.faixa}"]`);
+  if (radio) radio.checked = true;
+  track("orcamento", { faixa: b.dataset.faixa });
+  calcularEMostrar({ salvar: false, trocarTela: false });
+  const novo = document.querySelector(`#chipsOrcamento [data-faixa="${b.dataset.faixa}"]`);
+  if (novo) novo.focus();
+});
 
 // O endereço da página passa a ser o do resultado (dá para favoritar ou recarregar) e o
 // cabeçalho/rodapé da impressão (PDF) trazem a data e o link para reabrir.
@@ -1346,7 +1419,7 @@ const DORES_ROTINA = {
 };
 function rotinasProntasHTML(perfil) {
   const DORES = DORES_ROTINA;
-  const FAIXA = { economico: "economica", intermediario: "media", premium: "premium" };
+  const FAIXA = { ate50: "economica", ate100: "media", ate200: "premium" };
   const NOMES_FAIXA = { economica: "Econômica", media: "Intermediária", premium: "Premium" };
   const daSelfie = ESTADO.doresSelfie || [];
   const chaves = [...(perfil.preocupacoes || []), ...daSelfie].filter(c => DORES[c]);
@@ -1441,7 +1514,7 @@ function textoDoResultado() {
     linhas.push("", rotulo);
     passosDaRotina(per).forEach((passo, i) => {
       const { principal } = escolherProduto(passo, perfil, per);
-      if (!principal) { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ainda sem produto na vitrine`); return; }
+      if (!principal) { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ${tetoDaFaixa(perfil.faixaPreco) === Infinity ? "ainda sem produto na vitrine" : "nenhum produto do catálogo na faixa " + FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase}`); return; }
       const p = principal.p;
       linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ${p.nome}` + (p.preco ? ` (${brl(p.preco)} em ${dataBR(p.preco_em)})` : ""));
       if (p.link) linhas.push(`   ${p.link}`);
@@ -1545,18 +1618,22 @@ function montarRotina(perfil, periodo, container) {
   };
 
   const html = passosFiltrados.map(passo => {
-    const { principal, alternativa, outrasLojas } = escolherProduto(passo.key, perfil, periodo);
+    const { principal, alternativa, outrasLojas, foraDaFaixa } = escolherProduto(passo.key, perfil, periodo);
 
-    // CARD "O QUE PROCURAR" quando não tem produto
+    // CARD "O QUE PROCURAR" quando não tem produto (no catálogo ou dentro da faixa de preço)
     if (!principal) {
       const conc0 = perfil.preocupacoes[0];
       const dica = (O_QUE_PROCURAR[passo.key] && (O_QUE_PROCURAR[passo.key][conc0] || O_QUE_PROCURAR[passo.key][perfil.tipo] || O_QUE_PROCURAR[passo.key][perfil.sensivel ? "sensivel" : perfil.tipo])) || "produto para seu tipo de pele";
+      const f = foraDaFaixa && foraDaFaixa.p;
+      const semNaFaixa = f ? `
+            <div class="sub" style="font-size:.85rem;margin-top:6px">Nenhum produto de ${passo.nome.toLowerCase()} compatível com o seu perfil custa ${FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase} no nosso catálogo. O mais barato que encontramos: <strong>${escHTML(f.nome)}</strong>, ${brl(f.preco)} em ${dataBR(f.preco_em)} (${NOME_LOJA[f.plataforma] || "loja"})${f.link ? ` · <a href="${escHTML(f.link)}" target="_blank" rel="noopener${tipoDeLink(f.link).afiliado ? " sponsored" : ""}" data-produto="${escHTML(f.nome)}" style="color:var(--rosa)">ver</a>` : ""}. Você pode mudar o orçamento acima.</div>` : `
+            <div class="sub" style="font-size:.85rem;margin-top:4px">Ainda não temos esse produto na vitrine. Busque por essa categoria nas lojas.</div>`;
       return `
         <div class="passo">
           <div class="cat">${passo.nome}</div>
+          <div class="papel">${PAPEL_DO_PASSO[passo.key] || ""}</div>
           <div class="o-que-procurar">
-            <strong>🔍 O que procurar:</strong> ${dica}
-            <div class="sub" style="font-size:.85rem;margin-top:4px">Ainda não temos esse produto na vitrine. Busque por essa categoria nas lojas.</div>
+            <strong>🔍 O que procurar:</strong> ${dica}${semNaFaixa}
           </div>
         </div>
       `;
@@ -1564,8 +1641,10 @@ function montarRotina(perfil, periodo, container) {
 
     const p = principal.p;
     const preco = p.preco
-      ? `R$ ${p.preco.toFixed(2).replace(".", ",")} <small class="sub">em ${p.preco_em.split("-").reverse().join("/")}</small>`
+      ? `R$ ${p.preco.toFixed(2).replace(".", ",")} <small class="sub">em ${p.preco_em.split("-").reverse().join("/")} · faixa ${faixaDoItem(p.preco)}</small>`
       : '<small class="sub">ver preço na loja</small>';
+    const tl = tipoDeLink(p.link);
+    const notaLink = [tl.busca ? "abre a busca da loja" : "", tl.afiliado ? "link de afiliado" : ""].filter(Boolean).join(" · ");
 
     const estrelas = p.avaliacao ? `⭐ ${p.avaliacao} (${(p.num_avaliacoes||0).toLocaleString("pt-BR")} avaliações)` : "";
     const plataforma = NOME_LOJA[p.plataforma] || "";
@@ -1593,12 +1672,13 @@ function montarRotina(perfil, periodo, container) {
         <div>
           <div class="cat">${passo.nome} ${plataforma ? '· '+plataforma : ''}</div>
           <div class="nome">${p.nome}</div>
+          <div class="papel">${PAPEL_DO_PASSO[passo.key] || ""}</div>
           <div class="porque">${p.porque}</div>
           ${seloHTML(p)}
           ${cuidadoHTML(p, perfil)}
           ${estrelas ? `<div style="font-size:.85rem;color:var(--dourado,#c9a96e);margin-top:4px">${estrelas}</div>` : ''}
           <div class="preco">${preco}</div>
-          ${p.link ? `<a class="link-produto" href="${p.link}" target="_blank" rel="noopener sponsored" data-produto="${escHTML(p.nome)}">Ver na ${plataforma||"loja"} →</a>` : '<span class="falta">link em breve</span>'}
+          ${p.link ? `<a class="link-produto" href="${escHTML(p.link)}" target="_blank" rel="noopener${tl.afiliado ? " sponsored" : ""}" data-produto="${escHTML(p.nome)}">${tl.busca ? "Buscar" : "Ver"} na ${plataforma||"loja"} →</a>${notaLink ? ` <small class="sub tipo-link">${notaLink}</small>` : ""}` : '<span class="falta">link em breve</span>'}
           ${alt}
           ${outras}
         </div>
@@ -1697,7 +1777,7 @@ function lerLink(params) {
     pontos
   };
   ESTADO.preocupacoes = [...new Set((params.get("conc") || "").split(","))].filter(c => NOMES_CONC[c]).slice(0, 2);
-  ESTADO.faixaPreco = PRECOS[params.get("preco")] ? params.get("preco") : "qualquer";
+  ESTADO.faixaPreco = normalizarFaixa(params.get("preco"));
   ESTADO.rotina = params.get("rotina") === "3" ? 3 : 5;
   Object.keys(VALORES_LINK).forEach(k => { ESTADO[k] = VALORES_LINK[k].includes(params.get(k)) ? params.get(k) : "nd"; });
   ESTADO.isotretinoina = params.get("iso") === "1";
