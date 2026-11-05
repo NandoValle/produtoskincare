@@ -1,0 +1,349 @@
+{
+  "versao": "1.0",
+  "atualizado_em": "2026-11-04",
+  "nota": "Rotinas por dor e faixa de preço. Produtos com 'id' vêm do /produtos.json (preço e link de lá). Itens em 'extras' ainda não estão no catálogo: têm link de busca e preço 'ver na loja' até alguém confirmar o produto e trocar pelo link de afiliado direto.",
+  "faixas": {
+    "economica": { "nome": "Econômica", "descricao": "O essencial com o melhor custo-benefício." },
+    "media": { "nome": "Intermediária", "descricao": "Fórmulas mais completas e texturas mais agradáveis." },
+    "premium": { "nome": "Premium", "descricao": "Ativos patenteados e marcas dermatológicas de referência." }
+  },
+  "extras": {
+    "cetaphil-locao-limpeza": {
+      "nome": "Cetaphil Loção de Limpeza Facial",
+      "marca": "Cetaphil",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=cetaphil+locao+de+limpeza+facial&tag=produtoskincare-20",
+      "porque": "Limpeza sem espuma e sem sulfatos agressivos. Boa para pele sensível ou ressecada pelo tratamento."
+    },
+    "ordinary-salicylic": {
+      "nome": "The Ordinary Salicylic Acid 2% Solution",
+      "marca": "The Ordinary",
+      "plataforma": "mercadolivre",
+      "link": "https://lista.mercadolivre.com.br/the-ordinary-salicylic-acid-2",
+      "porque": "Ácido salicílico 2%, que penetra no óleo do poro e ajuda a desobstruir cravos."
+    },
+    "lrp-effaclar-duo": {
+      "nome": "La Roche-Posay Effaclar Duo+",
+      "marca": "La Roche-Posay",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+effaclar+duo&tag=produtoskincare-20",
+      "porque": "Creme-gel antiacne com niacinamida, LHA e zinco. Trata e hidrata no mesmo passo."
+    },
+    "lrp-effaclar-serum": {
+      "nome": "La Roche-Posay Effaclar Sérum Ultra Concentrado",
+      "marca": "La Roche-Posay",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+effaclar+serum+ultra+concentrado&tag=produtoskincare-20",
+      "porque": "Sérum com ácidos salicílico, glicólico e LHA para poros, cravos e marcas de acne."
+    },
+    "peroxido-benzoila": {
+      "nome": "Gel de peróxido de benzoíla 2,5% a 5%",
+      "marca": "Várias marcas de farmácia",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=peroxido+de+benzoila+gel&tag=produtoskincare-20",
+      "porque": "Antibacteriano clássico contra espinhas inflamadas. Pode descolorir toalhas e fronhas."
+    },
+    "bioderma-sensibio-h2o": {
+      "nome": "Bioderma Sensibio H2O Água Micelar",
+      "marca": "Bioderma",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=bioderma+sensibio+h2o&tag=produtoskincare-20",
+      "porque": "Limpeza sem enxágue e sem atrito, pensada para pele reativa."
+    },
+    "lrp-rosaliac": {
+      "nome": "La Roche-Posay Rosaliac AR Intense",
+      "marca": "La Roche-Posay",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+rosaliac&tag=produtoskincare-20",
+      "porque": "Sérum para vermelhidão persistente, sem fragrância."
+    },
+    "eucerin-hyaluron-filler-noite": {
+      "nome": "Eucerin Hyaluron-Filler Noite",
+      "marca": "Eucerin",
+      "plataforma": "amazon",
+      "link": "https://www.amazon.com.br/s?k=eucerin+hyaluron+filler+noite&tag=produtoskincare-20",
+      "porque": "Creme noturno com ácido hialurônico para hidratar e suavizar linhas de expressão."
+    },
+    "cosrx-good-morning": {
+      "nome": "COSRX Low pH Good Morning Gel Cleanser",
+      "marca": "COSRX",
+      "plataforma": "shopee",
+      "link": "https://shopee.com.br/search?keyword=cosrx%20low%20ph%20good%20morning",
+      "porque": "Gel de pH baixo com tea tree e BHA suave. Queridinho do TikTok para pele oleosa."
+    },
+    "skin1004-centella-ampoule": {
+      "nome": "Skin1004 Madagascar Centella Ampoule",
+      "marca": "Skin1004",
+      "plataforma": "shopee",
+      "link": "https://shopee.com.br/search?keyword=skin1004%20centella%20ampoule",
+      "porque": "Ampola de centella asiática, calmante. Muito viral entre quem tem pele sensível."
+    },
+    "anua-niacinamide-txa": {
+      "nome": "Anua Niacinamide 10% + TXA 4% Serum",
+      "marca": "Anua",
+      "plataforma": "shopee",
+      "link": "https://shopee.com.br/search?keyword=anua%20niacinamide%20txa",
+      "porque": "Niacinamida com ácido tranexâmico, dupla com estudos para manchas. Viral no TikTok."
+    },
+    "ghk-cu-serum": {
+      "nome": "Sérum com peptídeo de cobre (GHK-Cu)",
+      "marca": "Várias marcas (veja Achados)",
+      "plataforma": "tiktok",
+      "link": "/achados/",
+      "porque": "Peptídeo muito falado no TikTok para firmeza. Estudos ainda são pequenos."
+    }
+  },
+  "rotinas": {
+    "acne": {
+      "titulo": "Acne",
+      "emoji": "🟡",
+      "h1": "Rotina para acne em 3 faixas de preço",
+      "descricao": "Rotina de skincare para acne com opções econômica, intermediária e premium. Ativos com comprovação científica: ácido salicílico, peróxido de benzoíla, niacinamida e ácido azelaico.",
+      "resumo": "Acne nasce do excesso de sebo, do poro entupido, da bactéria C. acnes e da inflamação. Uma boa rotina ataca pelo menos dois desses pontos e não agride a barreira da pele.",
+      "condicao": "/condicoes/acne/",
+      "ativos": [
+        { "nome": "Peróxido de benzoíla", "evidencia": "Forte", "texto": "Reduz a C. acnes sem gerar resistência bacteriana. Faz parte das diretrizes de tratamento de acne." },
+        { "nome": "Retinoides (adapaleno, retinol)", "evidencia": "Forte", "texto": "Adapaleno e tretinoína são base do tratamento e pedem orientação médica. O retinol cosmético é mais fraco, mas ajuda na manutenção." },
+        { "nome": "Ácido salicílico (BHA)", "evidencia": "Moderada", "texto": "Solúvel em óleo, entra no poro e ajuda com cravos. Melhor para acne leve." },
+        { "nome": "Ácido azelaico", "evidencia": "Moderada", "texto": "Anti-inflamatório e clareia as marcas que a espinha deixa. Costuma ser bem tolerado." },
+        { "nome": "Niacinamida", "evidencia": "Moderada", "texto": "Ajuda a controlar a oleosidade e a vermelhidão. Funciona como coadjuvante." }
+      ],
+      "cuidados": [
+        "Introduza um ativo de cada vez, com 2 semanas de intervalo.",
+        "Ácido salicílico e peróxido de benzoíla: comece em noites alternadas.",
+        "Resultado aparece entre 6 e 12 semanas. Não troque de produto antes disso.",
+        "Gestantes: evite retinoides e consulte o médico antes de usar ácido salicílico."
+      ],
+      "derma": "Procure dermatologista se houver nódulos, cistos, cicatrizes se formando ou se não melhorar em 3 meses. Acne moderada a grave costuma precisar de remédio com receita.",
+      "faixas": {
+        "economica": {
+          "manha": [
+            { "passo": "limpeza", "id": "lrp-effaclar-gel" },
+            { "passo": "tratamento", "id": "ordinary-niacinamide" },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost" },
+            { "passo": "protetor", "id": "neutrogena-sun-fresh-fps70" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "lrp-effaclar-gel", "repetido": true },
+            { "passo": "tratamento", "extra": "ordinary-salicylic", "nota": "Comece 2 a 3 noites por semana." },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost", "repetido": true }
+          ]
+        },
+        "media": {
+          "manha": [
+            { "passo": "limpeza", "id": "lrp-effaclar-gel" },
+            { "passo": "tratamento", "id": "principia-niacinamida" },
+            { "passo": "hidratacao", "id": "garnier-uniform-matte" },
+            { "passo": "protetor", "id": "isdin-fusion-water-sem-cor" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "lrp-effaclar-gel", "repetido": true },
+            { "passo": "tratamento", "id": "ordinary-azelaic", "nota": "Nas noites alternadas, use o peróxido de benzoíla só sobre as espinhas." },
+            { "passo": "tratamento", "extra": "peroxido-benzoila", "nota": "Em noites alternadas com o azelaico." },
+            { "passo": "hidratacao", "id": "garnier-uniform-matte", "repetido": true }
+          ]
+        },
+        "premium": {
+          "manha": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza" },
+            { "passo": "tratamento", "extra": "lrp-effaclar-duo", "nota": "Também serve de hidratante para pele oleosa." },
+            { "passo": "protetor", "id": "isdin-fusion-water" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza", "repetido": true },
+            { "passo": "tratamento", "extra": "lrp-effaclar-serum", "nota": "Comece em noites alternadas." },
+            { "passo": "hidratacao", "id": "cerave-pm-locao" }
+          ]
+        }
+      },
+      "viral": { "extra": "cosrx-good-morning", "evidencia": "Moderada", "texto": "Boa limpeza de pH baixo, mas não trata acne sozinha. Compre de vendedor oficial e confira o registro na Anvisa." }
+    },
+    "rosacea": {
+      "titulo": "Rosácea",
+      "emoji": "🔴",
+      "h1": "Rotina para rosácea em 3 faixas de preço",
+      "descricao": "Rotina de skincare para rosácea e pele com vermelhidão, com opções econômica, intermediária e premium. Foco em barreira, ácido azelaico e protetor solar diário.",
+      "resumo": "Rosácea é uma condição inflamatória crônica, com vermelhidão, vasinhos e às vezes bolinhas. Na rotina, menos é mais: limpar sem atrito, reforçar a barreira, proteger do sol e usar poucos ativos, bem escolhidos.",
+      "condicao": "/condicoes/rosacea/",
+      "ativos": [
+        { "nome": "Ácido azelaico", "evidencia": "Forte", "texto": "Na versão de 15% (com receita) é tratamento aprovado para rosácea papulopustular. As versões cosméticas de 10% ajudam na manutenção." },
+        { "nome": "Protetor solar diário", "evidencia": "Forte", "texto": "O sol é um dos gatilhos mais comuns. Prefira fórmulas sem fragrância e sem álcool." },
+        { "nome": "Hidratante de barreira", "evidencia": "Moderada", "texto": "Ceramidas, pantenol e glicerina diminuem a ardência e a sensibilidade." },
+        { "nome": "Niacinamida em baixa concentração", "evidencia": "Moderada", "texto": "Pode melhorar a barreira. Algumas peles com rosácea ardem com 10%: teste antes." },
+        { "nome": "Centella asiática", "evidencia": "Emergente", "texto": "Calmante popular, com estudos ainda pequenos." }
+      ],
+      "cuidados": [
+        "Evite esfoliantes físicos, ácidos fortes, álcool, mentol e fragrância.",
+        "Faça teste de toque atrás da orelha por 3 dias antes de um produto novo.",
+        "Anote seus gatilhos: sol, calor, bebida alcoólica, comida apimentada e estresse são os mais comuns.",
+        "Retinol e ácido salicílico costumam piorar a rosácea. Só use com orientação médica."
+      ],
+      "derma": "Rosácea tem tratamento com receita (ivermectina, metronidazol, azelaico 15%, laser para vasinhos). Procure dermatologista para confirmar o diagnóstico, principalmente se houver bolinhas, olhos irritados ou nariz engrossando.",
+      "faixas": {
+        "economica": {
+          "manha": [
+            { "passo": "limpeza", "extra": "cetaphil-locao-limpeza", "nota": "De manhã, só água morna também serve." },
+            { "passo": "hidratacao", "id": "creamy-calming-cream" },
+            { "passo": "protetor", "id": "isdin-fusion-water-sem-cor" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "extra": "cetaphil-locao-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "ordinary-azelaic", "nota": "Comece em noites alternadas." },
+            { "passo": "hidratacao", "id": "creamy-calming-cream", "repetido": true }
+          ]
+        },
+        "media": {
+          "manha": [
+            { "passo": "limpeza", "extra": "bioderma-sensibio-h2o" },
+            { "passo": "hidratacao", "id": "mantecorp-epidrat-calm" },
+            { "passo": "protetor", "id": "isdin-fusion-water" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "extra": "bioderma-sensibio-h2o", "repetido": true },
+            { "passo": "tratamento", "id": "ordinary-azelaic" },
+            { "passo": "hidratacao", "id": "mantecorp-epidrat-calm", "repetido": true }
+          ]
+        },
+        "premium": {
+          "manha": [
+            { "passo": "limpeza", "extra": "bioderma-sensibio-h2o" },
+            { "passo": "tratamento", "extra": "lrp-rosaliac" },
+            { "passo": "protetor", "id": "lrp-ultra-cover", "nota": "A cor ajuda a disfarçar a vermelhidão." }
+          ],
+          "noite": [
+            { "passo": "limpeza", "extra": "bioderma-sensibio-h2o", "repetido": true },
+            { "passo": "tratamento", "id": "ordinary-azelaic", "nota": "Ou o azelaico 15% que o dermatologista receitar." },
+            { "passo": "hidratacao", "id": "lrp-cicaplast-baume" }
+          ]
+        }
+      },
+      "viral": { "extra": "skin1004-centella-ampoule", "evidencia": "Emergente", "texto": "Calmante e leve, mas não trata rosácea. Compre de vendedor oficial e confira o registro na Anvisa." }
+    },
+    "melasma": {
+      "titulo": "Melasma",
+      "emoji": "🟤",
+      "h1": "Rotina para melasma em 3 faixas de preço",
+      "descricao": "Rotina de skincare para melasma e manchas com opções econômica, intermediária e premium. Protetor com cor, vitamina C, ácido azelaico, niacinamida e thiamidol.",
+      "resumo": "Melasma é uma mancha crônica, ligada a sol, luz visível, hormônios e genética. Ele volta com facilidade, então a rotina é de controle a longo prazo. O protetor solar com cor é o passo mais importante.",
+      "condicao": "/condicoes/melasma/",
+      "ativos": [
+        { "nome": "Protetor com cor (óxido de ferro)", "evidencia": "Forte", "texto": "Além do UV, o óxido de ferro bloqueia parte da luz visível, que também escurece o melasma. Reaplique ao longo do dia." },
+        { "nome": "Hidroquinona", "evidencia": "Forte", "texto": "Clareador de referência, mas só com receita e por tempo limitado." },
+        { "nome": "Thiamidol", "evidencia": "Moderada", "texto": "Inibidor de tirosinase da Eucerin, com estudos clínicos, a maioria financiada pela própria marca." },
+        { "nome": "Ácido azelaico", "evidencia": "Moderada", "texto": "Clareia e é seguro na gestação." },
+        { "nome": "Ácido tranexâmico tópico", "evidencia": "Moderada", "texto": "Estudos promissores. A versão oral funciona melhor, mas exige receita." },
+        { "nome": "Vitamina C e niacinamida", "evidencia": "Moderada", "texto": "Coadjuvantes antioxidantes que ajudam a uniformizar o tom." }
+      ],
+      "cuidados": [
+        "Sem protetor diário, nenhum clareador funciona.",
+        "Evite calor intenso, sauna e procedimentos agressivos: podem escurecer a mancha.",
+        "Ácidos e retinol irritam, e irritação piora o melasma. Vá devagar.",
+        "Gestantes: evite retinoides e hidroquinona. Azelaico e vitamina C costumam ser liberados, mas confirme com o médico."
+      ],
+      "derma": "Procure dermatologista para confirmar que é melasma (outras manchas tratam diferente) e avaliar hidroquinona, ácido tranexâmico oral ou fórmulas manipuladas.",
+      "faixas": {
+        "economica": {
+          "manha": [
+            { "passo": "limpeza", "extra": "cetaphil-locao-limpeza" },
+            { "passo": "tratamento", "id": "principia-vc10" },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost" },
+            { "passo": "protetor", "id": "isdin-fusion-water-sem-cor", "nota": "Se puder, prefira a versão com cor." }
+          ],
+          "noite": [
+            { "passo": "limpeza", "extra": "cetaphil-locao-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "ordinary-azelaic" },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost", "repetido": true }
+          ]
+        },
+        "media": {
+          "manha": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza" },
+            { "passo": "tratamento", "id": "mantecorp-ivy-c-ferulic" },
+            { "passo": "protetor", "id": "lrp-ultra-cover" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "principia-niacinamida" },
+            { "passo": "hidratacao", "id": "cerave-pm-locao" }
+          ]
+        },
+        "premium": {
+          "manha": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza" },
+            { "passo": "tratamento", "id": "eucerin-anti-pigment" },
+            { "passo": "protetor", "id": "lrp-ultra-cover" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "eucerin-anti-pigment", "repetido": true, "nota": "O Dual Sérum tem uso de manhã e à noite." },
+            { "passo": "hidratacao", "id": "cerave-pm-locao" }
+          ]
+        }
+      },
+      "viral": { "extra": "anua-niacinamide-txa", "evidencia": "Moderada", "texto": "Os dois ativos têm estudos para manchas. Confirme as concentrações no rótulo, compre de vendedor oficial e confira o registro na Anvisa." }
+    },
+    "anti-age": {
+      "titulo": "Anti-age",
+      "emoji": "✨",
+      "h1": "Rotina anti-age em 3 faixas de preço",
+      "descricao": "Rotina anti-idade com opções econômica, intermediária e premium. Protetor solar, retinol e vitamina C, os ativos com mais comprovação contra linhas e flacidez.",
+      "resumo": "A maior parte do envelhecimento visível do rosto vem do sol. Por isso o trio com mais evidência é simples: protetor solar todo dia, retinoide à noite e antioxidante de manhã.",
+      "condicao": null,
+      "ativos": [
+        { "nome": "Protetor solar diário", "evidencia": "Forte", "texto": "Em um estudo de 4,5 anos na Austrália, quem usou protetor todo dia teve menos sinais de envelhecimento do que quem usou às vezes." },
+        { "nome": "Retinoides (tretinoína, retinal, retinol)", "evidencia": "Forte", "texto": "A tretinoína (com receita) é o ativo mais estudado contra rugas. O retinol é mais suave e mais lento, mas segue a mesma via." },
+        { "nome": "Vitamina C", "evidencia": "Moderada", "texto": "Antioxidante que complementa o protetor e ajuda no viço e no tom." },
+        { "nome": "Niacinamida", "evidencia": "Moderada", "texto": "Melhora a barreira, o tom e a textura. Bem tolerada." },
+        { "nome": "Peptídeos (ex.: GHK-Cu)", "evidencia": "Emergente", "texto": "Promissores em laboratório, com poucos estudos clínicos em pessoas." }
+      ],
+      "cuidados": [
+        "Retinol: comece 2 noites por semana e aumente aos poucos. Descamar no início é comum.",
+        "Não use retinol na mesma noite que ácidos esfoliantes.",
+        "Retinoides são contraindicados na gestação e na amamentação.",
+        "Resultados em linhas finas levam de 3 a 6 meses."
+      ],
+      "derma": "Para rugas profundas e flacidez, o dermatologista pode indicar tretinoína e procedimentos (laser, bioestimuladores, toxina), que vão além do que um cosmético faz.",
+      "faixas": {
+        "economica": {
+          "manha": [
+            { "passo": "limpeza", "extra": "cetaphil-locao-limpeza" },
+            { "passo": "tratamento", "id": "principia-vc10" },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost" },
+            { "passo": "protetor", "id": "isdin-fusion-water-sem-cor" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "extra": "cetaphil-locao-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "principia-rn03", "nota": "Comece 2 noites por semana. Pele seca ou sensível: use sobre o hidratante." },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost", "repetido": true }
+          ]
+        },
+        "media": {
+          "manha": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza" },
+            { "passo": "tratamento", "id": "creamy-vitamina-c" },
+            { "passo": "hidratacao", "id": "neutrogena-hydro-boost" },
+            { "passo": "protetor", "id": "isdin-fusion-water" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "loreal-revitalift-noturno" },
+            { "passo": "hidratacao", "id": "cerave-pm-locao" }
+          ]
+        },
+        "premium": {
+          "manha": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza" },
+            { "passo": "tratamento", "id": "mantecorp-ivy-c-ferulic" },
+            { "passo": "protetor", "id": "lrp-ultra-cover" }
+          ],
+          "noite": [
+            { "passo": "limpeza", "id": "cerave-gel-limpeza", "repetido": true },
+            { "passo": "tratamento", "id": "lrp-retinol-b3" },
+            { "passo": "hidratacao", "extra": "eucerin-hyaluron-filler-noite" }
+          ]
+        }
+      },
+      "viral": { "extra": "ghk-cu-serum", "evidencia": "Emergente", "texto": "Pode entrar como extra na rotina, mas não substitui protetor e retinol." }
+    }
+  }
+}
