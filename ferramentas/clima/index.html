@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Índice UV e clima de hoje: como ajustar a rotina de skincare | Produto Skincare</title>
+<meta name="description" content="O que cada nível do índice UV quer dizer, como ajustar protetor e hidratante ao clima seco ou úmido e, quando ligado, o UV de hoje na sua cidade.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/clima/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+
+.cl-form{display:flex;flex-direction:column;gap:8px}
+.cl-form label{font-weight:600}
+.cl-linha{display:flex;flex-wrap:wrap;gap:8px}
+.cl-linha input{flex:1 1 200px;min-height:48px;padding:0 14px;border:1px solid var(--linha-2);border-radius:12px;background:var(--papel);color:var(--tinta)}
+.cl-btn{min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--rosa);color:#fff;font-weight:600;cursor:pointer}
+.cl-sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
+@media(prefers-color-scheme:dark){.cl-btn:not(.cl-sec){color:#28131b}}
+html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl-btn:not(.cl-sec){color:#28131b}
+.cl-opcoes{display:flex;flex-wrap:wrap;gap:8px}
+.cl-opcoes button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--linha-2);background:transparent;color:var(--tinta);cursor:pointer}
+.cl-painel{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.cl-num{padding:14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.cl-num strong{display:block;font-family:var(--fonte-display);font-size:2rem;line-height:1.1}
+.cl-num span{font-size:.86rem;color:var(--suave)}
+.cl-cor{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c);margin-right:8px;vertical-align:middle}
+.cl-dicas{margin:0;padding-left:20px}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Índice UV e clima de hoje: como ajustar a rotina de skincare">
+<meta property="og:description" content="O que cada nível do índice UV quer dizer, como ajustar protetor e hidratante ao clima seco ou úmido e, quando ligado, o UV de hoje na sua cidade.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/clima/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-clima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Índice UV e clima de hoje: como ajustar a rotina">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Índice UV e clima de hoje: como ajustar a rotina", "item": "https://produtoskincare.com.br/ferramentas/clima/"}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li aria-current="page">Índice UV e clima</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Índice UV e clima de hoje: como ajustar a rotina</h1>
+<p class="ig-meta">Por Equipe Produto Skincare · Atualizado em <time datetime="2026-11-04">4 de novembro de 2026</time></p>
+<p class="ig-lede">O índice UV mede a força da radiação do sol que queima a pele. Ele muda com a hora, a estação e o lugar, e pode estar alto mesmo em dia nublado. A umidade do ar também muda o que a pele pede.</p>
+</div>
+
+<section aria-labelledby="hoje" id="cl-ao-vivo" hidden>
+<h2 id="hoje">UV de hoje na sua cidade</h2>
+<form id="cl-form" class="ig-caixa cl-form" autocomplete="off">
+<label for="cl-cidade">Cidade</label>
+<div class="cl-linha">
+<input id="cl-cidade" required minlength="2" placeholder="Ex.: Belo Horizonte">
+<button type="submit" class="cl-btn">Ver o UV</button>
+</div>
+<div id="cl-opcoes" class="cl-opcoes"></div>
+<p class="ig-nota">O nome da cidade é enviado ao serviço de previsão do tempo para buscar os dados. A localização exata do seu aparelho não é usada.</p>
+</form>
+<div id="cl-resultado" role="status" aria-live="polite"></div>
+</section>
+
+<section aria-labelledby="escala">
+<h2 id="escala">O que cada nível do índice UV quer dizer</h2>
+<table class="ig-tabela cl-tabela">
+<thead><tr><th>Índice</th><th>Nível</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td><span class="cl-cor" style="--c:#4c9a2a"></span>0 a 2</td><td>Baixo</td><td>Pouco risco de queimadura. Para quem tem manchas ou melasma, o protetor diário continua valendo, porque a luz visível também escurece manchas.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#d4b300"></span>3 a 5</td><td>Moderado</td><td>Proteção necessária ao ar livre: protetor, óculos escuros e sombra perto do meio-dia.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#e07b00"></span>6 a 7</td><td>Alto</td><td>Protetor FPS 30 ou mais, reaplicado a cada 2 horas fora de casa, chapéu e roupa que cubra.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#c8102e"></span>8 a 10</td><td>Muito alto</td><td>Evite o sol direto no meio do dia. Reforce chapéu, roupa e reaplicação.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#7b2c8e"></span>11 ou mais</td><td>Extremo</td><td>Fique na sombra sempre que puder. Pele desprotegida pode queimar em poucos minutos.</td></tr>
+</tbody>
+</table>
+<p class="ig-nota">Faixas da escala internacional do índice UV. A partir de 3, os serviços de previsão europeus já indicam proteção.</p>
+</section>
+
+<section aria-labelledby="umidade">
+<h2 id="umidade">E a umidade do ar?</h2>
+<p>Não há um número mágico, mas estas dicas práticas ajudam:</p>
+<ul>
+<li><b>Ar seco</b> (umidade baixa, comum no inverno do Centro-Oeste e em ambientes com ar-condicionado): a pele perde água mais rápido. Prefira hidratante mais encorpado, evite água muito quente no banho e reforce o hidratante à noite. Veja a página sobre <a href="/condicoes/desidratacao/">desidratação da pele</a>.</li>
+<li><b>Ar úmido e quente</b>: a pele costuma brilhar mais. Texturas em gel e protetor "toque seco" costumam pesar menos. Veja <a href="/blog/protetor-solar-pele-oleosa/">protetor para pele oleosa</a>.</li>
+<li><b>Calor e suor</b>: reaplique o protetor depois de suar muito ou nadar, mesmo que seja "resistente à água".</li>
+</ul>
+</section>
+
+<section aria-labelledby="relacionados">
+<h2 id="relacionados">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ingredientes/protetor-solar/">Protetor solar e fotoproteção</a></li>
+<li><a href="/blog/protetor-solar-com-cor/">Protetor com cor: como escolher o tom</a></li>
+<li><a href="/blog/protetor-solar-importancia/">Por que o protetor é o passo mais importante</a></li>
+<li><a href="/provador/">Provador</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="fontes">
+<h2 id="fontes">Fontes</h2>
+<ol>
+<li>European Climate and Health Observatory (EEA). <cite>CAMS UV index forecast</cite>. <a href="https://climate-adapt.eea.europa.eu/en/observatory/publications-data/analysis-data/cams-uv-index-forecast">climate-adapt.eea.europa.eu</a></li>
+<li>Hughes MC, et al. <cite>Sunscreen and prevention of skin aging: a randomized trial</cite>. Ann Intern Med, 2013. <a href="https://pubmed.ncbi.nlm.nih.gov/23732711/">PubMed 23732711</a> · <a href="https://doi.org/10.7326/0003-4819-158-11-201306040-00002">DOI</a></li>
+</ol>
+<p class="ig-nota">Fontes consultadas em novembro de 2026.</p>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+</footer>
+</main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/" aria-current="page">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+</footer>
+<script>
+(function () {
+  "use strict";
+  // Consulta ao vivo do UV. DESLIGADA até você confirmar a licença do serviço:
+  // a Open-Meteo é gratuita para uso não comercial; um site com links de afiliado pode precisar
+  // do plano comercial (com chave). Para ligar: ativo: true. Com plano pago, preencha chave e
+  // troque as URLs pelas do plano (confira na documentação da Open-Meteo).
+  var CONFIG = {
+    ativo: false,
+    geocodificacao: "https://geocoding-api.open-meteo.com/v1/search",
+    previsao: "https://api.open-meteo.com/v1/forecast",
+    chave: ""
+  };
+  if (!CONFIG.ativo) return;
+  var $ = function (id) { return document.getElementById(id); };
+  $("cl-ao-vivo").hidden = false;
+  var CHAVE_LOCAL = "ps_clima_cidade";
+
+  function url(base, params) {
+    if (CONFIG.chave) params.apikey = CONFIG.chave;
+    return base + "?" + new URLSearchParams(params).toString();
+  }
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function nivel(uv) {
+    if (uv < 3) return ["Baixo", "#4c9a2a"];
+    if (uv < 6) return ["Moderado", "#d4b300"];
+    if (uv < 8) return ["Alto", "#e07b00"];
+    if (uv < 11) return ["Muito alto", "#c8102e"];
+    return ["Extremo", "#7b2c8e"];
+  }
+  function mostrarErro(msg) { $("cl-resultado").innerHTML = '<p class="ig-caixa">' + esc(msg) + "</p>"; }
+
+  function previsao(lugar) {
+    try { localStorage.setItem(CHAVE_LOCAL, JSON.stringify(lugar)); } catch (e) {}
+    $("cl-resultado").innerHTML = '<p class="ig-nota">Buscando a previsão…</p>';
+    fetch(url(CONFIG.previsao, {
+      latitude: lugar.latitude, longitude: lugar.longitude, timezone: "auto", forecast_days: 1,
+      current: "temperature_2m,relative_humidity_2m", hourly: "uv_index", daily: "uv_index_max"
+    })).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+      var horas = (d.hourly && d.hourly.time) || [], uvs = (d.hourly && d.hourly.uv_index) || [];
+      var agora = d.current && d.current.time ? d.current.time.slice(0, 13) : "";
+      var i = horas.findIndex(function (h) { return h.slice(0, 13) === agora; });
+      var uvAgora = i >= 0 ? uvs[i] : null;
+      var uvMax = d.daily && d.daily.uv_index_max ? d.daily.uv_index_max[0] : null;
+      var acima = horas.filter(function (h, k) { return uvs[k] >= 3; }).map(function (h) { return +h.slice(11, 13); });
+      var janela = acima.length ? acima[0] + "h e " + (acima[acima.length - 1] + 1) + "h" : "";
+      var umid = d.current ? d.current.relative_humidity_2m : null, temp = d.current ? d.current.temperature_2m : null;
+      var nMax = uvMax != null ? nivel(uvMax) : null;
+      var dicas = [];
+      if (uvMax != null && uvMax >= 3) dicas.push("Hoje o UV passa de 3" + (janela ? " entre " + janela : "") + ". Protetor de manhã e reaplicação se ficar ao ar livre.");
+      else dicas.push("UV baixo hoje. Mesmo assim, quem tem manchas ou melasma se beneficia do protetor diário.");
+      if (uvMax != null && uvMax >= 8) dicas.push("Nível muito alto: evite o sol direto perto do meio-dia e use chapéu.");
+      if (umid != null && umid < 40) dicas.push("Ar seco agora: reforce o hidratante e prefira uma textura mais encorpada à noite.");
+      if (umid != null && umid > 75) dicas.push("Ar bem úmido: texturas em gel e protetor toque seco costumam ser mais confortáveis.");
+      var local = [lugar.name, lugar.admin1, lugar.country].filter(Boolean).join(", ");
+      $("cl-resultado").innerHTML =
+        '<div class="ig-caixa"><p class="ig-rotulo">' + esc(local) + "</p>" +
+        '<div class="cl-painel">' +
+        '<div class="cl-num"><strong>' + (uvAgora != null ? esc(Math.round(uvAgora)) : "–") + "</strong><span>UV agora</span></div>" +
+        '<div class="cl-num"><strong>' + (uvMax != null ? esc(Math.round(uvMax)) : "–") + "</strong><span>UV máximo hoje" + (nMax ? ' <span class="cl-cor" style="--c:' + nMax[1] + '"></span>' + esc(nMax[0]) : "") + "</span></div>" +
+        '<div class="cl-num"><strong>' + (umid != null ? esc(Math.round(umid)) + "%" : "–") + "</strong><span>umidade do ar</span></div>" +
+        '<div class="cl-num"><strong>' + (temp != null ? esc(Math.round(temp)) + "°" : "–") + "</strong><span>temperatura</span></div>" +
+        "</div><ul class=\"cl-dicas\">" + dicas.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
+        '<p class="ig-nota">Previsão de modelo meteorológico, não medição no local. Nuvens, altitude, areia e água mudam a exposição real.</p></div>';
+      try { if (window.PSAnalytics) window.PSAnalytics.evento("clima/consulta"); } catch (e) {}
+    }).catch(function () { mostrarErro("Não consegui buscar a previsão agora. Tente de novo em alguns minutos."); });
+  }
+
+  $("cl-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var nome = $("cl-cidade").value.trim();
+    if (nome.length < 2) return;
+    $("cl-opcoes").innerHTML = "";
+    fetch(url(CONFIG.geocodificacao, { name: nome, count: 5, language: "pt", format: "json" }))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) {
+        var res = (d && d.results) || [];
+        if (!res.length) { mostrarErro("Não encontrei essa cidade. Confira o nome."); return; }
+        if (res.length === 1) { previsao(res[0]); return; }
+        $("cl-opcoes").innerHTML = res.map(function (r, k) {
+          return '<button type="button" data-k="' + k + '">' + esc([r.name, r.admin1, r.country_code].filter(Boolean).join(", ")) + "</button>";
+        }).join("");
+        $("cl-opcoes").querySelectorAll("button").forEach(function (b) {
+          b.addEventListener("click", function () { $("cl-opcoes").innerHTML = ""; previsao(res[+b.getAttribute("data-k")]); });
+        });
+      }).catch(function () { mostrarErro("Não consegui buscar a cidade agora. Tente de novo em alguns minutos."); });
+  });
+
+  try {
+    var salvo = JSON.parse(localStorage.getItem(CHAVE_LOCAL) || "null");
+    if (salvo && salvo.latitude != null) { $("cl-cidade").value = salvo.name || ""; previsao(salvo); }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

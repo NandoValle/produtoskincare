@@ -247,6 +247,7 @@ html[data-tema="claro"]{
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubra seu tipo de pele.", "item": "https://produtoskincare.com.br/provador/"}]}</script>
 <script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
 <!-- seo:fim -->
 </head>
 <body class="ps-quiz">
@@ -337,9 +338,52 @@ html[data-tema="claro"]{
 </fieldset>
 </div>
 
+<div class="card">
+<fieldset>
+<legend style="font-size:1.05rem">Sua faixa de idade</legend>
+<label class="opcao"><input type="radio" name="idade" value="menos18"><span class="rotulo">Menos de 18 anos</span></label>
+<label class="opcao"><input type="radio" name="idade" value="18a29"><span class="rotulo">18 a 29</span></label>
+<label class="opcao"><input type="radio" name="idade" value="30a44"><span class="rotulo">30 a 44</span></label>
+<label class="opcao"><input type="radio" name="idade" value="45mais"><span class="rotulo">45 ou mais</span></label>
+<label class="opcao"><input type="radio" name="idade" value="nd" checked><span class="rotulo">Prefiro não dizer</span></label>
+</fieldset>
+</div>
+
+<div class="card">
+<fieldset>
+<legend style="font-size:1.05rem">Como sua pele reage ao sol, sem protetor?</legend>
+<label class="opcao"><input type="radio" name="sol" value="queima"><span><span class="rotulo">Queima fácil e quase não bronzeia</span></span></label>
+<label class="opcao"><input type="radio" name="sol" value="asvezes"><span><span class="rotulo">Às vezes queima e bronzeia aos poucos</span></span></label>
+<label class="opcao"><input type="radio" name="sol" value="bronzeia"><span><span class="rotulo">Raramente queima e bronzeia fácil</span></span></label>
+<label class="opcao"><input type="radio" name="sol" value="escura"><span><span class="rotulo">Quase nunca queima</span><div class="desc">Comum em peles escuras e retintas.</div></span></label>
+<label class="opcao"><input type="radio" name="sol" value="nd" checked><span class="rotulo">Não sei</span></label>
+</fieldset>
+</div>
+
+<div class="card">
+<fieldset>
+<legend style="font-size:1.05rem">O clima onde você mora é mais…</legend>
+<label class="opcao"><input type="radio" name="clima" value="seco"><span class="rotulo">Seco</span></label>
+<label class="opcao"><input type="radio" name="clima" value="umido"><span class="rotulo">Quente e úmido</span></label>
+<label class="opcao"><input type="radio" name="clima" value="varia"><span class="rotulo">Muda muito ao longo do ano</span></label>
+<label class="opcao"><input type="radio" name="clima" value="nd" checked><span class="rotulo">Não sei</span></label>
+</fieldset>
+</div>
+
+<div class="card">
+<fieldset>
+<legend style="font-size:1.05rem">Você já usa ácidos ou retinol?</legend>
+<label class="opcao"><input type="radio" name="exp" value="nunca"><span class="rotulo">Nunca usei</span></label>
+<label class="opcao"><input type="radio" name="exp" value="um"><span class="rotulo">Uso um ativo e minha pele tolera bem</span></label>
+<label class="opcao"><input type="radio" name="exp" value="varios"><span class="rotulo">Uso vários ativos</span></label>
+<label class="opcao"><input type="radio" name="exp" value="nd" checked><span class="rotulo">Não sei o que é isso</span></label>
+</fieldset>
+</div>
+
 <div class="card aviso">
 <fieldset>
 <legend style="font-size:1.05rem">Segurança</legend>
+<label class="opcao"><input type="checkbox" id="chkIsotretinoina"><span><span class="rotulo">Faço tratamento com isotretinoína oral (Roacutan e similares)</span><div class="desc">Vamos tirar ácidos e retinol da rotina. Durante o tratamento, siga o que o dermatologista orientar.</div></span></label>
 <label class="opcao"><input type="checkbox" id="chkGestante"><span><span class="rotulo">Estou gestante ou amamentando</span><div class="desc">Vamos evitar retinol e ácido salicílico, e sugerir alternativas seguras.</div></span></label>
 </fieldset>
 </div>
@@ -353,7 +397,7 @@ html[data-tema="claro"]{
 <!-- ===== SELFIE (opcional, fase 3) ===== -->
 <div id="telaSelfie" hidden>
 <h2>Quer mais precisão? 📸</h2>
-<p class="sub">Tire uma selfie e nossa análise visual soma pontos ao resultado. 100% no seu navegador — a foto não sai daqui.</p>
+<p class="sub">Tire uma selfie e nossa análise visual soma pontos ao resultado. 100% no seu navegador — a foto não sai daqui. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
 
 <div class="card aviso">
 <strong>Como tirar a foto:</strong>
@@ -424,6 +468,8 @@ html[data-tema="claro"]{
 
 <div id="painelManha" role="tabpanel"></div>
 <div id="painelNoite" role="tabpanel" hidden></div>
+
+<div id="rotinasProntas"></div>
 
 <div class="card" style="margin-top:20px">
 <p class="sub" style="font-size:.82rem;margin:0">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar. Faça teste de sensibilidade antes de usar um produto novo. Este resultado é uma estimativa cosmética, não um diagnóstico médico.</p>
@@ -557,7 +603,8 @@ const ESTADO = {
   faixaPreco: "qualquer",
   rotina: 5,
   gestante: false,
-  amamentando: false
+  amamentando: false,
+  idade: "nd", sol: "nd", clima: "nd", exp: "nd", isotretinoina: false
 };
 
 // ===== DADOS (embutidos para funcionar offline / GitHub Pages sem fetch) =====
@@ -880,6 +927,9 @@ $("btnVerResultado").onclick = () => {
   ESTADO.rotina = parseInt(document.querySelector("input[name=rotina]:checked").value);
   ESTADO.gestante = $("chkGestante").checked;
   ESTADO.amamentando = $("chkGestante").checked;
+  const marcado = nome => (document.querySelector(`input[name=${nome}]:checked`) || {}).value || "nd";
+  ESTADO.idade = marcado("idade"); ESTADO.sol = marcado("sol"); ESTADO.clima = marcado("clima"); ESTADO.exp = marcado("exp");
+  ESTADO.isotretinoina = $("chkIsotretinoina").checked;
   mostrarTela("selfie");
 };
 $("btnPrefVoltar").onclick = () => mostrarTela("preocupacoes");
@@ -989,6 +1039,16 @@ function pontuarProduto(p, perfil) {
     if (/retinol|retinal|bha|ácido salicílico/i.test(p.nome + p.porque)) return -99;
     if (/azelaico|niacinamida|hialurônico|ceramidas|vitamina c/i.test(p.nome + p.porque)) s += 2;
   }
+  const txt = p.nome + " " + p.porque + " " + (p.ativos || []).join(" ");
+  // Isotretinoína oral: sem passo de tratamento e sem ácidos ou retinoides.
+  if (perfil.isotretinoina && (p.passo === "tratamento" || /retinol|retinal|salicil|glicól|glicol|lático|mandél|azela|\bbha\b|\baha\b/i.test(txt))) return -99;
+  // Menores de 18: retinol fica de fora sem orientação médica.
+  if (perfil.idade === "menos18" && /retinol|retinal/i.test(txt)) return -99;
+  if (perfil.exp === "nunca" && /retinol|retinal/i.test(txt)) s -= 2;
+  if (perfil.clima === "seco" && p.passo === "hidratacao" && p.textura === "creme") s += 1;
+  if (perfil.clima === "umido" && (p.passo === "hidratacao" || p.passo === "protetor") && p.textura === "gel") s += 1;
+  if (p.passo === "protetor" && /com cor|pigmento/i.test(txt) &&
+      (perfil.sol === "escura" || (perfil.preocupacoes || []).includes("manchas"))) s += 1;
   const concMatch = (perfil.preocupacoes || []).filter(c => p.conc && p.conc.includes(c)).length;
   s += concMatch * 2;
   if (perfil.sensivel) {
@@ -1045,7 +1105,9 @@ function calcularEMostrar() {
     preocupacoes: ESTADO.preocupacoes,
     faixaPreco: ESTADO.faixaPreco,
     gestante: ESTADO.gestante,
-    amamentando: ESTADO.amamentando
+    amamentando: ESTADO.amamentando,
+    idade: ESTADO.idade, sol: ESTADO.sol, clima: ESTADO.clima, exp: ESTADO.exp,
+    isotretinoina: ESTADO.isotretinoina
   };
 
   // Baumann
@@ -1065,6 +1127,7 @@ function calcularEMostrar() {
       <span class="pill">${resultado.tipo.charAt(0).toUpperCase() + resultado.tipo.slice(1)}</span>
       ${resultado.sensivel ? '<span class="pill verde">Sensível</span>' : ''}
       ${ESTADO.gestante ? '<span class="pill verde">Gestante</span>' : ''}
+      ${ESTADO.isotretinoina ? '<span class="pill verde">Isotretinoína</span>' : ''}
       ${ESTADO.preocupacoes.length ? ' · foco em: ' + ESTADO.preocupacoes.map(c => `<span class="pill">${c.charAt(0).toUpperCase()+c.slice(1)}</span>`).join('') : ''}
     </p>
     <p style="margin:8px 0">${EXPLICACOES[resultado.tipo]}</p>
@@ -1091,6 +1154,10 @@ function calcularEMostrar() {
   montarRotina(perfil, "manha", $("painelManha"));
   montarRotina(perfil, "noite", $("painelNoite"));
 
+  // rotinas prontas por dor e faixa de preço (/rotinas/)
+  // Durante a isotretinoína, as rotinas prontas (com ácidos e retinoides) não são sugeridas.
+  $("rotinasProntas").innerHTML = perfil.isotretinoina ? "" : rotinasProntasHTML(perfil);
+
   // SEGURANÇA: coletar produtos escolhidos e checar avisos
   const produtosEscolhidos = [];
   ["manha","noite"].forEach(per => {
@@ -1110,8 +1177,9 @@ function calcularEMostrar() {
                      resultado.tipo === "seca" ? mostrarComparacao("seca-desidratada") : "";
 
   const extrasHTML = [
+    ...notasDoPerfil(perfil, temAtivoForte).map(a => `<div class="card aviso" style="margin:10px 0;font-size:.92rem">${a}</div>`),
     ...avisos.map(a => `<div class="card aviso rosa" style="margin:10px 0;font-size:.92rem">${a}</div>`),
-    progressaoHTML(resultado.tipo, temAtivoForte),
+    perfil.isotretinoina ? "" : progressaoHTML(resultado.tipo, temAtivoForte),
     comparacao
   ].join("");
 
@@ -1129,11 +1197,59 @@ function calcularEMostrar() {
   mostrarTela("resultado");
 }
 
+// ===== NOTAS PELAS RESPOSTAS OPCIONAIS (idade, sol, clima, experiência, isotretinoína) =====
+function notasDoPerfil(perfil, temAtivoForte) {
+  const n = [];
+  if (perfil.isotretinoina) n.push(`💊 <strong>Isotretinoína:</strong> tiramos o passo de tratamento (ácidos e retinol). Nesse período a pele costuma ficar mais seca e sensível: mantenha limpeza suave, hidratante e protetor solar, e siga o que o seu dermatologista orientar.`);
+  if (perfil.idade === "menos18") n.push(`🌱 <strong>Menos de 18 anos:</strong> uma rotina simples costuma bastar: limpeza, hidratante e protetor. Retinol ficou de fora. Se a acne incomoda ou deixa marcas, procure um dermatologista. Veja o <a href="/blog/skincare-para-adolescentes/">guia para adolescentes</a>.`);
+  if (perfil.sol === "queima") n.push(`☀️ <strong>Sua pele queima fácil:</strong> use FPS 50 ou mais, reaplique a cada 2 horas ao ar livre e combine com chapéu e sombra.`);
+  if (perfil.sol === "escura") n.push(`☀️ <strong>Pele que quase não queima também precisa de protetor</strong>, principalmente se você tem manchas. Protetor com cor protege também da luz visível. Veja <a href="/blog/protetor-solar-com-cor/">como escolher o tom</a> e o guia de <a href="/blog/skincare-pele-negra/">skincare para pele negra</a>.`);
+  else if ((perfil.preocupacoes || []).includes("manchas")) n.push(`🎨 <strong>Para manchas:</strong> protetor com cor protege também da luz visível. Veja <a href="/blog/protetor-solar-com-cor/">como escolher o tom</a>.`);
+  if (perfil.clima === "seco") n.push(`🏜️ <strong>Clima seco:</strong> priorizamos hidratantes mais encorpados. À noite, uma camada a mais de hidratante ajuda.`);
+  if (perfil.clima === "umido") n.push(`💧 <strong>Clima quente e úmido:</strong> priorizamos texturas em gel, que costumam pesar menos.`);
+  if (perfil.clima !== "nd" || perfil.sol !== "nd") n.push(`🌤️ Veja o <a href="/ferramentas/clima/">índice UV e a umidade de hoje na sua cidade</a> para ajustar a rotina.`);
+  if (perfil.exp === "nunca" && !temAtivoForte) n.push(`🧪 <strong>Primeiro ativo:</strong> comece com um de cada vez, em dias alternados, e observe a pele por duas semanas antes de acrescentar outro.`);
+  return n;
+}
+
+// ===== ROTINAS PRONTAS POR FAIXA DE PREÇO =====
+// Liga as preocupações do quiz (e as anomalias da selfie, se houver) às páginas /rotinas/<dor>/#<faixa>.
+function rotinasProntasHTML(perfil) {
+  const DORES = {
+    acne: { slug: "acne", nome: "Acne" },
+    manchas: { slug: "melasma", nome: "Melasma e manchas" },
+    melasma: { slug: "melasma", nome: "Melasma e manchas" },
+    idade: { slug: "anti-age", nome: "Anti-age" },
+    rosacea: { slug: "rosacea", nome: "Rosácea e vermelhidão" }
+  };
+  const FAIXA = { economico: "economica", intermediario: "media", premium: "premium" };
+  const NOMES_FAIXA = { economica: "Econômica", media: "Intermediária", premium: "Premium" };
+  const daSelfie = ((window.__ultimaAnalise && window.__ultimaAnalise.anomalias) || []).map(a => a.tipo);
+  const chaves = [...(perfil.preocupacoes || []), ...daSelfie].filter(c => DORES[c]);
+  const slugs = [...new Set(chaves.map(c => DORES[c].slug))];
+  const faixa = FAIXA[perfil.faixaPreco];
+  if (!slugs.length) {
+    const extra = perfil.sensivel ? ' Se você tem vermelhidão que não passa, veja a <a href="/rotinas/rosacea/">rotina para rosácea</a>.' : "";
+    return `<div class="card" style="margin-top:20px"><strong>📋 Rotinas prontas por faixa de preço</strong>
+      <p class="sub" style="margin:6px 0 0;font-size:.92rem">Temos rotinas completas para acne, rosácea, melasma e anti-age, cada uma em versão econômica, intermediária e premium. <a href="/rotinas/">Ver todas</a>.${extra}</p></div>`;
+  }
+  const itens = slugs.map(slug => {
+    const nome = Object.values(DORES).find(d => d.slug === slug).nome;
+    const botoes = Object.keys(NOMES_FAIXA).map(f =>
+      `<a class="chip${f === faixa ? " on" : ""}" style="text-decoration:none" href="/rotinas/${slug}/#${f}">${NOMES_FAIXA[f]}${f === faixa ? " ✓" : ""}</a>`
+    ).join(" ");
+    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div></div>`;
+  }).join("");
+  return `<div class="card" style="margin-top:20px"><strong>📋 Rotina pronta para a sua preocupação</strong>
+    <p class="sub" style="margin:6px 0 0;font-size:.92rem">Manhã e noite completas, com ativos que têm comprovação científica, em três faixas de preço.${faixa ? " A faixa que você escolheu está marcada." : ""}</p>
+    ${itens}</div>`;
+}
+
 // ===== CUSTO DA ROTINA E VERSÃO ECONÔMICA =====
 let ULTIMO_PERFIL = null, ULTIMO_RESULTADO = null;
 function passosDaRotina(periodo) {
   const base = periodo === "manha" ? ["limpeza","tratamento","hidratacao","protetor"] : ["limpeza","tratamento","hidratacao"];
-  return ESTADO.rotina === 3 ? base.filter(p => p !== "tratamento") : base;
+  return (ESTADO.rotina === 3 || ESTADO.isotretinoina) ? base.filter(p => p !== "tratamento") : base;
 }
 function produtosDaRotina(perfil, economica) {
   const lista = [];
@@ -1167,7 +1283,25 @@ function custoRotinaHTML(perfil) {
       ${economia}
     </ul>
     <p class="sub" style="font-size:.82rem;margin:6px 0 0">Soma de um frasco de cada produto; a maioria dura de 1 a 3 meses.${quando}</p>
+    ${carrinhoAmazonHTML(produtosDaRotina(perfil, false))}
+    <p class="sub" style="font-size:.82rem;margin:8px 0 0">Quer saber quando cada um vai acabar? Use o <a href="/ferramentas/reposicao/">lembrete de reposição</a>.</p>
   </div>`;
+}
+// Item 14: um link que coloca no carrinho da Amazon todos os produtos da rotina vendidos lá
+// (formulário "Add to Cart" da Amazon, com a tag de afiliado). Produtos de outras lojas ficam de fora.
+function carrinhoAmazonHTML(lista) {
+  const asins = [];
+  lista.forEach(p => {
+    if (p.plataforma !== "amazon") return;
+    const m = String(p.link || "").match(/\/dp\/([A-Z0-9]{10})/);
+    if (m && !asins.includes(m[1])) asins.push(m[1]);
+  });
+  if (asins.length < 2) return "";
+  const q = asins.map((a, i) => `ASIN.${i + 1}=${a}&Quantity.${i + 1}=1`).join("&");
+  const url = `https://www.amazon.com.br/gp/aws/cart/add.html?AssociateTag=produtoskincare-20&${q}`;
+  const fora = lista.length - asins.length;
+  return `<p style="margin:10px 0 0"><a class="btn" href="${url}" target="_blank" rel="sponsored noopener" data-produto="rotina-completa-amazon">🛒 Colocar os ${asins.length} produtos da Amazon no carrinho</a></p>
+    <p class="sub" style="font-size:.82rem;margin:6px 0 0">Abre o carrinho da Amazon com um frasco de cada${fora ? `; ${fora} ${fora === 1 ? "produto é" : "produtos são"} de outra loja e fica${fora === 1 ? "" : "m"} de fora` : ""}. Confira preço, vendedor e tamanho antes de finalizar. Se o carrinho abrir vazio, use os botões de cada produto. Link de afiliado.</p>`;
 }
 function textoDoResultado() {
   const r = ULTIMO_RESULTADO, perfil = ULTIMO_PERFIL;
@@ -1201,6 +1335,8 @@ function urlDoResultado() {
     rotina: ESTADO.rotina
   });
   if (ULTIMO_RESULTADO && ULTIMO_RESULTADO.sensivel) params.set("sensivel", "1");
+  ["idade", "sol", "clima", "exp"].forEach(k => { if (ESTADO[k] && ESTADO[k] !== "nd") params.set(k, ESTADO[k]); });
+  if (ESTADO.isotretinoina) params.set("iso", "1");
   return `${location.origin}${location.pathname}?${params}`;
 }
 function lembretesDoResultado() {
@@ -1251,7 +1387,7 @@ function montarRotina(perfil, periodo, container) {
     : [{ key:"limpeza", nome:"Limpeza" }, { key:"tratamento", nome:"Tratamento" }, { key:"hidratacao", nome:"Hidratação" }];
 
   // rotina de 3 passos: só limpeza, hidratação, protetor
-  const passosFiltrados = ESTADO.rotina === 3
+  const passosFiltrados = (ESTADO.rotina === 3 || ESTADO.isotretinoina)
     ? passos.filter(p => p.key !== "tratamento")
     : passos;
 
@@ -1385,6 +1521,8 @@ $("btnCompartilhar").onclick = async () => {
     ESTADO.preocupacoes = (params.get("conc") || "").split(",").filter(Boolean);
     ESTADO.faixaPreco = params.get("preco") || "qualquer";
     ESTADO.rotina = parseInt(params.get("rotina")) || 5;
+    ["idade", "sol", "clima", "exp"].forEach(k => { ESTADO[k] = params.get(k) || "nd"; });
+    ESTADO.isotretinoina = params.get("iso") === "1";
     calcularEMostrar();
   }
 })();
@@ -1823,7 +1961,7 @@ function detectarAnomalias(ctx, W, H, lm) {
         tipo: "melasma",
         regiao: reg.nome,
         severidade,
-        descricao: `Possível hiperpigmentação (excesso de melanina na epiderme) na ${reg.nome}. Histologicamente: ativação de melanócitos na camada basal.`,
+        descricao: `Área mais escura que o restante da pele na ${reg.nome}. Pode ser mancha, sombra ou efeito da luz: a foto não confirma.`,
         pct: pctMelasma * reg.peso,
         base: "epiderme (melanócitos)"
       });
@@ -1867,7 +2005,7 @@ function detectarAnomalias(ctx, W, H, lm) {
         tipo: "rosacea",
         regiao: reg.nome,
         severidade: (pctVermelhos > 35 || pctVasinhos > 3) ? "moderada" : "leve",
-        descricao: `Vermelhidão persistente nas ${reg.nome} — sugere vasos sanguíneos dilatados na derme (padrão compatível com rosácea).`,
+        descricao: `Vermelhidão nas ${reg.nome} na foto. Pode ter várias causas, como calor, irritação ou rosácea; só um dermatologista confirma.`,
         pct: pctVermelhos,
         base: "derme (vasos sanguíneos)"
       });
@@ -1911,7 +2049,7 @@ function detectarAnomalias(ctx, W, H, lm) {
       tipo: "acne",
       regiao: "rosto",
       severidade,
-      descricao: `Possíveis lesões de acne: ${papulas} pápulas (inflamação), ${pustulas} pústulas, ${comedoes} comedões. Histologicamente: obstrução folicular + hiperatividade sebácea.`,
+      descricao: `Pontos que podem ser espinhas ou cravos (cerca de ${papulas + pustulas + comedoes} na foto). A contagem pela foto é aproximada e pode confundir pintas, poros e reflexos.`,
       pct: totalAcne,
       base: "derme (glândulas sebáceas + folículos)"
     });
@@ -1973,7 +2111,7 @@ function detectarAnomalias(ctx, W, H, lm) {
       tipo: "desidratacao",
       regiao: "rosto",
       severidade: (texturaMedia > 22 || pctDescamacao > 15) ? "moderada" : "leve",
-      descricao: `Alta irregularidade de textura (${texturaMedia.toFixed(1)}) e possível descamação (${pctDescamacao.toFixed(1)}%). Histologicamente: estrato córneo com barreira comprometida (perda de lipídios).`,
+      descricao: `Textura irregular na foto (${texturaMedia.toFixed(1)}) e áreas que podem ser descamação (${pctDescamacao.toFixed(1)}%). Pode indicar ressecamento, mas foco e granulação da câmera também alteram esse número.`,
       pct: texturaMedia,
       base: "epiderme (estrato córneo)"
     });
@@ -1997,7 +2135,7 @@ function detectarAnomalias(ctx, W, H, lm) {
         tipo: "tom_irregular",
         regiao: "rosto",
         severidade: dpGeral > 45 ? "moderada" : "leve",
-        descricao: `Tom de pele desuniforme (variabilidade ${dpGeral.toFixed(0)}). Histologicamente: distribuição irregular de melanina entre queratinócitos.`,
+        descricao: `Tom de pele desuniforme na foto (variabilidade ${dpGeral.toFixed(0)}). Luz e sombra mudam bastante esse número.`,
         pct: dpGeral,
         base: "epiderme (melanócitos + queratinócitos)"
       });
@@ -2223,7 +2361,7 @@ function telemedicinaHTML(anomalias) {
         </a>
       </div>
       <p style="opacity:.6;font-size:.82rem;margin:16px 0 0">
-        Plataformas parceiras. A escolha do profissional é sua. Não recebemos indicação médica.
+        Sites externos, sem parceria com o Produto Skincare. A escolha do profissional é sua.
       </p>
     </div>
   `;
@@ -2367,6 +2505,9 @@ function estimarIdadePele(textura, vermelhidao, uniformidade, linhas) {
 
 // ===== COMPARAÇÃO COM A MÉDIA (T52) =====
 function comparacaoMediaHTML(skinScore, idadePele) {
+  // Desligado: as "médias populacionais" usadas aqui eram estimativas sem fonte,
+  // e a idade da pele não tem validação. Veja /provador/metodologia/.
+  return `<p class="sub" style="font-size:.88rem;margin-top:12px">O Skin Score é um critério do próprio site, não uma medida clínica. <a href="/provador/metodologia/">Veja como a foto é analisada</a>.</p>`;
   // Médias baseadas em dados populacionais estimados
   const medias = {
     score: { media: 68, dp: 14 },
@@ -2496,7 +2637,6 @@ Data: ${new Date().toLocaleDateString("pt-BR")}
 ========================================
 Tipo de pele estimado: ${(s.tipo || "N/A").toUpperCase()}
 Skin Score: ${s.skinScore || "N/A"}/100
-Idade aparente da pele: ${s.idadePele || "N/A"} anos
 Sensibilidade: ${s.sens ? "Sim" : "Não"}
 
 ========================================
@@ -2596,8 +2736,6 @@ async function mostrarProgresso() {
           <td style="color:${deltaBrilho <= 0 ? 'var(--verde)' : 'var(--rosa)'}">${deltaBrilho >= 0 ? '+' : ''}${deltaBrilho.toFixed(1)}%</td></tr>
         <tr><td>Vermelhidão</td><td>${primeira.vermelhidao.toFixed(1)}%</td><td>${ultima.vermelhidao.toFixed(1)}%</td>
           <td>${(ultima.vermelhidao - primeira.vermelhidao).toFixed(1)}%</td></tr>
-        <tr><td>Idade da pele</td><td>${primeira.idadePele} anos</td><td>${ultima.idadePele} anos</td>
-          <td>${ultima.idadePele - primeira.idadePele} anos</td></tr>
       </table>
       <small class="sub">Continue tirando selfies semanais para acompanhar a evolução.</small>
     </div>
@@ -2846,8 +2984,8 @@ async function analisarMultiplasFotos() {
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
           <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
-            <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${selfieEstimativa.idadePele}</div>
-            <div style="font-size:.82rem;color:var(--suave)">anos aparentes</div>
+            <div style="font-size:1.1rem;font-family:var(--fonte-display)"><a href="/provador/metodologia/">Como calculamos</a></div>
+            <div style="font-size:.82rem;color:var(--suave)">critério do site</div>
           </div>
           <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
             <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${selfieEstimativa.confianca}</div>
@@ -3008,8 +3146,8 @@ $("inputSelfie").onchange = async (e) => {
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
         <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
-          <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${idadePele}</div>
-          <div style="font-size:.82rem;color:var(--suave)">anos aparentes</div>
+          <div style="font-size:1.1rem;font-family:var(--fonte-display)"><a href="/provador/metodologia/">Como calculamos</a></div>
+          <div style="font-size:.82rem;color:var(--suave)">critério do site</div>
         </div>
         <div style="text-align:center;padding:12px;background:var(--fundo);border-radius:10px">
           <div style="font-size:1.5rem;font-weight:300;font-family:var(--fonte-display)">${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</div>
@@ -3075,7 +3213,7 @@ calcularTipo = function () {
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
 </footer>

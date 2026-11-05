@@ -40,6 +40,7 @@ a{color:var(--rosa)}
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Política de Privacidade", "item": "https://produtoskincare.com.br/privacidade/"}]}</script>
 <script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
 <!-- seo:fim -->
 </head>
 <body>
@@ -50,59 +51,73 @@ a{color:var(--rosa)}
 <p class="sub">Última atualização: 4 de novembro de 2026</p>
 
 <div class="card aviso">
-<strong>Resumo:</strong> o quiz, a selfie e os seus resultados ficam no seu navegador. Não usamos cookies e não vendemos dados. Só saem do seu aparelho: as perguntas que você faz à IA (para gerar a resposta) e, se ligada, uma contagem anônima de visitas e cliques.
+<strong>Resumo:</strong> o quiz, a selfie, a leitura de rótulos e as suas listas ficam no seu navegador. Não usamos cookies e não vendemos dados. Só saem do seu aparelho: as perguntas que você faz à IA (para gerar a resposta), o nome da cidade se você consultar o índice UV, o seu e-mail se você assinar a newsletter (vai direto para o serviço de envio), as mensagens que você mesmo mandar pelo contato e, se ligada, uma contagem anônima de visitas e cliques.
 </div>
 
 <h2>1. O que fica só no seu aparelho</h2>
-<p>O Provador roda no seu navegador. Suas respostas do quiz, as fotos da selfie e o resultado ficam apenas no seu aparelho. Usamos armazenamento local (localStorage, sessionStorage e IndexedDB) para:</p>
+<p>O Provador e as ferramentas rodam no seu navegador. Suas respostas do quiz, as fotos da selfie e os resultados ficam apenas no seu aparelho. Usamos armazenamento local (localStorage, sessionStorage e IndexedDB) para:</p>
 <ul>
 <li><strong>Histórico de resultados</strong>, para você acompanhar seu tipo de pele ao longo do tempo;</li>
 <li><strong>Preferências</strong>, como o tema claro ou escuro e o tipo de pele escolhido na página de rotina;</li>
 <li><strong>Tracker de rotina</strong>, com as marcações dos últimos 30 dias;</li>
+<li><strong>Lembrete de reposição</strong>, com os produtos que você adicionou e quantos dias cada um durou;</li>
+<li><strong>Índice UV</strong>, com a última cidade consultada;</li>
 <li><strong>Conversa com a IA</strong>, guardada só enquanto a aba estiver aberta.</li>
 </ul>
 <p>Para apagar tudo, limpe os dados deste site nas configurações do navegador.</p>
 
 <h2>2. Fotos de selfie</h2>
 <ul>
-<li>As fotos são analisadas <strong>no seu navegador</strong>, com a tecnologia MediaPipe (Google).</li>
+<li>As fotos são analisadas <strong>no seu navegador</strong>, com a tecnologia MediaPipe (Google). Veja <a href="/provador/metodologia/">o que a análise mede e os limites dela</a>.</li>
 <li><strong>Nenhuma imagem é enviada para servidores</strong>, nem nossos, nem de terceiros.</li>
 <li>Para funcionar, o navegador baixa o código do MediaPipe (jsDelivr) e o modelo de rosto (Google Cloud Storage). Esses serviços recebem o pedido de download, como em qualquer site, mas não a sua foto.</li>
 <li>Você pode recusar a câmera sem perder nenhuma função do quiz.</li>
 </ul>
 
-<h2>3. Receber resultados por WhatsApp ou e-mail</h2>
-<p>Os botões "Enviar no WhatsApp" e "Enviar por e-mail" abrem o <strong>seu</strong> WhatsApp ou o <strong>seu</strong> aplicativo de e-mail com o texto pronto. O envio é feito por você. O site não recebe nem guarda seu número, seu endereço ou o conteúdo enviado. O arquivo de lembretes (.ics) é gerado no navegador e vai só para a sua agenda.</p>
+<h2>3. Leitura do rótulo por foto</h2>
+<p>No <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>, a foto do rótulo é lida <strong>no seu navegador</strong>, com a tecnologia Tesseract.js. Na primeira vez, o navegador baixa o leitor e o arquivo de idioma do jsDelivr, que recebe o pedido de download, mas não a foto. A foto não é guardada.</p>
 
-<h2>4. Pergunte à IA</h2>
+<h2>4. Índice UV e clima</h2>
+<p>Quando a consulta ao vivo estiver ligada na página de <a href="/ferramentas/clima/">índice UV</a>, o nome da cidade que você digitar e, depois, as coordenadas dela são enviados ao serviço de previsão do tempo <strong>Open-Meteo</strong>, que devolve os dados. O site não usa a localização do seu aparelho. O serviço recebe também dados técnicos do acesso, como o endereço IP, conforme a política dele.</p>
+
+<h2>5. Receber resultados por WhatsApp ou e-mail</h2>
+<p>Os botões "Enviar no WhatsApp" e "Enviar por e-mail" abrem o <strong>seu</strong> WhatsApp ou o <strong>seu</strong> aplicativo de e-mail com o texto pronto. O envio é feito por você. O site não recebe nem guarda seu número, seu endereço ou o conteúdo enviado. Os arquivos de lembrete (.ics) são gerados no navegador e vão só para a sua agenda.</p>
+
+<h2>6. Contato e sugestões</h2>
+<p>Na página de <a href="/contato/">contato</a>, a mensagem também sai do seu WhatsApp ou do seu e-mail, mas desta vez vai para o Produto Skincare. Nesse caso recebemos o que você escreveu, junto com o seu número ou endereço, e usamos só para responder. Não mande fotos de lesões nem dados de saúde.</p>
+
+<h2>7. Newsletter</h2>
+<p>Quando a newsletter estiver ligada, o formulário envia o seu e-mail <strong>direto para o serviço de envio</strong> indicado na caixa de inscrição. O e-mail é usado só para mandar a newsletter, e todo envio tem um link para cancelar. O serviço trata os dados conforme a política dele.</p>
+
+<h2>8. Pergunte à IA</h2>
 <p>Quando você faz uma pergunta na página <a href="/pergunte/">Pergunte à IA</a>, a pergunta e as mensagens anteriores da mesma conversa são enviadas ao nosso servidor (Supabase) e dele à <strong>Anthropic</strong>, empresa da IA Claude, que gera a resposta. Nós não gravamos as conversas. A Anthropic trata esses dados conforme a <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">política de privacidade dela</a>. Não escreva dados pessoais (nome, telefone, documentos) nas perguntas. Para limitar abusos, o servidor conta por alguns minutos quantas perguntas chegam de cada endereço IP, só na memória, sem gravar.</p>
 
-<h2>5. Estatística de visitas</h2>
+<h2>9. Estatística de visitas</h2>
 <p>Podemos usar o <strong>GoatCounter</strong>, uma ferramenta de estatística sem cookies, para contar visitas às páginas e cliques nos botões de loja e de envio. Ela não identifica você e não cria perfil. Enquanto essa contagem não estiver ligada, nenhum dado é enviado. Detalhes na <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">política do GoatCounter</a>.</p>
 
-<h2>6. Cookies</h2>
+<h2>10. Cookies</h2>
 <p><strong>Não usamos cookies</strong> de rastreamento, publicidade ou estatística.</p>
 
-<h2>7. Links de afiliado</h2>
-<p>Alguns links de produtos são de afiliado (Amazon, TikTok Shop e outras lojas). Se você comprar por eles, podemos receber uma comissão, <strong>sem custo extra para você</strong>. Ao clicar, você sai do nosso site e entra na loja, que tem a própria política de privacidade.</p>
+<h2>11. Links de afiliado</h2>
+<p>Alguns links de produtos são de afiliado (Amazon, TikTok Shop e outras lojas). Se você comprar por eles, podemos receber uma comissão, <strong>sem custo extra para você</strong>. Ao clicar, você sai do nosso site e entra na loja, que tem a própria política de privacidade. O botão que coloca a rotina no carrinho da Amazon só abre o site da Amazon com os produtos escolhidos.</p>
 
-<h2>8. Outros serviços de terceiros</h2>
+<h2>12. Outros serviços de terceiros</h2>
 <ul>
 <li>As fontes do site ficam no nosso próprio servidor, exceto na página da FortSkin, que carrega fontes do <strong>Google Fonts</strong> (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política do Google</a>).</li>
 <li>O site é hospedado no <strong>GitHub Pages</strong>, que registra dados técnicos de acesso (como o endereço IP) por segurança, conforme a política do GitHub.</li>
 </ul>
 
-<h2>9. Menores de idade</h2>
+<h2>13. Menores de idade</h2>
 <p>O site não pede cadastro. Pais e responsáveis podem supervisionar o uso normalmente.</p>
 
-<h2>10. Seus direitos (LGPD)</h2>
-<p>Não mantemos cadastro nem banco de dados com informações pessoais. Os dados guardados no seu aparelho são seus e você pode apagá-los quando quiser. Sobre dados tratados pela Anthropic, pelo GoatCounter ou pelas lojas, procure esses serviços diretamente.</p>
+<h2>14. Seus direitos (LGPD)</h2>
+<p>Não mantemos cadastro nem banco de dados com informações pessoais. Os dados guardados no seu aparelho são seus e você pode apagá-los quando quiser. Se você nos mandou uma mensagem pelo contato, pode pedir que ela seja apagada pelo mesmo canal. Sobre dados tratados pela Anthropic, pelo serviço de newsletter, pela Open-Meteo, pelo GoatCounter ou pelas lojas, procure esses serviços diretamente.</p>
 
-<h2>11. Mudanças nesta política</h2>
+<h2>15. Mudanças nesta política</h2>
 <p>Se mudarmos esta política, atualizaremos a data no topo da página.</p>
 
-<h2>12. Contato</h2>
-<p>Um canal de contato para dúvidas sobre privacidade será publicado aqui em breve. Veja também a página <a href="/sobre/">Sobre o site</a>.</p>
+<h2>16. Contato</h2>
+<p>Dúvidas sobre privacidade? Use a página de <a href="/contato/">contato</a>. Veja também a página <a href="/sobre/">Sobre o site</a>.</p>
 
 <div class="card aviso">
 <strong>Disclaimer:</strong> Este site é uma ferramenta cosmética de estimativa. Não é diagnóstico médico e não substitui consulta com dermatologista.
@@ -120,7 +135,7 @@ a{color:var(--rosa)}
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/" aria-current="page">Privacidade</a></span></div>
 </footer>
