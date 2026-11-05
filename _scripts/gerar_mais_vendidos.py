@@ -51,12 +51,13 @@ for p in produtos:
 </li>""")
 
 itens_ld = [{"@type": "ListItem", "position": p["rank"], "name": p["nome"], "url": p["link"].split("?")[0]} for p in produtos]
-ld = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "name": "50 produtos de skincare mais vendidos na Amazon Brasil",
+ld = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "name": "Produtos de skincare mais vendidos na Amazon Brasil",
                  "numberOfItems": len(produtos), "itemListElement": itens_ld}, ensure_ascii=False)
 
 botoes = "".join(f'<button type="button" class="rt-chip" data-cat="{e(c)}" aria-pressed="false">{e(c)}</button>' for c in categorias)
 if tem_refil:
     botoes += '<button type="button" class="rt-chip" data-cat="__refil" aria-pressed="false">Só refil</button>'
+nota_revisao = (f'<p>{e(dados["revisao"])}</p>' if dados.get("revisao") else "")
 nota_refil = ('<p class="mv-aviso">Refil é a versão de reposição do produto. Costuma custar menos que a embalagem original '
               'e usar menos plástico. Confira no anúncio se ele serve na embalagem que você tem.</p>') if tem_refil else ""
 
@@ -65,8 +66,8 @@ pagina = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>50 Skincare Mais Vendidos na Amazon ({data_br[3:]}) | Produto Skincare</title>
-<meta name="description" content="Os 50 produtos de skincare mais vendidos na Amazon Brasil em {data_br}: hidratantes, protetores, séruns e limpeza, com preço datado e avaliações.">
+<title>Skincare Mais Vendidos na Amazon ({data_br[3:]}) | Produto Skincare</title>
+<meta name="description" content="Os produtos de skincare mais vendidos na Amazon Brasil em {data_br}: hidratantes, protetores, séruns e limpeza, com preço datado e avaliações.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://produtoskincare.com.br/mais-vendidos/">
 <link rel="stylesheet" href="/premium.css">
@@ -106,7 +107,7 @@ pagina = f"""<!doctype html>
 <header class="mv-top">
 <a class="marca" href="/">Produto <span>Skincare</span></a>
 <nav class="mv-trilha" aria-label="Trilha"><a href="/">Início</a> › Mais vendidos</nav>
-<h1>Os 50 produtos de skincare mais vendidos na Amazon</h1>
+<h1>Os produtos de skincare mais vendidos na Amazon</h1>
 <p class="mv-lede">Lista montada em {data_br} a partir das páginas de mais vendidos da Amazon Brasil em Pele, Dermocosméticos e Premium Beauty. Mais vendido não quer dizer melhor para a sua pele: use a lista como ponto de partida e confira no <a href="/provador/">provador</a> o que combina com você.</p>
 <p class="mv-aviso">Preços e posições são os de {data_br} e mudam todo dia. Vale o preço mostrado na Amazon na hora da compra. Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</p>
 </header>
@@ -117,6 +118,7 @@ pagina = f"""<!doctype html>
 </ol>
 <footer class="mv-foot">
 <p>Fonte: {e(dados['fonte'])}, consultada em {data_br}. A ordem segue a nossa compilação dessas listas e pode não coincidir com a posição atual em cada uma.</p>
+{nota_revisao}
 <p>Conteúdo informativo, não substitui consulta com dermatologista. <a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o site</a></p>
 </footer>
 </main>

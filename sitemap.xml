@@ -391,6 +391,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/queridinhos-do-skincare/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/rotina-de-skincare/</loc>
     <lastmod>2026-11-05</lastmod>
     <priority>0.8</priority>
@@ -423,11 +428,6 @@
   <url>
     <loc>https://produtoskincare.com.br/sobre/</loc>
     <lastmod>2026-11-05</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://produtoskincare.com.br/queridinhos-do-skincare/</loc>
-    <lastmod>2026-11-04</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
