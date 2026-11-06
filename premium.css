@@ -224,3 +224,15 @@ h1,h2,h3{letter-spacing:-.025em}
 html[data-tema=escuro] .ps-photo img{filter:brightness(.88)}
 html[data-tema=escuro] .ps-skin-visual{filter:brightness(.9) saturate(.96)}
 html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter:none}
+
+/* Guias de tipo de pele: no celular cada linha da tabela vira um bloco (passo / produto / por quê), sem corte nem rolagem lateral. */
+@media(max-width:640px){
+ table.tabela-guia{display:block;overflow:visible;border:0}
+ table.tabela-guia tbody,table.tabela-guia tr,table.tabela-guia td{display:block;width:auto}
+ table.tabela-guia tr:first-child{display:none}
+ table.tabela-guia tr{padding:14px 0;border-bottom:1px solid var(--linha)}
+ table.tabela-guia td{border:0;padding:4px 0}
+ table.tabela-guia td::before{content:attr(data-label);display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+ table.tabela-guia td:first-child::before{content:none}
+ table.tabela-guia td:first-child{font-size:1rem}
+}
