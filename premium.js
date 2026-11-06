@@ -4,7 +4,7 @@
   const button = header?.querySelector('.ps-menu');
   const navigation = document.getElementById('site-navigation');
   if (button && navigation) {
-    const mobile = matchMedia('(max-width: 1120px)');
+    const mobile = matchMedia('(max-width: 1240px)');
     const setOpen = (open) => {
       button.setAttribute('aria-expanded', String(open));
       navigation.hidden = mobile.matches && !open;
