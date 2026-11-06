@@ -1,8 +1,9 @@
-const CACHE = "provador-premium-20261105-menu";
+const CACHE = "provador-premium-20261106-regras-menu";
 const ASSETS = [
   "/premium.css",
   "/premium.js",
   "/compartilhar.js",
+  "/regras-ativos.js",
   "/fonts/cormorant-500.ttf",
   "/fonts/manrope-400.ttf",
   "/fonts/manrope-600.ttf",

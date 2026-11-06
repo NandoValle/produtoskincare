@@ -19,7 +19,10 @@ const MAX_CARACTERES = 1500;       // por mensagem
 const LIMITE_POR_IP = 20;          // perguntas por janela
 const JANELA_MS = 10 * 60 * 1000;  // 10 minutos
 
-const client = new Anthropic(); // lê ANTHROPIC_API_KEY do ambiente
+// Lê a chave de forma explícita (no Deno o SDK pode não enxergar process.env).
+const CHAVE = (Deno.env.get("ANTHROPIC_API_KEY") ?? "").trim();
+if (!CHAVE) console.error("pergunte: segredo ANTHROPIC_API_KEY ausente ou vazio");
+const client = new Anthropic({ apiKey: CHAVE || undefined });
 
 // Limite simples por IP, em memória (vale por instância; não é à prova de abuso).
 const contagem = new Map<string, { n: number; desde: number }>();
@@ -108,6 +111,12 @@ Deno.serve(async (req) => {
   ];
 
   const enc = new TextEncoder();
+  if (!CHAVE) {
+    console.error("pergunte: chamada sem ANTHROPIC_API_KEY");
+    return new Response("A IA ainda não está configurada neste site. Tente mais tarde.", {
+      headers: { ...h, "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
+    });
+  }
   const corpoResposta = new ReadableStream({
     async start(controller) {
       try {
@@ -133,7 +142,9 @@ Deno.serve(async (req) => {
         }
       } catch (e) {
         const status = e instanceof Anthropic.APIError ? e.status : 0;
-        console.error("pergunte: falha na API", status); // sem conteúdo da conversa no log
+        // Só o tipo e a mensagem do erro: nunca o conteúdo da conversa.
+        const err = e as { name?: string; message?: string };
+        console.error("pergunte: falha na API", status, err?.name ?? "", String(err?.message ?? "").slice(0, 300));
         controller.enqueue(enc.encode(status === 429
           ? "\n\nA IA está muito ocupada agora. Tente de novo em instantes."
           : "\n\nNão consegui responder agora. Tente de novo em instantes."));

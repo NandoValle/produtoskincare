@@ -22,6 +22,7 @@ The photo is stored locally; no third-party image request is made by visitors.
 
 - Files: `img/blog/<slug>-3840.webp` (4K master, 3840×2160), `-1600.webp`, `-800.webp` (responsive sizes) and `-og.jpg` (1200×675, social share preview).
 - Slugs: `como-saber-tipo-de-pele`, `retinol-como-comecar`, `vitamina-c-skincare`, `protetor-solar-importancia`.
+- Added 2026-11-05, same model and settings: `protetor-solar-pele-oleosa`, `ordem-dos-produtos-skincare`, `rotina-de-skincare-barata`, `protetor-solar-com-cor`, `skincare-pele-negra`, `skincare-masculino`, `skincare-para-adolescentes` (these articles keep their existing `img/og/` share images).
 - Origin: AI-generated images (OpenAI GPT Image model `gpt-image-2.5-sunburst`, accessed through ElevenLabs Creative flows), 16:9, 4K, quality "high". Prompts asked for no text, no logos, no brand packaging and no people.
 - Illustrative only: they do not depict any specific product sold or linked on the site, and imply no endorsement or result.
 - Stored locally; no third-party image request is made by visitors.

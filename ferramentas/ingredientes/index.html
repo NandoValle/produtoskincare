@@ -32,6 +32,18 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 .conflito{background:var(--rosa-claro);border-left:3px solid var(--rosa);border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
 .ok{background:var(--verde-claro);border-left:3px solid var(--verde);border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
 :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+.horarios{background:#fff4dd;color:#5c3d00;border-left:3px solid #b7791f;border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
+.horarios a{color:#5c3d00}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:.92rem;border:1.5px solid var(--linha);background:var(--papel);color:var(--tinta);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:#fff}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:12px;cursor:pointer;font-size:.95rem}
+.check input{width:18px;height:18px;margin-top:4px;accent-color:var(--rosa)}
+.veredito{font-family:var(--fonte-display);font-size:1.2rem;margin:4px 0 8px}
+.par-nota{display:block;font-size:.85rem;margin-top:6px;opacity:.85}
+.regras h3{font-size:1rem;margin:14px 0 6px}.regras h3:first-child{margin-top:0}
+.regras li{margin:4px 0 4px 18px;font-size:.92rem}
+details.pares-ok summary{cursor:pointer;font-weight:600;margin:10px 0}
 </style>
 <link rel="stylesheet" href="/premium.css">
 <!-- seo:inicio -->
@@ -58,18 +70,22 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <p class="sub"><a href="/" style="color:var(--rosa)">← Voltar ao início</a></p>
 
 <h1>Verificador de ingredientes</h1>
-<p class="sub">Cole a lista de ingredientes dos seus produtos e descubra se há conflitos entre ativos.</p>
+<p class="sub">Escolha dois ou mais ativos, ou cole a lista de ingredientes dos seus produtos, e veja se pode usar junto, se é melhor usar em horários diferentes ou se não deve combinar, com o motivo.</p>
 <p class="sub">Ainda não sabe quais ativos usar? Veja o <a href="/ferramentas/ativos/" style="color:var(--rosa)">guia de princípios ativos</a>, com recomendação pelo seu objetivo e tipo de pele.</p>
 
 <div class="card aviso">
-<strong>Como usar:</strong> Cole a lista de ingredientes (INCI) ou os nomes dos ativos principais. Separe por vírgula ou quebra de linha. Ex: "retinol, ácido salicílico, vitamina C"
+<strong>Como usar:</strong> toque nos ativos que você usa ou quer usar. Se preferir, cole a lista de ingredientes (INCI) ou os nomes dos ativos, separados por vírgula ou quebra de linha. Ex.: "retinol, ácido salicílico, vitamina C". Os dois jeitos somam.
 </div>
 
 <div class="card">
-<label for="ingredientes" style="font-weight:600;display:block;margin-bottom:8px">Lista de ingredientes:</label>
+<p style="font-weight:600;margin-bottom:8px" id="rotuloChips">Ativos:</p>
+<div class="chips" id="chipsAtivos" role="group" aria-labelledby="rotuloChips"></div>
+<label for="ingredientes" style="font-weight:600;display:block;margin:16px 0 8px">Ou cole a lista de ingredientes:</label>
 <textarea id="ingredientes" placeholder="Ex: retinol, niacinamida, ácido hialurônico, vitamina C, ácido salicílico..."></textarea>
+<label class="check"><input type="checkbox" id="chkIrritada"><span>Minha pele está irritada agora (ardendo, vermelha ou descamando)</span></label>
+<label class="check"><input type="checkbox" id="chkSensivel"><span>Tenho pele sensível (as regras ficam mais rígidas)</span></label>
 <div style="margin-top:12px">
-<button class="btn" id="btnVerificar" onclick="verificar()">🔍 Verificar conflitos</button>
+<button class="btn" id="btnVerificar" type="button">🔍 Verificar combinações</button>
 </div>
 <div class="ocr">
 <label class="btn btn-sec">📷 Ler o rótulo por foto<input type="file" id="fotoRotulo" accept="image/*" capture="environment" class="ocr-input"></label>
@@ -82,22 +98,20 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <div id="areaEnviar" hidden></div>
 <p class="sub">Quer saber mais de cada ativo? Veja as <a href="/ingredientes/" style="color:var(--rosa)">fichas de ingredientes</a>, com o nível de evidência e as fontes.</p>
 
-<h2>Conflitos conhecidos</h2>
+<h2>Exemplos para testar</h2>
 <div class="card">
-<ul>
-<li><strong>Retinol + Ácidos (BHA/AHA)</strong> → muita irritação. Alterne dias.</li>
-<li><strong>Retinol + Vitamina C</strong> → pHs incompatíveis. Use C de manhã, retinol à noite.</li>
-<li><strong>Retinol + Peróxido de benzoila</strong> → inativa o retinol.</li>
-<li><strong>Vitamina C + Niacinamida</strong> → ✅ PODE usar juntos (mito que não pode).</li>
-<li><strong>Ácido hialurônico + qualquer ativo</strong> → ✅ Compatível com tudo.</li>
-</ul>
+<ul id="listaExemplos"></ul>
 </div>
+
+<h2>Regras usadas pelo verificador</h2>
+<div class="card" id="listaRegras"><p class="sub">Carregando as regras…</p></div>
 
 <div class="card aviso">
 <strong>Não é aconselhamento médico.</strong> Em caso de irritação, pare o uso e consulte um dermatologista.
 </div>
 
 <script src="/compartilhar.js"></script>
+<script src="/regras-ativos.js"></script>
 <script>
 // Leitura do rótulo por foto: Tesseract.js (OCR em WebAssembly) carregado do jsDelivr só quando a pessoa usa.
 (function () {
@@ -167,7 +181,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
         }
         caixa.value = (caixa.value.trim() ? caixa.value.trim() + "\n" : "") + texto;
         caixa.focus();
-        status.textContent = "Pronto. Confira o texto acima (a leitura pode trocar letras) e toque em Verificar conflitos.";
+        status.textContent = "Pronto. Confira o texto acima (a leitura pode trocar letras) e toque em Verificar combinações.";
         try { if (window.PSAnalytics) window.PSAnalytics.evento("ingredientes/ocr"); } catch (e) {}
       })
       .catch(function () {
@@ -179,100 +193,134 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 })();
 </script>
 <script>
-const CONFLITOS = [
-  { a: /retinol|retinal|tretinoína|adapaleno/i, b: /ácido salicílico|salicylic|bha|ácido glicólico|glycolic|aha|ácido láctico|lactic/i, msg: "Retinol + Ácidos (BHA/AHA) = muita irritação. Use em dias alternados." },
-  { a: /retinol|retinal|tretinoína/i, b: /vitamina c|ascorbic|ascórbico/i, msg: "Retinol + Vitamina C = pHs incompatíveis. Use C de manhã e retinol à noite." },
-  { a: /retinol|retinal/i, b: /peróxido de benzoila|benzoyl/i, msg: "Retinol + Peróxido de benzoila = o peróxido inativa o retinol. Use em horários diferentes." },
-  { a: /ácido salicílico|bha/i, b: /ácido glicólico|aha|ácido láctico/i, msg: "BHA + AHA = exfoliação dupla. Pode causar irritação. Alterne dias." },
-  { a: /vitamina c|ascorbic/i, b: /niacinamida|niacinamide/i, msg: "Vitamina C + Niacinamida = ✅ PODE usar juntos! (é mito que não pode)", tipo: "ok" },
-];
+// Verificador de combinações: as regras vêm de /regras-ativos.js (lista fixa e versionada).
+(function () {
+  "use strict";
+  const R = window.PSRegras;
+  const $ = id => document.getElementById(id);
+  const esc = t => String(t == null ? "" : t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  if (!R) { $("resultado").innerHTML = '<div class="conflito">⚠️ Não foi possível carregar as regras. Recarregue a página.</div>'; return; }
 
-const ATIVOS_RECONHECIDOS = [
-  /retinol|retinal|retinyl|tretinoína|adapaleno|adapalene/i,
-  /vitamina c|ascorbic|ascorbyl|ácido ascórbico/i,
-  /niacinamida|niacinamide|vitamina b3/i,
-  /ácido hialurônico|hialuronic|hyaluron/i,
-  /ácido salicílico|salicylic|bha/i,
-  /ácido glicólico|glycolic|aha/i,
-  /ácido láctico|lactic/i,
-  /ácido azelaico|azelaic/i,
-  /peróxido de benzoila|benzoyl/i,
-  /ácido tranexâmico|tranexamic/i,
-  /ceramidas|ceramide/i,
-  /pantenol|panthenol|vitamina b5/i,
-  /centella|madecassoside/i,
-  /zinco|zinc/i,
-  /peptídeos|peptide/i,
-];
+  const RAPIDOS = ["retinol", "tretinoina", "adapaleno", "glicolico", "latico", "mandelico", "salicilico", "vitc",
+    "bpo", "niacinamida", "azelaico", "hialuronico", "ceramidas", "tranexamico"];
+  const POR_ID = Object.fromEntries(R.ATIVOS.map(a => [a.id, a]));
+  const ICONE = { ok: "✅", horarios: "🕐", nao: "⛔" };
+  const CSS = { ok: "ok", horarios: "horarios", nao: "conflito" };
+  const escolhidos = new Set();
+  let ULTIMO = null;
 
-function verificar() {
-  const texto = document.getElementById("ingredientes").value;
-  const resultado = document.getElementById("resultado");
+  // Botões de ativos
+  $("chipsAtivos").innerHTML = RAPIDOS.map(id =>
+    `<button type="button" class="chip" aria-pressed="false" data-ativo="${id}">${esc(POR_ID[id].nome.replace(/\s*\(.*\)$/, ""))}</button>`).join("");
+  function marcarChip(id, on) {
+    const b = document.querySelector(`#chipsAtivos [data-ativo="${id}"]`);
+    if (b) { b.setAttribute("aria-pressed", on ? "true" : "false"); b.classList.toggle("on", on); }
+  }
+  $("chipsAtivos").addEventListener("click", e => {
+    const b = e.target.closest("[data-ativo]");
+    if (!b) return;
+    const id = b.dataset.ativo, on = !escolhidos.has(id);
+    on ? escolhidos.add(id) : escolhidos.delete(id);
+    marcarChip(id, on);
+  });
 
-  if (!texto.trim()) {
-    resultado.innerHTML = '<div class="conflito">⚠️ Cole a lista de ingredientes primeiro.</div>';
-    return;
+  function itensAtuais() {
+    const mapa = new Map();
+    [...escolhidos].map(id => POR_ID[id]).concat(R.detectar($("ingredientes").value)).forEach(a => a && mapa.set(a.id, a));
+    const itens = [...mapa.values()];
+    if ($("chkIrritada").checked) itens.push(R.ESTADOS.irritada);
+    return itens;
   }
 
-  // Reconhecer ativos presentes
-  const encontrados = [];
-  for (const regex of ATIVOS_RECONHECIDOS) {
-    const match = texto.match(regex);
-    if (match) encontrados.push(match[0]);
+  function parHTML(p) {
+    return `<div class="${CSS[p.resultado]}"><strong>${ICONE[p.resultado]} ${esc(p.a.nome)} + ${esc(p.b.nome)}: ${esc(R.ROTULOS[p.resultado])}</strong><br>${esc(p.motivo)}` +
+      (p.nota ? `<span class="par-nota">${esc(p.nota)}</span>` : "") +
+      (p.porSensibilidade ? `<span class="par-nota">Resultado mais rígido porque você marcou pele sensível.</span>` : "") + `</div>`;
   }
 
-  // Verificar conflitos
-  const conflitos = [];
-  const oks = [];
-  for (const c of CONFLITOS) {
-    const temA = c.a.test(texto);
-    const temB = c.b.test(texto);
-    if (temA && temB) {
-      if (c.tipo === "ok") oks.push(c.msg);
-      else conflitos.push(c.msg);
+  function verificar() {
+    const itens = itensAtuais(), ativos = itens.filter(i => i.classe !== "irritada");
+    const irritada = $("chkIrritada").checked, sensivel = $("chkSensivel").checked;
+    const res = $("resultado");
+    if (ativos.length < 2 && !(ativos.length === 1 && irritada)) {
+      res.innerHTML = `<div class="conflito">⚠️ Escolha pelo menos 2 ativos (ou 1 ativo e marque "pele irritada"). ` +
+        (ativos.length ? `Reconhecido até agora: ${esc(ativos.map(a => a.nome).join(", "))}.` : `Tente nomes como retinol, vitamina C, ácido salicílico ou niacinamida.`) + `</div>`;
+      ULTIMO = null; $("areaEnviar").hidden = true;
+      return;
     }
+    const r = R.avaliar(itens, { sensivel });
+    const atencao = r.pares.filter(p => p.resultado !== "ok"), ok = r.pares.filter(p => p.resultado === "ok");
+    let html = `<div class="card"><p class="veredito">${ICONE[r.resultado]} Resultado geral: ${esc(R.ROTULOS[r.resultado])}</p>` +
+      `<p class="sub" style="font-size:.9rem">Reconhecidos: ${esc(ativos.map(a => a.nome).join(", "))}${irritada ? " · pele irritada agora" : ""}${sensivel ? " · pele sensível" : ""}.</p></div>`;
+    html += atencao.map(parHTML).join("");
+    if (ok.length) {
+      html += atencao.length
+        ? `<details class="pares-ok"><summary>${ok.length} ${ok.length === 1 ? "par pode" : "pares podem"} ser usado${ok.length === 1 ? "" : "s"} junto${ok.length === 1 ? "" : "s"}</summary>${ok.map(parHTML).join("")}</details>`
+        : ok.map(parHTML).join("");
+    }
+    html += `<p class="sub" style="font-size:.82rem">Regras v${esc(R.VERSAO)}: uma lista fixa, a mesma para todo mundo (veja abaixo). Informativo: não substitui o dermatologista. Se arder ou irritar, pare e procure orientação.</p>`;
+    res.innerHTML = html;
+    ULTIMO = { ativos, irritada, sensivel, r };
+    $("areaEnviar").hidden = false;
+    const q = new URLSearchParams({ ativos: ativos.map(a => a.id).join(",") });
+    if (irritada) q.set("irritada", "1");
+    if (sensivel) q.set("sensivel", "1");
+    try { history.replaceState(null, "", location.pathname + "?" + q); } catch (e) {}
+  }
+  $("btnVerificar").addEventListener("click", verificar);
+  window.verificar = verificar; // usado pelo atalho Ctrl+Enter
+
+  // Exemplos (os mesmos casos documentados em _scripts/testar_regras.js)
+  const EXEMPLOS = [
+    ["retinol,glicolico", "", "Retinol + ácido glicólico"],
+    ["retinol,salicilico", "", "Retinol + ácido salicílico"],
+    ["retinol,vitc", "", "Retinol + vitamina C"],
+    ["bpo,tretinoina", "", "Peróxido de benzoíla + tretinoína"],
+    ["glicolico", "irritada=1", "Ácido glicólico com a pele irritada"],
+    ["vitc,niacinamida", "", "Vitamina C + niacinamida"]
+  ];
+  $("listaExemplos").innerHTML = EXEMPLOS.map(([ids, extra, nome]) => {
+    const itens = ids.split(",").map(id => POR_ID[id]);
+    if (extra.includes("irritada")) itens.push(R.ESTADOS.irritada);
+    const r = R.avaliar(itens, {});
+    return `<li><a href="?ativos=${ids}${extra ? "&" + extra : ""}" style="color:var(--rosa)">${esc(nome)}</a> → ${ICONE[r.resultado]} ${esc(R.ROTULOS[r.resultado])}</li>`;
+  }).join("");
+
+  // Lista das regras, gerada do próprio arquivo de regras (não fica desatualizada)
+  const grupos = ["nao", "horarios", "ok"].map(res => {
+    const rs = R.COMBINACOES.filter(c => c.resultado === res);
+    return rs.length ? `<h3>${ICONE[res]} ${esc(R.ROTULOS[res])}</h3><ul>` + rs.map(c =>
+      `<li><strong>${esc(R.CLASSES[c.a])} + ${esc(R.CLASSES[c.b])}:</strong> ${esc(c.motivo)}${c.sensivel ? ` <em>Pele sensível: ${esc(R.ROTULOS[c.sensivel]).toLowerCase()}.</em>` : ""}</li>`).join("") + `</ul>` : "";
+  }).join("");
+  const hist = R.HISTORICO.map(h => `v${esc(h.versao)} (${esc(h.data.split("-").reverse().join("/"))}): ${esc(h.nota)}`).join("<br>");
+  $("listaRegras").innerHTML = `<div class="regras">${grupos}</div><p class="sub" style="font-size:.82rem;margin-top:12px">Pares sem regra saem como "pode usar junto"; ácido hialurônico, ceramidas, pantenol, centella e filtro solar combinam com tudo. Ácido cítrico não conta como AHA, porque nas listas de ingredientes costuma ser só ajuste de pH.<br>Versão das regras: ${hist}</p>`;
+
+  // Abrir com ?ativos=retinol,glicolico&irritada=1&sensivel=1 (exemplos, links do blog)
+  const q = new URLSearchParams(location.search);
+  const doLink = (q.get("ativos") || "").split(",").filter(id => POR_ID[id]);
+  if (doLink.length) {
+    doLink.forEach(id => {
+      if (RAPIDOS.includes(id)) { escolhidos.add(id); marcarChip(id, true); }
+      else $("ingredientes").value += ($("ingredientes").value ? ", " : "") + POR_ID[id].nome;
+    });
+    $("chkIrritada").checked = q.get("irritada") === "1";
+    $("chkSensivel").checked = q.get("sensivel") === "1";
+    verificar();
   }
 
-  let html = "";
+  if (window.PSEnviar) PSEnviar.montar($("areaEnviar"), () => {
+    if (!ULTIMO) return { texto: "" };
+    const t = ["Verificação de combinações no Produto Skincare", "",
+      "Ativos: " + ULTIMO.ativos.map(a => a.nome).join(", ") + (ULTIMO.irritada ? " (pele irritada agora)" : "") + (ULTIMO.sensivel ? " (pele sensível)" : ""),
+      "Resultado geral: " + R.ROTULOS[ULTIMO.r.resultado], ""];
+    ULTIMO.r.pares.forEach(p => t.push(`${p.a.nome} + ${p.b.nome}: ${R.ROTULOS[p.resultado]}. ${p.motivo}${p.nota ? " " + p.nota : ""}`));
+    t.push("", `Regras v${R.VERSAO}. Não é aconselhamento médico. Em caso de irritação, pare o uso e consulte um dermatologista.`);
+    return { assunto: "Verificação de combinações de ativos", texto: t.join("\n"), url: location.href };
+  }, { titulo: "📩 Receber esta verificação" });
 
-  if (encontrados.length) {
-    html += `<div class="ok"><strong>✅ Ativos reconhecidos:</strong> ${encontrados.join(", ")}</div>`;
-  } else {
-    html += `<div class="conflito">⚠️ Nenhum ativo reconhecido. Tente usar nomes como "retinol", "vitamina C", "niacinamida", "ácido hialurônico", etc.</div>`;
-  }
-
-  if (conflitos.length) {
-    html += conflitos.map(m => `<div class="conflito">⚠️ <strong>Conflito:</strong> ${m}</div>`).join("");
-  }
-
-  if (oks.length) {
-    html += oks.map(m => `<div class="ok">${m}</div>`).join("");
-  }
-
-  if (encontrados.length && !conflitos.length && !oks.length) {
-    html += `<div class="ok">✅ Nenhum conflito detectado entre os ativos encontrados.</div>`;
-  }
-
-  resultado.innerHTML = html;
-  ULTIMO = { texto, encontrados, conflitos, oks };
-  document.getElementById("areaEnviar").hidden = false;
-}
-let ULTIMO = null;
-if (window.PSEnviar) PSEnviar.montar(document.getElementById("areaEnviar"), () => {
-  if (!ULTIMO) return { texto: "" };
-  const t = ["Verificação de ingredientes no Produto Skincare", "",
-    "Ativos reconhecidos: " + (ULTIMO.encontrados.join(", ") || "nenhum")];
-  ULTIMO.conflitos.forEach(m => t.push("⚠️ " + m));
-  ULTIMO.oks.forEach(m => t.push(m));
-  if (ULTIMO.encontrados.length && !ULTIMO.conflitos.length && !ULTIMO.oks.length) t.push("Nenhum conflito detectado entre os ativos encontrados.");
-  t.push("", "Não é aconselhamento médico. Em caso de irritação, pare o uso e consulte um dermatologista.");
-  return { assunto: "Verificação de ingredientes", texto: t.join("\n"), url: location.origin + location.pathname };
-}, { titulo: "📩 Receber esta verificação" });
-
-// Enter para verificar
-document.getElementById("ingredientes").addEventListener("keydown", e => {
-  if (e.key === "Enter" && e.ctrlKey) verificar();
-});
+  // Ctrl+Enter para verificar
+  $("ingredientes").addEventListener("keydown", e => { if (e.key === "Enter" && e.ctrlKey) verificar(); });
+})();
 </script>
 </main>
 <footer class="ps-rodape">
