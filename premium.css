@@ -236,3 +236,20 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
  table.tabela-guia td:first-child::before{content:none}
  table.tabela-guia td:first-child{font-size:1rem}
 }
+
+/* Rodapé no celular: colunas viram acordeões (rodape.js cria os botões; sem JS fica tudo aberto). */
+.ps-rodape-toggle{display:none}
+@media(max-width:560px){
+ .ps-rodape-grid{gap:0}
+ .ps-rodape-marca{margin-bottom:24px}
+ .ps-rodape-grid > nav{border-top:1px solid var(--linha)}
+ .ps-rodape-grid > nav:last-child{border-bottom:1px solid var(--linha)}
+ .ps-rodape .ps-rodape-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;margin:0;padding:0;border:0;background:none;color:var(--tinta);font:700 12px/1.2 var(--fonte-corpo);letter-spacing:.14em;text-transform:uppercase;text-align:left;cursor:pointer}
+ .ps-rodape .ps-rodape-toggle[hidden],.ps-rodape .ps-rodape-titulo[hidden],.ps-rodape ul[hidden]{display:none}
+ .ps-rodape .ps-rodape-toggle::after{content:"";width:8px;height:8px;margin-right:4px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+ .ps-rodape .ps-rodape-toggle[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)}
+ .ps-rodape .ps-rodape-toggle:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+ .ps-rodape-grid > nav ul{padding:0 0 18px}
+ .ps-rodape-grid > nav ul a{display:inline-block;padding:4px 0}
+ .ps-rodape-base{margin-top:28px}
+}
