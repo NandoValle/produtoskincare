@@ -1,4 +1,4 @@
-const CACHE = "provador-premium-20261106-regras-menu";
+const CACHE = "provador-premium-20261106-visual";
 const ASSETS = [
   "/premium.css",
   "/premium.js",
@@ -10,6 +10,10 @@ const ASSETS = [
   "/img/ritual-face.jpg",
   "/img/cream-texture.jpg",
   "/img/skincare-editorial.jpg",
+  "/img/tipo-oleosa.jpg",
+  "/img/tipo-seca.jpg",
+  "/img/tipo-mista.jpg",
+  "/img/tipo-normal.jpg",
   "/",
   "/index.html",
   "/provador/",
