@@ -1882,7 +1882,7 @@ function baumannHTML(b) {
     <div class="card" style="margin-top:12px">
       <strong>🧬 Código de 4 eixos (inspirado em Baumann): <span class="pill">${b.codigo}</span></strong>
       <small class="sub"> ${nomeDoCodigo(b)}</small>
-      <table style="margin-top:8px;width:100%;font-size:.88rem">
+      <table class="tabela-eixos" style="margin-top:8px;width:100%;font-size:.88rem">
         <tbody>${b.eixos.map(e => `
           <tr>
             <td style="padding:4px 8px">${e.escala}</td>
@@ -1993,9 +1993,9 @@ function mostrarComparacao(chave) {
   return `
     <div class="card" style="margin-top:16px">
       <strong>${comp.titulo}</strong>
-      <table style="width:100%;font-size:.88rem;margin-top:8px">
+      <table class="tabela-comparacao" style="width:100%;font-size:.88rem;margin-top:8px">
         <thead><tr><th></th><th>${comp.titulo.split(" vs ")[0]}</th><th>${comp.titulo.split(" vs ")[1]}</th></tr></thead>
-        <tbody>${comp.linhas.map(l => `<tr><td style="font-weight:600;padding:6px 8px">${l[0]}</td><td style="padding:6px 8px">${l[1]}</td><td style="padding:6px 8px">${l[2]}</td></tr>`).join("")}</tbody>
+        <tbody>${comp.linhas.map(l => `<tr><td style="font-weight:600;padding:6px 8px">${l[0]}</td><td data-label="${comp.titulo.split(" vs ")[0]}" style="padding:6px 8px">${l[1]}</td><td data-label="${comp.titulo.split(" vs ")[1]}" style="padding:6px 8px">${l[2]}</td></tr>`).join("")}</tbody>
       </table>
     </div>
   `;

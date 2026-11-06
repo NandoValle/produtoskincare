@@ -256,3 +256,22 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 
 /* Provador: o botão de tema fica no topo da página e rola junto, em vez de flutuar sobre o texto. */
 .ps-quiz .btn-tema{position:absolute}
+
+/* Provador, resultado no celular: as tabelas cabem na largura do card, sem rolagem lateral. */
+@media(max-width:560px){
+ .ps-quiz table.tabela-eixos{display:block;overflow:visible}
+ .ps-quiz .tabela-eixos tbody{display:block}
+ .ps-quiz .tabela-eixos tr{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding:8px 0;border-bottom:1px solid var(--linha)}
+ .ps-quiz .tabela-eixos tr:last-child{border-bottom:0}
+ .ps-quiz .tabela-eixos td{padding:0!important;border:0}
+ .ps-quiz .tabela-eixos td:first-child{grid-column:1/-1;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+ .ps-quiz .tabela-eixos td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+ .ps-quiz table.tabela-comparacao{display:block;overflow:visible}
+ .ps-quiz .tabela-comparacao thead{display:none}
+ .ps-quiz .tabela-comparacao tbody{display:block}
+ .ps-quiz .tabela-comparacao tr{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;padding:8px 0;border-bottom:1px solid var(--linha)}
+ .ps-quiz .tabela-comparacao tr:last-child{border-bottom:0}
+ .ps-quiz .tabela-comparacao td{padding:0!important;border:0}
+ .ps-quiz .tabela-comparacao td:first-child{grid-column:1/-1;margin-bottom:2px}
+ .ps-quiz .tabela-comparacao td[data-label]::before{content:attr(data-label);display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+}
