@@ -13,7 +13,10 @@ const CASOS = [
   { nome: "ácido salicílico + pele irritada", ativos: ["salicilico"], irritada: true, esperado: "Não combine" },
   { nome: "ácido glicólico + pele irritada", ativos: ["glicolico"], irritada: true, esperado: "Não combine" },
   { nome: "vitamina C + niacinamida", ativos: ["vitc", "niacinamida"], esperado: "Pode usar junto" },
-  { nome: "retinol + ácido glicólico, pele sensível", ativos: ["retinol", "glicolico"], sensivel: true, esperado: "Não combine" }
+  { nome: "retinol + ácido glicólico, pele sensível", ativos: ["retinol", "glicolico"], sensivel: true, esperado: "Não combine" },
+  // Par sem regra cadastrada: "não sabemos", nunca "pode usar junto"
+  { nome: "ácido azelaico + ácido salicílico (sem regra)", ativos: ["azelaico", "salicilico"], esperado: "Sem regra cadastrada", naoEsperado: "Pode usar junto" },
+  { nome: "niacinamida + pele irritada (sem regra)", ativos: ["niacinamida"], irritada: true, esperado: "Sem regra cadastrada", naoEsperado: "Pode usar junto" }
 ];
 
 (async () => {
@@ -31,6 +34,7 @@ const CASOS = [
     const motivo = (await p.textContent("#resultado")).replace(/\s+/g, " ");
     checar(`${c.nome} → ${c.esperado}`, geral.includes(c.esperado), geral.trim());
     checar(`${c.nome}: mostra motivo`, motivo.length > 80);
+    if (c.naoEsperado) checar(`${c.nome}: não aparece "${c.naoEsperado}"`, !motivo.includes(c.naoEsperado), motivo.slice(0, 160));
     await p.context().close();
   }
 

@@ -277,7 +277,7 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <p class="ps-eyebrow">Seu ritual começa aqui</p><h1>Descubra seu<br>tipo de pele.</h1>
 <p class="sub">Conte como sua pele se comporta no dia a dia. A partir das suas respostas, descubra um perfil estimado e sugestões de cuidados para manhã e noite.</p>
 
-<div class="card aviso"><strong>⏱️ Leva menos de 2 minutos.</strong> É uma estimativa cosmética para ajudar na escolha de produtos — não é diagnóstico médico. Se tem acne intensa ou irritação persistente, procure um dermatologista.</div>
+<div class="card aviso"><strong>⏱️ São 10 perguntas rápidas e mais 3 telas curtas:</strong> preocupações, preferências e uma selfie opcional. O teste do rosto limpo também é opcional e fica fora dessa conta, porque pede esperar 45 a 60 minutos: dá para pular. É uma estimativa cosmética para ajudar na escolha de produtos — não é diagnóstico médico. Se tem acne intensa ou irritação persistente, procure um dermatologista.</div>
 
 <div class="botoes">
 <button class="btn" id="btnComecar">Começar o quiz →</button>
@@ -401,7 +401,7 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <div class="card aviso">
 <fieldset>
 <legend style="font-size:1.05rem">Segurança</legend>
-<label class="opcao"><input type="checkbox" id="chkSensivel"><span><span class="rotulo">Tenho pele sensível</span><div class="desc">Arde, fica vermelha com facilidade ou reage a muitos produtos. Tiramos retinol, ácidos fortes e produtos com fragrância, e avisamos o que pede cuidado. <span id="notaSensivelQuiz"></span></div></span></label>
+<label class="opcao"><input type="checkbox" id="chkSensivel"><span><span class="rotulo">Tenho pele sensível</span><div class="desc">Arde, fica vermelha com facilidade ou reage a muitos produtos. Tiramos retinol e ácidos fortes e avisamos o que pede cuidado. Fragrância: priorize fórmulas sem fragrância; não conferimos o rótulo de todos os produtos. <span id="notaSensivelQuiz"></span></div></span></label>
 <label class="opcao"><input type="checkbox" id="chkIsotretinoina"><span><span class="rotulo">Faço tratamento com isotretinoína oral (Roacutan e similares)</span><div class="desc">Vamos tirar ácidos e retinol da rotina. Durante o tratamento, siga o que o dermatologista orientar.</div></span></label>
 <label class="opcao"><input type="checkbox" id="chkGestante"><span><span class="rotulo">Estou gestante ou amamentando</span><div class="desc">Vamos evitar retinol e ácido salicílico, e sugerir alternativas seguras.</div></span></label>
 </fieldset>
@@ -522,7 +522,7 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <button class="btn sec" id="btnImprimir">🖨️ Salvar PDF / imprimir</button>
 <button class="btn sec" id="btnCompartilhar">📤 Compartilhar</button>
 <a class="btn sec" href="/pergunte/">💬 Tirar dúvida com a IA</a>
-<a class="btn" href="/" target="_blank">Ver todos os produtos</a>
+<a class="btn" href="/produtos/" target="_blank">Ver todos os produtos</a>
 </div>
 </div>
 
@@ -713,14 +713,14 @@ const PERGUNTAS = [
 const TESTE_ROSTO_LIMPO = {
   id: "q6",
   texto: "Teste do rosto limpo (opcional, mas vale mais que as outras perguntas)",
-  ajuda: "Lave o rosto só com gel suave, não aplique nada e espere 45-60 minutos. Depois observe no espelho.",
+  ajuda: "Opcional: pede esperar 45 a 60 minutos. Se não for fazer agora, escolha \"Pular: ainda não fiz o teste\". Para fazer: lave o rosto só com gel suave, não aplique nada, espere 45 a 60 minutos e observe no espelho.",
   peso: 4,
   opcoes: [
     { valor: "seca",    rotulo: "Repuxa no rosto todo",                      pontos: { seca: 4 } },
     { valor: "mista",   rotulo: "Brilho só no centro (testa, nariz, queixo)", pontos: { mista: 4 } },
     { valor: "oleosa",  rotulo: "Brilho nas bochechas e na testa",            pontos: { oleosa: 4 } },
     { valor: "normal",  rotulo: "Confortável e uniforme",                     pontos: { normal: 4 } },
-    { valor: "nao_fiz", rotulo: "Ainda não fiz o teste",                      pontos: {} }
+    { valor: "nao_fiz", rotulo: "Pular: ainda não fiz o teste",               pontos: {} }
   ]
 };
 
@@ -804,6 +804,16 @@ const DICAS = {
   ]
 };
 
+// Pele sensível: as dicas que citam retinol ou ácido salicílico (BHA) trocam por uma versão
+// mais suave, com o aviso. Pele não sensível: dicas de sempre.
+const DICAS_SENSIVEL = {
+  "Niacinamida e ácido salicílico ajudam a controlar o sebo.": "Niacinamida ajuda a controlar o sebo e costuma ser bem tolerada. Ácido salicílico (BHA) pode irritar pele sensível: só com orientação de um dermatologista.",
+  "Previna com antioxidantes (vitamina C de manhã) e retinol (à noite).": "Previna com protetor solar todo dia e hidratação. Retinol costuma irritar pele sensível: se quiser usar, converse antes com um dermatologista."
+};
+function dicasDoPerfil(tipo, sensivel) {
+  return (DICAS[tipo] || []).map(d => sensivel && DICAS_SENSIVEL[d] ? DICAS_SENSIVEL[d] : d);
+}
+
 // ===== CATÁLOGO DE PRODUTOS (curadoria) =====
 // Fonte única: /produtos.json (preço, data do preço, loja e link de afiliado).
 // Para mudar um produto ou link, edite só o produtos.json.
@@ -868,7 +878,7 @@ function renderPergunta() {
     `<div class="ponto ${i < idx ? 'feito' : i === idx ? 'ativo' : ''}"></div>`
   ).join("");
 
-  $("contadorPergunta").textContent = `Pergunta ${idx + 1} de ${total}`;
+  $("contadorPergunta").textContent = `Pergunta ${idx + 1} de ${total} · depois vêm mais 3 telas curtas: preocupações, preferências e selfie (opcional)`;
 
   const ehTeste = p.id === "q6";
   $("areaPergunta").innerHTML = `
@@ -896,7 +906,7 @@ function renderPergunta() {
   });
 
   $("btnAvancar").disabled = !ESTADO.respostas[p.id];
-  $("btnAvancar").textContent = "Continuar →";
+  $("btnAvancar").textContent = idx === PERGUNTAS.length + EXTRAS.length ? "Continuar para as preocupações →" : "Continuar →";
   $("btnVoltar").hidden = idx === 0;
   const legend = $("areaPergunta").querySelector("legend");
   legend.tabIndex = -1;
@@ -1109,7 +1119,8 @@ function checarSeguranca(produtosEscolhidos, perfil) {
       if (A.id === B.id) return;
       R.detectar(R.textoDoProduto(A)).forEach(x => R.detectar(R.textoDoProduto(B)).forEach(y => {
         const r = R.avaliarPar(x, y, { sensivel: perfil.sensivel });
-        if (r.resultado === "ok") return;
+        // "sem_regra" (par sem regra cadastrada) não vira aviso nem "pode usar junto" na rotina.
+        if (r.resultado === "ok" || r.resultado === "sem_regra") return;
         const mesmo = A._periodo === B._periodo;
         const chave = r.regra + "|" + (mesmo ? A._periodo : "separado");
         if (vistos.has(chave)) return;
@@ -1270,9 +1281,6 @@ function calcularEMostrar(opcoes = {}) {
   const baumann = calcularBaumann(perfil, resultado);
   resultado.baumann = baumann.codigo;
 
-  // Subtom
-  const subtom = estimarSubtom(perfil, resultado);
-
   // Ajuste sazonal
   const sazonal = dicaSazonal(resultado.tipo);
 
@@ -1292,11 +1300,11 @@ function calcularEMostrar(opcoes = {}) {
     <div style="margin-top:12px">
       <strong>Dicas rápidas:</strong>
       <ul style="margin:6px 0 0;padding-left:20px;color:var(--suave);font-size:.92rem">
-        ${DICAS[resultado.tipo].map(d => `<li>${d}</li>`).join("")}
+        ${dicasDoPerfil(resultado.tipo, resultado.sensivel).map(d => `<li>${d}</li>`).join("")}
       </ul>
     </div>
     ${baumannHTML(baumann)}
-    ${subtomHTML(subtom)}
+    ${subtomHTML()}
     <div id="areaLembrete"></div>
   `;
 
@@ -1335,7 +1343,7 @@ function calcularEMostrar(opcoes = {}) {
     ...notasDoPerfil(perfil, temAtivoForte).map(a => `<div class="card aviso" style="margin:10px 0;font-size:.92rem">${a}</div>`),
     ...avisos.map(a => `<div class="card aviso rosa" style="margin:10px 0;font-size:.92rem">${a}</div>`),
     ...infos.map(a => `<div class="card" style="margin:10px 0;font-size:.92rem">${a}</div>`),
-    perfil.isotretinoina ? "" : progressaoHTML(resultado.tipo, temAtivoForte),
+    perfil.isotretinoina ? "" : progressaoHTML(resultado.tipo, temAtivoForte, perfil.sensivel),
     comparacao
   ].join("");
 
@@ -1417,6 +1425,11 @@ const DORES_ROTINA = {
   idade: { slug: "anti-age", nome: "Anti-age" },
   rosacea: { slug: "rosacea", nome: "Rosácea e vermelhidão" }
 };
+// Rotinas prontas (/rotinas/) que usam ativos que costumam irritar pele sensível.
+const ROTINAS_ATIVO_FORTE = {
+  acne: "ácido salicílico (BHA) e peróxido de benzoíla",
+  "anti-age": "retinol"
+};
 function rotinasProntasHTML(perfil) {
   const DORES = DORES_ROTINA;
   const FAIXA = { ate50: "economica", ate100: "media", ate200: "premium" };
@@ -1435,7 +1448,9 @@ function rotinasProntasHTML(perfil) {
     const botoes = Object.keys(NOMES_FAIXA).map(f =>
       `<a class="chip${f === faixa ? " on" : ""}" style="text-decoration:none" href="/rotinas/${slug}/#${f}">${NOMES_FAIXA[f]}${f === faixa ? " ✓" : ""}</a>`
     ).join(" ");
-    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div></div>`;
+    const forte = perfil.sensivel && ROTINAS_ATIVO_FORTE[slug];
+    const aviso = forte ? `<div class="card aviso rosa" style="margin:8px 0 0;font-size:.9rem">⚠️ <strong>Atenção, pele sensível:</strong> esta rotina pronta usa ${forte}, que costumam irritar pele sensível. Não comece por eles sem orientação de um dermatologista. Alternativa mais suave: a rotina acima, montada para pele sensível, ou a <a href="/rotinas/rosacea/">rotina para rosácea e vermelhidão</a>, com ativos calmantes.</div>` : "";
+    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div>${aviso}</div>`;
   }).join("");
   return `<div class="card" style="margin-top:20px"><strong>📋 Rotina pronta para a sua preocupação</strong>
     <p class="sub" style="margin:6px 0 0;font-size:.92rem">Manhã e noite completas, com ativos que têm comprovação científica, em três faixas de preço.${faixa ? " A faixa que você escolheu está marcada." : ""}</p>
@@ -1857,30 +1872,16 @@ function calcularBaumann(perfil, resultado) {
   };
 }
 
-const BAUMANN_NOMES = {
-  OSPT: "Oleosa, Sensível, Pigmentada, Tendência a rugas",
-  OSNT: "Oleosa, Sensível, Não pigmentada, Tendência a rugas",
-  OSNW: "Oleosa, Sensível, Não pigmentada, Firme",
-  OSPW: "Oleosa, Sensível, Pigmentada, Firme",
-  ORPT: "Oleosa, Resistente, Pigmentada, Tendência a rugas",
-  ORNT: "Oleosa, Resistente, Não pigmentada, Tendência a rugas",
-  ORNW: "Oleosa, Resistente, Não pigmentada, Firme",
-  ORPW: "Oleosa, Resistente, Pigmentada, Firme",
-  DSPT: "Seca, Sensível, Pigmentada, Tendência a rugas",
-  DSNT: "Seca, Sensível, Não pigmentada, Tendência a rugas",
-  DSNW: "Seca, Sensível, Não pigmentada, Firme",
-  DSPW: "Seca, Sensível, Pigmentada, Firme",
-  DRPT: "Seca, Resistente, Pigmentada, Tendência a rugas",
-  DRNT: "Seca, Resistente, Não pigmentada, Tendência a rugas",
-  DRNW: "Seca, Resistente, Não pigmentada, Firme",
-  DRPW: "Seca, Resistente, Pigmentada, Firme"
-};
+// O nome por extenso sai dos próprios eixos (a mesma letra e o mesmo nome da tabela),
+// para o título, a tabela e o texto nunca discordarem. O = oleosa, D = seca, S = sensível,
+// R = resistente, P = pigmentada, N = não pigmentada, W = tendência a rugas, T = firme.
+function nomeDoCodigo(b) { return b.eixos.map(e => e.nome).join(", "); }
 
 function baumannHTML(b) {
   return `
     <div class="card" style="margin-top:12px">
       <strong>🧬 Código de 4 eixos (inspirado em Baumann): <span class="pill">${b.codigo}</span></strong>
-      <small class="sub"> ${BAUMANN_NOMES[b.codigo] || ""}</small>
+      <small class="sub"> ${nomeDoCodigo(b)}</small>
       <table style="margin-top:8px;width:100%;font-size:.88rem">
         <tbody>${b.eixos.map(e => `
           <tr>
@@ -1896,41 +1897,14 @@ function baumannHTML(b) {
 }
 
 // ===== SUBTOM (frio/quente/neutro) =====
-function estimarSubtom(perfil, resultado) {
-  // Estimativa baseada em preocupações e tipo
-  // (sem foto, é uma aproximação — o ideal é análise de imagem)
-  let score = 0;
-
-  // Pele oleosa/mista tende a subtom quente (mais caroteno)
-  if (resultado.tipo === "oleosa" || resultado.tipo === "mista") score += 15;
-  // Pele seca tende a subtom frio (mais rosado)
-  if (resultado.tipo === "seca") score -= 15;
-
-  // Manchas → tendência quente
-  if (perfil.preocupacoes.includes("manchas")) score += 20;
-  // Sensível → tendência frio (vermelhidão)
-  if (perfil.sensivel) score -= 10;
-
-  const subtom = score > 10 ? "quente" : score < -10 ? "frio" : "neutro";
-
-  const descricoes = {
-    frio: { nome: "Frio", desc: "Nuances rosadas ou azuladas. Harmoniza com branco puro, prata e joias de ouro branco.", cores: ["branco puro", "prata", "azul royal", "rosa bebê", "cinza"] },
-    quente: { nome: "Quente", desc: "Reflexos dourados ou acobreados. Harmoniza com off-white, dourado e tons terrosos.", cores: ["off-white", "dourado", "coral", "verde-musgo", "terracota"] },
-    neutro: { nome: "Neutro", desc: "Equilíbrio entre rosado e dourado. Pode usar quase qualquer cor.", cores: ["bege", "rosa nude", "azul-petróleo", "verde-oliva", "vinho"] }
-  };
-
-  return { subtom, ...descricoes[subtom] };
-}
-
-function subtomHTML(st) {
+// Subtom (frio, quente ou neutro) só daria para estimar olhando a cor da pele. As respostas
+// do quiz não dizem nada sobre isso, e a análise da selfie não mede subtom: o campo sai como
+// "não avaliado", sem inventar frio, quente ou neutro.
+function subtomHTML() {
   return `
     <div class="card" style="margin-top:12px">
-      <strong>🎨 Subtom estimado: <span class="pill">${st.nome}</span></strong>
-      <p style="margin:8px 0;font-size:.92rem">${st.desc}</p>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
-        ${st.cores.map(c => `<span class="pill verde" style="font-size:.82rem">${c}</span>`).join("")}
-      </div>
-      <small class="sub">Estimativa baseada nas suas respostas. Para maior precisão, consulte uma análise de coloração pessoal.</small>
+      <strong>🎨 Subtom: <span class="pill">não avaliado</span></strong>
+      <p class="sub" style="margin:8px 0 0;font-size:.88rem">As respostas do quiz não mostram se o seu subtom é frio, quente ou neutro, e a análise da selfie não mede isso. Para saber, vale uma análise de coloração pessoal.</p>
     </div>
   `;
 }
@@ -2028,8 +2002,12 @@ function mostrarComparacao(chave) {
 }
 
 // ===== PROGRESSÃO 4 SEMANAS =====
-function progressaoHTML(tipo, temAtivoForte) {
-  const semanas = [
+function progressaoHTML(tipo, temAtivoForte, sensivel) {
+  const semanas = sensivel ? [
+    { n: 1, titulo: "Semana 1-2: A base", itens: ["Limpeza suave 2x/dia", "Hidratante todo dia", "Protetor solar todo dia (manhã)"], nota: "Não introduza nenhum ativo ainda. Sua pele precisa se acostumar." },
+    { n: 3, titulo: "Semana 3: Um ativo suave, se precisar", itens: ["Continue a base", "Se quiser um ativo, prefira um mais suave, como niacinamida ou ácido azelaico, e teste atrás da orelha antes", "Comece 2x por semana"], nota: "Pele sensível: retinol e ácido salicílico (BHA) costumam irritar. Não use sem orientação de um dermatologista." },
+    { n: 4, titulo: "Semana 4+: Avalie", itens: ["Continue a base + o ativo, se a pele tolerou", "Observe melhorias", "Fique com um ativo só"], nota: "Se arder, avermelhar ou descamar, pare o ativo e volte para a base." }
+  ] : [
     { n: 1, titulo: "Semana 1-2: A base", itens: ["Limpeza suave 2x/dia", "Hidratante todo dia", "Protetor solar todo dia (manhã)"], nota: "Não introduza nenhum ativo forte ainda. Sua pele precisa se acostumar." },
     { n: 3, titulo: "Semana 3: Primeiro ativo", itens: ["Continue a base", "Introduza UM ativo forte (retinol, BHA ou vitamina C)", "Use 2-3x por semana"], nota: "Se irritar, volte para a base e espere 1 semana." },
     { n: 4, titulo: "Semana 4+: Avalie", itens: ["Continue a base + ativo", "Observe melhorias", "Considere adicionar segundo ativo (se precisar)"], nota: "Nunca use 2 ativos fortes na mesma rotina. Alterne dias." }
@@ -2554,9 +2532,14 @@ function tratamentosHTML(anomalias) {
   let html = '<div class="card" style="margin-top:16px"><strong>💊 Tratamentos sugeridos por condição</strong>';
   html += '<p class="sub" style="font-size:.85rem;margin:8px 0 12px">Baseado nas anomalias detectadas. Consulte um dermatologista antes de iniciar qualquer tratamento.</p>';
 
+  const sensivel = !!calcularTipo().sensivel;
+  const FORTE = /retin|salic|\bbha\b|per[óo]xido|adapaleno|glic[óo]lico/i;
   for (const tipo of tiposUnicos) {
-    const t = TRATAMENTOS_ANOMALIA[tipo];
-    if (!t) continue;
+    const t0 = TRATAMENTOS_ANOMALIA[tipo];
+    if (!t0) continue;
+    // Pele sensível: retinol, ácido salicílico (BHA) e peróxido saem da lista, com o aviso.
+    const tirou = sensivel && (t0.ativos.some(a => FORTE.test(a)) || t0.produtos.some(p => FORTE.test(p)));
+    const t = sensivel ? { ...t0, ativos: t0.ativos.filter(a => !FORTE.test(a)), produtos: t0.produtos.filter(p => !FORTE.test(p)) } : t0;
 
     const nomes = {
       melasma: "🟤 Melasma / Manchas",
@@ -2587,6 +2570,7 @@ function tratamentosHTML(anomalias) {
         </div>
 
         <div style="margin-top:12px">
+          ${tirou ? `<p class="sub" style="font-size:.85rem;margin:0 0 10px">⚠️ <strong>Pele sensível:</strong> tiramos retinol, ácido salicílico (BHA) e peróxido de benzoíla desta lista, porque costumam irritar. Prefira niacinamida ou ácido azelaico; os outros, só com orientação de um dermatologista.</p>` : ""}
           <div style="font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde);font-weight:600;margin-bottom:6px">Dicas importantes</div>
           <ul style="margin:0;padding-left:18px;font-size:.88rem;color:var(--suave)">
             ${t.dicas.map(d => `<li>${d}</li>`).join("")}

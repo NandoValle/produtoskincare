@@ -34,6 +34,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 :focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
 .horarios{background:#fff4dd;color:#5c3d00;border-left:3px solid #b7791f;border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
 .horarios a{color:#5c3d00}
+.sem-regra{background:var(--papel);border:1.5px dashed var(--linha);border-left:3px solid #6b6b6b;border-radius:0 var(--raio) var(--raio) 0;padding:14px;margin:10px 0}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font:inherit;font-size:.92rem;border:1.5px solid var(--linha);background:var(--papel);color:var(--tinta);border-radius:999px;padding:8px 14px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:#fff}
@@ -70,7 +71,7 @@ details.pares-ok summary{cursor:pointer;font-weight:600;margin:10px 0}
 <p class="sub"><a href="/" style="color:var(--rosa)">← Voltar ao início</a></p>
 
 <h1>Verificador de ingredientes</h1>
-<p class="sub">Escolha dois ou mais ativos, ou cole a lista de ingredientes dos seus produtos, e veja se pode usar junto, se é melhor usar em horários diferentes ou se não deve combinar, com o motivo.</p>
+<p class="sub">Escolha dois ou mais ativos, ou cole a lista de ingredientes dos seus produtos, e veja se pode usar junto, se é melhor usar em horários diferentes ou se não deve combinar, com o motivo. Quando não temos regra cadastrada para um par, dizemos que não sabemos.</p>
 <p class="sub">Ainda não sabe quais ativos usar? Veja o <a href="/ferramentas/ativos/" style="color:var(--rosa)">guia de princípios ativos</a>, com recomendação pelo seu objetivo e tipo de pele.</p>
 
 <div class="card aviso">
@@ -204,8 +205,8 @@ details.pares-ok summary{cursor:pointer;font-weight:600;margin:10px 0}
   const RAPIDOS = ["retinol", "tretinoina", "adapaleno", "glicolico", "latico", "mandelico", "salicilico", "vitc",
     "bpo", "niacinamida", "azelaico", "hialuronico", "ceramidas", "tranexamico"];
   const POR_ID = Object.fromEntries(R.ATIVOS.map(a => [a.id, a]));
-  const ICONE = { ok: "✅", horarios: "🕐", nao: "⛔" };
-  const CSS = { ok: "ok", horarios: "horarios", nao: "conflito" };
+  const ICONE = { ok: "✅", sem_regra: "❔", horarios: "🕐", nao: "⛔" };
+  const CSS = { ok: "ok", sem_regra: "sem-regra", horarios: "horarios", nao: "conflito" };
   const escolhidos = new Set();
   let ULTIMO = null;
 
@@ -293,7 +294,7 @@ details.pares-ok summary{cursor:pointer;font-weight:600;margin:10px 0}
       `<li><strong>${esc(R.CLASSES[c.a])} + ${esc(R.CLASSES[c.b])}:</strong> ${esc(c.motivo)}${c.sensivel ? ` <em>Pele sensível: ${esc(R.ROTULOS[c.sensivel]).toLowerCase()}.</em>` : ""}</li>`).join("") + `</ul>` : "";
   }).join("");
   const hist = R.HISTORICO.map(h => `v${esc(h.versao)} (${esc(h.data.split("-").reverse().join("/"))}): ${esc(h.nota)}`).join("<br>");
-  $("listaRegras").innerHTML = `<div class="regras">${grupos}</div><p class="sub" style="font-size:.82rem;margin-top:12px">Pares sem regra saem como "pode usar junto"; ácido hialurônico, ceramidas, pantenol, centella e filtro solar combinam com tudo. Ácido cítrico não conta como AHA, porque nas listas de ingredientes costuma ser só ajuste de pH.<br>Versão das regras: ${hist}</p>`;
+  $("listaRegras").innerHTML = `<div class="regras">${grupos}</div><p class="sub" style="font-size:.82rem;margin-top:12px">Par sem regra cadastrada sai como "sem regra cadastrada (não sabemos)", nunca como "pode usar junto". Há uma regra geral para hidratantes e calmantes (ácido hialurônico, ceramidas, pantenol, centella), filtro solar, antioxidantes e clareadores suaves: esses combinam com os outros ativos. Ácido cítrico não conta como AHA, porque nas listas de ingredientes costuma ser só ajuste de pH.<br>Versão das regras: ${hist}</p>`;
 
   // Abrir com ?ativos=retinol,glicolico&irritada=1&sensivel=1 (exemplos, links do blog)
   const q = new URLSearchParams(location.search);

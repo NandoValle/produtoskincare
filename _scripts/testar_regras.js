@@ -88,7 +88,13 @@ caso("11 INCI colado: resultado geral", inci.resultado, "horarios");
 const tres = R.avaliar([A("retinol"), A("vitc"), A("niacinamida")]);
 caso("12 três ativos: geral e número de pares", [tres.resultado, tres.pares.length, tres.pares[0].regra], ["horarios", 3, "retinoide-vitc"]);
 caso("a ordem dos ativos não muda o resultado", par(A("glicolico"), A("retinol")), par(A("retinol"), A("glicolico")));
-caso("pele irritada + ativo sem regra: ok, com recomendação de rotina mínima", par(IRRITADA, A("niacinamida")), ["ok", "irritada-sem-regra"]);
+caso("pele irritada + ativo sem regra: sem regra cadastrada (não 'ok')", par(IRRITADA, A("niacinamida")), ["sem_regra", "irritada-sem-regra"]);
+caso("par sem regra cadastrada (ácido azelaico + ácido salicílico): sem_regra", par(A("azelaico"), A("salicilico")), ["sem_regra", "sem-regra"]);
+caso("par sem regra cadastrada (niacinamida + peróxido de benzoíla): sem_regra", par(A("niacinamida"), A("bpo")), ["sem_regra", "sem-regra"]);
+caso("motivo do par sem regra não diz que é seguro", /não quer dizer que é seguro/.test(R.avaliarPar(A("azelaico"), A("salicilico")).motivo), true);
+caso("geral com um par sem regra e os outros ok: sem_regra", R.avaliar([A("azelaico"), A("salicilico"), A("hialuronico")]).resultado, "sem_regra");
+caso("geral: regra explícita pesa mais que par sem regra", R.avaliar([A("retinol"), A("glicolico"), A("azelaico")]).resultado, "horarios");
+caso("todo resultado possível tem rótulo", ["ok", "sem_regra", "horarios", "nao"].every(k => R.ROTULOS[k]), true);
 caso("motivo curto (até 280 caracteres) em toda combinação", R.COMBINACOES.filter(c => c.motivo.length > 280 || (c.sensivelMotivo || "").length > 280).map(c => c.id), []);
 
 /* ===== Integridade da lista ===== */
