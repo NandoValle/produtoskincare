@@ -158,7 +158,7 @@ def cabeca(titulo, descricao, caminho):
 
 RODAPE = f"""
 <p class="sub" style="margin-top:30px;font-size:.82rem">{AFILIADO}</p>
-<p class="sub" style="font-size:.82rem">© 2026 Produto Skincare.</p>
+<p class="sub" style="font-size:.82rem">© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10).</p>
 </main>
 </body>
 </html>
