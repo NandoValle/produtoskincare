@@ -189,7 +189,7 @@ def pagina_produto(p, fichas, hist, todos):
 <h2 id="para-quem">Para quem faz mais sentido</h2>
 <ul class="pd-lista">{''.join(tipos)}</ul>
 {('<p class="pd-grupo">Costuma ser escolhido para:</p><ul class="pd-lista">' + ''.join(conc) + '</ul>') if conc else ''}
-<p class="ig-nota">Não sabe seu tipo de pele? Faça o <a href="/provador/">quiz de 2 minutos</a>.</p>
+<p class="ig-nota">Não sabe seu tipo de pele? Faça o <a href="/provador/">quiz do provador</a>.</p>
 </section>
 <section aria-labelledby="ativos">
 <h2 id="ativos">Ativos em destaque</h2>

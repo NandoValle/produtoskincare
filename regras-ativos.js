@@ -3,7 +3,7 @@
  * Usada por:
  *   - /provador/ : contraindicações (pele sensível, retinol alto, ácidos fortes, fragrância)
  *                  e avisos de combinação na rotina sugerida;
- *   - /ferramentas/ingredientes/ : verificador de combinações (ok / horários diferentes / não combine).
+ *   - /ferramentas/ingredientes/ : verificador de combinações (ok / sem regra cadastrada / horários diferentes / não combine).
  *
  * Nada aqui é decidido "na hora": cada resultado sai de uma regra escrita abaixo.
  * Para mudar uma regra:
@@ -18,8 +18,9 @@
 (function (raiz) {
   "use strict";
 
-  var VERSAO = "1.0.0";
+  var VERSAO = "1.1.0";
   var HISTORICO = [
+    { versao: "1.1.0", data: "2026-11-06", nota: "Par sem regra cadastrada deixa de sair como \"pode usar junto\" e passa a sair como \"sem regra cadastrada\" (não sabemos). Nenhuma regra nova." },
     { versao: "1.0.0", data: "2026-11-05", nota: "Primeira versão: ativos reconhecidos, combinações (retinoide × AHA/BHA, × vitamina C, × peróxido de benzoíla, ácidos × pele irritada e outras) e contraindicações por perfil." }
   ];
 
@@ -80,7 +81,8 @@
     hidratante: "hidratante ou calmante", antioxidante: "antioxidante", filtro: "filtro solar", irritada: "pele irritada"
   };
 
-  /* Classes que combinam com as outras: sem regra própria, o par sai "ok" com este motivo. */
+  /* Classes que combinam com as outras: regra geral cadastrada, o par sai "ok" com este motivo.
+   * Par que não cai em COMBINACOES nem aqui sai "sem_regra" (não sabemos), nunca "ok". */
   var NEUTRAS = {
     hidratante: "Hidratantes e calmantes (ácido hialurônico, ceramidas, pantenol, centella) combinam com os outros ativos e ajudam a pele a tolerá-los.",
     antioxidante: "Antioxidantes como vitamina E, ácido ferúlico e peptídeos costumam combinar com os outros ativos.",
@@ -90,6 +92,7 @@
 
   /* ===== COMBINAÇÕES =====
    * resultado: "ok" (pode usar junto) · "horarios" (use em horários diferentes) · "nao" (não combine)
+   * Sem regra para o par, avaliarPar devolve "sem_regra" (sem regra cadastrada: não sabemos).
    * sensivel: resultado que vale para pele sensível, quando é mais rígido (com sensivelMotivo).
    * nota: observação curta mostrada junto (exceções, receita).
    */
@@ -172,8 +175,8 @@
       motivo: "Ácido esfoliante em concentração alta para uso em casa: use poucas vezes por semana, à noite, e protetor solar todos os dias." }
   ];
 
-  var ROTULOS = { ok: "Pode usar junto", horarios: "Use em horários diferentes", nao: "Não combine" };
-  var PESO = { ok: 0, horarios: 1, nao: 2 };
+  var ROTULOS = { ok: "Pode usar junto", sem_regra: "Sem regra cadastrada (não sabemos)", horarios: "Use em horários diferentes", nao: "Não combine" };
+  var PESO = { ok: 0, sem_regra: 1, horarios: 2, nao: 3 };
 
   /* ===== FUNÇÕES ===== */
   function normalizar(texto) {
@@ -243,14 +246,14 @@
       };
     }
     if (x.classe === "irritada" || y.classe === "irritada") {
-      return { resultado: "ok", regra: "irritada-sem-regra", nota: "", porSensibilidade: false,
-        motivo: "Sem restrição nas regras para a pele irritada. Mesmo assim, enquanto ela se recupera, prefira uma rotina mínima: limpeza suave, hidratante e protetor." };
+      return { resultado: "sem_regra", regra: "irritada-sem-regra", nota: "", porSensibilidade: false,
+        motivo: "Não temos regra cadastrada para este ativo com a pele irritada, então não dá para dizer que é seguro. Enquanto ela se recupera, prefira uma rotina mínima: limpeza suave, hidratante e protetor." };
     }
     var neutra = NEUTRAS[x.classe] ? x.classe : NEUTRAS[y.classe] ? y.classe : null;
     if (neutra) return { resultado: "ok", motivo: NEUTRAS[neutra], nota: "", regra: "neutra-" + neutra, porSensibilidade: false };
     return {
-      resultado: "ok",
-      motivo: "Nenhum conflito registrado para este par nas regras v" + VERSAO + ". Mesmo assim, introduza um ativo novo por vez.",
+      resultado: "sem_regra",
+      motivo: "Não temos regra cadastrada para este par (regras v" + VERSAO + "), então não sabemos dizer se combinam. Isso não quer dizer que é seguro usar junto: na dúvida, use em horários diferentes, introduza um ativo novo por vez ou pergunte a um dermatologista ou farmacêutico.",
       nota: "", regra: "sem-regra", porSensibilidade: false
     };
   }

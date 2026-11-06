@@ -17,7 +17,7 @@ sleep 1
 BASE="http://127.0.0.1:$PORTA"
 falhou=0
 node _scripts/testar_regras.js >/dev/null && echo "ok    regras (node _scripts/testar_regras.js)" || { echo "FALHA regras"; falhou=1; }
-for t in link link_extra sensivel orcamento verificador; do
+for t in link link_extra sensivel orcamento verificador confianca; do
   if saida=$(node "_scripts/testes_navegador/$t.js" "$BASE" 2>&1); then
     echo "ok    $t"
   else
