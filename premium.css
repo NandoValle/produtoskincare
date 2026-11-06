@@ -253,3 +253,6 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
  .ps-rodape-grid > nav ul a{display:inline-block;padding:4px 0}
  .ps-rodape-base{margin-top:28px}
 }
+
+/* Provador: o botão de tema fica no topo da página e rola junto, em vez de flutuar sobre o texto. */
+.ps-quiz .btn-tema{position:absolute}
