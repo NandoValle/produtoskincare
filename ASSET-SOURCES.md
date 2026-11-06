@@ -1,19 +1,16 @@
 # Photography
 
-- File: `img/skincare-editorial.jpg`
-- Photographer: Kaboompics
-- Source: https://www.pexels.com/photo/pipette-over-bottle-of-serum-4735942/
-- License: https://www.pexels.com/license/
-- Retrieved: 2026-11-03
-- Usage: editorial skincare illustration on the homepage. No endorsement is implied.
+Homepage photos are original generated images, stored locally. They replace the earlier Pexels stock (Kaboompics, Alena Darmel, Jana Kukebal). The homepage does not credit Pexels for these files.
 
-The photo is stored locally; no third-party image request is made by visitors.
+- `img/ritual-face.jpg` (1000×1333) — hero portrait: woman applying cream. Also the first editorial story image.
+- `img/skincare-editorial.jpg` (960×1280) — hero inset: hand, frosted bottle, and dropper.
+- `img/cream-texture.jpg` (840×1120) — cream still life on the homepage editorial story.
+- `img/tipo-oleosa.jpg` (1152×864) — Oleosa card: glossy serum on skin.
+- `img/tipo-seca.jpg` (1152×864) — Seca card: thick matte ivory cream.
+- `img/tipo-mista.jpg` (1152×864) — Mista card: glossy serum beside cream.
+- `img/tipo-normal.jpg` (1152×864) — Normal card: thin even lotion on porcelain.
 
-## Editorial refinement — accessed 2026-11-03
-
-- `img/ritual-face.jpg`: Alena Darmel, https://www.pexels.com/photo/a-woman-applying-a-facial-product-8989957/
-- `img/cream-texture.jpg`: Jana Kukebal, https://www.pexels.com/photo/a-white-cream-on-white-surface-6689397/
-- Both photos: Pexels license https://www.pexels.com/license/. Illustrative photography; no testimonial, diagnosis, endorsement, or exclusive ownership is implied. Cropping is applied with CSS.
+No third-party image request is made by visitors. Illustrative only: no testimonial, diagnosis, or endorsement is implied.
 - Cormorant Garamond 500: https://fonts.google.com/specimen/Cormorant+Garamond. Author and SIL OFL 1.1 license included in `fonts/Cormorant-OFL.txt`; source https://github.com/google/fonts/tree/main/ofl/cormorantgaramond.
 - Manrope 400 and 600: https://fonts.google.com/specimen/Manrope. Author and SIL OFL 1.1 license included in `fonts/Manrope-OFL.txt`; source https://github.com/google/fonts/tree/main/ofl/manrope.
 - Font files downloaded from Google Fonts CSS API and stored locally. No third-party font request is made by visitors.
