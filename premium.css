@@ -278,3 +278,10 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 
 /* Home: "Ver cuidados" dos cards de tipo fica numa linha só. */
 .ps-skin .ps-card-link{white-space:nowrap}
+
+/* Header no desktop: menu e idiomas um pouco maiores e com mais contraste, mesmo espaçamento. */
+@media(min-width:1041px){
+ .ps-nav a{font-size:15px;color:var(--tinta-2)}
+ .ps-mais-btn{font-size:15px;color:var(--tinta-2)}
+ .ps-langs a{font-size:13px}
+}
