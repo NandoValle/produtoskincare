@@ -90,6 +90,7 @@ ESTILO = """<style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
 main{max-width:760px;margin:0 auto;padding:28px 0 60px}
+footer.ps-rodape{margin:0 -18px}
 h1,h2,h3{font-family:var(--fonte-display);font-weight:400;letter-spacing:-0.02em;line-height:1.2}
 h1{font-size:clamp(1.8rem,5vw,2.6rem);margin:.3em 0}
 h2{font-size:1.35rem;margin:2em 0 .5em}
