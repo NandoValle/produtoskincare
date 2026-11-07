@@ -222,6 +222,14 @@ html[data-tema="claro"]{
   transition:all 0.2s var(--ease);box-shadow:var(--sombra-1);
 }
 .btn-tema:hover{transform:scale(1.1);box-shadow:var(--sombra-2)}
+/* Câmera ao vivo do provador */
+.camera-painel{margin-top:14px}
+.camera-moldura{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:3/4;border-radius:var(--raio-lg);overflow:hidden;background:#111}
+.camera-moldura video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:block}
+.camera-oval{position:absolute;left:18%;right:18%;top:12%;bottom:16%;border:3px dashed rgba(255,255,255,.75);border-radius:50%;pointer-events:none;transition:border-color var(--dur)}
+.camera-oval.ok{border-style:solid;border-color:#7fd1a3}
+.camera-dica{text-align:center;font-weight:500;margin-top:10px;min-height:1.5em}
+@media (prefers-reduced-motion:reduce){.camera-oval{transition:none}}
 </style>
 <link rel="stylesheet" href="/premium.css">
 <style>
@@ -442,9 +450,22 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 </div>
 
 <div class="botoes" style="margin-top:12px">
-<label class="btn" for="inputSelfie" id="lblSelfie" style="opacity:.45;pointer-events:none">📸 Enviar selfie</label>
+<button class="btn" id="btnCamera" type="button" disabled>🤳 Usar a câmera agora</button>
+<label class="btn sec" for="inputSelfie" id="lblSelfie" style="opacity:.45;pointer-events:none">🖼️ Enviar foto da galeria</label>
 <input type="file" id="inputSelfie" accept="image/*" style="position:absolute;left:-9999px" disabled>
 <button class="btn sec" id="btnPularSelfie">Pular →</button>
+</div>
+<div id="painelCamera" class="camera-painel" hidden>
+<div class="camera-moldura">
+<video id="videoCamera" playsinline muted autoplay aria-label="Prévia da câmera"></video>
+<div class="camera-oval" id="ovalCamera" aria-hidden="true"></div>
+</div>
+<p class="camera-dica" id="dicaCamera" role="status" aria-live="polite">Abrindo a câmera…</p>
+<div class="botoes" style="justify-content:center">
+<button class="btn" id="btnCapturar" type="button" disabled>📸 Tirar foto</button>
+<button class="btn sec" id="btnFecharCamera" type="button">Cancelar</button>
+</div>
+<small class="sub" style="display:block;text-align:center;margin-top:6px">A imagem da câmera é processada só neste aparelho e não é gravada nem enviada.</small>
 </div>
 <div id="previewSelfie" hidden style="margin-top:12px">
 <canvas id="canvasSelfie" style="max-width:100%;border-radius:12px"></canvas>
@@ -3009,7 +3030,7 @@ async function initSelfie() {
       runningMode: "IMAGE",
       numFaces: 1
     });
-    $("statusSelfie").textContent = "Pronto. Marque o aceite e envie sua selfie.";
+    $("statusSelfie").textContent = "Pronto. Use a câmera ou envie uma selfie da galeria.";
   } catch (e) {
     $("statusSelfie").textContent = "Não consegui carregar o detector. Pode pular — o quiz já dá um bom resultado.";
   }
@@ -3021,7 +3042,8 @@ $("consentSelfie").onchange = () => {
   $("lblSelfie").style.opacity = ok ? "1" : ".45";
   $("lblSelfie").style.pointerEvents = ok ? "auto" : "none";
   $("modoSelfie").hidden = !ok;
-  if (ok) initSelfie();
+  $("btnCamera").disabled = !ok || modoFotos === 3;
+  if (ok) initSelfie(); else fecharCamera();
 };
 
 // Modo de fotos: 1 ou 3
@@ -3032,6 +3054,8 @@ const ANALISES_MULTIPLAS = {};
 document.querySelectorAll("input[name=qtdFotos]").forEach(r => {
   r.onchange = () => {
     modoFotos = parseInt(r.value);
+    $("btnCamera").hidden = modoFotos === 3 || !CAMERA_DISPONIVEL;
+    if (modoFotos === 3) fecharCamera();
     if (modoFotos === 3) {
       $("fotosMultiplas").hidden = false;
       renderizarSlotsFotos();
@@ -3287,7 +3311,129 @@ $("btnSelfieVoltar").onclick = () => mostrarTela("preferencias");
 
 $("inputSelfie").onchange = async (e) => {
   const file = e.target.files[0];
-  if (!file || !landmarker) return;
+  e.target.value = "";
+  if (!file) return;
+  if (!landmarker) await initSelfie();
+  if (!landmarker) return;
+  fecharCamera();
+  await analisarSelfie(file);
+};
+
+// ===== Câmera ao vivo (getUserMedia). Nada é gravado nem enviado. =====
+const CAMERA_DISPONIVEL = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && window.isSecureContext !== false;
+let streamCamera = null, timerEnquadramento = null;
+const cvEnquadramento = document.createElement("canvas");
+if (!CAMERA_DISPONIVEL) $("btnCamera").hidden = true;
+
+async function abrirCamera() {
+  if (streamCamera) return;
+  if (!landmarker) await initSelfie();
+  if (!landmarker) return;
+  $("previewSelfie").hidden = true;
+  try {
+    streamCamera = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 960 } },
+      audio: false
+    });
+  } catch (e) {
+    streamCamera = null;
+    const msg = {
+      NotAllowedError: "Você não liberou a câmera. Pode liberar nas configurações do navegador, enviar uma foto da galeria ou pular.",
+      SecurityError: "O navegador bloqueou a câmera nesta página. Envie uma foto da galeria ou pule.",
+      NotFoundError: "Não encontrei câmera neste aparelho. Envie uma foto da galeria ou pule.",
+      OverconstrainedError: "Não encontrei câmera neste aparelho. Envie uma foto da galeria ou pule.",
+      NotReadableError: "A câmera está em uso por outro app. Feche o outro app e tente de novo."
+    }[e && e.name] || "Não consegui abrir a câmera. Envie uma foto da galeria ou pule.";
+    $("statusSelfie").textContent = msg;
+    return;
+  }
+  const v = $("videoCamera");
+  v.srcObject = streamCamera;
+  $("painelCamera").hidden = false;
+  $("btnCamera").hidden = true;
+  $("btnCapturar").disabled = true;
+  $("dicaCamera").textContent = "Posicione o rosto dentro do oval.";
+  $("statusSelfie").textContent = "";
+  try { await v.play(); } catch (e) {}
+  clearInterval(timerEnquadramento);
+  timerEnquadramento = setInterval(avaliarEnquadramento, 500);
+  $("painelCamera").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+}
+
+function fecharCamera() {
+  clearInterval(timerEnquadramento);
+  timerEnquadramento = null;
+  if (streamCamera) streamCamera.getTracks().forEach(t => t.stop());
+  streamCamera = null;
+  const v = $("videoCamera");
+  if (v) v.srcObject = null;
+  if ($("painelCamera")) $("painelCamera").hidden = true;
+  if ($("btnCamera")) $("btnCamera").hidden = !CAMERA_DISPONIVEL || modoFotos === 3;
+}
+
+// Dicas ao vivo: rosto no oval, distância, de frente e luz.
+function avaliarEnquadramento() {
+  const v = $("videoCamera");
+  if (!streamCamera || !landmarker || !v.videoWidth) return;
+  const W = 320, H = Math.round(v.videoHeight * W / v.videoWidth);
+  cvEnquadramento.width = W; cvEnquadramento.height = H;
+  const ctx = cvEnquadramento.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(v, 0, 0, W, H);
+  let res;
+  try { res = landmarker.detect(cvEnquadramento); } catch (e) { return; }
+  let dica = "", ok = false;
+  if (!res.faceLandmarks || !res.faceLandmarks.length) {
+    dica = "Não estou vendo seu rosto. Posicione-o dentro do oval.";
+  } else {
+    const lm = res.faceLandmarks[0];
+    const esq = lm[234], dir = lm[454], nariz = lm[1];
+    // A prévia usa object-fit: cover em 3:4; converte para a área visível na tela.
+    const asp = v.videoWidth / v.videoHeight;
+    const fracW = asp > 0.75 ? 0.75 / asp : 1, fracH = asp > 0.75 ? 1 : asp / 0.75;
+    const vx = x => (x - (1 - fracW) / 2) / fracW, vy = y => (y - (1 - fracH) / 2) / fracH;
+    const largura = Math.abs(dir.x - esq.x) / fracW;
+    const centroX = (vx(esq.x) + vx(dir.x)) / 2, centroY = vy(nariz.y);
+    const giro = Math.abs((nariz.x - esq.x) / (dir.x - esq.x || 1) - 0.5);
+    const x0 = Math.max(0, Math.round(Math.min(esq.x, dir.x) * W)), x1 = Math.min(W, Math.round(Math.max(esq.x, dir.x) * W));
+    const y0 = Math.max(0, Math.round((nariz.y - largura * .45) * H)), y1 = Math.min(H, Math.round((nariz.y + largura * .35) * H));
+    let soma = 0, n = 0;
+    if (x1 > x0 && y1 > y0) {
+      const d = ctx.getImageData(x0, y0, x1 - x0, y1 - y0).data;
+      for (let i = 0; i < d.length; i += 16) { soma += (d[i] + d[i + 1] + d[i + 2]) / 3; n++; }
+    }
+    const luz = n ? soma / n : 128;
+    if (largura < 0.3) dica = "Chegue um pouco mais perto.";
+    else if (largura > 0.85) dica = "Afaste um pouco o aparelho.";
+    else if (Math.abs(centroX - 0.5) > 0.15 || Math.abs(centroY - 0.48) > 0.18) dica = "Centralize o rosto no oval.";
+    else if (giro > 0.12) dica = "Olhe de frente para a câmera.";
+    else if (luz < 70) dica = "Pouca luz. Fique de frente para uma janela.";
+    else if (luz > 215) dica = "Luz forte demais. Evite sol direto no rosto.";
+    else { dica = "Ótimo! Pode tirar a foto."; ok = true; }
+  }
+  $("ovalCamera").classList.toggle("ok", ok);
+  $("btnCapturar").disabled = !(res.faceLandmarks && res.faceLandmarks.length);
+  if ($("dicaCamera").textContent !== dica) $("dicaCamera").textContent = dica;
+}
+
+async function capturarFoto() {
+  const v = $("videoCamera");
+  if (!streamCamera || !v.videoWidth) return;
+  const cv = document.createElement("canvas");
+  cv.width = v.videoWidth; cv.height = v.videoHeight;
+  cv.getContext("2d").drawImage(v, 0, 0);
+  fecharCamera();
+  const blob = await new Promise(res => cv.toBlob(res, "image/jpeg", 0.92));
+  if (blob) await analisarSelfie(blob);
+}
+
+$("btnCamera").onclick = abrirCamera;
+$("btnCapturar").onclick = capturarFoto;
+$("btnFecharCamera").onclick = fecharCamera;
+["btnPularSelfie", "btnSelfieContinuar", "btnSelfieVoltar"].forEach(id => $(id).addEventListener("click", fecharCamera));
+document.addEventListener("visibilitychange", () => { if (document.hidden) fecharCamera(); });
+window.addEventListener("pagehide", fecharCamera);
+
+async function analisarSelfie(file) {
   $("statusSelfie").textContent = "Analisando no seu aparelho…";
 
   const img = await createImageBitmap(file);
