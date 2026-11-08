@@ -423,8 +423,9 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 
 <!-- ===== SELFIE (opcional, fase 3) ===== -->
 <div id="telaSelfie" hidden>
-<h2>Quer mais precisão? 📸</h2>
-<p class="sub">Tire uma selfie e nossa análise visual soma pontos ao resultado. 100% no seu navegador — a foto não sai daqui. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
+<h2 id="tituloSelfie">Quer mais precisão? 📸</h2>
+<p class="sub" id="subSelfieSo" hidden>Tire uma selfie e veja seu tipo de pele estimado e uma rotina de manhã e noite, sem responder o quiz. Tudo roda no seu navegador e a foto não sai do seu aparelho. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
+<p class="sub" id="subSelfieQuiz">Tire uma selfie e nossa análise visual soma pontos ao resultado. 100% no seu navegador — a foto não sai daqui. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
 
 <div class="card aviso">
 <strong>Como tirar a foto:</strong>
@@ -485,6 +486,10 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 
 <div id="telaResultado" hidden role="region" aria-label="Resultado da análise">
 <h2>Sua rotina estimada</h2>
+<div class="card aviso" id="avisoSoSelfie" hidden>
+<strong>Resultado feito só com a selfie.</strong> A foto sozinha é menos precisa que o quiz, porque luz, câmera e filtros do celular mudam o brilho e a cor da pele. Para confirmar o tipo, responda o quiz: a análise da sua selfie continua valendo e é somada às respostas.
+<div class="botoes" style="margin-top:10px"><button class="btn sec" id="btnRefinarQuiz" type="button">Refinar com o quiz →</button></div>
+</div>
 <p class="sub so-impressao" id="cabecalhoImpressao"></p>
 
 <div class="card aviso" id="avisoLink" hidden>
@@ -3599,11 +3604,46 @@ calcularTipo = function () {
     // produtos) e travava a tela de resultado. O tipo continua "oleosa" e a desidratação vira uma marca.
     if (selfieEstimativa.rebote && base.tipo === "oleosa") base.desidratada = true;
     base.metodo = selfieEstimativa.multipla ? "quiz+3fotos" : "quiz+1foto";
+    // Modo "só selfie" (vindo da home): sem respostas do quiz, o tipo é o que a foto indicou.
+    if (ESTADO.soSelfie && base.metodo !== "link") {
+      base.tipo = selfieEstimativa.tipo;
+      base.metodo = selfieEstimativa.multipla ? "3fotos" : "selfie";
+    }
     base.skinScore = selfieEstimativa.skinScore;
     base.idadePele = selfieEstimativa.idadePele;
   }
   return base;
 };
+
+// ===== MODO SÓ SELFIE (/provador/?modo=selfie, chamado pela home) =====
+function ativarModoSelfie(ativo) {
+  ESTADO.soSelfie = ativo;
+  $("tituloSelfie").textContent = ativo ? "Analise sua pele com uma selfie 📸" : "Quer mais precisão? 📸";
+  $("subSelfieSo").hidden = !ativo;
+  $("subSelfieQuiz").hidden = ativo;
+  $("btnPularSelfie").textContent = ativo ? "Prefiro responder o quiz" : "Pular →";
+  $("btnSelfieContinuar").textContent = ativo ? "Ver minha rotina →" : "Ver resultado →";
+}
+$("btnPularSelfie").onclick = () => {
+  if (ESTADO.soSelfie) { ativarModoSelfie(false); iniciarQuiz(); }
+  else calcularEMostrar();
+};
+$("btnSelfieVoltar").onclick = () => {
+  if (ESTADO.soSelfie) { ativarModoSelfie(false); mostrarTela("inicio"); }
+  else mostrarTela("preferencias");
+};
+$("btnRefinarQuiz").onclick = () => { ativarModoSelfie(false); ESTADO.restaurado = null; iniciarQuiz(); };
+const _calcularEMostrarOriginal = calcularEMostrar;
+calcularEMostrar = function (opcoes) {
+  const r = _calcularEMostrarOriginal(opcoes);
+  $("avisoSoSelfie").hidden = !(ESTADO.soSelfie && selfieEstimativa && !ESTADO.restaurado);
+  return r;
+};
+if (new URLSearchParams(location.search).get("modo") === "selfie") {
+  ativarModoSelfie(true);
+  track("quiz_start", { modo: "selfie" });
+  mostrarTela("selfie");
+}
 })();
 </script>
 <footer class="ps-rodape">
