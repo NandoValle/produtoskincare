@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modo 12 semanas: comece um ativo novo aos poucos | Produto Skincare</title>
+<meta name="description" content="Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/12-semanas/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+
+.ft-rotulo{display:block;font-weight:600;margin:14px 0 6px}
+.ft-campo{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
+textarea.ft-campo{resize:vertical;min-height:96px}
+.ft-campo:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
+.ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.ft-cards-acoes{display:flex;flex-wrap:wrap;gap:0 12px;align-items:center}
+.ft-outro{margin-top:14px}.ft-outro summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.ft-periodo{border:0;padding:0;margin:0;display:flex;gap:18px;flex-wrap:wrap}.ft-periodo legend{padding:0}
+.ft-periodo label,.ft-check{display:flex;gap:8px;align-items:center;min-height:44px;cursor:pointer}
+.ft-sugestoes{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
+.ft-sugestoes li{margin:0}
+.ft-sugestao{font:inherit;width:100%;text-align:left;display:flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel);color:var(--tinta);cursor:pointer}
+.ft-sugestao span{font-size:.86rem;color:var(--suave)}
+.ft-sugestao:hover{border-color:var(--rosa)}
+.ft-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.ft-item{margin:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding:12px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel)}
+.ft-item>div:first-child{display:flex;flex-direction:column;min-width:0;flex:1 1 240px}
+.ft-item .ig-nota{margin:0}
+.ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
+.ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
+.ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
+.ft-ok{background:var(--verde-claro);border-color:var(--verde)}
+.ft-nao{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-horarios{background:#fff4dd;border-color:#b7791f;color:#5c3d00}
+.ft-sem{background:var(--papel);border:1.5px dashed var(--linha-2,var(--linha));border-left:4px solid #6b6b6b}
+.ft-info{background:var(--papel);border-color:var(--linha-2,var(--linha))}
+.ft-ok ul,.ft-nao ul,.ft-info ul{margin:6px 0 0}
+.ft-sub{display:block;font-size:.88rem;opacity:.85;margin:4px 0}
+.ft-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ft-tabela th,.ft-tabela td{padding:9px 10px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ft-tabela tr.ft-agora{background:var(--rosa-claro)}
+.ft-rolagem{overflow-x:auto}
+.ft-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;list-style:none;padding:0;margin:10px 0}
+.ft-grade li{margin:0}
+.ft-foto{font:inherit;width:100%;padding:0;border:2px solid transparent;border-radius:12px;background:var(--papel);overflow:hidden;cursor:pointer;color:var(--tinta);text-align:left}
+.ft-foto[aria-pressed="true"]{border-color:var(--rosa)}
+.ft-foto img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.ft-foto span{display:block;padding:6px 8px;font-size:.84rem}
+.ft-camera{position:relative;max-width:420px;border-radius:16px;overflow:hidden;background:#111;aspect-ratio:3/4}
+.ft-camera video,.ft-camera img.ft-fantasma{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.ft-camera img.ft-fantasma{opacity:.35;pointer-events:none}
+.ft-oval{position:absolute;inset:12% 18%;border:2px dashed rgba(255,255,255,.75);border-radius:50%;pointer-events:none}
+.ft-lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ft-lado figure{margin:0}.ft-lado img{width:100%;border-radius:12px;display:block}
+.ft-lado figcaption{font-size:.88rem;color:var(--suave);margin-top:4px}
+.ft-cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.ft-cards li{margin:0}
+.ft-cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);text-decoration:none;color:var(--tinta)}
+.ft-cards a:hover{border-color:var(--rosa)}
+.ft-cards strong{font-family:var(--fonte-display);font-size:1.15rem;font-weight:500}
+.ft-cards span{font-size:.92rem;color:var(--suave)}
+@media(prefers-color-scheme:dark){.ft-horarios{color:#5c3d00}}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modo 12 semanas: comece um ativo novo aos poucos">
+<meta property="og:description" content="Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/12-semanas/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-12-semanas.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Modo 12 semanas">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Modo 12 semanas", "item": "https://produtoskincare.com.br/ferramentas/12-semanas/"}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Modo 12 semanas</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Modo 12 semanas</h1>
+<p class="ig-lede">Para começar um ativo novo devagar: um plano semana a semana, lembretes na sua agenda e um diário de fotos para comparar a pele com a mesma luz e o mesmo enquadramento.</p>
+<p class="ig-meta">O plano e as fotos ficam só neste aparelho. Nada é enviado ao site.</p>
+</div>
+
+<div class="ig-caixa ig-alerta">
+<p class="ig-rotulo">Antes de começar</p>
+<ul id="sm-sempre"></ul>
+<p class="ig-nota">Este plano é um rascunho (versão <span id="sm-versao"></span>), escrito a partir das nossas regras de combinação e de orientações de uso comuns. Ele ainda não foi revisado por farmacêutico ou dermatologista e não substitui a bula nem a consulta.</p>
+</div>
+
+<section class="ig-caixa" aria-labelledby="sm-config-titulo">
+<h2 id="sm-config-titulo">Seu plano</h2>
+<label class="ft-rotulo" for="sm-ativo">Qual ativo você vai começar?</label>
+<select class="ft-campo" id="sm-ativo"></select>
+<label class="ft-rotulo" for="sm-inicio">Data de início</label>
+<input class="ft-campo" id="sm-inicio" type="date">
+<label class="ft-check"><input type="checkbox" id="sm-sensivel"> Tenho pele sensível (o plano fica mais lento)</label>
+<button class="ft-btn" type="button" id="sm-salvar">Montar meu plano</button>
+<p class="ig-nota" id="sm-status" role="status" aria-live="polite"></p>
+</section>
+
+<section id="sm-plano-sec" hidden aria-labelledby="sm-plano-titulo">
+<h2 id="sm-plano-titulo">Semana a semana</h2>
+<p id="sm-agora"></p>
+<p id="sm-antes"></p>
+<div class="ft-rolagem"><table class="ft-tabela"><thead><tr><th scope="col">Semanas</th><th scope="col">Datas</th><th scope="col">Quantas vezes</th></tr></thead><tbody id="sm-tabela"></tbody></table></div>
+<button class="ft-btn ft-sec" type="button" id="sm-ics">📅 Lembretes semanais na agenda (.ics)</button>
+<p class="ig-nota">O arquivo cria 12 lembretes, um por semana, com a frequência daquela semana e o aviso para tirar a foto do diário. Abre no Google Agenda, no Calendário do iPhone e no Outlook.</p>
+</section>
+
+<section id="sm-diario-sec" aria-labelledby="sm-diario-titulo">
+<h2 id="sm-diario-titulo">Diário de fotos</h2>
+<p>Tire uma foto por semana, sempre no mesmo lugar, com a mesma luz (de preferência luz do dia, de frente para a janela) e sem maquiagem. A foto anterior aparece por cima, transparente, para você acertar o enquadramento.</p>
+<div class="ft-camera" id="sm-camera" hidden>
+<video id="sm-video" playsinline muted></video>
+<img class="ft-fantasma" id="sm-fantasma" alt="" hidden style="transform:none">
+<div class="ft-oval" aria-hidden="true"></div>
+</div>
+<div class="ft-cards-acoes">
+<button class="ft-btn" type="button" id="sm-abrir">📷 Abrir a câmera</button>
+<button class="ft-btn" type="button" id="sm-tirar" hidden>Tirar a foto</button>
+<label class="ft-btn ft-sec">🖼️ Escolher uma foto<input type="file" id="sm-arquivo" accept="image/*" capture="user" class="ft-arquivo"></label>
+</div>
+<label class="ft-rotulo" for="sm-reacao">Como a pele reagiu nesta semana?</label>
+<select class="ft-campo" id="sm-reacao">
+<option value="nenhuma">Sem reação</option>
+<option value="leve">Ardeu ou repuxou um pouco, passou rápido</option>
+<option value="forte">Ficou vermelha, ardeu forte ou descamou</option>
+</select>
+<label class="ft-rotulo" for="sm-nota">Anotação (opcional)</label>
+<input class="ft-campo" id="sm-nota" type="text" maxlength="200" placeholder="Ex.: dormi pouco, menstruação, mudei de hidratante">
+<p class="ig-nota" id="sm-foto-status" role="status" aria-live="polite"></p>
+<div id="sm-alerta"></div>
+
+<h3>Suas fotos</h3>
+<p class="ig-nota">Toque em duas fotos para ver lado a lado. O site não mede melhora nem analisa as fotos: a comparação é sua.</p>
+<ul class="ft-grade" id="sm-galeria"></ul>
+<div id="sm-comparar"></div>
+<p><button class="ft-mini" type="button" id="sm-apagar-tudo">Apagar todas as fotos deste aparelho</button></p>
+<p class="ig-nota">As fotos ficam guardadas só neste navegador, neste aparelho. Se você limpar os dados do navegador, elas somem: baixe as que quiser guardar.</p>
+</section>
+</article>
+<script src="/plano-ativos.js"></script>
+<script src="/compartilhar.js"></script>
+<script>
+(function () {
+  "use strict";
+  var PL = window.PSPlano;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var CHAVE = "ps-12semanas-v1";
+  var REACOES = { nenhuma: "Sem reação", leve: "Reação leve", forte: "Reação forte" };
+  var urls = [], selecionadas = [], stream = null;
+  function evento(n) { try { if (window.PSAnalytics) window.PSAnalytics.evento(n); } catch (e) {} }
+  if (!PL) return;
+
+  $("sm-versao").textContent = PL.VERSAO;
+  $("sm-sempre").innerHTML = PL.SEMPRE.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
+  $("sm-ativo").innerHTML = Object.keys(PL.PLANOS).map(function (k) { return '<option value="' + k + '">' + esc(PL.PLANOS[k].nome) + "</option>"; }).join("");
+
+  function hojeISO() { var d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); }
+  function dataLocal(iso) { var p = iso.split("-"); return new Date(+p[0], +p[1] - 1, +p[2], 20, 0, 0); }
+  function addDias(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+  function fmt(d) { return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }); }
+  function ler() { try { return JSON.parse(localStorage.getItem(CHAVE) || "null"); } catch (e) { return null; } }
+  function salvar(c) { try { localStorage.setItem(CHAVE, JSON.stringify(c)); } catch (e) {} }
+  function semanaAtual(c) {
+    if (!c) return null;
+    var dias = Math.floor((new Date() - dataLocal(c.inicio)) / 86400000 + (20 / 24));
+    return dias < 0 ? 0 : Math.floor(dias / 7) + 1;
+  }
+
+  function desenharPlano() {
+    var c = ler();
+    $("sm-plano-sec").hidden = !c;
+    if (!c || !PL.PLANOS[c.plano]) return;
+    var p = PL.PLANOS[c.plano], sem = semanaAtual(c), inicio = dataLocal(c.inicio);
+    $("sm-ativo").value = c.plano; $("sm-inicio").value = c.inicio; $("sm-sensivel").checked = !!c.sensivel;
+    $("sm-agora").innerHTML = sem === 0 ? "<strong>Seu plano começa em " + fmt(inicio) + ".</strong>"
+      : sem > 12 ? "<strong>Você terminou as 12 semanas.</strong> Siga na última frequência que a sua pele tolerou bem."
+      : "<strong>Você está na semana " + sem + ":</strong> " + esc(PL.etapa(c.plano, sem, c.sensivel).texto.toLowerCase()) + (p.periodo === "manha" ? " (de manhã)." : " (à noite).");
+    $("sm-antes").textContent = p.antes;
+    $("sm-tabela").innerHTML = p.etapas.map(function (e) {
+      var agora = sem >= e.de && sem <= e.ate;
+      return "<tr" + (agora ? ' class="ft-agora"' : "") + "><td>" + (e.de === e.ate ? e.de : e.de + " a " + e.ate) + (agora ? " · agora" : "") + "</td><td>" +
+        fmt(addDias(inicio, (e.de - 1) * 7)) + " a " + fmt(addDias(inicio, e.ate * 7 - 1)) + "</td><td>" + esc(c.sensivel ? e.sensivel : e.normal) + "</td></tr>";
+    }).join("");
+  }
+
+  $("sm-inicio").value = hojeISO();
+  $("sm-salvar").addEventListener("click", function () {
+    if (!$("sm-inicio").value) { $("sm-status").textContent = "Escolha a data de início."; return; }
+    salvar({ plano: $("sm-ativo").value, inicio: $("sm-inicio").value, sensivel: $("sm-sensivel").checked });
+    $("sm-status").textContent = "Plano salvo neste aparelho.";
+    desenharPlano();
+    evento("12semanas/plano");
+  });
+  $("sm-ics").addEventListener("click", function () {
+    var c = ler();
+    if (!c || !window.PSEnviar || !PSEnviar.baixarICS) return;
+    var p = PL.PLANOS[c.plano], inicio = dataLocal(c.inicio);
+    var lembretes = [];
+    for (var s = 1; s <= 12; s++) {
+      var e = PL.etapa(c.plano, s, c.sensivel);
+      lembretes.push({ titulo: "Semana " + s + " de 12: " + p.nome, inicio: addDias(inicio, (s - 1) * 7),
+        descricao: "Nesta semana: " + e.texto + (p.periodo === "manha" ? " (de manhã)." : " (à noite).") +
+          "\nTire a foto do diário com a mesma luz: produtoskincare.com.br/ferramentas/12-semanas/" +
+          "\nSe arder forte, avermelhar ou descamar, volte uma etapa. Siga a bula do produto." });
+    }
+    PSEnviar.baixarICS(lembretes, "12-semanas-" + c.plano + ".ics");
+    evento("12semanas/agenda");
+  });
+
+  // ===== Diário (IndexedDB, só neste aparelho) =====
+  function banco() {
+    return new Promise(function (ok, erro) {
+      if (!window.indexedDB) { erro(new Error("sem indexedDB")); return; }
+      var req = indexedDB.open("ps-diario", 1);
+      req.onupgradeneeded = function () { req.result.createObjectStore("fotos", { keyPath: "id", autoIncrement: true }); };
+      req.onsuccess = function () { ok(req.result); };
+      req.onerror = function () { erro(req.error); };
+    });
+  }
+  function operar(modo, fn) {
+    return banco().then(function (db) {
+      return new Promise(function (ok, erro) {
+        var tx = db.transaction("fotos", modo), st = tx.objectStore("fotos"), res;
+        var r = fn(st);
+        if (r) r.onsuccess = function () { res = r.result; };
+        tx.oncomplete = function () { ok(res); };
+        tx.onerror = function () { erro(tx.error); };
+      });
+    });
+  }
+  function todas() { return operar("readonly", function (st) { return st.getAll(); }).then(function (l) { return (l || []).sort(function (a, b) { return a.data < b.data ? -1 : 1; }); }); }
+
+  function desenharGaleria() {
+    urls.forEach(function (u) { URL.revokeObjectURL(u); }); urls = [];
+    return todas().then(function (fotos) {
+      $("sm-galeria").innerHTML = fotos.length ? fotos.map(function (f) {
+        var u = URL.createObjectURL(f.blob); urls.push(u);
+        var marcada = selecionadas.indexOf(f.id) >= 0;
+        return '<li><button type="button" class="ft-foto" data-id="' + f.id + '" aria-pressed="' + marcada + '"><img src="' + u + '" alt="Foto de ' +
+          esc(new Date(f.data).toLocaleDateString("pt-BR")) + '"><span>' + (f.semana ? "Semana " + f.semana + " · " : "") +
+          esc(new Date(f.data).toLocaleDateString("pt-BR")) + "<br>" + esc(REACOES[f.reacao] || "") + (f.nota ? " · " + esc(f.nota) : "") + "</span></button>" +
+          '<a class="ft-mini" href="' + u + '" download="diario-' + esc(f.data.slice(0, 10)) + '.jpg">Baixar</a> ' +
+          '<button type="button" class="ft-mini" data-apagar="' + f.id + '">Apagar</button></li>';
+      }).join("") : '<li class="ig-nota">Nenhuma foto ainda.</li>';
+      var ultima = fotos[fotos.length - 1];
+      if (ultima) { $("sm-fantasma").src = urls[urls.length - 1]; $("sm-fantasma").hidden = false; } else $("sm-fantasma").hidden = true;
+      var sel = fotos.filter(function (f) { return selecionadas.indexOf(f.id) >= 0; });
+      $("sm-comparar").innerHTML = sel.length === 2 ? '<div class="ft-lado">' + sel.map(function (f) {
+        return '<figure><img src="' + urls[fotos.indexOf(f)] + '" alt=""><figcaption>' + (f.semana ? "Semana " + f.semana + " · " : "") + esc(new Date(f.data).toLocaleDateString("pt-BR")) + "</figcaption></figure>";
+      }).join("") + "</div>" : "";
+    }).catch(function () {
+      $("sm-galeria").innerHTML = '<li class="ig-nota">Este navegador não deixa guardar fotos (talvez esteja numa aba anônima).</li>';
+    });
+  }
+
+  function guardar(blob) {
+    var c = ler();
+    var reg = { data: new Date().toISOString(), semana: c ? semanaAtual(c) || null : null, plano: c ? c.plano : null,
+      reacao: $("sm-reacao").value, nota: $("sm-nota").value.trim(), blob: blob };
+    return operar("readwrite", function (st) { return st.add(reg); }).then(function () {
+      $("sm-foto-status").textContent = "Foto guardada neste aparelho.";
+      $("sm-nota").value = "";
+      $("sm-alerta").innerHTML = reg.reacao === "forte"
+        ? '<div class="ft-nao"><strong>Reação forte</strong>Volte uma etapa no plano (ou pause) até a pele acalmar. Se não melhorar em alguns dias, pare e procure um dermatologista.</div>' : "";
+      evento("12semanas/foto");
+      return desenharGaleria();
+    }).catch(function () { $("sm-foto-status").textContent = "Não deu para guardar a foto neste navegador."; });
+  }
+
+  // Recorta no centro em 3:4 e espelha, como a pessoa se vê na câmera frontal.
+  function recortar(fonte, w, h, espelhar) {
+    var alvoW = 900, alvoH = 1200, razao = 3 / 4, sw, sh;
+    if (w / h > razao) { sh = h; sw = h * razao; } else { sw = w; sh = w / razao; }
+    var c = document.createElement("canvas"); c.width = alvoW; c.height = alvoH;
+    var ctx = c.getContext("2d");
+    if (espelhar) { ctx.translate(alvoW, 0); ctx.scale(-1, 1); }
+    ctx.drawImage(fonte, (w - sw) / 2, (h - sh) / 2, sw, sh, 0, 0, alvoW, alvoH);
+    return new Promise(function (ok) { c.toBlob(ok, "image/jpeg", 0.85); });
+  }
+
+  $("sm-abrir").addEventListener("click", function () {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { $("sm-foto-status").textContent = "Este navegador não abre a câmera aqui. Use \"Escolher uma foto\"."; return; }
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 1280 } }, audio: false }).then(function (s) {
+      stream = s;
+      $("sm-video").srcObject = s;
+      $("sm-video").play();
+      $("sm-camera").hidden = false; $("sm-tirar").hidden = false; $("sm-abrir").hidden = true;
+      $("sm-foto-status").textContent = "Encaixe o rosto no oval e alinhe com a foto anterior.";
+    }).catch(function () { $("sm-foto-status").textContent = "Não deu para abrir a câmera. Confira a permissão do navegador ou use \"Escolher uma foto\"."; });
+  });
+  $("sm-tirar").addEventListener("click", function () {
+    var v = $("sm-video");
+    if (!v.videoWidth) return;
+    recortar(v, v.videoWidth, v.videoHeight, true).then(guardar);
+  });
+  $("sm-arquivo").addEventListener("change", function () {
+    var arq = this.files && this.files[0];
+    if (!arq) return;
+    var img = new Image(), u = URL.createObjectURL(arq);
+    img.onload = function () { recortar(img, img.naturalWidth, img.naturalHeight, false).then(function (b) { URL.revokeObjectURL(u); return guardar(b); }); };
+    img.src = u;
+    this.value = "";
+  });
+  $("sm-galeria").addEventListener("click", function (e) {
+    var ap = e.target.closest("[data-apagar]");
+    if (ap) {
+      if (!confirm("Apagar esta foto deste aparelho?")) return;
+      var id = +ap.dataset.apagar;
+      selecionadas = selecionadas.filter(function (x) { return x !== id; });
+      operar("readwrite", function (st) { return st.delete(id); }).then(desenharGaleria);
+      return;
+    }
+    var b = e.target.closest("[data-id]");
+    if (!b) return;
+    var fid = +b.dataset.id, i = selecionadas.indexOf(fid);
+    if (i >= 0) selecionadas.splice(i, 1); else { selecionadas.push(fid); if (selecionadas.length > 2) selecionadas.shift(); }
+    desenharGaleria();
+  });
+  $("sm-apagar-tudo").addEventListener("click", function () {
+    if (!confirm("Apagar todas as fotos do diário deste aparelho? Não dá para desfazer.")) return;
+    selecionadas = [];
+    operar("readwrite", function (st) { return st.clear(); }).then(desenharGaleria);
+  });
+  window.addEventListener("pagehide", function () { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); });
+
+  var q = new URLSearchParams(location.search).get("ativo");
+  if (q && PL.PLANOS[q] && !ler()) $("sm-ativo").value = q;
+  desenharPlano();
+  desenharGaleria();
+})();
+</script>
+
+<footer class="ig-foot">
+<p>Ferramenta informativa, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+</footer>
+</main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+
+</body>
+</html>

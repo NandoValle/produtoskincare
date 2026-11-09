@@ -11,6 +11,8 @@
 - [Hub científico](https://produtoskincare.com.br/ciencia/): estudos por trás dos ativos.
 - [Blog](https://produtoskincare.com.br/blog/)
 - [Pergunte à IA](https://produtoskincare.com.br/pergunte/): dúvidas de skincare respondidas com o conteúdo do site.
+- [Posso usar junto?](https://produtoskincare.com.br/combina/): respostas por combinação de ativos (retinol com vitamina C etc.), geradas das regras do verificador. Pares sem regra não têm página.
+- [Ferramentas](https://produtoskincare.com.br/ferramentas/): minha prateleira (análise dos produtos que a pessoa já tem), modo farmácia (foto do rótulo comparada com a prateleira), equivalente mais barato (mesmos ativos no catálogo) e modo 12 semanas (plano para começar um ativo, com diário de fotos que fica no aparelho).
 - [Sobre e critérios de escolha](https://produtoskincare.com.br/sobre/)
 
 ## Dados públicos
