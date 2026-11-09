@@ -11,6 +11,8 @@ import html as _html
 import re
 from pathlib import Path
 
+from menu import bloco as menu_superior
+
 RAIZ = Path(__file__).resolve().parent.parent
 MODELO = RAIZ / "blog" / "protetor-solar-pele-oleosa" / "index.html"
 SITE = "https://produtoskincare.com.br"
@@ -55,7 +57,7 @@ def pagina(titulo, descricao, caminho, trilha, corpo, css_extra="", scripts="", 
 </head>
 <body{(' ' + body_attrs) if body_attrs else ''}>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-<main class="{classe}" id="conteudo">
+{menu_superior(caminho)}<main class="{classe}" id="conteudo">
 <header class="ig-top">
 <a class="ig-marca" href="/">Produto <span>Skincare</span></a>
 <nav class="ig-trilha" aria-label="Trilha">

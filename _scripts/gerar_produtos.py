@@ -21,6 +21,12 @@ from urllib.parse import quote
 
 from pagina_base import RAIZ, esc, pagina
 
+
+def comparativos_de(pid):
+    """Comparativos (/comparativos/) que incluem o produto, lidos de _scripts/comparativos.json."""
+    pares = json.loads((RAIZ / "_scripts" / "comparativos.json").read_text(encoding="utf-8"))["pares"]
+    return [(f"/comparativos/{a}-ou-{b}/", b if a == pid else a) for a, b in pares if pid in (a, b)]
+
 CATALOGO = RAIZ / "produtos.json"
 FICHAS = RAIZ / "ingredientes" / "ingredientes.json"
 DESTINO = RAIZ / "produtos"
@@ -88,7 +94,58 @@ def atualizar_historico(produtos):
     return hist
 
 
+def juntar(itens):
+    itens = [i for i in itens if i]
+    return itens[0] if len(itens) == 1 else ", ".join(itens[:-1]) + " e " + itens[-1]
+
+
+def perguntas_produto(p):
+    """Perguntas frequentes montadas só com os dados do catálogo (nada é inventado)."""
+    loja = LOJAS.get(p.get("plataforma"), "loja")
+    passo = PASSOS.get(p["passo"], p["passo"]).lower()
+    periodo = " e ".join(PERIODO.get(x, x) for x in p.get("periodo", []))
+    quando = {("manha",): "de manhã", ("noite",): "à noite", ("manha", "noite"): "de manhã e à noite"}.get(
+        tuple(x for x in ("manha", "noite") if x in p.get("periodo", [])), f"de {periodo}")
+    tipos = [TIPOS.get(t, (t, None))[0].lower() for t in p.get("tipos", []) if t != "todos"]
+    evitar = [TIPOS.get(t, (t, None))[0].lower() for t in p.get("evitar", [])]
+    nome = p["nome"]
+    faq = []
+    if tipos or "todos" in p.get("tipos", []):
+        r = (f"No nosso catálogo, ele aparece para {juntar(tipos)}" if tipos else "No nosso catálogo, ele aparece para todos os tipos de pele")
+        r += " (também marcado como opção para todos os tipos)." if tipos and "todos" in p.get("tipos", []) else "."
+        if evitar:
+            r += f" Talvez não seja a melhor escolha para {juntar(evitar)}."
+        r += " Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir."
+        faq.append((f"Para que tipo de pele é o {nome}?", r))
+    if periodo:
+        faq.append((f"Uso o {nome} de manhã ou à noite?",
+                    f"Ele entra na rotina no passo “{passo}”, {quando}."))
+    if p.get("ativos"):
+        faq.append((f"Quais são os ativos em destaque do {nome}?",
+                    f"Os ativos destacados no anúncio são {juntar(p['ativos'])}. A lista completa de ingredientes (INCI) "
+                    "está na embalagem e no anúncio, e pode mudar entre lotes e versões."))
+    faq.append((f"Quanto custa o {nome}?",
+                f"Na última conferência, em {data_curta(p['preco_em'])}, custava {reais(p['preco'])} na {loja}. "
+                "O preço muda com frequência: vale o mostrado na loja na hora da compra."))
+    faq.append(("Posso usar junto com os outros produtos da minha rotina?",
+                "Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site "
+                "para checar combinações. Em caso de irritação persistente, procure um dermatologista."))
+    return faq
+
+
+def bloco_faq(faq):
+    itens = "".join(f"<details class=\"pd-faq\"><summary>{esc(q)}</summary><p>{esc(r)}</p></details>" for q, r in faq)
+    ld = {"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faq]}
+    ld_txt = json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
+    return (f'<section aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2>{itens}'
+            f'<script type="application/ld+json">{ld_txt}</script></section>')
+
+
 CSS = """
+.pd-faq{border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);margin:8px 0;padding:0 16px}
+.pd-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
+.pd-faq p{margin:0 0 14px}
 .pd-topo{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
 .pd-tag{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--papel-2);color:var(--tinta)}
 .pd-tag.refil{background:var(--verde-claro);color:var(--verde)}
@@ -159,6 +216,9 @@ def pagina_produto(p, fichas, hist, todos):
         avaliacao = (f'<p class="ig-nota">Nota {str(p["avaliacao"]).replace(".", ",")} de 5 em {milhar(p["num_avaliacoes"])} avaliações na {esc(loja)}, '
                      f'conferida em {data_curta(p["preco_em"])}. A nota é de quem comprou na loja, não uma avaliação do site.</p>')
 
+    nomes = {q["id"]: q["nome"] for q in todos}
+    compare = "".join(f'<li><a href="{url}">Compare com {esc(nomes.get(outro, outro))}</a></li>'
+                      for url, outro in comparativos_de(p["id"]))
     evitar_txt = f"<li><b>Talvez não seja para:</b> {esc(', '.join(evitar))}.</li>" if evitar else ""
     corpo = f"""<article>
 <div class="ig-cab">
@@ -206,11 +266,12 @@ def pagina_produto(p, fichas, hist, todos):
 {historico}
 {avaliacao}
 </section>
+{bloco_faq(perguntas_produto(p))}
 {('<section aria-labelledby="alternativas"><h2 id="alternativas">Alternativas do catálogo</h2><ul>' + alt + '</ul></section>') if alt else ''}
 <section aria-labelledby="relacionados">
 <h2 id="relacionados">Leia também</h2>
 <ul class="ig-rel">
-<li><a href="/produtos/">Todos os produtos</a></li>
+{compare}<li><a href="/produtos/">Todos os produtos</a></li>
 <li><a href="/rotina-de-skincare/">Rotina passo a passo</a></li>
 <li><a href="/blog/ordem-dos-produtos-skincare/">Ordem dos produtos</a></li>
 </ul>
@@ -310,7 +371,7 @@ def pagina_indice(produtos):
     corpo = f"""<article>
 <div class="ig-cab">
 <h1>Produtos do catálogo</h1>
-<p class="ig-lede">Cada produto tem uma página com o passo da rotina, o tipo de pele indicado, os ativos em destaque com o nível de evidência, o preço conferido com data e alternativas.</p>
+<p class="ig-lede">Cada produto tem uma página com o passo da rotina, o tipo de pele indicado, os ativos em destaque com o nível de evidência, o preço conferido com data e alternativas. Em dúvida entre dois parecidos? Veja os <a href="/comparativos/">comparativos</a>.</p>
 </div>
 {filtros}
 {''.join(grupos)}
