@@ -77,24 +77,25 @@ def caminho_url(arq: Path):
     return "/" if rel == "index.html" else "/" + rel[: -len("index.html")]
 
 
-def data_publicacao(texto):
-    m = re.search(r"Publicado em (\d{1,2}) de (\w+) de (\d{4})", texto)
+def data_rotulada(rotulo, texto):
+    """Data depois de 'Publicado em' / 'Atualizado em', nos dois formatos usados no site:
+    '<time datetime="AAAA-MM-DD">4 de novembro de 2026</time>' (vale o atributo) ou
+    texto puro '4 de novembro de 2026'."""
+    m = re.search(rotulo + r'\s*<time datetime="(\d{4}-\d{2}-\d{2})"', texto)
+    if m:
+        return m.group(1)
+    m = re.search(rotulo + r" (\d{1,2}) de (\w+) de (\d{4})", texto)
     if m and m.group(2).lower() in MESES:
         return f"{m.group(3)}-{MESES[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
     return None
+
+
+def data_publicacao(texto):
+    return data_rotulada("Publicado em", texto)
 
 
 def data_atualizacao(texto):
-    m = re.search(r"Atualizado em (\d{1,2}) de (\w+) de (\d{4})", texto)
-    if m and m.group(2).lower() in MESES:
-        return f"{m.group(3)}-{MESES[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-    return None
-
-
-def data_time_atualizacao(texto):
-    """Data de 'Atualizado em <time datetime="AAAA-MM-DD">' (formato usado na página inicial)."""
-    m = re.search(r'Atualizado em\s*<time datetime="(\d{4}-\d{2}-\d{2})"', texto)
-    return m.group(1) if m else data_atualizacao(texto)
+    return data_rotulada("Atualizado em", texto)
 
 
 # ---------- imagem de compartilhamento (1200x630) ----------
@@ -207,7 +208,7 @@ def montar_bloco(arq, url, info, texto):
                   "isPartOf": {"@id": SITE + "/#site"}, "inLanguage": "pt-BR",
                   "author": {"@type": "Organization", "name": "Equipe " + MARCA, "url": SITE + "/sobre/"},
                   "publisher": {"@id": SITE + "/#org"}}
-        mod = data_time_atualizacao(texto)
+        mod = data_atualizacao(texto)
         if mod:
             pagina["dateModified"] = mod
         ld.append({"@context": "https://schema.org", "@graph": [
