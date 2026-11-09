@@ -588,3 +588,5 @@ body:has(> .ps-topo) .btn-tema{top:100px}
 .ps-fontes-lista li{padding-left:18px;border-left:2px solid var(--rosa)}
 .ps-fontes-lista cite{font-style:italic;color:var(--tinta)}
 @media(max-width:700px){.ps-perguntas-grid{grid-template-columns:1fr;gap:18px}.ps-pergunta h3{font-size:22px}}
+.ps-atalho-fallback{grid-column:1/-1;margin:0;font-size:11px;line-height:1.7;color:var(--suave)}
+.ps-home .ps-atalho-form .ps-atalho-fallback{grid-column:1/-1}
