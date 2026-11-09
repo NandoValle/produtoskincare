@@ -30,7 +30,7 @@ ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condiç
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
            "privacidade": "Privacidade", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
-           "contato": "Contato", "produtos": "Produtos"}
+           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos"}
 SECOES_ARTIGO = ("blog/", "ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
 
 

@@ -21,6 +21,12 @@ from urllib.parse import quote
 
 from pagina_base import RAIZ, esc, pagina
 
+
+def comparativos_de(pid):
+    """Comparativos (/comparativos/) que incluem o produto, lidos de _scripts/comparativos.json."""
+    pares = json.loads((RAIZ / "_scripts" / "comparativos.json").read_text(encoding="utf-8"))["pares"]
+    return [(f"/comparativos/{a}-ou-{b}/", b if a == pid else a) for a, b in pares if pid in (a, b)]
+
 CATALOGO = RAIZ / "produtos.json"
 FICHAS = RAIZ / "ingredientes" / "ingredientes.json"
 DESTINO = RAIZ / "produtos"
@@ -210,6 +216,9 @@ def pagina_produto(p, fichas, hist, todos):
         avaliacao = (f'<p class="ig-nota">Nota {str(p["avaliacao"]).replace(".", ",")} de 5 em {milhar(p["num_avaliacoes"])} avaliações na {esc(loja)}, '
                      f'conferida em {data_curta(p["preco_em"])}. A nota é de quem comprou na loja, não uma avaliação do site.</p>')
 
+    nomes = {q["id"]: q["nome"] for q in todos}
+    compare = "".join(f'<li><a href="{url}">Compare com {esc(nomes.get(outro, outro))}</a></li>'
+                      for url, outro in comparativos_de(p["id"]))
     evitar_txt = f"<li><b>Talvez não seja para:</b> {esc(', '.join(evitar))}.</li>" if evitar else ""
     corpo = f"""<article>
 <div class="ig-cab">
@@ -262,7 +271,7 @@ def pagina_produto(p, fichas, hist, todos):
 <section aria-labelledby="relacionados">
 <h2 id="relacionados">Leia também</h2>
 <ul class="ig-rel">
-<li><a href="/produtos/">Todos os produtos</a></li>
+{compare}<li><a href="/produtos/">Todos os produtos</a></li>
 <li><a href="/rotina-de-skincare/">Rotina passo a passo</a></li>
 <li><a href="/blog/ordem-dos-produtos-skincare/">Ordem dos produtos</a></li>
 </ul>
@@ -362,7 +371,7 @@ def pagina_indice(produtos):
     corpo = f"""<article>
 <div class="ig-cab">
 <h1>Produtos do catálogo</h1>
-<p class="ig-lede">Cada produto tem uma página com o passo da rotina, o tipo de pele indicado, os ativos em destaque com o nível de evidência, o preço conferido com data e alternativas.</p>
+<p class="ig-lede">Cada produto tem uma página com o passo da rotina, o tipo de pele indicado, os ativos em destaque com o nível de evidência, o preço conferido com data e alternativas. Em dúvida entre dois parecidos? Veja os <a href="/comparativos/">comparativos</a>.</p>
 </div>
 {filtros}
 {''.join(grupos)}
