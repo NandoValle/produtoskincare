@@ -12,8 +12,12 @@
  * A quarta ferramenta, "montar_rotina", é o formulário "Já sabe seu tipo de pele?" da página
  * inicial (API declarativa: atributos toolname/tooldescription no <form>).
  *
- * Sem WebMCP no navegador, este script não faz nada e o site segue igual. O caminho
- * manual é o mesmo formulário da página inicial e o /provador/.
+ * Sem WebMCP no navegador, este script não faz nada e o site segue igual.
+ * Fallback sem JavaScript: as ferramentas não rodam e nada se perde; os caminhos manuais
+ * (formulário "Já sabe seu tipo de pele?", /provador/, /produtos/, /pele/<tipo>/ e /rotinas/)
+ * seguem funcionando como HTML comum.
+ * Cancelamento: execute() recebe o AbortSignal em options.signal e aborta a leitura;
+ * o registro também recebe um AbortSignal e abortá-lo remove as ferramentas.
  */
 (function () {
   "use strict";
