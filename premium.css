@@ -592,3 +592,102 @@ body:has(> .ps-topo) .btn-tema{top:100px}
 .ps-home .ps-atalho-form .ps-atalho-fallback{grid-column:1/-1}
 .tool-fallback code,.ps-pergunta code{font:inherit;font-weight:600;color:var(--tinta)}
 .ps-home .tool-fallback{margin-top:18px}
+/* ============================================================
+   Camada de sonho — atmosfera lúcida (09/11/2026)
+   luz que respira + grão de filme + foco revelado + transições.
+   As fotos já têm moldura orgânica própria; nada aqui as toca.
+   ============================================================ */
+
+/* luz que respira — derrame de luz suave sobre a página inteira */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  z-index:60;
+  pointer-events:none;
+  background:
+    radial-gradient(42% 34% at 22% 26%, rgba(243,220,223,.55), transparent 70%),
+    radial-gradient(38% 30% at 78% 64%, rgba(232,218,209,.5), transparent 70%),
+    radial-gradient(30% 26% at 55% 12%, rgba(243,234,227,.6), transparent 70%);
+  mix-blend-mode:soft-light;
+  opacity:.75;
+  animation:sonho-luz 38s ease-in-out infinite alternate;
+}
+@keyframes sonho-luz{
+  0%{transform:translate3d(-1.5%,-1%,0) scale(1)}
+  100%{transform:translate3d(1.5%,1.5%,0) scale(1.05)}
+}
+
+/* grão de filme — textura analógica sutil */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:61;
+  pointer-events:none;
+  opacity:.13;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* revelações em foco — o conteúdo entra desfocado e se resolve (sem JS;
+   em navegadores sem scroll-driven animations, tudo já nasce visível) */
+@supports (animation-timeline: view()){
+  .ps-section,.mk-sec,.ig article > section{
+    animation:sonho-foco linear both;
+    animation-timeline:view();
+    animation-range:entry 0% entry 65%;
+  }
+}
+@keyframes sonho-foco{
+  from{opacity:0;filter:blur(8px);transform:translateY(16px)}
+  to{opacity:1;filter:blur(0);transform:none}
+}
+
+/* marginalia — anotações de diário nas margens (só telas largas) */
+.ps-intro,.ps-journey-section,.mk-hero{position:relative}
+.ps-intro::after,.ps-journey-section::after,.mk-hero::after{
+  position:absolute;
+  right:clamp(1rem,5vw,4.5rem);
+  max-width:12rem;
+  font-family:var(--fonte-display,Georgia,serif);
+  font-style:italic;
+  font-size:1.05rem;
+  line-height:1.55;
+  color:color-mix(in srgb,var(--rosa,#b4546a) 55%,transparent);
+  transform:rotate(-1.6deg);
+  pointer-events:none;
+  user-select:none;
+}
+.ps-intro::after{content:"a pele também sonha — acorde devagar com ela";top:.6rem}
+.ps-journey-section::after{content:"o sonho é comum; o ritual é seu";bottom:1.4rem;transform:rotate(1.2deg)}
+.mk-hero::after{content:"cada número tem uma pele atrás";top:.6rem}
+@media(max-width:1200px){
+  .ps-intro::after,.ps-journey-section::after,.mk-hero::after{display:none}
+}
+
+/* transições entre páginas — abrir e fechar os olhos */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:sonho-sai 260ms ease both}
+::view-transition-new(root){animation:sonho-entra 460ms ease both}
+@keyframes sonho-sai{to{opacity:0;filter:blur(7px)}}
+@keyframes sonho-entra{from{opacity:0;filter:blur(7px)}}
+
+/* modo escuro — a luz vira brilho rosado; o grão vira véu */
+@media (prefers-color-scheme:dark){
+  body::before{
+    background:
+      radial-gradient(42% 34% at 22% 26%, rgba(239,165,186,.14), transparent 70%),
+      radial-gradient(38% 30% at 78% 64%, rgba(162,203,179,.10), transparent 70%);
+    opacity:.9;
+  }
+  body::after{mix-blend-mode:overlay;opacity:.08}
+}
+
+/* movimento reduzido — a atmosfera fica; o movimento não */
+@media (prefers-reduced-motion:reduce){
+  body::before{animation:none!important;transform:none!important}
+  .ps-section,.mk-sec,.ig article > section{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+}
