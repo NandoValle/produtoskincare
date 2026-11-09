@@ -111,11 +111,7 @@
   var buscarProdutos = {
     name: "buscar_produtos",
     title: "Buscar produtos de skincare",
-    description: "Busca no catálogo de produtos de skincare do Produto Skincare (produtos vendidos no Brasil, " +
-      "com preço conferido em loja e data da conferência). Filtra por texto livre (nome, marca ou ativo, " +
-      "ex.: \"niacinamida\"), tipo de pele, preocupação, passo da rotina e preço máximo em reais. " +
-      "Devolve os mais bem avaliados primeiro, com link da página do produto e link da loja (afiliado). " +
-      "Só leitura: não compra nem adiciona nada ao carrinho.",
+    description: "Busca no catálogo de produtos de skincare do Produto Skincare (produtos vendidos no Brasil, com preço conferido em loja e data da conferência). Filtra por texto livre (nome, marca ou ativo, ex.: \"niacinamida\"), tipo de pele, preocupação, passo da rotina e preço máximo em reais. Devolve os mais bem avaliados primeiro, com link da página do produto e link da loja (afiliado). Só leitura: não compra nem adiciona nada ao carrinho.",
     inputSchema: {
       type: "object",
       properties: {
@@ -168,9 +164,7 @@
   var explicarTipo = {
     name: "explicar_tipo_de_pele",
     title: "Explicar um tipo de pele",
-    description: "Explica um tipo de pele (oleosa, seca, mista ou normal) com os cuidados do dia a dia " +
-      "recomendados pelo Produto Skincare, e devolve os links do guia desse tipo e do provador já com a rotina. " +
-      "Use quando a pessoa já sabe o tipo de pele. Para descobrir o tipo, mande a pessoa ao provador (quiz ou selfie). Só leitura.",
+    description: "Explica um tipo de pele (oleosa, seca, mista ou normal) com os cuidados do dia a dia recomendados pelo Produto Skincare, e devolve os links do guia desse tipo e do provador já com a rotina. Use quando a pessoa já sabe o tipo de pele. Para descobrir o tipo, mande a pessoa ao provador (quiz ou selfie). Só leitura.",
     inputSchema: {
       type: "object",
       properties: {
@@ -201,10 +195,7 @@
   var verRotina = {
     name: "ver_rotina_por_condicao",
     title: "Ver rotina por condição e faixa de preço",
-    description: "Devolve a rotina de skincare de manhã e de noite que o Produto Skincare montou para uma " +
-      "condição (acne, anti-age, melasma ou rosacea) numa faixa de preço (economica, media ou premium): " +
-      "produto de cada passo com preço e link, ativos com nível de evidência, cuidados e quando procurar " +
-      "um dermatologista. Só leitura.",
+    description: "Devolve a rotina de skincare de manhã e de noite que o Produto Skincare montou para uma condição (acne, anti-age, melasma ou rosacea) numa faixa de preço (economica, media ou premium): produto de cada passo com preço e link, ativos com nível de evidência, cuidados e quando procurar um dermatologista. Só leitura.",
     inputSchema: {
       type: "object",
       properties: {

@@ -24,3 +24,7 @@
 ## Ferramentas para agentes (WebMCP)
 
 Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra três ferramentas só de leitura: buscar_produtos, explicar_tipo_de_pele e ver_rotina_por_condicao. O formulário "Já sabe seu tipo de pele?" é a ferramenta montar_rotina, que abre o provador já com a rotina. Nenhuma ferramenta compra, cadastra ou envia dados.
+
+## Perguntas frequentes e fontes
+
+A página inicial tem perguntas frequentes com resposta curta (como saber o tipo de pele, o que é pele mista, seca x desidratada, ordem dos produtos, protetor solar diário, quantos passos) e uma lista de fontes externas citadas (SBD, Anvisa, OMS, PubMed). Sem JavaScript, as ferramentas não rodam e o caminho manual é o formulário, o provador e os guias.

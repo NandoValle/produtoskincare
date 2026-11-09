@@ -575,3 +575,16 @@ body:has(> .ps-topo) .btn-tema{top:100px}
  @keyframes ps-atelier-enter{from{opacity:.4;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 }
 @media(hover:none){.ps-home .ps-skin:hover,.ps-home .ps-button:hover,.ps-home .ps-actions>.ps-text-link:hover{transform:none;box-shadow:none}}
+
+/* Perguntas frequentes e fontes da página inicial. A FAQ é aberta (sem sanfona): a resposta curta
+   fica logo abaixo da pergunta, para quem lê e para quem extrai a resposta. */
+.ps-perguntas-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px}
+.ps-pergunta{border-top:1px solid var(--linha);padding-top:22px;margin:0}
+.ps-pergunta h3{font-size:25px;line-height:1.3;letter-spacing:0;margin:0 0 12px}
+.ps-pergunta p{font-size:13px;line-height:1.85;margin:0 0 10px;color:var(--suave)}
+.ps-pergunta .ps-resposta{font-size:15px;color:var(--tinta)}
+.ps-pergunta dfn{font-style:normal;font-weight:600}
+.ps-fontes-lista{list-style:none;margin:0;padding:0;display:grid;gap:14px;font-size:13px;line-height:1.8;color:var(--suave)}
+.ps-fontes-lista li{padding-left:18px;border-left:2px solid var(--rosa)}
+.ps-fontes-lista cite{font-style:italic;color:var(--tinta)}
+@media(max-width:700px){.ps-perguntas-grid{grid-template-columns:1fr;gap:18px}.ps-pergunta h3{font-size:22px}}
