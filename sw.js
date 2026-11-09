@@ -1,14 +1,20 @@
-const CACHE = "provador-premium-20261104-rodape";
+const CACHE = "provador-premium-20261106-mobile";
 const ASSETS = [
   "/premium.css",
   "/premium.js",
   "/compartilhar.js",
+  "/rodape.js",
+  "/regras-ativos.js",
   "/fonts/cormorant-500.ttf",
   "/fonts/manrope-400.ttf",
   "/fonts/manrope-600.ttf",
   "/img/ritual-face.jpg",
   "/img/cream-texture.jpg",
   "/img/skincare-editorial.jpg",
+  "/img/tipo-oleosa.jpg",
+  "/img/tipo-seca.jpg",
+  "/img/tipo-mista.jpg",
+  "/img/tipo-normal.jpg",
   "/",
   "/index.html",
   "/provador/",

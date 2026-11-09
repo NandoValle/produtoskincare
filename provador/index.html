@@ -222,6 +222,14 @@ html[data-tema="claro"]{
   transition:all 0.2s var(--ease);box-shadow:var(--sombra-1);
 }
 .btn-tema:hover{transform:scale(1.1);box-shadow:var(--sombra-2)}
+/* Câmera ao vivo do provador */
+.camera-painel{margin-top:14px}
+.camera-moldura{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:3/4;border-radius:var(--raio-lg);overflow:hidden;background:#111}
+.camera-moldura video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:block}
+.camera-oval{position:absolute;left:18%;right:18%;top:12%;bottom:16%;border:3px dashed rgba(255,255,255,.75);border-radius:50%;pointer-events:none;transition:border-color var(--dur)}
+.camera-oval.ok{border-style:solid;border-color:#7fd1a3}
+.camera-dica{text-align:center;font-weight:500;margin-top:10px;min-height:1.5em}
+@media (prefers-reduced-motion:reduce){.camera-oval{transition:none}}
 </style>
 <link rel="stylesheet" href="/premium.css">
 <style>
@@ -231,7 +239,24 @@ html[data-tema="claro"]{
 .selo-evidencia.selo-emergente{background:#fff4dd;color:#7a5200;border-color:#ecd9a8}
 @media (prefers-color-scheme:dark){.selo-evidencia.selo-moderada{background:#24324a;color:#cfdcf0}.selo-evidencia.selo-emergente{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
 .outras-lojas a{color:var(--rosa)}
+.papel{font-size:.82rem;color:var(--suave);margin:2px 0 4px}
+.tipo-link{font-size:.78rem}
+.selo-cuidado{display:block;width:fit-content;margin-top:6px;font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff4dd;color:#7a5200;border:1px solid #ecd9a8}
+@media (prefers-color-scheme:dark){html:not([data-tema=claro]) .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
+html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}
 @media print{#areaEnviar{display:none}}
+.so-impressao{display:none}
+.link-botao{background:none;border:0;padding:0;font:inherit;color:var(--rosa);text-decoration:underline;cursor:pointer}
+@media print{
+  .so-impressao{display:block!important}
+  h3.so-impressao{margin:18px 0 6px;font-size:1.15rem}
+  #cardHistorico,#avisoLink,#cardSalvar,.btn-tema,.ps-back-home,.ps-rodape{display:none!important}
+  #painelManha,#painelNoite{display:block!important}
+  /* A animação de entrada (opacidade 0 → 1) recomeçava na impressão e o painel da noite saía apagado. */
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  /* O card de resumo é maior que uma página: se não puder quebrar, a 1ª página sai em branco. */
+  #telaResultado>.card{break-inside:auto;page-break-inside:auto}
+}
 </style>
 <!-- seo:inicio -->
 <meta property="og:type" content="website">
@@ -260,7 +285,7 @@ html[data-tema="claro"]{
 <p class="ps-eyebrow">Seu ritual começa aqui</p><h1>Descubra seu<br>tipo de pele.</h1>
 <p class="sub">Conte como sua pele se comporta no dia a dia. A partir das suas respostas, descubra um perfil estimado e sugestões de cuidados para manhã e noite.</p>
 
-<div class="card aviso"><strong>⏱️ Leva menos de 2 minutos.</strong> É uma estimativa cosmética para ajudar na escolha de produtos — não é diagnóstico médico. Se tem acne intensa ou irritação persistente, procure um dermatologista.</div>
+<div class="card aviso"><strong>⏱️ São 10 perguntas rápidas e mais 3 telas curtas:</strong> preocupações, preferências e uma selfie opcional. O teste do rosto limpo também é opcional e fica fora dessa conta, porque pede esperar 45 a 60 minutos: dá para pular. É uma estimativa cosmética para ajudar na escolha de produtos — não é diagnóstico médico. Se tem acne intensa ou irritação persistente, procure um dermatologista.</div>
 
 <div class="botoes">
 <button class="btn" id="btnComecar">Começar o quiz →</button>
@@ -322,11 +347,12 @@ html[data-tema="claro"]{
 
 <div class="card">
 <fieldset>
-<legend style="font-size:1.05rem">Faixa de preço preferida</legend>
-<label class="opcao"><input type="radio" name="preco" value="economico"><span class="rotulo">Até R$ 60</span></label>
-<label class="opcao"><input type="radio" name="preco" value="intermediario"><span class="rotulo">R$ 60 a R$ 120</span></label>
-<label class="opcao"><input type="radio" name="preco" value="premium"><span class="rotulo">Acima de R$ 120</span></label>
-<label class="opcao"><input type="radio" name="preco" value="qualquer" checked><span class="rotulo">Sem preferência</span></label>
+<legend style="font-size:1.05rem">Quanto quer gastar por produto?</legend>
+<p class="sub" style="font-size:.85rem;margin:0 0 8px">Mostramos só produtos com preço conferido dentro da faixa. Dá para mudar depois, na tela do resultado.</p>
+<label class="opcao"><input type="radio" name="preco" value="ate50"><span class="rotulo">Até R$ 50</span></label>
+<label class="opcao"><input type="radio" name="preco" value="ate100"><span class="rotulo">Até R$ 100</span></label>
+<label class="opcao"><input type="radio" name="preco" value="ate200"><span class="rotulo">Até R$ 200</span></label>
+<label class="opcao"><input type="radio" name="preco" value="qualquer" checked><span class="rotulo">Sem limite</span></label>
 </fieldset>
 </div>
 
@@ -383,6 +409,7 @@ html[data-tema="claro"]{
 <div class="card aviso">
 <fieldset>
 <legend style="font-size:1.05rem">Segurança</legend>
+<label class="opcao"><input type="checkbox" id="chkSensivel"><span><span class="rotulo">Tenho pele sensível</span><div class="desc">Arde, fica vermelha com facilidade ou reage a muitos produtos. Tiramos retinol e ácidos fortes e avisamos o que pede cuidado. Fragrância: priorize fórmulas sem fragrância; não conferimos o rótulo de todos os produtos. <span id="notaSensivelQuiz"></span></div></span></label>
 <label class="opcao"><input type="checkbox" id="chkIsotretinoina"><span><span class="rotulo">Faço tratamento com isotretinoína oral (Roacutan e similares)</span><div class="desc">Vamos tirar ácidos e retinol da rotina. Durante o tratamento, siga o que o dermatologista orientar.</div></span></label>
 <label class="opcao"><input type="checkbox" id="chkGestante"><span><span class="rotulo">Estou gestante ou amamentando</span><div class="desc">Vamos evitar retinol e ácido salicílico, e sugerir alternativas seguras.</div></span></label>
 </fieldset>
@@ -396,8 +423,9 @@ html[data-tema="claro"]{
 
 <!-- ===== SELFIE (opcional, fase 3) ===== -->
 <div id="telaSelfie" hidden>
-<h2>Quer mais precisão? 📸</h2>
-<p class="sub">Tire uma selfie e nossa análise visual soma pontos ao resultado. 100% no seu navegador — a foto não sai daqui. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
+<h2 id="tituloSelfie">Quer mais precisão? 📸</h2>
+<p class="sub" id="subSelfieSo" hidden>Tire uma selfie e veja seu tipo de pele estimado e uma rotina de manhã e noite, sem responder o quiz. Tudo roda no seu navegador e a foto não sai do seu aparelho. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
+<p class="sub" id="subSelfieQuiz">Tire uma selfie e nossa análise visual soma pontos ao resultado. 100% no seu navegador — a foto não sai daqui. <a href="/provador/metodologia/">Veja o que a análise mede e os limites dela</a>.</p>
 
 <div class="card aviso">
 <strong>Como tirar a foto:</strong>
@@ -423,9 +451,22 @@ html[data-tema="claro"]{
 </div>
 
 <div class="botoes" style="margin-top:12px">
-<label class="btn" for="inputSelfie" id="lblSelfie" style="opacity:.45;pointer-events:none">📸 Enviar selfie</label>
+<button class="btn" id="btnCamera" type="button" disabled>🤳 Usar a câmera agora</button>
+<label class="btn sec" for="inputSelfie" id="lblSelfie" style="opacity:.45;pointer-events:none">🖼️ Enviar foto da galeria</label>
 <input type="file" id="inputSelfie" accept="image/*" style="position:absolute;left:-9999px" disabled>
 <button class="btn sec" id="btnPularSelfie">Pular →</button>
+</div>
+<div id="painelCamera" class="camera-painel" hidden>
+<div class="camera-moldura">
+<video id="videoCamera" playsinline muted autoplay aria-label="Prévia da câmera"></video>
+<div class="camera-oval" id="ovalCamera" aria-hidden="true"></div>
+</div>
+<p class="camera-dica" id="dicaCamera" role="status" aria-live="polite">Abrindo a câmera…</p>
+<div class="botoes" style="justify-content:center">
+<button class="btn" id="btnCapturar" type="button" disabled>📸 Tirar foto</button>
+<button class="btn sec" id="btnFecharCamera" type="button">Cancelar</button>
+</div>
+<small class="sub" style="display:block;text-align:center;margin-top:6px">A imagem da câmera é processada só neste aparelho e não é gravada nem enviada.</small>
 </div>
 <div id="previewSelfie" hidden style="margin-top:12px">
 <canvas id="canvasSelfie" style="max-width:100%;border-radius:12px"></canvas>
@@ -445,6 +486,15 @@ html[data-tema="claro"]{
 
 <div id="telaResultado" hidden role="region" aria-label="Resultado da análise">
 <h2>Sua rotina estimada</h2>
+<div class="card aviso" id="avisoSoSelfie" hidden>
+<strong>Resultado feito só com a selfie.</strong> A foto sozinha é menos precisa que o quiz, porque luz, câmera e filtros do celular mudam o brilho e a cor da pele. Para confirmar o tipo, responda o quiz: a análise da sua selfie continua valendo e é somada às respostas.
+<div class="botoes" style="margin-top:10px"><button class="btn sec" id="btnRefinarQuiz" type="button">Refinar com o quiz →</button></div>
+</div>
+<p class="sub so-impressao" id="cabecalhoImpressao"></p>
+
+<div class="card aviso" id="avisoLink" hidden>
+<strong>🔗 Resultado salvo.</strong> As respostas e os produtos são os de quando o resultado foi gerado. Os preços vêm do catálogo de hoje, com a data de cada um. Quer o seu próprio resultado? <button class="link-botao" id="btnRefazerDoLink" type="button">Faça o quiz</button>.
+</div>
 
 <div class="card" role="region" aria-label="Resumo do tipo de pele">
 <div id="resumoTipo" aria-live="polite"></div>
@@ -461,12 +511,20 @@ html[data-tema="claro"]{
 <strong>Pele sensível:</strong> introduza um produto novo por vez e faça teste atrás da orelha antes de usar no rosto. Se houver vermelhidão persistente ou vasinhos, procure um dermatologista — pode ser rosácea.
 </div>
 
+<div class="card" id="cardOrcamento">
+<strong>💸 Orçamento por produto</strong>
+<div class="chips" id="chipsOrcamento" role="radiogroup" aria-label="Orçamento por produto" style="margin-top:8px"></div>
+<p class="sub" id="notaOrcamento" style="font-size:.82rem;margin:8px 0 0" aria-live="polite"></p>
+</div>
+
 <div class="rotina-tabs" role="tablist">
 <button role="tab" id="tabManha" aria-selected="true" aria-controls="painelManha">☀️ Manhã</button>
 <button role="tab" id="tabNoite" aria-selected="false" aria-controls="painelNoite">🌙 Noite</button>
 </div>
 
+<h3 class="so-impressao">☀️ Manhã</h3>
 <div id="painelManha" role="tabpanel"></div>
+<h3 class="so-impressao">🌙 Noite</h3>
 <div id="painelNoite" role="tabpanel" hidden></div>
 
 <div id="rotinasProntas"></div>
@@ -475,15 +533,22 @@ html[data-tema="claro"]{
 <p class="sub" style="font-size:.82rem;margin:0">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar. Faça teste de sensibilidade antes de usar um produto novo. Este resultado é uma estimativa cosmética, não um diagnóstico médico.</p>
 </div>
 
+<p class="sub so-impressao" id="rodapeImpressao"></p>
+
 <div id="areaEnviar"></div>
+
+<div class="card" id="cardSalvar">
+<strong>💾 Guarde seu resultado, sem cadastro</strong>
+<p class="sub" style="font-size:.88rem;margin:6px 0 0">"Copiar link" gera um endereço que reabre esta mesma rotina em qualquer aparelho. O endereço desta página também já é o do resultado: dá para favoritar. Para PDF, toque em "Salvar PDF" e escolha "Salvar como PDF" na janela de impressão.</p>
+</div>
 
 <div class="botoes">
 <button class="btn sec" id="btnRefazer">🔄 Refazer o quiz</button>
 <button class="btn sec" id="btnCopiarLink">🔗 Copiar link</button>
-<button class="btn sec" id="btnImprimir">🖨️ Imprimir</button>
+<button class="btn sec" id="btnImprimir">🖨️ Salvar PDF / imprimir</button>
 <button class="btn sec" id="btnCompartilhar">📤 Compartilhar</button>
 <a class="btn sec" href="/pergunte/">💬 Tirar dúvida com a IA</a>
-<a class="btn" href="/" target="_blank">Ver todos os produtos</a>
+<a class="btn" href="/produtos/" target="_blank">Ver todos os produtos</a>
 </div>
 </div>
 
@@ -491,6 +556,7 @@ html[data-tema="claro"]{
 </main>
 
 <script src="/compartilhar.js"></script>
+<script src="/regras-ativos.js"></script>
 <script>
 (function() {
 // ===== KEYBOARD NAVIGATION (T56) =====
@@ -604,8 +670,14 @@ const ESTADO = {
   rotina: 5,
   gestante: false,
   amamentando: false,
-  idade: "nd", sol: "nd", clima: "nd", exp: "nd", isotretinoina: false
+  idade: "nd", sol: "nd", clima: "nd", exp: "nd", isotretinoina: false,
+  sensivelMarcado: null, // true/false: caixa "Tenho pele sensível" das preferências (null = ainda não respondeu)
+  restaurado: null, // { tipo, sensivel, desidratada, pontos } quando o resultado vem de um link
+  fixos: null,      // { "manha:limpeza": "id-do-produto", ... } produtos gravados no link
+  doresSelfie: []   // dores vistas na selfie que viram rotinas prontas (acne, melasma, rosacea…)
 };
+const NOMES_CONC = { acne: "Acne", manchas: "Manchas", poros: "Poros", idade: "Sinais de idade", desidratacao: "Desidratação" };
+const ORDEM_TIPOS = ["oleosa", "seca", "mista", "normal"];
 
 // ===== DADOS (embutidos para funcionar offline / GitHub Pages sem fetch) =====
 const PERGUNTAS = [
@@ -667,14 +739,14 @@ const PERGUNTAS = [
 const TESTE_ROSTO_LIMPO = {
   id: "q6",
   texto: "Teste do rosto limpo (opcional, mas vale mais que as outras perguntas)",
-  ajuda: "Lave o rosto só com gel suave, não aplique nada e espere 45-60 minutos. Depois observe no espelho.",
+  ajuda: "Opcional: pede esperar 45 a 60 minutos. Se não for fazer agora, escolha \"Pular: ainda não fiz o teste\". Para fazer: lave o rosto só com gel suave, não aplique nada, espere 45 a 60 minutos e observe no espelho.",
   peso: 4,
   opcoes: [
     { valor: "seca",    rotulo: "Repuxa no rosto todo",                      pontos: { seca: 4 } },
     { valor: "mista",   rotulo: "Brilho só no centro (testa, nariz, queixo)", pontos: { mista: 4 } },
     { valor: "oleosa",  rotulo: "Brilho nas bochechas e na testa",            pontos: { oleosa: 4 } },
     { valor: "normal",  rotulo: "Confortável e uniforme",                     pontos: { normal: 4 } },
-    { valor: "nao_fiz", rotulo: "Ainda não fiz o teste",                      pontos: {} }
+    { valor: "nao_fiz", rotulo: "Pular: ainda não fiz o teste",               pontos: {} }
   ]
 };
 
@@ -758,6 +830,16 @@ const DICAS = {
   ]
 };
 
+// Pele sensível: as dicas que citam retinol ou ácido salicílico (BHA) trocam por uma versão
+// mais suave, com o aviso. Pele não sensível: dicas de sempre.
+const DICAS_SENSIVEL = {
+  "Niacinamida e ácido salicílico ajudam a controlar o sebo.": "Niacinamida ajuda a controlar o sebo e costuma ser bem tolerada. Ácido salicílico (BHA) pode irritar pele sensível: só com orientação de um dermatologista.",
+  "Previna com antioxidantes (vitamina C de manhã) e retinol (à noite).": "Previna com protetor solar todo dia e hidratação. Retinol costuma irritar pele sensível: se quiser usar, converse antes com um dermatologista."
+};
+function dicasDoPerfil(tipo, sensivel) {
+  return (DICAS[tipo] || []).map(d => sensivel && DICAS_SENSIVEL[d] ? DICAS_SENSIVEL[d] : d);
+}
+
 // ===== CATÁLOGO DE PRODUTOS (curadoria) =====
 // Fonte única: /produtos.json (preço, data do preço, loja e link de afiliado).
 // Para mudar um produto ou link, edite só o produtos.json.
@@ -822,7 +904,7 @@ function renderPergunta() {
     `<div class="ponto ${i < idx ? 'feito' : i === idx ? 'ativo' : ''}"></div>`
   ).join("");
 
-  $("contadorPergunta").textContent = `Pergunta ${idx + 1} de ${total}`;
+  $("contadorPergunta").textContent = `Pergunta ${idx + 1} de ${total} · depois vêm mais 3 telas curtas: preocupações, preferências e selfie (opcional)`;
 
   const ehTeste = p.id === "q6";
   $("areaPergunta").innerHTML = `
@@ -850,7 +932,7 @@ function renderPergunta() {
   });
 
   $("btnAvancar").disabled = !ESTADO.respostas[p.id];
-  $("btnAvancar").textContent = "Continuar →";
+  $("btnAvancar").textContent = idx === PERGUNTAS.length + EXTRAS.length ? "Continuar para as preocupações →" : "Continuar →";
   $("btnVoltar").hidden = idx === 0;
   const legend = $("areaPergunta").querySelector("legend");
   legend.tabIndex = -1;
@@ -915,7 +997,14 @@ document.querySelectorAll("#chipsPreocupacoes .chip").forEach(c => {
   };
 });
 
-$("btnPreocupacoesContinuar").onclick = () => mostrarTela("preferencias");
+$("btnPreocupacoesContinuar").onclick = () => {
+  // Pré-marca "Tenho pele sensível" com o que as respostas indicaram; a pessoa pode mudar.
+  ESTADO.sensivelMarcado = null;
+  const indicado = calcularTipo().sensivel;
+  $("chkSensivel").checked = indicado;
+  $("notaSensivelQuiz").textContent = indicado && !ESTADO.tipoJaSei ? "Marcamos pelas suas respostas; desmarque se não for o seu caso." : "";
+  mostrarTela("preferencias");
+};
 $("btnPreocupacoesVoltar").onclick = () => {
   if (ESTADO.tipoJaSei) mostrarTela("ja_sei");
   else mostrarTela("quiz");
@@ -930,14 +1019,22 @@ $("btnVerResultado").onclick = () => {
   const marcado = nome => (document.querySelector(`input[name=${nome}]:checked`) || {}).value || "nd";
   ESTADO.idade = marcado("idade"); ESTADO.sol = marcado("sol"); ESTADO.clima = marcado("clima"); ESTADO.exp = marcado("exp");
   ESTADO.isotretinoina = $("chkIsotretinoina").checked;
+  ESTADO.sensivelMarcado = $("chkSensivel").checked;
   mostrarTela("selfie");
 };
 $("btnPrefVoltar").onclick = () => mostrarTela("preocupacoes");
 
 // ===== CÁLCULO DO TIPO =====
 function calcularTipo() {
+  if (ESTADO.restaurado) {
+    const r = ESTADO.restaurado;
+    return { tipo: r.tipo, sensivel: r.sensivel, desidratada: r.desidratada, pontos: { ...r.pontos }, metodo: "link" };
+  }
+  // A caixa "Tenho pele sensível" das preferências tem a palavra final; antes dela, vale o que
+  // a pessoa marcou no "Já sei meu tipo" ou o que as respostas do quiz indicaram.
+  const marcado = typeof ESTADO.sensivelMarcado === "boolean" ? ESTADO.sensivelMarcado : null;
   if (ESTADO.tipoJaSei) {
-    return { tipo: ESTADO.tipoJaSei, sensivel: ESTADO.sensivelJaSei, pontos: { [ESTADO.tipoJaSei]: 10 }, metodo: "informado" };
+    return { tipo: ESTADO.tipoJaSei, sensivel: marcado ?? ESTADO.sensivelJaSei, pontos: { [ESTADO.tipoJaSei]: 10 }, metodo: "informado" };
   }
 
   const pts = { oleosa: 0, seca: 0, mista: 0, normal: 0 };
@@ -973,28 +1070,60 @@ function calcularTipo() {
   }
 
   const tipo = Object.entries(pts).sort((a, b) => b[1] - a[1])[0][0];
-  return { tipo, sensivel, pontos: pts, metodo: "quiz" };
+  return { tipo, sensivel: marcado ?? sensivel, pontos: pts, metodo: "quiz" };
 }
 
 // ===== MOTOR DE RECOMENDAÇÃO =====
-const PRECOS = { economico: 60, intermediario: 120, premium: 9999, qualquer: 9999 };
+// Orçamento: teto de preço POR PRODUTO. Produto acima do teto (ou sem preço conferido)
+// não entra na rotina; o mais barato compatível aparece como referência, sem inventar preço.
+const FAIXAS_PRECO = {
+  ate50:    { teto: 50,       nome: "Até R$ 50",  frase: "até R$ 50" },
+  ate100:   { teto: 100,      nome: "Até R$ 100", frase: "até R$ 100" },
+  ate200:   { teto: 200,      nome: "Até R$ 200", frase: "até R$ 200" },
+  qualquer: { teto: Infinity, nome: "Sem limite", frase: "sem limite" }
+};
+// Links antigos (antes de 05/11/2026) usavam outras faixas: Até R$ 60, R$ 60 a 120 e acima de 120.
+const FAIXA_ANTIGA = { economico: "ate50", intermediario: "ate100", premium: "qualquer" };
+function normalizarFaixa(v) { v = FAIXA_ANTIGA[v] || v; return FAIXAS_PRECO[v] ? v : "qualquer"; }
+function tetoDaFaixa(faixa) { return (FAIXAS_PRECO[normalizarFaixa(faixa)] || FAIXAS_PRECO.qualquer).teto; }
+function cabeNaFaixa(p, faixa) {
+  const teto = tetoDaFaixa(faixa);
+  return teto === Infinity || (typeof p.preco === "number" && p.preco <= teto);
+}
+// Faixa do próprio item, mostrada no card.
+function faixaDoItem(preco) {
+  if (typeof preco !== "number") return "";
+  return preco <= 50 ? "até R$ 50" : preco <= 100 ? "R$ 50 a 100" : preco <= 200 ? "R$ 100 a 200" : "acima de R$ 200";
+}
+// Tipo de link, para dizer com honestidade o que a pessoa vai abrir. Só a tag de afiliado
+// da Amazon é reconhecida; as buscas da Shopee e do Mercado Livre do catálogo não têm.
+function tipoDeLink(link) {
+  const u = String(link || "");
+  const afiliado = /amazon\.com\.br\/.*[?&]tag=/.test(u);
+  const busca = /amazon\.com\.br\/s[?/]|shopee\.com\.br\/search|lista\.mercadolivre\.com\.br/.test(u);
+  return { afiliado, busca };
+}
+// Papel de cada passo na rotina, mostrado em cada item.
+const PAPEL_DO_PASSO = {
+  limpeza: "Tira oleosidade, suor, protetor e resíduos sem agredir a barreira da pele.",
+  tratamento: "O passo com o ativo escolhido para a sua preocupação.",
+  hidratacao: "Repõe água e ajuda a manter a barreira da pele, inclusive na pele oleosa.",
+  protetor: "Protege dos raios UVA e UVB. Indispensável de manhã, com qualquer rotina."
+};
 
 // ===== REGRAS DE SEGURANÇA (spec) =====
 const SEGURANCA = {
   // ativos proibidos na gestação/amamentação
   gestacao_proibido: /retinol|retinal|tretinoína|adapaleno|isotretinoína|bha|ácido salicílico|hidroquinona/i,
   gestacao_ok: /azelaico|niacinamida|hialurônico|ceramidas|vitamina c|pantenol|centella|heartleaf/i,
-  // conflitos: não usar no mesmo período
-  conflitos: [
-    { a: /retinol|retinal/i, b: /ácido salicílico|bha|aha|glicólico|láctico/i, msg: "Retinol e ácidos (BHA/AHA) não devem ser usados na mesma rotina — use em dias alternados." },
-    { a: /retinol|retinal/i, b: /vitamina c/i, msg: "Vitamina C e retinol têm pHs incompatíveis — use C de manhã e retinol à noite." }
-  ],
+  // Combinações e contraindicações por perfil: /regras-ativos.js (lista versionada, PSRegras)
   // progressão: semanas 1-2 só base, semana 3+ um ativo
   ativos_fortes: /retinol|retinal|bha|ácido salicílico|aha|glicólico/i
 };
 
+// Devolve { avisos, infos }: avisos pedem atenção; infos só explicam o que a rotina já faz.
 function checarSeguranca(produtosEscolhidos, perfil) {
-  const avisos = [];
+  const avisos = [], infos = [], semInfoFragrancia = [];
   const nomes = produtosEscolhidos.map(x => x.nome).join(" ");
 
   // gestação/amamentação
@@ -1005,12 +1134,55 @@ function checarSeguranca(produtosEscolhidos, perfil) {
     }
   }
 
-  // conflitos entre produtos
-  for (const c of SEGURANCA.conflitos) {
-    const temA = produtosEscolhidos.find(p => c.a.test(p.nome + p.porque));
-    const temB = produtosEscolhidos.find(p => c.b.test(p.nome + p.porque));
-    if (temA && temB) {
-      avisos.push(`⚠️ <strong>Conflito de ativos:</strong> ${c.msg}`);
+  // Combinações entre os produtos da rotina (regras de /regras-ativos.js). Ativos do mesmo
+  // produto não contam: já vêm formulados juntos. "Horários diferentes" só vira aviso quando
+  // os dois produtos caem no mesmo período; se a rotina já separa, vira uma nota informativa.
+  const R = window.PSRegras;
+  if (R) {
+    const NOME_PERIODO = { manha: "manhã", noite: "noite" };
+    const vistos = new Set();
+    produtosEscolhidos.forEach((A, i) => produtosEscolhidos.slice(i + 1).forEach(B => {
+      if (A.id === B.id) return;
+      R.detectar(R.textoDoProduto(A)).forEach(x => R.detectar(R.textoDoProduto(B)).forEach(y => {
+        const r = R.avaliarPar(x, y, { sensivel: perfil.sensivel });
+        // "sem_regra" (par sem regra cadastrada) não vira aviso nem "pode usar junto" na rotina.
+        if (r.resultado === "ok" || r.resultado === "sem_regra") return;
+        const mesmo = A._periodo === B._periodo;
+        const chave = r.regra + "|" + (mesmo ? A._periodo : "separado");
+        if (vistos.has(chave)) return;
+        vistos.add(chave);
+        const nomes = `${escHTML(A.nome)} (${NOME_PERIODO[A._periodo]}) e ${escHTML(B.nome)} (${NOME_PERIODO[B._periodo]})`;
+        if (r.resultado === "nao" || mesmo) {
+          avisos.push(`⚠️ <strong>${R.ROTULOS[r.resultado]}:</strong> ${nomes}. ${escHTML(r.motivo)}${r.nota ? " " + escHTML(r.nota) : ""}`);
+        } else {
+          infos.push(`✅ <strong>Combinação já separada:</strong> ${nomes}. ${escHTML(r.motivo)}`);
+        }
+      }));
+    }));
+
+    // Contraindicações que deixam o produto na rotina, mas pedem cuidado
+    const avisados = new Set();
+    produtosEscolhidos.forEach(p => R.contraindicacoes(p, perfil).filter(c => c.acao === "avisar").forEach(c => {
+      if (c.regra === "sens-fragrancia-desconhecida") { semInfoFragrancia.push(p.nome); return; }
+      if (avisados.has(c.regra + p.id)) return;
+      avisados.add(c.regra + p.id);
+      avisos.push(`⚠️ <strong>${escHTML(p.nome)}:</strong> ${escHTML(c.motivo)}`);
+    }));
+    const semInfo = [...new Set(semInfoFragrancia)];
+    if (semInfo.length) {
+      avisos.push(`🌸 <strong>Fragrância:</strong> ainda não conferimos se ${semInfo.map(escHTML).join(", ")} ${semInfo.length === 1 ? "tem" : "têm"} perfume. Para pele sensível, prefira os "sem fragrância" e evite "parfum", "fragrance" e óleos essenciais na lista de ingredientes.`);
+    }
+
+    // O que saiu da rotina por ser pele sensível (compara com a rotina sem a marca de sensível)
+    if (perfil.sensivel) {
+      const semSens = { ...perfil, sensivel: false }, saiu = new Map();
+      ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+        const r = escolherProduto(passo, semSens, per, { semFixos: true }).principal;
+        if (!r || produtosEscolhidos.some(x => x.id === r.p.id)) return;
+        const motivo = R.contraindicacoes(r.p, perfil).find(c => c.acao === "remover");
+        if (motivo) saiu.set(r.p.id, `${escHTML(r.p.nome)}: ${escHTML(motivo.motivo)}`);
+      }));
+      if (saiu.size) avisos.push(`🔬 <strong>Saíram da rotina por ser pele sensível:</strong><br>${[...saiu.values()].join("<br>")}`);
     }
   }
 
@@ -1025,7 +1197,7 @@ function checarSeguranca(produtosEscolhidos, perfil) {
     avisos.push(`🔬 <strong>Pele sensível:</strong> introduza <strong>um produto novo por vez</strong> e faça teste atrás da orelha antes de usar no rosto. Espere 3-4 dias antes de adicionar outro.`);
   }
 
-  return avisos;
+  return { avisos, infos };
 }
 
 function pontuarProduto(p, perfil) {
@@ -1051,21 +1223,22 @@ function pontuarProduto(p, perfil) {
       (perfil.sol === "escura" || (perfil.preocupacoes || []).includes("manchas"))) s += 1;
   const concMatch = (perfil.preocupacoes || []).filter(c => p.conc && p.conc.includes(c)).length;
   s += concMatch * 2;
+  // Contraindicações por perfil (/regras-ativos.js): retinoide e ácido forte em pele sensível,
+  // produto com fragrância em pele sensível etc.
+  if (window.PSRegras && PSRegras.contraindicacoes(p, perfil).some(c => c.acao === "remover")) return -99;
   if (perfil.sensivel) {
     if (p.tipos.includes("sensivel")) s += 2;
     if (/calmante|centella|heartleaf|azelaic|cicaplast/i.test(p.nome + p.porque)) s += 1;
     if (/retinol|retinal|bha|salicil/i.test(p.nome + p.porque)) s -= 3;
   }
-  const PRECOS = { economico: 60, intermediario: 120, premium: 9999, qualquer: 9999 };
-  const limite = PRECOS[perfil.faixaPreco] || 9999;
-  if (p.preco <= limite) s += 1;
-  else s -= 2;
+  // (o orçamento é um filtro em escolherProduto, não um peso)
   if (p.preco_em) s += 1;
   if (p.avaliacao) s += Math.round(p.avaliacao - 4);
   return s;
 }
 
-function escolherProduto(passo, perfil, periodo) {
+// opcoes.semFixos: ignora os produtos gravados no link (usado para comparar "como seria sem X").
+function escolherProduto(passo, perfil, periodo, opcoes = {}) {
   let cands = PRODUTOS
     .filter(p => p.passo === passo)
     .map(p => ({ p, s: pontuarProduto(p, perfil) }))
@@ -1073,7 +1246,19 @@ function escolherProduto(passo, perfil, periodo) {
     .sort((a, b) => b.s - a.s || a.p.preco - b.p.preco);
 
   // filtrar por período se especificado
-  const doPeriodo = cands.filter(x => !periodo || x.p.periodo.includes(periodo));
+  const doPeriodoTodos = cands.filter(x => !periodo || x.p.periodo.includes(periodo));
+  // Orçamento: só entra o que cabe na faixa; o mais barato que não coube vira referência.
+  const doPeriodo = doPeriodoTodos.filter(x => cabeNaFaixa(x.p, perfil.faixaPreco));
+  const foraDaFaixa = doPeriodoTodos.filter(x => !cabeNaFaixa(x.p, perfil.faixaPreco) && typeof x.p.preco === "number")
+    .sort((a, b) => a.p.preco - b.p.preco)[0] || null;
+
+  // Resultado salvo (link): o produto gravado volta para o topo, desde que ainda exista no
+  // catálogo e passe nas regras acima (tipo, segurança, faixa). Se não passar, a escolha é refeita.
+  const idFixo = !opcoes.semFixos && ESTADO.fixos && periodo && ESTADO.fixos[periodo + ":" + passo];
+  if (idFixo) {
+    const i = doPeriodo.findIndex(x => x.p.id === idFixo);
+    if (i > 0) doPeriodo.unshift(doPeriodo.splice(i, 1)[0]);
+  }
 
   // DEDUPLICAÇÃO POR GRUPO: mostrar só o mais barato com preço conhecido
   const vistos = new Set();
@@ -1092,13 +1277,21 @@ function escolherProduto(passo, perfil, periodo) {
   return {
     principal: deduplicados[0] || null,
     alternativa: deduplicados[1] || null,
-    outrasLojas: outrasLojas
+    outrasLojas: outrasLojas,
+    foraDaFaixa: foraDaFaixa
   };
 }
 
 // ===== EXIBIÇÃO DO RESULTADO =====
-function calcularEMostrar() {
+// opcoes.salvar = false: não grava no histórico (resultado aberto por link ou só re-exibido).
+// opcoes.trocarTela = false: atualiza o resultado sem rolar a página (ex.: troca de faixa de preço).
+function calcularEMostrar(opcoes = {}) {
+  const salvar = opcoes.salvar !== false, trocarTela = opcoes.trocarTela !== false;
   const resultado = calcularTipo();
+  if (!ESTADO.restaurado) {
+    const anomalias = (window.__ultimaAnalise && window.__ultimaAnalise.anomalias) || [];
+    ESTADO.doresSelfie = [...new Set(anomalias.map(a => a.tipo).filter(t => DORES_ROTINA[t]))];
+  }
   const perfil = {
     tipo: resultado.tipo,
     sensivel: resultado.sensivel,
@@ -1114,9 +1307,6 @@ function calcularEMostrar() {
   const baumann = calcularBaumann(perfil, resultado);
   resultado.baumann = baumann.codigo;
 
-  // Subtom
-  const subtom = estimarSubtom(perfil, resultado);
-
   // Ajuste sazonal
   const sazonal = dicaSazonal(resultado.tipo);
 
@@ -1126,20 +1316,21 @@ function calcularEMostrar() {
     <p style="margin:0 0 12px">
       <span class="pill">${resultado.tipo.charAt(0).toUpperCase() + resultado.tipo.slice(1)}</span>
       ${resultado.sensivel ? '<span class="pill verde">Sensível</span>' : ''}
-      ${ESTADO.gestante ? '<span class="pill verde">Gestante</span>' : ''}
+      ${resultado.desidratada ? '<span class="pill verde">Desidratada</span>' : ''}
+      ${ESTADO.gestante ? '<span class="pill verde">Gestante ou amamentando</span>' : ''}
       ${ESTADO.isotretinoina ? '<span class="pill verde">Isotretinoína</span>' : ''}
-      ${ESTADO.preocupacoes.length ? ' · foco em: ' + ESTADO.preocupacoes.map(c => `<span class="pill">${c.charAt(0).toUpperCase()+c.slice(1)}</span>`).join('') : ''}
+      ${ESTADO.preocupacoes.length ? ' · foco em: ' + ESTADO.preocupacoes.map(c => `<span class="pill">${escHTML(NOMES_CONC[c] || c)}</span>`).join('') : ''}
     </p>
     <p style="margin:8px 0">${EXPLICACOES[resultado.tipo]}</p>
     ${sazonal ? `<div class="card aviso" style="margin:12px 0;font-size:.92rem">${sazonal}</div>` : ''}
     <div style="margin-top:12px">
       <strong>Dicas rápidas:</strong>
       <ul style="margin:6px 0 0;padding-left:20px;color:var(--suave);font-size:.92rem">
-        ${DICAS[resultado.tipo].map(d => `<li>${d}</li>`).join("")}
+        ${dicasDoPerfil(resultado.tipo, resultado.sensivel).map(d => `<li>${d}</li>`).join("")}
       </ul>
     </div>
     ${baumannHTML(baumann)}
-    ${subtomHTML(subtom)}
+    ${subtomHTML()}
     <div id="areaLembrete"></div>
   `;
 
@@ -1159,15 +1350,13 @@ function calcularEMostrar() {
   $("rotinasProntas").innerHTML = perfil.isotretinoina ? "" : rotinasProntasHTML(perfil);
 
   // SEGURANÇA: coletar produtos escolhidos e checar avisos
+  // (só os passos que aparecem na tela: rotina de 3 passos e isotretinoína não têm tratamento)
   const produtosEscolhidos = [];
-  ["manha","noite"].forEach(per => {
-    const passos = per === "manha" ? ["limpeza","tratamento","hidratacao","protetor"] : ["limpeza","tratamento","hidratacao"];
-    passos.forEach(passo => {
-      const { principal } = escolherProduto(passo, perfil, per);
-      if (principal) produtosEscolhidos.push(principal.p);
-    });
-  });
-  const avisos = checarSeguranca(produtosEscolhidos, perfil);
+  ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+    const { principal } = escolherProduto(passo, perfil, per);
+    if (principal) produtosEscolhidos.push({ ...principal.p, _periodo: per });
+  }));
+  const { avisos, infos } = checarSeguranca(produtosEscolhidos, perfil);
 
   // Progressão 4 semanas
   const temAtivoForte = produtosEscolhidos.some(p => /retinol|retinal|bha|salicil/i.test(p.nome + p.porque));
@@ -1179,7 +1368,8 @@ function calcularEMostrar() {
   const extrasHTML = [
     ...notasDoPerfil(perfil, temAtivoForte).map(a => `<div class="card aviso" style="margin:10px 0;font-size:.92rem">${a}</div>`),
     ...avisos.map(a => `<div class="card aviso rosa" style="margin:10px 0;font-size:.92rem">${a}</div>`),
-    perfil.isotretinoina ? "" : progressaoHTML(resultado.tipo, temAtivoForte),
+    ...infos.map(a => `<div class="card" style="margin:10px 0;font-size:.92rem">${a}</div>`),
+    perfil.isotretinoina ? "" : progressaoHTML(resultado.tipo, temAtivoForte, perfil.sensivel),
     comparacao
   ].join("");
 
@@ -1187,14 +1377,54 @@ function calcularEMostrar() {
   ULTIMO_PERFIL = perfil;
   ULTIMO_RESULTADO = resultado;
 
-  // Salvar no acompanhamento
-  salvarResultado(resultado);
-  track("quiz_complete", { tipo: resultado.tipo, sensivel: resultado.sensivel, baumann: resultado.baumann, skinScore: resultado.skinScore, metodo: resultado.metodo });
+  // Salvar no acompanhamento (não quando o resultado só foi reaberto por link)
+  if (salvar) {
+    salvarResultado(resultado);
+    track("quiz_complete", { tipo: resultado.tipo, sensivel: resultado.sensivel, baumann: resultado.baumann, skinScore: resultado.skinScore, metodo: resultado.metodo });
+  }
 
   // Mostrar histórico
   mostrarHistorico();
 
-  mostrarTela("resultado");
+  // "Resultado salvo" só quando os produtos são mesmo os gravados no link
+  $("avisoLink").hidden = !(ESTADO.restaurado && ESTADO.fixos);
+  montarOrcamento(perfil);
+  atualizarEnderecoEImpressao();
+  if (trocarTela) mostrarTela("resultado");
+}
+
+// Seletor de orçamento na tela do resultado: trocar a faixa refaz a lista na hora.
+function montarOrcamento(perfil) {
+  const atual = normalizarFaixa(ESTADO.faixaPreco);
+  $("chipsOrcamento").innerHTML = Object.entries(FAIXAS_PRECO).map(([k, f]) =>
+    `<button type="button" class="chip${k === atual ? " on" : ""}" role="radio" aria-checked="${k === atual}" data-faixa="${k}">${f.nome}</button>`).join("");
+  const lista = produtosDaRotina(perfil, false), chaves = chavesDosPassos();
+  const vazios = chaves.filter(ch => { const [per, passo] = ch.split(":"); return !escolherProduto(passo, perfil, per).principal; }).length;
+  const datas = [...new Set(lista.map(p => p.preco_em).filter(Boolean))].sort().map(dataBR);
+  $("notaOrcamento").textContent = (atual === "qualquer" ? "Sem limite de preço. " : `Cada produto custa ${FAIXAS_PRECO[atual].frase}. `) +
+    (vazios ? `${vazios} de ${chaves.length} passos ficaram sem produto nesta faixa. ` : "") +
+    (datas.length ? `Preços vistos em ${datas.join(", ")}; confira na loja antes de comprar.` : "");
+}
+$("chipsOrcamento").addEventListener("click", e => {
+  const b = e.target.closest("[data-faixa]");
+  if (!b || b.dataset.faixa === normalizarFaixa(ESTADO.faixaPreco)) return;
+  ESTADO.faixaPreco = b.dataset.faixa;
+  ESTADO.fixos = null; // nova faixa, nova escolha de produtos
+  const radio = document.querySelector(`input[name=preco][value="${b.dataset.faixa}"]`);
+  if (radio) radio.checked = true;
+  track("orcamento", { faixa: b.dataset.faixa });
+  calcularEMostrar({ salvar: false, trocarTela: false });
+  const novo = document.querySelector(`#chipsOrcamento [data-faixa="${b.dataset.faixa}"]`);
+  if (novo) novo.focus();
+});
+
+// O endereço da página passa a ser o do resultado (dá para favoritar ou recarregar) e o
+// cabeçalho/rodapé da impressão (PDF) trazem a data e o link para reabrir.
+function atualizarEnderecoEImpressao() {
+  const url = urlDoResultado();
+  try { history.replaceState(null, "", url); } catch (e) {}
+  $("cabecalhoImpressao").textContent = `Provador · Produto Skincare · resultado de ${new Date().toLocaleDateString("pt-BR")}`;
+  $("rodapeImpressao").textContent = `Para reabrir este resultado: ${url}`;
 }
 
 // ===== NOTAS PELAS RESPOSTAS OPCIONAIS (idade, sol, clima, experiência, isotretinoína) =====
@@ -1214,17 +1444,23 @@ function notasDoPerfil(perfil, temAtivoForte) {
 
 // ===== ROTINAS PRONTAS POR FAIXA DE PREÇO =====
 // Liga as preocupações do quiz (e as anomalias da selfie, se houver) às páginas /rotinas/<dor>/#<faixa>.
+const DORES_ROTINA = {
+  acne: { slug: "acne", nome: "Acne" },
+  manchas: { slug: "melasma", nome: "Melasma e manchas" },
+  melasma: { slug: "melasma", nome: "Melasma e manchas" },
+  idade: { slug: "anti-age", nome: "Anti-age" },
+  rosacea: { slug: "rosacea", nome: "Rosácea e vermelhidão" }
+};
+// Rotinas prontas (/rotinas/) que usam ativos que costumam irritar pele sensível.
+const ROTINAS_ATIVO_FORTE = {
+  acne: "ácido salicílico (BHA) e peróxido de benzoíla",
+  "anti-age": "retinol"
+};
 function rotinasProntasHTML(perfil) {
-  const DORES = {
-    acne: { slug: "acne", nome: "Acne" },
-    manchas: { slug: "melasma", nome: "Melasma e manchas" },
-    melasma: { slug: "melasma", nome: "Melasma e manchas" },
-    idade: { slug: "anti-age", nome: "Anti-age" },
-    rosacea: { slug: "rosacea", nome: "Rosácea e vermelhidão" }
-  };
-  const FAIXA = { economico: "economica", intermediario: "media", premium: "premium" };
+  const DORES = DORES_ROTINA;
+  const FAIXA = { ate50: "economica", ate100: "media", ate200: "premium" };
   const NOMES_FAIXA = { economica: "Econômica", media: "Intermediária", premium: "Premium" };
-  const daSelfie = ((window.__ultimaAnalise && window.__ultimaAnalise.anomalias) || []).map(a => a.tipo);
+  const daSelfie = ESTADO.doresSelfie || [];
   const chaves = [...(perfil.preocupacoes || []), ...daSelfie].filter(c => DORES[c]);
   const slugs = [...new Set(chaves.map(c => DORES[c].slug))];
   const faixa = FAIXA[perfil.faixaPreco];
@@ -1238,7 +1474,9 @@ function rotinasProntasHTML(perfil) {
     const botoes = Object.keys(NOMES_FAIXA).map(f =>
       `<a class="chip${f === faixa ? " on" : ""}" style="text-decoration:none" href="/rotinas/${slug}/#${f}">${NOMES_FAIXA[f]}${f === faixa ? " ✓" : ""}</a>`
     ).join(" ");
-    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div></div>`;
+    const forte = perfil.sensivel && ROTINAS_ATIVO_FORTE[slug];
+    const aviso = forte ? `<div class="card aviso rosa" style="margin:8px 0 0;font-size:.9rem">⚠️ <strong>Atenção, pele sensível:</strong> esta rotina pronta usa ${forte}, que costumam irritar pele sensível. Não comece por eles sem orientação de um dermatologista. Alternativa mais suave: a rotina acima, montada para pele sensível, ou a <a href="/rotinas/rosacea/">rotina para rosácea e vermelhidão</a>, com ativos calmantes.</div>` : "";
+    return `<div style="margin-top:12px"><div><strong>${nome}</strong></div><div class="chips" style="margin-top:6px">${botoes}</div>${aviso}</div>`;
   }).join("");
   return `<div class="card" style="margin-top:20px"><strong>📋 Rotina pronta para a sua preocupação</strong>
     <p class="sub" style="margin:6px 0 0;font-size:.92rem">Manhã e noite completas, com ativos que têm comprovação científica, em três faixas de preço.${faixa ? " A faixa que você escolheu está marcada." : ""}</p>
@@ -1309,14 +1547,15 @@ function textoDoResultado() {
   const nomeTipo = r.tipo.charAt(0).toUpperCase() + r.tipo.slice(1);
   const linhas = [`Meu resultado no Provador da Produto Skincare`, ``,
     `Pele estimada: ${nomeTipo}${r.sensivel ? " e sensível" : ""}`];
-  if (perfil.preocupacoes.length) linhas.push(`Foco: ${perfil.preocupacoes.join(", ")}`);
+  if (perfil.preocupacoes.length) linhas.push(`Foco: ${perfil.preocupacoes.map(c => NOMES_CONC[c] || c).join(", ")}`);
+  if (perfil.gestante) linhas.push("Gestante ou amamentando: rotina sem retinoides e sem ácido salicílico. Confirme com seu médico.");
   const NOME_PASSO = { limpeza:"Limpeza", tratamento:"Tratamento", hidratacao:"Hidratação", protetor:"Protetor solar" };
   const lista = produtosDaRotina(perfil, false);
   [["manha","MANHÃ"],["noite","NOITE"]].forEach(([per, rotulo]) => {
     linhas.push("", rotulo);
     passosDaRotina(per).forEach((passo, i) => {
       const { principal } = escolherProduto(passo, perfil, per);
-      if (!principal) { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ainda sem produto na vitrine`); return; }
+      if (!principal) { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ${tetoDaFaixa(perfil.faixaPreco) === Infinity ? "ainda sem produto na vitrine" : "nenhum produto do catálogo na faixa " + FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase}`); return; }
       const p = principal.p;
       linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ${p.nome}` + (p.preco ? ` (${brl(p.preco)} em ${dataBR(p.preco_em)})` : ""));
       if (p.link) linhas.push(`   ${p.link}`);
@@ -1327,16 +1566,36 @@ function textoDoResultado() {
   linhas.push("", "Contém links de afiliado. Estimativa cosmética, não é diagnóstico: em caso de acne intensa, lesões ou irritação persistente, procure um dermatologista.");
   return linhas.join("\n");
 }
+// Passos da rotina na ordem do link: "manha:limpeza", "manha:tratamento", … "noite:hidratacao".
+function chavesDosPassos() {
+  return ["manha", "noite"].flatMap(per => passosDaRotina(per).map(passo => per + ":" + passo));
+}
+// Link do resultado (v=2). Guarda todas as respostas que mudam a rotina, os pontos do quiz
+// (para o código de 4 eixos sair igual) e o produto escolhido em cada passo, para o link
+// continuar mostrando a mesma rotina mesmo depois de o catálogo mudar.
 function urlDoResultado() {
+  const r = ULTIMO_RESULTADO || calcularTipo();
   const params = new URLSearchParams({
-    tipo: (ULTIMO_RESULTADO || calcularTipo()).tipo,
+    v: "2",
+    tipo: r.tipo,
     conc: ESTADO.preocupacoes.join(","),
     preco: ESTADO.faixaPreco,
     rotina: ESTADO.rotina
   });
-  if (ULTIMO_RESULTADO && ULTIMO_RESULTADO.sensivel) params.set("sensivel", "1");
+  if (r.sensivel) params.set("sensivel", "1");
+  if (r.desidratada) params.set("desid", "1");
+  if (ESTADO.gestante) params.set("gest", "1");
   ["idade", "sol", "clima", "exp"].forEach(k => { if (ESTADO[k] && ESTADO[k] !== "nd") params.set(k, ESTADO[k]); });
   if (ESTADO.isotretinoina) params.set("iso", "1");
+  if (r.pontos) params.set("pts", ORDEM_TIPOS.map(t => r.pontos[t] || 0).join("_"));
+  if (ESTADO.doresSelfie.length) params.set("selfie", ESTADO.doresSelfie.join(","));
+  if (ULTIMO_PERFIL) {
+    params.set("itens", chavesDosPassos().map(ch => {
+      const [per, passo] = ch.split(":");
+      const e = escolherProduto(passo, ULTIMO_PERFIL, per).principal;
+      return e ? e.p.id : "-";
+    }).join("."));
+  }
   return `${location.origin}${location.pathname}?${params}`;
 }
 function lembretesDoResultado() {
@@ -1400,18 +1659,22 @@ function montarRotina(perfil, periodo, container) {
   };
 
   const html = passosFiltrados.map(passo => {
-    const { principal, alternativa, outrasLojas } = escolherProduto(passo.key, perfil, periodo);
+    const { principal, alternativa, outrasLojas, foraDaFaixa } = escolherProduto(passo.key, perfil, periodo);
 
-    // CARD "O QUE PROCURAR" quando não tem produto
+    // CARD "O QUE PROCURAR" quando não tem produto (no catálogo ou dentro da faixa de preço)
     if (!principal) {
       const conc0 = perfil.preocupacoes[0];
       const dica = (O_QUE_PROCURAR[passo.key] && (O_QUE_PROCURAR[passo.key][conc0] || O_QUE_PROCURAR[passo.key][perfil.tipo] || O_QUE_PROCURAR[passo.key][perfil.sensivel ? "sensivel" : perfil.tipo])) || "produto para seu tipo de pele";
+      const f = foraDaFaixa && foraDaFaixa.p;
+      const semNaFaixa = f ? `
+            <div class="sub" style="font-size:.85rem;margin-top:6px">Nenhum produto de ${passo.nome.toLowerCase()} compatível com o seu perfil custa ${FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase} no nosso catálogo. O mais barato que encontramos: <strong>${escHTML(f.nome)}</strong>, ${brl(f.preco)} em ${dataBR(f.preco_em)} (${NOME_LOJA[f.plataforma] || "loja"})${f.link ? ` · <a href="${escHTML(f.link)}" target="_blank" rel="noopener${tipoDeLink(f.link).afiliado ? " sponsored" : ""}" data-produto="${escHTML(f.nome)}" style="color:var(--rosa)">ver</a>` : ""}. Você pode mudar o orçamento acima.</div>` : `
+            <div class="sub" style="font-size:.85rem;margin-top:4px">Ainda não temos esse produto na vitrine. Busque por essa categoria nas lojas.</div>`;
       return `
         <div class="passo">
           <div class="cat">${passo.nome}</div>
+          <div class="papel">${PAPEL_DO_PASSO[passo.key] || ""}</div>
           <div class="o-que-procurar">
-            <strong>🔍 O que procurar:</strong> ${dica}
-            <div class="sub" style="font-size:.85rem;margin-top:4px">Ainda não temos esse produto na vitrine. Busque por essa categoria nas lojas.</div>
+            <strong>🔍 O que procurar:</strong> ${dica}${semNaFaixa}
           </div>
         </div>
       `;
@@ -1419,8 +1682,10 @@ function montarRotina(perfil, periodo, container) {
 
     const p = principal.p;
     const preco = p.preco
-      ? `R$ ${p.preco.toFixed(2).replace(".", ",")} <small class="sub">em ${p.preco_em.split("-").reverse().join("/")}</small>`
+      ? `R$ ${p.preco.toFixed(2).replace(".", ",")} <small class="sub">em ${p.preco_em.split("-").reverse().join("/")} · faixa ${faixaDoItem(p.preco)}</small>`
       : '<small class="sub">ver preço na loja</small>';
+    const tl = tipoDeLink(p.link);
+    const notaLink = [tl.busca ? "abre a busca da loja" : "", tl.afiliado ? "link de afiliado" : ""].filter(Boolean).join(" · ");
 
     const estrelas = p.avaliacao ? `⭐ ${p.avaliacao} (${(p.num_avaliacoes||0).toLocaleString("pt-BR")} avaliações)` : "";
     const plataforma = NOME_LOJA[p.plataforma] || "";
@@ -1448,11 +1713,13 @@ function montarRotina(perfil, periodo, container) {
         <div>
           <div class="cat">${passo.nome} ${plataforma ? '· '+plataforma : ''}</div>
           <div class="nome">${p.nome}</div>
+          <div class="papel">${PAPEL_DO_PASSO[passo.key] || ""}</div>
           <div class="porque">${p.porque}</div>
           ${seloHTML(p)}
+          ${cuidadoHTML(p, perfil)}
           ${estrelas ? `<div style="font-size:.85rem;color:var(--dourado,#c9a96e);margin-top:4px">${estrelas}</div>` : ''}
           <div class="preco">${preco}</div>
-          ${p.link ? `<a class="link-produto" href="${p.link}" target="_blank" rel="noopener sponsored" data-produto="${escHTML(p.nome)}">Ver na ${plataforma||"loja"} →</a>` : '<span class="falta">link em breve</span>'}
+          ${p.link ? `<a class="link-produto" href="${escHTML(p.link)}" target="_blank" rel="noopener${tl.afiliado ? " sponsored" : ""}" data-produto="${escHTML(p.nome)}">${tl.busca ? "Buscar" : "Ver"} na ${plataforma||"loja"} →</a>${notaLink ? ` <small class="sub tipo-link">${notaLink}</small>` : ""}` : '<span class="falta">link em breve</span>'}
           ${alt}
           ${outras}
         </div>
@@ -1461,6 +1728,13 @@ function montarRotina(perfil, periodo, container) {
   }).join("");
 
   container.innerHTML = html;
+}
+
+// Selo curto de cuidado no card do produto (o texto completo fica nos avisos do resumo).
+function cuidadoHTML(p, perfil) {
+  if (!window.PSRegras) return "";
+  const c = PSRegras.contraindicacoes(p, perfil).filter(x => x.acao === "avisar" && x.curto);
+  return c.length ? `<div class="selo-cuidado">⚠️ ${c.map(x => escHTML(x.curto)).join(" · ")}</div>` : "";
 }
 
 // ===== TABS MANHÃ/NOITE =====
@@ -1482,6 +1756,12 @@ $("btnRefazer").onclick = () => {
   ESTADO.tipoJaSei = null;
   ESTADO.respostas = {};
   ESTADO.preocupacoes = [];
+  ESTADO.restaurado = null;
+  ESTADO.fixos = null;
+  ESTADO.sensivelMarcado = null;
+  ESTADO.doresSelfie = [];
+  $("avisoLink").hidden = true;
+  try { history.replaceState(null, "", location.pathname); } catch (e) {}
   document.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
   mostrarTela("inicio");
 };
@@ -1496,15 +1776,19 @@ $("btnCopiarLink").onclick = () => {
 
 $("btnImprimir").onclick = () => window.print();
 
+$("btnRefazerDoLink").onclick = () => $("btnRefazer").click();
+
+// Compartilha o mesmo link completo do "Copiar link" (antes ia só o tipo de pele,
+// e quem abria via outra rotina).
 $("btnCompartilhar").onclick = async () => {
-  const resultado = calcularTipo();
+  const resultado = ULTIMO_RESULTADO || calcularTipo();
+  const url = urlDoResultado();
   const texto = `🪞 Meu tipo de pele: ${resultado.tipo}${resultado.sensivel ? " (sensível)" : ""}\n\n` +
-    `Descobri com o Provador da Produto Skincare em 2 minutos.\n` +
-    `${location.origin}${location.pathname}?tipo=${resultado.tipo}`;
+    `Veja a rotina de manhã e noite que o Provador da Produto Skincare montou:`;
   if (navigator.share) {
-    try { await navigator.share({ title: "Meu resultado do provador", text: texto }); } catch(e) {}
+    try { await navigator.share({ title: "Meu resultado do provador", text: texto, url }); } catch(e) {}
   } else {
-    navigator.clipboard.writeText(texto).then(() => {
+    navigator.clipboard.writeText(texto + "\n" + url).then(() => {
       $("btnCompartilhar").textContent = "✅ Copiado!";
       setTimeout(() => { $("btnCompartilhar").textContent = "📤 Compartilhar"; }, 2000);
     });
@@ -1512,19 +1796,48 @@ $("btnCompartilhar").onclick = async () => {
 };
 
 // ===== QUERY STRING (restaurar estado) =====
+// Cada parâmetro do link só é aceito se for um valor conhecido: o link pode ter sido
+// editado à mão, e os valores vão para a página.
+const VALORES_LINK = {
+  idade: ["menos18", "18a29", "30a44", "45mais"],
+  sol: ["queima", "asvezes", "bronzeia", "escura"],
+  clima: ["seco", "umido", "varia"],
+  exp: ["nunca", "um", "varios"]
+};
+function lerLink(params) {
+  const tipo = params.get("tipo");
+  if (!ORDEM_TIPOS.includes(tipo)) return false; // sem resultado (ou link inválido): começa do zero
+  const pts = (params.get("pts") || "").split("_").map(Number);
+  const pontos = pts.length === 4 && pts.every(n => Number.isFinite(n) && n >= 0 && n < 1000)
+    ? Object.fromEntries(ORDEM_TIPOS.map((t, i) => [t, pts[i]]))
+    : { [tipo]: 10 }; // links antigos (v1) não tinham os pontos
+  ESTADO.restaurado = {
+    tipo,
+    sensivel: params.get("sensivel") === "1",
+    desidratada: tipo === "oleosa" && params.get("desid") === "1",
+    pontos
+  };
+  ESTADO.preocupacoes = [...new Set((params.get("conc") || "").split(","))].filter(c => NOMES_CONC[c]).slice(0, 2);
+  ESTADO.faixaPreco = normalizarFaixa(params.get("preco"));
+  ESTADO.rotina = params.get("rotina") === "3" ? 3 : 5;
+  Object.keys(VALORES_LINK).forEach(k => { ESTADO[k] = VALORES_LINK[k].includes(params.get(k)) ? params.get(k) : "nd"; });
+  ESTADO.isotretinoina = params.get("iso") === "1";
+  ESTADO.gestante = ESTADO.amamentando = params.get("gest") === "1";
+  ESTADO.doresSelfie = [...new Set((params.get("selfie") || "").split(","))].filter(d => DORES_ROTINA[d]);
+  // Produtos gravados: um id por passo, na ordem de chavesDosPassos(). Se a contagem não bater
+  // (ex.: o número de passos mudou), a rotina é recalculada.
+  const ids = (params.get("itens") || "").split(".");
+  const chaves = chavesDosPassos();
+  ESTADO.fixos = null;
+  if (ids.length === chaves.length && ids.every(id => /^[a-z0-9-]{1,80}$/.test(id))) {
+    ESTADO.fixos = {};
+    chaves.forEach((ch, i) => { if (ids[i] !== "-") ESTADO.fixos[ch] = ids[i]; });
+  }
+  return true;
+}
 (async function restaurar() {
   await catalogoPronto;
-  const params = new URLSearchParams(location.search);
-  if (params.has("tipo")) {
-    ESTADO.sensivelJaSei = params.get("sensivel") === "1";
-    ESTADO.tipoJaSei = params.get("tipo");
-    ESTADO.preocupacoes = (params.get("conc") || "").split(",").filter(Boolean);
-    ESTADO.faixaPreco = params.get("preco") || "qualquer";
-    ESTADO.rotina = parseInt(params.get("rotina")) || 5;
-    ["idade", "sol", "clima", "exp"].forEach(k => { ESTADO[k] = params.get(k) || "nd"; });
-    ESTADO.isotretinoina = params.get("iso") === "1";
-    calcularEMostrar();
-  }
+  if (lerLink(new URLSearchParams(location.search))) calcularEMostrar({ salvar: false });
 })();
 
 // ===== ACOMPANHAMENTO (IndexedDB) =====
@@ -1585,31 +1898,17 @@ function calcularBaumann(perfil, resultado) {
   };
 }
 
-const BAUMANN_NOMES = {
-  OSPT: "Oleosa, Sensível, Pigmentada, Tendência a rugas",
-  OSNT: "Oleosa, Sensível, Não pigmentada, Tendência a rugas",
-  OSNW: "Oleosa, Sensível, Não pigmentada, Firme",
-  OSPW: "Oleosa, Sensível, Pigmentada, Firme",
-  ORPT: "Oleosa, Resistente, Pigmentada, Tendência a rugas",
-  ORNT: "Oleosa, Resistente, Não pigmentada, Tendência a rugas",
-  ORNW: "Oleosa, Resistente, Não pigmentada, Firme",
-  ORPW: "Oleosa, Resistente, Pigmentada, Firme",
-  DSPT: "Seca, Sensível, Pigmentada, Tendência a rugas",
-  DSNT: "Seca, Sensível, Não pigmentada, Tendência a rugas",
-  DSNW: "Seca, Sensível, Não pigmentada, Firme",
-  DSPW: "Seca, Sensível, Pigmentada, Firme",
-  DRPT: "Seca, Resistente, Pigmentada, Tendência a rugas",
-  DRNT: "Seca, Resistente, Não pigmentada, Tendência a rugas",
-  DRNW: "Seca, Resistente, Não pigmentada, Firme",
-  DRPW: "Seca, Resistente, Pigmentada, Firme"
-};
+// O nome por extenso sai dos próprios eixos (a mesma letra e o mesmo nome da tabela),
+// para o título, a tabela e o texto nunca discordarem. O = oleosa, D = seca, S = sensível,
+// R = resistente, P = pigmentada, N = não pigmentada, W = tendência a rugas, T = firme.
+function nomeDoCodigo(b) { return b.eixos.map(e => e.nome).join(", "); }
 
 function baumannHTML(b) {
   return `
     <div class="card" style="margin-top:12px">
       <strong>🧬 Código de 4 eixos (inspirado em Baumann): <span class="pill">${b.codigo}</span></strong>
-      <small class="sub"> ${BAUMANN_NOMES[b.codigo] || ""}</small>
-      <table style="margin-top:8px;width:100%;font-size:.88rem">
+      <small class="sub"> ${nomeDoCodigo(b)}</small>
+      <table class="tabela-eixos" style="margin-top:8px;width:100%;font-size:.88rem">
         <tbody>${b.eixos.map(e => `
           <tr>
             <td style="padding:4px 8px">${e.escala}</td>
@@ -1624,41 +1923,14 @@ function baumannHTML(b) {
 }
 
 // ===== SUBTOM (frio/quente/neutro) =====
-function estimarSubtom(perfil, resultado) {
-  // Estimativa baseada em preocupações e tipo
-  // (sem foto, é uma aproximação — o ideal é análise de imagem)
-  let score = 0;
-
-  // Pele oleosa/mista tende a subtom quente (mais caroteno)
-  if (resultado.tipo === "oleosa" || resultado.tipo === "mista") score += 15;
-  // Pele seca tende a subtom frio (mais rosado)
-  if (resultado.tipo === "seca") score -= 15;
-
-  // Manchas → tendência quente
-  if (perfil.preocupacoes.includes("manchas")) score += 20;
-  // Sensível → tendência frio (vermelhidão)
-  if (perfil.sensivel) score -= 10;
-
-  const subtom = score > 10 ? "quente" : score < -10 ? "frio" : "neutro";
-
-  const descricoes = {
-    frio: { nome: "Frio", desc: "Nuances rosadas ou azuladas. Harmoniza com branco puro, prata e joias de ouro branco.", cores: ["branco puro", "prata", "azul royal", "rosa bebê", "cinza"] },
-    quente: { nome: "Quente", desc: "Reflexos dourados ou acobreados. Harmoniza com off-white, dourado e tons terrosos.", cores: ["off-white", "dourado", "coral", "verde-musgo", "terracota"] },
-    neutro: { nome: "Neutro", desc: "Equilíbrio entre rosado e dourado. Pode usar quase qualquer cor.", cores: ["bege", "rosa nude", "azul-petróleo", "verde-oliva", "vinho"] }
-  };
-
-  return { subtom, ...descricoes[subtom] };
-}
-
-function subtomHTML(st) {
+// Subtom (frio, quente ou neutro) só daria para estimar olhando a cor da pele. As respostas
+// do quiz não dizem nada sobre isso, e a análise da selfie não mede subtom: o campo sai como
+// "não avaliado", sem inventar frio, quente ou neutro.
+function subtomHTML() {
   return `
     <div class="card" style="margin-top:12px">
-      <strong>🎨 Subtom estimado: <span class="pill">${st.nome}</span></strong>
-      <p style="margin:8px 0;font-size:.92rem">${st.desc}</p>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
-        ${st.cores.map(c => `<span class="pill verde" style="font-size:.82rem">${c}</span>`).join("")}
-      </div>
-      <small class="sub">Estimativa baseada nas suas respostas. Para maior precisão, consulte uma análise de coloração pessoal.</small>
+      <strong>🎨 Subtom: <span class="pill">não avaliado</span></strong>
+      <p class="sub" style="margin:8px 0 0;font-size:.88rem">As respostas do quiz não mostram se o seu subtom é frio, quente ou neutro, e a análise da selfie não mede isso. Para saber, vale uma análise de coloração pessoal.</p>
     </div>
   `;
 }
@@ -1747,17 +2019,21 @@ function mostrarComparacao(chave) {
   return `
     <div class="card" style="margin-top:16px">
       <strong>${comp.titulo}</strong>
-      <table style="width:100%;font-size:.88rem;margin-top:8px">
+      <table class="tabela-comparacao" style="width:100%;font-size:.88rem;margin-top:8px">
         <thead><tr><th></th><th>${comp.titulo.split(" vs ")[0]}</th><th>${comp.titulo.split(" vs ")[1]}</th></tr></thead>
-        <tbody>${comp.linhas.map(l => `<tr><td style="font-weight:600;padding:6px 8px">${l[0]}</td><td style="padding:6px 8px">${l[1]}</td><td style="padding:6px 8px">${l[2]}</td></tr>`).join("")}</tbody>
+        <tbody>${comp.linhas.map(l => `<tr><td style="font-weight:600;padding:6px 8px">${l[0]}</td><td data-label="${comp.titulo.split(" vs ")[0]}" style="padding:6px 8px">${l[1]}</td><td data-label="${comp.titulo.split(" vs ")[1]}" style="padding:6px 8px">${l[2]}</td></tr>`).join("")}</tbody>
       </table>
     </div>
   `;
 }
 
 // ===== PROGRESSÃO 4 SEMANAS =====
-function progressaoHTML(tipo, temAtivoForte) {
-  const semanas = [
+function progressaoHTML(tipo, temAtivoForte, sensivel) {
+  const semanas = sensivel ? [
+    { n: 1, titulo: "Semana 1-2: A base", itens: ["Limpeza suave 2x/dia", "Hidratante todo dia", "Protetor solar todo dia (manhã)"], nota: "Não introduza nenhum ativo ainda. Sua pele precisa se acostumar." },
+    { n: 3, titulo: "Semana 3: Um ativo suave, se precisar", itens: ["Continue a base", "Se quiser um ativo, prefira um mais suave, como niacinamida ou ácido azelaico, e teste atrás da orelha antes", "Comece 2x por semana"], nota: "Pele sensível: retinol e ácido salicílico (BHA) costumam irritar. Não use sem orientação de um dermatologista." },
+    { n: 4, titulo: "Semana 4+: Avalie", itens: ["Continue a base + o ativo, se a pele tolerou", "Observe melhorias", "Fique com um ativo só"], nota: "Se arder, avermelhar ou descamar, pare o ativo e volte para a base." }
+  ] : [
     { n: 1, titulo: "Semana 1-2: A base", itens: ["Limpeza suave 2x/dia", "Hidratante todo dia", "Protetor solar todo dia (manhã)"], nota: "Não introduza nenhum ativo forte ainda. Sua pele precisa se acostumar." },
     { n: 3, titulo: "Semana 3: Primeiro ativo", itens: ["Continue a base", "Introduza UM ativo forte (retinol, BHA ou vitamina C)", "Use 2-3x por semana"], nota: "Se irritar, volte para a base e espere 1 semana." },
     { n: 4, titulo: "Semana 4+: Avalie", itens: ["Continue a base + ativo", "Observe melhorias", "Considere adicionar segundo ativo (se precisar)"], nota: "Nunca use 2 ativos fortes na mesma rotina. Alterne dias." }
@@ -2282,9 +2558,14 @@ function tratamentosHTML(anomalias) {
   let html = '<div class="card" style="margin-top:16px"><strong>💊 Tratamentos sugeridos por condição</strong>';
   html += '<p class="sub" style="font-size:.85rem;margin:8px 0 12px">Baseado nas anomalias detectadas. Consulte um dermatologista antes de iniciar qualquer tratamento.</p>';
 
+  const sensivel = !!calcularTipo().sensivel;
+  const FORTE = /retin|salic|\bbha\b|per[óo]xido|adapaleno|glic[óo]lico/i;
   for (const tipo of tiposUnicos) {
-    const t = TRATAMENTOS_ANOMALIA[tipo];
-    if (!t) continue;
+    const t0 = TRATAMENTOS_ANOMALIA[tipo];
+    if (!t0) continue;
+    // Pele sensível: retinol, ácido salicílico (BHA) e peróxido saem da lista, com o aviso.
+    const tirou = sensivel && (t0.ativos.some(a => FORTE.test(a)) || t0.produtos.some(p => FORTE.test(p)));
+    const t = sensivel ? { ...t0, ativos: t0.ativos.filter(a => !FORTE.test(a)), produtos: t0.produtos.filter(p => !FORTE.test(p)) } : t0;
 
     const nomes = {
       melasma: "🟤 Melasma / Manchas",
@@ -2315,6 +2596,7 @@ function tratamentosHTML(anomalias) {
         </div>
 
         <div style="margin-top:12px">
+          ${tirou ? `<p class="sub" style="font-size:.85rem;margin:0 0 10px">⚠️ <strong>Pele sensível:</strong> tiramos retinol, ácido salicílico (BHA) e peróxido de benzoíla desta lista, porque costumam irritar. Prefira niacinamida ou ácido azelaico; os outros, só com orientação de um dermatologista.</p>` : ""}
           <div style="font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde);font-weight:600;margin-bottom:6px">Dicas importantes</div>
           <ul style="margin:0;padding-left:18px;font-size:.88rem;color:var(--suave)">
             ${t.dicas.map(d => `<li>${d}</li>`).join("")}
@@ -2753,7 +3035,7 @@ async function initSelfie() {
       runningMode: "IMAGE",
       numFaces: 1
     });
-    $("statusSelfie").textContent = "Pronto. Marque o aceite e envie sua selfie.";
+    $("statusSelfie").textContent = "Pronto. Use a câmera ou envie uma selfie da galeria.";
   } catch (e) {
     $("statusSelfie").textContent = "Não consegui carregar o detector. Pode pular — o quiz já dá um bom resultado.";
   }
@@ -2765,7 +3047,8 @@ $("consentSelfie").onchange = () => {
   $("lblSelfie").style.opacity = ok ? "1" : ".45";
   $("lblSelfie").style.pointerEvents = ok ? "auto" : "none";
   $("modoSelfie").hidden = !ok;
-  if (ok) initSelfie();
+  $("btnCamera").disabled = !ok || modoFotos === 3;
+  if (ok) initSelfie(); else fecharCamera();
 };
 
 // Modo de fotos: 1 ou 3
@@ -2776,6 +3059,8 @@ const ANALISES_MULTIPLAS = {};
 document.querySelectorAll("input[name=qtdFotos]").forEach(r => {
   r.onchange = () => {
     modoFotos = parseInt(r.value);
+    $("btnCamera").hidden = modoFotos === 3 || !CAMERA_DISPONIVEL;
+    if (modoFotos === 3) fecharCamera();
     if (modoFotos === 3) {
       $("fotosMultiplas").hidden = false;
       renderizarSlotsFotos();
@@ -3031,7 +3316,129 @@ $("btnSelfieVoltar").onclick = () => mostrarTela("preferencias");
 
 $("inputSelfie").onchange = async (e) => {
   const file = e.target.files[0];
-  if (!file || !landmarker) return;
+  e.target.value = "";
+  if (!file) return;
+  if (!landmarker) await initSelfie();
+  if (!landmarker) return;
+  fecharCamera();
+  await analisarSelfie(file);
+};
+
+// ===== Câmera ao vivo (getUserMedia). Nada é gravado nem enviado. =====
+const CAMERA_DISPONIVEL = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && window.isSecureContext !== false;
+let streamCamera = null, timerEnquadramento = null;
+const cvEnquadramento = document.createElement("canvas");
+if (!CAMERA_DISPONIVEL) $("btnCamera").hidden = true;
+
+async function abrirCamera() {
+  if (streamCamera) return;
+  if (!landmarker) await initSelfie();
+  if (!landmarker) return;
+  $("previewSelfie").hidden = true;
+  try {
+    streamCamera = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 960 } },
+      audio: false
+    });
+  } catch (e) {
+    streamCamera = null;
+    const msg = {
+      NotAllowedError: "Você não liberou a câmera. Pode liberar nas configurações do navegador, enviar uma foto da galeria ou pular.",
+      SecurityError: "O navegador bloqueou a câmera nesta página. Envie uma foto da galeria ou pule.",
+      NotFoundError: "Não encontrei câmera neste aparelho. Envie uma foto da galeria ou pule.",
+      OverconstrainedError: "Não encontrei câmera neste aparelho. Envie uma foto da galeria ou pule.",
+      NotReadableError: "A câmera está em uso por outro app. Feche o outro app e tente de novo."
+    }[e && e.name] || "Não consegui abrir a câmera. Envie uma foto da galeria ou pule.";
+    $("statusSelfie").textContent = msg;
+    return;
+  }
+  const v = $("videoCamera");
+  v.srcObject = streamCamera;
+  $("painelCamera").hidden = false;
+  $("btnCamera").hidden = true;
+  $("btnCapturar").disabled = true;
+  $("dicaCamera").textContent = "Posicione o rosto dentro do oval.";
+  $("statusSelfie").textContent = "";
+  try { await v.play(); } catch (e) {}
+  clearInterval(timerEnquadramento);
+  timerEnquadramento = setInterval(avaliarEnquadramento, 500);
+  $("painelCamera").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+}
+
+function fecharCamera() {
+  clearInterval(timerEnquadramento);
+  timerEnquadramento = null;
+  if (streamCamera) streamCamera.getTracks().forEach(t => t.stop());
+  streamCamera = null;
+  const v = $("videoCamera");
+  if (v) v.srcObject = null;
+  if ($("painelCamera")) $("painelCamera").hidden = true;
+  if ($("btnCamera")) $("btnCamera").hidden = !CAMERA_DISPONIVEL || modoFotos === 3;
+}
+
+// Dicas ao vivo: rosto no oval, distância, de frente e luz.
+function avaliarEnquadramento() {
+  const v = $("videoCamera");
+  if (!streamCamera || !landmarker || !v.videoWidth) return;
+  const W = 320, H = Math.round(v.videoHeight * W / v.videoWidth);
+  cvEnquadramento.width = W; cvEnquadramento.height = H;
+  const ctx = cvEnquadramento.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(v, 0, 0, W, H);
+  let res;
+  try { res = landmarker.detect(cvEnquadramento); } catch (e) { return; }
+  let dica = "", ok = false;
+  if (!res.faceLandmarks || !res.faceLandmarks.length) {
+    dica = "Não estou vendo seu rosto. Posicione-o dentro do oval.";
+  } else {
+    const lm = res.faceLandmarks[0];
+    const esq = lm[234], dir = lm[454], nariz = lm[1];
+    // A prévia usa object-fit: cover em 3:4; converte para a área visível na tela.
+    const asp = v.videoWidth / v.videoHeight;
+    const fracW = asp > 0.75 ? 0.75 / asp : 1, fracH = asp > 0.75 ? 1 : asp / 0.75;
+    const vx = x => (x - (1 - fracW) / 2) / fracW, vy = y => (y - (1 - fracH) / 2) / fracH;
+    const largura = Math.abs(dir.x - esq.x) / fracW;
+    const centroX = (vx(esq.x) + vx(dir.x)) / 2, centroY = vy(nariz.y);
+    const giro = Math.abs((nariz.x - esq.x) / (dir.x - esq.x || 1) - 0.5);
+    const x0 = Math.max(0, Math.round(Math.min(esq.x, dir.x) * W)), x1 = Math.min(W, Math.round(Math.max(esq.x, dir.x) * W));
+    const y0 = Math.max(0, Math.round((nariz.y - largura * .45) * H)), y1 = Math.min(H, Math.round((nariz.y + largura * .35) * H));
+    let soma = 0, n = 0;
+    if (x1 > x0 && y1 > y0) {
+      const d = ctx.getImageData(x0, y0, x1 - x0, y1 - y0).data;
+      for (let i = 0; i < d.length; i += 16) { soma += (d[i] + d[i + 1] + d[i + 2]) / 3; n++; }
+    }
+    const luz = n ? soma / n : 128;
+    if (largura < 0.3) dica = "Chegue um pouco mais perto.";
+    else if (largura > 0.85) dica = "Afaste um pouco o aparelho.";
+    else if (Math.abs(centroX - 0.5) > 0.15 || Math.abs(centroY - 0.48) > 0.18) dica = "Centralize o rosto no oval.";
+    else if (giro > 0.12) dica = "Olhe de frente para a câmera.";
+    else if (luz < 70) dica = "Pouca luz. Fique de frente para uma janela.";
+    else if (luz > 215) dica = "Luz forte demais. Evite sol direto no rosto.";
+    else { dica = "Ótimo! Pode tirar a foto."; ok = true; }
+  }
+  $("ovalCamera").classList.toggle("ok", ok);
+  $("btnCapturar").disabled = !(res.faceLandmarks && res.faceLandmarks.length);
+  if ($("dicaCamera").textContent !== dica) $("dicaCamera").textContent = dica;
+}
+
+async function capturarFoto() {
+  const v = $("videoCamera");
+  if (!streamCamera || !v.videoWidth) return;
+  const cv = document.createElement("canvas");
+  cv.width = v.videoWidth; cv.height = v.videoHeight;
+  cv.getContext("2d").drawImage(v, 0, 0);
+  fecharCamera();
+  const blob = await new Promise(res => cv.toBlob(res, "image/jpeg", 0.92));
+  if (blob) await analisarSelfie(blob);
+}
+
+$("btnCamera").onclick = abrirCamera;
+$("btnCapturar").onclick = capturarFoto;
+$("btnFecharCamera").onclick = fecharCamera;
+["btnPularSelfie", "btnSelfieContinuar", "btnSelfieVoltar"].forEach(id => $(id).addEventListener("click", fecharCamera));
+document.addEventListener("visibilitychange", () => { if (document.hidden) fecharCamera(); });
+window.addEventListener("pagehide", fecharCamera);
+
+async function analisarSelfie(file) {
   $("statusSelfie").textContent = "Analisando no seu aparelho…";
 
   const img = await createImageBitmap(file);
@@ -3193,15 +3600,50 @@ calcularTipo = function () {
     const peso = selfieEstimativa.multipla ? 4 : 2;
     base.pontos[selfieEstimativa.tipo] = (base.pontos[selfieEstimativa.tipo] || 0) + peso;
     if (selfieEstimativa.sens) base.sensivel = true;
-    if (selfieEstimativa.rebote && base.tipo === "oleosa") {
-      base.tipo = "oleosa desidratada";
-    }
+    // Antes o tipo virava "oleosa desidratada", que não existe nas tabelas (explicações, dicas,
+    // produtos) e travava a tela de resultado. O tipo continua "oleosa" e a desidratação vira uma marca.
+    if (selfieEstimativa.rebote && base.tipo === "oleosa") base.desidratada = true;
     base.metodo = selfieEstimativa.multipla ? "quiz+3fotos" : "quiz+1foto";
+    // Modo "só selfie" (vindo da home): sem respostas do quiz, o tipo é o que a foto indicou.
+    if (ESTADO.soSelfie && base.metodo !== "link") {
+      base.tipo = selfieEstimativa.tipo;
+      base.metodo = selfieEstimativa.multipla ? "3fotos" : "selfie";
+    }
     base.skinScore = selfieEstimativa.skinScore;
     base.idadePele = selfieEstimativa.idadePele;
   }
   return base;
 };
+
+// ===== MODO SÓ SELFIE (/provador/?modo=selfie, chamado pela home) =====
+function ativarModoSelfie(ativo) {
+  ESTADO.soSelfie = ativo;
+  $("tituloSelfie").textContent = ativo ? "Analise sua pele com uma selfie 📸" : "Quer mais precisão? 📸";
+  $("subSelfieSo").hidden = !ativo;
+  $("subSelfieQuiz").hidden = ativo;
+  $("btnPularSelfie").textContent = ativo ? "Prefiro responder o quiz" : "Pular →";
+  $("btnSelfieContinuar").textContent = ativo ? "Ver minha rotina →" : "Ver resultado →";
+}
+$("btnPularSelfie").onclick = () => {
+  if (ESTADO.soSelfie) { ativarModoSelfie(false); iniciarQuiz(); }
+  else calcularEMostrar();
+};
+$("btnSelfieVoltar").onclick = () => {
+  if (ESTADO.soSelfie) { ativarModoSelfie(false); mostrarTela("inicio"); }
+  else mostrarTela("preferencias");
+};
+$("btnRefinarQuiz").onclick = () => { ativarModoSelfie(false); ESTADO.restaurado = null; iniciarQuiz(); };
+const _calcularEMostrarOriginal = calcularEMostrar;
+calcularEMostrar = function (opcoes) {
+  const r = _calcularEMostrarOriginal(opcoes);
+  $("avisoSoSelfie").hidden = !(ESTADO.soSelfie && selfieEstimativa && !ESTADO.restaurado);
+  return r;
+};
+if (new URLSearchParams(location.search).get("modo") === "selfie") {
+  ativarModoSelfie(true);
+  track("quiz_start", { modo: "selfie" });
+  mostrarTela("selfie");
+}
 })();
 </script>
 <footer class="ps-rodape">
@@ -3213,9 +3655,10 @@ calcularTipo = function () {
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">50 mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/produtos/">Produtos</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare. Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
 </footer>
 </body>
 </html>

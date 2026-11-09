@@ -1,0 +1,138 @@
+{
+  "motivo": "Retirados de top50-skincare-amazon.json em 2026-11-05: dados que não puderam ser confirmados (número de avaliações redondo, código de produto em sequência ou inválido, ou produto repetido).",
+  "lista_original_de": "2026-11-02",
+  "produtos": [
+    {
+      "rank": 36,
+      "nome": "La Roche-Posay Pure Vitamin C12 Sérum",
+      "marca": "La Roche-Posay",
+      "categoria": "Sérum",
+      "preco": 129.99,
+      "avaliacao": 4.7,
+      "reviews": 3200,
+      "asin": "B0DM9TL9SK",
+      "link": "https://www.amazon.com.br/dp/B0DM9TL9SK?tag=produtoskincare-20"
+    },
+    {
+      "rank": 38,
+      "nome": "La Roche-Posay Anthelios FPS 70 Gel Creme",
+      "marca": "La Roche-Posay",
+      "categoria": "Protetor solar",
+      "preco": 81.19,
+      "avaliacao": 4.8,
+      "reviews": 8500,
+      "asin": "B0CTR4FL63",
+      "link": "https://www.amazon.com.br/dp/B0CTR4FL63?tag=produtoskincare-20"
+    },
+    {
+      "rank": 40,
+      "nome": "CeraVe Loção Hidratante PM Ceramidas 52ml",
+      "marca": "CeraVe",
+      "categoria": "Hidratante",
+      "preco": 62.9,
+      "avaliacao": 4.8,
+      "reviews": 18000,
+      "asin": "B096XPFVLL",
+      "link": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare-20"
+    },
+    {
+      "rank": 42,
+      "nome": "La Roche-Posay Effaclar Duo+ 40ml",
+      "marca": "La Roche-Posay",
+      "categoria": "Tratamento acne",
+      "preco": 89.9,
+      "avaliacao": 4.7,
+      "reviews": 9800,
+      "asin": "B01N7TGV3L",
+      "link": "https://www.amazon.com.br/dp/B01N7TGV3L?tag=produtoskincare-20"
+    },
+    {
+      "rank": 43,
+      "nome": "The Ordinary Niacinamide 10% + Zinc 1% 30ml",
+      "marca": "The Ordinary",
+      "categoria": "Sérum",
+      "preco": 39.9,
+      "avaliacao": 4.6,
+      "reviews": 45000,
+      "asin": "B06Y2GX3ZD",
+      "link": "https://www.amazon.com.br/dp/B06Y2GX3ZD?tag=produtoskincare-20"
+    },
+    {
+      "rank": 44,
+      "nome": "The Ordinary Hyaluronic Acid 2% + B5 30ml",
+      "marca": "The Ordinary",
+      "categoria": "Sérum",
+      "preco": 42.9,
+      "avaliacao": 4.5,
+      "reviews": 32000,
+      "asin": "B075GB4KM5",
+      "link": "https://www.amazon.com.br/dp/B075GB4KM5?tag=produtoskincare-20"
+    },
+    {
+      "rank": 45,
+      "nome": "The Ordinary Azelaic Acid 10% 30ml",
+      "marca": "The Ordinary",
+      "categoria": "Sérum",
+      "preco": 45.9,
+      "avaliacao": 4.5,
+      "reviews": 22000,
+      "asin": "B07CG8P6KG",
+      "link": "https://www.amazon.com.br/dp/B07CG8P6KG?tag=produtoskincare-20"
+    },
+    {
+      "rank": 46,
+      "nome": "Principia VC-10 Vitamina C 30ml",
+      "marca": "Principia",
+      "categoria": "Sérum",
+      "preco": 49.9,
+      "avaliacao": 4.7,
+      "reviews": 8500,
+      "asin": "B0BNHX8XVG",
+      "link": "https://www.amazon.com.br/dp/B0BNHX8XVG?tag=produtoskincare-20"
+    },
+    {
+      "rank": 47,
+      "nome": "Principia NC-10 Niacinamida 30ml",
+      "marca": "Principia",
+      "categoria": "Sérum",
+      "preco": 45.9,
+      "avaliacao": 4.8,
+      "reviews": 12000,
+      "asin": "B0BNHY2JHZ",
+      "link": "https://www.amazon.com.br/dp/B0BNHY2JHZ?tag=produtoskincare-20"
+    },
+    {
+      "rank": 48,
+      "nome": "Principia AH-2 Ácido Hialurônico 30ml",
+      "marca": "Principia",
+      "categoria": "Sérum",
+      "preco": 42.9,
+      "avaliacao": 4.7,
+      "reviews": 9500,
+      "asin": "B0BNHXG5VY",
+      "link": "https://www.amazon.com.br/dp/B0BNHXG5VY?tag=produtoskincare-20"
+    },
+    {
+      "rank": 49,
+      "nome": "Principia RN-0,3 Retinol 30ml",
+      "marca": "Principia",
+      "categoria": "Sérum",
+      "preco": 52.9,
+      "avaliacao": 4.7,
+      "reviews": 7800,
+      "asin": "B0BNHY5P7K",
+      "link": "https://www.amazon.com.br/dp/B0BNHY5P7K?tag=produtoskincare-20"
+    },
+    {
+      "rank": 50,
+      "nome": "La Roche-Posay Retinol B3 Sérum 30ml",
+      "marca": "La Roche-Posay",
+      "categoria": "Sérum",
+      "preco": 149.9,
+      "avaliacao": 4.7,
+      "reviews": 8200,
+      "asin": "B08XYZABCD",
+      "link": "https://www.amazon.com.br/dp/B08XYZABCD?tag=produtoskincare-20"
+    }
+  ]
+}

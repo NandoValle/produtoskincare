@@ -2,7 +2,8 @@
   "atualizado_em": "2026-11-02",
   "tag_afiliado": "produtoskincare-20",
   "fonte": "Amazon.com.br Bestsellers — Pele, Dermocosméticos, Premium Beauty",
-  "total": 50,
+  "total": 38,
+  "revisao": "Lista revisada em 05/11/2026: retiramos 12 itens cujos dados (número de avaliações, código do produto) não conseguimos confirmar.",
   "produtos": [
     {"rank": 1, "nome": "Neutrogena Hydro Boost Water Gel 50g", "marca": "Neutrogena", "categoria": "Hidratante", "preco": 53.15, "avaliacao": 4.8, "reviews": 78736, "asin": "B06XQ27YLL", "link": "https://www.amazon.com.br/dp/B06XQ27YLL?tag=produtoskincare-20"},
     {"rank": 2, "nome": "Neutrogena Hydro Boost Water Gel Refil 50g", "marca": "Neutrogena", "categoria": "Hidratante", "preco": 43.71, "avaliacao": 4.9, "reviews": 12680, "asin": "B0CB716LLZ", "link": "https://www.amazon.com.br/dp/B0CB716LLZ?tag=produtoskincare-20"},
@@ -39,21 +40,9 @@
     {"rank": 33, "nome": "Vasenol Geleia de Vaselina 50g", "marca": "Vasenol", "categoria": "Hidratante", "preco": 25.99, "avaliacao": 4.8, "reviews": 3321, "asin": "B07JR55K68", "link": "https://www.amazon.com.br/dp/B07JR55K68?tag=produtoskincare-20"},
     {"rank": 34, "nome": "SKIN1004 Madagascar Centella Kit Viagem", "marca": "SKIN1004", "categoria": "Kit skincare", "preco": 89.90, "avaliacao": 4.6, "reviews": 4940, "asin": "B08BZ89KKR", "link": "https://www.amazon.com.br/dp/B08BZ89KKR?tag=produtoskincare-20"},
     {"rank": 35, "nome": "medicube Colágeno Night Wrapping Mask", "marca": "medicube", "categoria": "Máscara", "preco": 79.90, "avaliacao": 4.5, "reviews": 25607, "asin": "B0BRMYHMS5", "link": "https://www.amazon.com.br/dp/B0BRMYHMS5?tag=produtoskincare-20"},
-    {"rank": 36, "nome": "La Roche-Posay Pure Vitamin C12 Sérum", "marca": "La Roche-Posay", "categoria": "Sérum", "preco": 129.99, "avaliacao": 4.7, "reviews": 3200, "asin": "B0DM9TL9SK", "link": "https://www.amazon.com.br/dp/B0DM9TL9SK?tag=produtoskincare-20"},
-    {"rank": 37, "nome": "M Perfect Cover Missha BB Cream 50ml", "marca": "Missha", "categoria": "BB Cream", "preco": 45.90, "avaliacao": 4.4, "reviews": 5379, "asin": "B07WRSH9L4", "link": "https://www.amazon.com.br/dp/B07WRSH9L4?tag=produtoskincare-20"},
-    {"rank": 38, "nome": "La Roche-Posay Anthelios FPS 70 Gel Creme", "marca": "La Roche-Posay", "categoria": "Protetor solar", "preco": 81.19, "avaliacao": 4.8, "reviews": 8500, "asin": "B0CTR4FL63", "link": "https://www.amazon.com.br/dp/B0CTR4FL63?tag=produtoskincare-20"},
-    {"rank": 39, "nome": "KIKO MILANO 3D Hydra Lipgloss", "marca": "KIKO MILANO", "categoria": "Labial", "preco": 99.90, "avaliacao": 4.8, "reviews": 27924, "asin": "B07DBS1RV9", "link": "https://www.amazon.com.br/dp/B07DBS1RV9?tag=produtoskincare-20"},
-    {"rank": 40, "nome": "CeraVe Loção Hidratante PM Ceramidas 52ml", "marca": "CeraVe", "categoria": "Hidratante", "preco": 62.90, "avaliacao": 4.8, "reviews": 18000, "asin": "B096XPFVLL", "link": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare-20"},
-    {"rank": 41, "nome": "Vichy Dercos Shampoo Anticaspa 200ml", "marca": "Vichy", "categoria": "Capilar", "preco": 95.99, "avaliacao": 4.8, "reviews": 6154, "asin": "B0CZ4BTRYR", "link": "https://www.amazon.com.br/dp/B0CZ4BTRYR?tag=produtoskincare-20"},
-    {"rank": 42, "nome": "La Roche-Posay Effaclar Duo+ 40ml", "marca": "La Roche-Posay", "categoria": "Tratamento acne", "preco": 89.90, "avaliacao": 4.7, "reviews": 9800, "asin": "B01N7TGV3L", "link": "https://www.amazon.com.br/dp/B01N7TGV3L?tag=produtoskincare-20"},
-    {"rank": 43, "nome": "The Ordinary Niacinamide 10% + Zinc 1% 30ml", "marca": "The Ordinary", "categoria": "Sérum", "preco": 39.90, "avaliacao": 4.6, "reviews": 45000, "asin": "B06Y2GX3ZD", "link": "https://www.amazon.com.br/dp/B06Y2GX3ZD?tag=produtoskincare-20"},
-    {"rank": 44, "nome": "The Ordinary Hyaluronic Acid 2% + B5 30ml", "marca": "The Ordinary", "categoria": "Sérum", "preco": 42.90, "avaliacao": 4.5, "reviews": 32000, "asin": "B075GB4KM5", "link": "https://www.amazon.com.br/dp/B075GB4KM5?tag=produtoskincare-20"},
-    {"rank": 45, "nome": "The Ordinary Azelaic Acid 10% 30ml", "marca": "The Ordinary", "categoria": "Sérum", "preco": 45.90, "avaliacao": 4.5, "reviews": 22000, "asin": "B07CG8P6KG", "link": "https://www.amazon.com.br/dp/B07CG8P6KG?tag=produtoskincare-20"},
-    {"rank": 46, "nome": "Principia VC-10 Vitamina C 30ml", "marca": "Principia", "categoria": "Sérum", "preco": 49.90, "avaliacao": 4.7, "reviews": 8500, "asin": "B0BNHX8XVG", "link": "https://www.amazon.com.br/dp/B0BNHX8XVG?tag=produtoskincare-20"},
-    {"rank": 47, "nome": "Principia NC-10 Niacinamida 30ml", "marca": "Principia", "categoria": "Sérum", "preco": 45.90, "avaliacao": 4.8, "reviews": 12000, "asin": "B0BNHY2JHZ", "link": "https://www.amazon.com.br/dp/B0BNHY2JHZ?tag=produtoskincare-20"},
-    {"rank": 48, "nome": "Principia AH-2 Ácido Hialurônico 30ml", "marca": "Principia", "categoria": "Sérum", "preco": 42.90, "avaliacao": 4.7, "reviews": 9500, "asin": "B0BNHXG5VY", "link": "https://www.amazon.com.br/dp/B0BNHXG5VY?tag=produtoskincare-20"},
-    {"rank": 49, "nome": "Principia RN-0,3 Retinol 30ml", "marca": "Principia", "categoria": "Sérum", "preco": 52.90, "avaliacao": 4.7, "reviews": 7800, "asin": "B0BNHY5P7K", "link": "https://www.amazon.com.br/dp/B0BNHY5P7K?tag=produtoskincare-20"},
-    {"rank": 50, "nome": "La Roche-Posay Retinol B3 Sérum 30ml", "marca": "La Roche-Posay", "categoria": "Sérum", "preco": 149.90, "avaliacao": 4.7, "reviews": 8200, "asin": "B08XYZABCD", "link": "https://www.amazon.com.br/dp/B08XYZABCD?tag=produtoskincare-20"}
+    {"rank": 36, "nome": "M Perfect Cover Missha BB Cream 50ml", "marca": "Missha", "categoria": "BB Cream", "preco": 45.90, "avaliacao": 4.4, "reviews": 5379, "asin": "B07WRSH9L4", "link": "https://www.amazon.com.br/dp/B07WRSH9L4?tag=produtoskincare-20"},
+    {"rank": 37, "nome": "KIKO MILANO 3D Hydra Lipgloss", "marca": "KIKO MILANO", "categoria": "Labial", "preco": 99.90, "avaliacao": 4.8, "reviews": 27924, "asin": "B07DBS1RV9", "link": "https://www.amazon.com.br/dp/B07DBS1RV9?tag=produtoskincare-20"},
+    {"rank": 38, "nome": "Vichy Dercos Shampoo Anticaspa 200ml", "marca": "Vichy", "categoria": "Capilar", "preco": 95.99, "avaliacao": 4.8, "reviews": 6154, "asin": "B0CZ4BTRYR", "link": "https://www.amazon.com.br/dp/B0CZ4BTRYR?tag=produtoskincare-20"}
   ]
 }
 

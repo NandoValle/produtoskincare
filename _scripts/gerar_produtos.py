@@ -189,7 +189,7 @@ def pagina_produto(p, fichas, hist, todos):
 <h2 id="para-quem">Para quem faz mais sentido</h2>
 <ul class="pd-lista">{''.join(tipos)}</ul>
 {('<p class="pd-grupo">Costuma ser escolhido para:</p><ul class="pd-lista">' + ''.join(conc) + '</ul>') if conc else ''}
-<p class="ig-nota">Não sabe seu tipo de pele? Faça o <a href="/provador/">quiz de 2 minutos</a>.</p>
+<p class="ig-nota">Não sabe seu tipo de pele? Faça o <a href="/provador/">quiz do provador</a>.</p>
 </section>
 <section aria-labelledby="ativos">
 <h2 id="ativos">Ativos em destaque</h2>
@@ -221,6 +221,67 @@ def pagina_produto(p, fichas, hist, todos):
                   [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS)
 
 
+# Filtro do índice: mesmas faixas de preço do provador (teto por produto).
+FAIXAS_FILTRO = [("qualquer", "Sem limite"), ("50", "Até R$ 50"), ("100", "Até R$ 100"), ("200", "Até R$ 200")]
+TIPOS_FILTRO = [("", "Todos"), ("oleosa", "Pele oleosa"), ("seca", "Pele seca"), ("mista", "Pele mista"),
+                ("normal", "Pele normal"), ("sensivel", "Pele sensível")]
+
+CSS_INDICE = """
+.ig [hidden]{display:none!important}
+.ig .ig-grade{padding:0;margin:0}
+.ig .pf-status{margin:0}
+.ig-card h3{font-size:1.25rem;margin:0}
+.pf-filtros{display:grid;grid-template-columns:1fr;gap:12px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel)}
+.pf-campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pf-campo label{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+.pf-campo input,.pf-campo select{font:inherit;font-size:16px;width:100%;min-height:48px;padding:10px 14px;border:1px solid var(--linha-2);border-radius:var(--raio-md);background:var(--fundo);color:var(--tinta)}
+.pf-campo input:focus-visible,.pf-campo select:focus-visible{outline:2px solid var(--rosa);outline-offset:1px}
+.pf-status{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:0;font-size:.92rem;color:var(--suave)}
+.pf-limpar{font:inherit;font-size:.92rem;min-height:44px;padding:0 16px;border:1px solid var(--linha-2);border-radius:999px;background:transparent;color:var(--tinta);cursor:pointer}
+.pf-limpar:hover{border-color:var(--rosa)}
+.pf-vazio{text-align:center}
+.pf-vazio p{margin:0 0 12px}
+.pf-vazio .pf-limpar{margin-top:4px}
+@media(min-width:700px){.pf-filtros{grid-template-columns:1.4fr 1fr 1fr}.pf-status{grid-column:1/-1}}
+"""
+
+JS_INDICE = """<script>
+(function () {
+  var busca = document.getElementById("pf-busca"), tipo = document.getElementById("pf-tipo"), preco = document.getElementById("pf-preco");
+  var cards = [].slice.call(document.querySelectorAll("[data-pf-nome]"));
+  var secoes = [].slice.call(document.querySelectorAll("[data-pf-secao]"));
+  var contagem = document.getElementById("pf-contagem"), vazio = document.getElementById("pf-vazio");
+  var limpar = [].slice.call(document.querySelectorAll("[data-pf-limpar]"));
+  function norm(t) { return (t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim(); }
+  function cabe(li) {
+    var termo = norm(busca.value), t = tipo.value, teto = preco.value;
+    if (termo && li.getAttribute("data-pf-nome").indexOf(termo) < 0) return false;
+    if (t) {
+      var tipos = li.getAttribute("data-pf-tipos").split(" ");
+      // "Todos os tipos" vale para oleosa, seca, mista e normal; pele sensível só quando o catálogo diz.
+      if (tipos.indexOf(t) < 0 && !(t !== "sensivel" && tipos.indexOf("todos") >= 0)) return false;
+    }
+    if (teto !== "qualquer" && !(parseFloat(li.getAttribute("data-pf-preco")) <= parseFloat(teto))) return false;
+    return true;
+  }
+  function aplicar() {
+    var n = 0;
+    cards.forEach(function (li) { var ok = cabe(li); li.hidden = !ok; if (ok) n++; });
+    secoes.forEach(function (s) { s.hidden = !s.querySelector("[data-pf-nome]:not([hidden])"); });
+    var filtrando = busca.value.trim() || tipo.value || preco.value !== "qualquer";
+    contagem.textContent = filtrando ? n + " de " + cards.length + " produtos" : cards.length + " produtos";
+    limpar[0].hidden = !filtrando;
+    vazio.hidden = n > 0;
+  }
+  [busca, tipo, preco].forEach(function (el) { el.addEventListener("input", aplicar); el.addEventListener("change", aplicar); });
+  limpar.forEach(function (b) { b.addEventListener("click", function () { busca.value = ""; tipo.value = ""; preco.value = "qualquer"; aplicar(); busca.focus(); }); });
+  document.getElementById("pf-form").addEventListener("submit", function (e) { e.preventDefault(); });
+  document.getElementById("pf-form").hidden = false;
+  aplicar();
+})();
+</script>"""
+
+
 def pagina_indice(produtos):
     grupos = []
     for passo in ORDEM_PASSOS:
@@ -228,21 +289,36 @@ def pagina_indice(produtos):
         if not itens:
             continue
         cards = "".join(
-            f'<li><a class="ig-card" href="/produtos/{esc(p["id"])}/"><h3>{esc(p["nome"])}</h3>'
+            f'<li data-pf-nome="{esc(sem_acento(" ".join([p["nome"], p.get("marca", "")] + p.get("ativos", []))))}" '
+            f'data-pf-tipos="{esc(" ".join(p.get("tipos", [])))}" data-pf-preco="{p["preco"]}">'
+            f'<a class="ig-card" href="/produtos/{esc(p["id"])}/"><h3>{esc(p["nome"])}</h3>'
             f'<p>{esc(p.get("marca", ""))} · {reais(p["preco"])} em {data_curta(p["preco_em"])}</p></a></li>' for p in itens)
-        grupos.append(f'<section aria-labelledby="g-{passo}"><h2 id="g-{passo}">{esc(PASSOS[passo])}</h2><ul class="ig-grade">{cards}</ul></section>')
+        grupos.append(f'<section data-pf-secao aria-labelledby="g-{passo}"><h2 id="g-{passo}">{esc(PASSOS[passo])}</h2><ul class="ig-grade">{cards}</ul></section>')
+    tipos = "".join(f'<option value="{v}">{esc(r)}</option>' for v, r in TIPOS_FILTRO)
+    faixas = "".join(f'<option value="{v}">{esc(r)}</option>' for v, r in FAIXAS_FILTRO)
+    filtros = f"""<form class="pf-filtros" id="pf-form" role="search" aria-label="Buscar e filtrar produtos" hidden>
+<div class="pf-campo"><label for="pf-busca">Buscar</label><input id="pf-busca" type="search" placeholder="Nome, marca ou ativo" autocomplete="off" enterkeyhint="search"></div>
+<div class="pf-campo"><label for="pf-tipo">Tipo de pele</label><select id="pf-tipo">{tipos}</select></div>
+<div class="pf-campo"><label for="pf-preco">Preço por produto</label><select id="pf-preco">{faixas}</select></div>
+<p class="pf-status"><span id="pf-contagem" aria-live="polite">{len(produtos)} produtos</span><button type="button" class="pf-limpar" data-pf-limpar hidden>Limpar filtros</button></p>
+</form>
+<div class="ig-caixa pf-vazio" id="pf-vazio" hidden>
+<p><strong>Nenhum produto com esses filtros.</strong></p>
+<p class="ig-nota">Tente outro nome, outro tipo de pele ou uma faixa de preço maior.</p>
+<button type="button" class="pf-limpar" data-pf-limpar>Limpar filtros</button>
+</div>"""
     corpo = f"""<article>
 <div class="ig-cab">
 <h1>Produtos do catálogo</h1>
 <p class="ig-lede">Cada produto tem uma página com o passo da rotina, o tipo de pele indicado, os ativos em destaque com o nível de evidência, o preço conferido com data e alternativas.</p>
 </div>
+{filtros}
 {''.join(grupos)}
 <p class="ig-nota">Contém links de afiliado. Veja <a href="/sobre/">como escolhemos os produtos</a>.</p>
 </article>"""
-    css = ".ig-card h3{font-size:1.25rem;margin:0}"
     return pagina("Produtos de skincare: preço, ativos e para quem é",
                   "Catálogo de produtos de skincare com página para cada um: tipo de pele, ativos com nível de evidência, preço conferido com data e alternativas.",
-                  "/produtos/", [("/", "Início"), (None, "Produtos")], corpo, css_extra=css, larga=True)
+                  "/produtos/", [("/", "Início"), (None, "Produtos")], corpo, css_extra=CSS_INDICE, scripts=JS_INDICE, larga=True)
 
 
 def main():

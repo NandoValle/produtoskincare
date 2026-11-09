@@ -1,29 +1,51 @@
-/* Progressive enhancement: navigation and content stay available without JS. */
+/* Progressive enhancement: navigation stays available without JS.
+   The Mais disclosure is a <details> element, so it works before this script runs. */
 (() => {
   const header = document.querySelector('.ps-header');
   const button = header?.querySelector('.ps-menu');
   const navigation = document.getElementById('site-navigation');
+  const mais = header?.querySelector('.ps-mais');
+  const closeMais = () => { if (mais?.open) mais.open = false; };
   if (button && navigation) {
-    const mobile = matchMedia('(max-width: 1120px)');
+    const mobile = matchMedia('(max-width: 1040px)');
     const setOpen = (open) => {
       button.setAttribute('aria-expanded', String(open));
       navigation.hidden = mobile.matches && !open;
+      if (!open) closeMais();
     };
     const sync = () => { button.hidden = !mobile.matches; setOpen(false); };
     button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
     header.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && mobile.matches && !navigation.hidden) {
-        setOpen(false); button.focus();
+      if (event.key !== 'Escape') return;
+      if (mais?.open) {
+        closeMais();
+        mais.querySelector('summary')?.focus();
+        return;
+      }
+      if (mobile.matches && !navigation.hidden) {
+        setOpen(false);
+        button.focus();
       }
     });
     navigation.addEventListener('click', event => {
       if (event.target.closest('a') && mobile.matches) setOpen(false);
     });
     document.addEventListener('click', event => {
+      if (mais && !mais.contains(event.target)) closeMais();
       if (!header.contains(event.target) && mobile.matches) setOpen(false);
     });
     mobile.addEventListener('change', sync);
     sync();
+  } else if (mais) {
+    document.addEventListener('click', event => {
+      if (!mais.contains(event.target)) closeMais();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mais.open) {
+        closeMais();
+        mais.querySelector('summary')?.focus();
+      }
+    });
   }
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   if (!motion.matches && 'IntersectionObserver' in window) {
