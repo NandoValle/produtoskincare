@@ -8,6 +8,8 @@ import json
 import re
 from pathlib import Path
 
+from menu import bloco as menu_superior
+
 RAIZ = Path(__file__).resolve().parent.parent
 dados = json.loads((RAIZ / "top50-skincare-amazon.json").read_text(encoding="utf-8-sig"))
 produtos = sorted(dados["produtos"], key=lambda p: p["rank"])
@@ -103,7 +105,7 @@ pagina = f"""<!doctype html>
 <!-- seo:fim -->
 </head>
 <body>
-<main class="mv" id="conteudo">
+{menu_superior("/mais-vendidos/")}<main class="mv" id="conteudo">
 <header class="mv-top">
 <a class="marca" href="/">Produto <span>Skincare</span></a>
 <nav class="mv-trilha" aria-label="Trilha"><a href="/">Início</a> › Mais vendidos</nav>
