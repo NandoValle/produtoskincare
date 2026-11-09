@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ritual guiado: um passo de cada vez | Produto Skincare</title>
+<meta name="description" content="Seu ritual de skincare passo a passo, com cronômetro por etapa. O check-in do dia fica registrado no tracker de rotina — tudo só no seu aparelho.">
+
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.item:last-child{border-bottom:0}
+.item input{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.item label{cursor:pointer;flex:1;font-size:1rem}
+.item.feito label{text-decoration:line-through;color:var(--suave)}
+.streak{background:linear-gradient(135deg,var(--tinta),#2d2825);color:var(--fundo);border-radius:var(--raio);padding:20px;text-align:center;margin:16px 0}
+.streak .num{font-family:var(--fonte-display);font-size:3rem;font-weight:300;line-height:1}
+.streak .label{font-size:.9rem;opacity:.7;margin-top:4px}
+.progresso-bar{background:var(--linha);border-radius:999px;height:8px;margin:12px 0;overflow:hidden}
+.progresso-fill{background:var(--verde);height:100%;border-radius:999px;transition:width 0.3s}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/ritual/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ritual guiado">
+<meta property="og:description" content="Seu ritual de skincare passo a passo, com cronômetro por etapa. O check-in do dia fica registrado no tracker de rotina — tudo só no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/ritual/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-ritual.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ritual guiado">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/ritual/#pagina", "url": "https://produtoskincare.com.br/ferramentas/ritual/", "name": "Ritual guiado", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Seu ritual de skincare passo a passo, com cronômetro por etapa. O check-in do dia fica registrado no tracker de rotina — tudo só no seu aparelho.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/ritual/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/ritual/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Ritual guiado", "item": "https://produtoskincare.com.br/ferramentas/ritual/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<style>
+
+.rt-tela{display:flex;flex-direction:column;gap:18px;max-width:640px;margin:0 auto;text-align:center;padding:26px 0 48px}
+.rt-escolha{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:560px){.rt-escolha{grid-template-columns:1fr 1fr}}
+.rt-opcao{font:inherit;font-weight:600;font-size:1.25rem;padding:26px 18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);cursor:pointer;min-height:48px}
+.rt-opcao:hover{border-color:var(--rosa)}
+.rt-opcao small{display:block;font-size:.86rem;font-weight:400;color:var(--suave);margin-top:6px}
+.rt-num{font-family:var(--fonte-display);font-style:italic;color:var(--rosa);font-size:1.15rem}
+.rt-passotit{font-family:var(--fonte-display);font-size:clamp(1.9rem,6vw,2.7rem);margin:6px 0}
+.rt-nota{color:var(--suave)}
+.rt-relogio{font-family:var(--fonte-display);font-size:clamp(3.6rem,12vw,5.6rem);line-height:1;font-variant-numeric:tabular-nums;margin:14px 0 4px}
+.rt-relogio.zerado{color:var(--rosa)}
+.rt-pontos{display:flex;justify-content:center;gap:8px;margin:16px 0 6px}
+.rt-pontos i{width:11px;height:11px;border-radius:50%;border:1px solid var(--linha-2);display:inline-block}
+.rt-pontos i.feito{background:var(--verde);border-color:var(--verde)}
+.rt-pontos i.atual{background:var(--rosa-claro);border-color:var(--rosa)}
+.rt-acoes{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.rt-anim{animation:rt-nasce .55s ease both}
+@keyframes rt-nasce{from{opacity:0;filter:blur(7px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
+@media(prefers-reduced-motion:reduce){.rt-anim{animation:none}}
+
+</style>
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main id="conteudo">
+<div class="rt-tela" id="rt-raiz" aria-live="polite">
+<p class="ig-meta">Ferramenta · Ritual guiado</p>
+<h1>Ritual guiado: um passo de cada vez</h1>
+<p class="rt-nota">Um espelho que conduz você: cada passo com o seu tempo, com cronômetro — e, no fim, o check-in do dia fica registrado no <a href="/ferramentas/rotina/">tracker de rotina</a>. Tudo fica só neste aparelho.</p>
+<div class="rt-escolha" id="rt-escolha">
+<button class="rt-opcao" type="button" data-periodo="manha">Manhã<small>4 passos · despertar a pele</small></button>
+<button class="rt-opcao" type="button" data-periodo="noite">Noite<small>3 passos · recuperar o dia</small></button>
+</div>
+</div>
+</main>
+<script>
+const ITENS_RT = {
+  manha: [
+    { id: "m1", label: "Limpeza facial", seg: 30, nota: "Massageie 30 segundos e enxágue com água morna." },
+    { id: "m2", label: "Tratamento (sérum)", seg: 20, nota: "Poucas gotas, sem esfregar demais." },
+    { id: "m3", label: "Hidratante", seg: 20, nota: "Camada fina, ainda com a pele levemente úmida." },
+    { id: "m4", label: "Protetor solar ☀️", seg: 30, nota: "Dois dedos de produto para rosto e pescoço. Último passo." }
+  ],
+  noite: [
+    { id: "n1", label: "Limpeza facial", seg: 30, nota: "Retire o protetor e a poluição do dia." },
+    { id: "n2", label: "Tratamento (sérum/retinol)", seg: 25, nota: "Um ativo por vez. Se a pele arder, pause." },
+    { id: "n3", label: "Hidratante", seg: 20, nota: "Feche o ritual para selar a hidratação." }
+  ]
+};
+let periodo = null, itens = [], idx = 0, restante = 0, timer = null, rodando = false;
+const raiz = document.getElementById("rt-raiz");
+
+function mmss(s){ const m = Math.floor(s/60); return String(m).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
+function pararTimer(){ if (timer) clearInterval(timer); timer = null; rodando = false; }
+
+function dataHoje(){ const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+
+function registrarCheckin(){
+  const dados = JSON.parse(localStorage.getItem("rotina_tracker") || "{}");
+  const hoje = dataHoje();
+  dados[hoje] = dados[hoje] || {};
+  itens.forEach(it => { dados[hoje][it.id] = true; });
+  const chaves = Object.keys(dados).sort();
+  while (chaves.length > 30) delete dados[chaves.shift()];
+  localStorage.setItem("rotina_tracker", JSON.stringify(dados));
+}
+
+function telaEscolha(){
+  pararTimer();
+  raiz.innerHTML = `
+  <p class="ig-meta">Ferramenta · Ritual guiado</p>
+  <h1>Ritual guiado: um passo de cada vez</h1>
+  <p class="rt-nota">Um espelho que conduz você: cada passo com o seu tempo, com cronômetro — e, no fim, o check-in do dia fica registrado no <a href="/ferramentas/rotina/">tracker de rotina</a>. Tudo fica só neste aparelho.</p>
+  <div class="rt-escolha">
+    <button class="rt-opcao" type="button" data-periodo="manha">Manhã<small>4 passos · despertar a pele</small></button>
+    <button class="rt-opcao" type="button" data-periodo="noite">Noite<small>3 passos · recuperar o dia</small></button>
+  </div>`;
+  raiz.querySelectorAll("[data-periodo]").forEach(b => b.addEventListener("click", () => iniciar(b.dataset.periodo)));
+}
+
+function iniciar(p){
+  periodo = p; itens = ITENS_RT[p]; idx = 0; restante = itens[0].seg;
+  telaPasso();
+}
+
+function telaPasso(){
+  pararTimer();
+  const it = itens[idx];
+  const pontos = itens.map((_, i) => `<i class="${i < idx ? "feito" : i === idx ? "atual" : ""}"></i>`).join("");
+  raiz.innerHTML = `
+  <div class="rt-anim">
+    <p class="rt-num">passo ${idx+1} de ${itens.length}</p>
+    <h1 class="rt-passotit">${it.label}</h1>
+    <p class="rt-nota">${it.nota}</p>
+    <div class="rt-relogio" id="rt-relogio">${mmss(restante)}</div>
+    <p class="rt-nota" id="rt-dica">Siga o seu ritmo — o tempo é só um guia.</p>
+    <div class="rt-pontos" aria-hidden="true">${pontos}</div>
+    <div class="rt-acoes">
+      <button class="btn" type="button" id="rt-concluir">${idx+1 === itens.length ? "Concluir o ritual" : "Concluir passo"}</button>
+      <button class="btn" type="button" id="rt-pausar" style="background:var(--papel-2);color:var(--tinta)">Pausar</button>
+      <button class="btn" type="button" id="rt-zerar" style="background:var(--papel-2);color:var(--tinta)">Pular o tempo</button>
+    </div>
+    <p style="margin-top:18px"><button class="rt-nota" type="button" id="rt-sair" style="background:none;border:none;cursor:pointer;text-decoration:underline">Sair do ritual</button></p>
+  </div>`;
+  ligar();
+  ligarCronometro();
+}
+
+function pintar(){
+  const el = document.getElementById("rt-relogio");
+  const dica = document.getElementById("rt-dica");
+  if (!el) return;
+  el.textContent = mmss(restante);
+  el.classList.toggle("zerado", restante <= 0);
+  if (restante <= 0 && dica) dica.textContent = "Tempo cumprido. Avançar quando quiser.";
+}
+
+function ligarCronometro(){
+  pararTimer(); rodando = true;
+  timer = setInterval(() => { restante = Math.max(0, restante - 1); pintar(); if (restante <= 0) pararTimer(); }, 1000);
+}
+
+function ligar(){
+  document.getElementById("rt-concluir").addEventListener("click", () => {
+    pararTimer();
+    if (idx + 1 < itens.length) { idx += 1; restante = itens[idx].seg; telaPasso(); }
+    else telaFim();
+  });
+  document.getElementById("rt-pausar").addEventListener("click", (ev) => {
+    if (rodando) { pararTimer(); ev.target.textContent = "Continuar"; const d = document.getElementById("rt-dica"); if (d) d.textContent = "Pausado. Respire e volte quando quiser."; }
+    else { ligarCronometro(); ev.target.textContent = "Pausar"; const d = document.getElementById("rt-dica"); if (d) d.textContent = "Siga o seu ritmo — o tempo é só um guia."; }
+  });
+  document.getElementById("rt-zerar").addEventListener("click", () => { restante = 0; pararTimer(); pintar(); });
+  document.getElementById("rt-sair").addEventListener("click", telaEscolha);
+}
+
+function telaFim(){
+  pararTimer();
+  registrarCheckin();
+  raiz.innerHTML = `
+  <div class="rt-anim">
+    <p class="ig-meta">Ritual completo</p>
+    <h1>Pronto. <em style="font-family:var(--fonte-display)">A pele agradece.</em></h1>
+    <p class="rt-nota">O check-in da rotina da ${periodo === "manha" ? "manhã" : "noite"} já foi registrado no <a href="/ferramentas/rotina/">tracker de rotina</a>. Volte amanhã — constância é uma forma de cuidado.</p>
+    <div class="rt-acoes" style="margin-top:22px">
+      <a class="btn" href="/ferramentas/rotina/">Ver meu tracker</a>
+      <a class="btn" href="/ferramentas/diario/" style="background:var(--papel-2);color:var(--tinta)">Registrar no diário</a>
+    </div>
+    <p style="margin-top:18px"><button class="rt-nota" type="button" id="rt-novo" style="background:none;border:none;cursor:pointer;text-decoration:underline">Fazer o outro ritual</button></p>
+  </div>`;
+  document.getElementById("rt-novo").addEventListener("click", telaEscolha);
+}
+
+document.querySelectorAll("[data-periodo]").forEach(b => b.addEventListener("click", () => iniciar(b.dataset.periodo)));
+</script>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/" aria-current="page">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+</body>
+</html>
