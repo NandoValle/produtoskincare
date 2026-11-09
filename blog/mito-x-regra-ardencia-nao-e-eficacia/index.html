@@ -54,6 +54,28 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+<style>
+.mr-rotulo{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin:0 0 8px}
+.mr-duas{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px}
+@media(min-width:640px){.mr-duas{grid-template-columns:1fr 1fr}}
+.mr-mito{background:var(--papel);border:1px solid var(--linha);border-left:4px solid var(--rosa);border-radius:0 var(--raio) var(--raio) 0}
+.mr-regra{background:var(--verde-claro);border:1px solid var(--linha);border-left:4px solid var(--verde);border-radius:0 var(--raio) var(--raio) 0}
+.mr-mito .mr-rotulo{color:var(--rosa)}
+.mr-regra .mr-rotulo{color:var(--verde)}
+.mr-frase{font-family:var(--fonte-display);font-size:1.16rem;line-height:1.45;margin:0}
+.mr-cit{margin:18px 0;padding:16px 18px;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio)}
+.mr-cit p{margin:0 0 6px}
+.mr-cit p:last-child{margin:0}
+.mr-cit .mr-rotulo{color:var(--suave)}
+.mr-selo-serie{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:999px;background:var(--rosa-claro);color:var(--rosa);margin:14px 0 2px}
+.mr-serie{margin:36px 0 12px;padding-top:20px;border-top:1px solid var(--linha)}
+.mr-serie ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.mr-serie li a{display:block;padding:13px 17px;border:1px solid var(--linha);border-radius:var(--raio);text-decoration:none;color:var(--tinta);font-weight:600}
+.mr-serie li a:hover{border-color:var(--rosa)}
+.mr-serie li a[aria-current]{border-color:var(--rosa);background:var(--rosa-claro);color:var(--rosa)}
+.mr-serie li a small{display:block;font-weight:400;color:var(--suave);margin-top:2px}
+.mr-serie li a[aria-current] small{color:var(--rosa)}
+</style>
 </head>
 <body>
 <!-- menu:inicio -->
@@ -72,8 +94,19 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <p class="sub"><a href="/blog/" style="color:var(--rosa)">← Voltar ao blog</a></p>
 <h1>Mito x regra: ardência não é sinal de que o produto está funcionando</h1>
 <p class="sub">Série Mito x regra · Publicado em 9 de novembro de 2026 · Leitura de 4 minutos</p>
-<div class="card aviso"><p><strong>Resposta direta:</strong> se arde, a pele está pedindo para parar — não comemorando. Eficácia de cosmético se prova com estudo e com o espelho ao longo de semanas, não com dor no minuto seguinte.</p></div>
-<section id="o-mito"><h2>O mito</h2><p>“Sentiu aquele ardor? É sinal de que está fazendo efeito.” A lógica da dor-prova virou senso comum — e é exatamente o tipo de senso comum que queima a barreira da pele.</p></section><section id="a-regra"><h2>O que a dermatologia e a regra dizem</h2><p>A onda de reportagens de 2026 aponta na mesma direção: dermatologistas alertam que o <strong>excesso de ativos potentes compromete a barreira cutânea</strong> e pode piorar acne, vermelhidão e sensibilidade — muitas vezes motivado por tendências de rede social. Como resume a dermatologista ouvida pelo <em>O Globo</em> (05/11/2026), não basta o ingrediente famoso aparecer no rótulo: <strong>concentração, estabilidade e formulação inteira</strong> determinam o que chega à pele.</p><p>E há uma regra que joga por terra a promessa de dor: a <strong>RDC nº 752/2022</strong> (art. 5º) obriga o fabricante a possuir dados comprobatórios de segurança e eficácia dos dizeres de rotulagem — e veda (art. 12) qualquer alegação terapêutica. Ou seja: “queima porque funciona” não é uma promessa que a lei brasileira permite ao cosmético.</p></section><section id="na-pratica"><h2>O que observar — e quando parar</h2><ul><li><strong>Sinais para pausar:</strong> ardência que não passa, vermelhidão persistente, descamação grande, inchaço, coceira.</li><li><strong>Introduza um ativo por vez</strong>, em dias alternados no início; teste primeiro em uma área pequena.</li><li><strong>Peelings e retinoides não são automedicação</strong>: a orientação profissional muda o resultado — e evita estrago.</li><li>Se a pele melhorou em semanas, sem drama, é por aí — constância vence intensidade.</li></ul></section>
+<p class="mr-selo-serie">Série Mito x regra</p>
+<div class="mr-duas">
+<div class="card mr-mito" style="margin:0"><p class="mr-rotulo">O mito</p><p class="mr-frase">“Sentiu aquele ardor? É sinal de que está fazendo efeito.”</p></div>
+<div class="card mr-regra" style="margin:0"><p class="mr-rotulo">A regra</p><p class="mr-frase">Se arde, a pele está pedindo para parar. Eficácia se prova em semanas — não com dor no minuto seguinte.</p></div>
+</div>
+<div class="card aviso"><p><strong>Resposta direta:</strong> Arder não prova eficácia — prova irritação. E a lei brasileira exige provas de quem promete.</p></div><p><strong>Resposta direta:</strong> se arde, a pele está pedindo para parar — não comemorando. Eficácia de cosmético se prova com estudo e com o espelho ao longo de semanas, não com dor no minuto seguinte.</p></div>
+<section id="o-mito"><h2>O mito</h2><p>“Sentiu aquele ardor? É sinal de que está fazendo efeito.” A lógica da dor-prova virou senso comum — e é exatamente o tipo de senso comum que queima a barreira da pele.</p></section><section id="a-regra"><h2>O que a dermatologia e a regra dizem</h2><p>A onda de reportagens de 2026 aponta na mesma direção: dermatologistas alertam que o <strong>excesso de ativos potentes compromete a barreira cutânea</strong> e pode piorar acne, vermelhidão e sensibilidade — muitas vezes motivado por tendências de rede social. Como resume a dermatologista ouvida pelo <em>O Globo</em> (05/11/2026), não basta o ingrediente famoso aparecer no rótulo: <strong>concentração, estabilidade e formulação inteira</strong> determinam o que chega à pele.</p><p>E há uma regra que joga por terra a promessa de dor: a <strong>RDC nº 752/2022</strong> (art. 5º) obriga o fabricante a possuir dados comprobatórios de segurança e eficácia dos dizeres de rotulagem — e veda (art. 12) qualquer alegação terapêutica. Ou seja: “queima porque funciona” não é uma promessa que a lei brasileira permite ao cosmético.</p></section><div class="mr-cit"><p class="mr-rotulo">A norma</p><p><strong>RDC nº 752/2022 (Anvisa), arts. 5º e 12</strong> — o fabricante precisa deter dados comprobatórios de segurança e eficácia dos dizeres de rotulagem; ao cosmético são vedadas alegações terapêuticas. “Queima porque funciona” não é promessa que a lei brasileira permite.</p></div>
+<section id="na-pratica"><h2>O que observar — e quando parar</h2><ul><li><strong>Sinais para pausar:</strong> ardência que não passa, vermelhidão persistente, descamação grande, inchaço, coceira.</li><li><strong>Introduza um ativo por vez</strong>, em dias alternados no início; teste primeiro em uma área pequena.</li><li><strong>Peelings e retinoides não são automedicação</strong>: a orientação profissional muda o resultado — e evita estrago.</li><li>Se a pele melhorou em semanas, sem drama, é por aí — constância vence intensidade.</li></ul></section>
+<div class="mr-serie"><p class="mr-rotulo">A série completa</p><ul>
+<li><a href="/blog/mito-x-regra-resistente-agua/">“Resistente à água” não dispensa a reaplicação<small>RDC 629/2022 · arts. 13 e 15</small></a></li>
+<li><a href="/blog/mito-x-regra-sunblock-100/">Por que “sunblock” e “100%” não existem no rótulo<small>RDC 629/2022 · art. 14</small></a></li>
+<li><a href="/blog/mito-x-regra-ardencia-nao-e-eficacia/" aria-current="page">Ardência não é sinal de eficácia<small>RDC 752/2022 · arts. 5º e 12</small></a></li>
+</ul></div>
 <div class="card" id="perguntas"><p class="sub" style="margin-bottom:6px">Perguntas frequentes</p><p><strong>Então produtos que ardem nunca servem?</strong></p><p>Não é bem isso. Alguns ativos podem causar leve desconforto inicial que passa — mas ardência forte ou persistente é sinal para parar e, se preciso, procurar dermatologista.</p><p><strong>“Teste de ardência” é confiável para saber se sou alérgica?</strong></p><p>Não. Reação alérgica pode aparecer depois de dias. O teste em área pequena reduz riscos, mas não substitui avaliação profissional.</p><p><strong>O que é a “barreira cutânea” que todo mundo fala?</strong></p><p>É a camada externa da pele, que segura água e impede a entrada de irritantes. Quando ela se compromete, a pele fica sensível, avermelhada e reativa — o oposto do resultado que se busca.</p></div>
 <p class="sub" style="margin-top:30px;font-size:.85rem">Contém links de afiliado. Este texto ainda não foi revisado por um dermatologista. © 2026 Produto Skincare.</p>
 </main>

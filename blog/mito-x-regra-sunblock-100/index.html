@@ -54,6 +54,28 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+<style>
+.mr-rotulo{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin:0 0 8px}
+.mr-duas{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px}
+@media(min-width:640px){.mr-duas{grid-template-columns:1fr 1fr}}
+.mr-mito{background:var(--papel);border:1px solid var(--linha);border-left:4px solid var(--rosa);border-radius:0 var(--raio) var(--raio) 0}
+.mr-regra{background:var(--verde-claro);border:1px solid var(--linha);border-left:4px solid var(--verde);border-radius:0 var(--raio) var(--raio) 0}
+.mr-mito .mr-rotulo{color:var(--rosa)}
+.mr-regra .mr-rotulo{color:var(--verde)}
+.mr-frase{font-family:var(--fonte-display);font-size:1.16rem;line-height:1.45;margin:0}
+.mr-cit{margin:18px 0;padding:16px 18px;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio)}
+.mr-cit p{margin:0 0 6px}
+.mr-cit p:last-child{margin:0}
+.mr-cit .mr-rotulo{color:var(--suave)}
+.mr-selo-serie{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:999px;background:var(--rosa-claro);color:var(--rosa);margin:14px 0 2px}
+.mr-serie{margin:36px 0 12px;padding-top:20px;border-top:1px solid var(--linha)}
+.mr-serie ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.mr-serie li a{display:block;padding:13px 17px;border:1px solid var(--linha);border-radius:var(--raio);text-decoration:none;color:var(--tinta);font-weight:600}
+.mr-serie li a:hover{border-color:var(--rosa)}
+.mr-serie li a[aria-current]{border-color:var(--rosa);background:var(--rosa-claro);color:var(--rosa)}
+.mr-serie li a small{display:block;font-weight:400;color:var(--suave);margin-top:2px}
+.mr-serie li a[aria-current] small{color:var(--rosa)}
+</style>
 </head>
 <body>
 <!-- menu:inicio -->
@@ -72,8 +94,19 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <p class="sub"><a href="/blog/" style="color:var(--rosa)">← Voltar ao blog</a></p>
 <h1>Mito x regra: por que “sunblock” e “100% de proteção” não existem no rótulo brasileiro</h1>
 <p class="sub">Série Mito x regra · Publicado em 9 de novembro de 2026 · Leitura de 4 minutos</p>
-<div class="card aviso"><p><strong>Resposta direta:</strong> nenhum cosmético pode prometer bloquear 100% da radiação solar no Brasil. A lei proíbe — e a física também: toda proteção é parcial, e por isso o protetor se reaplica.</p></div>
-<section id="o-mito"><h2>O mito</h2><p>“Esse aqui é sunblock, bloqueia tudo.” “FPS 100, não preciso de mais nada.” Frases que ainda aparecem em conversas e — quando aparecem em anúncio, costumam ser um sinal de alerta.</p></section><section id="a-regra"><h2>A regra</h2><p>A <strong>RDC nº 629/2022</strong>, da Anvisa, veda expressamente (art. 14) no rótulo e na propaganda de protetor solar:</p><ul><li>“100% de proteção contra a radiação UV” ou qualquer “efeito antissolar”;</li><li>a possibilidade de <strong>não reaplicar</strong> o produto em quaisquer circunstâncias;</li><li>denominações que induzam proteção total ou bloqueio da radiação — inclusive “sunblock”.</li></ul><p>O que existe é uma escala: a <strong>Denominação de Categoria de Proteção (DCP)</strong>. Baixa proteção (FPS 6–14,9), Média (15–29,9), Alta (30–50), Muito alta (acima de 50 e abaixo de 100). E dois requisitos técnicos que quase ninguém lê: o <strong>FPUVA precisa ser de pelo menos um terço do FPS</strong>, e o comprimento de onda crítico, de no mínimo 370 nm — ou seja: proteger só contra a queimadura (UVB) não basta; o UVA, o da fotoenvelhecimento, também conta.</p></section><section id="na-pratica"><h2>Como ler a embalagem de verdade</h2><ul><li>Procure o <strong>FPS em número inteiro</strong> e a <strong>categoria de proteção</strong> — ambos são obrigatórios.</li><li>FPS 30 a 50 é a faixa recomendada no dia a dia por dermatologistas; acima de 50, o ganho é pequeno e a tentação de pular a reaplicação é grande.</li><li>Se a embalagem promete milagre, desconfie: a lei brasileira exige que os dizeres tenham provas — e proíbe estes especificamente.</li></ul></section>
+<p class="mr-selo-serie">Série Mito x regra</p>
+<div class="mr-duas">
+<div class="card mr-mito" style="margin:0"><p class="mr-rotulo">O mito</p><p class="mr-frase">“Esse aqui é sunblock, bloqueia tudo.”</p></div>
+<div class="card mr-regra" style="margin:0"><p class="mr-rotulo">A regra</p><p class="mr-frase">No Brasil, nenhum cosmético pode prometer 100% de proteção. A lei veda — e a física também.</p></div>
+</div>
+<div class="card aviso"><p><strong>Resposta direta:</strong> Nenhum cosmético pode prometer bloquear 100% da radiação solar no Brasil.</p></div><p><strong>Resposta direta:</strong> nenhum cosmético pode prometer bloquear 100% da radiação solar no Brasil. A lei proíbe — e a física também: toda proteção é parcial, e por isso o protetor se reaplica.</p></div>
+<section id="o-mito"><h2>O mito</h2><p>“Esse aqui é sunblock, bloqueia tudo.” “FPS 100, não preciso de mais nada.” Frases que ainda aparecem em conversas e — quando aparecem em anúncio, costumam ser um sinal de alerta.</p></section><section id="a-regra"><h2>A regra</h2><p>A <strong>RDC nº 629/2022</strong>, da Anvisa, veda expressamente (art. 14) no rótulo e na propaganda de protetor solar:</p><ul><li>“100% de proteção contra a radiação UV” ou qualquer “efeito antissolar”;</li><li>a possibilidade de <strong>não reaplicar</strong> o produto em quaisquer circunstâncias;</li><li>denominações que induzam proteção total ou bloqueio da radiação — inclusive “sunblock”.</li></ul><p>O que existe é uma escala: a <strong>Denominação de Categoria de Proteção (DCP)</strong>. Baixa proteção (FPS 6–14,9), Média (15–29,9), Alta (30–50), Muito alta (acima de 50 e abaixo de 100). E dois requisitos técnicos que quase ninguém lê: o <strong>FPUVA precisa ser de pelo menos um terço do FPS</strong>, e o comprimento de onda crítico, de no mínimo 370 nm — ou seja: proteger só contra a queimadura (UVB) não basta; o UVA, o da fotoenvelhecimento, também conta.</p></section><div class="mr-cit"><p class="mr-rotulo">A norma</p><p><strong>RDC nº 629/2022 (Anvisa), art. 14</strong> — vedado ao protetor solar: prometer “100% de proteção contra a radiação UV”, sugerir que não precisa reaplicar, ou usar denominações de bloqueio total como “sunblock”.</p><p class="mr-rotulo" style="margin-top:10px">O que existe é a escala DCP</p><p>Baixa (FPS 6–14,9) · Média (15–29,9) · Alta (30–50) · Muita alta (acima de 50 e abaixo de 100) — com FPUVA ≥ ⅓ do FPS e comprimento de onda crítico ≥ 370 nm.</p></div>
+<section id="na-pratica"><h2>Como ler a embalagem de verdade</h2><ul><li>Procure o <strong>FPS em número inteiro</strong> e a <strong>categoria de proteção</strong> — ambos são obrigatórios.</li><li>FPS 30 a 50 é a faixa recomendada no dia a dia por dermatologistas; acima de 50, o ganho é pequeno e a tentação de pular a reaplicação é grande.</li><li>Se a embalagem promete milagre, desconfie: a lei brasileira exige que os dizeres tenham provas — e proíbe estes especificamente.</li></ul></section>
+<div class="mr-serie"><p class="mr-rotulo">A série completa</p><ul>
+<li><a href="/blog/mito-x-regra-resistente-agua/">“Resistente à água” não dispensa a reaplicação<small>RDC 629/2022 · arts. 13 e 15</small></a></li>
+<li><a href="/blog/mito-x-regra-sunblock-100/" aria-current="page">Por que “sunblock” e “100%” não existem no rótulo<small>RDC 629/2022 · art. 14</small></a></li>
+<li><a href="/blog/mito-x-regra-ardencia-nao-e-eficacia/">Ardência não é sinal de eficácia<small>RDC 752/2022 · arts. 5º e 12</small></a></li>
+</ul></div>
 <div class="card" id="perguntas"><p class="sub" style="margin-bottom:6px">Perguntas frequentes</p><p><strong>FPS 100 protege o dobro do FPS 50?</strong></p><p>Não. A escala não é linear: o aumento de proteção acima de 50 é pequeno. O que muda o resultado real é a quantidade aplicada e a reaplicação.</p><p><strong>“Espectro amplo” significa o mesmo que “sunblock”?</strong></p><p>Não. Espectro amplo significa cobertura de UVA e UVB. Nenhum produto bloqueia 100% da radiação — e nenhum pode prometer isso.</p><p><strong>E os protetores com cor, para melasma?</strong></p><p>Também seguem a mesma regra. Protetores com cor ajudam a bloquear luz visível, o que importa no melasma — e ainda assim: reaplicação e quantidade continuam valendo.</p></div>
 <p class="sub" style="margin-top:30px;font-size:.85rem">Contém links de afiliado. Este texto ainda não foi revisado por um dermatologista. © 2026 Produto Skincare.</p>
 </main>
