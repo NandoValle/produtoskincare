@@ -89,6 +89,9 @@ def paginas():
         if rel.parts[0] in IGNORAR_PASTAS or str(rel) in IGNORAR_PAGINAS:
             continue
         yield p, "/" + str(rel.parent).replace("\\", "/").strip(".") + "/"
+    # Página de erro: não é index.html, mas também leva o menu (caminho fictício, nada fica marcado).
+    if (RAIZ / "404.html").exists():
+        yield RAIZ / "404.html", "/404/"
 
 
 def aplicar(texto, caminho):
