@@ -691,3 +691,84 @@ body::after{
   .ps-section,.mk-sec,.ig article > section{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
   ::view-transition-old(root),::view-transition-new(root){animation:none!important}
 }
+
+
+/* ============================================================
+   Camada de sonho — estar dentro do sonho (fase 2)
+   vinheta + brilho das fotos + lente do cursor + particulas + entrada
+   ============================================================ */
+
+/* vinheta de sonho — o olhar atraves do sonho (compoe com o grao) */
+body::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+    radial-gradient(125% 110% at 50% 42%, transparent 52%, rgba(69,29,43,.20) 100%);
+  background-size:180px 180px, cover;
+}
+
+/* brilho suave — as fotos respiram luz propria */
+.ps-photo img,.ps-portrait,.ps-journey-photo{
+  filter:saturate(1.04);
+  box-shadow:0 0 70px rgba(243,220,223,.42);
+}
+
+/* entrada coreografada do hero — o sonho se abre */
+@keyframes sonho-entrada{
+  from{opacity:0;filter:blur(10px);transform:translateY(18px)}
+  to{opacity:1;filter:blur(0);transform:none}
+}
+.ps-hero > *{animation:sonho-entrada 1s cubic-bezier(.22,.61,.36,1) both}
+.ps-hero > *:nth-child(2){animation-delay:.18s}
+
+/* lente do cursor — a consciencia vagando pelo sonho */
+.sonho-lente{
+  position:fixed;
+  z-index:62;
+  width:340px;height:340px;
+  margin:-170px 0 0 -170px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle, rgba(243,220,223,.32), rgba(243,220,223,0) 68%);
+  mix-blend-mode:soft-light;
+  opacity:0;
+  transition:opacity .6s ease;
+  will-change:transform;
+}
+.sonho-lente.vida{opacity:1}
+
+/* particulas de luz — motes vagando no ar do sonho */
+.sonho-motes{position:fixed;inset:0;z-index:59;pointer-events:none;overflow:hidden}
+.sonho-motes i{
+  position:absolute;
+  bottom:-12px;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,236,240,.9), rgba(243,220,223,0) 70%);
+  opacity:0;
+  animation:sonho-mote linear infinite;
+}
+@keyframes sonho-mote{
+  0%{opacity:0;transform:translateY(0) translateX(0)}
+  12%{opacity:.55}
+  88%{opacity:.35}
+  100%{opacity:0;transform:translateY(-108vh) translateX(34px)}
+}
+
+@media (prefers-color-scheme:dark){
+  body::after{
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+      radial-gradient(125% 110% at 50% 42%, transparent 52%, rgba(0,0,0,.38) 100%);
+    background-size:180px 180px, cover;
+    opacity:.1;
+    mix-blend-mode:overlay;
+  }
+  .ps-photo img,.ps-portrait,.ps-journey-photo{box-shadow:0 0 70px rgba(239,165,186,.16)}
+  .sonho-lente{background:radial-gradient(circle, rgba(239,165,186,.18), rgba(239,165,186,0) 68%)}
+  .sonho-motes i{background:radial-gradient(circle, rgba(239,165,186,.75), rgba(239,165,186,0) 70%)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ps-hero > *{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+  .sonho-lente,.sonho-motes{display:none!important}
+}
