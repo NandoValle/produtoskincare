@@ -11,7 +11,7 @@
 (function () {
   "use strict";
   var CANAIS = {
-    email: "",            // ex.: "contato@produtoskincare.com.br"
+    email: "contato@produtoskincare.com.br",
     whatsapp: "",         // número com DDD, só dígitos, ex.: "31912345678"
     instagram: "",        // usuário, sem @
     tiktok: "",           // usuário, sem @
