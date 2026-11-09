@@ -301,6 +301,28 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 @media(max-width:900px){.ps-atalho-form{grid-template-columns:1fr 1fr}.ps-atalho-form .ps-atalho-check{grid-column:1/-1}.ps-atalho-form .ps-button{grid-column:1/-1;justify-self:stretch}}
 @media(max-width:560px){.ps-atalho-form{grid-template-columns:1fr;padding:20px}}
 
+/* Menu superior nas páginas internas (gerado por _scripts/menu.py).
+   As páginas internas têm CSS próprio; aqui o menu fica igual ao da página inicial
+   e a marca repetida no topo do conteúdo some, já que a do menu está logo acima. */
+.ps-topo{box-sizing:border-box;width:100%;font-family:var(--fonte-corpo,'Manrope','Segoe UI',sans-serif);line-height:1.5}
+.ps-topo *{box-sizing:border-box}
+.ps-topo .ps-header{border-bottom:1px solid var(--linha)}
+.ps-topo a{text-decoration:none}
+.ps-topo .ps-nav a[data-secao],.ps-topo .ps-mais-btn[data-secao],.ps-topo .ps-nav a[aria-current=page]{color:var(--rosa)}
+.ps-topo ul,.ps-topo li{margin:0;padding:0;list-style:none}
+.ps-topo ~ main .ig-marca,.ps-topo ~ main > .marca,.ps-topo ~ main .mv-top > .marca,.ps-topo ~ .casca > header > .marca,.ps-topo ~ main .hc-marca{display:none}
+.ps-topo ~ main .hc-top{justify-content:flex-end}
+/* Botão de tema do provador: desce para baixo do menu em vez de cobrir o botão Menu. */
+body:has(> .ps-topo) .btn-tema{top:100px}
+/* Páginas cujo <body> já tem margem lateral: o menu desconta essa margem para alinhar com o texto. */
+@media(max-width:700px){.ps-topo.ps-topo-recuo{padding:0 4px}}
+
+/* Perguntas frequentes dos guias do blog (gerado por _scripts/faq_blog.py). */
+.ps-faq-bloco{margin:40px 0}
+.ps-faq{border:1px solid var(--linha);border-radius:12px;background:var(--papel);margin:8px 0;padding:0 16px}
+.ps-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
+.ps-faq p{margin:0 0 14px}
+
 /* "Leia também" no fim dos posts (mesmo visual do .ig-rel das páginas de guia). */
 .leia-tambem{margin:32px 0 8px}
 .leia-tambem h2{margin:0 0 12px}

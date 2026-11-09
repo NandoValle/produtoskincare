@@ -1,0 +1,15 @@
+{
+ "_leia": "Pares de produtos do catálogo com página de comparativo em /comparativos/<a>-ou-<b>/. Use só produtos do mesmo passo da rotina. Depois de mudar, rode gerar_comparativos.py, gerar_produtos.py, menu.py e seo.py.",
+ "pares": [
+  ["principia-niacinamida", "ordinary-niacinamide"],
+  ["principia-vc10", "creamy-vitamina-c"],
+  ["creamy-vitamina-c", "mantecorp-ivy-c-ferulic"],
+  ["principia-rn03", "loreal-revitalift-noturno"],
+  ["principia-rn03", "lrp-retinol-b3"],
+  ["neutrogena-sun-fresh-fps70", "isdin-fusion-water-sem-cor"],
+  ["isdin-fusion-water-sem-cor", "skin-aqua-moisture-milk"],
+  ["neutrogena-hydro-boost", "garnier-uniform-matte"],
+  ["mantecorp-epidrat-calm", "creamy-calming-cream"],
+  ["cerave-gel-limpeza", "lrp-effaclar-gel"]
+ ]
+}
