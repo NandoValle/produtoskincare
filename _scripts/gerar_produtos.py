@@ -110,6 +110,21 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 """
 
 
+def descricao_produto(p, limite=160):
+    """Descrição curta para o Google (até ~160 caracteres): nome, a frase principal do
+    "porque" (sem a nota da loja) e o preço com a data em que foi conferido."""
+    frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", p.get("porque", "")) if f.strip() and "★" not in f]
+    fim = f" Preço em {data_curta(p['preco_em'])}: {reais(p['preco'])}."
+    texto = f"{p['nome']}."
+    for f in frases:
+        if len(texto) + 1 + len(f) + len(fim) > limite:
+            break
+        texto += " " + f
+    if texto == f"{p['nome']}.":
+        texto += " Para quem é, ativos e alternativas."
+    return texto + fim
+
+
 def pagina_produto(p, fichas, hist, todos):
     loja = LOJAS.get(p.get("plataforma"), "loja")
     passo = PASSOS.get(p["passo"], p["passo"])
@@ -216,7 +231,7 @@ def pagina_produto(p, fichas, hist, todos):
 </ul>
 </section>
 </article>"""
-    descricao = f"{p['nome']}: para quem é, ativos em destaque, preço conferido em {data_curta(p['preco_em'])} e alternativas. {p.get('porque', '')}"[:300]
+    descricao = descricao_produto(p)
     return pagina(p["nome"], descricao, f"/produtos/{p['id']}/",
                   [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS)
 
@@ -316,7 +331,7 @@ def pagina_indice(produtos):
 {''.join(grupos)}
 <p class="ig-nota">Contém links de afiliado. Veja <a href="/sobre/">como escolhemos os produtos</a>.</p>
 </article>"""
-    return pagina("Produtos de skincare: preço, ativos e para quem é",
+    return pagina("Produtos de skincare com preço e ativos",
                   "Catálogo de produtos de skincare com página para cada um: tipo de pele, ativos com nível de evidência, preço conferido com data e alternativas.",
                   "/produtos/", [("/", "Início"), (None, "Produtos")], corpo, css_extra=CSS_INDICE, scripts=JS_INDICE, larga=True)
 
