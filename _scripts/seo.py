@@ -31,7 +31,10 @@ ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condiç
            "privacidade": "Privacidade", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
            "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos"}
-SECOES_ARTIGO = ("blog/", "ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
+# Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.
+TRADUCOES = [{"pt-BR": "/", "en": "/en/", "es": "/es/"}] + [
+    g for g in json.loads((RAIZ / "_scripts" / "traducoes.json").read_text(encoding="utf-8"))["grupos"]]
+SECOES_ARTIGO = ("blog/", "en/blog/", "es/blog/", "ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
 
 
 class Leitor(HTMLParser):
@@ -183,8 +186,9 @@ def montar_bloco(arq, url, info, texto):
     tags = []
     if 'rel="canonical"' not in texto:
         tags.append(f'<link rel="canonical" href="{SITE}{url}">')
-    if url in ("/", "/en/", "/es/"):
-        for lang, u in (("pt-BR", "/"), ("en", "/en/"), ("es", "/es/"), ("x-default", "/")):
+    grupo = next((g for g in TRADUCOES if url in g.values()), None)
+    if grupo:
+        for lang, u in list(grupo.items()) + [("x-default", grupo["pt-BR"])]:
             tags.append(f'<link rel="alternate" hreflang="{lang}" href="{SITE}{u}">')
     e = lambda t: html.escape(t, quote=True)
     tags += [
