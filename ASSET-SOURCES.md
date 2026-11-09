@@ -2,7 +2,7 @@
 
 Homepage photos are original generated images, stored locally. They replace the earlier Pexels stock (Kaboompics, Alena Darmel, Jana Kukebal). The homepage does not credit Pexels for these files.
 
-- `img/ritual-face.jpg` and `.webp` (1000×1333) — hero portrait: Brazilian woman applying cream. Also the first editorial story image. Replaced 2026-11-09: generated in ChatGPT (OpenAI image generation) with a prompt asking for a fictional person who resembles no real celebrity; eye color changed afterwards to green with a local hue edit (Pillow/NumPy); cropped to 3:4.
+- `img/ritual-face.jpg` and `.webp` (1000×1333) — hero portrait: Brazilian woman applying serum with a dropper. Also the first editorial story image. Replaced 2026-11-09 (afternoon): generated in ChatGPT (OpenAI image generation) as a fictional archetype ("Iara") that resembles no real celebrity; unbranded bottles; face-skin blemishes removed with a local retouch (facexlib + frequency separation); upscaled with 4x-UltraSharp and cropped to 3:4.
 - `img/skincare-editorial.jpg` (960×1280) — hero inset: hand, frosted bottle, and dropper.
 - `img/cream-texture.jpg` (840×1120) — cream still life on the homepage editorial story.
 - `img/tipo-oleosa.jpg` (1152×864) — Oleosa card: glossy serum on skin.
