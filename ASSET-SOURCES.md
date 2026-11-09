@@ -27,6 +27,6 @@ No third-party image request is made by visitors. Illustrative only: no testimon
 ## News videos ("a notícia em 1 minuto") — added 2026-11-09
 
 - Files: `blog/<slug>/video.mp4` (720×1280, H.264 + AAC), `poster.jpg` and `legendas.vtt` for `anvisa-cosmetovigilancia-notificacoes-130-2026`, `revisao-antioxidantes-topicos-fotoenvelhecimento-2026` and `skincare-brasileiro-biodiversidade-identidade-2026`.
-- Narration: AI-generated voice (ElevenLabs, voice "Bianca - Smooth and Sophisticated", model `eleven_v4`), reading the scripts in `_roteiros/<slug>.txt`. Captions come from the word timings of an ElevenLabs transcription (`eleven_scribe_v1`). Each page says the narration voice is AI-generated.
+- Narration: AI-generated voice (ElevenLabs, voice "Bianca - Smooth and Sophisticated", model `eleven_v4`), reading the scripts in `_roteiros/<slug>.txt`. Captions come from the word timings of an ElevenLabs transcription (`eleven_scribe_v1`).
 - Frames: text slides drawn by `_scripts/video_noticia.py` in the site's colors (slide texts in `_roteiros/<slug>.quadros.json`); no photos, logos or people.
 - Stored locally; no third-party video request is made by visitors.
