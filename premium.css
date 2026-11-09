@@ -334,6 +334,11 @@ body:has(> .ps-topo) .btn-tema{top:100px}
 /* Editorial refinement. Shared chrome; page compositions scoped to the home.
    Existing local fonts and photography. Pill controls / 12px panels / 4px photos.
    Design variance 7, motion 4, density 3. */
+/* Reserve the collapsed navigation before deferred JS runs. With scripting
+   disabled the links stay expanded and usable, as in the original fallback. */
+@media (scripting: enabled) and (max-width:1040px){
+ .ps-header:has(.ps-menu[aria-expanded="false"]) .ps-navigation{display:none}
+}
 .ps-header{min-height:80px;padding:14px 0;gap:24px}
 .ps-brand{font-size:18px;letter-spacing:-.7px;gap:11px}
 .ps-monogram{border-radius:50%;width:38px;height:38px;font-size:12px}
