@@ -21,9 +21,9 @@ table{display:block;max-width:100%;overflow-x:auto}
 .casca .marca span{margin-left:.22em}
 
 /* Editorial refinement. Font files are self-hosted under SIL OFL 1.1. */
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/cormorant-500.ttf') format('truetype')}
-@font-face{font-family:Manrope;font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/manrope-400.ttf') format('truetype')}
-@font-face{font-family:Manrope;font-style:normal;font-weight:500 800;font-display:swap;src:url('/fonts/manrope-600.ttf') format('truetype')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/cormorant-500.woff2') format('woff2'),url('/fonts/cormorant-500.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/manrope-400.woff2') format('woff2'),url('/fonts/manrope-400.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:500 800;font-display:swap;src:url('/fonts/manrope-600.woff2') format('woff2'),url('/fonts/manrope-600.ttf') format('truetype')}
 [hidden]{display:none!important}
 h1,h2,h3{letter-spacing:-.025em}
 .ps-header{gap:26px;padding:18px 0;flex-wrap:nowrap}
@@ -57,10 +57,10 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-section-head p{font-size:14px;max-width:500px}
 .ps-skin{padding:0 22px 24px;overflow:hidden;border-radius:8px;background:var(--papel)!important;min-height:365px}
 .ps-skin-visual{height:150px;margin:0 -22px 20px;background-size:cover;background-position:center;transition:background-position .5s}
-.ps-texture-serum{background-image:url('/img/tipo-oleosa.jpg');background-position:center;background-size:cover}
-.ps-texture-cream{background-image:url('/img/tipo-seca.jpg');background-position:center;background-size:cover}
-.ps-texture-balance{background-image:url('/img/tipo-mista.jpg');background-position:center;background-size:cover}
-.ps-texture-soft{background-image:url('/img/tipo-normal.jpg');background-position:center;background-size:cover}
+.ps-texture-serum{background-image:url('/img/tipo-oleosa.webp');background-position:center;background-size:cover}
+.ps-texture-cream{background-image:url('/img/tipo-seca.webp');background-position:center;background-size:cover}
+.ps-texture-balance{background-image:url('/img/tipo-mista.webp');background-position:center;background-size:cover}
+.ps-texture-soft{background-image:url('/img/tipo-normal.webp');background-position:center;background-size:cover}
 .ps-skin small{font-size:10px;letter-spacing:.06em;text-transform:uppercase}
 .ps-skin h3{font-size:34px;margin:10px 0}
 .ps-skin p{font-size:12px;margin-bottom:22px}
@@ -322,3 +322,11 @@ body:has(> .ps-topo) .btn-tema{top:100px}
 .ps-faq{border:1px solid var(--linha);border-radius:12px;background:var(--papel);margin:8px 0;padding:0 16px}
 .ps-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
 .ps-faq p{margin:0 0 14px}
+
+/* "Leia também" no fim dos posts (mesmo visual do .ig-rel das páginas de guia). */
+.leia-tambem{margin:32px 0 8px}
+.leia-tambem h2{margin:0 0 12px}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}

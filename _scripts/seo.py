@@ -155,6 +155,41 @@ def nome_og(url):
     return f"img/og/{base}.jpg"
 
 
+# ---------- dados de produto (schema.org/Product) nas páginas /produtos/<id>/ ----------
+_CATALOGO = None
+LOJAS_LD = {"amazon": "Amazon", "shopee": "Shopee", "mercadolivre": "Mercado Livre", "tiktok": "TikTok Shop"}
+
+
+def produto_do_catalogo(rel):
+    """Devolve o item do produtos.json se a página for /produtos/<id>/; senão None."""
+    global _CATALOGO
+    partes = [p for p in rel.split("/") if p]
+    if len(partes) != 2 or partes[0] != "produtos":
+        return None
+    if _CATALOGO is None:
+        try:
+            _CATALOGO = {p["id"]: p for p in json.loads((RAIZ / "produtos.json").read_text(encoding="utf-8"))["produtos"]}
+        except Exception:
+            _CATALOGO = {}
+    return _CATALOGO.get(partes[1])
+
+
+def json_ld_produto(p, url, imagem):
+    # Só preço, loja e data do catálogo. A nota da loja NÃO entra como aggregateRating:
+    # é avaliação de outro site, e as regras do Google pedem avaliações coletadas aqui.
+    oferta = {"@type": "Offer", "price": f"{p['preco']:.2f}", "priceCurrency": "BRL",
+              "seller": {"@type": "Organization", "name": LOJAS_LD.get(p.get("plataforma"), "Loja")}}
+    # Link para a página do produto entra; link para uma busca da loja, não.
+    if not re.search(r"/search|/s\?|lista\.mercadolivre", p.get("link", "")):
+        oferta["url"] = p["link"]
+    frases = [f for f in re.split(r"(?<=[.!?])\s+", p.get("porque", "")) if f.strip() and "★" not in f]
+    item = {"@context": "https://schema.org", "@type": "Product", "name": p["nome"],
+            "description": " ".join(frases), "image": imagem, "url": f"{SITE}{url}", "offers": oferta}
+    if p.get("marca"):
+        item["brand"] = {"@type": "Brand", "name": p["marca"]}
+    return item
+
+
 # ---------- bloco de SEO ----------
 def montar_bloco(arq, url, info, texto):
     titulo_doc = limpar(info.title)
@@ -232,6 +267,9 @@ def montar_bloco(arq, url, info, texto):
                 continue
             itens.append({"@type": "ListItem", "position": len(itens) + 1, "name": nome, "item": f"{SITE}/{acumulado}"})
         ld.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": itens})
+        produto = produto_do_catalogo(rel)
+        if produto:
+            ld.append(json_ld_produto(produto, url, og_url))
         if artigo:
             pub = data_publicacao(texto)
             mod = data_atualizacao(texto) or pub
