@@ -4,15 +4,16 @@
  * O texto diz QUANTAS VEZES por semana usar, nunca quanto produto nem qual concentração:
  * isso é da bula do produto ou da receita.
  *
- * RASCUNHO v0.1: escrito a partir das próprias regras do site (/regras-ativos.js, ex.: "comece 2 noites
+ * RASCUNHO (v0.2 comparada com páginas da AAD e da SBD, ver FONTES): escrito a partir das próprias regras do site (/regras-ativos.js, ex.: "comece 2 noites
  * por semana" para retinoide e "1 a 2 noites por semana" para ácido em pele sensível) e de orientações
  * de uso comuns. Ainda não foi revisado por farmacêutico(a) ou dermatologista: a página diz isso.
  * Para mudar: edite, suba VERSAO e registre em HISTORICO.
  */
 (function (raiz) {
   "use strict";
-  var VERSAO = "0.1.0";
+  var VERSAO = "0.2.0";
   var HISTORICO = [
+    { versao: "0.2.0", data: "2026-11-09", nota: "Comparado com páginas da AAD e da SBD: aviso de gravidez mais forte (retinoides não), teste no antebraço por 4 a 5 dias, parar se arder ou queimar, resultado em pelo menos 6 semanas. Continua sem revisão profissional." },
     { versao: "0.1.0", data: "2026-11-09", nota: "Primeira versão (rascunho, sem revisão profissional): retinoide, ácido esfoliante (AHA), ácido salicílico, vitamina C e ácido azelaico." }
   ];
 
@@ -47,7 +48,7 @@
     },
     vitc: {
       nome: "Vitamina C", periodo: "manha",
-      antes: "Use de manhã, antes do protetor solar. Faça um teste numa área pequena antes de passar no rosto todo.",
+      antes: "Use de manhã, antes do protetor solar.",
       etapas: [
         { de: 1, ate: 2, normal: "Manhã sim, manhã não", sensivel: "2 a 3 manhãs por semana" },
         { de: 3, ate: 12, normal: "Todas as manhãs, se não arder", sensivel: "Manhã sim, manhã não; todas as manhãs a partir da semana 5, se não arder" }
@@ -65,9 +66,18 @@
   };
 
   var SEMPRE = [
-    "Siga a bula do produto. Se ele foi receitado, siga a receita: ela vale mais que este plano.",
-    "Ardência leve e passageira pode acontecer. Se arder forte, avermelhar ou descamar, volte uma etapa; se não melhorar em alguns dias, pare e procure um dermatologista.",
-    "Comece um ativo novo por vez. Gravidez, amamentação ou tratamento de pele em andamento: fale com seu médico antes."
+    "Grávida ou tentando engravidar: não use retinoides (retinol, retinal, tretinoína, adapaleno, tazaroteno). Para os outros ativos e na amamentação, fale com seu médico antes.",
+    "Antes de passar no rosto, teste numa área pequena, como a parte de dentro do antebraço, 2 vezes por dia por 4 a 5 dias. Sem vermelhidão nem coceira, pode seguir.",
+    "Comece um produto novo por vez. Se arder, pinicar ou queimar, pare. Se o produto foi receitado, pergunte antes a quem receitou: a bula e a receita valem mais que este plano.",
+    "Use protetor solar todos os dias. Espere pelo menos 6 semanas antes de julgar o resultado."
+  ];
+
+  /* Páginas consultadas em 09/11/2026 (o plano semana a semana em si não vem de nenhuma delas). */
+  var FONTES = [
+    { nome: "AAD: Retinoid or retinol?", url: "https://www.aad.org/public/everyday-care/skin-care-secrets/anti-aging/retinoid-retinol" },
+    { nome: "AAD: How to maximize results from anti-aging skin care products", url: "https://www.aad.org/public/everyday-care/skin-care-secrets/anti-aging/maximize-anti-aging-products" },
+    { nome: "AAD: Dermatologist-approved pregnancy skin care", url: "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/pregnancy-skin-care" },
+    { nome: "SBD: O que está liberado e proibido na gravidez?", url: "https://sbd.org.br/campanha/2024/05/07/o-que-esta-liberado-e-proibido-na-gravidez/" }
   ];
 
   function etapa(plano, semana, sensivel) {
@@ -80,7 +90,7 @@
     return null;
   }
 
-  var API = { VERSAO: VERSAO, HISTORICO: HISTORICO, PLANOS: PLANOS, SEMPRE: SEMPRE, etapa: etapa };
+  var API = { VERSAO: VERSAO, HISTORICO: HISTORICO, PLANOS: PLANOS, SEMPRE: SEMPRE, FONTES: FONTES, etapa: etapa };
   if (typeof module === "object" && module.exports) module.exports = API;
   else raiz.PSPlano = API;
 })(typeof window !== "undefined" ? window : this);

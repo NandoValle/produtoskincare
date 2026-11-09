@@ -8,7 +8,7 @@
 <div class="ig-caixa ig-alerta">
 <p class="ig-rotulo">Antes de começar</p>
 <ul id="sm-sempre"></ul>
-<p class="ig-nota">Este plano é um rascunho (versão <span id="sm-versao"></span>), escrito a partir das nossas regras de combinação e de orientações de uso comuns. Ele ainda não foi revisado por farmacêutico ou dermatologista e não substitui a bula nem a consulta.</p>
+<p class="ig-nota">Este plano é um rascunho (versão <span id="sm-versao"></span>). Os avisos acima seguem páginas da Academia Americana de Dermatologia (AAD) e da Sociedade Brasileira de Dermatologia (SBD): <span id="sm-fontes"></span>. A AAD sugere começar o retinoide em noites alternadas e ir aumentando aos poucos. Nenhuma das duas publica uma tabela semana a semana, então as frequências abaixo são nossas, mais devagar de propósito. O plano ainda não foi revisado por farmacêutico ou dermatologista e não substitui a bula nem a consulta.</p>
 </div>
 
 <section class="ig-caixa" aria-labelledby="sm-config-titulo">
@@ -78,6 +78,7 @@
   if (!PL) return;
 
   $("sm-versao").textContent = PL.VERSAO;
+  $("sm-fontes").innerHTML = PL.FONTES.map(function (f) { return '<a href="' + esc(f.url) + '" rel="noopener" target="_blank">' + esc(f.nome) + "</a>"; }).join(", ");
   $("sm-sempre").innerHTML = PL.SEMPRE.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
   $("sm-ativo").innerHTML = Object.keys(PL.PLANOS).map(function (k) { return '<option value="' + k + '">' + esc(PL.PLANOS[k].nome) + "</option>"; }).join("");
 
@@ -128,7 +129,7 @@
       lembretes.push({ titulo: "Semana " + s + " de 12: " + p.nome, inicio: addDias(inicio, (s - 1) * 7),
         descricao: "Nesta semana: " + e.texto + (p.periodo === "manha" ? " (de manhã)." : " (à noite).") +
           "\nTire a foto do diário com a mesma luz: produtoskincare.com.br/ferramentas/12-semanas/" +
-          "\nSe arder forte, avermelhar ou descamar, volte uma etapa. Siga a bula do produto." });
+          "\nSe arder, pinicar ou queimar, pare. Siga a bula do produto." });
     }
     PSEnviar.baixarICS(lembretes, "12-semanas-" + c.plano + ".ics");
     evento("12semanas/agenda");
@@ -188,7 +189,7 @@
       $("sm-foto-status").textContent = "Foto guardada neste aparelho.";
       $("sm-nota").value = "";
       $("sm-alerta").innerHTML = reg.reacao === "forte"
-        ? '<div class="ft-nao"><strong>Reação forte</strong>Volte uma etapa no plano (ou pause) até a pele acalmar. Se não melhorar em alguns dias, pare e procure um dermatologista.</div>' : "";
+        ? '<div class="ft-nao"><strong>Reação forte</strong>Pare o produto até a pele acalmar. Se não melhorar em alguns dias, procure um dermatologista. Se ele foi receitado, fale com quem receitou.</div>' : "";
       evento("12semanas/foto");
       return desenharGaleria();
     }).catch(function () { $("sm-foto-status").textContent = "Não deu para guardar a foto neste navegador."; });
