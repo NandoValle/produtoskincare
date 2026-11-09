@@ -316,3 +316,9 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 body:has(> .ps-topo) .btn-tema{top:100px}
 /* Páginas cujo <body> já tem margem lateral: o menu desconta essa margem para alinhar com o texto. */
 @media(max-width:700px){.ps-topo.ps-topo-recuo{padding:0 4px}}
+
+/* Perguntas frequentes dos guias do blog (gerado por _scripts/faq_blog.py). */
+.ps-faq-bloco{margin:40px 0}
+.ps-faq{border:1px solid var(--linha);border-radius:12px;background:var(--papel);margin:8px 0;padding:0 16px}
+.ps-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
+.ps-faq p{margin:0 0 14px}
