@@ -37,7 +37,7 @@ ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condiç
 # Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.
 TRADUCOES = [{"pt-BR": "/", "en": "/en/", "es": "/es/"}] + [
     g for g in json.loads((RAIZ / "_scripts" / "traducoes.json").read_text(encoding="utf-8"))["grupos"]]
-SECOES_ARTIGO = ("blog/", "en/blog/", "es/blog/", "ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
+SECOES_ARTIGO = ("blog/", "en/blog/", "es/blog/", "ingredientes/", "en/ingredients/", "es/ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
 
 
 class Leitor(HTMLParser):
