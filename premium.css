@@ -285,3 +285,18 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
  .ps-mais-btn{font-size:15px;color:var(--tinta-2)}
  .ps-langs a{font-size:13px}
 }
+
+/* Home: atalho "Já sabe seu tipo de pele?". O formulário também é a ferramenta WebMCP
+   declarativa "montar_rotina" (atributos toolname/tooldescription; ver webmcp.js). */
+.ps-atalho-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 20px;align-items:end;padding:28px;border:1px solid var(--linha);border-radius:16px;background:var(--papel)}
+.ps-atalho-form label{display:grid;gap:8px;font-size:13px;font-weight:600;color:var(--tinta)}
+.ps-atalho-form label small{display:inline;font-size:12px;font-weight:400;color:var(--suave)}
+.ps-atalho-form select{width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--linha-2);font-size:15px;font-weight:400}
+.ps-atalho-form .ps-atalho-check{display:flex;align-items:center;gap:10px;grid-column:1/3;min-height:48px;font-weight:400;font-size:14px}
+.ps-atalho-check input{accent-color:var(--rosa);width:20px;height:20px;margin:0}
+.ps-atalho-form .ps-button{grid-column:3/5;justify-self:end;border:0;cursor:pointer}
+.ps-atalho-nota{font-size:14px;color:var(--suave);margin:16px 0 0}
+.ps-note .ps-byline{margin:0 0 8px}
+.ps-byline a{color:inherit}
+@media(max-width:900px){.ps-atalho-form{grid-template-columns:1fr 1fr}.ps-atalho-form .ps-atalho-check{grid-column:1/-1}.ps-atalho-form .ps-button{grid-column:1/-1;justify-self:stretch}}
+@media(max-width:560px){.ps-atalho-form{grid-template-columns:1fr;padding:20px}}

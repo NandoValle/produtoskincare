@@ -1,0 +1,24 @@
+# Produto Skincare
+
+> Site independente, em português do Brasil, para descobrir o tipo de pele e montar uma rotina de skincare com produtos vendidos no Brasil. Os preços mostram a data em que foram conferidos. Muitos links de loja são de afiliado. Não é diagnóstico médico e o conteúdo ainda não é revisado por dermatologista.
+
+## Comece por aqui
+
+- [Provador](https://produtoskincare.com.br/provador/): quiz ou selfie que estima o tipo de pele e monta a rotina de manhã e de noite.
+- [Pele oleosa](https://produtoskincare.com.br/pele/oleosa/), [seca](https://produtoskincare.com.br/pele/seca/), [mista](https://produtoskincare.com.br/pele/mista/) e [normal](https://produtoskincare.com.br/pele/normal/): guias por tipo de pele.
+- [Rotinas por condição e faixa de preço](https://produtoskincare.com.br/rotinas/): acne, anti-age, melasma e rosácea.
+- [Produtos](https://produtoskincare.com.br/produtos/): catálogo com preço datado, ativos e link de loja.
+- [Hub científico](https://produtoskincare.com.br/ciencia/): estudos por trás dos ativos.
+- [Blog](https://produtoskincare.com.br/blog/)
+- [Pergunte à IA](https://produtoskincare.com.br/pergunte/): dúvidas de skincare respondidas com o conteúdo do site.
+- [Sobre e critérios de escolha](https://produtoskincare.com.br/sobre/)
+
+## Dados públicos
+
+- [Catálogo de produtos (JSON)](https://produtoskincare.com.br/produtos.json)
+- [Rotinas por condição (JSON)](https://produtoskincare.com.br/rotinas/rotinas.json)
+- [Sitemap](https://produtoskincare.com.br/sitemap.xml)
+
+## Ferramentas para agentes (WebMCP)
+
+Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra três ferramentas só de leitura: buscar_produtos, explicar_tipo_de_pele e ver_rotina_por_condicao. O formulário "Já sabe seu tipo de pele?" é a ferramenta montar_rotina, que abre o provador já com a rotina. Nenhuma ferramenta compra, cadastra ou envia dados.

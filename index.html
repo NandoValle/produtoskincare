@@ -6,6 +6,7 @@
 <title>Produto Skincare — Descubra seu tipo de pele e a rotina ideal</title>
 <meta name="description" content="Descubra seu tipo de pele e receba uma rotina de skincare personalizada com produtos reais. Quiz gratuito, guias por tipo e curadoria de produtos.">
 <meta name="robots" content="index, follow">
+<meta name="author" content="Equipe Produto Skincare">
 <link rel="canonical" href="https://produtoskincare.com.br/">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#9b405b">
@@ -13,6 +14,7 @@
 <link rel="preload" href="/fonts/cormorant-500.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="/premium.css">
 <script src="/premium.js" defer></script>
+<script src="/webmcp.js" defer></script>
 <!-- seo:inicio -->
 <link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/">
 <link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/">
@@ -29,7 +31,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Sua pele. Seu próprio ritual.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "inLanguage": "pt-BR"}, {"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/", "logo": "https://produtoskincare.com.br/icones/icon-512.svg"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "inLanguage": "pt-BR"}, {"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/", "logo": "https://produtoskincare.com.br/icones/icon-512.svg"}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/#pagina", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare — Descubra seu tipo de pele e a rotina ideal", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Equipe Produto Skincare", "url": "https://produtoskincare.com.br/sobre/"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "dateModified": "2026-11-09"}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -55,10 +57,20 @@
 <a class="ps-skin" href="/pele/mista/"><span class="ps-skin-visual ps-texture-balance" aria-hidden="true"></span><small>Equilíbrio por região</small><h3>Mista</h3><p>Oleosidade na zona T e áreas mais secas.</p><span class="ps-card-link">Ver cuidados ↗</span></a>
 <a class="ps-skin" href="/pele/normal/"><span class="ps-skin-visual ps-texture-soft" aria-hidden="true"></span><small>Manutenção e proteção</small><h3>Normal</h3><p>Uma pele equilibrada também merece atenção.</p><span class="ps-card-link">Ver cuidados ↗</span></a>
 </div></section>
+<section class="ps-section ps-atalho" id="ja-sei" aria-labelledby="ja-sei-titulo"><div class="ps-section-head"><h2 id="ja-sei-titulo">Já sabe seu tipo de pele?</h2><p>Então não precisa refazer o quiz. Escolha o tipo e, se quiser, uma preocupação e um preço máximo: o provador abre direto na sua rotina de manhã e de noite.</p></div>
+<form class="ps-atalho-form" action="/provador/" method="get" toolname="montar_rotina" tooldescription="Abre o provador do Produto Skincare já com a rotina de skincare de manhã e de noite para o tipo de pele informado, usando produtos do catálogo do site, com preço e link. Só abre a página de resultado: não compra, não cadastra e não envia dados pessoais. Estimativa cosmética, não é diagnóstico médico." toolautosubmit>
+<label>Tipo de pele<select name="tipo" required toolparamdescription="Tipo de pele: oleosa, seca, mista ou normal. Obrigatório."><option value="">Escolha</option><option value="oleosa">Oleosa</option><option value="seca">Seca</option><option value="mista">Mista</option><option value="normal">Normal</option></select></label>
+<label><span>Preocupação <small>(opcional)</small></span><select name="conc" toolparamdescription="Preocupação principal, opcional: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Vazio quando não houver."><option value="">Nenhuma em especial</option><option value="acne">Acne</option><option value="manchas">Manchas</option><option value="poros">Poros</option><option value="idade">Sinais de idade</option><option value="desidratacao">Desidratação</option></select></label>
+<label>Preço máximo por produto<select name="preco" toolparamdescription="Preço máximo de cada produto: ate50 (até R$ 50), ate100 (até R$ 100), ate200 (até R$ 200) ou qualquer (sem limite)."><option value="qualquer">Sem limite</option><option value="ate50">Até R$ 50</option><option value="ate100">Até R$ 100</option><option value="ate200">Até R$ 200</option></select></label>
+<label>Tamanho da rotina<select name="rotina" toolparamdescription="Número de passos: 5 (completa, com tratamento) ou 3 (essencial: limpeza, hidratação e protetor solar)."><option value="5">5 passos (completa)</option><option value="3">3 passos (essencial)</option></select></label>
+<label class="ps-atalho-check"><input type="checkbox" name="sensivel" value="1" toolparamdescription="Marque se a pele é sensível: arde, avermelha ou reage a produtos novos com frequência."> Minha pele é sensível</label>
+<button class="ps-button" type="submit">Ver minha rotina <span aria-hidden="true">↗</span></button>
+</form>
+<p class="ps-atalho-nota">Não sabe o seu tipo? <a href="/provador/">Responda o quiz</a> ou <a href="/provador/?modo=selfie">analise com uma selfie</a>.</p></section>
 <section class="ps-section ps-journey-section"><div class="ps-journey"><div><h2>Seu ponto de partida é simples.</h2><p>Um provador gratuito para transformar suas dúvidas em uma rotina mais clara.</p><a href="/provador/" class="ps-text-link">Conhecer o provador ↗</a></div><div class="ps-steps"><div class="ps-step"><span class="ps-step-num">01</span><div><h3>Conte sobre sua pele</h3><p>Responda às perguntas sobre os sinais e as sensações que você observa.</p></div></div><div class="ps-step"><span class="ps-step-num">02</span><div><h3>Entenda seu perfil</h3><p>Conheça o perfil sugerido a partir das suas respostas.</p></div></div><div class="ps-step"><span class="ps-step-num">03</span><div><h3>Encontre seu ritual</h3><p>Explore sugestões de cuidados e produtos para manhã e noite.</p></div></div></div></div></section>
 <section class="ps-section"><div class="ps-section-head"><h2>Boas escolhas, todos os dias.</h2><p>Ferramentas para organizar sua rotina e entender melhor os produtos que você usa.</p></div><div class="ps-tools"><a class="ps-tool" href="/ferramentas/ingredientes/"><h3>Entenda os ingredientes</h3><p>Consulte combinações de ativos e os cuidados ao incluí-los na rotina.</p><span>Verificador de ingredientes ↗</span></a><a class="ps-tool" href="/ferramentas/rotina/"><h3>Crie constância</h3><p>Marque os cuidados do dia e acompanhe sua rotina no próprio aparelho.</p><span>Acompanhar minha rotina ↗</span></a></div></section>
 <section class="ps-section"><div class="ps-section-head"><h2>Conhecimento também é cuidado.</h2><p>Leituras para começar pelo básico e fazer escolhas com mais informação.</p></div><div class="ps-editorial"><a class="ps-story" href="/blog/como-saber-tipo-de-pele/"><img src="/img/ritual-face.jpg" alt="" width="1000" height="1333" loading="lazy"><small>CONHEÇA SUA PELE</small><h3>Como saber se sua pele é oleosa, seca ou mista</h3><p>Sinais do dia a dia que ajudam a entender seu tipo. ↗</p></a><a class="ps-story" href="/blog/protetor-solar-importancia/"><img src="/img/cream-texture.jpg" alt="" width="840" height="1120" loading="lazy"><small>CUIDADO DIÁRIO</small><h3>Protetor solar: um essencial da sua rotina</h3><p>Entenda esse passo antes de escolher seu próximo produto. ↗</p></a></div></section>
-<aside class="ps-note"><strong>Não é diagnóstico médico.</strong> O provador é uma estimativa cosmética para escolher produtos de skincare. Se tem acne intensa, lesões, dor ou irritação persistente, procure um dermatologista. Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</aside>
+<aside class="ps-note"><p class="ps-byline">Por <a href="/sobre/" rel="author">Equipe Produto Skincare</a> · Atualizado em <time datetime="2026-11-09">9 de novembro de 2026</time></p><strong>Não é diagnóstico médico.</strong> O provador é uma estimativa cosmética para escolher produtos de skincare. Se tem acne intensa, lesões, dor ou irritação persistente, procure um dermatologista (<a href="https://www.sbd.org.br/encontre-um-dermatologista/" target="_blank" rel="noopener">busca da Sociedade Brasileira de Dermatologia</a>). Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</aside>
 </main>
 </div>
 <footer class="ps-rodape">

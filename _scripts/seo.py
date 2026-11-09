@@ -91,6 +91,12 @@ def data_atualizacao(texto):
     return None
 
 
+def data_time_atualizacao(texto):
+    """Data de 'Atualizado em <time datetime="AAAA-MM-DD">' (formato usado na página inicial)."""
+    m = re.search(r'Atualizado em\s*<time datetime="(\d{4}-\d{2}-\d{2})"', texto)
+    return m.group(1) if m else data_atualizacao(texto)
+
+
 # ---------- imagem de compartilhamento (1200x630) ----------
 FUNDO = Image.open(RAIZ / "img/skincare-editorial.jpg").convert("RGB")
 F_TITULO = RAIZ / "fonts/cormorant-500.ttf"
@@ -196,10 +202,19 @@ def montar_bloco(arq, url, info, texto):
 
     ld = []
     if url == "/":
+        # WebPage com autor e data: a data vem da linha visível "Atualizado em <time datetime=...>".
+        pagina = {"@type": "WebPage", "@id": SITE + "/#pagina", "url": SITE + "/", "name": titulo_doc,
+                  "isPartOf": {"@id": SITE + "/#site"}, "inLanguage": "pt-BR",
+                  "author": {"@type": "Organization", "name": "Equipe " + MARCA, "url": SITE + "/sobre/"},
+                  "publisher": {"@id": SITE + "/#org"}}
+        mod = data_time_atualizacao(texto)
+        if mod:
+            pagina["dateModified"] = mod
         ld.append({"@context": "https://schema.org", "@graph": [
             {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": MARCA, "inLanguage": "pt-BR"},
             {"@type": "Organization", "@id": SITE + "/#org", "name": MARCA, "url": SITE + "/",
-             "logo": SITE + "/icones/icon-512.svg"}]})
+             "logo": SITE + "/icones/icon-512.svg"},
+            pagina]})
     else:
         itens = [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}]
         partes = [p for p in url.strip("/").split("/") if p]

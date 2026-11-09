@@ -1,0 +1,19 @@
+# Cabeçalhos HTTP do site na Cloudflare (Workers com arquivos estáticos).
+# Só passa a valer depois da migração: o GitHub Pages ignora este arquivo
+# (e não o publica, porque o nome começa com _). Na Cloudflare ele também não vira
+# arquivo público: o Wrangler o lê como configuração.
+# Doc: https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# Origin-Agent-Cluster: isola a origem num cluster de agente próprio (pedido do scan WebMCP).
+# Permissions-Policy: libera só o que o site usa, na própria origem:
+#   tools           -> ferramentas WebMCP (webmcp.js e o formulário da página inicial)
+#   camera          -> selfie do provador
+#   clipboard-write -> botões "copiar" do provador e do compartilhar.js
+#   web-share       -> botão "compartilhar" do provador
+# e desliga o que ele não usa. Recurso novo que precise de outra permissão entra aqui.
+#
+# Quando houver token do WebMCP Origin Trial (Chrome Origin Trials), ele pode entrar aqui
+# como "Origin-Trial: <token>" ou como <meta http-equiv="origin-trial"> na página.
+/*
+  Origin-Agent-Cluster: ?1
+  Permissions-Policy: tools=(self), camera=(self), clipboard-write=(self), web-share=(self), microphone=(), geolocation=(), payment=(), usb=()
