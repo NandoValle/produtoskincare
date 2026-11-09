@@ -30,3 +30,12 @@ No third-party image request is made by visitors. Illustrative only: no testimon
 - Narration: AI-generated voice (ElevenLabs, voice "Bianca - Smooth and Sophisticated", model `eleven_v4`), reading the scripts in `_roteiros/<slug>.txt`. Captions come from the word timings of an ElevenLabs transcription (`eleven_scribe_v1`).
 - Frames: text slides drawn by `_scripts/video_noticia.py` in the site's colors (slide texts in `_roteiros/<slug>.quadros.json`); no photos, logos or people.
 - Stored locally; no third-party video request is made by visitors.
+
+## News covers — generated 2026-11-09
+
+- Files: `img/blog/<slug>-3840.webp`, `-1600.webp`, `-800.webp` and `-og.jpg` (1200×675, social share preview, now the page's `og:image`).
+- Slugs: `anvisa-cosmetovigilancia-notificacoes-130-2026`, `revisao-antioxidantes-topicos-fotoenvelhecimento-2026`, `skincare-brasileiro-biodiversidade-identidade-2026`, `esteroides-nao-declarados-cremes-jama`, `unilever-foco-beleza-economia-1-bilhao`, `pele-tem-sexo-estudo-nature`, `ozempic-face-gigantes-da-beleza`.
+- Origin: AI-generated images made in ChatGPT (OpenAI image generation, the site owner's account) at 1672×941, cropped to 16:9 and upscaled to 3840×2160 with the 4x-UltraSharp ESRGAN model (the 4K master is an upscale, not a native 4K render). Built by `_scripts/capa_post.py`; prompts and rules in `_roteiros/capas.txt`.
+- Prompts asked for no text, no logos, no brand names, no readable labels and no identifiable faces. Products shown are generic and unbranded, even when the news is about a specific company.
+- Illustrative only: they do not depict any specific product sold or linked on the site, and imply no endorsement or result.
+- Stored locally; no third-party image request is made by visitors.

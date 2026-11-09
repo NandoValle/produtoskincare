@@ -1,0 +1,52 @@
+# Capas dos posts do blog
+
+Todo post do blog (artigo ou notícia) sai com capa: uma foto 16:9, ultrarrealista, gerada no ChatGPT. Post sem capa está incompleto. Regra do Fernando, 09/11/2026.
+
+A capa aparece em três lugares: no topo do artigo (`<figure class="capa-artigo">`), no cartão do post em `/blog/` (`<img class="capa">`) e na prévia de compartilhamento (`og:image`, 1200x675).
+
+## Como fazer
+
+1. **Cena.** Escrever em inglês uma "cena" de 3 a 6 frases que conte a notícia por objetos, lugar e luz. Exemplos abaixo.
+2. **Prompt.** O prompt é `Create an image. ` + cena + o **estilo fixo** abaixo. O estilo deixa as capas com a mesma cara.
+3. **Gerar.** No ChatGPT (conta do Fernando, pelo Edge), um chat novo por imagem. Sai em 1672x941.
+4. **Conferir.** Abrir a imagem e ver se há letras, números, logotipos, marcas ou rostos reconhecíveis. Se houver, gerar de novo.
+5. **Aplicar.** Na raiz do site:
+
+   ```
+   python -I _scripts/capa_post.py --slug <slug> --img <imagem.png> --alt "<descrição em português>" --mestre <pasta de backup>
+   python -I _scripts/seo.py
+   ```
+
+   O `capa_post.py` recorta para 16:9, amplia para 3840x2160 com o 4x-UltraSharp (no PC do Fernando; fora dele cai para Lanczos e avisa), grava `img/blog/<slug>-3840.webp`, `-1600.webp`, `-800.webp` e `-og.jpg` e mexe no HTML do post e de `blog/index.html`. Rodar de novo troca a capa. O `seo.py` faz o JSON-LD do artigo apontar para a capa.
+6. **Registrar.** Acrescentar o slug na seção de capas do `ASSET-SOURCES.md` e a cena na tabela abaixo.
+
+Sessão sem acesso ao ChatGPT do Fernando (por exemplo, na nuvem): escrever a cena na tabela abaixo com o status "pendente" e avisar no PR que falta a capa. Não publicar post com imagem de banco nem com capa de outro gerador sem o OK dele.
+
+## Estilo fixo
+
+```
+Ultra-realistic premium editorial photograph for a beauty-science news magazine. Shot on a medium-format camera (Hasselblad X2D, 80mm lens, f/4), soft directional natural light, shallow depth of field, crisp true-to-life micro-textures, subtle film grain, refined color grading with soft blush-pink and ivory accents. Clean, uncluttered composition with breathing room. Wide 16:9 landscape format. Absolutely NO text, NO letters, NO numbers, NO logos, NO brand names, NO readable labels, NO watermark anywhere in the image. Real photograph look, not illustration, not 3D render, not CGI.
+```
+
+## Regras da cena
+
+- **A capa promete só o que o post diz.** Sem resultado milagroso e sem antes e depois.
+- **Sem marca real.** Embalagens lisas, sem rótulo e sem logotipo, mesmo quando a notícia é sobre uma empresa (Unilever, L'Oréal, Natura).
+- **Sem rosto reconhecível.** Mão de luva, silhueta desfocada ou pessoa de costas, quando precisar de gente.
+- **Sem símbolo oficial.** Nada de brasão, logotipo da Anvisa ou de revista científica.
+- **Remédio só tampado e sem marca.** Caneta injetável, por exemplo, aparece fechada.
+- O `alt` descreve a foto em português, numa frase, para quem não vê a imagem.
+
+## Capas feitas
+
+| Data | Slug | Cena (resumo) | Status |
+|---|---|---|---|
+| 09/11/2026 | anvisa-cosmetovigilancia-notificacoes-130-2026 | Mão de luva examina pote de creme; frascos sem rótulo com etiquetas âmbar; prancheta e lupa | feita |
+| 09/11/2026 | revisao-antioxidantes-topicos-fotoenvelhecimento-2026 | Sérum âmbar (vitamina C) e transparente (niacinamida), laranja-sanguínea, artigos ao fundo, feixe de sol | feita |
+| 09/11/2026 | skincare-brasileiro-biodiversidade-identidade-2026 | Cupuaçu aberto, manteiga, óleo de andiroba, murumuru e açaí em pedra molhada na floresta | feita |
+| 09/11/2026 | esteroides-nao-declarados-cremes-jama | Caixa de compra online com cremes genéricos; amostra vai para frasco de análise | feita |
+| 09/11/2026 | unilever-foco-beleza-economia-1-bilhao | Produtos de cuidado pessoal e casa sem marca em mesa de reunião; caixas de comida saindo ao fundo | feita |
+| 09/11/2026 | pele-tem-sexo-estudo-nature | Microscópio à noite; monitor com células-tronco fluorescentes, um campo ordenado e outro disperso | feita |
+| 09/11/2026 | ozempic-face-gigantes-da-beleza | Caneta injetável (janela, dosador sem números, tampa transparente) entre cremes, sérum e rolo de jade; espelho desfocado e hortênsias. Refeita: a 1ª tinha números embaralhados na fita métrica | feita |
+
+Os prompts completos dessas sete, com o `alt`, estão no backup do Fernando: `E:\Produtoskincare\capas-noticias-2026-11-09\prompts.json`.
