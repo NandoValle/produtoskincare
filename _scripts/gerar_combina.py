@@ -167,9 +167,11 @@ def pagina_par(item, todos, d, produtos):
     outros = [x for x in todos if x is not item and (a in (x["a"], x["b"]) or b in (x["a"], x["b"]))][:6]
     rel = "".join(f'<li><a href="/combina/{slug_par(x["a"], x["b"])}/">{esc(titulo_par(x["a"], x["b"]))}</a></li>' for x in outros)
     encaixe_html = "".join(f"<li>{esc(t)}</li>" for t in encaixe(a, b, r))
+    resposta_faq = r["motivo"] if r["motivo"].startswith(r["rotulo"] + ".") else f'{r["rotulo"]}. {r["motivo"]}'
     faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{
         "@type": "Question", "name": titulo,
-        "acceptedAnswer": {"@type": "Answer", "text": f'{r["rotulo"]}. {r["motivo"]}'}}]}
+        "acceptedAnswer": {"@type": "Answer", "text": resposta_faq}}]}
+    faq_txt = json.dumps(faq, ensure_ascii=False).replace("</", "<\\/")
     corpo = f"""<article>
 <div class="ig-cab">
 <h1>{esc(titulo)}</h1>
@@ -199,7 +201,7 @@ def pagina_par(item, todos, d, produtos):
 <h2 id="relacionados">Leia também</h2>
 <ul class="ig-rel">{rel}<li><a href="/combina/">Todas as combinações</a></li></ul>
 </section>
-<script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>
+<script type="application/ld+json">{faq_txt}</script>
 </article>"""
     descricao = f'{titulo} {r["rotulo"]}. {r["motivo"]}'[:300]
     trilha_nome = titulo.replace("Posso usar ", "").rstrip("?")

@@ -13,9 +13,14 @@ import html
 import json
 import re
 import subprocess
+import sys
 from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
+
+# Explicit local import also works with the documented python -I invocation.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from schema_site import montar_schema, json_script
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
@@ -24,8 +29,6 @@ SITE = "https://produtoskincare.com.br"
 MARCA = "Produto Skincare"
 HOJE = date.today().isoformat()
 IGNORAR = {"_arquivo", "_scripts", "_servidor", ".git", "fotos", "fonts", "img", "icones"}
-MESES = {m: i + 1 for i, m in enumerate(["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
-                                          "agosto", "setembro", "outubro", "novembro", "dezembro"])}
 ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condições", "pele": "Tipos de pele",
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
            "privacidade": "Privacidade", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
@@ -78,27 +81,6 @@ def sem_marca(t):
 def caminho_url(arq: Path):
     rel = arq.relative_to(RAIZ).as_posix()
     return "/" if rel == "index.html" else "/" + rel[: -len("index.html")]
-
-
-def data_rotulada(rotulo, texto):
-    """Data depois de 'Publicado em' / 'Atualizado em', nos dois formatos usados no site:
-    '<time datetime="AAAA-MM-DD">4 de novembro de 2026</time>' (vale o atributo) ou
-    texto puro '4 de novembro de 2026'."""
-    m = re.search(rotulo + r'\s*<time datetime="(\d{4}-\d{2}-\d{2})"', texto)
-    if m:
-        return m.group(1)
-    m = re.search(rotulo + r" (\d{1,2}) de (\w+) de (\d{4})", texto)
-    if m and m.group(2).lower() in MESES:
-        return f"{m.group(3)}-{MESES[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-    return None
-
-
-def data_publicacao(texto):
-    return data_rotulada("Publicado em", texto)
-
-
-def data_atualizacao(texto):
-    return data_rotulada("Atualizado em", texto)
 
 
 # ---------- imagem de compartilhamento (1200x630) ----------
@@ -155,41 +137,6 @@ def nome_og(url):
     return f"img/og/{base}.jpg"
 
 
-# ---------- dados de produto (schema.org/Product) nas páginas /produtos/<id>/ ----------
-_CATALOGO = None
-LOJAS_LD = {"amazon": "Amazon", "shopee": "Shopee", "mercadolivre": "Mercado Livre", "tiktok": "TikTok Shop"}
-
-
-def produto_do_catalogo(rel):
-    """Devolve o item do produtos.json se a página for /produtos/<id>/; senão None."""
-    global _CATALOGO
-    partes = [p for p in rel.split("/") if p]
-    if len(partes) != 2 or partes[0] != "produtos":
-        return None
-    if _CATALOGO is None:
-        try:
-            _CATALOGO = {p["id"]: p for p in json.loads((RAIZ / "produtos.json").read_text(encoding="utf-8"))["produtos"]}
-        except Exception:
-            _CATALOGO = {}
-    return _CATALOGO.get(partes[1])
-
-
-def json_ld_produto(p, url, imagem):
-    # Só preço, loja e data do catálogo. A nota da loja NÃO entra como aggregateRating:
-    # é avaliação de outro site, e as regras do Google pedem avaliações coletadas aqui.
-    oferta = {"@type": "Offer", "price": f"{p['preco']:.2f}", "priceCurrency": "BRL",
-              "seller": {"@type": "Organization", "name": LOJAS_LD.get(p.get("plataforma"), "Loja")}}
-    # Link para a página do produto entra; link para uma busca da loja, não.
-    if not re.search(r"/search|/s\?|lista\.mercadolivre", p.get("link", "")):
-        oferta["url"] = p["link"]
-    frases = [f for f in re.split(r"(?<=[.!?])\s+", p.get("porque", "")) if f.strip() and "★" not in f]
-    item = {"@context": "https://schema.org", "@type": "Product", "name": p["nome"],
-            "description": " ".join(frases), "image": imagem, "url": f"{SITE}{url}", "offers": oferta}
-    if p.get("marca"):
-        item["brand"] = {"@type": "Brand", "name": p["marca"]}
-    return item
-
-
 # ---------- bloco de SEO ----------
 def montar_bloco(arq, url, info, texto):
     titulo_doc = limpar(info.title)
@@ -240,51 +187,8 @@ def montar_bloco(arq, url, info, texto):
         '<meta name="twitter:card" content="summary_large_image">',
     ]
 
-    ld = []
-    if url == "/":
-        # WebPage com autor e data: a data vem da linha visível "Atualizado em <time datetime=...>".
-        pagina = {"@type": "WebPage", "@id": SITE + "/#pagina", "url": SITE + "/", "name": titulo_doc,
-                  "isPartOf": {"@id": SITE + "/#site"}, "inLanguage": "pt-BR",
-                  "author": {"@type": "Organization", "name": "Equipe " + MARCA, "url": SITE + "/sobre/"},
-                  "publisher": {"@id": SITE + "/#org"}}
-        mod = data_atualizacao(texto)
-        if mod:
-            pagina["dateModified"] = mod
-        ld.append({"@context": "https://schema.org", "@graph": [
-            {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": MARCA, "inLanguage": "pt-BR"},
-            {"@type": "Organization", "@id": SITE + "/#org", "name": MARCA, "url": SITE + "/",
-             "logo": SITE + "/icones/icon-512.svg"},
-            pagina]})
-    else:
-        itens = [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}]
-        partes = [p for p in url.strip("/").split("/") if p]
-        acumulado = ""
-        for i, parte in enumerate(partes):
-            acumulado += parte + "/"
-            ultimo = i == len(partes) - 1
-            nome = sem_marca(limpar(info.h1) or og_title) if ultimo else ROTULOS.get(parte, parte)
-            if not ultimo and not (RAIZ / acumulado / "index.html").exists():
-                continue
-            itens.append({"@type": "ListItem", "position": len(itens) + 1, "name": nome, "item": f"{SITE}/{acumulado}"})
-        ld.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": itens})
-        produto = produto_do_catalogo(rel)
-        if produto:
-            ld.append(json_ld_produto(produto, url, og_url))
-        if artigo:
-            pub = data_publicacao(texto)
-            mod = data_atualizacao(texto) or pub
-            art = {"@context": "https://schema.org", "@type": "Article", "headline": sem_marca(limpar(info.h1) or og_title)[:110],
-                   "description": descricao, "image": og_url, "inLanguage": "pt-BR",
-                   "mainEntityOfPage": f"{SITE}{url}",
-                   "author": {"@type": "Organization", "name": "Equipe " + MARCA, "url": SITE + "/sobre/"},
-                   "publisher": {"@type": "Organization", "name": MARCA, "url": SITE + "/"}}
-            if pub:
-                art["datePublished"] = pub
-            if mod:
-                art["dateModified"] = mod
-            ld.append(art)
-    for bloco in ld:
-        tags.append('<script type="application/ld+json">' + json.dumps(bloco, ensure_ascii=False) + "</script>")
+    ld = montar_schema(RAIZ, SITE, MARCA, url, info, texto, artigo)
+    tags.append('<script type="application/ld+json">' + json_script(ld) + "</script>")
     tags.append('<script src="/analytics.js" defer></script>')
     tags.append('<script src="/canais.js" defer></script>')
     return "<!-- seo:inicio -->\n" + "\n".join(t for t in tags if t) + "\n<!-- seo:fim -->\n"
