@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skin diary: your visual record | Produto Skincare</title>
+<meta name="description" content="A visual record of your skin: periodic photos kept only on your device, side-by-side comparison and notes. Nothing is sent to the site.">
+
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.item:last-child{border-bottom:0}
+.item input{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.item label{cursor:pointer;flex:1;font-size:1rem}
+.item.feito label{text-decoration:line-through;color:var(--suave)}
+.streak{background:linear-gradient(135deg,var(--tinta),#2d2825);color:var(--fundo);border-radius:var(--raio);padding:20px;text-align:center;margin:16px 0}
+.streak .num{font-family:var(--fonte-display);font-size:3rem;font-weight:300;line-height:1}
+.streak .label{font-size:.9rem;opacity:.7;margin-top:4px}
+.progresso-bar{background:var(--linha);border-radius:999px;height:8px;margin:12px 0;overflow:hidden}
+.progresso-fill{background:var(--verde);height:100%;border-radius:999px;transition:width 0.3s}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/diario/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/diary/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/diario/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/diario/">
+
+<link rel="canonical" href="https://produtoskincare.com.br/en/ferramentas/diary/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Skin diary: your visual record | Produto Skincare">
+<meta property="og:description" content="A visual record of your skin: periodic photos kept only on your device, side-by-side comparison and notes. Nothing is sent to the site.">
+<meta property="og:url" content="https://produtoskincare.com.br/en/ferramentas/diary/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-diario.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Skin diary: your visual record">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/en/ferramentas/diary/#pagina", "url": "https://produtoskincare.com.br/en/ferramentas/diary/", "name": "Skin diary: your visual record", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "en", "description": "A visual record of your skin: periodic photos kept only on your device, side-by-side comparison and notes. Nothing is sent to the site.", "breadcrumb": {"@id": "https://produtoskincare.com.br/en/ferramentas/diary/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/en/ferramentas/diary/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Skin diary: your visual record", "item": "https://produtoskincare.com.br/en/ferramentas/diary/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<style>
+
+.dg-caixa{display:flex;flex-direction:column;gap:26px;max-width:760px;margin:0 auto;padding:24px 16px 60px}
+.dg-acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dg-grade{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:560px){.dg-grade{grid-template-columns:1fr 1fr}}
+.dg-foto{border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;background:var(--papel)}
+.dg-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--papel-2)}
+.dg-foto-info{padding:12px 14px;display:grid;gap:5px}
+.dg-foto-info small{font-weight:700;color:var(--rosa)}
+.dg-foto-info p{margin:0;color:var(--suave);font-size:.9rem}
+.dg-comp{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:18px}
+.dg-comp-controles{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px}
+@media(min-width:560px){.dg-comp-controles{grid-template-columns:1fr 1fr}}
+.dg-comp-quadro{position:relative;max-width:360px;margin:0 auto;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:1px solid var(--linha);background:var(--papel-2)}
+.dg-comp-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dg-comp-quadro .corte{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--rosa);pointer-events:none}
+.dg-comp input[type=range]{width:100%;max-width:360px;display:block;margin:12px auto 0;accent-color:var(--rosa)}
+.dg-legenda{display:flex;justify-content:space-between;max-width:360px;margin:6px auto 0;color:var(--suave);font-size:.86rem}
+.dg-vazio{text-align:center;padding:30px 16px;background:var(--papel-2);border-radius:var(--raio)}
+select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px solid var(--linha);border-radius:10px;background:var(--papel);color:var(--tinta);width:100%}
+
+</style>
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main id="conteudo">
+<div class="dg-caixa">
+<p class="ig-meta">Tool · Skin diary</p>
+<h1>Skin diary: your visual record</h1>
+<p class="ig-lede">Periodic photos to follow your own progress, with side-by-side comparison. Images stay only on this device (the browser's local storage) — nothing is sent to the site.</p>
+<p class="ig-nota">Shoot the same way every time: same hour, same light (diffuse window light), same angle, clean face. A personal record — not a clinical measurement. Following the <a href="/ferramentas/12-semanas/">12-week plan</a>? Its weekly diary stays there.</p>
+<div class="dg-acoes">
+<label class="btn" for="dg-arquivo" style="cursor:pointer">Add today's photo</label>
+<input type="file" id="dg-arquivo" accept="image/*" capture="environment" hidden>
+<input type="text" id="dg-nota" maxlength="140" placeholder="Note (optional): calmer skin, used the serum…">
+</div>
+<div id="dg-lista"></div>
+</div>
+</main>
+<script>
+(function(){
+  const BD = "ps_diario_site", LOJA = "fotos";
+  function abrir(){ return new Promise((res, rej) => {
+    const req = indexedDB.open(BD, 1);
+    req.onupgradeneeded = () => { if (!req.result.objectStoreNames.contains(LOJA)) req.result.createObjectStore(LOJA, { keyPath: "id", autoIncrement: true }); };
+    req.onsuccess = () => res(req.result); req.onerror = () => rej(req.error);
+  }); }
+  async function tx(escrita, fn){
+    const bd = await abrir();
+    return new Promise((res, rej) => {
+      const t = bd.transaction(LOJA, escrita ? "readwrite" : "readonly");
+      const s = t.objectStore(LOJA); const saida = fn(s);
+      t.oncomplete = () => res(saida && saida.result !== undefined ? saida.result : saida);
+      t.onerror = () => rej(t.error);
+    });
+  }
+  const todas = async () => (await (await tx(false, s => s.getAll())) || []).sort((a,b) => String(b.data).localeCompare(String(a.data)));
+  const add = (r) => tx(true, s => s.add(r));
+  const del = (id) => tx(true, s => s.delete(Number(id)));
+
+  function dataHoje(){ const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function fmt(iso){ return new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { day:"numeric", month:"long", year:"numeric" }); }
+  function esc(t){ return String(t == null ? "" : t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  function reduzir(arquivo){
+    return new Promise((res, rej) => {
+      const leitor = new FileReader();
+      leitor.onerror = () => rej(new Error("não foi possível ler o arquivo"));
+      leitor.onload = () => {
+        const img = new Image();
+        img.onerror = () => rej(new Error("arquivo de imagem inválido"));
+        img.onload = () => {
+          const max = 720, escala = Math.min(1, max / Math.max(img.width, img.height));
+          const c = document.createElement("canvas");
+          c.width = Math.round(img.width * escala); c.height = Math.round(img.height * escala);
+          c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+          res(c.toDataURL("image/jpeg", 0.72));
+        };
+        img.src = leitor.result;
+      };
+      leitor.readAsDataURL(arquivo);
+    });
+  }
+
+  async function render(){
+    const lista = await todas();
+    const raiz = document.getElementById("dg-lista");
+    const vazio = lista.length === 0 ? '<div class="dg-vazio"><p class="ig-rotulo">Start now</p><h2>Your timeline is empty</h2><p class="ig-nota">One photo a week already tells a story.</p></div>' : "";
+    const grade = lista.map(f => `
+      <article class="dg-foto">
+        <img src="${f.foto}" alt="Skin record of ${fmt(f.data)}" loading="lazy">
+        <div class="dg-foto-info">
+          <small>${fmt(f.data)}</small>
+          <p>${esc(f.nota) || "No notes."}</p>
+          <button class="rt-nota" type="button" data-remover="${f.id}" style="background:none;border:none;cursor:pointer;text-decoration:underline;justify-self:start">Remove</button>
+        </div>
+      </article>`).join("");
+    const comp = lista.length >= 2 ? `
+      <section class="dg-comp">
+        <p class="ig-rotulo">Compare</p>
+        <h2>Two records, one slider</h2>
+        <div class="dg-comp-controles">
+          <label>Left record<select id="dg-a">${lista.map(f => `<option value="${f.id}">${fmt(f.data)}</option>`).join("")}</select></label>
+          <label>Right record<select id="dg-b">${lista.map((f,i) => `<option value="${f.id}" ${i===0?"selected":""}>${fmt(f.data)}</option>`).join("")}</select></label>
+        </div>
+        <div class="dg-comp-quadro"><img id="dg-img-a" alt="Left record"><img id="dg-img-b" alt="Right record"><div class="corte" id="dg-corte"></div></div>
+        <input type="range" id="dg-puxador" min="0" max="100" value="50" aria-label="Posição da comparação">
+        <div class="dg-legenda"><span id="dg-leg-a"></span><span id="dg-leg-b"></span></div>
+      </section>` : "";
+    raiz.innerHTML = vazio + '<div class="dg-grade">' + grade + "</div>" + comp;
+
+    raiz.querySelectorAll("[data-remover]").forEach(b => b.addEventListener("click", async () => {
+      if (confirm("Remove this photo from the diary? This cannot be undone.")) { await del(b.dataset.remover); render(); }
+    }));
+    const mapa = {}; lista.forEach(f => mapa[f.id] = f);
+    const selA = document.getElementById("dg-a"), selB = document.getElementById("dg-b");
+    if (selA) {
+      const mover = () => {
+        const v = Number(document.getElementById("dg-puxador").value);
+        document.getElementById("dg-img-b").style.clipPath = "inset(0 " + (100 - v) + "% 0 0)";
+        document.getElementById("dg-corte").style.left = v + "%";
+      };
+      const atual = () => {
+        const a = mapa[selA.value], b = mapa[selB.value];
+        if (a) { document.getElementById("dg-img-a").src = a.foto; document.getElementById("dg-leg-a").textContent = fmt(a.data); }
+        if (b) { document.getElementById("dg-img-b").src = b.foto; document.getElementById("dg-leg-b").textContent = fmt(b.data); }
+        mover();
+      };
+      selA.addEventListener("change", atual); selB.addEventListener("change", atual);
+      document.getElementById("dg-puxador").addEventListener("input", mover);
+      atual();
+    }
+  }
+
+  document.getElementById("dg-arquivo").addEventListener("change", async (ev) => {
+    const arq = ev.target.files && ev.target.files[0];
+    if (!arq) return;
+    try {
+      const foto = await reduzir(arq);
+      const nota = (document.getElementById("dg-nota") || {}).value || "";
+      await add({ data: dataHoje(), nota: nota.trim(), foto: foto, criadoEm: Date.now() });
+      document.getElementById("dg-nota").value = "";
+      await render();
+    } catch (e) { alert("Could not add the photo: " + e.message); }
+    ev.target.value = "";
+  });
+
+  render();
+})();
+</script>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curated skincare for every skin type, with dated prices and links.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>skin type guides</li><li><strong>5</strong>skin conditions explained</li></ul>
+</div>
+<nav aria-label="Footer: Skin types"><p class="ps-rodape-titulo">Skin types</p><ul><li><a href="/pele/oleosa/">Oily skin</a></li><li><a href="/pele/seca/">Dry skin</a></li><li><a href="/pele/mista/">Combination skin</a></li><li><a href="/pele/normal/">Normal skin</a></li></ul></nav>
+<nav aria-label="Footer: Conditions"><p class="ps-rodape-titulo">Conditions</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosacea</a></li><li><a href="/condicoes/olheiras/">Dark circles</a></li><li><a href="/condicoes/desidratacao/">Dehydration</a></li><li><a href="/condicoes/">All conditions</a></li></ul></nav>
+<nav aria-label="Footer: Resources"><p class="ps-rodape-titulo">Resources</p><ul><li><a href="/provador/">Skin quiz</a></li><li><a href="/achados/">Finds</a></li><li><a href="/rotina-de-skincare/">Skincare routine</a></li><li><a href="/rotinas/">Routines by budget</a></li><li><a href="/ferramentas/comparar/">Compare products</a></li><li><a href="/ferramentas/ingredientes/">Check ingredients</a></li><li><a href="/ferramentas/ativos/">Actives guide</a></li><li><a href="/ferramentas/rotina/">Routine tracker</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredients</a></li><li><a href="/mais-vendidos/">Bestsellers</a></li><li><a href="/queridinhos-do-skincare/">World skincare favorites</a></li><li><a href="/produtos/">Products</a></li><li><a href="/ferramentas/reposicao/">Refill reminder</a></li><li><a href="/ferramentas/clima/">Today's UV index</a></li><li><a href="/pergunte/">Ask the AI</a></li><li><a href="/mercado-skincare-brasil/">Skincare market data</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Skincare Product (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contains affiliate links. Most guides are in Portuguese.</span><span class="ps-rodape-links"><a href="/sobre/">About</a><a href="/privacidade/">Privacy</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Backup of your data | Produto Skincare</title>
+<meta name="description" content="Export and import your routine tracker and photo diary as a .json file. Your data stays on your device — the backup is the parachute.">
+
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.item:last-child{border-bottom:0}
+.item input{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.item label{cursor:pointer;flex:1;font-size:1rem}
+.item.feito label{text-decoration:line-through;color:var(--suave)}
+.streak{background:linear-gradient(135deg,var(--tinta),#2d2825);color:var(--fundo);border-radius:var(--raio);padding:20px;text-align:center;margin:16px 0}
+.streak .num{font-family:var(--fonte-display);font-size:3rem;font-weight:300;line-height:1}
+.streak .label{font-size:.9rem;opacity:.7;margin-top:4px}
+.progresso-bar{background:var(--linha);border-radius:999px;height:8px;margin:12px 0;overflow:hidden}
+.progresso-fill{background:var(--verde);height:100%;border-radius:999px;transition:width 0.3s}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/backup/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/backup/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/respaldo/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/backup/">
+
+<link rel="canonical" href="https://produtoskincare.com.br/en/ferramentas/backup/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Backup of your data | Produto Skincare">
+<meta property="og:description" content="Export and import your routine tracker and photo diary as a .json file. Your data stays on your device — the backup is the parachute.">
+<meta property="og:url" content="https://produtoskincare.com.br/en/ferramentas/backup/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-rotina.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Backup of your data">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/en/ferramentas/backup/#pagina", "url": "https://produtoskincare.com.br/en/ferramentas/backup/", "name": "Backup of your data", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "en", "description": "Export and import your routine tracker and photo diary as a .json file. Your data stays on your device — the backup is the parachute.", "breadcrumb": {"@id": "https://produtoskincare.com.br/en/ferramentas/backup/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/en/ferramentas/backup/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Backup of your data", "item": "https://produtoskincare.com.br/en/ferramentas/backup/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<style>
+
+.bk-caixa{max-width:640px;margin:0 auto;padding:24px 16px 60px;display:flex;flex-direction:column;gap:22px}
+.bk-cartao{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:22px}
+.bk-cartao h2{font-size:1.35rem;margin:0 0 8px}
+.bk-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.bk-status{margin-top:12px;font-size:.92rem;color:var(--verde);min-height:1.4em}
+
+</style>
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main id="conteudo">
+<div class="bk-caixa">
+<p class="ig-meta">Tool · Backup of your data</p>
+<h1>Backup of your data</h1>
+<p class="ig-lede">Your tracker, photos and notes live only on this device — that is what keeps them private. This file is the parachute: export a backup once in a while and keep it somewhere safe. If you switch browsers or clear data, it brings everything back.</p>
+
+<div class="bk-cartao">
+<h2>Export backup</h2>
+<p class="ig-nota">Generates a .json file with the routine tracker, the photo diary and this device's notes.</p>
+<div class="bk-acoes"><button class="btn" type="button" id="bk-exportar">Download my backup</button></div>
+</div>
+
+<div class="bk-cartao">
+<h2>Import backup</h2>
+<p class="ig-nota">Restores data from a file exported by this tool. <strong>The current browser's data will be replaced.</strong></p>
+<div class="bk-acoes">
+<label class="btn" for="bk-arquivo" style="cursor:pointer">Choose a backup file</label>
+<input type="file" id="bk-arquivo" accept="application/json,.json" hidden>
+</div>
+<p class="bk-status" id="bk-status" role="status"></p>
+</div>
+
+<p class="ig-nota"><strong>Privacy:</strong> nothing leaves here without you. The file is generated in your browser and downloaded to your downloads folder — the site never receives it.</p>
+</div>
+</main>
+<script>
+(function(){
+  const status = document.getElementById("bk-status");
+  function ler(chave){ try { return JSON.parse(localStorage.getItem(chave) || "null"); } catch(e){ return null; } }
+
+  async function fotos(){
+    try{
+      const bd = await new Promise((res,rej)=>{ const req=indexedDB.open("ps_diario_site",1); req.onupgradeneeded=()=>{ if(!req.result.objectStoreNames.contains("fotos")) req.result.createObjectStore("fotos",{keyPath:"id",autoIncrement:true}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(req.error); });
+      return await new Promise((res)=>{ const t=bd.transaction("fotos","readonly"); const r=t.objectStore("fotos").getAll(); r.onsuccess=()=>res(r.result||[]); r.onerror=()=>res([]); });
+    }catch(e){ return []; }
+  }
+
+  document.getElementById("bk-exportar").addEventListener("click", async ()=>{
+    const pacote = {
+      app: "produto-skincare", versao: 1, exportadoEm: new Date().toISOString(),
+      rotina_tracker: ler("rotina_tracker") || {},
+      diario: await fotos()
+    };
+    const blob = new Blob([JSON.stringify(pacote)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "backup-produtoskincare-" + new Date().toISOString().slice(0,10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    status.textContent = "Backup downloaded. Keep the file somewhere safe.";
+  });
+
+  document.getElementById("bk-arquivo").addEventListener("change", async (ev)=>{
+    const arq = ev.target.files && ev.target.files[0];
+    if (!arq) return;
+    if (!confirm("Import this backup? The current browser's data will be replaced.")) { ev.target.value=""; return; }
+    try{
+      const pacote = JSON.parse(await arq.text());
+      if (!pacote || pacote.app !== "produto-skincare") throw new Error("file does not look like a backup from this site");
+      localStorage.setItem("rotina_tracker", JSON.stringify(pacote.rotina_tracker || {}));
+      const bd = await new Promise((res,rej)=>{ const req=indexedDB.open("ps_diario_site",1); req.onupgradeneeded=()=>{ if(!req.result.objectStoreNames.contains("fotos")) req.result.createObjectStore("fotos",{keyPath:"id",autoIncrement:true}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(req.error); });
+      await new Promise((res,rej)=>{
+        const tx=bd.transaction("fotos","readwrite");
+        const s=tx.objectStore("fotos");
+        const cl=s.clear();
+        cl.onsuccess=()=>{ (pacote.diario||[]).forEach(f=>s.add({ data:f.data, nota:f.nota||"", foto:f.foto, criadoEm:f.criadoEm||Date.now() })); };
+        tx.oncomplete=()=>res(); tx.onerror=()=>rej(tx.error);
+      });
+      status.style.color = "var(--verde)";
+      status.textContent = "Backup imported successfully.";
+      setTimeout(()=>location.reload(), 900);
+    }catch(e){
+      status.style.color = "var(--rosa)";
+      status.textContent = "Could not import: " + e.message;
+      ev.target.value = "";
+    }
+  });
+})();
+</script>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curated skincare for every skin type, with dated prices and links.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>skin type guides</li><li><strong>5</strong>skin conditions explained</li></ul>
+</div>
+<nav aria-label="Footer: Skin types"><p class="ps-rodape-titulo">Skin types</p><ul><li><a href="/pele/oleosa/">Oily skin</a></li><li><a href="/pele/seca/">Dry skin</a></li><li><a href="/pele/mista/">Combination skin</a></li><li><a href="/pele/normal/">Normal skin</a></li></ul></nav>
+<nav aria-label="Footer: Conditions"><p class="ps-rodape-titulo">Conditions</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosacea</a></li><li><a href="/condicoes/olheiras/">Dark circles</a></li><li><a href="/condicoes/desidratacao/">Dehydration</a></li><li><a href="/condicoes/">All conditions</a></li></ul></nav>
+<nav aria-label="Footer: Resources"><p class="ps-rodape-titulo">Resources</p><ul><li><a href="/provador/">Skin quiz</a></li><li><a href="/achados/">Finds</a></li><li><a href="/rotina-de-skincare/">Skincare routine</a></li><li><a href="/rotinas/">Routines by budget</a></li><li><a href="/ferramentas/comparar/">Compare products</a></li><li><a href="/ferramentas/ingredientes/">Check ingredients</a></li><li><a href="/ferramentas/ativos/">Actives guide</a></li><li><a href="/ferramentas/rotina/">Routine tracker</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredients</a></li><li><a href="/mais-vendidos/">Bestsellers</a></li><li><a href="/queridinhos-do-skincare/">World skincare favorites</a></li><li><a href="/produtos/">Products</a></li><li><a href="/ferramentas/reposicao/">Refill reminder</a></li><li><a href="/ferramentas/clima/">Today's UV index</a></li><li><a href="/pergunte/">Ask the AI</a></li><li><a href="/mercado-skincare-brasil/">Skincare market data</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Skincare Product (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contains affiliate links. Most guides are in Portuguese.</span><span class="ps-rodape-links"><a href="/sobre/">About</a><a href="/privacidade/">Privacy</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+</body>
+</html>

@@ -206,6 +206,37 @@ function resetarDia() {
 
 renderizar();
 </script>
+
+<section style="margin-top:28px">
+<h2 style="font-family:var(--fonte-display);font-size:1.5rem">Notas e reações</h2>
+<p class="ig-nota">Ardor, vermelhidão, melhora, textura — anote o que observar. As notas ficam neste aparelho e entram no <a href="/ferramentas/relatorio/">relatório para a consulta</a>.</p>
+<label for="nota-texto" class="ig-rotulo" style="display:block;margin-top:12px">Nova observação</label>
+<textarea id="nota-texto" maxlength="280" rows="3" style="width:100%;font:inherit;padding:10px 12px;border:1px solid var(--linha);border-radius:10px;background:var(--papel);color:var(--tinta)" placeholder="Ex.: usei o retinol ontem e a pele acordou levemente avermelhada."></textarea>
+<button class="btn" type="button" id="btn-nota" style="margin-top:10px">Registrar nota</button>
+<div id="notas-lista" style="margin-top:14px;display:grid;gap:10px"></div>
+</section>
+<script>
+(function(){
+  function dataHoje(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function fmt(iso){ return new Date(iso+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric"}); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function carregar(){ try { return JSON.parse(localStorage.getItem("rotina_notas")||"[]"); } catch(e){ return []; } }
+  function salvar(n){ localStorage.setItem("rotina_notas", JSON.stringify(n)); }
+  function render(){
+    const lista = document.getElementById("notas-lista");
+    const notas = carregar();
+    lista.innerHTML = notas.length ? notas.map((x,i)=>`<div style="border:1px solid var(--linha);border-radius:10px;padding:12px 14px;background:var(--papel)"><small style="color:var(--rosa);font-weight:700">${fmt(x.data)}</small><p style="margin:4px 0 6px">${esc(x.texto)}</p><button type="button" data-i="${i}" class="nota-x" style="background:none;border:none;text-decoration:underline;cursor:pointer;color:var(--suave);font:inherit;font-size:.85rem">Remover</button></div>`).join("") : '<p class="ig-nota">Nenhuma observação ainda. A primeira costuma ser a mais útil.</p>';
+    lista.querySelectorAll(".nota-x").forEach(b=>b.addEventListener("click",()=>{ const n=carregar(); n.splice(Number(b.dataset.i),1); salvar(n); render(); }));
+  }
+  document.getElementById("btn-nota").addEventListener("click",()=>{
+    const campo = document.getElementById("nota-texto");
+    const texto = campo.value.trim();
+    if (!texto) { campo.focus(); return; }
+    const n = carregar(); n.unshift({ data: dataHoje(), texto: texto }); salvar(n.slice(0,100)); campo.value=""; render();
+  });
+  render();
+})();
+</script>
 </main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">

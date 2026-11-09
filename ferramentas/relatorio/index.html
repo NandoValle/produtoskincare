@@ -32,6 +32,11 @@ h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
 </style>
 <link rel="stylesheet" href="/premium.css">
 <!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/relatorio/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/report/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/informe/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/relatorio/">
+
 <link rel="canonical" href="https://produtoskincare.com.br/ferramentas/relatorio/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Relatório para a consulta">
@@ -120,6 +125,8 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
       if (n) noites++;
     });
     const fotos = await fotosRecentes();
+    const notas = JSON.parse(localStorage.getItem("rotina_notas")||"[]");
+    const notasHTML = notas.length ? '<h2>Observações registradas</h2><ul>' + notas.map(n=>'<li><strong>'+fmt(n.data)+'</strong> — '+String(n.texto).replace(/&/g,"&amp;").replace(/</g,"&lt;')+'</li>').join("") + '</ul>' : '';
     const fotoHTML = fotos.length ? '<div class="rel-fotos">'+fotos.map(f=>'<img src="'+f.foto+'" alt="Registro de '+fmt(f.data)+'">').join("")+'</div><p class="ig-nota">Registros mais recentes do diário ('+fotos.map(f=>fmt(f.data)).join(" · ")+'). Fotos pessoais, sob luz não padronizada.</p>' : '<p class="ig-nota">Sem fotos no diário.</p>';
     document.getElementById("rel-folha").innerHTML = `
       <div>
@@ -144,6 +151,7 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
         ${fotoHTML}
       </div>
       <div>
+        ${notasHTML}
         <h2>Observações do profissional</h2>
         <div class="rel-branco"></div>
         <p class="ig-nota" style="margin-top:8px">Espaço em branco para anotações em consulta.</p>
