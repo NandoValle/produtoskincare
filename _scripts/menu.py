@@ -32,7 +32,8 @@ MAIS = [
     ("/ingredientes/", "Ingredientes", ("ingredientes",)),
     ("/ciencia/", "Ciência", ("ciencia",)),
     ("/ferramentas/ativos/", "Guia de ativos", ()),
-    ("/ferramentas/ingredientes/", "Ferramentas", ("ferramentas",)),
+    ("/ferramentas/", "Ferramentas", ("ferramentas",)),
+    ("/combina/", "Posso usar junto?", ("combina",)),
     ("/queridinhos-do-skincare/", "Queridinhos", ("queridinhos-do-skincare",)),
     ("/pergunte/", "Pergunte à IA", ("pergunte",)),
 ]
