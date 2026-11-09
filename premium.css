@@ -330,3 +330,198 @@ body:has(> .ps-topo) .btn-tema{top:100px}
 .ig-rel li{margin:0}
 .ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
 .ig-rel a:hover{border-color:var(--rosa)}
+
+/* Editorial refinement. Shared chrome; page compositions scoped to the home.
+   Existing local fonts and photography. Pill controls / 12px panels / 4px photos.
+   Design variance 7, motion 4, density 3. */
+.ps-header{min-height:80px;padding:14px 0;gap:24px}
+.ps-brand{font-size:18px;letter-spacing:-.7px;gap:11px}
+.ps-monogram{border-radius:50%;width:38px;height:38px;font-size:12px}
+.ps-navigation{gap:22px}
+.ps-nav{gap:24px}
+.ps-langs a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.ps-menu{border-radius:999px;padding:9px 16px;background:transparent}
+.ps-mais-panel{border-radius:12px;padding:10px;box-shadow:0 18px 50px #252b2a12}
+.ps-rodape{margin-top:64px;padding-top:64px}
+.ps-rodape-grid{grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.ps-rodape-marca{grid-row:span 2}
+.ps-rodape .ps-rodape-titulo{font-size:11px;letter-spacing:.12em}
+.ps-rodape nav a{font-size:13px;line-height:1.8}
+.ps-rodape .ps-brand{font-size:18px}
+
+/* The home is composed as a beauty journal: generous imagery, restrained rose. */
+.ps-home{--fundo:#fcfaf9;--papel:#fffdfc;--papel-2:#f2eeeb;--tinta:#302c2b;--tinta-2:#48413f;--suave:#655b58;--suave-2:#756965;--linha:#e6ded9;--linha-2:#c8b9b1;--rosa:#913c55;--rosa-2:#763047;--rosa-claro:#f5e9ec;background:var(--fundo)}
+.ps-home>.ps-shell{max-width:1360px;padding-inline:56px}
+.ps-home .ps-header{border-bottom:0}
+.ps-home .ps-hero{grid-template-columns:1fr 1fr;gap:0;padding:32px 0 0;align-items:stretch}
+.ps-hero-copy{align-self:center;padding:44px 36px 44px 0}
+.ps-home .ps-eyebrow{font-size:10px;font-weight:600;letter-spacing:.19em;margin:0 0 26px}
+.ps-home .ps-hero h1{font-size:clamp(52px,5.4vw,78px);line-height:1.04;letter-spacing:-.045em;max-width:none;margin:0 0 28px}
+.ps-home .ps-hero h1 span{display:block;margin:0}
+.ps-home .ps-hero p:not(.ps-eyebrow){font-size:15px;line-height:1.85;max-width:365px;margin:0 0 30px}
+.ps-home .ps-actions{display:flex;align-items:flex-start;flex-direction:column;gap:18px}
+.ps-home .ps-button{background:var(--rosa);color:#fff8fb;border:1px solid transparent;min-height:54px;font-size:13px;gap:28px;padding:14px 25px;white-space:nowrap;box-shadow:0 6px 16px #913c5510}
+.ps-home .ps-button:hover{background:var(--rosa-2);transform:translateY(-2px);box-shadow:0 10px 24px #913c5518}
+.ps-home .ps-button:active{transform:translateY(0)}
+.ps-home .ps-button span{font-size:20px;line-height:1}
+.ps-home .ps-text-link{font-size:13px;text-decoration-color:var(--linha-2);text-underline-offset:5px;min-height:28px}
+.ps-home .ps-text-link:hover{color:var(--rosa);text-decoration-color:var(--rosa)}
+.ps-home .ps-photo{position:relative;min-width:0}
+.ps-home .ps-photo-composition{padding:0;position:relative;height:100%}
+.ps-home .ps-photo .ps-portrait{height:570px;width:100%;object-fit:cover;object-position:center 35%;border-radius:4px}
+.ps-home .ps-photo figcaption{margin:14px 0 0;font-size:10px;letter-spacing:.01em}
+.ps-assurances{display:flex;justify-content:flex-start;gap:28px;flex-wrap:wrap;padding:24px 0;margin-top:18px;border-bottom:1px solid var(--linha);color:var(--suave);font-size:11px}
+.ps-assurances span+span{padding-left:28px;border-left:1px solid var(--linha-2)}
+.ps-home .ps-intro{display:block;text-align:center;border:0;padding:84px 0 34px}
+.ps-home .ps-intro h2{font-size:clamp(34px,3.4vw,48px);max-width:700px;margin:0 auto 22px;line-height:1.12}
+.ps-home .ps-intro p{font-size:14px;line-height:1.9;max-width:550px;margin:auto}
+.ps-home .ps-section{padding:58px 0}
+.ps-home .ps-section h2{font-size:clamp(34px,3.4vw,48px);line-height:1.1;letter-spacing:-.035em;margin-bottom:16px}
+.ps-home .ps-section-head{margin-bottom:32px;max-width:650px}
+.ps-home .ps-section-head p{font-size:14px;line-height:1.8;max-width:520px}
+.ps-home .ps-skin-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.ps-home .ps-skin{padding:0 0 18px;min-height:0;border:0;border-bottom:1px solid var(--linha);border-radius:0;background:transparent!important;overflow:visible;transition:transform .25s}
+.ps-home .ps-skin:hover{transform:translateY(-4px);border-color:var(--rosa)}
+.ps-home .ps-skin-visual{height:auto;aspect-ratio:1/.95;margin:0 0 24px;border-radius:4px;background-size:cover}
+.ps-home .ps-skin small{text-transform:none;letter-spacing:0;font-size:11px;color:var(--suave)}
+.ps-home .ps-skin h3{font-size:36px;line-height:1.2;margin:6px 0 10px}
+.ps-home .ps-skin p{font-size:13px;line-height:1.8;margin:0 0 24px;max-width:24ch}
+.ps-home .ps-skin .ps-card-link{font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;min-height:32px}
+.ps-home .ps-skin .ps-card-link span{font-size:20px;font-weight:400}
+.ps-home .ps-atalho{display:grid;grid-template-columns:.8fr 1.2fr;gap:0 64px;padding:48px;margin:40px 0;background:var(--rosa-claro);border-radius:12px;align-items:start}
+.ps-home .ps-atalho .ps-section-head{margin:8px 0 0}
+.ps-home .ps-atalho .ps-section-head h2{max-width:9ch;font-size:46px}
+.ps-home .ps-atalho .ps-section-head p{max-width:33ch;font-size:13px}
+.ps-home .ps-atalho-form{grid-template-columns:1fr 1fr;padding:0;border:0;background:transparent;gap:22px 18px;border-radius:0}
+.ps-home .ps-atalho-form label{font-size:12px;line-height:1.5;gap:8px}
+.ps-home .ps-atalho-form label small{font-size:11px}
+.ps-home .ps-atalho-form select{min-height:50px;padding:12px;border-radius:6px;border-color:var(--linha-2);font-size:13px}
+.ps-home .ps-atalho-form .ps-atalho-check{grid-column:1/-1;min-height:24px;font-size:12px}
+.ps-home .ps-atalho-form .ps-button{grid-column:1/-1;justify-self:stretch;justify-content:space-between}
+.ps-home .ps-atalho-nota{grid-column:2;font-size:11px;margin-top:18px;line-height:1.8}
+.ps-home .ps-journey-section{padding:60px 0}
+.ps-home .ps-journey{grid-template-columns:.8fr 1fr 1.1fr;gap:40px;align-items:center;padding:0;border:0;border-radius:0;background:transparent}
+.ps-journey-photo{width:100%;height:360px;object-fit:cover;border-radius:4px}
+.ps-home .ps-journey h2{font-size:42px}
+.ps-home .ps-journey p{font-size:13px;line-height:1.85}
+.ps-home .ps-steps{gap:26px}
+.ps-home .ps-step{grid-template-columns:28px 1fr;gap:16px}
+.ps-home .ps-step-num{font-family:var(--fonte-corpo);font-size:11px;padding-top:8px}
+.ps-home .ps-step h3{font-size:25px;margin:0 0 8px}
+.ps-home .ps-step p{font-size:12px}
+.ps-home .ps-tools{grid-template-columns:1fr 1fr;gap:24px}
+.ps-home .ps-tool{padding:36px;border:1px solid var(--linha);border-radius:12px;background:var(--papel);position:relative;transition:background .25s,border-color .25s}
+.ps-home .ps-tool:nth-child(2){background:var(--papel-2)}
+.ps-home .ps-tool h3{font-size:32px;max-width:360px}
+.ps-home .ps-tool p{font-size:13px;line-height:1.85;max-width:350px;margin:16px 0 30px}
+.ps-home .ps-tool span{font-size:12px}
+.ps-home .ps-tool:hover{border-color:var(--rosa);background:var(--rosa-claro)}
+.ps-home .ps-editorial{grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.ps-home .ps-story{overflow:visible}
+.ps-home .ps-story img{height:310px;object-position:center;border-radius:4px;margin-bottom:24px}
+.ps-home .ps-story:nth-child(2){padding-top:54px}
+.ps-home .ps-story:nth-child(2) img{height:256px;object-position:center}
+.ps-home .ps-story small{font-size:10px;letter-spacing:.12em}
+.ps-home .ps-story h3{font-size:33px;max-width:450px;line-height:1.15;margin:12px 0}
+.ps-home .ps-story p{font-size:12px;line-height:1.8}
+.ps-home .ps-note{font-size:11px;line-height:1.9;padding:28px 0 0;margin-top:20px;color:var(--suave)}
+.ps-home .ps-note .ps-byline{margin-bottom:14px}
+.ps-home .ps-rodape{--rodape-fundo:var(--papel-2);box-shadow:none;clip-path:none}
+
+@media(min-width:1041px){
+ .ps-home .ps-nav a,.ps-home .ps-mais-btn{font-size:12px}
+ .ps-home .ps-langs a{font-size:11px}
+ .ps-home .ps-header .ps-brand{font-size:17px}
+}
+@media(max-width:1200px){
+ .ps-home>.ps-shell{padding-inline:36px}
+ .ps-home .ps-hero h1{font-size:60px}
+ .ps-home .ps-photo .ps-portrait{height:520px}
+ .ps-home .ps-atalho{padding:36px;gap:0 36px}
+ .ps-home .ps-journey{gap:28px}
+ .ps-home .ps-journey h2{font-size:36px}
+}
+@media(max-width:1040px){
+ .ps-header{flex-wrap:wrap;gap:12px;padding-block:14px}
+ .ps-navigation{padding:16px 0;display:block}
+ .ps-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+ .ps-nav a{padding:12px 0;font-size:14px}
+ .ps-home .ps-hero h1{font-size:clamp(44px,5.5vw,58px)}
+ .ps-home .ps-photo .ps-portrait{height:500px}
+ .ps-hero-copy{padding-right:24px}
+ .ps-home .ps-button{gap:16px;padding-inline:20px;font-size:12px}
+ .ps-home .ps-skin-grid{gap:18px}
+ .ps-home .ps-skin small{font-size:10px}
+ .ps-home .ps-journey{grid-template-columns:.8fr 1.2fr}
+ .ps-journey-photo{grid-row:span 2;height:440px}
+ .ps-home .ps-steps{grid-column:2}
+ .ps-rodape-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+ .ps-rodape-marca{grid-column:1/-1;grid-row:auto}
+}
+@media(max-width:767px){
+ .ps-home>.ps-shell{padding-inline:22px}
+ .ps-home .ps-hero{grid-template-columns:1fr;padding:8px 0 0;gap:28px}
+ .ps-hero-copy{padding:26px 0 0}
+ .ps-home .ps-eyebrow{font-size:9px;letter-spacing:.16em;margin-bottom:20px}
+ .ps-home .ps-hero h1{font-size:clamp(46px,8.2vw,62px);margin-bottom:20px;line-height:1.04}
+ .ps-home .ps-hero p:not(.ps-eyebrow){font-size:14px;line-height:1.8;max-width:390px;margin-bottom:24px}
+ .ps-home .ps-actions{gap:15px}
+ .ps-home .ps-button{font-size:12px;min-height:52px;padding:14px 22px;gap:22px}
+ .ps-home .ps-photo .ps-portrait{height:440px;object-position:center 32%}
+ .ps-home .ps-photo figcaption{font-size:9px;margin-top:12px}
+ .ps-assurances{gap:12px 20px;font-size:10px;padding:22px 0;margin-top:4px}
+ .ps-assurances span+span{padding-left:0;border:0}
+ .ps-home .ps-intro{padding:54px 0 18px}
+ .ps-home .ps-intro h2{font-size:34px}
+ .ps-home .ps-intro p{font-size:13px}
+ .ps-home .ps-section{padding:36px 0}
+ .ps-home .ps-section h2{font-size:36px}
+ .ps-home .ps-section-head p{font-size:13px}
+ .ps-home .ps-skin-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}
+ .ps-home .ps-skin-visual{aspect-ratio:1/1.05;margin-bottom:16px}
+ .ps-home .ps-skin h3{font-size:30px}
+ .ps-home .ps-skin p{font-size:12px;margin-bottom:16px}
+ .ps-home .ps-skin small{font-size:9px}
+ .ps-home .ps-skin .ps-card-link{font-size:11px}
+ .ps-home .ps-atalho{display:block;padding:28px 22px;margin:24px 0}
+ .ps-home .ps-atalho .ps-section-head{margin:0 0 28px}
+ .ps-home .ps-atalho .ps-section-head h2{max-width:none;font-size:36px}
+ .ps-home .ps-atalho .ps-section-head p{max-width:none}
+ .ps-home .ps-atalho-nota{font-size:11px;margin-top:16px}
+ .ps-home .ps-journey{grid-template-columns:1fr;gap:26px}
+ .ps-journey-photo{height:300px;grid-row:auto;object-position:center 45%}
+ .ps-home .ps-steps{grid-column:1;gap:24px;margin-top:10px}
+ .ps-home .ps-journey h2{max-width:380px}
+ .ps-home .ps-journey p{max-width:390px}
+ .ps-home .ps-tools{grid-template-columns:1fr;gap:16px}
+ .ps-home .ps-tool{padding:28px}
+ .ps-home .ps-editorial{grid-template-columns:1fr;gap:34px}
+ .ps-home .ps-story:nth-child(2){padding:0}
+ .ps-home .ps-story img,.ps-home .ps-story:nth-child(2) img{height:240px}
+ .ps-home .ps-story h3{font-size:30px}
+ .ps-home .ps-note{margin-top:16px;font-size:11px}
+ .ps-rodape{margin-top:40px;padding:40px 0 24px}
+ .ps-rodape-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ .ps-home .ps-atalho-form{grid-template-columns:1fr}
+ .ps-rodape-grid{grid-template-columns:1fr;gap:0}
+ .ps-home .ps-photo .ps-portrait{height:400px}
+}
+@media(max-width:360px){
+ .ps-home>.ps-shell{padding-inline:18px}
+ .ps-home .ps-hero h1{font-size:44px}
+ .ps-home .ps-button{padding-inline:17px;gap:12px;font-size:11px}
+ .ps-home .ps-skin-grid{gap:22px 14px}
+ .ps-home .ps-skin small{font-size:9px;line-height:1.6}
+ .ps-home .ps-atalho{padding:24px 18px}
+}
+@media(prefers-color-scheme:dark){
+ .ps-home{--fundo:#211d1e;--papel:#292425;--papel-2:#302a2c;--tinta:#f2eae7;--tinta-2:#e0d3ce;--suave:#c4b4af;--suave-2:#b6a6a1;--linha:#493d41;--linha-2:#766169;--rosa:#eeb0c0;--rosa-2:#f4c5d0;--rosa-claro:#35282e}
+ .ps-home .ps-button{color:#302026;box-shadow:none}
+}
+@media(prefers-reduced-motion:no-preference){
+ .ps-hero-copy{animation:ps-atelier-enter .65s ease-out both}
+ .ps-home .ps-photo{animation:ps-atelier-enter .85s ease-out both}
+ @keyframes ps-atelier-enter{from{opacity:.4;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+}
