@@ -20,8 +20,11 @@
     // Newsletter: preencha UM dos dois.
     // 1) newsletter_form: endereço "action" do formulário de inscrição do seu serviço
     //    (Buttondown, Brevo, Mailchimp, MailerLite…). O e-mail vai direto para o serviço.
+    //    Buttondown: "https://buttondown.com/api/emails/embed-subscribe/SEU-USUARIO"
     newsletter_form: "",
     newsletter_campo: "email",  // nome do campo de e-mail que o serviço espera
+    // Campos ocultos que o serviço pede junto com o e-mail. O Buttondown pede { embed: "1" }.
+    newsletter_ocultos: { embed: "1" },
     // 2) newsletter_link: link de inscrição (Substack, canal do WhatsApp, canal do Telegram).
     newsletter_link: "",
     newsletter_servico: "",     // nome do serviço, para o aviso de privacidade. Ex.: "Buttondown"
@@ -119,6 +122,10 @@
       lbl.style.flexBasis = "100%";
       f.appendChild(lbl);
       f.appendChild(el("input", { id: id, type: "email", name: CANAIS.newsletter_campo || "email", required: "", autocomplete: "email", placeholder: "voce@exemplo.com" }));
+      var ocultos = CANAIS.newsletter_ocultos || {};
+      Object.keys(ocultos).forEach(function (k) {
+        f.appendChild(el("input", { type: "hidden", name: k, value: String(ocultos[k]) }));
+      });
       f.appendChild(el("button", { type: "submit", "class": "psc-btn" }, "Quero receber"));
       f.addEventListener("submit", function () { contar("newsletter/inscricao"); });
       caixa.appendChild(f);
