@@ -127,6 +127,13 @@ input[type=text],select{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <p class="ig-nota" id="ec-exporta-nota">O botão gera o resumo aqui mesmo; nada sobe sozinho. Enquanto o canal de envio automático não abre, copie o texto e mande pelo <a href="/contato/">contato</a>.</p>
 </div>
 
+<h2>Painel da coorte</h2>
+<div class="card">
+<p class="ig-rotulo">Rumo ao boletim</p>
+<p id="ec-coorte" style="font-family:var(--fonte-display);font-size:2.2rem;font-weight:300;line-height:1;margin:.15em 0">— / 300 resumos</p>
+<p class="ig-nota" id="ec-coorte-nota">A contagem sobe quando os resumos anônimos chegarem pelo canal de envio. Cada resumo é um vetor de números — a coorte de pessoas pode ser maior, porque enviar é opcional.</p>
+</div>
+
 <h2>O boletim do EC01</h2>
 <div class="card">
 <p class="ig-rotulo">Em campo</p>
@@ -315,6 +322,13 @@ input[type=text],select{font:inherit;min-height:44px;padding:8px 12px;border:1px
 
   montarEscalas();
   render();
+
+  fetch("/api/ec01/stats").then(r => r.ok ? r.json() : null).then(j => {
+    if (j && typeof j.resumos_recebidos === "number") {
+      document.getElementById("ec-coorte").textContent = j.resumos_recebidos + " / 300 resumos";
+      document.getElementById("ec-coorte-nota").textContent = "Cada resumo é um vetor anônimo — a coorte de pessoas pode ser maior, porque enviar é opcional. Método v1.0, em campo.";
+    }
+  }).catch(function () {});
 })();
 </script>
 <footer class="ps-rodape">
