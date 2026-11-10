@@ -120,9 +120,9 @@
       type: "object",
       properties: {
         termo: { type: "string", maxLength: 80, description: "Texto livre: nome, marca ou ativo (ex.: \"vitamina C\", \"CeraVe\"). Opcional." },
-        tipo_pele: { type: "string", enum: TIPOS_BUSCA, description: "Tipo de pele: oleosa, seca, mista, normal ou sensivel. Opcional." },
-        preocupacao: { type: "string", enum: PREOCUPACOES, description: "Preocupação: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Opcional." },
-        passo: { type: "string", enum: PASSOS, description: "Passo da rotina: limpeza, tratamento, hidratacao ou protetor (protetor solar). Opcional." },
+        tipo_pele: { type: "string", enum: ["oleosa", "seca", "mista", "normal", "sensivel"], description: "Tipo de pele: oleosa, seca, mista, normal ou sensivel. Opcional." },
+        preocupacao: { type: "string", enum: ["acne", "manchas", "poros", "idade", "desidratacao"], description: "Preocupação: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Opcional." },
+        passo: { type: "string", enum: ["limpeza", "tratamento", "hidratacao", "protetor"], description: "Passo da rotina: limpeza, tratamento, hidratacao ou protetor (protetor solar). Opcional." },
         preco_max: { type: "number", minimum: 1, description: "Preço máximo por produto, em reais. Opcional." },
         limite: { type: "integer", minimum: 1, maximum: 10, default: 5, description: "Quantos produtos devolver (1 a 10, padrão 5)." }
       },
@@ -172,7 +172,7 @@
     inputSchema: {
       type: "object",
       properties: {
-        tipo_pele: { type: "string", enum: TIPOS, description: "Tipo de pele: oleosa, seca, mista ou normal." }
+        tipo_pele: { type: "string", enum: ["oleosa", "seca", "mista", "normal"], description: "Tipo de pele: oleosa, seca, mista ou normal." }
       },
       required: ["tipo_pele"],
       additionalProperties: false
@@ -203,8 +203,8 @@
     inputSchema: {
       type: "object",
       properties: {
-        condicao: { type: "string", enum: CONDICOES, description: "Condição: acne, anti-age (sinais de idade), melasma ou rosacea." },
-        faixa: { type: "string", enum: FAIXAS, default: "economica", description: "Faixa de preço: economica, media (intermediária) ou premium. Padrão: economica." }
+        condicao: { type: "string", enum: ["acne", "anti-age", "melasma", "rosacea"], description: "Condição: acne, anti-age (sinais de idade), melasma ou rosacea." },
+        faixa: { type: "string", enum: ["economica", "media", "premium"], default: "economica", description: "Faixa de preço: economica, media (intermediária) ou premium. Padrão: economica." }
       },
       required: ["condicao"],
       additionalProperties: false
