@@ -208,8 +208,19 @@ def product(page, path, canonical):
                     amount = None
                 if amount is not None and amount > 0:
                     offer = {"@type": "Offer", "price": format(amount, ".2f"), "priceCurrency": "BRL"}
+                    # The publisher refers buyers to another store. Preserve the
+                    # visible price date/conditions without claiming a seller,
+                    # stock, price expiry, or an aggregate of unknown offers.
+                    notes = [clean(n.text()) for n in purchase.find(
+                        lambda n: n.has_class("ig-nota") and n.visible())]
+                    if any(notes):
+                        offer["description"] = " ".join(note for note in notes if note)
                     destination = urljoin(canonical, link.attrs.get("href", ""))
-                    if urlsplit(destination).scheme in {"http", "https"} and not re.search(r"/search|/s\?|lista\.mercadolivre", destination):
+                    target, origin = urlsplit(destination), urlsplit(canonical)
+                    host, site_host = (target.hostname or "").rstrip("."), (origin.hostname or "").rstrip(".")
+                    if (target.scheme in {"http", "https"} and host
+                            and host != site_host and not host.endswith("." + site_host)
+                            and not re.search(r"/search|/s\?|lista\.mercadolivre", destination)):
                         offer["url"] = destination
                     item["offers"] = offer
     return item

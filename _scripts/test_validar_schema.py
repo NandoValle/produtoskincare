@@ -148,6 +148,29 @@ class SchemaValidationTests(unittest.TestCase):
         self.write_page(self.product(), self.product_body())
         self.assertEqual(self.run_audit()["errors"], [])
 
+    def test_accepts_offer_description_from_visible_notes(self):
+        data = self.product()
+        price_note = "Na loja, em 02/11/2026. Preço muda: vale o mostrado na loja na hora da compra."
+        affiliate_note = "Link de afiliado: posso receber comissão, sem custo extra."
+        data["offers"]["description"] = price_note + " " + affiliate_note
+        body = self.product_body() + '<div class="pd-compra"><p class="ig-nota">' + price_note + '</p><a href="https://loja.example/produto">Ver na loja</a><p class="ig-nota">' + affiliate_note + '</p></div>'
+        self.write_page(data, body)
+        self.assertEqual(self.run_audit()["errors"], [])
+
+    def test_rejects_invented_offer_description_even_if_hidden(self):
+        data = self.product()
+        data["offers"]["description"] = "Frete grátis e devolução garantida em 30 dias."
+        self.write_page(data, self.product_body() + '<p hidden>' + data["offers"]["description"] + '</p>')
+        self.assertIn("VISIBLE_OFFER_DESCRIPTION", self.codes())
+
+    def test_rejects_own_site_as_offer_destination(self):
+        for destination in (SITE + "/", SITE.replace("://", "://www.") + "/", SITE.replace("://", "://checkout.") + "/"):
+            with self.subTest(destination=destination):
+                data = self.product()
+                data["offers"]["url"] = destination
+                self.write_page(data, self.product_body().replace("https://loja.example/produto", destination))
+                self.assertIn("EXTERNAL_OFFER_URL", self.codes())
+
     def test_rejects_price_different_from_body(self):
         data = self.product()
         data["offers"]["price"] = "9.90"

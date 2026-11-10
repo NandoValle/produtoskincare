@@ -73,6 +73,25 @@ class SchemaFactsTests(unittest.TestCase):
         self.assertNotIn("offers", item)
         self.assertNotIn("brand", item)
 
+    def test_affiliate_price_keeps_visible_conditions_without_inferred_commerce(self):
+        terms = "Na loja, em 02/11/2026. Preço muda: vale o mostrado na loja na hora da compra."
+        affiliate = "Link de afiliado: posso receber comissão, sem custo extra."
+        body = f'<h1>Gel real</h1><div class="pd-compra"><p class="pd-preco">R$ 96,90</p><p class="ig-nota">{terms}</p><a rel="sponsored" href="https://loja.example/produto">Ver na loja</a><p class="ig-nota">{affiliate}</p><p class="ig-nota" hidden>Frete grátis e estoque garantido.</p></div>'
+        item = self.one(self.graph(body, path="/produtos/gel/", article=False), "Product")
+        self.assertEqual(item["offers"], {
+            "@type": "Offer", "price": "96.90", "priceCurrency": "BRL",
+            "description": terms + " " + affiliate, "url": "https://loja.example/produto"})
+        self.assertFalse({"review", "aggregateRating", "image"} & item.keys())
+
+    def test_search_and_internal_links_are_not_claimed_as_purchase_urls(self):
+        for href in ["https://www.amazon.com.br/s?k=gel", "https://shopee.com.br/search?keyword=gel",
+                     "https://lista.mercadolivre.com.br/gel", "/produtos/gel/",
+                     SITE.replace("://", "://www.") + "/", SITE.replace("://", "://checkout.") + "/"]:
+            with self.subTest(href=href):
+                body = f'<h1>Gel real</h1><div class="pd-compra"><p class="pd-preco">R$ 49,90</p><a rel="sponsored" href="{href}">Conferir na loja</a></div>'
+                offer = self.one(self.graph(body, path="/produtos/gel/", article=False), "Product")["offers"]
+                self.assertEqual(offer, {"@type": "Offer", "price": "49.90", "priceCurrency": "BRL"})
+
     def test_existing_article_is_not_duplicated(self):
         existing = {"@context": "https://schema.org", "@type": ["Article", "CreativeWork"], "@id": SITE + "/blog/teste/#artigo", "headline": "Artigo existente"}
         graph = self.graph('<h1>Artigo existente</h1>', head='<script type="application/ld+json">' + json.dumps(existing) + '</script>')

@@ -506,9 +506,18 @@ class Audit:
                 except InvalidOperation:
                     value = None
                 self.check(value in prices and offer.get("priceCurrency") == "BRL", "VISIBLE_PRODUCT_PRICE", doc, location + ".offers", "Offer price/currency differs from visible pd-preco in BRL")
+                if "description" in offer:
+                    description = offer["description"]
+                    # Purchase buttons can separate the visible paragraphs used in a description.
+                    paragraphs = " ".join(norm(p.text()) for p in doc.body.all("p") if p.visible())
+                    supported = isinstance(description, str) and bool(words(description)) and (doc.facts_contain(description) or words(description) in words(paragraphs))
+                    self.check(supported, "VISIBLE_OFFER_DESCRIPTION", doc, location + ".offers.description", "Offer description is not supported by visible content")
                 if offer.get("url"):
                     self.check(comparable_url(offer["url"]) in {comparable_url(x) for x in doc.anchors}, "VISIBLE_OFFER_URL", doc, location + ".offers.url", "Offer URL is not a visible purchase link")
                     self.check(not re.search(r"/search|/s\?|lista\.mercadolivre", offer["url"]), "DIRECT_OFFER_URL", doc, location + ".offers.url", "A search-results URL is not a specific product offer")
+                    host = (urlsplit(offer["url"]).hostname or "").rstrip(".")
+                    site_host = (urlsplit(self.site).hostname or "").rstrip(".")
+                    self.check(host != site_host and not host.endswith("." + site_host), "EXTERNAL_OFFER_URL", doc, location + ".offers.url", "Affiliate site has no checkout; Offer URL must point to an external merchant")
                 if offer.get("seller"):
                     seller = self.resolved(offer["seller"])
                     seller_name = seller.get("name", "") if isinstance(seller, dict) else str(seller)
