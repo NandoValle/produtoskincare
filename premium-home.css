@@ -40,6 +40,8 @@ button, a, summary, select { transition: color 350ms, background-color 350ms, bo
 .ps-nav { display: flex; align-items: center; gap: 28px; }
 .ps-nav > a { padding-block: 14px; position: relative; }
 .ps-nav a, .ps-langs a, .ps-mais-btn { font-size: 11px; text-decoration: none; color: var(--muted); letter-spacing: .035em; }
+/* Menu legivel no desktop (brief de 06/11/2026: pelo menos 15 px); cabe numa linha de 1041 px para cima. */
+.ps-nav a, .ps-mais-btn { font-size: 15px; letter-spacing: 0; }
 .ps-nav > a::after { content: ''; position: absolute; height: 1px; left: 0; right: 0; bottom: 8px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 350ms var(--ease); }
 .ps-nav > a:is(:hover,:focus-visible)::after { transform: scaleX(1); }
 .ps-nav a:hover, .ps-langs a:hover { color: var(--gold); }
