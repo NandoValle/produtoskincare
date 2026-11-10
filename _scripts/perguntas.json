@@ -1,0 +1,1517 @@
+{
+ "_leia": "Perguntas frequentes de cada página, aplicadas por _scripts/prontidao.py. Cada resposta resume o que a própria página já diz, sem preço, dose nova ou promessa. Ao mudar uma página, revise as respostas dela aqui e rode: python3 _scripts/prontidao.py",
+ "/achados/": [
+  [
+   "O que é a página Achados de beleza do TikTok Shop?",
+   "Achados é uma página com produtos de beleza e skincare do TikTok Shop, escolhidos a dedo, com preço datado e link direto para a loja. Entre os itens há séruns com peptídeo de cobre, limpeza facial, protetores e produtos para cabelo."
+  ],
+  [
+   "O que a página de achados diz sobre o Sérum Repair GHK-Cu FortSkin?",
+   "A página descreve o Sérum Repair GHK-Cu FortSkin como um sérum facial com peptídeo de cobre, ácido hialurônico, niacinamida e pantenol, e informa que o mesmo produto é vendido por várias lojas no TikTok Shop."
+  ]
+ ],
+ "/blog/": [
+  [
+   "Quais assuntos o blog do Produto Skincare cobre?",
+   "O blog traz artigos sobre tipos de pele, retinol, vitamina C e protetor solar, notícias do setor e a série Mito x regra sobre rótulos. Há também guias para pele oleosa, pele negra, skincare masculino e adolescentes."
+  ],
+  [
+   "O que o blog tem sobre como identificar o tipo de pele?",
+   "O blog tem um guia completo para identificar se a pele é oleosa, seca ou mista, com sinais, testes caseiros e como diferenciar os tipos de pele."
+  ]
+ ],
+ "/blog/anvisa-cosmetovigilancia-notificacoes-130-2026/": [
+  [
+   "O que é a RDC 894/2024 da Anvisa sobre cosmetovigilância?",
+   "A RDC 894/2024 é a norma que estabeleceu as Boas Práticas de Cosmetovigilância no Brasil, ou seja, o acompanhamento da segurança de cosméticos, produtos de higiene pessoal e perfumes depois que eles chegam às prateleiras."
+  ],
+  [
+   "Por que as notificações de cosméticos na Anvisa subiram 130%?",
+   "Entre agosto de 2025 e julho de 2026 o Notivisa recebeu 592 notificações, contra 257 no período anterior. Segundo a Anvisa, isso indica vigilância mais forte, sobretudo das empresas, e não necessariamente mais problemas nos produtos."
+  ]
+ ],
+ "/blog/esteroides-nao-declarados-cremes-jama/": [
+  [
+   "O que é clobetasol e por que apareceu em cremes sem constar no rótulo?",
+   "O clobetasol é um dos corticoides de uso na pele mais potentes que existem, um medicamento e não um cosmético. No estudo da JAMA Network Open, 6 de 18 cremes vendidos online continham clobetasol que não aparecia no rótulo."
+  ],
+  [
+   "O estudo da JAMA testou cremes vendidos no Brasil?",
+   "Não. Os produtos foram comprados nos EUA e o estudo não testou produtos vendidos no Brasil. Foram também só 18 produtos escolhidos por critérios específicos, então o resultado não representa todo o mercado."
+  ]
+ ],
+ "/blog/experimento-coletivo-01/": [
+  [
+   "O que é o Experimento Coletivo #01 do Produto Skincare?",
+   "É um experimento N=1 em rede: cada participante segue o mesmo protocolo por 35 dias, sendo 7 de linha de base e 28 trocando só o protetor solar, com um registro semanal de seis escalas de 1 a 5. A meta são 300 pessoas."
+  ],
+  [
+   "Qual protetor solar o Experimento Coletivo #01 usa e o resultado sai de qualquer jeito?",
+   "O produto é o ISDIN Fusion Water 5 Stars Sem Cor FPS 60, escolhido porque a alegação dele é literal (sem cor). O boletim final é publicado independente do resultado, e este primeiro experimento não tem patrocínio nenhum."
+  ]
+ ],
+ "/blog/mito-x-regra-ardencia-nao-e-eficacia/": [
+  [
+   "Ardência é sinal de que o produto de skincare está funcionando?",
+   "Não. Arder não prova eficácia, prova irritação. Se arde, a pele está pedindo para parar, e a eficácia de um cosmético se prova em semanas, com estudo e no espelho, não com dor no minuto seguinte."
+  ],
+  [
+   "O que é a barreira cutânea?",
+   "A barreira cutânea é a camada externa da pele, que segura água e impede a entrada de irritantes. Quando ela se compromete, a pele fica sensível, avermelhada e reativa."
+  ]
+ ],
+ "/blog/mito-x-regra-resistente-agua/": [
+  [
+   "Protetor solar resistente à água precisa ser reaplicado?",
+   "Sim. Pela RDC 629/2022, todo protetor solar traz a advertência de reaplicar, sobretudo após sudorese intensa, nadar ou banhar-se. Resistente à água é uma característica comprovada do produto, não uma licença para passar uma vez só."
+  ],
+  [
+   "O que é preciso para um protetor dizer resistente à água no rótulo?",
+   "A expressão só pode constar da embalagem se o fabricante comprovar o desempenho por metodologia aceita, conforme o art. 13 da RDC 629/2022. A resistência à água é uma promessa com prova."
+  ]
+ ],
+ "/blog/mito-x-regra-sunblock-100/": [
+  [
+   "Por que não existe sunblock nem 100% de proteção no rótulo brasileiro?",
+   "A RDC 629/2022 (art. 14) proíbe prometer 100% de proteção contra a radiação UV e usar denominações de bloqueio total, como sunblock. Toda proteção é parcial, e por isso é preciso reaplicar o protetor."
+  ],
+  [
+   "Quais são as categorias de proteção do protetor solar pelo FPS?",
+   "A escala DCP vai de baixa (FPS 6 a 14,9), média (15 a 29,9) e alta (30 a 50) até muito alta (acima de 50 e abaixo de 100). O FPUVA precisa ser de pelo menos um terço do FPS e o comprimento de onda crítico, de no mínimo 370 nm."
+  ]
+ ],
+ "/blog/ozempic-face-gigantes-da-beleza/": [
+  [
+   "O que é o Ozempic face?",
+   "É um apelido popular, não um diagnóstico. Descreve o rosto mais fino, flácido ou com aspecto cansado depois de um emagrecimento rápido, e especialistas citados ligam a perda de volume ao emagrecimento em si, não ao remédio."
+  ],
+  [
+   "Creme resolve a perda de volume no rosto de quem usa canetas emagrecedoras?",
+   "Segundo especialistas ouvidos pela Reuters, a perda acontece na camada de gordura abaixo da pele e não há evidência de que cremes cheguem até lá. Por isso, injetáveis tendem a funcionar melhor que cremes para esse problema."
+  ]
+ ],
+ "/blog/pele-tem-sexo-estudo-nature/": [
+  [
+   "O estudo da Nature mostrou que a pele de machos e fêmeas se renova do mesmo jeito?",
+   "Não. Em camundongos vivos, pesquisadores da ULB viram que nas fêmeas as células-tronco da pele trabalham de forma muito sincronizada, e nos machos o ritmo é menos coordenado. As feridas das fêmeas fecharam mais rápido nos primeiros dias."
+  ],
+  [
+   "O que muda na rotina de skincare com o estudo da Nature sobre a pele?",
+   "Nada por enquanto, porque é pesquisa básica em camundongos e ainda não existe produto ou ativo baseado na descoberta. O que já tem comprovação continua valendo: protetor solar todo dia, hidratação e uma rotina adequada ao tipo de pele."
+  ]
+ ],
+ "/blog/revisao-antioxidantes-topicos-fotoenvelhecimento-2026/": [
+  [
+   "O que a revisão de 2026 encontrou sobre vitamina C e niacinamida no fotoenvelhecimento?",
+   "A revisão reuniu 23 estudos clínicos e, segundo os autores, vitamina C, vitamina E, ácido ferúlico, niacinamida, bakuchiol e antioxidantes vegetais melhoraram rugas, pigmentação, hidratação e elasticidade. Séruns combinando vitamina C, E e ácido ferúlico tiveram eficácia reforçada."
+  ],
+  [
+   "Quais são os limites da revisão sobre antioxidantes tópicos?",
+   "Os autores alertam para a heterogeneidade entre os estudos (formulações, concentrações e duração), que limita comparações diretas e pede mais ensaios padronizados e de longo prazo. O antioxidante é um apoio e não substitui o protetor solar."
+  ]
+ ],
+ "/blog/skincare-brasileiro-biodiversidade-identidade-2026/": [
+  [
+   "Qual o lugar do Brasil no consumo de beleza segundo a Vogue?",
+   "Segundo a Vogue, que cita dados da ABIHPEC, o Brasil é o terceiro maior consumidor de produtos de beleza e cuidados pessoais do mundo e o quarto em lançamentos."
+  ],
+  [
+   "Que ingredientes da flora brasileira aparecem no skincare nacional?",
+   "A reportagem cita jambu, pracaxi, murumuru, cupuaçu e andiroba como exemplos de ativos que buscam performance, sensorialidade e rastreabilidade. A página lembra que conhecer o tipo de pele importa mais que correr atrás de cada lançamento."
+  ]
+ ],
+ "/blog/unilever-foco-beleza-economia-1-bilhao/": [
+  [
+   "O que a Unilever anunciou em novembro de 2026?",
+   "Segundo a Reuters, a Unilever anunciou em 3 de novembro de 2026 um corte de 1 bilhão de euros em custos até o fim de 2029 e a concentração do negócio em cuidados pessoais, beleza e limpeza da casa, depois de se separar da área de alimentos."
+  ],
+  [
+   "O anúncio da Unilever muda os produtos de beleza nas prateleiras?",
+   "Por enquanto, não. A mudança é na estrutura da empresa e vai até 2029, e o anúncio não fala em mudança de fórmula de nenhum produto. Marca grande não é sinônimo de produto certo para a sua pele."
+  ]
+ ],
+ "/ciencia/": [
+  [
+   "O que é o hub científico do Produto Skincare?",
+   "O hub científico é um conjunto de fichas de ativos e leituras de estudos sobre cosmetologia e dermatologia. Cada texto mostra o que foi testado, em quantas pessoas, por quanto tempo, os limites do estudo e o link do artigo original."
+  ],
+  [
+   "Quais ativos o hub científico já explica?",
+   "Há fichas sobre ácido tranexâmico, niacinamida, bakuchiol e sobre clascoterona e trifaroteno para acne. Estão em preparação ácido azelaico na rosácea, protetores com filtro de luz visível no melasma e cisteamina."
+  ]
+ ],
+ "/ciencia/acido-tranexamico-melasma/": [
+  [
+   "O ácido tranexâmico funciona no melasma segundo os estudos?",
+   "A evidência é moderada a alta, mais forte para a via oral, que é de receita e exige médico. Em ensaio com placebo, o tratamento oral por 3 meses reduziu o mMASI em 49%, contra 18% no placebo. A via tópica é promissora, com estudos menores."
+  ],
+  [
+   "O ácido tranexâmico tópico é bem tolerado?",
+   "Numa metanálise, o tópico teve eficácia comparável à da hidroquinona e a menor taxa de irritação entre os agentes avaliados (0,8%). A via oral exige médico, que avalia contraindicações como histórico de trombose."
+  ]
+ ],
+ "/ciencia/bakuchiol-vs-retinol/": [
+  [
+   "Bakuchiol é igual ao retinol?",
+   "Ainda não dá para afirmar. O único ensaio localizado, com 44 pessoas em 12 semanas, não achou diferença estatística entre bakuchiol 0,5% e retinol 0,5%, mas não teve grupo placebo e a evidência é limitada."
+  ],
+  [
+   "O que é bakuchiol e ele irrita menos que o retinol?",
+   "O bakuchiol é vendido como retinol vegetal. No estudo, quem usou retinol relatou mais descamação e ardência, e os autores o consideram mais bem tolerado, mas é um ensaio pequeno e de curta duração."
+  ]
+ ],
+ "/ciencia/metodologia/": [
+  [
+   "Como o hub científico escolhe e confere os estudos?",
+   "Toda referência é conferida no PubMed antes da publicação, com título, autores, revista, ano, DOI e PMID. Se o estudo não é encontrado, ele não é citado. Os números vêm dos resumos indexados, então vale ler o artigo completo."
+  ],
+  [
+   "Como o hub classifica o nível de evidência: alta, moderada ou limitada?",
+   "O selo é um julgamento editorial inspirado no GRADE, não uma avaliação GRADE formal. Alta: ensaios de fase 3 ou metanálises consistentes; moderada: ensaios menores; limitada: um único ensaio pequeno ou evidência in vitro."
+  ]
+ ],
+ "/ciencia/niacinamida-pigmentacao/": [
+  [
+   "Como a niacinamida age nas manchas?",
+   "No estudo de Hakozaki, ela não alterou a tirosinase nem a produção de melanina em células cultivadas, mas inibiu de 35% a 68% a transferência de melanossomos para os queratinócitos em cocultura."
+  ],
+  [
+   "O efeito da niacinamida nas manchas é permanente?",
+   "Não. A inibição da transferência de pigmento é reversível: em cocultura, volta ao normal cerca de 3 dias após a retirada. Por isso o uso precisa ser contínuo para manter o resultado. A evidência é moderada."
+  ]
+ ],
+ "/ciencia/novos-ativos-acne/": [
+  [
+   "O que é clascoterona e como ela age na acne?",
+   "A clascoterona 1% é um inibidor tópico do receptor de andrógeno. Em dois ensaios de fase 3 com 1.440 pacientes, o sucesso foi de 18,4% e 20,3% contra 9,0% e 6,5% no veículo, em 12 semanas."
+  ],
+  [
+   "O que é trifaroteno e para que foi estudado?",
+   "O trifaroteno 50 µg/g é um retinoide tópico de nova geração, testado em ensaios de fase 3 contra veículo na acne moderada de face e tronco. Foi superior ao veículo, mas os dados de longo prazo não estão nos artigos."
+  ]
+ ],
+ "/combina/": [
+  [
+   "Onde vejo se posso usar dois ativos de skincare juntos?",
+   "Esta página reúne as combinações de ativos, cada uma com a resposta, o motivo e como encaixar na rotina. Se a sua combinação não estiver aqui, monte no verificador de ingredientes ou cadastre seus produtos na prateleira."
+  ],
+  [
+   "O que significam as respostas das combinações de ativos?",
+   "A resposta de cada combinação é uma de três: pode usar junto, use em horários diferentes ou não combine, e há um grupo para pele irritada. Pares sem regra cadastrada não aparecem, porque não sabemos a resposta."
+  ]
+ ],
+ "/combina/acido-azelaico-com-acido-hialuronico/": [
+  [
+   "Como encaixar ácido azelaico e ácido hialurônico na mesma rotina?",
+   "Os dois podem entrar na mesma rotina, inclusive na mesma aplicação. O ácido hialurônico é um hidratante que ajuda a pele a tolerar outros ativos, como o ácido azelaico. Comece um ativo novo por vez."
+  ],
+  [
+   "Ácido azelaico com ácido hialurônico vale para pele sensível?",
+   "Para pele sensível a resposta é a mesma: pode usar junto. Mesmo assim, comece devagar e pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/acido-glicolico-com-acido-hialuronico/": [
+  [
+   "Posso passar ácido glicólico e ácido hialurônico na mesma aplicação?",
+   "Sim, podem entrar na mesma rotina, inclusive na mesma aplicação. O ácido hialurônico é um hidratante que ajuda a pele a tolerar os outros ativos. Use protetor solar todos os dias enquanto estiver usando ácidos."
+  ],
+  [
+   "Ácido glicólico com ácido hialurônico em pele sensível, pode?",
+   "A resposta para a combinação é a mesma, mas o ácido glicólico em concentração alta ficou de fora para pele sensível, porque o risco de irritação é grande. Comece devagar e pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/acido-glicolico-com-acido-salicilico/": [
+  [
+   "Como alternar ácido glicólico e ácido salicílico na rotina?",
+   "Não aplique os dois na mesma aplicação: separe manhã e noite ou use em noites alternadas. Dois esfoliantes juntos aumentam a irritação. Comece por um e só acrescente o outro quando a pele tolerar bem o primeiro."
+  ],
+  [
+   "Pele sensível pode usar ácido glicólico e ácido salicílico juntos?",
+   "Não. Em pele sensível, escolha um esfoliante só, porque dois juntos aumentam a irritação. O ácido glicólico é um ácido esfoliante (AHA) e o ácido salicílico é um BHA; use protetor solar todos os dias."
+  ]
+ ],
+ "/combina/acido-glicolico-com-pele-irritada/": [
+  [
+   "O que fazer com a pele irritada se eu uso ácido glicólico?",
+   "Pare o ácido glicólico até a pele se recuperar e fique com limpeza suave, hidratante e protetor solar. O ácido glicólico é um ácido esfoliante (AHA). Se não melhorar em alguns dias, procure um dermatologista."
+  ],
+  [
+   "Como voltar a usar ácido glicólico depois da irritação?",
+   "Volte devagar quando a pele estiver calma, uma noite por vez. Se a irritação não melhorar em alguns dias, procure um dermatologista. Se o produto foi receitado, avise quem receitou."
+  ]
+ ],
+ "/combina/acido-glicolico-com-protetor-solar/": [
+  [
+   "Preciso passar protetor solar quando uso ácido glicólico?",
+   "Sim. O protetor solar é indispensável com qualquer ativo e combina com tudo. Use todos os dias enquanto estiver usando ácidos ou retinoides."
+  ],
+  [
+   "Ácido glicólico com protetor solar vale para pele sensível?",
+   "A resposta é a mesma: pode usar junto. Só lembre que o ácido glicólico em concentração alta ficou de fora para pele sensível, pelo risco grande de irritação. Comece devagar e pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/acido-salicilico-com-acido-hialuronico/": [
+  [
+   "Posso usar ácido salicílico e ácido hialurônico no mesmo passo da rotina?",
+   "Pode, os dois entram na mesma rotina, inclusive na mesma aplicação. O ácido hialurônico é um hidratante e ajuda a pele a tolerar os outros ativos. Comece um ativo novo por vez."
+  ],
+  [
+   "Ácido salicílico com ácido hialurônico serve para pele sensível?",
+   "A resposta é a mesma, mas o ácido salicílico em concentração alta ficou de fora para pele sensível, pelo risco grande de irritação. Comece devagar e pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/acido-salicilico-com-pele-irritada/": [
+  [
+   "Devo parar o ácido salicílico se a pele estiver irritada?",
+   "Sim. Com a pele irritada, pare o ácido salicílico até ela se recuperar e fique com limpeza suave, hidratante e protetor. O ácido salicílico é um BHA, e a regra vale também para o LHA."
+  ],
+  [
+   "Quando posso voltar ao ácido salicílico depois da irritação?",
+   "Volte devagar quando a pele estiver calma, uma noite por vez. Se a irritação não melhorar em alguns dias, procure um dermatologista. Se o produto foi receitado, avise quem receitou."
+  ]
+ ],
+ "/combina/acido-salicilico-com-protetor-solar/": [
+  [
+   "Ácido salicílico exige protetor solar?",
+   "Sim, o protetor solar é indispensável com qualquer ativo e combina com tudo. Use todos os dias enquanto estiver usando ácidos ou retinoides."
+  ],
+  [
+   "Posso aplicar ácido salicílico e protetor solar na mesma rotina?",
+   "Podem entrar na mesma rotina, inclusive na mesma aplicação. Comece um ativo novo por vez, para saber qual deles a pele não tolerou se algo arder."
+  ]
+ ],
+ "/combina/dois-retinoides/": [
+  [
+   "Posso usar retinol e tretinoína ao mesmo tempo?",
+   "Não combine: dois retinoides somam irritação sem ganho claro. Escolha um só. Se os dois foram receitados, siga a orientação de quem receitou."
+  ],
+  [
+   "Quais ativos contam como retinoides na regra de não juntar?",
+   "O retinoide é um grupo de ativos. A regra vale para retinol, retinal, éster de retinila, HPR, tretinoína, adapaleno, tazaroteno e trifaroteno."
+  ]
+ ],
+ "/combina/niacinamida-com-acido-hialuronico/": [
+  [
+   "Niacinamida e ácido hialurônico podem ir na mesma aplicação?",
+   "Sim, podem entrar na mesma rotina, inclusive na mesma aplicação. O ácido hialurônico é um hidratante que combina com os outros ativos e ajuda a pele a tolerá-los."
+  ],
+  [
+   "Niacinamida com ácido hialurônico vale para pele sensível?",
+   "A resposta é a mesma para pele sensível: pode usar junto. Mesmo assim, comece devagar e pare se arder ou avermelhar. Comece um ativo novo por vez."
+  ]
+ ],
+ "/combina/peroxido-de-benzoila-com-acido-glicolico/": [
+  [
+   "Como separar peróxido de benzoíla e ácido glicólico na rotina?",
+   "Os dois ressecam e irritam, então separe manhã e noite se usar ambos, ou use em noites alternadas. Comece por um e só acrescente o segundo quando a pele tolerar bem o primeiro."
+  ],
+  [
+   "Peróxido de benzoíla com ácido glicólico em pele sensível?",
+   "Em pele sensível, prefira a menor concentração de peróxido de benzoíla e aplique só nas espinhas. O ácido glicólico em concentração alta ficou de fora porque o risco de irritação é grande. Pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/peroxido-de-benzoila-com-acido-salicilico/": [
+  [
+   "Posso separar manhã e noite o peróxido de benzoíla e o ácido salicílico?",
+   "Pode. A página manda usar em horários diferentes, separando manhã e noite, porque os dois ressecam e irritam. Também dá para usar em noites alternadas."
+  ],
+  [
+   "Peróxido de benzoíla e ácido salicílico servem para pele sensível?",
+   "Em pele sensível, prefira a menor concentração de peróxido de benzoíla e aplique só nas espinhas. O ácido salicílico em concentração alta ficou de fora porque o risco de irritação é grande. Pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/peroxido-de-benzoila-com-pele-irritada/": [
+  [
+   "Posso continuar o peróxido de benzoíla com a pele irritada?",
+   "Não. Com a pele irritada, pause o peróxido de benzoíla até ela se recuperar. O básico nesse período é limpeza suave, hidratante e protetor solar."
+  ],
+  [
+   "Como retomar o peróxido de benzoíla depois de irritar a pele?",
+   "Volte devagar quando a pele estiver calma, uma noite por vez. Se a irritação não melhorar em alguns dias, procure um dermatologista. Se o produto foi receitado, avise quem receitou."
+  ]
+ ],
+ "/combina/peroxido-de-benzoila-com-vitamina-c/": [
+  [
+   "Por que separar peróxido de benzoíla e vitamina C?",
+   "O peróxido de benzoíla pode oxidar a vitamina C e tirar o efeito dela. Por isso use em horários diferentes, separando manhã e noite ou em noites alternadas."
+  ],
+  [
+   "Peróxido de benzoíla e vitamina C para pele sensível?",
+   "A resposta é a mesma: em horários diferentes. Em pele sensível, a vitamina C pode arder, sobretudo a forma pura (ácido ascórbico), então faça um teste numa área pequena antes. O peróxido resseca e pode irritar."
+  ]
+ ],
+ "/combina/retinol-com-acido-glicolico/": [
+  [
+   "Como alternar retinol e ácido glicólico?",
+   "Use em noites alternadas, sem juntar na mesma aplicação, porque juntos irritam e descamam bem mais. O retinol é um retinoide e o ácido glicólico é um ácido esfoliante (AHA). Use protetor solar todos os dias."
+  ],
+  [
+   "Retinol com ácido glicólico em pele sensível?",
+   "Em pele sensível, não junte os dois no começo: fique com um deles e observe a pele por algumas semanas. Retinoides como o retinol costumam irritar pele sensível; se quiser usar, converse com um dermatologista."
+  ]
+ ],
+ "/combina/retinol-com-acido-hialuronico/": [
+  [
+   "Retinol e ácido hialurônico na mesma rotina, como fazer?",
+   "Podem entrar na mesma rotina, inclusive na mesma aplicação. O ácido hialurônico é um hidratante e ajuda a pele a tolerar o retinol. Use protetor solar todos os dias enquanto usar retinoides."
+  ],
+  [
+   "Retinol com ácido hialurônico serve para pele sensível?",
+   "A resposta é a mesma, mas retinoides como o retinol costumam irritar pele sensível. Se quiser usar, converse com um dermatologista e comece devagar."
+  ]
+ ],
+ "/combina/retinol-com-acido-salicilico/": [
+  [
+   "Posso usar ácido salicílico de manhã e retinol à noite?",
+   "Pode: a página indica noites alternadas ou o ácido salicílico de manhã, porque juntos na mesma aplicação ressecam e irritam bem mais. Use protetor solar todos os dias."
+  ],
+  [
+   "Retinol e ácido salicílico em pele sensível?",
+   "Em pele sensível, não junte os dois no começo: fique com um deles e observe a pele por algumas semanas. O retinol é um retinoide e costuma irritar pele sensível; converse com um dermatologista se quiser usar."
+  ]
+ ],
+ "/combina/retinol-com-niacinamida/": [
+  [
+   "Retinol e niacinamida podem ser usados na mesma aplicação?",
+   "Sim, é uma combinação comum e costuma ser bem tolerada. Podem entrar na mesma rotina, inclusive na mesma aplicação. Comece um ativo novo por vez."
+  ],
+  [
+   "Retinol com niacinamida vale para pele sensível?",
+   "A resposta é a mesma, mas retinoides como o retinol costumam irritar pele sensível. Se quiser usar, converse com um dermatologista e comece devagar. Use protetor solar todos os dias."
+  ]
+ ],
+ "/combina/retinol-com-pele-irritada/": [
+  [
+   "Devo parar o retinol quando a pele irrita?",
+   "Sim. O retinol é um retinoide, e a regra é pausá-lo até a pele se recuperar, ficando com limpeza suave, hidratante e protetor solar. Se ele for receitado, avise quem receitou."
+  ],
+  [
+   "Quando volto a usar retinol depois da irritação?",
+   "Volte devagar quando a pele estiver calma, uma noite por vez. Se a irritação não melhorar em alguns dias, procure um dermatologista. A regra vale para retinoides como retinal, tretinoína e adapaleno."
+  ]
+ ],
+ "/combina/retinol-com-peroxido-de-benzoila/": [
+  [
+   "Posso usar peróxido de benzoíla de manhã e retinol à noite?",
+   "Pode, é o que a página indica: peróxido de manhã e retinoide à noite. O peróxido de benzoíla é oxidante e pode degradar o retinoide, e os dois ressecam."
+  ],
+  [
+   "Retinol com peróxido de benzoíla vale para pele sensível?",
+   "Em pele sensível a resposta muda para não combinar: os dois juntos costumam ser demais. Use um deles, de preferência com orientação de um dermatologista."
+  ],
+  [
+   "E o medicamento que já junta adapaleno e peróxido de benzoíla?",
+   "Existe medicamento que já junta adapaleno e peróxido de benzoíla. Nesse caso, siga a receita de quem receitou."
+  ]
+ ],
+ "/combina/retinol-com-protetor-solar/": [
+  [
+   "Preciso de protetor solar usando retinol?",
+   "Sim. O protetor solar é indispensável com qualquer ativo e combina com tudo. Use todos os dias enquanto estiver usando ácidos ou retinoides, como o retinol."
+  ],
+  [
+   "Retinol com protetor solar para pele sensível?",
+   "A resposta é a mesma: pode usar junto. Mas retinoides como o retinol costumam irritar pele sensível; se quiser usar, converse com um dermatologista e comece devagar."
+  ]
+ ],
+ "/combina/retinol-com-vitamina-c/": [
+  [
+   "Qual horário usar vitamina C e qual usar retinol?",
+   "Use a vitamina C de manhã, antes do protetor, e o retinoide à noite, porque os dois podem irritar. O retinol é um retinoide."
+  ],
+  [
+   "Retinol e vitamina C em pele sensível?",
+   "A resposta é a mesma, em horários diferentes. A vitamina C pode arder em pele sensível, sobretudo a forma pura (ácido ascórbico); faça um teste numa área pequena antes. Retinoides costumam irritar pele sensível."
+  ]
+ ],
+ "/combina/vitamina-c-com-acido-glicolico/": [
+  [
+   "Por que separar vitamina C e ácido glicólico?",
+   "Vitamina C pura e ácidos esfoliantes têm pH baixo, então juntos ardem mais. Use a vitamina C de manhã e o ácido à noite."
+  ],
+  [
+   "Vitamina C com ácido glicólico serve para pele sensível?",
+   "A resposta é a mesma. A vitamina C pode arder em pele sensível, sobretudo a forma pura, e o ácido glicólico em concentração alta ficou de fora pelo risco de irritação. Faça um teste numa área pequena antes."
+  ]
+ ],
+ "/combina/vitamina-c-com-acido-hialuronico/": [
+  [
+   "Posso aplicar vitamina C e ácido hialurônico juntos?",
+   "Sim, podem entrar na mesma rotina, inclusive na mesma aplicação. O ácido hialurônico é um hidratante e ajuda a pele a tolerar a vitamina C. Comece um ativo novo por vez."
+  ],
+  [
+   "Vitamina C com ácido hialurônico vale para pele sensível?",
+   "A resposta é a mesma, mas a vitamina C pode arder em pele sensível, sobretudo a forma pura (ácido ascórbico). Faça um teste numa área pequena antes e pare se arder ou avermelhar."
+  ]
+ ],
+ "/combina/vitamina-c-com-acido-salicilico/": [
+  [
+   "Por que separar vitamina C e ácido salicílico?",
+   "Vitamina C pura e ácido salicílico têm pH baixo, então juntos ardem mais. Use a vitamina C de manhã e o ácido à noite."
+  ],
+  [
+   "Vitamina C com ácido salicílico serve para pele sensível?",
+   "A resposta é a mesma. A vitamina C pode arder em pele sensível, sobretudo a forma pura, e o ácido salicílico em concentração alta ficou de fora pelo risco de irritação. Faça um teste numa área pequena antes."
+  ]
+ ],
+ "/combina/vitamina-c-com-niacinamida/": [
+  [
+   "Vitamina C e niacinamida se anulam?",
+   "Não. A ideia de que um anula o outro é um mito comum. Podem entrar na mesma rotina; se arder, separe manhã e noite."
+  ],
+  [
+   "Vitamina C com niacinamida em pele sensível?",
+   "A resposta é a mesma: pode usar junto. A vitamina C pode arder em pele sensível, sobretudo a forma pura (ácido ascórbico), então faça um teste numa área pequena antes e comece devagar."
+  ]
+ ],
+ "/combina/vitamina-c-com-pele-irritada/": [
+  [
+   "Posso usar vitamina C com a pele irritada?",
+   "Não. A vitamina C, principalmente a pura, costuma arder na pele irritada. Pause até ela se recuperar e fique com limpeza suave, hidratante e protetor solar."
+  ],
+  [
+   "Como voltar à vitamina C depois que a pele irritou?",
+   "Volte devagar quando a pele estiver calma, uma noite por vez. Se a irritação não melhorar em alguns dias, procure um dermatologista. O básico nesse período é limpeza suave, hidratante e protetor."
+  ]
+ ],
+ "/combina/vitamina-c-com-protetor-solar/": [
+  [
+   "Vitamina C e protetor solar podem ir juntos na rotina?",
+   "Sim. O protetor solar é indispensável com qualquer ativo e combina com tudo. Podem entrar na mesma rotina, inclusive na mesma aplicação."
+  ],
+  [
+   "Vitamina C com protetor solar vale para pele sensível?",
+   "A resposta é a mesma, mas a vitamina C pode arder em pele sensível, sobretudo a forma pura (ácido ascórbico). Faça um teste numa área pequena antes e pare se arder ou avermelhar."
+  ]
+ ],
+ "/comparativos/": [
+  [
+   "O que a página de comparativos do Produto Skincare mostra?",
+   "Mostra produtos parecidos do catálogo lado a lado, com ativos em destaque, textura e tipos de pele. Cada comparativo põe frente a frente produtos do mesmo tipo, como séruns, protetores solares, hidratantes e limpeza."
+  ],
+  [
+   "Quais categorias de produto têm comparativo no catálogo?",
+   "Há comparativos de tratamento (séruns de niacinamida, vitamina C e retinol), protetor solar, hidratante e limpeza facial. Para comparar outros produtos, a página indica a ferramenta de comparar."
+  ]
+ ],
+ "/comparativos/cerave-gel-limpeza-ou-lrp-effaclar-gel/": [
+  [
+   "Qual a diferença entre o CeraVe Gel de Limpeza Facial e o La Roche-Posay Effaclar Gel Alta Tolerância?",
+   "Os dois são géis de limpeza para usar de manhã e à noite. O CeraVe destaca ceramidas, ácido hialurônico e niacinamida, e o Effaclar destaca PCA de zinco. A página não elege um vencedor."
+  ],
+  [
+   "Para quais tipos de pele o CeraVe e o Effaclar Gel aparecem no catálogo?",
+   "A indicação é diferente: o CeraVe aparece para pele oleosa, mista, normal e todos os tipos, e o Effaclar, para pele oleosa e mista, com pele seca em talvez não seja para. A escolha depende da sua pele."
+  ]
+ ],
+ "/comparativos/creamy-vitamina-c-ou-mantecorp-ivy-c-ferulic/": [
+  [
+   "Qual a diferença entre o Creamy Vitamina C 10% e o Mantecorp Ivy C Ferulic Sérum?",
+   "Os dois são séruns de vitamina C para usar de manhã. O Creamy destaca vitamina C 10%, enquanto o Mantecorp Ivy C destaca vitamina C e ácido ferúlico. Os dois aparecem no catálogo para todos os tipos de pele."
+  ],
+  [
+   "O que é o Mantecorp Ivy C Ferulic Sérum?",
+   "É um sérum de tratamento da Mantecorp Skincare, marca brasileira, para uso de manhã e indicado no catálogo para todos os tipos de pele. Os ativos em destaque no anúncio são vitamina C e ácido ferúlico, não a fórmula completa."
+  ]
+ ],
+ "/comparativos/isdin-fusion-water-sem-cor-ou-skin-aqua-moisture-milk/": [
+  [
+   "Qual a diferença de textura entre o ISDIN Fusion Water Sem Cor FPS 60 e o Skin Aqua Moisture Milk?",
+   "O ISDIN tem textura em gel e o Skin Aqua, em creme. Os dois destacam filtros UVA/UVB, e só o Skin Aqua destaca também ácido hialurônico."
+  ],
+  [
+   "Para quais tipos de pele cada protetor é indicado no catálogo?",
+   "A indicação é a seguinte: o ISDIN Fusion Water Sem Cor aparece para todos os tipos de pele, e o Skin Aqua Super Moisture Milk aparece para pele seca, normal e sensível. Os dois são para uso pela manhã."
+  ]
+ ],
+ "/comparativos/mantecorp-epidrat-calm-ou-creamy-calming-cream/": [
+  [
+   "Qual a diferença entre o Mantecorp Epidrat Calm B5 e o Creamy Calming Cream?",
+   "Os dois são hidratantes em creme para manhã e noite, indicados no catálogo para pele sensível, seca e normal. O Epidrat destaca pantenol, e o Creamy Calming Cream destaca Creamy Calming Complex, Hypskin, vitamina E e alfa-bisabolol."
+  ],
+  [
+   "O que é o Creamy Calming Cream?",
+   "É um hidratante em creme da Creamy, marca brasileira, para usar de manhã e à noite. O anúncio destaca Creamy Calming Complex, Hypskin, vitamina E e alfa-bisabolol, que são ativos em destaque e não a fórmula completa."
+  ]
+ ],
+ "/comparativos/neutrogena-hydro-boost-ou-garnier-uniform-matte/": [
+  [
+   "Qual a diferença entre o Neutrogena Hydro Boost Water Gel e o Garnier Uniform & Matte Toque Seco?",
+   "Os dois são hidratantes em gel que destacam ácido hialurônico. O Garnier destaca também vitamina C e é indicado para uso pela manhã, enquanto o Neutrogena é indicado para manhã e noite."
+  ],
+  [
+   "Quais tipos de pele cada hidratante indica, segundo o catálogo?",
+   "O Neutrogena aparece para pele oleosa, mista e normal. O Garnier aparece para pele oleosa e mista, e a página marca pele seca em talvez não seja para."
+  ]
+ ],
+ "/comparativos/neutrogena-sun-fresh-fps70-ou-isdin-fusion-water-sem-cor/": [
+  [
+   "Qual a diferença entre o Neutrogena Sun Fresh Derm Care FPS 70 e o ISDIN Fusion Water Sem Cor FPS 60?",
+   "Os dois são protetores solares em gel, com filtros UVA/UVB em destaque, para usar de manhã. A diferença no catálogo está nos tipos de pele: o Neutrogena aparece para pele oleosa e mista, e o ISDIN, para todos os tipos."
+  ],
+  [
+   "O Neutrogena Sun Fresh Derm Care FPS 70 é indicado para pele seca?",
+   "Segundo o catálogo, talvez não. A página lista pele seca em talvez não seja para, e o público indicado é pele oleosa e mista. O ISDIN Fusion Water Sem Cor aparece para todos os tipos de pele."
+  ]
+ ],
+ "/comparativos/principia-niacinamida-ou-ordinary-niacinamide/": [
+  [
+   "O que a niacinamida do Principia NC-10 e a do The Ordinary têm em comum?",
+   "Segundo os anúncios, os dois destacam niacinamida 10% e zinco 1%, são séruns para manhã e noite e aparecem no catálogo para pele oleosa, mista e normal."
+  ],
+  [
+   "O que é o The Ordinary Niacinamide 10% + Zinc 1% e para qual pele talvez não sirva?",
+   "É um sérum de tratamento da marca canadense The Ordinary, com niacinamida 10% e zinco 1% em destaque. No catálogo, pele seca aparece em talvez não seja para, e o Principia não traz essa ressalva."
+  ]
+ ],
+ "/comparativos/principia-rn03-ou-loreal-revitalift-noturno/": [
+  [
+   "Qual a diferença entre o Principia RN-0,3 Retinol e o L'Oréal Revitalift Sérum Noturno Antissinais?",
+   "Os dois são séruns noturnos com retinol, e o Principia destaca retinol 0,3%. No catálogo, o L'Oréal aparece também para pele seca, e o Principia traz pele sensível e pele seca em talvez não seja para."
+  ],
+  [
+   "Os séruns de retinol Principia RN-0,3 e L'Oréal Revitalift são indicados para pele sensível?",
+   "Não. A página marca pele sensível em talvez não seja para nos dois séruns, e o Principia marca também pele seca. O retinol é o ativo em destaque nos dois anúncios, para uso à noite."
+  ]
+ ],
+ "/comparativos/principia-rn03-ou-lrp-retinol-b3/": [
+  [
+   "Qual a diferença entre o Principia RN-0,3 Retinol e o La Roche-Posay Retinol B3?",
+   "Os dois destacam retinol e são séruns para a noite. Só o La Roche-Posay destaca também niacinamida, e no catálogo só ele aparece para pele seca, enquanto o Principia marca pele seca em talvez não seja para."
+  ],
+  [
+   "O que é o La Roche-Posay Retinol B3?",
+   "É um sérum de tratamento da marca francesa La Roche-Posay, para usar à noite, com retinol e niacinamida em destaque no anúncio. Aparece no catálogo para pele normal, oleosa, mista e seca, e traz pele sensível em talvez não seja para."
+  ]
+ ],
+ "/comparativos/principia-vc10-ou-creamy-vitamina-c/": [
+  [
+   "Qual a diferença entre o Principia VC-10 Vitamina C 10% e o Creamy Vitamina C 10%?",
+   "Pela ficha do catálogo, quase nenhuma: os dois são séruns de vitamina C 10% para usar de manhã, de marcas brasileiras e indicados para todos os tipos de pele. O que muda é a marca."
+  ],
+  [
+   "O Principia VC-10 Vitamina C 10% é para usar de manhã ou à noite?",
+   "Segundo o catálogo, o Principia VC-10 é um sérum para uso de manhã, assim como o Creamy Vitamina C 10%. Os dois aparecem para todos os tipos de pele e sem ressalvas em talvez não seja para."
+  ]
+ ],
+ "/condicoes/": [
+  [
+   "Quais condições da pele o guia de condições cobre?",
+   "Melasma, rosácea, acne, olheiras e desidratação. Para cada uma, o guia traz sinais, causas, tratamentos e quando procurar dermatologista."
+  ],
+  [
+   "O que é melasma, rosácea e acne em resumo?",
+   "O melasma é uma hiperpigmentação por excesso de melanina, em manchas marrons no rosto. A rosácea é uma vermelhidão persistente por vasos dilatados, e a acne é a obstrução dos folículos com inflamação."
+  ]
+ ],
+ "/condicoes/acne/": [
+  [
+   "O que é acne e como ela se forma?",
+   "Acne é a obstrução dos folículos com inflamação. Quatro fatores atuam juntos: excesso de sebo, obstrução folicular por sebo e células mortas, proliferação da bactéria C. acnes e inflamação."
+  ],
+  [
+   "Quando procurar dermatologista por causa de acne?",
+   "Em acne cística ou nodular, com cicatrizes se formando, que afete a autoestima ou que não melhore após 3 meses de tratamento tópico. O dermatologista pode indicar tratamentos de receita, como a isotretinoína oral."
+  ],
+  [
+   "Lavar mais o rosto resolve a acne?",
+   "Não. Num ensaio, quem lavou 2 vezes por dia melhorou os cravos, quem lavou só 1 vez piorou e lavar 4 vezes não trouxe vantagem. Lavar 2 vezes por dia com sabonete suave basta."
+  ]
+ ],
+ "/condicoes/desidratacao/": [
+  [
+   "O que é pele desidratada e qual a diferença para pele seca?",
+   "Pele desidratada é a que perde água por barreira comprometida e pode ocorrer em qualquer tipo de pele; na pele seca falta óleo (sebo). A divisão é a usada na cosmética, não um diagnóstico médico."
+  ],
+  [
+   "Como hidratar a pele desidratada?",
+   "Hidratantes combinam umectantes (como ácido hialurônico e glicerina), oclusivos (como petrolato) e emolientes. Aplique em pele úmida, logo após lavar, e evite água quente no rosto e sabonete agressivo."
+  ]
+ ],
+ "/condicoes/melasma/": [
+  [
+   "O que é melasma e quais são as causas?",
+   "Melasma é uma condição comum e crônica de manchas marrom-acinzentadas e simétricas, principalmente no rosto. As causas mais citadas são gravidez, anticoncepcional hormonal, histórico familiar e sol, muitas vezes agindo juntas."
+  ],
+  [
+   "Como tratar melasma e quando procurar dermatologista?",
+   "Todo tratamento inclui protetor de amplo espectro, FPS 50+, de preferência com óxido de ferro. Os tratamentos mais eficazes são de receita; procure dermatologista se as manchas forem grandes ou escuras, ou se não melhorarem após 3 meses."
+  ]
+ ],
+ "/condicoes/olheiras/": [
+  [
+   "O que causa olheiras e quais são os tipos?",
+   "Há poucos dados sobre as causas, mas as mais descritas são genética, falta de sono, alergias, inchaço e vasos aparentes, sol e idade. Os tipos são pigmentada, vascular, estrutural e mista."
+  ],
+  [
+   "O que é olheira pigmentada e como tratar?",
+   "A olheira pigmentada é a causada por excesso de melanina, de cor marrom. Usam-se clareadores (alguns de receita) e protetor solar. Como a causa costuma ser mista, vale a avaliação do dermatologista."
+  ]
+ ],
+ "/condicoes/rosacea/": [
+  [
+   "O que é rosácea e quais são os sinais?",
+   "Rosácea é uma condição inflamatória crônica que afeta principalmente bochechas, nariz, queixo e testa. Os sinais incluem rubor, vermelhidão persistente, vasinhos, pápulas e pústulas, e às vezes irritação nos olhos."
+  ],
+  [
+   "Quais são os gatilhos da rosácea?",
+   "Num estudo brasileiro com 258 pacientes, os mais citados foram clima, bebidas alcoólicas e emoções; entre os alimentos, pimenta, condimentos e bebidas quentes. O sol também é um dos principais gatilhos evitáveis."
+  ]
+ ],
+ "/contato/": [
+  [
+   "Como falar com o Produto Skincare para avisar um erro ou sugerir um produto?",
+   "A página de contato é o lugar para avisar erro, preço desatualizado ou link quebrado e para sugerir um produto para análise. Os canais estão sendo configurados e aparecem lá quando estiverem prontos. Correções são feitas assim que conferidas."
+  ],
+  [
+   "O Produto Skincare responde dúvidas de saúde da pele pelo contato?",
+   "Não. O site não faz atendimento de saúde. Para dúvidas de rotina, ativos e protetor, a página indica o provador, as fichas de ingredientes e a Pergunte à IA. Em caso de lesão, dor, alergia ou irritação persistente, procure um dermatologista."
+  ]
+ ],
+ "/en/": [
+  [
+   "How do I find my skin type and ideal skincare routine?",
+   "Answer 5 quick questions in the free quiz and get a personalized skincare routine with real products and direct links. The page says there is no signup."
+  ],
+  [
+   "How can I track my skin progress over time?",
+   "Log how your skin feels, with or without a photo, and see your own curve over time with 28-day marks. Personal tracking here means records stay only on this device and are not a clinical measurement."
+  ]
+ ],
+ "/en/blog/myth-rule-sunblock-100/": [
+  [
+   "Can a sunscreen promise 100% protection in Brazil?",
+   "No. Brazilian rule RDC 629/2022 (art. 14) forbids sunscreen labels and ads from promising 100% protection against UV radiation, from suggesting you never need to reapply, and from using names that imply total blockage, such as sunblock."
+  ],
+  [
+   "Is broad spectrum the same as sunblock?",
+   "No. Broad spectrum means UVA and UVB coverage. Nothing blocks 100% of solar radiation, and nothing may promise to, so sunblock is not a term the rule allows on Brazilian sunscreen labels."
+  ],
+  [
+   "Does SPF 100 protect twice as much as SPF 50?",
+   "No. The scale is not linear: above 50 the extra protection is small. What changes the real result is the amount applied and reapplication."
+  ]
+ ],
+ "/en/blog/myth-rule-tingling/": [
+  [
+   "Does tingling or burning mean a skincare product is working?",
+   "No. If it burns, the skin is asking you to stop, not celebrating. Efficacy is shown with studies and in the mirror over weeks, not by pain in the first minute. Strong or persistent burning is a sign to stop and, if needed, see a dermatologist."
+  ],
+  [
+   "What is the skin barrier everyone talks about?",
+   "The skin barrier means the outer layer of your skin, which keeps water in and irritants out. When it is compromised, skin becomes sensitive, red and reactive, the opposite of the result you want."
+  ],
+  [
+   "What are the signs I should pause a skincare active?",
+   "The page lists burning that does not fade, persistent redness, heavy peeling, swelling and itching. It also advises introducing one active at a time, on alternate days at first, and testing on a small area first."
+  ]
+ ],
+ "/en/blog/myth-rule-water-resistant/": [
+  [
+   "Does water resistant sunscreen mean I do not need to reapply?",
+   "No. Water resistant means the product was tested to keep part of its protection after water contact, not that it lasts all day. After every swim or heavy sweat, reapply."
+  ],
+  [
+   "What reapplication warnings must a sunscreen label carry in Brazil?",
+   "Under RDC 629/2022 (art. 15), every sunscreen must carry the sentences 'Reapplication is required to maintain its effectiveness' and 'Always reapply after heavy sweating, swimming or bathing'."
+  ],
+  [
+   "How often should I reapply sunscreen outdoors?",
+   "Outdoors, reapply roughly every 2 hours, and always after swimming or heavy sweating. If the amount applied is inadequate, the level of protection will be significantly reduced, even with a water resistant product."
+  ]
+ ],
+ "/en/blog/retinol-how-to-start/": [
+  [
+   "How do I start using retinol without irritating my skin?",
+   "Start with a gentle cleanser, moisturizer and sunscreen, then add retinol twice a week, only at night after moisturizer, using a pea-sized drop for the whole face. Go up to 3 times a week only if there was no irritation."
+  ],
+  [
+   "Is retinol the same as tretinoin?",
+   "No. Retinol is a retinoid sold without a prescription, which means it is a milder version than prescription tretinoin. Even so, retinol can irritate when used the wrong way."
+  ],
+  [
+   "What should I not combine with retinol?",
+   "The page lists salicylic acid (BHA), glycolic acid (AHA) and pure vitamin C, because irritation can add up. Alternate days, or use vitamin C in the morning and retinol at night. Benzoyl peroxide breaks down tretinoin, so use it at a different time."
+  ]
+ ],
+ "/en/blog/sunscreen-why-it-matters/": [
+  [
+   "How much sunscreen should I apply to my face?",
+   "The page says 2 index fingers' length for the face (about 1/4 teaspoon) and 4 fingers for face and neck. With half the amount, an SPF 50 delivers something close to SPF 7, so applying too little costs a lot of protection."
+  ],
+  [
+   "How often should I reapply sunscreen?",
+   "Every 2 hours of sun exposure, and after sweating, swimming or drying your face with a towel. If you spend the day near a window, reapplying at midday is worthwhile, because some UVA goes through glass."
+  ],
+  [
+   "What does broad spectrum mean on a sunscreen label?",
+   "Broad spectrum, or UVA/UVB on the label, means the sunscreen protects against both. UVA is more linked to aging (spots, wrinkles), while UVB is the main cause of sunburn."
+  ]
+ ],
+ "/en/blog/vitamin-c-skincare/": [
+  [
+   "Should I use vitamin C in the morning or at night?",
+   "Preferably in the morning, since most people use it then to protect against the day's free radicals and add to sunscreen. Using it at night is not a waste: in a pig skin study, vitamin C stayed in the skin for days after application."
+  ],
+  [
+   "What does antioxidant mean for vitamin C in skincare?",
+   "Antioxidant means it helps protect the skin from environmental damage, especially from the sun. Vitamin C works through a different pathway from UV filters, so it complements sunscreen but does not replace SPF."
+  ],
+  [
+   "Can I use vitamin C together with retinol?",
+   "Together they may irritate more. The simplest approach is vitamin C in the morning and retinol at night. For vitamin C with niacinamide, studies are lacking; if it stings, use them at different times of day."
+  ]
+ ],
+ "/en/ferramentas/backup/": [
+  [
+   "How do I back up my skincare tracker and photo diary?",
+   "Use the export option, which generates a .json file with the routine tracker, the photo diary and this device's notes. Keep it somewhere safe. Importing restores data from a file exported by this tool and replaces the current browser's data."
+  ],
+  [
+   "Is the skincare backup file sent to the website?",
+   "No. The file is generated in your browser and downloaded to your downloads folder, and the site never receives it. Backup here means a .json file that works as a parachute if you switch browsers or clear data."
+  ]
+ ],
+ "/en/ferramentas/diary/": [
+  [
+   "How does the skin diary track my progress?",
+   "You log how your skin feels on a 1 to 5 scale, add photos whenever you like, and see a progress curve over time with 28-day marks. Every record stays on this device, and nothing is sent to the site."
+  ],
+  [
+   "How long does it take to see a change in my skin?",
+   "Skin changes in cycles, not days: epidermal renewal takes about 28 days, and actives like retinol usually show visible difference after 8 to 12 weeks. Shoot photos the same way every time to compare."
+  ],
+  [
+   "What do the 1 to 5 ratings mean in the skin diary?",
+   "1 means your worst day and 5 means your best day, for you. The scale is yours. It is a personal record of self-perception, not a clinical measurement."
+  ]
+ ],
+ "/en/ferramentas/report/": [
+  [
+   "What is the report for my dermatology visit?",
+   "It is a printable summary of your follow-up: skin progress over the period, routine, 30-day consistency and recent photos, ready for the dermatologist to read in a few minutes. It is built on this device, only from its data."
+  ],
+  [
+   "Is the dermatology visit report a medical diagnosis?",
+   "No. The page says it is not a medical diagnosis. The report is informative, which means you assemble it from your own follow-up, with space left for the professional to add to it during the visit."
+  ]
+ ],
+ "/en/ferramentas/ritual/": [
+  [
+   "What is the guided skincare ritual?",
+   "It is your skincare routine step by step, like a mirror that guides you: each step at its own pace, with a timer per step. Everything stays on this device."
+  ],
+  [
+   "Where does the guided ritual check-in go?",
+   "At the end, the day's check-in lands in the routine tracker. Guided here means one step at a time, each with its own timer, and everything stays on your device."
+  ]
+ ],
+ "/en/ingredients/ferulic-acid/": [
+  [
+   "What is ferulic acid in skincare?",
+   "Ferulic acid is a plant antioxidant found in grains, husks and seeds. In skincare it goes into antioxidant serums, often with vitamins C and E, because it helps stabilize the formula and protect the actives from oxidation. It does not exfoliate."
+  ],
+  [
+   "Should I use ferulic acid in the morning or at night?",
+   "The page suggests the morning, under sunscreen, applied after cleansing and before moisturizer. It can be used at night too, but at night there are actives with better-studied returns, such as retinol."
+  ],
+  [
+   "What does emerging evidence mean for ferulic acid?",
+   "Emerging evidence means the evidence is stronger in formula-stabilization and adjuvant-photoprotection studies than in large clinical trials of the isolated active. Large independent trials of ferulic alone on human skin are rare."
+  ]
+ ],
+ "/en/ingredients/mandelic-acid/": [
+  [
+   "What is mandelic acid and is it a gentle AHA?",
+   "Mandelic acid is an alpha hydroxy acid (AHA) derived from bitter almond hydrolysate. Its molecule is larger than glycolic acid's, so it absorbs more slowly and is often billed as the gentler AHA."
+  ],
+  [
+   "How often should I use mandelic acid?",
+   "At night, 1 to 2 times a week at first, increasing as the skin accepts it. Apply after cleansing on dry skin and seal with moisturizer. Sunscreen is mandatory the next day, because AHAs increase sun sensitivity."
+  ],
+  [
+   "What does emerging evidence mean for mandelic acid?",
+   "It means clinical trials are small and mostly on peels, and for daily cream use direct evidence is even thinner. Much of what is known comes from the AHA class, not from this active alone."
+  ]
+ ],
+ "/es/": [
+  [
+   "¿Cómo descubro mi tipo de piel y mi rutina de skincare ideal?",
+   "Responde 5 preguntas rápidas en el cuestionario gratuito y recibe una rutina de skincare personalizada, con productos reales y enlaces directos."
+  ],
+  [
+   "¿Cómo puedo seguir la evolución de mi piel con el tiempo?",
+   "Registra cómo está tu piel, con o sin foto, y mira tu propia curva con marcos de 28 días. Acompañamiento personal significa que los registros se quedan solo en este dispositivo y no son una medición clínica."
+  ]
+ ],
+ "/es/blog/mito-regla-ardencia/": [
+  [
+   "Si un producto arde en la piel, ¿significa que está funcionando?",
+   "No. Que arda no significa que funcione: si arde, la piel está pidiendo que pares, no celebrando. La eficacia se prueba con estudios y en el espejo durante semanas, no con dolor en el primer minuto."
+  ],
+  [
+   "¿Qué es la barrera cutánea de la que todos hablan?",
+   "Es la capa externa de la piel, que retiene agua e impide la entrada de irritantes. Cuando se compromete, la piel queda sensible, enrojecida y reactiva, lo contrario del resultado buscado."
+  ],
+  [
+   "¿Cuándo debo parar un activo que estoy usando en la piel?",
+   "Las señales para parar son ardor que no cede, enrojecimiento persistente, descamación intensa, hinchazón y picor. Introduce un activo por vez, en días alternados al inicio, y prueba primero en una zona pequeña."
+  ]
+ ],
+ "/es/blog/mito-regla-resistente-agua/": [
+  [
+   "¿Un protector solar resistente al agua se aplica una sola vez?",
+   "No. Resistente al agua significa que el producto fue probado para mantener parte de la protección tras el contacto con agua, no que dura todo el día. Después de cada baño o sudoración intensa, reaplica."
+  ],
+  [
+   "¿Qué advertencias de reaplicación debe llevar un protector solar en Brasil?",
+   "Según el art. 15 de la RDC 629/2022, todo protector solar debe llevar las frases 'Es necesaria la reaplicación del producto para mantener su efectividad' y 'Reaplicar siempre, tras sudoración intensa, nadar o bañarse'."
+  ],
+  [
+   "¿Cada cuánto debo reaplicar el protector solar al aire libre?",
+   "Al aire libre, aproximadamente cada 2 horas, y siempre después de nadar o sudar mucho. Si la cantidad aplicada no es adecuada, el nivel de protección se reducirá significativamente, aunque sea resistente al agua."
+  ]
+ ],
+ "/es/blog/mito-regla-sunblock-100/": [
+  [
+   "¿Puede un protector solar prometer 100% de protección en Brasil?",
+   "No. La RDC 629/2022 (art. 14) prohíbe en el etiquetado y la publicidad del protector solar el 100% de protección contra la radiación UV, la idea de no reaplicar y denominaciones que impliquen bloqueo total, incluido sunblock."
+  ],
+  [
+   "¿Espectro amplio es lo mismo que sunblock?",
+   "No. Espectro amplio significa cobertura de UVA y UVB. Nada bloquea el 100% de la radiación solar y nada puede prometerlo, por eso sunblock no es una denominación permitida."
+  ],
+  [
+   "¿FPS 100 protege el doble que FPS 50?",
+   "No. La escala no es lineal: por encima de 50 la ganancia es pequeña. Lo que cambia el resultado real es la cantidad aplicada y la reaplicación."
+  ]
+ ],
+ "/es/blog/protector-solar-por-que-importa/": [
+  [
+   "¿Cuánto protector solar debo aplicar en el rostro?",
+   "La página indica 2 dedos índice para el rostro (≈ 1/4 de cucharadita) y 4 dedos para rostro y cuello. Con la mitad de la cantidad, un FPS 50 rinde algo cercano a FPS 7."
+  ],
+  [
+   "¿Cada cuánto debo volver a aplicar el protector solar?",
+   "Cada 2 horas de exposición al sol, y después de sudar, entrar al agua o secarte el rostro con una toalla. Si pasas el día cerca de una ventana, conviene volver a aplicar a mitad del día, porque parte del UVA atraviesa el vidrio."
+  ],
+  [
+   "¿Qué significa amplio espectro en la etiqueta del protector solar?",
+   "Amplio espectro, o UVA/UVB, significa que protege contra ambos. El UVA está más relacionado con el envejecimiento (manchas, arrugas) y el UVB es la principal causa de quemaduras."
+  ]
+ ],
+ "/es/blog/retinol-como-empezar/": [
+  [
+   "¿Cómo empezar con retinol sin irritar la piel?",
+   "Empieza con limpieza suave, hidratante y protector solar, y luego usa retinol 2 veces por semana, solo de noche después del hidratante, con una cantidad del tamaño de un guisante para todo el rostro. Sube a 3 veces por semana solo si no hubo irritación."
+  ],
+  [
+   "¿El retinol es lo mismo que la tretinoína?",
+   "No. El retinol es un retinoide que se vende sin receta, lo que significa que es una versión más suave que la tretinoína, que es de receta. Aun así, el retinol puede irritar si se usa mal."
+  ],
+  [
+   "¿Qué no debo combinar con el retinol?",
+   "Ácido salicílico (BHA), ácido glicólico (AHA) y vitamina C pura, porque la irritación puede sumarse: alterna los días, o usa vitamina C de mañana y retinol de noche. El peróxido de benzoilo degrada la tretinoína, así que úsalos en horarios distintos."
+  ]
+ ],
+ "/es/blog/vitamina-c-skincare/": [
+  [
+   "¿Es mejor usar vitamina C de mañana o de noche?",
+   "Preferentemente de mañana, porque la mayoría la usa así para protegerse de los radicales libres del día y sumar protección a la del protector solar. Usarla de noche no es un desperdicio: en piel de cerdo, la vitamina C se mantuvo en la piel durante días."
+  ],
+  [
+   "¿Qué significa que la vitamina C sea antioxidante?",
+   "Antioxidante significa que ayuda a proteger la piel de las agresiones del ambiente, sobre todo del sol. Actúa por un camino distinto al del filtro solar, por eso complementa el protector pero no reemplaza el FPS."
+  ],
+  [
+   "¿Se puede usar vitamina C junto con retinol?",
+   "Juntos pueden irritar más. Lo más sencillo es vitamina C de mañana y retinol de noche. Con niacinamida faltan estudios sobre la combinación; si arde, úsalas en horarios distintos."
+  ]
+ ],
+ "/es/ferramentas/diario/": [
+  [
+   "¿Cómo funciona el diario de la piel?",
+   "Registras cómo se siente tu piel del 1 al 5, añades fotos cuando quieras y ves la curva de tu evolución con marcos de 28 días. Cada registro se queda solo en este dispositivo y nada se envía al sitio."
+  ],
+  [
+   "¿Cuánto tarda en notarse un cambio en la piel?",
+   "La piel cambia en ciclos, no en días: la renovación de la epidermis lleva en torno de 28 días, y activos como el retinol suelen mostrar diferencia visible después de 8 a 12 semanas. Fotografía siempre igual para comparar."
+  ],
+  [
+   "¿Qué significan los números del 1 al 5 en el diario de la piel?",
+   "1 significa el peor día y 5 el mejor día, para ti: la escala es tuya. Es un registro personal de autopercepción, no una medición clínica."
+  ]
+ ],
+ "/es/ferramentas/informe/": [
+  [
+   "¿Qué es el informe para la consulta dermatológica?",
+   "Es un resumen imprimible de tu seguimiento: evolución de la piel en el periodo, rutina, constancia de 30 días y fotos recientes, listo para que el dermatólogo lo lea en pocos minutos. Se elabora aquí mismo, solo con los datos de este dispositivo."
+  ],
+  [
+   "¿El informe de seguimiento de la piel es un diagnóstico médico?",
+   "No. La página aclara que no es un diagnóstico médico. Es informativo, lo que significa que lo armas tú a partir de tu propio seguimiento, con un espacio reservado para que el profesional lo complete en la consulta."
+  ]
+ ],
+ "/es/ferramentas/respaldo/": [
+  [
+   "¿Cómo hago un respaldo de mi tracker de rutina y mi diario de fotos?",
+   "Usa la opción de exportar, que genera un archivo .json con el tracker de rutina, el diario de fotos y las observaciones de este dispositivo. Guárdalo en lugar seguro. Importar restaura los datos y reemplaza los actuales de este navegador."
+  ],
+  [
+   "¿El archivo de respaldo de skincare se envía al sitio?",
+   "No. El archivo se genera en tu navegador y se descarga a tu carpeta de descargas: el sitio nunca lo recibe. Respaldo significa aquí un archivo .json que funciona como paracaídas si cambias de navegador o borras datos."
+  ]
+ ],
+ "/es/ferramentas/ritual/": [
+  [
+   "¿Qué es el ritual guiado de skincare?",
+   "Es tu rutina de skincare paso a paso, como un espejo que te guía: cada paso a su ritmo, con cronómetro por etapa. Todo se queda en tu dispositivo."
+  ],
+  [
+   "¿Dónde queda el check-in del día en el ritual guiado?",
+   "Al final, el check-in del día queda en el tracker de rutina. Guiado significa aquí un paso a la vez, cada uno con su cronómetro, y todo se queda en tu dispositivo."
+  ]
+ ],
+ "/es/ingredientes/acido-ferulico/": [
+  [
+   "¿Qué es el ácido ferúlico en el skincare?",
+   "El ácido ferúlico es un antioxidante vegetal presente en granos, cáscaras y semillas. En el skincare entra en sérum antioxidantes, a menudo junto a las vitaminas C y E, porque ayuda a estabilizar la fórmula y a proteger los activos de la oxidación. No exfolia."
+  ],
+  [
+   "¿El ácido ferúlico se usa de mañana o de noche?",
+   "La página indica la mañana, bajo el protector solar, aplicado tras la limpieza y antes del hidratante. Puede usarse por la noche también, pero de noche hay activos con retorno más estudiado, como el retinol."
+  ],
+  [
+   "¿Qué significa evidencia emergente en el ácido ferúlico?",
+   "Evidencia emergente significa que la evidencia es mayor en estudios de estabilización de fórmula y fotoprotección adyuvante que en ensayos clínicos grandes del activo aislado. Los ensayos grandes e independientes del ferúlico solo en piel humana son raros."
+  ]
+ ],
+ "/es/ingredientes/acido-mandelico/": [
+  [
+   "¿Qué es el ácido mandélico y es un AHA suave?",
+   "El ácido mandélico es un alfa hidroxiácido (AHA) obtenido del hidrolizado de almendras amargas. Su molécula es más grande que la del glicólico, por eso se absorbe más despacio y suele presentarse como el AHA más suave."
+  ],
+  [
+   "¿Cada cuánto se usa el ácido mandélico?",
+   "De noche, 1 a 2 veces por semana al principio, aumentando según la piel acepte. Aplica tras la limpieza sobre piel seca y sella con hidratante. El protector solar es obligatorio al día siguiente, porque los AHAs aumentan la sensibilidad al sol."
+  ],
+  [
+   "¿Qué significa evidencia emergente en el ácido mandélico?",
+   "Significa que los ensayos clínicos son pequeños y mayoritariamente en peelings, y para el uso diario en crema la evidencia directa es aún más escasa. Mucho de lo que se sabe proviene de la clase de los AHAs, no de este activo en solitario."
+  ]
+ ],
+ "/ferramentas/": [
+  [
+   "Quais ferramentas grátis de skincare o Produto Skincare oferece?",
+   "A página reúne ferramentas como provador, minha prateleira, modo farmácia, verificador de ingredientes, equivalente mais barato, modo 12 semanas, tracker de rotina, diário da pele e relatório para a consulta. São grátis e sem cadastro."
+  ],
+  [
+   "Os dados digitados nas ferramentas do Produto Skincare ficam onde?",
+   "A página informa que o que você digita, as fotos e as listas ficam no seu aparelho. As ferramentas são gratuitas e sem cadastro. O Programa 12 Semanas, que é o acompanhamento completo, aparece na lista como material pago."
+  ]
+ ],
+ "/ferramentas/12-semanas/": [
+  [
+   "O que é o Modo 12 semanas do Produto Skincare?",
+   "O Modo 12 semanas é uma ferramenta gratuita para começar um ativo novo devagar. Ela monta um plano semana a semana, gera lembretes para a agenda e traz um diário de fotos para comparar a pele com a mesma luz e o mesmo enquadramento."
+  ],
+  [
+   "As fotos do diário do Modo 12 semanas ficam guardadas onde?",
+   "O plano e as fotos ficam só no aparelho da pessoa, no navegador, e nada é enviado ao site. Se os dados do navegador forem limpos, as fotos somem, por isso a página pede para baixar as que você quiser guardar."
+  ]
+ ],
+ "/ferramentas/ativos/": [
+  [
+   "O que é o Guia de ativos do Produto Skincare?",
+   "O Guia de ativos é uma ferramenta que faz três perguntas e mostra quais princípios ativos combinam com seus objetivos e seu tipo de pele, com sugestão de rotina e alertas de combinação. Também dá para explorar a lista completa de ativos."
+  ],
+  [
+   "O guia de ativos de skincare substitui a consulta com dermatologista?",
+   "Não. O conteúdo é informativo, sem valor de diagnóstico. Ativos marcados como receita médica só devem ser usados com prescrição, e ao testar algo novo a página recomenda fazer um teste de contato numa pequena área antes."
+  ]
+ ],
+ "/ferramentas/backup/": [
+  [
+   "Como fazer backup do tracker e do diário de fotos do Produto Skincare?",
+   "A ferramenta de backup gera um arquivo .json com o tracker de rotina, o diário de fotos e as observações do aparelho. O arquivo é gerado no navegador e baixado para a pasta de downloads, e depois pode ser importado para restaurar os dados."
+  ],
+  [
+   "O que é o backup dos seus dados e o site recebe o arquivo?",
+   "O backup é um arquivo de segurança que traz seus dados de volta se você trocar de navegador ou limpar os dados. O site nunca recebe o arquivo, porque ele é gerado no seu navegador. Ao importar, os dados atuais do navegador são substituídos."
+  ]
+ ],
+ "/ferramentas/clima/": [
+  [
+   "O que significa o índice UV e como ele muda a rotina de skincare?",
+   "O índice UV é uma medida da força da radiação do sol que queima a pele. Ele muda com a hora, a estação e o lugar, e pode estar alto mesmo em dia nublado. A página explica o que fazer em cada nível, do baixo ao extremo."
+  ],
+  [
+   "Como ajustar hidratante e protetor ao ar seco ou úmido?",
+   "Em ar seco, a página sugere hidratante mais encorpado, evitar água muito quente no banho e reforçar o hidratante à noite. Em ar úmido e quente, texturas em gel e protetor toque seco costumam pesar menos. Depois de suar muito ou nadar, reaplique o protetor."
+  ],
+  [
+   "O que fazer com índice UV alto, de 6 a 7?",
+   "Para índice de 6 a 7, que a página classifica como alto, ela indica protetor FPS 30 ou mais, reaplicado a cada 2 horas fora de casa, além de chapéu e roupa que cubra."
+  ]
+ ],
+ "/ferramentas/comparar/": [
+  [
+   "O que é a ferramenta Comparar produtos do Produto Skincare?",
+   "Comparar produtos é uma ferramenta em que você seleciona 2 ou 3 produtos de skincare para ver lado a lado. A descrição da página diz que a comparação mostra preço, ativos, avaliação e para que tipo de pele cada produto serve."
+  ],
+  [
+   "Os preços e links da comparação de produtos de skincare mudam?",
+   "A página avisa que os preços são os vistos na data indicada e podem mudar, e que contém links de afiliado, com possível comissão sem custo extra para você. O selo de evidência avalia o ativo principal, não a fórmula do produto."
+  ]
+ ],
+ "/ferramentas/diario/": [
+  [
+   "O que é o Diário da pele do Produto Skincare?",
+   "O Diário da pele é uma ferramenta para registrar como a pele está se sentindo, com nota de 1 a 5, e somar fotos quando quiser. Os registros viram uma curva da evolução ao longo do tempo. Cada registro fica só no aparelho, sem envio ao site."
+  ],
+  [
+   "Por que fotografar a pele sempre do mesmo jeito no diário?",
+   "A página orienta fotografar sempre igual: mesma hora, luz de janela difusa, mesmo ângulo e rosto limpo. Ela lembra que a renovação da epiderme leva em torno de 28 dias e que o diário é um registro pessoal, não uma medição clínica."
+  ]
+ ],
+ "/ferramentas/equivalente/": [
+  [
+   "O que é a ferramenta Equivalente mais barato de skincare?",
+   "O Equivalente mais barato é uma ferramenta em que você digita o produto que usa ou quer comprar e vê opções do catálogo com os mesmos ativos, a concentração de cada um quando o anúncio informa e o preço conferido, com a data."
+  ],
+  [
+   "Produto de skincare com o mesmo ativo dá o mesmo resultado?",
+   "Não necessariamente. A página avisa que mesmo ativo não garante o mesmo resultado, porque a fórmula inteira, a textura, o pH e a embalagem também contam. Ela compara só os ativos que o anúncio destaca, então vale conferir a lista completa na embalagem."
+  ]
+ ],
+ "/ferramentas/experimento/": [
+  [
+   "Como funciona a ferramenta do Experimento Coletivo #01?",
+   "O Experimento Coletivo #01 é um acompanhamento de 35 dias de um protetor solar, em que cada participante roda o protocolo no próprio aparelho. O resultado é publicado em um boletim, seja qual for. A página diz que não é ensaio clínico."
+  ],
+  [
+   "Que dados do Experimento Coletivo saem do meu aparelho?",
+   "Curva, fotos e registros ficam no aparelho. Só se a pessoa quiser, ao fim dos 35 dias, ela pode mandar um resumo anônimo: um vetor de números, sem foto, sem nome e sem cidade. O envio é opcional."
+  ],
+  [
+   "O Experimento Coletivo #01 vende o protetor solar testado?",
+   "Não. A página diz que o experimento não vende produto e que cada pessoa compra por onde quiser. Também afirma que este primeiro experimento não tem patrocínio e que submissões de marca só abrem depois do primeiro boletim."
+  ]
+ ],
+ "/ferramentas/farmacia/": [
+  [
+   "O que é o Modo farmácia do Produto Skincare?",
+   "O Modo farmácia é uma ferramenta para usar na loja, antes de comprar: você fotografa a lista de ingredientes e vê se o produto combina com o que já tem em casa, se repete um ativo que você já usa e se preenche um passo que falta."
+  ],
+  [
+   "A foto do rótulo no Modo farmácia é enviada para algum servidor?",
+   "Não. A página diz que a foto é lida no aparelho e não é enviada. A comparação usa a sua prateleira, salva só ali. A leitura por foto pode trocar letras, então convém conferir o texto lido antes de usar o resultado."
+  ]
+ ],
+ "/ferramentas/ingredientes/": [
+  [
+   "O que é o Verificador de ingredientes do Produto Skincare?",
+   "O Verificador de ingredientes é uma ferramenta em que você escolhe dois ou mais ativos, ou cola a lista de ingredientes, e vê se pode usar junto, se é melhor usar em horários diferentes ou se não deve combinar, com o motivo."
+  ],
+  [
+   "O que o verificador de ingredientes diz quando não há regra para uma combinação?",
+   "Quando não há regra cadastrada para um par, a ferramenta diz que não sabe. Também dá para fotografar só a lista de ingredientes: a foto é lida no aparelho, não é enviada, e vale conferir o texto lido antes de verificar."
+  ]
+ ],
+ "/ferramentas/prateleira/": [
+  [
+   "O que é a Minha prateleira de skincare?",
+   "A Minha prateleira é uma ferramenta em que você cadastra os produtos que já tem. O site mostra o que não combina entre eles, o que está repetido, que passo da rotina falta e ajuda a lembrar quando cada um acaba."
+  ],
+  [
+   "A lista de produtos da Minha prateleira é enviada ao site?",
+   "Não. A lista fica salva só no aparelho, sem cadastro, e o site não a recebe. A análise usa as regras do verificador e olha só os ativos que reconhece, então convém conferir sempre a embalagem."
+  ]
+ ],
+ "/ferramentas/raio-x/": [
+  [
+   "O que é o Raio-X do rótulo de skincare?",
+   "O Raio-X do rótulo é uma ferramenta em que você cola a lista de ingredientes (INCI) e, se quiser, as promessas da embalagem. Ela agrupa os ingredientes por função, aponta o que merece atenção e confere se as promessas se sustentam na lista."
+  ],
+  [
+   "A ordem dos ingredientes no rótulo mostra a quantidade de cada um?",
+   "Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis."
+  ]
+ ],
+ "/ferramentas/relatorio/": [
+  [
+   "O que é o Relatório para a consulta dermatológica?",
+   "O Relatório para a consulta é uma ferramenta que monta um resumo imprimível do seu acompanhamento: evolução da pele, rotina, constância e fotos recentes, para o dermatologista ler em poucos minutos."
+  ],
+  [
+   "O relatório para a consulta usa dados enviados ao site?",
+   "Não. Ele é montado no próprio aparelho, só com os dados guardados ali. A página avisa que o documento não é diagnóstico médico: é informativo, feito pela própria pessoa, com espaço reservado para o profissional complementar na consulta."
+  ]
+ ],
+ "/ferramentas/reposicao/": [
+  [
+   "O que é o Lembrete de reposição de skincare?",
+   "O Lembrete de reposição é uma ferramenta que estima quando um produto, como protetor, sérum ou hidratante, vai acabar e cria um lembrete na agenda uma semana antes. A conta é o tamanho da embalagem dividido pelo uso por dia."
+  ],
+  [
+   "Como funciona o cálculo de quando o produto de skincare acaba?",
+   "Você informa o tamanho e como usa. As quantidades por uso são estimativas médias, que dá para ajustar. Ao marcar Acabou, a ferramenta guarda quantos dias o produto durou de verdade e usa isso na próxima vez. Tudo fica salvo só no aparelho."
+  ],
+  [
+   "O lembrete de reposição abre em quais agendas?",
+   "O arquivo .ics gerado pela ferramenta abre no Google Agenda, no Calendário do iPhone e no Outlook. O lembrete fica só na sua agenda, e nada é enviado para o site."
+  ]
+ ],
+ "/ferramentas/ritual/": [
+  [
+   "O que é o Ritual guiado de skincare?",
+   "O Ritual guiado é uma ferramenta que conduz o seu ritual de skincare passo a passo, como um espelho, com o tempo de cada etapa e cronômetro. No fim, o check-in do dia fica registrado no tracker de rotina."
+  ],
+  [
+   "Os dados do Ritual guiado ficam salvos onde?",
+   "Tudo fica só no aparelho da pessoa, segundo a página. O check-in do dia, feito ao fim do ritual, é registrado no tracker de rotina do próprio navegador, sem envio ao site."
+  ]
+ ],
+ "/ferramentas/rotina/": [
+  [
+   "O que é o Tracker de rotina do Produto Skincare?",
+   "O Tracker de rotina é um checklist de skincare para marcar o que foi feito hoje, de manhã e de noite, com resumo do dia e evolução. Os dados ficam só no aparelho."
+  ],
+  [
+   "Dá para anotar reações da pele no tracker de rotina?",
+   "Sim. Há um campo de notas e reações para anotar ardor, vermelhidão, melhora ou textura. As notas ficam no aparelho e entram no relatório para a consulta. Também há um atalho para registrar como está a pele no diário."
+  ]
+ ],
+ "/ingredientes/": [
+  [
+   "Quais ingredientes de skincare têm guia e o que cada um faz?",
+   "O guia explica ativos comuns como niacinamida, retinol, vitamina C, ácido hialurônico, ácido azelaico, ácido salicílico, ceramidas, ácido tranexâmico, peptídeo de cobre e protetor solar, com o nível de evidência de cada um."
+  ],
+  [
+   "O que significa evidência forte, moderada ou emergente nos ingredientes?",
+   "O selo é um resumo da qualidade e da quantidade dos estudos sobre o ingrediente, não uma nota para produto ou marca. Forte: ensaios randomizados de boa qualidade; moderada: ensaios favoráveis, mas pequenos; emergente: mais dados de laboratório ou animais."
+  ]
+ ],
+ "/ingredientes/acido-azelaico/": [
+  [
+   "O que é ácido azelaico e para que serve?",
+   "O ácido azelaico é um ácido dicarboxílico com ação anti-inflamatória, contra micro-organismos, de normalização da queratinização no folículo e de inibição da produção de melanina. É estudado em rosácea, acne e melasma."
+  ],
+  [
+   "Como usar ácido azelaico sem irritar a pele?",
+   "Comece uma vez ao dia nas primeiras semanas e aumente se a pele estiver bem. Formigamento leve pode aparecer no início; se for forte ou não passar, pare e procure orientação. Evite a área dos olhos e use protetor solar de dia."
+  ]
+ ],
+ "/ingredientes/acido-ferulico/": [
+  [
+   "O que é ácido ferúlico e para que serve no skincare?",
+   "O ácido ferúlico é um antioxidante de origem vegetal que entra em séruns, muitas vezes com vitamina C e E, para ajudar a estabilizar a fórmula e proteger os ativos da oxidação. Ele não esfolia."
+  ],
+  [
+   "Ácido ferúlico tem comprovação para a pele?",
+   "A evidência é emergente: é maior em estudos de estabilização de fórmula e fotoproteção adjuvante do que em ensaios clínicos do ativo isolado, que são raros. O protetor solar continua sendo o que de fato protege."
+  ]
+ ],
+ "/ingredientes/acido-hialuronico/": [
+  [
+   "O que é ácido hialurônico e o que ele faz na pele?",
+   "O ácido hialurônico é um componente natural da matriz que dá sustentação à pele e atrai e retém água. No skincare é usado principalmente para hidratar, e serve para todos os tipos de pele."
+  ],
+  [
+   "Ácido hialurônico tópico ajuda nas rugas?",
+   "Num estudo randomizado, só as versões de baixo peso molecular reduziram a profundidade das rugas, enquanto hidratação e elasticidade melhoraram. A evidência é moderada e o efeito sobre rugas é menos consistente."
+  ]
+ ],
+ "/ingredientes/acido-mandelico/": [
+  [
+   "O que é ácido mandélico e como ele esfolia a pele?",
+   "O ácido mandélico é um alfa-hidroxiácido (AHA) obtido do hidrolisado de amêndoas amargas. Sua molécula é maior que a do glicólico, por isso é absorvido mais devagar e costuma ser apresentado como a escolha mais gentil entre os AHAs."
+  ],
+  [
+   "Como começar a usar ácido mandélico?",
+   "À noite, 1 a 2 vezes por semana no início, aumentando aos poucos conforme a pele aceitar. Use protetor solar no dia seguinte, pois AHAs aumentam a sensibilidade ao sol. A evidência é emergente, com estudos pequenos."
+  ]
+ ],
+ "/ingredientes/acido-salicilico/": [
+  [
+   "O que é ácido salicílico e para que serve?",
+   "O ácido salicílico é um beta-hidroxiácido (BHA) que afina a camada superficial da pele e ajuda a desfazer cravos. É o esfoliante químico mais associado a cravos e pele oleosa."
+  ],
+  [
+   "Ácido salicílico funciona para acne?",
+   "A diretriz de 2024 da Academia Americana de Dermatologia faz recomendação condicional ao ácido salicílico tópico, enquanto peróxido de benzoíla e retinoides tópicos têm recomendação forte. A evidência é moderada."
+  ]
+ ],
+ "/ingredientes/acido-tranexamico/": [
+  [
+   "O que é ácido tranexâmico e para que serve no melasma?",
+   "O ácido tranexâmico é um medicamento usado há décadas para controlar sangramentos, estudado contra o melasma. Em cremes e séruns é usado como clareador de manchas; o comprimido só com receita e acompanhamento."
+  ],
+  [
+   "Ácido tranexâmico tópico ou comprimido: qual a diferença?",
+   "Numa metanálise, a via oral teve a maior redução do melasma, seguida das injeções e do uso tópico. O comprimido não é cosmético, tem contraindicações e não deve ser tomado por conta própria."
+  ]
+ ],
+ "/ingredientes/ceramidas/": [
+  [
+   "O que são ceramidas e para que servem na pele?",
+   "Ceramidas são lipídios (gorduras) presentes na camada mais externa da pele que, com colesterol e ácidos graxos livres, formam uma barreira contra a perda de água. No skincare, dão apoio à barreira da pele."
+  ],
+  [
+   "Ceramidas combinam com retinol e ácidos?",
+   "Combinam com praticamente todos os ativos. Para quem usa retinoides ou ácidos e sente a pele repuxar, o hidratante com ceramidas pode vir antes do ativo que irrita, como amortecedor."
+  ]
+ ],
+ "/ingredientes/niacinamida/": [
+  [
+   "O que é niacinamida e para que serve na pele?",
+   "A niacinamida é uma forma da vitamina B3, também chamada de nicotinamida. Estudos sugerem que ajuda com manchas, oleosidade e barreira, e costuma ser bem tolerada. A evidência é moderada."
+  ],
+  [
+   "Niacinamida pode ser usada junto com vitamina C?",
+   "Se aparecer vermelhidão ou ardor ao usar junto com vitamina C, separe os horários: uma de manhã, outra à noite. Faça um teste numa área pequena antes de usar no rosto todo."
+  ]
+ ],
+ "/ingredientes/peptideo-de-cobre/": [
+  [
+   "O que é GHK-Cu, o peptídeo de cobre do skincare?",
+   "O GHK é um pequeno peptídeo presente no plasma, na saliva e na urina, cujos níveis diminuem com a idade. Ligado ao cobre, forma o GHK-Cu, que é a forma usada em cosméticos. A evidência é emergente."
+  ],
+  [
+   "Peptídeo de cobre funciona na pele?",
+   "A maior parte dos dados vem de laboratório e de animais, e os estudos em pessoas são pequenos. Em teste de laboratório, quase nada atravessou a pele intacta. Não espere resultados de medicamento."
+  ]
+ ],
+ "/ingredientes/protetor-solar/": [
+  [
+   "Para que serve protetor solar e por que usar todo dia?",
+   "O protetor solar combina filtros que reduzem a radiação que chega à pele. Num ensaio randomizado com 903 adultos, quem o usou todos os dias não teve aumento detectável do envelhecimento da pele em 4,5 anos. A evidência é forte."
+  ],
+  [
+   "Qual protetor solar usar no melasma?",
+   "Prefira versões com cor. Num ensaio duplo-cego, o protetor que bloqueava UV e luz visível (com óxido de ferro) teve resultados melhores que o só UV, ambos com FPS 50 ou mais, em pacientes que usavam hidroquinona."
+  ]
+ ],
+ "/ingredientes/retinol/": [
+  [
+   "O que é retinol e qual a diferença para os retinoides?",
+   "Retinoides são derivados da vitamina A. O retinol é o mais comum em cosméticos e a pele o converte em ácido retinoico; adapaleno e tretinoína são medicamentos que costumam exigir receita no Brasil."
+  ],
+  [
+   "Como começar a usar retinol sem irritar a pele?",
+   "À noite, duas ou três noites por semana nas primeiras semanas, com uma porção do tamanho de uma ervilha, evitando cantos dos olhos, nariz e boca. Use protetor solar todo dia e evite retinoides na gestação."
+  ]
+ ],
+ "/ingredientes/vitamina-c/": [
+  [
+   "O que é vitamina C no skincare e como usar?",
+   "No skincare, vitamina C é o ácido L-ascórbico ou derivados mais estáveis, um antioxidante que ajuda a neutralizar radicais livres. Use de manhã, depois da limpeza e antes do hidratante e do protetor solar."
+  ],
+  [
+   "Por que o sérum de vitamina C escurece e como guardar?",
+   "Ele oxida com luz, ar e calor. Guarde bem fechado, longe de luz e calor; se escurecer muito (amarelo forte, laranja ou marrom), provavelmente oxidou."
+  ]
+ ],
+ "/mais-vendidos/": [
+  [
+   "De onde vem a lista de skincare mais vendidos na Amazon do Produto Skincare?",
+   "A lista é montada a partir das páginas de mais vendidos da Amazon Brasil em Pele, Dermocosméticos e Premium Beauty. A página avisa que mais vendido não quer dizer ideal para a sua pele e sugere usar a lista como ponto de partida."
+  ],
+  [
+   "O que é refil na lista de skincare mais vendidos?",
+   "Refil é a versão de reposição do produto. Segundo a página, costuma custar menos que a embalagem original e usar menos plástico, mas convém conferir no anúncio se ele serve na embalagem que você já tem."
+  ]
+ ],
+ "/pele/mista/": [
+  [
+   "O que é pele mista?",
+   "A pele mista é a que combina duas zonas: mais oleosa na zona T (testa, nariz e queixo) e normal ou seca nas bochechas. Um estudo que mediu o sebo em cinco pontos do rosto a descreve como a mais comum."
+  ],
+  [
+   "Preciso usar produtos diferentes para cada zona da pele mista?",
+   "Depende. Se a diferença é pequena, um produto leve e equilibrado resolve. Se a zona T é muito oleosa e as bochechas muito secas, vale fazer multi-hidratação, com produtos diferentes por região."
+  ]
+ ],
+ "/pele/normal/": [
+  [
+   "O que é pele normal?",
+   "A pele normal é a que está equilibrada: nem muito oleosa, nem seca, com poros finos, tom uniforme e raras irritações. Vale manter os bons hábitos para preservar esse equilíbrio."
+  ],
+  [
+   "Pele normal precisa de rotina completa?",
+   "Não necessariamente. Uma rotina simples de limpeza, hidratação e protetor já funciona bem, e dá para adicionar vitamina C ou retinol aos poucos. Evite produtos muito agressivos, como ácidos fortes e esfoliantes mecânicos."
+  ]
+ ],
+ "/pele/oleosa/": [
+  [
+   "O que é pele oleosa?",
+   "A pele oleosa é a que produz mais sebo, o que dá brilho, deixa os poros mais aparentes e favorece cravos e espinhas. Segundo a página, o segredo é equilibrar, não atacar."
+  ],
+  [
+   "Quem tem pele oleosa pode usar hidratante?",
+   "Sim. Não há boa prova de que a falta de hidratante aumente o sebo, e hidratar ajuda a pele a tolerar tratamentos para acne, que costumam ressecar. Escolha texturas em gel ou fluido, oil-free."
+  ]
+ ],
+ "/pele/seca/": [
+  [
+   "O que é pele seca?",
+   "A pele seca é a que tende a ter pouca oleosidade e a segurar menos água. Pode repuxar, descamar ou ficar áspera, principalmente no frio e com ar seco, e o segredo é hidratar bem e repor os lipídios da barreira."
+  ],
+  [
+   "Por que a pele fica mais seca no inverno?",
+   "Frio e ar seco reduzem a função de barreira da pele e a deixam mais sensível a irritantes. A página recomenda hidratante mais rico nessa época e, se puder, umidificar o ambiente."
+  ]
+ ],
+ "/pergunte/": [
+  [
+   "O que é a Pergunte à IA do Produto Skincare?",
+   "A Pergunte à IA é uma ferramenta para tirar dúvidas sobre rotina, ativos, protetor solar e tipos de pele. A IA conhece as fichas e o catálogo do site. Ela não é consulta médica, pode errar e não faz diagnóstico."
+  ],
+  [
+   "O que acontece com a pergunta feita à IA de skincare do site?",
+   "A pergunta vai para o servidor do site e de lá para a IA Claude, da Anthropic, que gera a resposta. A página diz que as conversas não são guardadas e ficam só na aba, sumindo ao fechá-la. Não se deve escrever dados pessoais."
+  ]
+ ],
+ "/privacidade/": [
+  [
+   "O que a política de privacidade do Produto Skincare diz sobre fotos de selfie?",
+   "As fotos são analisadas no navegador, com a tecnologia MediaPipe (Google), e nenhuma imagem é enviada a servidores, nem do site nem de terceiros. O navegador baixa o código e o modelo de rosto, e esses serviços recebem o pedido de download, não a foto."
+  ],
+  [
+   "O que o Produto Skincare guarda no aparelho e como apagar?",
+   "O site usa armazenamento local do navegador para histórico de resultados, preferências, tracker de rotina, lembrete de reposição, última cidade do índice UV e conversa com a IA, esta só com a aba aberta. Para apagar tudo, limpe os dados do site nas configurações do navegador."
+  ],
+  [
+   "O site do Produto Skincare usa cookies?",
+   "Não usa cookies de rastreamento, publicidade ou estatística, segundo a política de privacidade. A política é a página que explica como as ferramentas tratam os dados e diz que o site não mantém cadastro nem banco de dados com informações pessoais."
+  ]
+ ],
+ "/produtos/": [
+  [
+   "O que traz a página de cada produto do catálogo de skincare?",
+   "Cada produto do catálogo tem uma página com o passo da rotina, o tipo de pele indicado, os ativos em destaque com o nível de evidência, o preço conferido com data e alternativas. Há também comparativos para quem está em dúvida entre dois parecidos."
+  ],
+  [
+   "O que é o catálogo de produtos do Produto Skincare?",
+   "O catálogo é uma lista de produtos de skincare separados por passo, como limpeza, tratamento (sérum), hidratante e protetor solar, que dá para filtrar por nome, tipo de pele e faixa de preço. A página avisa que contém links de afiliado."
+  ]
+ ],
+ "/programa-12-semanas/": [
+  [
+   "O que é o Programa 12 Semanas do Produto Skincare?",
+   "O Programa 12 Semanas é um material pago de acompanhamento da pele, com guia semana a semana, caderno de evolução, kit de transição de ativos e roteiro para a consulta. O pagamento é único, sem assinatura e sem cadastro no site."
+  ],
+  [
+   "O Programa 12 Semanas substitui o dermatologista?",
+   "Não. A página diz que o programa é acompanhamento pessoal e cosmético, não diagnóstico nem tratamento, e que não promete resultado. Quem tem acne intensa, lesões, dor ou irritação persistente deve procurar um dermatologista."
+  ],
+  [
+   "Preciso comprar produtos específicos para fazer o Programa 12 Semanas?",
+   "Não. A página diz que o programa trata de método e acompanhamento, e que a escolha de cada produto continua sendo da pessoa. As ferramentas de acompanhamento do site, como tracker e diário, continuam gratuitas."
+  ]
+ ],
+ "/provador/": [
+  [
+   "O que é o provador virtual do Produto Skincare?",
+   "É um quiz gratuito, sem cadastro, em que você conta como a pele se comporta e recebe um perfil estimado e sugestões de rotina de manhã e noite. A selfie opcional roda no navegador e a foto não sai do seu aparelho."
+  ],
+  [
+   "O resultado do provador é um diagnóstico?",
+   "Não. O resultado é uma estimativa cosmética, não um diagnóstico médico. A página sugere repetir o quiz em 3 a 4 semanas para confirmar o tipo, que pode mudar com hormônios, estação e hábitos."
+  ]
+ ],
+ "/provador/metodologia/": [
+  [
+   "O que a análise da selfie do provador mede?",
+   "Mede brilho (zona T e bochechas), vermelhidão, textura e uniformidade do tom a partir das cores da foto, com análise feita no navegador. Os limites e a pontuação são critérios do próprio site, ainda não validados em estudo clínico."
+  ],
+  [
+   "O que é o Skin Score do provador?",
+   "O Skin Score é uma pontuação que começa em 100 e perde pontos por brilho alto, vermelhidão, textura irregular e tom irregular, sempre entre 20 e 100. Serve para acompanhar a sua evolução com fotos parecidas, não é nota de saúde da pele."
+  ]
+ ],
+ "/queridinhos-do-skincare/": [
+  [
+   "O que são os Queridinhos do skincare pelo mundo?",
+   "Os Queridinhos do skincare são produtos que viraram referência no país de origem da marca e também fazem sucesso no Brasil, separados por país. É uma seleção editorial a partir dos mais vendidos da Amazon Brasil, e a ordem dentro de cada país não é um ranking."
+  ],
+  [
+   "De onde vêm a nota e as avaliações dos queridinhos do skincare?",
+   "Nota e número de avaliações vêm da Amazon Brasil e podem ter mudado desde a coleta. Produtos sem nota abrem uma busca na Amazon. A página lembra que um produto popular não é garantia de que serve para a sua pele e usa links de afiliado."
+  ]
+ ],
+ "/rotina-de-skincare/": [
+  [
+   "Qual a ordem da rotina de skincare de manhã e de noite?",
+   "De manhã: limpeza, sérum de vitamina C (opcional), hidratante e protetor solar. À noite: demaquilante, limpeza, tratamento e hidratante noturno. A página explica cada passo e abre opções na Amazon filtradas pelo tipo de pele."
+  ],
+  [
+   "O que é o passo de tratamento na rotina noturna de skincare?",
+   "O tratamento é o passo em que entram os ativos. A página orienta começar com um só e ver como a pele reage antes de somar outro. Retinol pede começo devagar, poucas noites por semana, e protetor solar no dia seguinte."
+  ]
+ ],
+ "/rotinas/": [
+  [
+   "Quais rotinas prontas o Produto Skincare oferece?",
+   "Há rotinas para acne, rosácea, melasma e anti-age. Cada uma é oferecida em três versões, da mais econômica à premium, com ativos que têm comprovação científica segundo a página."
+  ],
+  [
+   "Como escolher entre as rotinas prontas por faixa de preço?",
+   "Escolha sua principal preocupação (acne, rosácea, melasma ou anti-age) e depois a versão econômica, intermediária ou premium. O conteúdo é informativo e não substitui consulta com dermatologista."
+  ]
+ ],
+ "/rotinas/acne/": [
+  [
+   "Como é uma rotina de skincare para acne segundo o Produto Skincare?",
+   "A rotina é dividida em manhã e noite: limpeza, tratamento, hidratação e protetor solar de dia, e limpeza, tratamento e hidratação à noite. Os tratamentos citados incluem ácido salicílico, peróxido de benzoíla, niacinamida e ácido azelaico."
+  ],
+  [
+   "Quais cuidados tomar ao começar os ativos da rotina para acne?",
+   "Introduza um ativo de cada vez, com 2 semanas de intervalo, e comece ácido salicílico e peróxido de benzoíla em noites alternadas. O resultado aparece entre 6 e 12 semanas. Gestantes devem evitar retinoides e consultar o médico."
+  ]
+ ],
+ "/rotinas/anti-age/": [
+  [
+   "Como funciona a rotina anti-age do Produto Skincare?",
+   "É uma rotina em três faixas, com protetor solar e vitamina C de manhã e retinol à noite, que a página aponta como os ativos com mais comprovação contra linhas e flacidez."
+  ],
+  [
+   "Como começar o retinol na rotina anti-age?",
+   "Comece 2 noites por semana e aumente aos poucos; descamar no início é comum. Não use retinol na mesma noite que ácidos esfoliantes. Resultados em linhas finas levam de 3 a 6 meses, e retinoides são contraindicados na gestação e na amamentação."
+  ]
+ ],
+ "/rotinas/melasma/": [
+  [
+   "Qual a lógica da rotina para melasma?",
+   "A rotina é construída em torno do protetor solar diário, de preferência com cor, somado a ativos como vitamina C, ácido azelaico, niacinamida e thiamidol. A página diz que, sem protetor diário, nenhum clareador funciona."
+  ],
+  [
+   "Que cuidados evitar na rotina para melasma?",
+   "Evite calor intenso, sauna e procedimentos agressivos, que podem escurecer a mancha. Ácidos e retinol irritam, e irritação piora o melasma, então vá devagar. Gestantes devem evitar retinoides e hidroquinona e confirmar azelaico e vitamina C com o médico."
+  ]
+ ],
+ "/rotinas/rosacea/": [
+  [
+   "Como é uma rotina de skincare para rosácea?",
+   "É uma rotina focada em barreira, ácido azelaico e protetor solar diário, com limpeza suave, hidratante calmante e protetor de manhã, e limpeza, azelaico e hidratante à noite. De manhã, só água morna também serve, segundo a página."
+  ],
+  [
+   "O que evitar na rotina para rosácea?",
+   "Evite esfoliantes físicos, ácidos fortes, álcool, mentol e fragrância. Retinol e ácido salicílico costumam piorar a rosácea e só devem ser usados com orientação médica. Anote seus gatilhos, como sol, calor, bebida alcoólica, comida apimentada e estresse."
+  ]
+ ],
+ "/sobre/": [
+  [
+   "O que é o Produto Skincare e quem escreve os textos do site?",
+   "O Produto Skincare é um site independente para ajudar a entender a pele e escolher produtos com mais informação e menos propaganda. Os textos são da Equipe Produto Skincare, com pesquisa no PubMed e em fontes oficiais, e ainda não são revisados por dermatologista."
+  ],
+  [
+   "Como o Produto Skincare ganha dinheiro com links de afiliado?",
+   "Muitos botões de loja são links de afiliado: se você comprar por eles, o site pode receber comissão, sem custo extra. A página diz que a comissão ajuda a manter o site gratuito e não muda a ordem nem os critérios de escolha dos produtos."
+  ],
+  [
+   "O que é o selo de evidência dos produtos de skincare?",
+   "O selo de evidência é uma classificação do ativo principal do produto, não da fórmula de cada marca. Há três níveis, evidência forte, moderada e emergente, conforme a quantidade e o tipo de estudos que sustentam o ativo."
+  ]
+ ]
+}

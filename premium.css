@@ -773,3 +773,13 @@ body::after{
   .ps-hero > *{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
   .sonho-lente,.sonho-motes{display:none!important}
 }
+
+/* Perguntas frequentes e nota de atualização por página (geradas por _scripts/prontidao.py) */
+.ps-perguntas,.ps-nota-pagina{max-width:760px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+.ps-perguntas{margin-top:40px;margin-bottom:24px}
+.ps-perguntas h2{margin:0 0 6px}
+.ps-perguntas h3{font-size:1.05rem;line-height:1.35;margin:22px 0 6px}
+.ps-perguntas p{margin:0 0 10px}
+.ps-nota-pagina{font-size:.9rem;opacity:.85;margin-top:18px;margin-bottom:24px}
+main:not(.ig)>.ps-perguntas,main:not(.ig)>.ps-nota-pagina,main+.ps-perguntas,main~.ps-nota-pagina{padding-left:20px;padding-right:20px}
+.pd-faq .pq,.ps-faq .pq{font-size:1rem;line-height:1.35;font-weight:600;margin:0;padding:14px 0 6px}
