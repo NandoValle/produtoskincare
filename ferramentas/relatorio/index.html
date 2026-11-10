@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Relatório para a consulta dermatológica | Produto Skincare</title>
-<meta name="description" content="Resumo imprimível do seu acompanhamento: rotina, constância dos últimos 30 dias e fotos recentes — pronto para levar à consulta. Montado só com os dados do seu aparelho.">
+<meta name="description" content="Resumo imprimível do seu acompanhamento: evolução da pele no período, rotina, constância dos últimos 30 dias e fotos recentes — pronto para levar à consulta. Montado só com os dados do seu aparelho.">
 
 <style>
 :root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
@@ -40,7 +40,7 @@ h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
 <link rel="canonical" href="https://produtoskincare.com.br/ferramentas/relatorio/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Relatório para a consulta">
-<meta property="og:description" content="Resumo imprimível do seu acompanhamento: rotina, constância dos últimos 30 dias e fotos recentes — pronto para levar à consulta. Montado só com os dados do seu aparelho.">
+<meta property="og:description" content="Resumo imprimível do seu acompanhamento: evolução da pele no período, rotina, constância dos últimos 30 dias e fotos recentes — pronto para levar à consulta. Montado só com os dados do seu aparelho.">
 <meta property="og:url" content="https://produtoskincare.com.br/ferramentas/relatorio/">
 <meta property="og:site_name" content="Produto Skincare">
 <meta property="og:locale" content="pt_BR">
@@ -90,14 +90,16 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
 <div class="rel-caixa">
 <p class="ig-meta">Ferramenta · Relatório para a consulta</p>
 <h1>Relatório para a consulta</h1>
-<p class="ig-lede">O resumo do seu acompanhamento — rotina, constância e fotos recentes — pronto para o dermatologista ler em poucos minutos. O relatório é montado aqui mesmo, só com os dados deste aparelho.</p>
+<p class="ig-lede">O resumo do seu acompanhamento — evolução da pele, rotina, constância e fotos recentes — pronto para o dermatologista ler em poucos minutos. O relatório é montado aqui mesmo, só com os dados deste aparelho.</p>
 <div class="rel-acoes"><button class="btn" type="button" id="rel-imprimir">Salvar como PDF / Imprimir</button><a class="btn" href="/ferramentas/rotina/" style="background:var(--papel-2);color:var(--tinta)">Voltar ao tracker</a></div>
 <div class="rel-folha" id="rel-folha"></div>
 <p class="ig-nota rel-aviso"><strong>Não é diagnóstico médico.</strong> Este documento é informativo, montado por você a partir do próprio acompanhamento. Espaço reservado para o profissional complementar em consulta.</p>
 </div>
 </main>
+<script src="/evolucao.js"></script>
 <script>
 (function(){
+  const E = window.PSEvolucao;
   function dataHoje(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
   function fmt(iso){ return new Date(iso+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric"}); }
   const ITENS = { manha:["Limpeza facial","Tratamento (sérum)","Hidratante","Protetor solar ☀️"], noite:["Limpeza facial","Tratamento (sérum/retinol)","Hidratante"] };
@@ -105,11 +107,30 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
 
   function abrirBD(){ return new Promise((res,rej)=>{ const req=indexedDB.open("ps_diario_site",1); req.onupgradeneeded=()=>{ if(!req.result.objectStoreNames.contains("fotos")) req.result.createObjectStore("fotos",{keyPath:"id",autoIncrement:true}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(req.error); }); }
 
-  async function fotosRecentes(){
+  async function todosRegistros(){
     try{
       const bd=await abrirBD();
-      return await new Promise((res)=>{ const t=bd.transaction("fotos","readonly"); const s=t.objectStore("fotos"); const r=s.getAll(); r.onsuccess=()=>res((r.result||[]).sort((a,b)=>String(b.data).localeCompare(String(a.data))).slice(0,3)); r.onerror=()=>res([]); });
+      return await new Promise((res)=>{ const t=bd.transaction("fotos","readonly"); const s=t.objectStore("fotos"); const r=s.getAll(); r.onsuccess=()=>res((r.result||[]).sort((a,b)=>String(a.data).localeCompare(String(b.data)))); r.onerror=()=>res([]); });
     }catch(e){ return []; }
+  }
+
+  function blocoEvolucao(a){
+    if (!a.temDados) return '<p class="ig-nota">Sem autopercepção registrada no <a href="/ferramentas/diario/">diário da pele</a> ainda.</p>';
+    const linhas = E.DIMS.map(d => {
+      const p = a.primeiro.scores[d.id], u = a.ultimo.scores[d.id];
+      if (typeof p !== "number" || typeof u !== "number") return "";
+      const v = u - p;
+      const sinal = v > 0 ? "+" + v : String(v);
+      return "<tr><th>"+d.rotulo+"</th><td>"+p+" de 5</td><td>"+u+" de 5</td><td>"+sinal+"</td></tr>";
+    }).join("");
+    const marcosOK = a.marcos.filter(m => m.atingido).map(m => m.dias + " dias").join(" · ");
+    const ultimaSem = a.constancia[a.constancia.length - 1];
+    return `
+      <h2>Evolução no período</h2>
+      <p class="ig-nota">Autopercepção da própria pessoa (1 = pior dia, 5 = melhor dia), registrada no diário. Primeiro registro: ${fmt(a.primeiro.data)} · último: ${fmt(a.ultimo.data)} · dia ${a.dias} do acompanhamento.</p>
+      <table><thead><tr><th>Dimensão</th><th>Início</th><th>Agora</th><th>Δ</th></tr></thead><tbody>${linhas}</tbody></table>
+      ${E.graficoSVG(a, { ativas: { media: true } })}
+      <p class="ig-nota">Marcos de ciclo atingidos: ${marcosOK || "nenhum ainda"}${ultimaSem ? " · constância da última semana: " + ultimaSem.pct + "% dos dias com rotina completa" : ""}.</p>`;
   }
 
   async function render(){
@@ -124,9 +145,11 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
       if (m) manhas++;
       if (n) noites++;
     });
-    const fotos = await fotosRecentes();
+    const registros = await todosRegistros();
+    const fotos = registros.filter(f=>f.foto).slice(-3).reverse();
+    const a = E.analisar(registros, dados);
     const notas = JSON.parse(localStorage.getItem("rotina_notas")||"[]");
-    const notasHTML = notas.length ? '<h2>Observações registradas</h2><ul>' + notas.map(n=>'<li><strong>'+fmt(n.data)+'</strong> — '+String(n.texto).replace(/&/g,"&amp;").replace(/</g,"&lt;')+'</li>').join("") + '</ul>' : '';
+    const notasHTML = notas.length ? '<h2>Observações registradas</h2><ul>' + notas.map(n=>'<li><strong>'+fmt(n.data)+'</strong> — '+String(n.texto).replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</li>').join("") + '</ul>' : '';
     const fotoHTML = fotos.length ? '<div class="rel-fotos">'+fotos.map(f=>'<img src="'+f.foto+'" alt="Registro de '+fmt(f.data)+'">').join("")+'</div><p class="ig-nota">Registros mais recentes do diário ('+fotos.map(f=>fmt(f.data)).join(" · ")+'). Fotos pessoais, sob luz não padronizada.</p>' : '<p class="ig-nota">Sem fotos no diário.</p>';
     document.getElementById("rel-folha").innerHTML = `
       <div>
@@ -137,6 +160,9 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
           <tr><th>Período</th><td>Últimos 30 dias (até ${fmt(dataHoje())})</td></tr>
           <tr><th>Constância</th><td>${manhas} manhãs e ${noites} noites completas · ${dias} dias com registro</td></tr>
         </tbody></table>
+      </div>
+      <div>
+        ${blocoEvolucao(a)}
       </div>
       <div>
         <h2>Rotina combinada</h2>
