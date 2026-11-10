@@ -53,6 +53,13 @@ const texto = async (p, sel) => ((await p.textContent(sel)) || "").replace(/\s+/
     checar("prateleira: retinol + glicólico à noite → horários diferentes", a.includes("Use em horários diferentes"), a.slice(0, 160));
     checar("prateleira: aponta que falta protetor", a.includes("Falta: Protetor solar"));
     checar("prateleira: sugere protetor do catálogo", (await p.locator('#pr-analise a[href^="/produtos/"]').count()) > 0);
+    checar("prateleira: sugestão tem botão da loja com rel sponsored", (await p.locator('#pr-analise a.ft-loja[rel~="sponsored"]').count()) > 0);
+    {
+      const [dl] = await Promise.all([p.waitForEvent("download"), p.click("#pr-cartao .psc-btn")]);
+      const png = fs.readFileSync(await dl.path());
+      checar("prateleira: cartão para os Stories é um PNG", png.slice(1, 4).toString() === "PNG" && png.readUInt32BE(16) === 1080 && png.readUInt32BE(20) === 1920);
+      if (process.env.SALVAR_CARTOES) fs.copyFileSync(await dl.path(), path.join(process.env.SALVAR_CARTOES, "prateleira.png"));
+    }
     // Tirar o glicólico da noite e pôr de manhã resolve o conflito
     const item = p.locator(".ft-item", { hasText: "Tônico glicólico X" });
     await item.locator('[data-per="manha"]').check();
@@ -101,6 +108,7 @@ const texto = async (p, sel) => ((await p.textContent(sel)) || "").replace(/\s+/
     const r = await texto(p, "#eq-resultado");
     checar("equivalente: Principia niacinamida → The Ordinary, mesma concentração", r.includes("The Ordinary") && r.includes("mesmos ativos e concentração"), r.slice(0, 220));
     checar("equivalente: mostra quanto a menos", r.includes("a menos"));
+    checar("equivalente: cada opção tem botão da loja com rel sponsored", (await p.locator('#eq-resultado a.ft-loja[rel~="sponsored"]').count()) >= (await p.locator('#eq-resultado > ul > .ft-item').count()));
     await p.fill("#eq-busca", "retinol b3");
     await p.click("#eq-sugestoes [data-i]");
     const r2 = await texto(p, "#eq-resultado");
@@ -119,6 +127,12 @@ const texto = async (p, sel) => ((await p.textContent(sel)) || "").replace(/\s+/
     const [download] = await Promise.all([p.waitForEvent("download"), p.click("#sm-ics")]);
     const ics = fs.readFileSync(await download.path(), "utf8");
     checar("12 semanas: .ics com 12 lembretes", (ics.match(/BEGIN:VEVENT/g) || []).length === 12);
+    {
+      const [dl] = await Promise.all([p.waitForEvent("download"), p.click("#sm-cartao .psc-btn")]);
+      const png = fs.readFileSync(await dl.path());
+      checar("12 semanas: cartão para os Stories é um PNG 1080x1920", png.slice(1, 4).toString() === "PNG" && png.readUInt32BE(16) === 1080 && png.readUInt32BE(20) === 1920);
+      if (process.env.SALVAR_CARTOES) fs.copyFileSync(await dl.path(), path.join(process.env.SALVAR_CARTOES, "12-semanas.png"));
+    }
     const foto = path.join(os.tmpdir(), "ps-teste-foto.png");
     fs.writeFileSync(foto, Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAIAAAADCAIAAAA2iEnWAAAAEklEQVR4nGP4z8DwHwyBNAMDAFOpBfvk8QR5AAAAAElFTkSuQmCC", "base64"));
     await p.selectOption("#sm-reacao", "forte");

@@ -28,6 +28,7 @@
 <p id="sm-antes"></p>
 <div class="ft-rolagem"><table class="ft-tabela"><thead><tr><th scope="col">Semanas</th><th scope="col">Datas</th><th scope="col">Quantas vezes</th></tr></thead><tbody id="sm-tabela"></tbody></table></div>
 <button class="ft-btn ft-sec" type="button" id="sm-ics">📅 Lembretes semanais na agenda (.ics)</button>
+<div id="sm-cartao"></div>
 <p class="ig-nota">O arquivo cria 12 lembretes, um por semana, com a frequência daquela semana e o aviso para tirar a foto do diário. Abre no Google Agenda, no Calendário do iPhone e no Outlook.</p>
 </section>
 
@@ -65,6 +66,7 @@
 </article>
 <script src="/plano-ativos.js"></script>
 <script src="/compartilhar.js"></script>
+<script src="/cartao-story.js"></script>
 <script>
 (function () {
   "use strict";
@@ -110,6 +112,18 @@
         fmt(addDias(inicio, (e.de - 1) * 7)) + " a " + fmt(addDias(inicio, e.ate * 7 - 1)) + "</td><td>" + esc(c.sensivel ? e.sensivel : e.normal) + "</td></tr>";
     }).join("");
   }
+
+  if (window.PSCartao) PSCartao.montar($("sm-cartao"), function () {
+    var c = ler();
+    if (!c || !PL.PLANOS[c.plano]) return null;
+    var p = PL.PLANOS[c.plano], sem = semanaAtual(c), nome = p.nome.replace(/\s*\(.*\)/, "").toLowerCase();
+    var titulo = sem === 0 ? "Vou começar " + nome + " do jeito certo"
+      : sem > 12 ? "Terminei doze semanas de " + nome
+      : "Semana " + PSCartao.extenso(sem) + " de doze com " + nome;
+    var linhas = ["Começo devagar e aumento aos poucos, semana a semana.", "Uma foto por semana, com a mesma luz, para comparar.", "Protetor solar todos os dias."];
+    return { rotulo: "Modo 12 semanas", titulo: titulo, linhas: linhas, caminho: "/ferramentas/12-semanas",
+      rodape: "Monte o seu plano grátis. Fica só no seu aparelho.", arquivo: "12-semanas" };
+  }, { evento: "12semanas/cartao" });
 
   $("sm-inicio").value = hojeISO();
   $("sm-salvar").addEventListener("click", function () {
