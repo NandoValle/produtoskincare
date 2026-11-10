@@ -11,6 +11,7 @@
 .hc-meta{font-size:12px;color:var(--suave);display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 24px}
 .hc-box{border:1px solid var(--linha);border-radius:12px;padding:20px 22px;margin:20px 0;background:var(--papel)}
 .hc-box h2,.hc-box h3{margin-top:0}
+.hc-box.hc-resumo h2{font-size:21px;margin:0 0 8px}
 .hc-resumo{border-left:3px solid var(--verde);background:var(--verde-claro)}
 .hc-alerta{border-left:3px solid var(--rosa);background:var(--rosa-claro)}
 .hc-nivel{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;border:1px solid currentColor}
