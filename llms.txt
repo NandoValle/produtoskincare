@@ -116,7 +116,7 @@
 
 ## Ferramentas para agentes (WebMCP)
 
-Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra ferramentas só de leitura. Nenhuma compra, cadastra ou envia dados; todas devolvem o link da página correspondente para a pessoa continuar manualmente.
+Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra ferramentas só de leitura. Nenhuma compra, cadastra ou envia dados; todas devolvem o link da página correspondente para a pessoa continuar manualmente. Em navegadores sem WebMCP nativo, o arquivo webmcp-polyfill.js cria document.modelContext com a mesma interface da especificação (registerTool, getTools, executeTool), para agentes e extensões que rodam na página; document.modelContext.isPolyfill === true indica esse caso.
 
 - [buscar_produtos](https://produtoskincare.com.br/produtos/): filtra o catálogo por texto, tipo de pele, preocupação, passo e preço máximo; devolve preço com data, avaliação e links.
 - [explicar_tipo_de_pele](https://produtoskincare.com.br/pele/oleosa/): explica oleosa, seca, mista ou normal e devolve os links do guia e do provador.
