@@ -77,6 +77,7 @@
 - [Skincare masculino](https://produtoskincare.com.br/blog/skincare-masculino/): rotina básica.
 - [Protetor solar para pele oleosa](https://produtoskincare.com.br/blog/protetor-solar-pele-oleosa/): texturas e escolha.
 - [Rotina de skincare barata](https://produtoskincare.com.br/blog/rotina-de-skincare-barata/): montar rotina com orçamento.
+- [Experimento Coletivo #01: 35 dias, um FPS e uma resposta honesta](https://produtoskincare.com.br/blog/experimento-coletivo-01/): abertura do primeiro experimento coletivo de eficácia pós-mercado do Brasil, com boletim independente do resultado.
 
 ## Ferramentas gratuitas (sem cadastro)
 
@@ -95,6 +96,11 @@
 - [Diário da pele](https://produtoskincare.com.br/ferramentas/diario/): evolução visível, no próprio aparelho.
 - [Relatório para a consulta](https://produtoskincare.com.br/ferramentas/relatorio/): resumo para levar ao dermatologista.
 - [Backup dos seus dados](https://produtoskincare.com.br/ferramentas/backup/): exportar e restaurar o que está no aparelho.
+- [Experimento Coletivo #01](https://produtoskincare.com.br/ferramentas/experimento/): o protocolo 7+28 do FPS que não deixa branco, com registros guardados no próprio aparelho.
+
+## Programa 12 semanas (pago)
+
+- [Programa 12 semanas](https://produtoskincare.com.br/programa-12-semanas/): programa pago de acompanhamento por 12 semanas, com diário, ritual e relatório integrados; a página traz escopo, preços com data e o caderno de evolução.
 
 ## Pergunte à IA
 
