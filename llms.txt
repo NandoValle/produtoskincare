@@ -85,6 +85,7 @@
 - [Minha prateleira](https://produtoskincare.com.br/ferramentas/prateleira/): análise dos produtos que a pessoa já tem.
 - [Modo farmácia](https://produtoskincare.com.br/ferramentas/farmacia/): foto do rótulo comparada com a prateleira.
 - [Verificador de ingredientes](https://produtoskincare.com.br/ferramentas/ingredientes/): confere a lista de ingredientes.
+- [Raio-X do rótulo](https://produtoskincare.com.br/ferramentas/raio-x/): decodifica a lista INCI por função e audita as promessas da embalagem ("sem álcool", "oil-free") contra os ingredientes.
 - [Equivalente mais barato](https://produtoskincare.com.br/ferramentas/equivalente/): mesmos ativos no catálogo, menor preço.
 - [Comparar produtos](https://produtoskincare.com.br/ferramentas/comparar/): comparação lado a lado.
 - [Guia de ativos](https://produtoskincare.com.br/ferramentas/ativos/): o que cada princípio ativo faz e o que combina.
