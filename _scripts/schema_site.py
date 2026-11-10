@@ -250,6 +250,9 @@ def montar_schema(root, site, brand, path, info, source, is_article):
     for prop in LABELS:
         if prop in facts:
             current[prop] = facts[prop]
+    # schema.org: sem modificação após a publicação, dateModified espelha datePublished.
+    if "datePublished" in current and "dateModified" not in current:
+        current["dateModified"] = current["datePublished"]
     if facts.get("team"):
         author = {"@type": "Organization", "@id": site + "/#equipe", "name": "Equipe " + brand, "url": site + "/sobre/"}
         graph.append(author)
