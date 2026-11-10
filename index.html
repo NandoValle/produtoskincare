@@ -80,6 +80,52 @@
 <p class="tool-fallback fallback ps-atalho-nota">Caminho manual da ferramenta <code>montar_rotina</code>: este formulário é HTML comum e não depende de JavaScript nem de assistente para ser usado; sem o script, as ferramentas não rodam e nada se perde, porque o <a href="/provador/">provador</a> responde às mesmas perguntas na tela.</p>
 <p class="ps-atalho-nota">Não sabe o seu tipo? <a href="/provador/">Responda o quiz</a> ou <a href="/provador/?modo=selfie">analise com uma selfie</a>.</p></section>
 <section class="ps-section ps-journey-section"><div class="ps-journey"><img class="ps-journey-photo" src="/img/skincare-editorial.webp" alt="Frasco de sérum e conta-gotas durante um ritual de skincare" width="960" height="1280" loading="lazy" decoding="async"><div><h2>Seu ponto de partida é simples.</h2><p>Um provador gratuito para transformar suas dúvidas em uma rotina mais clara.</p><a href="/provador/" class="ps-text-link">Conhecer o provador ↗</a></div><div class="ps-steps"><div class="ps-step"><span class="ps-step-num">01</span><div><h3>Conte sobre sua pele</h3><p>Responda às perguntas sobre os sinais e as sensações que você observa.</p></div></div><div class="ps-step"><span class="ps-step-num">02</span><div><h3>Entenda seu perfil</h3><p>Conheça o perfil sugerido a partir das suas respostas.</p></div></div><div class="ps-step"><span class="ps-step-num">03</span><div><h3>Encontre seu ritual</h3><p>Explore sugestões de cuidados e produtos para manhã e noite.</p></div></div></div></div></section>
+<style>
+.ps-evo-bloco{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;background:var(--champagne);padding:66px;margin:60px 0}
+@media(max-width:900px){.ps-evo-bloco{grid-template-columns:1fr;padding:34px;gap:30px}}
+.ps-evo-texto{color:var(--muted);font-size:13px;line-height:1.9;max-width:430px;margin:24px 0}
+.ps-evo-acoes{display:flex;flex-wrap:wrap;gap:18px;align-items:center;min-height:58px}
+.ps-evo-nota{font-size:10px;letter-spacing:.035em;color:var(--muted);margin-top:22px;line-height:1.8}
+.ps-evo-dados{background:var(--white);border:1px solid var(--line);padding:36px}
+.evo-num{font-family:var(--serif);font-size:66px;line-height:1;margin:0 0 4px;color:var(--ink)}
+.evo-num-leg{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.evo-chip{font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--ink)}
+.evo-chip-legenda{color:var(--muted);border-style:dashed}
+.evo-marco{font-size:11px;color:var(--gold);letter-spacing:.05em;margin:12px 0 0}
+.evo-sem{color:var(--muted);font-size:13px;line-height:1.9;margin:0}
+</style>
+<section class="ps-section" id="evolucao" aria-labelledby="evo-titulo">
+<div class="ps-evo-bloco">
+<div>
+<p class="ps-eyebrow">Acompanhamento</p>
+<h2 id="evo-titulo">E a evolução aparece.</h2>
+<p class="ps-evo-texto">A pele responde em ciclos, não em dias. Registre como ela está — com ou sem foto — e veja a sua curva ao longo do tempo, com marcos de 28 dias para enxergar o caminho.</p>
+<div class="ps-evo-acoes" id="evo-home-acoes"></div>
+<p class="ps-evo-nota">Registros ficam só neste aparelho. Acompanhamento pessoal — não é medição clínica.</p>
+</div>
+<div class="ps-evo-dados" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Lendo seus registros neste aparelho…</p></div>
+</div>
+<noscript><p class="ps-evo-nota">Sem JavaScript o cartão não lê os registros locais — o <a href="/ferramentas/diario/">diário da pele</a> continua funcionando normalmente.</p></noscript>
+</section>
+<script src="/evolucao.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var E = window.PSEvolucao;
+  var alvo = document.getElementById("evo-home-dados");
+  var acoes = document.getElementById("evo-home-acoes");
+  if (!E || !alvo || !acoes) return;
+  E.registros().then(function (regs) {
+    var a = E.analisar(regs, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    alvo.innerHTML = E.cartaoResumo(a);
+    acoes.innerHTML = a.temDados
+      ? '<a class="ps-button" href="/ferramentas/diario/">Ver minha evolução <span aria-hidden="true">↗</span></a><a class="ps-text-link" href="/ferramentas/diario/#dg-hoje">Registrar como está hoje</a>'
+      : '<a class="ps-button" href="/ferramentas/diario/#dg-hoje">Começar meu registro <span aria-hidden="true">↗</span></a><a class="ps-text-link" href="/ferramentas/diario/">Ver como funciona</a>';
+  }).catch(function () {
+    alvo.innerHTML = '<p class="evo-sem">Não foi possível ler os registros locais.</p>';
+  });
+});
+</script>
 <section class="ps-section"><div class="ps-section-head"><h2>Boas escolhas, todos os dias.</h2><p>Ferramentas para organizar sua rotina e entender melhor os produtos que você usa.</p></div><div class="ps-tools"><a class="ps-tool" href="/ferramentas/ingredientes/"><h3>Entenda os ingredientes</h3><p>Consulte combinações de ativos e os cuidados ao incluí-los na rotina.</p><span>Verificador de ingredientes ↗</span></a><a class="ps-tool" href="/ferramentas/rotina/"><h3>Crie constância</h3><p>Marque os cuidados do dia e acompanhe sua rotina no próprio aparelho.</p><span>Acompanhar minha rotina ↗</span></a></div></section>
 <section class="ps-section"><div class="ps-section-head"><h2>Um site que junta o que normalmente está separado.</h2><p>Quiz independente, rotina de manhã e noite, diário da pele e catálogo multi-marca com preço conferido e datado — no mesmo lugar, sem vender promessa mágica. Segundo o <a href="/mercado-skincare-brasil/">nosso levantamento de mercado</a>, nenhum concorrente brasileiro junta tudo isso hoje.</p></div></section>
 <section class="ps-section"><div class="ps-section-head"><h2>Conhecimento também é cuidado.</h2><p>Leituras para começar pelo básico e fazer escolhas com mais informação.</p></div><div class="ps-editorial"><a class="ps-story" href="/blog/como-saber-tipo-de-pele/"><img src="/img/blog/como-saber-tipo-de-pele-800.webp" alt="" width="800" height="450" loading="lazy" decoding="async"><small>CONHEÇA SUA PELE</small><h3>Como saber se sua pele é oleosa, seca ou mista</h3><p>Sinais do dia a dia que ajudam a entender seu tipo. ↗</p></a><a class="ps-story" href="/blog/protetor-solar-importancia/"><img src="/img/blog/protetor-solar-importancia-800.webp" alt="" width="800" height="450" loading="lazy" decoding="async"><small>CUIDADO DIÁRIO</small><h3>Protetor solar: um essencial da sua rotina</h3><p>Entenda esse passo antes de escolher seu próximo produto. ↗</p></a></div></section>

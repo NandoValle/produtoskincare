@@ -7,9 +7,12 @@
   var LOCALE = L === "pt" ? "pt-BR" : L === "es" ? "es-ES" : "en-GB";
 
   var T = {
-    pt: { grafico: "Gráfico da sua evolução ao longo do tempo", barras: "Dias com rotina completa por semana", de5: "de 5", min: "pior dia", max: "melhor dia" },
-    en: { grafico: "Chart of your progress over time", barras: "Days with a complete routine, by week", de5: "of 5", min: "worst day", max: "best day" },
-    es: { grafico: "Gráfico de tu evolución en el tiempo", barras: "Días con rutina completa, por semana", de5: "de 5", min: "peor día", max: "mejor día" }
+    pt: { grafico: "Gráfico da sua evolução ao longo do tempo", barras: "Dias com rotina completa por semana", de5: "de 5", min: "pior dia", max: "melhor dia",
+      dia: "dia", doAcomp: "do acompanhamento", proximo: "próximo marco", em: "em", dias: "dias", semDados: "Sua curva começa no primeiro registro.", primeiroVs: "primeiro vs. agora" },
+    en: { grafico: "Chart of your progress over time", barras: "Days with a complete routine, by week", de5: "of 5", min: "worst day", max: "best day",
+      dia: "day", doAcomp: "of your follow-up", proximo: "next mark", em: "in", dias: "days", semDados: "Your curve starts with the first record.", primeiroVs: "first vs. now" },
+    es: { grafico: "Gráfico de tu evolución en el tiempo", barras: "Días con rutina completa, por semana", de5: "de 5", min: "peor día", max: "mejor día",
+      dia: "día", doAcomp: "del seguimiento", proximo: "próximo marco", em: "en", dias: "días", semDados: "Tu curva empieza con el primer registro.", primeiroVs: "primero vs. ahora" }
   }[L];
 
   var DIMS = [
@@ -275,11 +278,60 @@
     return s.join("");
   }
 
+  /* ===== Sparkline compacta (linha composta) ===== */
+  function sparklineSVG(a) {
+    if (!a || a.serie.length === 0) return "";
+    var W = 320, H = 88, padL = 8, padR = 8, padT = 12, padB = 12;
+    var pw = W - padL - padR, ph = H - padT - padB;
+    var serie = a.serie;
+    var t0 = Date.parse(serie[0].data + "T12:00:00");
+    var t1 = Date.parse(serie[serie.length - 1].data + "T12:00:00");
+    if (t1 === t0) t1 = t0 + 86400000;
+    function X(iso) { return padL + (Date.parse(iso + "T12:00:00") - t0) / (t1 - t0) * pw; }
+    function Y(v) { return padT + (5 - v) / 4 * ph; }
+    var s = ['<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="display:block;max-width:340px;height:auto" role="img" aria-label="' + T.grafico + '">'];
+    var pts = serie.map(function (p) { return X(p.data).toFixed(1) + "," + Y(p.media).toFixed(1); }).join(" ");
+    if (serie.length > 1) {
+      s.push('<polygon points="' + padL + "," + (H - padB) + " " + pts + " " + (W - padR) + "," + (H - padB) + '" fill="rgba(180,84,106,0.10)"/>');
+      s.push('<polyline points="' + pts + '" fill="none" stroke="#b4546a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>');
+    }
+    serie.forEach(function (p) {
+      s.push('<circle cx="' + X(p.data).toFixed(1) + '" cy="' + Y(p.media).toFixed(1) + '" r="4" fill="#fff" stroke="#b4546a" stroke-width="2"><title>' + fmtData(p.data) + " · " + p.media.toFixed(1) + " " + T.de5 + "</title></circle>");
+    });
+    s.push("</svg>");
+    return s.join("");
+  }
+
+  /* ===== Cartão-resumo reutilizável (home, tracker) ===== */
+  function cartaoResumo(a) {
+    if (!a || !a.temDados) {
+      return '<p class="evo-sem">' + T.semDados + "</p>";
+    }
+    var deltas = "";
+    if (a.deltas) {
+      var partes = [];
+      DIMS.forEach(function (d) {
+        var v = a.deltas[d.id];
+        if (typeof v !== "number" || v === 0) return;
+        partes.push('<span class="evo-chip">' + d.rotulo + " " + (v > 0 ? "↑" : "↓") + " " + Math.abs(v) + "</span>");
+      });
+      if (partes.length) deltas = '<div class="evo-chips">' + partes.join("") + '<span class="evo-chip evo-chip-legenda">' + T.primeiroVs + "</span></div>";
+    }
+    var proximo = null;
+    a.marcos.forEach(function (mk) { if (!mk.atingido && !proximo) proximo = mk; });
+    var marcoHTML = proximo
+      ? '<p class="evo-marco">' + T.proximo + " " + T.em + " " + proximo.faltam + " " + T.dias + " (" + T.dia + " " + proximo.dias + ")</p>"
+      : "";
+    return '<p class="evo-num">' + a.dias + ' <span class="evo-num-leg">' + T.dia + " " + T.doAcomp + "</span></p>" +
+      sparklineSVG(a) + deltas + marcoHTML;
+  }
+
   window.PSEvolucao = {
     DIMS: DIMS, CICLOS: CICLOS, idioma: L,
     abrirBD: abrirBD, registros: registros, salvarHoje: salvarHoje, remover: remover,
     dataHoje: dataHoje, diffDias: diffDias, fmtData: fmtData, fmtCurta: fmtCurta,
     mediaScores: mediaScores, analisar: analisar,
-    graficoSVG: graficoSVG, barrasSVG: barrasSVG
+    graficoSVG: graficoSVG, barrasSVG: barrasSVG,
+    sparklineSVG: sparklineSVG, cartaoResumo: cartaoResumo
   };
 })();

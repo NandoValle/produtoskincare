@@ -102,6 +102,40 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 </div>
 </section>
 
+<style>
+.evo-faixa .evo-num{font-family:var(--fonte-display);font-size:2.6rem;font-weight:300;line-height:1;margin:0}
+.evo-faixa .evo-num-leg{font-size:.82rem;color:var(--suave);font-weight:400}
+.evo-faixa .evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.evo-faixa .evo-chip{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--rosa-claro);color:var(--rosa)}
+.evo-faixa .evo-chip-legenda{background:transparent;border:1px dashed var(--linha);color:var(--suave)}
+.evo-faixa .evo-marco{font-size:.86rem;color:var(--verde);margin:10px 0 0}
+.evo-faixa .evo-sem{color:var(--suave);margin:0;font-size:.95rem}
+.evo-faixa .evo-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+</style>
+<section id="progreso">
+<h2>Y la evolución se hace visible.</h2>
+<p class="lead">La piel responde en ciclos, no en días. Registra cómo está — con o sin foto — y mira tu propia curva con el tiempo, con marcos de 28 días por el camino.</p>
+<div class="card evo-faixa" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Leyendo tus registros en este dispositivo…</p></div>
+<div class="evo-faixa"><div class="evo-acoes" id="evo-home-acoes"></div></div>
+<p class="sub" style="margin-top:16px">Los registros se quedan solo en este dispositivo. Acompañamiento personal: no es medición clínica.</p>
+<script src="/evolucao.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var E = window.PSEvolucao;
+  var alvo = document.getElementById("evo-home-dados");
+  var acoes = document.getElementById("evo-home-acoes");
+  if (!E || !alvo || !acoes) return;
+  E.registros().then(function (regs) {
+    var a = E.analisar(regs, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    alvo.innerHTML = E.cartaoResumo(a);
+    acoes.innerHTML = a.temDados
+      ? '<a class="btn" href="/es/ferramentas/diario/">Ver mi evolución →</a> <a class="btn sec" href="/es/ferramentas/diario/#dg-hoje">Registrar hoy</a>'
+      : '<a class="btn" href="/es/ferramentas/diario/#dg-hoje">Empezar mi registro →</a> <a class="btn sec" href="/es/ferramentas/diario/">Cómo funciona</a>';
+  }).catch(function () {});
+});
+</script>
+</section>
+
 <section id="guides">
 <h2>Guías en español</h2>
 <div class="grade">

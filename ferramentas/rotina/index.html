@@ -74,6 +74,24 @@ h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
 <div class="label">dias seguidos de rotina completa 🔥</div>
 </div>
 
+<style>
+.evo-faixa .evo-num{font-family:var(--fonte-display);font-size:2.6rem;font-weight:300;line-height:1;margin:0}
+.evo-faixa .evo-num-leg{font-size:.82rem;color:var(--suave);font-weight:400}
+.evo-faixa .evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.evo-faixa .evo-chip{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--rosa-claro);color:var(--rosa)}
+.evo-faixa .evo-chip-legenda{background:transparent;border:1px dashed var(--linha);color:var(--suave)}
+.evo-faixa .evo-marco{font-size:.86rem;color:var(--verde);margin:10px 0 0}
+.evo-faixa .evo-sem{color:var(--suave);margin:0;font-size:.95rem}
+.evo-faixa .evo-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.evo-faixa .btn-claro{background:var(--papel);color:var(--tinta);border:1px solid var(--linha)}
+</style>
+
+<div class="card evo-faixa" id="evo-tracker">
+<h2 style="margin-top:0">Sua evolução</h2>
+<div id="evo-tracker-dados" aria-live="polite"><p class="evo-sem">Lendo seus registros…</p></div>
+<div class="evo-acoes" id="evo-tracker-acoes"></div>
+</div>
+
 <div class="card">
 <h2 style="margin-top:0">☀️ Manhã</h2>
 <div class="progresso-bar"><div class="progresso-fill" id="progManha" style="width:0%"></div></div>
@@ -89,6 +107,7 @@ h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
 <div class="card">
 <h2 style="margin-top:0">📊 Hoje</h2>
 <p id="resumoHoje" style="margin:0">Complete sua rotina para ver o resumo.</p>
+<p style="margin:10px 0 0"><a href="/ferramentas/diario/#dg-hoje" style="color:var(--rosa);font-weight:600">Como está a pele hoje? Registrar no diário ↗</a></p>
 </div>
 
 <button class="btn" onclick="resetarDia()">🔄 Começar novo dia</button>
@@ -236,6 +255,24 @@ renderizar();
   });
   render();
 })();
+</script>
+<script src="/evolucao.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var E = window.PSEvolucao;
+  var alvo = document.getElementById("evo-tracker-dados");
+  var acoes = document.getElementById("evo-tracker-acoes");
+  if (!E || !alvo || !acoes) return;
+  E.registros().then(function (regs) {
+    var a = E.analisar(regs, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    alvo.innerHTML = E.cartaoResumo(a);
+    acoes.innerHTML = a.temDados
+      ? '<a class="btn btn-claro" href="/ferramentas/diario/">Ver a curva completa</a><a class="btn" href="/ferramentas/diario/#dg-hoje">Registrar como está hoje</a>'
+      : '<a class="btn" href="/ferramentas/diario/#dg-hoje">Começar meu registro de evolução</a>';
+  }).catch(function () {
+    alvo.innerHTML = '<p class="evo-sem">Não foi possível ler os registros locais.</p>';
+  });
+});
 </script>
 </main>
 <footer class="ps-rodape">

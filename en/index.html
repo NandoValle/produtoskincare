@@ -103,6 +103,40 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 </div>
 </section>
 
+<style>
+.evo-faixa .evo-num{font-family:var(--fonte-display);font-size:2.6rem;font-weight:300;line-height:1;margin:0}
+.evo-faixa .evo-num-leg{font-size:.82rem;color:var(--suave);font-weight:400}
+.evo-faixa .evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.evo-faixa .evo-chip{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--rosa-claro);color:var(--rosa)}
+.evo-faixa .evo-chip-legenda{background:transparent;border:1px dashed var(--linha);color:var(--suave)}
+.evo-faixa .evo-marco{font-size:.86rem;color:var(--verde);margin:10px 0 0}
+.evo-faixa .evo-sem{color:var(--suave);margin:0;font-size:.95rem}
+.evo-faixa .evo-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+</style>
+<section id="progress">
+<h2>And the progress becomes visible.</h2>
+<p class="lead">Skin responds in cycles, not days. Log how it feels — with or without a photo — and see your own curve over time, with 28-day marks along the way.</p>
+<div class="card evo-faixa" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Reading your records on this device…</p></div>
+<div class="evo-faixa"><div class="evo-acoes" id="evo-home-acoes"></div></div>
+<p class="sub" style="margin-top:16px">Records stay only on this device. Personal tracking — not a clinical measurement.</p>
+<script src="/evolucao.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var E = window.PSEvolucao;
+  var alvo = document.getElementById("evo-home-dados");
+  var acoes = document.getElementById("evo-home-acoes");
+  if (!E || !alvo || !acoes) return;
+  E.registros().then(function (regs) {
+    var a = E.analisar(regs, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    alvo.innerHTML = E.cartaoResumo(a);
+    acoes.innerHTML = a.temDados
+      ? '<a class="btn" href="/en/ferramentas/diary/">See my progress →</a> <a class="btn sec" href="/en/ferramentas/diary/#dg-hoje">Log today</a>'
+      : '<a class="btn" href="/en/ferramentas/diary/#dg-hoje">Start my record →</a> <a class="btn sec" href="/en/ferramentas/diary/">How it works</a>';
+  }).catch(function () {});
+});
+</script>
+</section>
+
 <section id="guides">
 <h2>Guides in English</h2>
 <div class="grade">
