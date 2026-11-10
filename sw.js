@@ -1,4 +1,4 @@
-const CACHE = "provador-premium-20261109-calm";
+const CACHE = "provador-premium-20261109-afiliado-correto";
 const ASSETS = [
   "/premium.css",
   "/premium.js",

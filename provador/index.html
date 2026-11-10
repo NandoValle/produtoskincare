@@ -1534,7 +1534,7 @@ function carrinhoAmazonHTML(lista) {
   });
   if (asins.length < 2) return "";
   const q = asins.map((a, i) => `ASIN.${i + 1}=${a}&Quantity.${i + 1}=1`).join("&");
-  const url = `https://www.amazon.com.br/gp/aws/cart/add.html?AssociateTag=produtoskincare-20&${q}`;
+  const url = `https://www.amazon.com.br/gp/aws/cart/add.html?AssociateTag=produtoskincare0f-20&${q}`;
   const fora = lista.length - asins.length;
   return `<p style="margin:10px 0 0"><a class="btn" href="${url}" target="_blank" rel="sponsored noopener" data-produto="rotina-completa-amazon">🛒 Colocar os ${asins.length} produtos da Amazon no carrinho</a></p>
     <p class="sub" style="font-size:.82rem;margin:6px 0 0">Abre o carrinho da Amazon com um frasco de cada${fora ? `; ${fora} ${fora === 1 ? "produto é" : "produtos são"} de outra loja e fica${fora === 1 ? "" : "m"} de fora` : ""}. Confira preço, vendedor e tamanho antes de finalizar. Se o carrinho abrir vazio, use os botões de cada produto. Link de afiliado.</p>`;
