@@ -98,6 +98,8 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
 .ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-loja{border-color:var(--rosa);color:var(--rosa);font-weight:600}
+.ft-compra{display:block;margin-top:8px}
 .ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
 .ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
 .ft-ok{background:var(--verde-claro);border-color:var(--verde)}
@@ -213,7 +215,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 <li>Mesmo ativo não garante o mesmo resultado: a fórmula inteira, a textura, o pH e a embalagem também contam.</li>
 <li>Comparamos só os ativos que o anúncio destaca e que as nossas regras reconhecem. Confira a lista completa de ingredientes na embalagem.</li>
 <li>O tamanho da embalagem muda o preço por ml, e ele ainda não está no nosso catálogo: compare no anúncio.</li>
-<li>O preço muda: vale o mostrado na loja na hora da compra. Os links do catálogo são de afiliado.</li>
+<li>O preço muda: vale o mostrado na loja na hora da compra. Os links do catálogo são de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</li>
 </ul>
 </div>
 </article>
@@ -228,6 +230,14 @@ textarea.ft-campo{resize:vertical;min-height:96px}
   var DE_CATEGORIA = { "Hidratante": "hidratacao", "Hidratante reparador": "hidratacao", "Hidratação": "hidratacao", "Protetor solar": "protetor",
     "Limpeza": "limpeza", "Sérum": "tratamento", "Séruns": "tratamento" };
   var catalogo = [], referencias = [];
+  var LOJAS = { amazon: "Amazon", shopee: "Shopee", mercadolivre: "Mercado Livre", "tiktok": "TikTok Shop" };
+  function botaoLoja(p) {
+    if (!p.link) return "";
+    var busca = /\/search\?|\/s\?/.test(p.link) || /lista\.mercadolivre/.test(p.link);
+    return '<a class="ft-mini ft-loja" href="' + esc(p.link) + '" target="_blank" rel="sponsored noopener" data-produto="' + esc(p.nome) + '">' +
+      (busca ? "Buscar na " : "Ver na ") + (LOJAS[p.plataforma] || "loja") + ' ↗</a>';
+  }
+
   if (!R) { $("eq-resultado").innerHTML = '<p class="ft-nao">Não foi possível carregar as regras. Recarregue a página.</p>'; return; }
 
   function semAcento(t) { return String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
@@ -308,7 +318,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
       var dif = ref.preco && p.preco < ref.preco ? '<span class="ft-sub"><strong>' + reais(ref.preco - p.preco) + ' a menos</strong>, comparando os preços conferidos.</span>' : "";
       return '<li class="ft-item"><div><strong><a href="/produtos/' + esc(p.id) + '/">' + esc(p.nome) + '</a></strong>' +
         '<span class="ig-nota">' + esc(PASSOS[p.passo] || p.passo) + ' · ' + reais(p.preco) + ' em ' + data(p.preco_em) + (p._igual ? " · ✅ mesmos ativos e concentração" : "") + '</span>' +
-        (concs ? '<span class="ft-sub">' + concs + '</span>' : "") + dif + '</div></li>';
+        (concs ? '<span class="ft-sub">' + concs + '</span>' : "") + dif + '<span class="ft-compra">' + botaoLoja(p) + '</span></div></li>';
     }
     if (baratos.length) h.push('<ul class="ft-itens">' + baratos.map(card).join("") + '</ul>');
     else h.push('<p class="ft-info"><strong>Nenhum equivalente mais barato no catálogo.</strong>O catálogo ainda é pequeno: ' + catalogo.length + ' produtos escolhidos à mão.</p>');

@@ -39,6 +39,8 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
 .ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-loja{border-color:var(--rosa);color:var(--rosa);font-weight:600}
+.ft-compra{display:block;margin-top:8px}
 .ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
 .ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
 .ft-ok{background:var(--verde-claro);border-color:var(--verde)}

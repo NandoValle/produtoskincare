@@ -50,6 +50,7 @@
 <h2 id="analise-titulo">O que a sua prateleira diz</h2>
 <div id="pr-analise"><p class="ig-nota">Adicione pelo menos um produto para ver a análise.</p></div>
 <div id="pr-enviar" hidden></div>
+<div id="pr-cartao" hidden></div>
 </section>
 
 <section class="ig-caixa">
@@ -67,6 +68,7 @@
 <script src="/prateleira.js"></script>
 <script src="/ocr-rotulo.js"></script>
 <script src="/compartilhar.js"></script>
+<script src="/cartao-story.js"></script>
 <script>
 (function () {
   "use strict";
@@ -76,6 +78,14 @@
   var ICONE = { ok: "✅", sem_regra: "❔", horarios: "🕐", nao: "⛔" };
   var CSS = { sem_regra: "ft-sem", horarios: "ft-horarios", nao: "ft-nao" };
   var catalogo = [], ultima = null;
+  var LOJAS = { amazon: "Amazon", shopee: "Shopee", mercadolivre: "Mercado Livre", "tiktok": "TikTok Shop" };
+  function botaoLoja(p) {
+    if (!p.link) return "";
+    var busca = /\/search\?|\/s\?/.test(p.link) || /lista\.mercadolivre/.test(p.link);
+    return '<a class="ft-mini ft-loja" href="' + esc(p.link) + '" target="_blank" rel="sponsored noopener" data-produto="' + esc(p.nome) + '">' +
+      (busca ? "Buscar na " : "Ver na ") + (LOJAS[p.plataforma] || "loja") + ' ↗</a>';
+  }
+
   if (!R || !P) { $("pr-analise").innerHTML = '<p class="ft-nao">Não foi possível carregar as regras. Recarregue a página.</p>'; return; }
   $("pr-versao").textContent = R.VERSAO;
 
@@ -191,7 +201,7 @@
   function sugestoes(passo) {
     var lista = catalogo.filter(function (p) { return p.passo === passo; }).sort(function (a, b) { return a.preco - b.preco; }).slice(0, 3);
     return lista.map(function (p) {
-      return '<li><a href="/produtos/' + esc(p.id) + '/">' + esc(p.nome) + '</a> · ' + reais(p.preco) + '</li>';
+      return '<li><a href="/produtos/' + esc(p.id) + '/">' + esc(p.nome) + '</a> · ' + reais(p.preco) + ' ' + botaoLoja(p) + '</li>';
     }).join("");
   }
 
@@ -203,7 +213,7 @@
     var d = P.ler();
     $("pr-sensivel").checked = d.sensivel;
     $("pr-itens").innerHTML = d.itens.length ? d.itens.map(itemHTML).join("") : '<li class="ig-nota">Sua prateleira está vazia.</li>';
-    if (!d.itens.length) { $("pr-analise").innerHTML = '<p class="ig-nota">Adicione pelo menos um produto para ver a análise.</p>'; $("pr-enviar").hidden = true; ultima = null; return; }
+    if (!d.itens.length) { $("pr-analise").innerHTML = '<p class="ig-nota">Adicione pelo menos um produto para ver a análise.</p>'; $("pr-enviar").hidden = true; $("pr-cartao").hidden = true; ultima = null; return; }
     var a = P.analisar(d.itens, { sensivel: d.sensivel });
     ultima = { itens: d.itens, a: a, sensivel: d.sensivel };
     var h = [];
@@ -232,6 +242,7 @@
     if (!a.faltando.length) h.push('<div class="ft-ok"><strong>✅ Rotina básica completa</strong>Você tem limpeza, hidratante e protetor solar.</div>');
     $("pr-analise").innerHTML = h.join("");
     $("pr-enviar").hidden = false;
+    $("pr-cartao").hidden = false;
   }
 
   if (window.PSEnviar) PSEnviar.montar($("pr-enviar"), function () {
@@ -245,6 +256,18 @@
     t.push("", "Regras v" + R.VERSAO + ". Não é aconselhamento médico.");
     return { assunto: "Minha prateleira de skincare", texto: t.join("\n"), url: location.origin + location.pathname };
   }, { titulo: "📩 Guardar esta análise" });
+
+  if (window.PSCartao) PSCartao.montar($("pr-cartao"), function () {
+    if (!ultima) return null;
+    var a = ultima.a, n = ultima.itens.length;
+    var linhas = ultima.itens.slice(0, 5).map(function (it) { return "• " + it.nome; });
+    if (n > 5) linhas.push("e mais " + (n - 5));
+    var nc = a.conflitos.length, ext = PSCartao.extenso(nc, true);
+    var titulo = nc ? ext.charAt(0).toUpperCase() + ext.slice(1) + (nc === 1 ? " combinação" : " combinações") + " para ajustar na minha rotina"
+      : (a.faltando.length ? "Minha rotina sem conflitos" : "Minha rotina está completa e sem conflitos");
+    return { rotulo: "Minha prateleira", titulo: titulo, linhas: linhas, caminho: "/ferramentas/prateleira",
+      rodape: "Confira a sua: veja se os seus produtos combinam, de graça.", arquivo: "minha-prateleira" };
+  }, { evento: "prateleira/cartao" });
 
   fetch("/produtos.json").then(function (r) { return r.json(); }).then(function (d) { catalogo = d.produtos || []; })
     .catch(function () { $("pr-busca-dica").textContent = "Não deu para carregar o catálogo agora. Você ainda pode adicionar produtos pelo nome e ingredientes."; })
