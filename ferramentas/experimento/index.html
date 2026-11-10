@@ -300,8 +300,16 @@ input[type=text],select{font:inherit;min-height:44px;padding:8px 12px;border:1px
       dias_uso: dias
     };
     const pre = document.getElementById("ec-pacote");
+    const corpo = JSON.stringify(pacote);
     pre.hidden = false;
-    pre.textContent = JSON.stringify(pacote);
+    pre.textContent = corpo;
+    try {
+      const r = await fetch("/api/ec01", { method: "POST", headers: { "Content-Type": "application/json" }, body: corpo });
+      if (r.ok) {
+        document.getElementById("ec-recado").textContent = "Resumo enviado ao coletivo. Obrigado — mais um número para o boletim.";
+        return;
+      }
+    } catch (e) {}
     document.getElementById("ec-recado").textContent = "Resumo gerado. Copie o texto e envie pelo contato — nada sobe sozinho.";
   });
 
