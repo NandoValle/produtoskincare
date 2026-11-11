@@ -1,0 +1,23 @@
+{
+ "_instrucoes": "Dose média diária por categoria, em ml. Usada só para estimar custo por dia; a página transparência sempre mostra a premissa.",
+ "protetor": {
+  "dose_ml_dia": 2.0,
+  "nota": "rosto + pescoço, com reaplicação parcial"
+ },
+ "hidratante": {
+  "dose_ml_dia": 1.5,
+  "nota": "1x ao dia"
+ },
+ "limpeza": {
+  "dose_ml_dia": 2.0,
+  "nota": "1x ao dia (3.0 se 2x)"
+ },
+ "tratamento": {
+  "dose_ml_dia": 0.5,
+  "nota": "sérum/ativo, 1x ao dia; 0.8 se 2x"
+ },
+ "outro": {
+  "dose_ml_dia": 1.0,
+  "nota": "categoria não mapeada"
+ }
+}

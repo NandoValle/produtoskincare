@@ -1,0 +1,135 @@
+{
+ "_instrucoes": "Preencha size_ml (ou size_g para cremes/pastas; densidade≈1) conferindo a embalagem ou a ficha da loja. Fonte: anotar de onde veio o tamanho (ex.: 'embalagem', 'ficha da loja'). Enquanto size_ml for null, o custo por dia NÃO é exibido — nunca estimamos volume escondido.",
+ "produtos": {
+  "cerave-gel-limpeza": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "lrp-effaclar-gel": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "hada-labo-oil-cleansing": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "neutrogena-hydro-boost": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "lrp-cicaplast-baume": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "cetaphil-creme-hidratante": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "mantecorp-epidrat-calm": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "garnier-uniform-matte": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "isdin-fusion-water": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "isdin-fusion-water-sem-cor": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "neutrogena-sun-fresh-fps70": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "skin-aqua-moisture-milk": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "lrp-ultra-cover": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "eucerin-anti-pigment": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "principia-vc10": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "principia-niacinamida": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "principia-ah2": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "principia-rn03": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "ordinary-niacinamide": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "creamy-calming-cream": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "creamy-vitamina-c": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "lrp-retinol-b3": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "loreal-revitalift-noturno": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "mantecorp-ivy-c-ferulic": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "cerave-pm-locao": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  },
+  "ordinary-azelaic": {
+   "size_ml": null,
+   "size_g": null,
+   "fonte": null
+  }
+ }
+}
