@@ -76,8 +76,14 @@ function checar(nome, ok, extra) { console.log(`${ok ? "OK   " : "FALHA"} ${nome
   checar("rodapé desktop: todas as colunas abertas, sem botões", rd.botoes === 0 && rd.abertas >= 5, JSON.stringify(rd));
 
   // 6. Cards de tipo na home: o link fica numa linha.
-  const linhas = await m.evaluate(() => [...document.querySelectorAll(".ps-card-link")].map(e => Math.round(e.getBoundingClientRect().height)));
-  checar("home 390px: link dos cards em uma linha", linhas.length === 4 && linhas.every(h => h < 34), linhas.join(","));
+  // O cartão novo tem min-height 44 px e borda em cima, então a altura não diz se o texto quebrou.
+  // Cada trecho de texto deve ocupar uma linha só (mais de um retângulo = quebrou).
+  const linhas = await m.evaluate(() => [...document.querySelectorAll(".ps-card-link")].map(e => {
+    const w = document.createTreeWalker(e, NodeFilter.SHOW_TEXT); let max = 0, t;
+    while ((t = w.nextNode())) { if (!t.textContent.trim()) continue; const r = document.createRange(); r.selectNodeContents(t); max = Math.max(max, [...r.getClientRects()].filter(x => x.width > 0).length); }
+    return max;
+  }));
+  checar("home 390px: link dos cards em uma linha", linhas.length === 4 && linhas.every(n => n === 1), linhas.join(","));
   checar("home 390px: sem rolagem lateral", await semRolagemLateral(m));
 
   // 7. Header desktop: uma linha só, sem estourar.
