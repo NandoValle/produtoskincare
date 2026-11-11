@@ -58,10 +58,16 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Discover your skin type and the ideal routine">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Discover your skin type and the ideal routine", "item": "https://produtoskincare.com.br/en/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/en/#pagina", "url": "https://produtoskincare.com.br/en/", "name": "Discover your skin type and the ideal routine", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "en", "description": "Discover your skin type and get a personalized skincare routine with real products. Free quiz, no signup.", "breadcrumb": {"@id": "https://produtoskincare.com.br/en/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/en/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Discover your skin type and the ideal routine", "item": "https://produtoskincare.com.br/en/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <main>
@@ -103,7 +109,61 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 </div>
 </section>
 
-</main>
+<style>
+.evo-faixa .evo-num{font-family:var(--fonte-display);font-size:2.6rem;font-weight:300;line-height:1;margin:0}
+.evo-faixa .evo-num-leg{font-size:.82rem;color:var(--suave);font-weight:400}
+.evo-faixa .evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.evo-faixa .evo-chip{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--rosa-claro);color:var(--rosa)}
+.evo-faixa .evo-chip-legenda{background:transparent;border:1px dashed var(--linha);color:var(--suave)}
+.evo-faixa .evo-marco{font-size:.86rem;color:var(--verde);margin:10px 0 0}
+.evo-faixa .evo-sem{color:var(--suave);margin:0;font-size:.95rem}
+.evo-faixa .evo-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+</style>
+<section id="progress">
+<h2>And the progress becomes visible.</h2>
+<p class="lead">Skin responds in cycles, not days. Log how it feels — with or without a photo — and see your own curve over time, with 28-day marks along the way.</p>
+<div class="card evo-faixa" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Reading your records on this device…</p></div>
+<div class="evo-faixa"><div class="evo-acoes" id="evo-home-acoes"></div></div>
+<p class="sub" style="margin-top:16px">Records stay only on this device. Personal tracking — not a clinical measurement.</p>
+<script src="/evolucao.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var E = window.PSEvolucao;
+  var alvo = document.getElementById("evo-home-dados");
+  var acoes = document.getElementById("evo-home-acoes");
+  if (!E || !alvo || !acoes) return;
+  E.registros().then(function (regs) {
+    var a = E.analisar(regs, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    alvo.innerHTML = E.cartaoResumo(a);
+    acoes.innerHTML = a.temDados
+      ? '<a class="btn" href="/en/ferramentas/diary/">See my progress →</a> <a class="btn sec" href="/en/ferramentas/diary/#dg-hoje">Log today</a>'
+      : '<a class="btn" href="/en/ferramentas/diary/#dg-hoje">Start my record →</a> <a class="btn sec" href="/en/ferramentas/diary/">How it works</a>';
+  }).catch(function () {});
+});
+</script>
+</section>
+
+<section id="guides">
+<h2>Guides in English</h2>
+<div class="grade">
+<a href="/en/blog/sunscreen-why-it-matters/" class="tipo-card"><strong>Sunscreen: the most important step in skincare</strong></a><a href="/en/blog/retinol-how-to-start/" class="tipo-card"><strong>Retinol: how to start without irritating your skin</strong></a><a href="/en/blog/vitamin-c-skincare/" class="tipo-card"><strong>Vitamin C: what it does and how to use it</strong></a>
+</div>
+</section>
+
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Frequently asked questions</h2>
+<h3>How do I find my skin type and ideal skincare routine?</h3>
+<p>Answer 5 quick questions in the free quiz and get a personalized skincare routine with real products and direct links. The page says there is no signup.</p>
+<h3>How can I track my skin progress over time?</h3>
+<p>Log how your skin feels, with or without a photo, and see your own curve over time with 28-day marks. Personal tracking here means records stay only on this device and are not a clinical measurement.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I find my skin type and ideal skincare routine?", "acceptedAnswer": {"@type": "Answer", "text": "Answer 5 quick questions in the free quiz and get a personalized skincare routine with real products and direct links. The page says there is no signup."}}, {"@type": "Question", "name": "How can I track my skin progress over time?", "acceptedAnswer": {"@type": "Answer", "text": "Log how your skin feels, with or without a photo, and see your own curve over time with 28-day marks. Personal tracking here means records stay only on this device and are not a clinical measurement."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-09">9 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback without JavaScript.</strong> With the script off the AI tools don’t run and nothing is lost: the whole catalog is at <a href="/produtos/">Products</a>, the per-skin-type guides at <a href="/pele/oleosa/">Skin</a> and the routines by condition at <a href="/rotinas/">Routines</a>, all as plain HTML. That is the manual path. A call in progress can also be cancelled by the agent at any time.</p><noscript><p class="fallback">Without JavaScript the assistant tools don’t run and nothing is lost: the guides, the product catalog and the routines stay open as plain HTML.</p></noscript></main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -115,8 +175,8 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <nav aria-label="Footer: Conditions"><p class="ps-rodape-titulo">Conditions</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosacea</a></li><li><a href="/condicoes/olheiras/">Dark circles</a></li><li><a href="/condicoes/desidratacao/">Dehydration</a></li><li><a href="/condicoes/">All conditions</a></li></ul></nav>
 <nav aria-label="Footer: Resources"><p class="ps-rodape-titulo">Resources</p><ul><li><a href="/provador/">Skin quiz</a></li><li><a href="/achados/">Finds</a></li><li><a href="/rotina-de-skincare/">Skincare routine</a></li><li><a href="/rotinas/">Routines by budget</a></li><li><a href="/ferramentas/comparar/">Compare products</a></li><li><a href="/ferramentas/ingredientes/">Check ingredients</a></li><li><a href="/ferramentas/ativos/">Actives guide</a></li><li><a href="/ferramentas/rotina/">Routine tracker</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredients</a></li><li><a href="/mais-vendidos/">Bestsellers</a></li><li><a href="/queridinhos-do-skincare/">World skincare favorites</a></li><li><a href="/produtos/">Products</a></li><li><a href="/ferramentas/reposicao/">Refill reminder</a></li><li><a href="/ferramentas/clima/">Today's UV index</a></li><li><a href="/pergunte/">Ask the AI</a></li><li><a href="/mercado-skincare-brasil/">Skincare market data</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Skincare Product (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contains affiliate links. Guides are in Portuguese.</span><span class="ps-rodape-links"><a href="/sobre/">About</a><a href="/privacidade/">Privacy</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Skincare Product (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contains affiliate links. Most guides are in Portuguese.</span><span class="ps-rodape-links"><a href="/sobre/">About</a><a href="/privacidade/">Privacy</a></span></div>
 <script src="/rodape.js" defer></script>
-</footer>
+<p class="ps-rodape-nota">Fallback without JavaScript: with scripts off, the AI tools don’t run and nothing is lost — the whole site keeps working as a normal website. That is the manual path. A call in progress can be cancelled by the agent at any time.</p><noscript><p class="ps-rodape-nota">Without JavaScript the assistant tools don’t run and nothing is lost: all content keeps working as plain HTML — that is the manual path.</p></noscript></footer>
 </body>
 </html>

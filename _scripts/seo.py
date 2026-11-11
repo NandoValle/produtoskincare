@@ -13,9 +13,14 @@ import html
 import json
 import re
 import subprocess
+import sys
 from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
+
+# Explicit local import also works with the documented python -I invocation.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from schema_site import montar_schema, json_script
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
@@ -24,14 +29,15 @@ SITE = "https://produtoskincare.com.br"
 MARCA = "Produto Skincare"
 HOJE = date.today().isoformat()
 IGNORAR = {"_arquivo", "_scripts", "_servidor", ".git", "fotos", "fonts", "img", "icones"}
-MESES = {m: i + 1 for i, m in enumerate(["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
-                                          "agosto", "setembro", "outubro", "novembro", "dezembro"])}
 ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condições", "pele": "Tipos de pele",
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
            "privacidade": "Privacidade", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
-           "contato": "Contato", "produtos": "Produtos"}
-SECOES_ARTIGO = ("blog/", "ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
+           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?"}
+# Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.
+TRADUCOES = [{"pt-BR": "/", "en": "/en/", "es": "/es/"}] + [
+    g for g in json.loads((RAIZ / "_scripts" / "traducoes.json").read_text(encoding="utf-8"))["grupos"]]
+SECOES_ARTIGO = ("blog/", "en/blog/", "es/blog/", "ingredientes/", "en/ingredients/", "es/ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
 
 
 class Leitor(HTMLParser):
@@ -75,20 +81,6 @@ def sem_marca(t):
 def caminho_url(arq: Path):
     rel = arq.relative_to(RAIZ).as_posix()
     return "/" if rel == "index.html" else "/" + rel[: -len("index.html")]
-
-
-def data_publicacao(texto):
-    m = re.search(r"Publicado em (\d{1,2}) de (\w+) de (\d{4})", texto)
-    if m and m.group(2).lower() in MESES:
-        return f"{m.group(3)}-{MESES[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-    return None
-
-
-def data_atualizacao(texto):
-    m = re.search(r"Atualizado em (\d{1,2}) de (\w+) de (\d{4})", texto)
-    if m and m.group(2).lower() in MESES:
-        return f"{m.group(3)}-{MESES[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-    return None
 
 
 # ---------- imagem de compartilhamento (1200x630) ----------
@@ -176,8 +168,9 @@ def montar_bloco(arq, url, info, texto):
     tags = []
     if 'rel="canonical"' not in texto:
         tags.append(f'<link rel="canonical" href="{SITE}{url}">')
-    if url in ("/", "/en/", "/es/"):
-        for lang, u in (("pt-BR", "/"), ("en", "/en/"), ("es", "/es/"), ("x-default", "/")):
+    grupo = next((g for g in TRADUCOES if url in g.values()), None)
+    if grupo:
+        for lang, u in list(grupo.items()) + [("x-default", grupo["pt-BR"])]:
             tags.append(f'<link rel="alternate" hreflang="{lang}" href="{SITE}{u}">')
     e = lambda t: html.escape(t, quote=True)
     tags += [
@@ -194,39 +187,8 @@ def montar_bloco(arq, url, info, texto):
         '<meta name="twitter:card" content="summary_large_image">',
     ]
 
-    ld = []
-    if url == "/":
-        ld.append({"@context": "https://schema.org", "@graph": [
-            {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": MARCA, "inLanguage": "pt-BR"},
-            {"@type": "Organization", "@id": SITE + "/#org", "name": MARCA, "url": SITE + "/",
-             "logo": SITE + "/icones/icon-512.svg"}]})
-    else:
-        itens = [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}]
-        partes = [p for p in url.strip("/").split("/") if p]
-        acumulado = ""
-        for i, parte in enumerate(partes):
-            acumulado += parte + "/"
-            ultimo = i == len(partes) - 1
-            nome = sem_marca(limpar(info.h1) or og_title) if ultimo else ROTULOS.get(parte, parte)
-            if not ultimo and not (RAIZ / acumulado / "index.html").exists():
-                continue
-            itens.append({"@type": "ListItem", "position": len(itens) + 1, "name": nome, "item": f"{SITE}/{acumulado}"})
-        ld.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": itens})
-        if artigo:
-            pub = data_publicacao(texto)
-            mod = data_atualizacao(texto) or pub
-            art = {"@context": "https://schema.org", "@type": "Article", "headline": sem_marca(limpar(info.h1) or og_title)[:110],
-                   "description": descricao, "image": og_url, "inLanguage": "pt-BR",
-                   "mainEntityOfPage": f"{SITE}{url}",
-                   "author": {"@type": "Organization", "name": "Equipe " + MARCA, "url": SITE + "/sobre/"},
-                   "publisher": {"@type": "Organization", "name": MARCA, "url": SITE + "/"}}
-            if pub:
-                art["datePublished"] = pub
-            if mod:
-                art["dateModified"] = mod
-            ld.append(art)
-    for bloco in ld:
-        tags.append('<script type="application/ld+json">' + json.dumps(bloco, ensure_ascii=False) + "</script>")
+    ld = montar_schema(RAIZ, SITE, MARCA, url, info, texto, artigo)
+    tags.append('<script type="application/ld+json">' + json_script(ld) + "</script>")
     tags.append('<script src="/analytics.js" defer></script>')
     tags.append('<script src="/canais.js" defer></script>')
     return "<!-- seo:inicio -->\n" + "\n".join(t for t in tags if t) + "\n<!-- seo:fim -->\n"

@@ -1,0 +1,10 @@
+# Arquivos que a Cloudflare NÃO publica (mesmo formato do .gitignore).
+# Repete o que o GitHub Pages já escondia: pastas e arquivos que começam com _ ou com ponto.
+_*
+.*
+# Configuração da Cloudflare e documentos internos.
+wrangler.jsonc
+*.md
+# Script de apoio (gera as rotinas); não é página do site.
+scripts/
+__pycache__/

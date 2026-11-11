@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Raio-X do Rótulo — o que a lista de ingredientes realmente diz</title>
+<meta name="description" content="Cole a lista de ingredientes (INCI) e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.">
+<style>
+.rx-form{display:flex;flex-direction:column;gap:14px}
+.rx-form label{font-weight:600;display:block;margin-bottom:6px}
+textarea{width:100%;min-height:110px;padding:12px 14px;border:1.5px solid var(--linha);border-radius:12px;font:inherit;resize:vertical;background:var(--papel);color:var(--tinta)}
+textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var(--rosa)}
+.btn{font:inherit;font-weight:600;min-height:52px;padding:0 28px;border-radius:12px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,22,20,0.1)}
+.btn-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:.92rem;border:1.5px solid var(--linha);background:var(--papel);color:var(--tinta);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip:hover{border-color:var(--rosa)}
+.grupo{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:14px 16px;margin:10px 0}
+.grupo h3{margin:0 0 6px;font-size:1.02rem}
+.grupo p{margin:0 0 8px}
+.itens{display:flex;flex-wrap:wrap;gap:6px}
+.item{font-size:.86rem;border:1px solid var(--linha-2);border-radius:999px;padding:3px 10px;background:var(--fundo)}
+.sinal{border-left:3px solid var(--rosa);background:var(--rosa-claro);border-radius:0 var(--raio) var(--raio) 0;padding:13px 15px;margin:10px 0}
+.neutro{border-left:3px solid #b7791f;background:#fff4dd;border-radius:0 var(--raio) var(--raio) 0;padding:13px 15px;margin:10px 0}
+.ok{border-left:3px solid var(--verde);background:var(--verde-claro);border-radius:0 var(--raio) var(--raio) 0;padding:13px 15px;margin:10px 0}
+.vazio{background:var(--papel);border:1.5px dashed var(--linha);border-radius:var(--raio);padding:13px 15px;margin:10px 0}
+.veredito{font-weight:700}
+.regras li{margin:5px 0 5px 18px}
+:where(button,a,textarea):focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/raio-x/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Raio-X do Rótulo — Decodificador de Ingredientes">
+<meta property="og:description" content="Cole a lista de ingredientes e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/raio-x/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-raio-x.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Raio-X do rótulo">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/raio-x/#pagina", "url": "https://produtoskincare.com.br/ferramentas/raio-x/", "name": "Raio-X do rótulo", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Cole a lista de ingredientes e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/raio-x/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/raio-x/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Raio-X do rótulo", "item": "https://produtoskincare.com.br/ferramentas/raio-x/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main>
+<div class="marca">Produto <span>Skincare</span> · Ferramentas</div>
+<p class="sub"><a href="/ferramentas/" style="color:var(--rosa)">← Voltar às ferramentas</a></p>
+
+<h1>Raio-X do rótulo</h1>
+<p class="sub">Cole a lista de ingredientes (INCI) do produto — e, se quiser, as promessas da embalagem. O raio-x agrupa os ingredientes pela função, aponta o que merece atenção e confere se cada promessa se sustenta na própria lista. Sem alarme: a lista mostra composição, não concentração.</p>
+
+<div class="card aviso">
+<strong>Como usar:</strong> cole tudo que vem depois de "INGREDIENTES:" ou "INCI:" — vírgulas, "·" ou quebra de linha separam os itens. No segundo campo, escreva as promessas como estão na embalagem ("sem álcool", "oil-free", "hipoalergênico"…). Nada é enviado: tudo acontece só neste aparelho.
+</div>
+
+<div class="card">
+<div class="rx-form">
+<div>
+<label for="rx-inci">Lista de ingredientes (INCI)</label>
+<textarea id="rx-inci" placeholder="Ex: Aqua, Glycerin, Niacinamide, Dimethicone, Tocopherol, Phenoxyethanol…"></textarea>
+</div>
+<div>
+<label for="rx-claims">Promessas da embalagem (opcional)</label>
+<textarea id="rx-claims" style="min-height:72px" placeholder="Ex: sem álcool · oil-free · hipoalergênico · não comedogênico · vegano"></textarea>
+</div>
+<div>
+<button class="btn" id="rx-rodar" type="button">Fazer o raio-x</button>
+</div>
+</div>
+</div>
+
+<div id="rx-resultado" aria-live="polite"></div>
+
+<h2>Exemplos para testar</h2>
+<div class="chips" id="rx-exemplos">
+<button class="chip" type="button" data-ex="0">Protetor "sem álcool" que traz álcool</button>
+<button class="chip" type="button" data-ex="1">Hidratante simples, promessas limpas</button>
+<button class="chip" type="button" data-ex="2">Sabonete com "sem sulfatos" na embalagem</button>
+</div>
+
+<h2>Como o raio-x lê a lista</h2>
+<ul class="regras">
+<li><strong>Função primeiro.</strong> Cada ingrediente vai para um grupo — ativo, emoliente, humectante, filtro UV, conservante, surfactante, fragrância, corante e outros — para você ver do que o produto é feito, não só nomes difíceis.</li>
+<li><strong>Ordem importa, com ressalva.</strong> Por regra da ANVISA, os ingredientes vêm em ordem decrescente de quantidade até os 1% mais baixos; depois a ordem é livre. Um ingrediente lá no fim pode ter pouco — mas a lista não diz quanto.</li>
+<li><strong>Sinal, não sentença.</strong> Fragrância, álcool volátil e alguns conservantes são causas conhecidas de sensibilidade em parte das pessoas — por isso aparecem como "vale notar", nunca como "tóxico". O que irrita uma pele pode ser ótimo em outra.</li>
+<li><strong>Promessas: só o que a lista sustenta.</strong> "Sem álcool" é conferível; "hipoalergênico" e "não comedogênico" não têm padrão de teste e são marcados como não verificáveis. Dizer isso em voz alta é parte do serviço.</li>
+<li><strong>Não é diagnóstico médico.</strong> Em caso de irritação, pare o uso e consulte um dermatologista.</li>
+</ul>
+
+<p class="sub">Quer saber se dois ativos podem ser usados juntos? Use o <a href="/ferramentas/ingredientes/" style="color:var(--rosa)">verificador de combinações</a>. Para entender o que cada ativo faz, veja o <a href="/ferramentas/ativos/" style="color:var(--rosa)">guia de princípios ativos</a>.</p>
+
+<div id="areaEnviar"></div>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  const GRUPOS = {
+    ativo: "Ativos e princípios funcionais",
+    emoliente: "Emolientes, óleos e manteigas",
+    humectante: "Humectantes (puxam água para a pele)",
+    oclusivo: "Oclusivos e barreiras",
+    filtro: "Filtros ultravioleta",
+    conservante: "Conservantes",
+    surfactante: "Surfactantes (limpeza)",
+    textura: "Emulsificantes e textura",
+    fragrancia: "Fragrância e alergênicos declaráveis",
+    alcool: "Álcoois",
+    corante: "Corantes",
+    silicone: "Silicones",
+    antioxidante: "Antioxidantes e estabilizantes",
+    outro: "Outros (solventes, reguladores de pH…)"
+  };
+
+  const D = {
+    "aqua": "outro", "water": "outro", "eau": "outro", "glycerin": "humectante", "glycerine": "humectante",
+    "butylene glycol": "humectante", "propylene glycol": "humectante", "propanediol": "humectante",
+    "sodium hyaluronate": "humectante", "hyaluronic acid": "humectante", "sodium pca": "humectante",
+    "urea": "ativo", "aloe barbadensis leaf juice": "humectante", "aloe vera": "humectante", "honey": "emoliente", "mel": "emoliente",
+    "squalane": "emoliente", "squalene": "emoliente",
+    "niacinamide": "ativo", "retinol": "ativo", "retinal": "ativo", "retinaldehyde": "ativo", "retinyl palmitate": "ativo",
+    "tretinoin": "ativo", "adapalene": "ativo", "bakuchiol": "ativo",
+    "ascorbic acid": "ativo", "sodium ascorbyl phosphate": "ativo", "ascorbyl glucoside": "ativo",
+    "3-o-ethyl ascorbic acid": "ativo", "magnesium ascorbyl phosphate": "ativo", "ascorbyl palmitate": "antioxidante",
+    "salicylic acid": "ativo", "glycolic acid": "ativo", "lactic acid": "ativo", "mandelic acid": "ativo",
+    "azelaic acid": "ativo", "tranexamic acid": "ativo", "kojic acid": "ativo", "arbutin": "ativo", "alpha arbutin": "ativo",
+    "benzoyl peroxide": "ativo", "sulfur": "ativo", "panthenol": "ativo", "dexpanthenol": "ativo", "allantoin": "ativo",
+    "centella asiatica extract": "ativo", "madecassoside": "ativo", "asiaticoside": "ativo", "bisabolol": "ativo",
+    "ceramide np": "ativo", "ceramide ap": "ativo", "ceramide eop": "ativo", "ceramide 1": "ativo", "ceramide 3": "ativo", "ceramide 6 ii": "ativo",
+    "zinc oxide": "filtro", "titanium dioxide": "filtro",
+    "dimethicone": "silicone", "cyclopentasiloxane": "silicone", "cyclohexasiloxane": "silicone",
+    "amodimethicone": "silicone", "phenyl trimethicone": "silicone", "dimethiconol": "silicone", "polysilicone-15": "filtro",
+    "caprylic/capric triglyceride": "emoliente", "caprylic capric triglyceride": "emoliente",
+    "glyceryl stearate": "textura", "glyceryl stearate se": "textura", "cetearyl alcohol": "emoliente",
+    "cetyl alcohol": "emoliente", "stearyl alcohol": "emoliente", "behenyl alcohol": "emoliente", "lauryl alcohol": "emoliente",
+    "isododecane": "emoliente", "petrolatum": "oclusivo", "mineral oil": "oclusivo", "paraffinum liquidum": "oclusivo",
+    "lanolin": "emoliente", "lanolin alcohol": "emoliente", "beeswax": "oclusivo", "cera alba": "oclusivo",
+    "paraffin": "oclusivo", "microcrystalline wax": "oclusivo",
+    "butyrospermum parkii butter": "emoliente", "shea butter": "emoliente",
+    "cocos nucifera oil": "emoliente", "coconut oil": "emoliente",
+    "theobroma cacao seed butter": "emoliente", "cocoa butter": "emoliente",
+    "simmondsia chinensis seed oil": "emoliente", "jojoba oil": "emoliente",
+    "argania spinosa kernel oil": "emoliente", "argan oil": "emoliente",
+    "olea europaea fruit oil": "emoliente", "olive oil": "emoliente",
+    "helianthus annuus seed oil": "emoliente", "sunflower seed oil": "emoliente",
+    "persea gratissima oil": "emoliente", "avocado oil": "emoliente",
+    "isopropyl myristate": "emoliente", "isopropyl palmitate": "emoliente", "myristyl myristate": "emoliente",
+    "octocrylene": "filtro", "ethylhexyl salicylate": "filtro", "octisalate": "filtro", "octyl salicylate": "filtro",
+    "butyl methoxydibenzoylmethane": "filtro", "avobenzone": "filtro", "homosalate": "filtro",
+    "ethylhexyl methoxycinnamate": "filtro", "octinoxate": "filtro", "benzophenone-3": "filtro", "oxybenzone": "filtro",
+    "bis-ethylhexyloxyphenol methoxyphenyl triazine": "filtro", "bemotrizinol": "filtro",
+    "methylene bis-benzotriazolyl tetramethylbutylphenol": "filtro", "bisoctrizole": "filtro",
+    "diethylamino hydroxybenzoyl hexyl benzoate": "filtro", "ethylhexyl triazone": "filtro",
+    "terephthalylidene dicamphor sulfonic acid": "filtro", "drometrizole trisiloxane": "filtro",
+    "phenoxyethanol": "conservante", "methylparaben": "conservante", "ethylparaben": "conservante",
+    "propylparaben": "conservante", "butylparaben": "conservante", "isobutylparaben": "conservante",
+    "sodium benzoate": "conservante", "potassium sorbate": "conservante", "benzyl alcohol": "conservante",
+    "dehydroacetic acid": "conservante", "chlorphenesin": "conservante", "ethylhexylglycerin": "conservante",
+    "caprylyl glycol": "conservante", "1,2-hexanediol": "conservante", "levulinic acid": "conservante",
+    "sodium levulinate": "conservante", "methylisothiazolinone": "conservante", "methylchloroisothiazolinone": "conservante",
+    "sodium lauryl sulfate": "surfactante", "sodium laureth sulfate": "surfactante",
+    "ammonium lauryl sulfate": "surfactante", "ammonium laureth sulfate": "surfactante",
+    "cocamidopropyl betaine": "surfactante", "decyl glucoside": "surfactante", "coco-glucoside": "surfactante",
+    "lauryl glucoside": "surfactante", "sodium cocoyl isethionate": "surfactante",
+    "disodium laureth sulfosuccinate": "surfactante", "sodium methyl cocoyl taurate": "surfactante",
+    "tea-cocoyl glutamate": "surfactante", "sodium chloride": "outro",
+    "polysorbate 20": "textura", "polysorbate 60": "textura", "polysorbate 80": "textura",
+    "ceteareth-20": "textura", "sorbitan oleate": "textura", "lecithin": "textura",
+    "xanthan gum": "textura", "carbomer": "textura", "acrylates copolymer": "textura",
+    "ammonium acryloyldimethyltaurate/vp copolymer": "textura", "hydroxyethylcellulose": "textura",
+    "parfum": "fragrancia", "fragrance": "fragrancia", "aroma": "fragrancia",
+    "limonene": "fragrancia", "linalool": "fragrancia", "citral": "fragrancia", "citronellol": "fragrancia",
+    "geraniol": "fragrancia", "eugenol": "fragrancia", "coumarin": "fragrancia", "farnesol": "fragrancia",
+    "hexyl cinnamal": "fragrancia", "butylphenyl methylpropional": "fragrancia", "amyl cinnamal": "fragrancia",
+    "isoeugenol": "fragrancia", "benzyl benzoate": "fragrancia", "benzyl salicylate": "fragrancia",
+    "alcohol": "alcool", "alcohol denat": "alcool", "alcohol denatured": "alcool", "ethanol": "alcool",
+    "isopropyl alcohol": "alcool", "isopropanol": "alcool", "sd alcohol 40": "alcool", "sd alcohol 40-b": "alcool",
+    "tocopherol": "antioxidante", "tocopheryl acetate": "antioxidante", "butylated hydroxytoluene": "antioxidante", "bht": "antioxidante",
+    "butylated hydroxyanisole": "antioxidante", "bha": "antioxidante", "ferulic acid": "ativo",
+    "sodium metabisulfite": "antioxidante", "rosmarinus officinalis leaf extract": "antioxidante",
+    "disodium edta": "outro", "edta": "outro", "sodium phytate": "outro",
+    "citric acid": "outro", "sodium citrate": "outro", "sodium hydroxide": "outro", "lactic acid": "ativo",
+    "ci 77891": "corante", "ci 77491": "corante", "ci 77492": "corante", "ci 77499": "corante",
+    "ci 19140": "corante", "ci 15985": "corante", "ci 42090": "corante", "ci 15850": "corante",
+    "ci 73360": "corante", "ci 77742": "corante", "mica": "corante", "carmine": "corante",
+    "collagen": "outro", "hydrolyzed collagen": "outro", "keratin": "outro", "hydrolyzed keratin": "outro",
+    "silk amino acids": "outro", "elastin": "outro", "snail secretion filtrate": "outro", "royal jelly": "outro",
+    "cholesterol": "outro"
+  };
+
+  const ATENCOES = [
+    { chave: "fragrancia", titulo: "Fragrância e alergênicos declaráveis", texto: "A lista traz fragrância (ou moléculas de fragrância declaráveis como limonene e linalool). Fragrância é uma das causas mais comuns de sensibilidade e alergia de contato — em pele sensível ou em uso diário prolongado, é o primeiro item a testar em área pequena." },
+    { chave: "alcool", titulo: "Álcool volátil", texto: "Há álcool volátil (álcool denat./etílico/isopropílico). Ele evapora rápido e dá toque seco à fórmula, mas pode ressecar e arder em pele sensível, lesada ou em uso frequente." },
+    { chave: "mit", titulo: "Conservantes de maior sensibilidade", texto: "A lista traz metilisotiazolinona (MIT/MCIT). É conservante eficaz, mas associado a alergia de contato — atenção maior em produtos que ficam na pele (leave-on) e em pele atópica." },
+    { chave: "sulfato", titulo: "Tensioativo forte", texto: "Há sulfatos de limpeza (SLS/SLES). Lavam bem e podem ressecar peles secas ou sensíveis; em shampoo e sabonete, a frequência de uso pesa mais que o ingrediente em si." },
+    { chave: "poros", titulo: "Potencial de entupir poros em algumas peles", texto: "Há ingredientes com histórico de comedogenicidade em estudos antigos (óleo de coco, lanolina, isopropyl myristate/palmitate, manteiga de cacau). Isso não condena a fórmula — concentração e sua pele decidem — mas vale observar se surgem cravos." },
+    { chave: "silicone", titulo: "Silicones", texto: "Há silicones (dimethicone e cia.). Dão toque aveludado e ajudam na espalhabilidade; não entupem poros por si sós e não são vilões — para quem prefere fórmulas sem silicone, é só um item de preferência." },
+    { chave: "animal", titulo: "Ingredientes de origem animal", texto: "Há ingredientes de origem animal na lista (lã/lanolina, cera de abelha, carmim, colágeno, queratina, seda…). Quem busca fórmulas veganas deve confirmar com o fabricante — 'vegano' também depende de certificação e teste animal." }
+  ];
+
+  const SECOS = { "alcohol": 1, "alcohol denat": 1, "alcohol denatured": 1, "ethanol": 1, "isopropyl alcohol": 1, "isopropanol": 1, "sd alcohol 40": 1, "sd alcohol 40-b": 1 };
+  const GRAXOS = { "cetyl alcohol": 1, "stearyl alcohol": 1, "cetearyl alcohol": 1, "behenyl alcohol": 1, "lauryl alcohol": 1 };
+  const MIT = { "methylisothiazolinone": 1, "methylchloroisothiazolinone": 1 };
+  const SULFATOS = { "sodium lauryl sulfate": 1, "sodium laureth sulfate": 1, "ammonium lauryl sulfate": 1, "ammonium laureth sulfate": 1 };
+  const POROS = { "cocos nucifera oil": 1, "coconut oil": 1, "lanolin": 1, "lanolin alcohol": 1, "isopropyl myristate": 1, "isopropyl palmitate": 1, "theobroma cacao seed butter": 1, "cocoa butter": 1 };
+  const ANIMAL = { "lanolin": 1, "lanolin alcohol": 1, "beeswax": 1, "cera alba": 1, "carmine": 1, "collagen": 1, "hydrolyzed collagen": 1, "keratin": 1, "hydrolyzed keratin": 1, "silk amino acids": 1, "honey": 1, "mel": 1, "royal jelly": 1, "snail secretion filtrate": 1, "elastin": 1, "cholesterol": 1 };
+
+  const REGRAS = [
+    { promessas: ["sem álcool", "sem alcool", "alcohol free", "sem álcool etílico"],
+      ruins: SECOS, benignos: GRAXOS,
+      ruim: "A lista traz álcool volátil (%s) — a promessa não se sustenta na fórmula.",
+      bom: "Não há álcool volátil na lista.",
+      obs: "Os álcoois graxos (cetílico, esteárico, cetearyl…) são emolientes e não contam como o 'álcool' desta promessa." },
+    { promessas: ["oil free", "sem óleo", "sem oleo", "sem óleos"],
+      ruins: { "mineral oil": 1, "paraffinum liquidum": 1, "cocos nucifera oil": 1, "coconut oil": 1, "olea europaea fruit oil": 1, "olive oil": 1, "argania spinosa kernel oil": 1, "argan oil": 1, "simmondsia chinensis seed oil": 1, "jojoba oil": 1, "persea gratissima oil": 1, "avocado oil": 1, "helianthus annuus seed oil": 1, "sunflower seed oil": 1, "lanolin": 1, "shea butter": 1, "butyrospermum parkii butter": 1 },
+      ruim: "A lista traz óleo ou manteiga (%s) — 'oil-free' não se sustenta.",
+      bom: "Nenhum óleo ou manteiga reconhecido na lista.",
+      obs: "Petrolatum e silicones não são óleos: não contradizem 'oil-free'." },
+    { promessas: ["sem parabenos", "sem parabeno", "paraben free"],
+      ruins: { "methylparaben": 1, "ethylparaben": 1, "propylparaben": 1, "butylparaben": 1, "isobutylparaben": 1 },
+      ruim: "A lista traz parabeno (%s) — a promessa não se sustenta.",
+      bom: "Nenhum parabeno reconhecido na lista." },
+    { promessas: ["sem sulfatos", "sulfate free", "sem lauril"],
+      ruins: SULFATOS,
+      ruim: "A lista traz sulfato (%s) — a promessa não se sustenta.",
+      bom: "Nenhum sulfato de limpeza reconhecido na lista." },
+    { promessas: ["sem fragrância", "sem fragrancia", "sem perfume", "fragrance free", "inodoro"],
+      ruins: { "parfum": 1, "fragrance": 1, "aroma": 1, "limonene": 1, "linalool": 1, "citral": 1, "citronellol": 1, "geraniol": 1, "eugenol": 1, "coumarin": 1, "hexyl cinnamal": 1 },
+      ruim: "A lista traz fragrância ou molécula de fragrância (%s) — 'sem fragrância' não se sustenta.",
+      bom: "Nenhuma fragrância reconhecida na lista.",
+      obs: "Óleos essenciais também são fragrância: se a lista citar lavanda, laranja, eucalipto…, a promessa é vazia." },
+    { promessas: ["vegano", "vegan"],
+      ruins: ANIMAL, benignos: {},
+      ruim: "A lista traz ingrediente de origem animal (%s) — 'vegano' não se sustenta.",
+      bom: "Nenhum ingrediente de origem animal reconhecido na lista.",
+      obs: "'Vegano' também depende de teste animal e cadeia de fornecedores: confirme a certificação com o fabricante. Squalane e colesterol costumam ser de origem vegetal/sintética hoje — vale perguntar." },
+    { promessas: ["hipoalergênico", "hipoalergenico", "hypoallergenic"],
+      naoVerificavel: "Não existe padrão de teste para 'hipoalergênico'. Pela lista, o que mais se associa a sensibilidade é fragrância e conservantes de maior sensibilidade — se algum estiver presente, trate a promessa com ceticismo." },
+    { promessas: ["não comedogênico", "nao comedogenico", "non-comedogenic", "não entope poros"],
+      naoVerificavel: "Não existe teste padrão de comedogenicidade para a fórmula pronta. Se a lista tiver óleos ou ésteres com histórico de entupir poros (ver acima), a promessa merece prova real na sua pele." },
+    { promessas: ["protetor solar", "fps", "sunscreen", "solar"],
+      naoVerificavel: "FPS e UVA não se verificam pela lista de ingredientes: confirme o registro na ANVISA e os valores de FPS/PA na embalagem." },
+    { promessas: ["natural", "100% natural", "orgânico", "organico"],
+      naoVerificavel: "'Natural' e 'orgânico' não têm definição regulatória única no Brasil. A lista mostra fórmula, não origem: para afirmar origem, procure certificação (Ecocert, IBD…) e confirme com o fabricante." }
+  ];
+
+  const EXEMPLOS = [
+    { inci: "Aqua, Alcohol Denat., Glycerin, Ethylhexyl Salicylate, Butyl Methoxydibenzoylmethane, Octocrylene, Dimethicone, Tocopherol, Carbomer, Parfum, Limonene, Sodium Hydroxide",
+      claims: "sem álcool · oil-free · hipoalergênico" },
+    { inci: "Aqua, Glycerin, Cetearyl Alcohol, Squalane, Sodium Hyaluronate, Ceramide NP, Niacinamide, Carbomer, Phenoxyethanol, Ethylhexylglycerin",
+      claims: "vegano · sem fragrância" },
+    { inci: "Aqua, Sodium Laureth Sulfate, Cocamidopropyl Betaine, Sodium Chloride, Parfum, Methylisothiazolinone, Methylchloroisothiazolinone, CI 42090",
+      claims: "sem sulfatos" }
+  ];
+
+  function norm(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[-‐-―]/g, " ").replace(/\(.*$/, "").replace(/\.+(?=\s|$)/g, " ")
+      .replace(/\s+/g, " ").trim();
+  }
+
+  function itens(texto) {
+    return (texto || "").split(/[,;·\n|]+/).map((s) => s.replace(/^(ingredients?|inci|composição|composicao)\s*:\s*/i, "").trim()).filter((s) => s.length > 1);
+  }
+
+  function achar(nome) {
+    const n = norm(nome);
+    if (D[n]) return { nome: nome, chave: n, grupo: D[n] };
+    const semEspaco = n.replace(/[\s-]+/g, "");
+    for (const k in D) if (k.replace(/[\s-]+/g, "") === semEspaco) return { nome: nome, chave: k, grupo: D[k] };
+    const ci = n.match(/^ci\s*(\d{5})$/);
+    if (ci) for (const k in D) if (k === "ci " + ci[1]) return { nome: nome, chave: k, grupo: D[k] };
+    return { nome: nome, chave: n, grupo: null };
+  }
+
+  function render() {
+    const incis = itens($("rx-inci").value).map(achar);
+    const promessas = itens($("rx-claims").value);
+    if (!incis.length) {
+      $("rx-resultado").innerHTML = '<div class="vazio"><strong>Cole a lista de ingredientes primeiro.</strong> Tudo que vem depois de “INGREDIENTES:” serve — separe por vírgula, “·” ou quebra de linha.</div>';
+      return;
+    }
+    const porGrupo = {};
+    const desconhecidos = [];
+    const atencoes = { fragrancia: [], alcool: [], mit: [], sulfato: [], poros: [], silicone: [], animal: [] };
+    incis.forEach((ing) => {
+      if (!ing.grupo) { desconhecidos.push(ing.nome); return; }
+      (porGrupo[ing.grupo] = porGrupo[ing.grupo] || []).push(ing);
+      const c = ing.chave;
+      if (ing.grupo === "fragrancia") atencoes.fragrancia.push(ing.nome);
+      if (SECOS[c]) atencoes.alcool.push(ing.nome);
+      if (MIT[c]) atencoes.mit.push(ing.nome);
+      if (SULFATOS[c]) atencoes.sulfato.push(ing.nome);
+      if (POROS[c]) atencoes.poros.push(ing.nome);
+      if (ing.grupo === "silicone") atencoes.silicone.push(ing.nome);
+      if (ANIMAL[c]) atencoes.animal.push(ing.nome);
+    });
+
+    let html = '<h2>Resultado do raio-x</h2>';
+    const conhecidos = incis.length - desconhecidos.length;
+    html += '<div class="ok"><strong>' + incis.length + ' ingredientes na lista</strong> — ' + conhecidos + ' reconhecidos no nosso dicionário' + (desconhecidos.length ? ', ' + desconhecidos.length + ' fora dele' : '') + '. Abaixo, a fórmula agrupada por função.</div>';
+
+    Object.keys(GRUPOS).forEach((g) => {
+      if (!porGrupo[g]) return;
+      const lista = porGrupo[g];
+      html += '<div class="grupo"><h3>' + GRUPOS[g] + ' <span style="font-weight:400;color:var(--suave)">(' + lista.length + ')</span></h3>';
+      if (g === "ativo") html += '<p>São os ingredientes com função declarada — os candidatos a fazer diferença na sua rotina. O <a href="/ferramentas/ativos/" style="color:var(--rosa)">guia de princípios ativos</a> mostra o que cada um faz.</p>';
+      if (g === "filtro") html += '<p>Filtros ultravioleta: se o produto é protetor solar, o uso correto (quantidade e reaplicação) pesa tanto quanto a fórmula.</p>';
+      html += '<div class="itens">' + lista.map((i) => '<span class="item">' + i.nome + '</span>').join("") + "</div></div>";
+    });
+
+    const notasAtivas = ATENCOES.filter((a) => atencoes[a.chave].length > 0);
+    if (notasAtivas.length) {
+      html += "<h2>Pontos de atenção</h2>";
+      notasAtivas.forEach((a) => {
+        html += '<div class="' + (a.chave === "silicone" ? "neutro" : "sinal") + '"><strong>' + a.titulo + '</strong> — ' + a.texto + '<br><span style="font-size:.88rem;opacity:.85">Na lista: ' + atencoes[a.chave].join(", ") + "</span></div>";
+      });
+    }
+
+    if (desconhecidos.length) {
+      html += '<div class="vazio"><strong>Fora do nosso dicionário (' + desconhecidos.length + '):</strong> ' + desconhecidos.join(", ") + '. O dicionário não é exaustivo — nomes raros, misturas proprietárias e novidades podem faltar. Pesquise cada um no <a href="/ingredientes/" style="color:var(--rosa)">fichário de ingredientes</a> ou no site do fabricante.</div>';
+    }
+
+    if (promessas.length) {
+      html += "<h2>Auditoria das promessas</h2>";
+      promessas.forEach((p) => {
+        const pn = norm(p);
+        const regra = REGRAS.find((r) => r.promessas.some((x) => pn === norm(x) || pn.indexOf(norm(x)) >= 0));
+        if (!regra) {
+          html += '<div class="vazio"><strong>“' + p + '”</strong> — promessa fora da nossa lista de regras. Não a confirmamos nem negamos; confira com o fabricante.</div>';
+          return;
+        }
+        if (regra.naoVerificavel) {
+          html += '<div class="neutro"><span class="veredito">“' + p + '” — não verificável pela lista.</span> ' + regra.naoVerificavel + "</div>";
+          return;
+        }
+        const achados = incis.filter((i) => regra.ruins[i.chave]).map((i) => i.nome);
+        const benignos = incis.filter((i) => regra.benignos && regra.benignos[i.chave]).map((i) => i.nome);
+        if (achados.length) {
+          html += '<div class="sinal"><span class="veredito">“' + p + '” — contradito pela lista.</span> ' + regra.ruim.replace("%s", achados.join(", ")) + (benignos.length && regra.obs ? "<br><span style=\"font-size:.9rem\">" + regra.obs + "</span>" : "") + "</div>";
+        } else {
+          html += '<div class="ok"><span class="veredito">“' + p + '” — sem sinal contra na lista.</span> ' + regra.bom + (benignos.length && regra.obs ? "<br><span style=\"font-size:.9rem\">" + regra.obs + "</span>" : "") + "</div>";
+        }
+      });
+    }
+
+    html += '<p class="sub" style="margin-top:14px">Lembrete honesto: a lista mostra composição, não concentração. Um ingrediente no fim da fórmula pode ter uma fração do que está no começo. Não é diagnóstico médico — em caso de irritação, pare o uso e consulte um dermatologista.</p>';
+    $("rx-resultado").innerHTML = html;
+    ULTIMO = { incis: incis, promessas: promessas };
+  }
+
+  let ULTIMO = null;
+  $("rx-rodar").addEventListener("click", render);
+  $("rx-inci").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.ctrlKey) render(); });
+  $("rx-claims").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.ctrlKey) render(); });
+  document.querySelectorAll("[data-ex]").forEach((b) => b.addEventListener("click", () => {
+    const ex = EXEMPLOS[+b.dataset.ex];
+    $("rx-inci").value = ex.inci;
+    $("rx-claims").value = ex.claims;
+    render();
+  }));
+
+  window.addEventListener("load", () => {
+    if (!window.PSEnviar) return;
+    PSEnviar.montar($("areaEnviar"), () => {
+    if (!ULTIMO) return { texto: "" };
+    const t = ["Raio-X do rótulo — Produto Skincare", "",
+      "Ingredientes: " + ULTIMO.incis.map((i) => i.nome).join(", ")];
+    if (ULTIMO.promessas.length) t.push("", "Promessas: " + ULTIMO.promessas.join(" · "));
+    t.push("", "A lista mostra composição, não concentração. Não é diagnóstico médico.", "Ferramenta local: nada foi enviado a servidores.");
+    return { assunto: "Raio-X do rótulo", texto: t.join("\n"), url: location.href };
+    }, { titulo: "Enviar este raio-x" });
+  });
+})();
+</script>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é o Raio-X do rótulo de skincare?</h3>
+<p>O Raio-X do rótulo é uma ferramenta em que você cola a lista de ingredientes (INCI) e, se quiser, as promessas da embalagem. Ela agrupa os ingredientes por função, aponta o que merece atenção e confere se as promessas se sustentam na lista.</p>
+<h3>A ordem dos ingredientes no rótulo mostra a quantidade de cada um?</h3>
+<p>Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Raio-X do rótulo de skincare?", "acceptedAnswer": {"@type": "Answer", "text": "O Raio-X do rótulo é uma ferramenta em que você cola a lista de ingredientes (INCI) e, se quiser, as promessas da embalagem. Ela agrupa os ingredientes por função, aponta o que merece atenção e confere se as promessas se sustentam na lista."}}, {"@type": "Question", "name": "A ordem dos ingredientes no rótulo mostra a quantidade de cada um?", "acceptedAnswer": {"@type": "Answer", "text": "Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-10">10 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/raio-x/" aria-current="page">Raio-X do rótulo</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+</body>
+</html>

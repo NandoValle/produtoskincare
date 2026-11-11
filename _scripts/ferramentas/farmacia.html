@@ -1,0 +1,135 @@
+<article>
+<div class="ig-cab">
+<h1>Modo farmácia</h1>
+<p class="ig-lede">Na loja, antes de comprar: fotografe a lista de ingredientes do produto e veja se ele combina com o que você já tem em casa, se repete um ativo que você já usa e se preenche um passo que está faltando.</p>
+<p class="ig-meta">A foto é lida neste aparelho e não é enviada. A comparação usa a sua <a href="/ferramentas/prateleira/">prateleira</a>, salva só aqui.</p>
+</div>
+
+<div class="ig-caixa" id="fa-prateleira"></div>
+
+<section class="ig-caixa" aria-labelledby="fa-produto-titulo">
+<h2 id="fa-produto-titulo">O produto da loja</h2>
+<div class="ft-ocr">
+<label class="ft-btn">📷 Fotografar a lista de ingredientes<input type="file" id="fa-foto" accept="image/*" capture="environment" class="ft-arquivo"></label>
+<p class="ig-nota" id="fa-ocr" role="status" aria-live="polite">Foto de perto, reta, com boa luz e sem reflexo. Na primeira vez, o leitor baixa cerca de 7 MB: se puder, abra esta página uma vez no wi-fi antes de sair.</p>
+</div>
+<label class="ft-rotulo" for="fa-texto">Ingredientes lidos (confira e corrija se precisar)</label>
+<textarea class="ft-campo" id="fa-texto" rows="5" placeholder="Ou digite os ativos do rótulo, ex.: ácido glicólico 10%, niacinamida"></textarea>
+<label class="ft-rotulo" for="fa-nome">Nome do produto (opcional)</label>
+<input class="ft-campo" id="fa-nome" type="text" placeholder="Ex.: Tônico de ácido glicólico da marca X">
+<label class="ft-rotulo" for="fa-passo">Passo da rotina</label>
+<select class="ft-campo" id="fa-passo">
+<option value="limpeza">Limpeza</option>
+<option value="tratamento" selected>Tratamento (sérum, tônico)</option>
+<option value="hidratacao">Hidratante</option>
+<option value="protetor">Protetor solar</option>
+<option value="outro">Outro</option>
+</select>
+<fieldset class="ft-periodo"><legend class="ft-rotulo">Quando você usaria</legend>
+<label><input type="checkbox" id="fa-manha" checked> Manhã</label>
+<label><input type="checkbox" id="fa-noite" checked> Noite</label>
+</fieldset>
+<button class="ft-btn" type="button" id="fa-verificar">Combina com o que eu tenho?</button>
+</section>
+
+<section aria-live="polite" id="fa-resultado"></section>
+
+<p class="ig-nota">A comparação usa as <a href="/ferramentas/ingredientes/">regras de combinação do verificador</a> (versão <span id="fa-versao"></span>) e só enxerga os ativos que reconhece no texto. Leitura por foto pode trocar letras: confira o texto antes. Quando não temos regra para um par, dizemos que não sabemos. Informativo: não substitui o dermatologista nem o farmacêutico da loja.</p>
+</article>
+<script src="/regras-ativos.js"></script>
+<script src="/prateleira.js"></script>
+<script src="/ocr-rotulo.js"></script>
+<script>
+(function () {
+  "use strict";
+  var R = window.PSRegras, P = window.PSPrateleira;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var ICONE = { sem_regra: "❔", horarios: "🕐", nao: "⛔" };
+  var CSS = { sem_regra: "ft-sem", horarios: "ft-horarios", nao: "ft-nao" };
+  var candidato = null;
+  if (!R || !P) { $("fa-resultado").innerHTML = '<p class="ft-nao">Não foi possível carregar as regras. Recarregue a página.</p>'; return; }
+  $("fa-versao").textContent = R.VERSAO;
+  function evento(n) { try { if (window.PSAnalytics) window.PSAnalytics.evento(n); } catch (e) {} }
+  function quando(per) { return per.length === 2 ? "de manhã e à noite" : per[0] === "manha" ? "de manhã" : "à noite"; }
+
+  function resumoPrateleira() {
+    var d = P.ler();
+    $("fa-prateleira").innerHTML = d.itens.length
+      ? '<p class="ig-rotulo">Sua prateleira</p><p>' + d.itens.length + (d.itens.length === 1 ? " produto: " : " produtos: ") +
+        esc(d.itens.map(function (i) { return i.nome; }).join(", ")) + '. <a href="/ferramentas/prateleira/">Editar</a></p>'
+      : '<p class="ig-rotulo">Sua prateleira está vazia</p><p>Sem os produtos que você já tem, dá para ver só os ativos do produto da loja. ' +
+        '<a href="/ferramentas/prateleira/">Cadastre a sua prateleira</a> (leva um minuto e fica salva neste aparelho).</p>';
+  }
+
+  function sugerirPeriodo() {
+    var per = P.periodoSugerido($("fa-nome").value + ", " + $("fa-texto").value, $("fa-passo").value);
+    $("fa-manha").checked = per.indexOf("manha") >= 0;
+    $("fa-noite").checked = per.indexOf("noite") >= 0;
+  }
+  $("fa-texto").addEventListener("change", sugerirPeriodo);
+  $("fa-passo").addEventListener("change", sugerirPeriodo);
+  if (window.PSOcr) PSOcr.ligar($("fa-foto"), $("fa-ocr"), function (texto) {
+    $("fa-texto").value = texto;
+    sugerirPeriodo();
+    $("fa-texto").focus();
+    evento("farmacia/ocr");
+  });
+
+  function verificar() {
+    var texto = $("fa-texto").value.trim();
+    var periodo = ["manha", "noite"].filter(function (p) { return $("fa-" + p).checked; });
+    if (!texto) { $("fa-resultado").innerHTML = '<p class="ft-nao">Fotografe ou digite os ingredientes do produto.</p>'; return; }
+    if (!periodo.length) { $("fa-resultado").innerHTML = '<p class="ft-nao">Marque manhã, noite ou os dois.</p>'; return; }
+    candidato = { uid: P.novoId(), id: null, nome: $("fa-nome").value.trim() || "Produto da loja", passo: $("fa-passo").value, periodo: periodo, texto: texto, link: null };
+    var d = P.ler();
+    var ativos = P.ativosDe(candidato);
+    var h = ['<h2>Resultado</h2>'];
+    h.push('<p><strong>Ativos reconhecidos:</strong> ' + (ativos.length ? esc(ativos.map(function (a) { return a.nome; }).join(", ")) : "nenhum. Confira se o texto está legível.") + '</p>');
+
+    var antes = P.analisar(d.itens, { sensivel: d.sensivel });
+    var depois = P.analisar(d.itens.concat([candidato]), { sensivel: d.sensivel });
+    var conflitos = depois.conflitos.filter(function (c) { return c.x === candidato || c.y === candidato; });
+    var repetidos = depois.repetidos.filter(function (r) { return r.itens.indexOf(candidato) >= 0; });
+    var preenche = antes.faltando.filter(function (p) { return depois.faltando.indexOf(p) < 0; });
+
+    if (d.itens.length) {
+      if (!conflitos.length) h.push('<div class="ft-ok"><strong>✅ Nenhum conflito com a sua prateleira</strong>Entre os ativos que reconhecemos, nada deste produto conflita com o que você usa ' + quando(periodo) + '.</div>');
+      conflitos.forEach(function (c) {
+        var outro = c.x === candidato ? c.y : c.x;
+        h.push('<div class="' + CSS[c.resultado] + '"><strong>' + ICONE[c.resultado] + " Com " + esc(outro.nome) + ": " + esc(c.rotulo) + '</strong>' +
+          '<span class="ft-sub">' + esc(c.ativoX) + " com " + esc(c.ativoY) + (c.resultado === "nao" ? "" : ", " + quando(c.periodos)) + '.</span>' + esc(c.motivo) +
+          (c.nota ? '<span class="ft-sub">' + esc(c.nota) + '</span>' : "") + '</div>');
+      });
+      repetidos.forEach(function (r) {
+        var outros = r.itens.filter(function (i) { return i !== candidato; }).map(function (i) { return i.nome; });
+        h.push('<div class="ft-info"><strong>🔁 Repete ' + esc(r.nomeClasse) + '</strong>Você já usa ' + esc(r.nomeClasse) + ' em ' + esc(outros.join(" e ")) +
+          ' ' + quando(r.periodos) + '. Talvez não precise de mais um.</div>');
+      });
+      preenche.forEach(function (p) { h.push('<div class="ft-ok"><strong>➕ Preenche um passo que falta</strong>Sua prateleira não tem ' + esc(P.PASSOS[p].toLowerCase()) + '.</div>'); });
+    }
+    var perfil = ativos.length ? R.contraindicacoes({ nome: candidato.nome, ativos: [texto] }, { sensivel: d.sensivel }) : [];
+    perfil.forEach(function (c) {
+      if (c.regra.indexOf("fragrancia") >= 0) return; // fragrância: o texto lido não basta para afirmar
+      var titulo = c.acao === "remover" ? "Pele sensível: o provador não sugere este tipo de produto" : (c.curto || "Atenção");
+      h.push('<div class="' + (c.acao === "remover" ? "ft-nao" : "ft-info") + '"><strong>ℹ️ ' + esc(titulo) + '</strong>' + esc(c.motivo) + '</div>');
+    });
+    h.push('<button class="ft-btn" type="button" id="fa-adicionar">Comprei: adicionar à prateleira</button>');
+    $("fa-resultado").innerHTML = h.join("");
+    evento("farmacia/verificar");
+  }
+  $("fa-verificar").addEventListener("click", verificar);
+  $("fa-resultado").addEventListener("click", function (e) {
+    if (e.target.id !== "fa-adicionar" || !candidato) return;
+    var d = P.ler();
+    d.itens.push(candidato);
+    P.salvar(d);
+    e.target.disabled = true;
+    e.target.textContent = "Adicionado à prateleira";
+    candidato = null;
+    resumoPrateleira();
+    evento("farmacia/adicionar");
+  });
+  resumoPrateleira();
+})();
+</script>

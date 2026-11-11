@@ -1,0 +1,141 @@
+# Produto Skincare
+
+> Site independente, em português do Brasil, para descobrir o tipo de pele e montar uma rotina de skincare com produtos vendidos no Brasil. Os preços mostram a data em que foram conferidos. Muitos links de loja são de afiliado. Não é diagnóstico médico e o conteúdo ainda não é revisado por dermatologista. Tudo aqui é gratuito e sem cadastro; o que a pessoa digita fica no aparelho dela.
+
+## Comece por aqui
+
+- [Provador](https://produtoskincare.com.br/provador/): quiz ou selfie que estima o tipo de pele e monta a rotina de manhã e de noite.
+- [Pele oleosa](https://produtoskincare.com.br/pele/oleosa/), [seca](https://produtoskincare.com.br/pele/seca/), [mista](https://produtoskincare.com.br/pele/mista/) e [normal](https://produtoskincare.com.br/pele/normal/): guias por tipo de pele.
+- [Rotinas por condição e faixa de preço](https://produtoskincare.com.br/rotinas/): acne, anti-age, melasma e rosácea.
+- [Produtos](https://produtoskincare.com.br/produtos/): catálogo com preço datado, ativos e link de loja.
+- [Sobre e critérios de escolha](https://produtoskincare.com.br/sobre/)
+
+## Guias por tipo de pele
+
+- [Pele oleosa](https://produtoskincare.com.br/pele/oleosa/): cuidados do dia a dia, o que evitar e a rotina típica.
+- [Pele seca](https://produtoskincare.com.br/pele/seca/): idem para pele seca.
+- [Pele mista](https://produtoskincare.com.br/pele/mista/): idem para pele mista (zonas oleosas e secas na mesma face).
+- [Pele normal](https://produtoskincare.com.br/pele/normal/): idem para pele normal.
+
+## Rotinas por condição
+
+- [Rotina para acne](https://produtoskincare.com.br/rotinas/acne/): manhã e noite em três faixas de preço, com ativos e nível de evidência.
+- [Rotina anti-age](https://produtoskincare.com.br/rotinas/anti-age/): sinais de idade, com o que a evidência sustenta.
+- [Rotina para melasma](https://produtoskincare.com.br/rotinas/melasma/): cuidados diários e fotoproteção reforçada.
+- [Rotina para rosácea](https://produtoskincare.com.br/rotinas/rosacea/): rotina gentil, o que evitar e quando procurar o dermatologista.
+
+## Condições da pele
+
+- [Acne](https://produtoskincare.com.br/condicoes/acne/): o que é, o que costuma ajudar e quando procurar o dermatologista.
+- [Desidratação](https://produtoskincare.com.br/condicoes/desidratacao/): pele desidratada x pele seca e como tratar.
+- [Melasma](https://produtoskincare.com.br/condicoes/melasma/): manchas persistentes e o papel da fotoproteção.
+- [Olheiras](https://produtoskincare.com.br/condicoes/olheiras/): causas e o que dá para fazer em casa.
+- [Rosácea](https://produtoskincare.com.br/condicoes/rosacea/): vermelhidão, gatilhos e cuidados.
+
+## Ingredientes e ativos
+
+- [Retinol](https://produtoskincare.com.br/ingredientes/retinol/): o que faz, como começar e o que combina.
+- [Vitamina C](https://produtoskincare.com.br/ingredientes/vitamina-c/): antioxidante, uso diurno e cuidados.
+- [Niacinamida](https://produtoskincare.com.br/ingredientes/niacinamida/): barreira, poros e pigmentação.
+- [Ácido salicílico](https://produtoskincare.com.br/ingredientes/acido-salicilico/): esfoliante para pele oleosa e acne.
+- [Ácido azelaico](https://produtoskincare.com.br/ingredientes/acido-azelaico/): acne, rosácea e manchas.
+- [Ácido hialurônico](https://produtoskincare.com.br/ingredientes/acido-hialuronico/): hidratação.
+- [Ácido mandélico](https://produtoskincare.com.br/ingredientes/acido-mandelico/): esfoliação gentil.
+- [Ácido ferúlico](https://produtoskincare.com.br/ingredientes/acido-ferulico/): estabilizador de antioxidantes.
+- [Ácido tranexâmico](https://produtoskincare.com.br/ingredientes/acido-tranexamico/): melasma e pigmentação.
+- [Ceramidas](https://produtoskincare.com.br/ingredientes/ceramidas/): barreira cutânea.
+- [Peptídeo de cobre](https://produtoskincare.com.br/ingredientes/peptideo-de-cobre/): reparação.
+- [Protetor solar](https://produtoskincare.com.br/ingredientes/protetor-solar/): fotoproteção no dia a dia.
+
+## Ciência
+
+- [Hub científico](https://produtoskincare.com.br/ciencia/): estudos por trás dos ativos.
+- [Metodologia](https://produtoskincare.com.br/ciencia/metodologia/): como o site escolhe e cita as fontes.
+- [Bakuchiol x retinol](https://produtoskincare.com.br/ciencia/bakuchiol-vs-retinol/): o que a evidência mostra.
+- [Niacinamida e pigmentação](https://produtoskincare.com.br/ciencia/niacinamida-pigmentacao/): revisão dos estudos.
+- [Ácido tranexâmico no melasma](https://produtoskincare.com.br/ciencia/acido-tranexamico-melasma/): revisão dos estudos.
+- [Novos ativos para acne](https://produtoskincare.com.br/ciencia/novos-ativos-acne/): revisão dos estudos.
+
+## Comparações e curadoria
+
+- [Comparativos](https://produtoskincare.com.br/comparativos/): produto a produto, preço datado, o que muda de um para o outro.
+- [Mais vendidos](https://produtoskincare.com.br/mais-vendidos/): o que mais sai nas lojas conferidas.
+- [Queridinhos](https://produtoskincare.com.br/queridinhos-do-skincare/): destaques da curadoria.
+- [Achados](https://produtoskincare.com.br/achados/): boas opções por faixa de preço.
+- [Posso usar junto?](https://produtoskincare.com.br/combina/): respostas por combinação de ativos (retinol com vitamina C etc.), geradas das regras do verificador. Pares sem regra não têm página.
+- [Mercado de skincare no Brasil](https://produtoskincare.com.br/mercado-skincare-brasil/): panorama do mercado.
+
+## Blog (destaques)
+
+- [Como saber o tipo de pele](https://produtoskincare.com.br/blog/como-saber-tipo-de-pele/): o passo zero de qualquer rotina.
+- [A ordem dos produtos na rotina](https://produtoskincare.com.br/blog/ordem-dos-produtos-skincare/): em que ordem aplicar.
+- [Por que o protetor solar importa](https://produtoskincare.com.br/blog/protetor-solar-importancia/): fotoproteção e fotoenvelhecimento.
+- [Retinol: como começar](https://produtoskincare.com.br/blog/retinol-como-comecar/): introdução segura do ativo.
+- [Vitamina C no skincare](https://produtoskincare.com.br/blog/vitamina-c-skincare/): o que ela faz e como usar.
+- [Skincare para adolescentes](https://produtoskincare.com.br/blog/skincare-para-adolescentes/): rotina na adolescência.
+- [Skincare e pele negra](https://produtoskincare.com.br/blog/skincare-pele-negra/): cuidados específicos.
+- [Skincare masculino](https://produtoskincare.com.br/blog/skincare-masculino/): rotina básica.
+- [Protetor solar para pele oleosa](https://produtoskincare.com.br/blog/protetor-solar-pele-oleosa/): texturas e escolha.
+- [Rotina de skincare barata](https://produtoskincare.com.br/blog/rotina-de-skincare-barata/): montar rotina com orçamento.
+- [Experimento Coletivo #01: 35 dias, um FPS e uma resposta honesta](https://produtoskincare.com.br/blog/experimento-coletivo-01/): abertura do primeiro experimento coletivo de eficácia pós-mercado do Brasil, com boletim independente do resultado.
+
+## Ferramentas gratuitas (sem cadastro)
+
+- [Todas as ferramentas](https://produtoskincare.com.br/ferramentas/): índice das ferramentas.
+- [Minha prateleira](https://produtoskincare.com.br/ferramentas/prateleira/): análise dos produtos que a pessoa já tem.
+- [Modo farmácia](https://produtoskincare.com.br/ferramentas/farmacia/): foto do rótulo comparada com a prateleira.
+- [Verificador de ingredientes](https://produtoskincare.com.br/ferramentas/ingredientes/): confere a lista de ingredientes.
+- [Raio-X do rótulo](https://produtoskincare.com.br/ferramentas/raio-x/): decodifica a lista INCI por função e audita as promessas da embalagem ("sem álcool", "oil-free") contra os ingredientes.
+- [Equivalente mais barato](https://produtoskincare.com.br/ferramentas/equivalente/): mesmos ativos no catálogo, menor preço.
+- [Comparar produtos](https://produtoskincare.com.br/ferramentas/comparar/): comparação lado a lado.
+- [Guia de ativos](https://produtoskincare.com.br/ferramentas/ativos/): o que cada princípio ativo faz e o que combina.
+- [Modo 12 semanas](https://produtoskincare.com.br/ferramentas/12-semanas/): plano para começar um ativo, com diário de fotos que fica no aparelho.
+- [Ritual guiado](https://produtoskincare.com.br/ferramentas/ritual/): a rotina passo a passo, um passo de cada vez.
+- [Tracker de rotina](https://produtoskincare.com.br/ferramentas/rotina/): acompanhamento do dia a dia.
+- [Lembrete de reposição](https://produtoskincare.com.br/ferramentas/reposicao/): quando o produto vai acabar.
+- [Índice UV de hoje](https://produtoskincare.com.br/ferramentas/clima/): como ajustar a rotina ao clima.
+- [Diário da pele](https://produtoskincare.com.br/ferramentas/diario/): evolução visível, no próprio aparelho.
+- [Relatório para a consulta](https://produtoskincare.com.br/ferramentas/relatorio/): resumo para levar ao dermatologista.
+- [Backup dos seus dados](https://produtoskincare.com.br/ferramentas/backup/): exportar e restaurar o que está no aparelho.
+- [Experimento Coletivo #01](https://produtoskincare.com.br/ferramentas/experimento/): o protocolo 7+28 do FPS que não deixa branco, com registros guardados no próprio aparelho.
+
+## Programa 12 semanas (pago)
+
+- [Programa 12 semanas](https://produtoskincare.com.br/programa-12-semanas/): programa pago de acompanhamento por 12 semanas, com diário, ritual e relatório integrados; a página traz escopo, preços com data e o caderno de evolução.
+
+## Pergunte à IA
+
+- [Pergunte à IA](https://produtoskincare.com.br/pergunte/): dúvidas de skincare respondidas com o conteúdo do site.
+
+## Dados públicos
+
+- [Catálogo de produtos (JSON)](https://produtoskincare.com.br/produtos.json): nome, marca, ativos, preço com data de conferência, avaliação e link de loja.
+- [Rotinas por condição (JSON)](https://produtoskincare.com.br/rotinas/rotinas.json): passos de manhã e de noite por condição e faixa de preço.
+- [Quiz do provador (JSON)](https://produtoskincare.com.br/quiz.json): perguntas e resultados do teste de tipo de pele.
+- [Sitemap](https://produtoskincare.com.br/sitemap.xml): todas as páginas públicas.
+
+## Ferramentas para agentes (WebMCP)
+
+Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra ferramentas só de leitura. Nenhuma compra, cadastra ou envia dados; todas devolvem o link da página correspondente para a pessoa continuar manualmente. Em navegadores sem WebMCP nativo, o arquivo webmcp-polyfill.js cria document.modelContext com a mesma interface da especificação (registerTool, getTools, executeTool), para agentes e extensões que rodam na página; document.modelContext.isPolyfill === true indica esse caso.
+
+- [buscar_produtos](https://produtoskincare.com.br/produtos/): filtra o catálogo por texto, tipo de pele, preocupação, passo e preço máximo; devolve preço com data, avaliação e links.
+- [explicar_tipo_de_pele](https://produtoskincare.com.br/pele/oleosa/): explica oleosa, seca, mista ou normal e devolve os links do guia e do provador.
+- [ver_rotina_por_condicao](https://produtoskincare.com.br/rotinas/): rotina de manhã e de noite por condição (acne, anti-age, melasma, rosácea) e faixa de preço, com ativos e cuidados.
+- [montar_rotina](https://produtoskincare.com.br/provador/): o formulário "Já sabe seu tipo de pele?" da página inicial (API declarativa); abre o provador já com a rotina montada.
+
+Sem JavaScript as ferramentas não rodam e nada se perde: o formulário da página inicial, o provador e os guias seguem funcionando como HTML comum.
+
+## Perguntas frequentes e fontes
+
+A página inicial tem perguntas frequentes com resposta curta (como saber o tipo de pele, o que é pele mista, seca x desidratada, ordem dos produtos, protetor solar diário, quantos passos) e uma lista de fontes externas citadas (SBD, Anvisa, OMS, PubMed).
+
+## Outros idiomas
+
+- [English](https://produtoskincare.com.br/en/)
+- [Español](https://produtoskincare.com.br/es/)
+
+## Contato e políticas
+
+- [Contato](https://produtoskincare.com.br/contato/)
+- [Privacidade](https://produtoskincare.com.br/privacidade/)
+- [Rotina de skincare](https://produtoskincare.com.br/rotina-de-skincare/): visão geral de como montar a rotina.

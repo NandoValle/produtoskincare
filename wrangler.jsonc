@@ -1,0 +1,15 @@
+// Configuração da Cloudflare (Workers com arquivos estáticos) para produtoskincare.com.br.
+// O site é estático: não há script de Worker, só arquivos. Cada push no main publica o site.
+// O nome abaixo precisa ser igual ao nome do Worker no painel da Cloudflare.
+{
+  "name": "produtoskincare",
+  "compatibility_date": "2026-11-08",
+  "assets": {
+    // A raiz do repositório é o site. O que não deve ir ao ar está em .assetsignore.
+    "directory": "./",
+    // Padrão da Cloudflare: /pasta/ serve pasta/index.html e /pasta redireciona para /pasta/.
+    "html_handling": "auto-trailing-slash",
+    // Endereço que não existe mostra o 404.html (com status 404).
+    "not_found_handling": "404-page"
+  }
+}

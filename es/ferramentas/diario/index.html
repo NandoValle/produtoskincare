@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diario de la piel: tu evolución en el tiempo | Produto Skincare</title>
+<meta name="description" content="Sigue cómo va tu piel: fotos periódicas, autopercepción del 1 al 5, curva de evolución y marcos de 28 días. Todo se queda en tu dispositivo.">
+
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-claro{background:var(--papel-2,#f3ede6);color:var(--tinta);border:1px solid var(--linha)}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<style>
+
+.dg-caixa{display:flex;flex-direction:column;gap:26px;max-width:760px;margin:0 auto;padding:24px 16px 60px}
+.dg-acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dg-grade{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:560px){.dg-grade{grid-template-columns:1fr 1fr}}
+.dg-foto{border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;background:var(--papel)}
+.dg-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--papel-2)}
+.dg-foto-info{padding:12px 14px;display:grid;gap:5px}
+.dg-foto-info small{font-weight:700;color:var(--rosa)}
+.dg-foto-info p{margin:0;color:var(--suave);font-size:.9rem}
+.dg-comp{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:18px}
+.dg-comp-controles{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px}
+@media(min-width:560px){.dg-comp-controles{grid-template-columns:1fr 1fr}}
+.dg-comp-quadro{position:relative;max-width:360px;margin:0 auto;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:1px solid var(--linha);background:var(--papel-2)}
+.dg-comp-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dg-comp-quadro .corte{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--rosa);pointer-events:none}
+.dg-comp input[type=range]{width:100%;max-width:360px;display:block;margin:12px auto 0;accent-color:var(--rosa)}
+.dg-legenda{display:flex;justify-content:space-between;max-width:360px;margin:6px auto 0;color:var(--suave);font-size:.86rem}
+.dg-vazio{text-align:center;padding:30px 16px;background:var(--papel-2);border-radius:var(--raio)}
+select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px solid var(--linha);border-radius:10px;background:var(--papel);color:var(--tinta);width:100%}
+
+/* autopercepción */
+.dg-nota-linha{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0}
+.dg-nota-item{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
+.dg-nota-item .rot{font-size:.86rem;font-weight:600}
+.dg-nota-item .rot small{display:block;font-weight:400;color:var(--suave);font-size:.72rem;line-height:1.3}
+.dg-escala{display:flex;gap:6px}
+.dg-escala button{flex:1;min-height:40px;border:1px solid var(--linha);border-radius:9px;background:var(--papel);color:var(--suave);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .15s}
+.dg-escala button[aria-checked=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.dg-escala button:hover{border-color:var(--rosa)}
+.dg-form-nota{margin:12px 0}
+
+/* evolução */
+.dg-evo{display:flex;flex-direction:column;gap:18px}
+.dg-evo-cabecalho{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between}
+.dg-evo-grande{font-family:var(--fonte-display);font-size:2.4rem;font-weight:300;line-height:1}
+.dg-deltas{display:flex;flex-wrap:wrap;gap:8px}
+.dg-delta{border:1px solid var(--linha);border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:600;background:var(--papel)}
+.dg-delta .sobe{color:var(--verde)}
+.dg-delta .desce{color:var(--rosa)}
+.dg-delta .igual{color:var(--suave)}
+.dg-grafico{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px}
+.dg-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.dg-chips button{font:inherit;font-size:.82rem;font-weight:600;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--linha);background:var(--papel);color:var(--suave);cursor:pointer}
+.dg-chips button[aria-pressed=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.dg-marcos{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.dg-marco{border:1px solid var(--linha);border-radius:12px;padding:12px;background:var(--papel)}
+.dg-marco.ok{border-color:rgba(63,107,85,.35);background:var(--verde-claro)}
+.dg-marco strong{display:block;font-size:.95rem}
+.dg-marco small{color:var(--suave);font-size:.78rem;line-height:1.4;display:block}
+.dg-evo-nota{font-size:.82rem;color:var(--suave)}
+.dg-chips-nota{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.dg-chips-nota span{font-size:.72rem;font-weight:600;border-radius:999px;padding:2px 9px;background:var(--rosa-claro);color:var(--rosa)}
+.dg-so-nota{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:linear-gradient(160deg,var(--papel-2,#f3ede6),var(--rosa-claro))}
+.dg-so-nota .num{font-family:var(--fonte-display);font-size:2.1rem;font-weight:300;line-height:1}
+
+</style>
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/diario/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/diary/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/diario/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/diario/">
+<link rel="canonical" href="https://produtoskincare.com.br/es/ferramentas/diario/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diario de la piel: tu evolución en el tiempo">
+<meta property="og:description" content="Sigue cómo va tu piel: fotos periódicas, autopercepción del 1 al 5, curva de evolución y marcos de 28 días. Todo se queda en tu dispositivo.">
+<meta property="og:url" content="https://produtoskincare.com.br/es/ferramentas/diario/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/es-ferramentas-diario.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Diario de la piel: tu evolución, a la vista">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/ferramentas/diario/#pagina", "url": "https://produtoskincare.com.br/es/ferramentas/diario/", "name": "Diario de la piel: tu evolución, a la vista", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Sigue cómo va tu piel: fotos periódicas, autopercepción del 1 al 5, curva de evolución y marcos de 28 días. Todo se queda en tu dispositivo.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/ferramentas/diario/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/ferramentas/diario/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Diario de la piel: tu evolución, a la vista", "item": "https://produtoskincare.com.br/es/ferramentas/diario/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main id="conteudo">
+<div class="dg-caixa">
+<p class="ig-meta">Herramienta · Diario de la piel</p>
+<h1>Diario de la piel: tu evolución, a la vista</h1>
+<p class="ig-lede">Registra cómo se siente tu piel, añade fotos cuando quieras y mira la curva de tu evolución con el tiempo. Cada registro se queda solo en este dispositivo (almacenamiento local del navegador): nada se envía al sitio.</p>
+<p class="ig-nota">La piel cambia en ciclos, no en días: la renovación de la epidermis lleva en torno de 28 días, y activos como el retinol suelen mostrar diferencia visible después de 8 a 12 semanas. Fotografía siempre igual (misma hora, luz de ventana difusa, mismo ángulo, rostro limpio). Registro personal: no es medición clínica.</p>
+
+<section class="card" aria-labelledby="dg-hoje">
+<p class="ig-rotulo">Registro de hoy</p>
+<h2 id="dg-hoje" style="margin-top:.2em">¿Cómo está tu piel hoy?</h2>
+<p class="ig-nota">Toca un número por fila. 5 es el mejor día, para ti: la escala es tuya.</p>
+<div class="dg-nota-linha" id="dg-escalas"></div>
+<div class="dg-form-nota">
+<input type="text" id="dg-nota" maxlength="140" placeholder="Observación (opcional): piel más calmada, usé el sérum…">
+</div>
+<div class="dg-acoes">
+<button class="btn" type="button" id="dg-salvar">Guardar el registro de hoy</button>
+<label class="btn btn-claro" for="dg-arquivo" style="cursor:pointer">Añadir foto (opcional)</label>
+<input type="file" id="dg-arquivo" accept="image/*" capture="environment" hidden>
+</div>
+<p class="ig-nota" id="dg-recado" role="status" style="min-height:1.4em"></p>
+</section>
+
+<section class="dg-evo" id="dg-evolucao" hidden aria-labelledby="dg-evo-titulo">
+<div class="dg-evo-cabecalho">
+<div>
+<p class="ig-rotulo">Tu evolución</p>
+<h2 id="dg-evo-titulo" style="margin:.15em 0 .2em">La línea de tiempo se vuelve curva</h2>
+<p class="ig-nota" id="dg-evo-resumo"></p>
+</div>
+<div class="dg-deltas" id="dg-evo-deltas"></div>
+</div>
+<div class="dg-grafico">
+<div class="dg-chips" id="dg-evo-chips" role="group" aria-label="Linhas do gráfico"></div>
+<div id="dg-evo-svg"></div>
+<p class="dg-evo-nota">1 = peor día · 5 = mejor día (para ti). Cada punto es un registro con autopercepción.</p>
+</div>
+<div>
+<p class="ig-rotulo">Ciclos de 28 días</p>
+<div class="dg-marcos" id="dg-evo-marcos"></div>
+</div>
+<div>
+<p class="ig-rotulo">Constancia da rotina</p>
+<div class="dg-grafico" id="dg-evo-barras"></div>
+<p class="dg-evo-nota">Días con rutina completa (mañana o noche entera), por semana: leído del <a href="/ferramentas/rotina/">tracker de rutina</a>.</p>
+</div>
+</section>
+
+<section aria-labelledby="dg-linha-titulo">
+<p class="ig-rotulo">Registros</p>
+<h2 id="dg-linha-titulo">Tu línea de tiempo</h2>
+<div id="dg-lista"></div>
+</section>
+</div>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Preguntas frecuentes</h2>
+<h3>¿Cómo funciona el diario de la piel?</h3>
+<p>Registras cómo se siente tu piel del 1 al 5, añades fotos cuando quieras y ves la curva de tu evolución con marcos de 28 días. Cada registro se queda solo en este dispositivo y nada se envía al sitio.</p>
+<h3>¿Cuánto tarda en notarse un cambio en la piel?</h3>
+<p>La piel cambia en ciclos, no en días: la renovación de la epidermis lleva en torno de 28 días, y activos como el retinol suelen mostrar diferencia visible después de 8 a 12 semanas. Fotografía siempre igual para comparar.</p>
+<h3>¿Qué significan los números del 1 al 5 en el diario de la piel?</h3>
+<p>1 significa el peor día y 5 el mejor día, para ti: la escala es tuya. Es un registro personal de autopercepción, no una medición clínica.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo funciona el diario de la piel?", "acceptedAnswer": {"@type": "Answer", "text": "Registras cómo se siente tu piel del 1 al 5, añades fotos cuando quieras y ves la curva de tu evolución con marcos de 28 días. Cada registro se queda solo en este dispositivo y nada se envía al sitio."}}, {"@type": "Question", "name": "¿Cuánto tarda en notarse un cambio en la piel?", "acceptedAnswer": {"@type": "Answer", "text": "La piel cambia en ciclos, no en días: la renovación de la epidermis lleva en torno de 28 días, y activos como el retinol suelen mostrar diferencia visible después de 8 a 12 semanas. Fotografía siempre igual para comparar."}}, {"@type": "Question", "name": "¿Qué significan los números del 1 al 5 en el diario de la piel?", "acceptedAnswer": {"@type": "Answer", "text": "1 significa el peor día y 5 el mejor día, para ti: la escala es tuya. Es un registro personal de autopercepción, no una medición clínica."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-09">9 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sin JavaScript.</strong> Con el script desactivado las herramientas de IA no funcionan y no se pierde nada: el catálogo entero está en <a href="/produtos/">Productos</a>, las guías de cada tipo de piel en <a href="/pele/oleosa/">Piel</a> y las rutinas por condición en <a href="/rotinas/">Rutinas</a>, todo como HTML común. Ese es el camino manual. Una llamada en curso también puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="fallback">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertas como HTML común.</p></noscript></main>
+<script src="/evolucao.js"></script>
+<script>
+(function(){
+  const E = window.PSEvolucao;
+  const escolhas = {}; /* dimId -> 1..5 */
+  let serieAtivas = { media: true };
+
+  function esc(t){ return String(t == null ? "" : t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function fmt(iso){ return E.fmtData(iso); }
+
+  /* ===== formulário: escalas 1–5 ===== */
+  function montarEscalas(){
+    const raiz = document.getElementById("dg-escalas");
+    raiz.innerHTML = E.DIMS.map(d => `
+      <div class="dg-nota-item">
+        <p class="rot" id="rot-${d.id}">${d.rotulo}<small>${d.de} → ${d.para}</small></p>
+        <div class="dg-escala" role="radiogroup" aria-labelledby="rot-${d.id}" data-dim="${d.id}">
+          ${[1,2,3,4,5].map(n => `<button type="button" role="radio" aria-checked="false" data-v="${n}" aria-label="${d.rotulo} ${n} de 5">${n}</button>`).join("")}
+        </div>
+      </div>`).join("");
+    raiz.querySelectorAll(".dg-escala").forEach(grupo => {
+      const dim = grupo.dataset.dim;
+      grupo.querySelectorAll("button").forEach(b => {
+        b.addEventListener("click", () => {
+          const v = Number(b.dataset.v);
+          escolhas[dim] = (escolhas[dim] === v) ? undefined : v;
+          grupo.querySelectorAll("button").forEach(x => x.setAttribute("aria-checked", String(Number(x.dataset.v) === escolhas[dim])));
+        });
+      });
+    });
+  }
+
+  function scoresEscolhidos(){
+    const s = {};
+    let tem = false;
+    E.DIMS.forEach(d => { if (typeof escolhas[d.id] === "number") { s[d.id] = escolhas[d.id]; tem = true; } });
+    return tem ? s : null;
+  }
+
+  function limparEscalas(){
+    E.DIMS.forEach(d => delete escolhas[d.id]);
+    document.querySelectorAll(".dg-escala button").forEach(b => b.setAttribute("aria-checked","false"));
+    document.getElementById("dg-nota").value = "";
+  }
+
+  /* ===== salvar ===== */
+  async function salvarCom(foto){
+    const nota = (document.getElementById("dg-nota") || {}).value || "";
+    const scores = scoresEscolhidos();
+    if (!foto && !scores && !nota.trim()){
+      document.getElementById("dg-recado").textContent = "Elige al menos una nota, escribe una observación o adjunta una foto.";
+      return null;
+    }
+    const rec = await E.salvarHoje({ nota: nota.trim(), scores, foto: foto || undefined });
+    document.getElementById("dg-recado").textContent = "Registro de hoy guardado. La curva lo agradece.";
+    if (!foto) limparEscalas();
+    return rec;
+  }
+
+  document.getElementById("dg-salvar").addEventListener("click", async () => {
+    try { await salvarCom(null); await render(); }
+    catch(e){ document.getElementById("dg-recado").textContent = "No se pudo guardar: " + e.message; }
+  });
+
+  function reduzir(arquivo){
+    return new Promise((res, rej) => {
+      const leitor = new FileReader();
+      leitor.onerror = () => rej(new Error("não foi possível ler o arquivo"));
+      leitor.onload = () => {
+        const img = new Image();
+        img.onerror = () => rej(new Error("arquivo de imagem inválido"));
+        img.onload = () => {
+          const max = 720, escala = Math.min(1, max / Math.max(img.width, img.height));
+          const c = document.createElement("canvas");
+          c.width = Math.round(img.width * escala); c.height = Math.round(img.height * escala);
+          c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+          res(c.toDataURL("image/jpeg", 0.72));
+        };
+        img.src = leitor.result;
+      };
+      leitor.readAsDataURL(arquivo);
+    });
+  }
+
+  document.getElementById("dg-arquivo").addEventListener("change", async (ev) => {
+    const arq = ev.target.files && ev.target.files[0];
+    if (!arq) return;
+    try {
+      const foto = await reduzir(arq);
+      await salvarCom(foto);
+      await render();
+    } catch (e) { document.getElementById("dg-recado").textContent = "No se pudo añadir la foto: " + e.message; }
+    ev.target.value = "";
+  });
+
+  /* ===== chips de nota nos cartões ===== */
+  function chipsScores(s){
+    if (!s) return "";
+    const partes = E.DIMS.filter(d => typeof s[d.id] === "number").map(d => `<span>${d.rotulo} ${s[d.id]}</span>`);
+    return partes.length ? `<div class="dg-chips-nota">${partes.join("")}</div>` : "";
+  }
+
+  /* ===== evolução ===== */
+  function renderEvolucao(a){
+    const bloco = document.getElementById("dg-evolucao");
+    if (!a.temDados){ bloco.hidden = true; return; }
+    bloco.hidden = false;
+
+    const n = a.comNota.length;
+    const resumo = [];
+    resumo.push(n + (n === 1 ? " registro con autopercepción" : " registros con autopercepción"));
+    resumo.push("desde " + fmt(a.refData));
+    resumo.push("día " + a.dias + " de tu seguimiento");
+    document.getElementById("dg-evo-resumo").textContent = resumo.join(" · ") + ".";
+
+    /* deltas primeiro vs agora */
+    const dz = document.getElementById("dg-evo-deltas");
+    if (a.deltas){
+      dz.innerHTML = E.DIMS.map(d => {
+        const v = a.deltas[d.id];
+        if (typeof v !== "number") return "";
+        const cls = v > 0 ? "sobe" : v < 0 ? "desce" : "igual";
+        const seta = v > 0 ? "↑" : v < 0 ? "↓" : "=";
+        return `<span class="dg-delta">${d.rotulo} <span class="${cls}">${seta} ${Math.abs(v)}</span></span>`;
+      }).join("") + `<span class="dg-delta">primero vs. ahora</span>`;
+    } else {
+      dz.innerHTML = `<span class="dg-delta">Valora dos registros y la comparación aparecerá aquí.</span>`;
+    }
+
+    /* chips de linha */
+    const chips = document.getElementById("dg-evo-chips");
+    const defs = [{ id: "media", rotulo: "En conjunto" }].concat(E.DIMS.map(d => ({ id: d.id, rotulo: d.rotulo })));
+    chips.innerHTML = defs.map(d => `<button type="button" data-linha="${d.id}" aria-pressed="${serieAtivas[d.id] ? "true" : "false"}">${d.rotulo}</button>`).join("");
+    chips.querySelectorAll("button").forEach(b => {
+      b.addEventListener("click", () => {
+        const id = b.dataset.linha;
+        serieAtivas[id] = !serieAtivas[id];
+        b.setAttribute("aria-pressed", serieAtivas[id] ? "true" : "false");
+        document.getElementById("dg-evo-svg").innerHTML = E.graficoSVG(a, { ativas: serieAtivas });
+      });
+    });
+
+    document.getElementById("dg-evo-svg").innerHTML = E.graficoSVG(a, { ativas: serieAtivas });
+
+    /* marcos */
+    document.getElementById("dg-evo-marcos").innerHTML = a.marcos.map(mk => {
+      const linha = mk.atingido
+        ? (mk.ponto ? "media " + mk.ponto.media.toFixed(1) + " cerca del marco" : "alcanzado")
+        : "faltan " + mk.faltam + " días";
+      return `<div class="dg-marco ${mk.atingido ? "ok" : ""}">
+        <strong>${mk.dias} días</strong>
+        <small>${linha}</small>
+      </div>`;
+    }).join("");
+
+    document.getElementById("dg-evo-barras").innerHTML = E.barrasSVG(a) || '<p class="dg-evo-nota">Sin datos del tracker todavía: los registros del <a href="/ferramentas/rotina/">tracker</a> aparecerán aquí.</p>';
+  }
+
+  /* ===== lista / comparador ===== */
+  async function render(){
+    const lista = await E.registros();
+    const a = E.analisar(lista, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    renderEvolucao(a);
+
+    const raiz = document.getElementById("dg-lista");
+    const vazio = lista.length === 0 ? '<div class="dg-vazio"><p class="ig-rotulo">Empieza ahora</p><h2>Tu línea de tiempo está vacía</h2><p class="ig-nota">Un registro por semana ya cuenta una historia: foto, nota o solo la percepción del día.</p></div>' : "";
+    const grade = lista.slice().reverse().map(f => {
+      const notaHTML = esc(f.nota) ? `<p>${esc(f.nota)}</p>` : "";
+      const media = E.mediaScores(f.scores);
+      const fotoHTML = f.foto
+        ? `<img src="${f.foto}" alt="Registro de piel del ${fmt(f.data)}" loading="lazy">`
+        : `<div class="dg-so-nota"><span class="num">${media !== null ? media.toFixed(1) : "—"}</span><span class="ig-rotulo">autopercepción</span></div>`;
+      return `
+      <article class="dg-foto">
+        ${fotoHTML}
+        <div class="dg-foto-info">
+          <small>${fmt(f.data)}</small>
+          ${chipsScores(f.scores)}
+          ${notaHTML}
+          <button class="rt-nota" type="button" data-remover="${f.id}" style="background:none;border:none;cursor:pointer;text-decoration:underline;justify-self:start">Eliminar</button>
+        </div>
+      </article>`;
+    }).join("");
+    const soFotos = lista.filter(f => f.foto);
+    const comp = soFotos.length >= 2 ? `
+      <section class="dg-comp">
+        <p class="ig-rotulo">Comparar</p>
+        <h2>Dos registros, un tirador</h2>
+        <div class="dg-comp-controles">
+          <label>Registro izquierdo<select id="dg-a">${soFotos.map(f => `<option value="${f.id}">${fmt(f.data)}</option>`).join("")}</select></label>
+          <label>Registro derecho<select id="dg-b">${soFotos.map((f,i) => `<option value="${f.id}" ${i===0?"selected":""}>${fmt(f.data)}</option>`).join("")}</select></label>
+        </div>
+        <div class="dg-comp-quadro"><img id="dg-img-a" alt="Registro izquierdo"><img id="dg-img-b" alt="Registro derecho"><div class="corte" id="dg-corte"></div></div>
+        <input type="range" id="dg-puxador" min="0" max="100" value="50" aria-label="Posición de la comparación">
+        <div class="dg-legenda"><span id="dg-leg-a"></span><span id="dg-leg-b"></span></div>
+      </section>` : "";
+    raiz.innerHTML = vazio + '<div class="dg-grade">' + grade + "</div>" + comp;
+
+    raiz.querySelectorAll("[data-remover]").forEach(b => b.addEventListener("click", async () => {
+      if (confirm("¿Eliminar este registro del diario? No se puede deshacer.")) { await E.remover(b.dataset.remover); render(); }
+    }));
+    const mapa = {}; soFotos.forEach(f => mapa[f.id] = f);
+    const selA = document.getElementById("dg-a"), selB = document.getElementById("dg-b");
+    if (selA) {
+      const mover = () => {
+        const v = Number(document.getElementById("dg-puxador").value);
+        document.getElementById("dg-img-b").style.clipPath = "inset(0 " + (100 - v) + "% 0 0)";
+        document.getElementById("dg-corte").style.left = v + "%";
+      };
+      const atual = () => {
+        const a1 = mapa[selA.value], b1 = mapa[selB.value];
+        if (a1) { document.getElementById("dg-img-a").src = a1.foto; document.getElementById("dg-leg-a").textContent = fmt(a1.data); }
+        if (b1) { document.getElementById("dg-img-b").src = b1.foto; document.getElementById("dg-leg-b").textContent = fmt(b1.data); }
+        mover();
+      };
+      selA.addEventListener("change", atual); selB.addEventListener("change", atual);
+      document.getElementById("dg-puxador").addEventListener("input", mover);
+      atual();
+    }
+  }
+
+  montarEscalas();
+  render();
+})();
+</script>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Cuidado de la piel para cada tipo, con precios fechados y enlaces.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guías por tipo de piel</li><li><strong>5</strong>condiciones explicadas</li></ul>
+</div>
+<nav aria-label="Pie de página: Tipos de piel"><p class="ps-rodape-titulo">Tipos de piel</p><ul><li><a href="/pele/oleosa/">Piel grasa</a></li><li><a href="/pele/seca/">Piel seca</a></li><li><a href="/pele/mista/">Piel mixta</a></li><li><a href="/pele/normal/">Piel normal</a></li></ul></nav>
+<nav aria-label="Pie de página: Condiciones"><p class="ps-rodape-titulo">Condiciones</p><ul><li><a href="/condicoes/acne/">Acné</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Ojeras</a></li><li><a href="/condicoes/desidratacao/">Deshidratación</a></li><li><a href="/condicoes/">Todas las condiciones</a></li></ul></nav>
+<nav aria-label="Pie de página: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Quiz de piel</a></li><li><a href="/achados/">Hallazgos</a></li><li><a href="/rotina-de-skincare/">Rutina de skincare</a></li><li><a href="/rotinas/">Rutinas por precio</a></li><li><a href="/ferramentas/comparar/">Comparar productos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guía de activos</a></li><li><a href="/ferramentas/rotina/">Seguimiento de rutina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">Los más vendidos</a></li><li><a href="/queridinhos-do-skincare/">Favoritos del skincare en el mundo</a></li><li><a href="/produtos/">Productos</a></li><li><a href="/ferramentas/reposicao/">Recordatorio de reposición</a></li><li><a href="/ferramentas/clima/">Índice UV de hoy</a></li><li><a href="/pergunte/">Pregunta a la IA</a></li><li><a href="/mercado-skincare-brasil/">Datos del mercado</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Producto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contiene enlaces de afiliado. La mayoría de las guías está en portugués.</span><span class="ps-rodape-links"><a href="/sobre/">Acerca de</a><a href="/privacidade/">Privacidad</a></span></div>
+<script src="/rodape.js" defer></script>
+<p class="ps-rodape-nota">Fallback sin JavaScript: con los scripts desactivados las herramientas de IA no funcionan y no se pierde nada — el sitio entero sigue funcionando como sitio normal. Ese es el camino manual. Una llamada en curso puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="ps-rodape-nota">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: todo el contenido sigue funcionando como HTML comum — ese es el camino manual.</p></noscript></footer>
+</body>
+</html>

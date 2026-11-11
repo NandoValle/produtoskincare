@@ -12,7 +12,7 @@
       "nome": "Cetaphil Loção de Limpeza Facial",
       "marca": "Cetaphil",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=cetaphil+locao+de+limpeza+facial&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=cetaphil+locao+de+limpeza+facial&tag=produtoskincare0f-20",
       "porque": "Limpeza sem espuma e sem sulfatos agressivos. Boa para pele sensível ou ressecada pelo tratamento."
     },
     "ordinary-salicylic": {
@@ -26,42 +26,42 @@
       "nome": "La Roche-Posay Effaclar Duo+",
       "marca": "La Roche-Posay",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=la+roche+posay+effaclar+duo&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+effaclar+duo&tag=produtoskincare0f-20",
       "porque": "Creme-gel antiacne com niacinamida, LHA e zinco. Trata e hidrata no mesmo passo."
     },
     "lrp-effaclar-serum": {
       "nome": "La Roche-Posay Effaclar Sérum Ultra Concentrado",
       "marca": "La Roche-Posay",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=la+roche+posay+effaclar+serum+ultra+concentrado&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+effaclar+serum+ultra+concentrado&tag=produtoskincare0f-20",
       "porque": "Sérum com ácidos salicílico, glicólico e LHA para poros, cravos e marcas de acne."
     },
     "peroxido-benzoila": {
       "nome": "Gel de peróxido de benzoíla 2,5% a 5%",
       "marca": "Várias marcas de farmácia",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=peroxido+de+benzoila+gel&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=peroxido+de+benzoila+gel&tag=produtoskincare0f-20",
       "porque": "Antibacteriano clássico contra espinhas inflamadas. Pode descolorir toalhas e fronhas."
     },
     "bioderma-sensibio-h2o": {
       "nome": "Bioderma Sensibio H2O Água Micelar",
       "marca": "Bioderma",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=bioderma+sensibio+h2o&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=bioderma+sensibio+h2o&tag=produtoskincare0f-20",
       "porque": "Limpeza sem enxágue e sem atrito, pensada para pele reativa."
     },
     "lrp-rosaliac": {
       "nome": "La Roche-Posay Rosaliac AR Intense",
       "marca": "La Roche-Posay",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=la+roche+posay+rosaliac&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=la+roche+posay+rosaliac&tag=produtoskincare0f-20",
       "porque": "Sérum para vermelhidão persistente, sem fragrância."
     },
     "eucerin-hyaluron-filler-noite": {
       "nome": "Eucerin Hyaluron-Filler Noite",
       "marca": "Eucerin",
       "plataforma": "amazon",
-      "link": "https://www.amazon.com.br/s?k=eucerin+hyaluron+filler+noite&tag=produtoskincare-20",
+      "link": "https://www.amazon.com.br/s?k=eucerin+hyaluron+filler+noite&tag=produtoskincare0f-20",
       "porque": "Creme noturno com ácido hialurônico para hidratar e suavizar linhas de expressão."
     },
     "cosrx-good-morning": {
@@ -98,7 +98,7 @@
       "titulo": "Acne",
       "emoji": "🟡",
       "h1": "Rotina para acne em 3 faixas de preço",
-      "descricao": "Rotina de skincare para acne com opções econômica, intermediária e premium. Ativos com comprovação científica: ácido salicílico, peróxido de benzoíla, niacinamida e ácido azelaico.",
+      "descricao": "Rotina para acne em opções econômica, intermediária e premium, com ácido salicílico, peróxido de benzoíla, niacinamida e ácido azelaico.",
       "resumo": "Acne nasce do excesso de sebo, do poro entupido, da bactéria C. acnes e da inflamação. Uma boa rotina ataca pelo menos dois desses pontos e não agride a barreira da pele.",
       "condicao": "/condicoes/acne/",
       "ativos": [

@@ -57,10 +57,16 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Descubre tu tipo de piel y la rutina ideal">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubre tu tipo de piel y la rutina ideal", "item": "https://produtoskincare.com.br/es/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/#pagina", "url": "https://produtoskincare.com.br/es/", "name": "Descubre tu tipo de piel y la rutina ideal", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Descubre tu tipo de piel y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubre tu tipo de piel y la rutina ideal", "item": "https://produtoskincare.com.br/es/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <main>
@@ -102,7 +108,61 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 </div>
 </section>
 
-</main>
+<style>
+.evo-faixa .evo-num{font-family:var(--fonte-display);font-size:2.6rem;font-weight:300;line-height:1;margin:0}
+.evo-faixa .evo-num-leg{font-size:.82rem;color:var(--suave);font-weight:400}
+.evo-faixa .evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.evo-faixa .evo-chip{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--rosa-claro);color:var(--rosa)}
+.evo-faixa .evo-chip-legenda{background:transparent;border:1px dashed var(--linha);color:var(--suave)}
+.evo-faixa .evo-marco{font-size:.86rem;color:var(--verde);margin:10px 0 0}
+.evo-faixa .evo-sem{color:var(--suave);margin:0;font-size:.95rem}
+.evo-faixa .evo-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+</style>
+<section id="progreso">
+<h2>Y la evolución se hace visible.</h2>
+<p class="lead">La piel responde en ciclos, no en días. Registra cómo está — con o sin foto — y mira tu propia curva con el tiempo, con marcos de 28 días por el camino.</p>
+<div class="card evo-faixa" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Leyendo tus registros en este dispositivo…</p></div>
+<div class="evo-faixa"><div class="evo-acoes" id="evo-home-acoes"></div></div>
+<p class="sub" style="margin-top:16px">Los registros se quedan solo en este dispositivo. Acompañamiento personal: no es medición clínica.</p>
+<script src="/evolucao.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var E = window.PSEvolucao;
+  var alvo = document.getElementById("evo-home-dados");
+  var acoes = document.getElementById("evo-home-acoes");
+  if (!E || !alvo || !acoes) return;
+  E.registros().then(function (regs) {
+    var a = E.analisar(regs, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
+    alvo.innerHTML = E.cartaoResumo(a);
+    acoes.innerHTML = a.temDados
+      ? '<a class="btn" href="/es/ferramentas/diario/">Ver mi evolución →</a> <a class="btn sec" href="/es/ferramentas/diario/#dg-hoje">Registrar hoy</a>'
+      : '<a class="btn" href="/es/ferramentas/diario/#dg-hoje">Empezar mi registro →</a> <a class="btn sec" href="/es/ferramentas/diario/">Cómo funciona</a>';
+  }).catch(function () {});
+});
+</script>
+</section>
+
+<section id="guides">
+<h2>Guías en español</h2>
+<div class="grade">
+<a href="/es/blog/protector-solar-por-que-importa/" class="tipo-card"><strong>Protector solar: el paso más importante del skincare</strong></a><a href="/es/blog/retinol-como-empezar/" class="tipo-card"><strong>Retinol: cómo empezar sin irritar la piel</strong></a><a href="/es/blog/vitamina-c-skincare/" class="tipo-card"><strong>Vitamina C: para qué sirve y cómo usarla</strong></a>
+</div>
+</section>
+
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Preguntas frecuentes</h2>
+<h3>¿Cómo descubro mi tipo de piel y mi rutina de skincare ideal?</h3>
+<p>Responde 5 preguntas rápidas en el cuestionario gratuito y recibe una rutina de skincare personalizada, con productos reales y enlaces directos.</p>
+<h3>¿Cómo puedo seguir la evolución de mi piel con el tiempo?</h3>
+<p>Registra cómo está tu piel, con o sin foto, y mira tu propia curva con marcos de 28 días. Acompañamiento personal significa que los registros se quedan solo en este dispositivo y no son una medición clínica.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo descubro mi tipo de piel y mi rutina de skincare ideal?", "acceptedAnswer": {"@type": "Answer", "text": "Responde 5 preguntas rápidas en el cuestionario gratuito y recibe una rutina de skincare personalizada, con productos reales y enlaces directos."}}, {"@type": "Question", "name": "¿Cómo puedo seguir la evolución de mi piel con el tiempo?", "acceptedAnswer": {"@type": "Answer", "text": "Registra cómo está tu piel, con o sin foto, y mira tu propia curva con marcos de 28 días. Acompañamiento personal significa que los registros se quedan solo en este dispositivo y no son una medición clínica."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-09">9 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sin JavaScript.</strong> Con el script desactivado las herramientas de IA no funcionan y no se pierde nada: el catálogo entero está en <a href="/produtos/">Productos</a>, las guías de cada tipo de piel en <a href="/pele/oleosa/">Piel</a> y las rutinas por condición en <a href="/rotinas/">Rutinas</a>, todo como HTML común. Ese es el camino manual. Una llamada en curso también puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="fallback">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertas como HTML común.</p></noscript></main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -114,8 +174,8 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <nav aria-label="Pie de página: Condiciones"><p class="ps-rodape-titulo">Condiciones</p><ul><li><a href="/condicoes/acne/">Acné</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Ojeras</a></li><li><a href="/condicoes/desidratacao/">Deshidratación</a></li><li><a href="/condicoes/">Todas las condiciones</a></li></ul></nav>
 <nav aria-label="Pie de página: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Quiz de piel</a></li><li><a href="/achados/">Hallazgos</a></li><li><a href="/rotina-de-skincare/">Rutina de skincare</a></li><li><a href="/rotinas/">Rutinas por precio</a></li><li><a href="/ferramentas/comparar/">Comparar productos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guía de activos</a></li><li><a href="/ferramentas/rotina/">Seguimiento de rutina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/mais-vendidos/">Los más vendidos</a></li><li><a href="/queridinhos-do-skincare/">Favoritos del skincare en el mundo</a></li><li><a href="/produtos/">Productos</a></li><li><a href="/ferramentas/reposicao/">Recordatorio de reposición</a></li><li><a href="/ferramentas/clima/">Índice UV de hoy</a></li><li><a href="/pergunte/">Pregunta a la IA</a></li><li><a href="/mercado-skincare-brasil/">Datos del mercado</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Producto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contiene enlaces de afiliado. Las guías están en portugués.</span><span class="ps-rodape-links"><a href="/sobre/">Acerca de</a><a href="/privacidade/">Privacidad</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Producto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contiene enlaces de afiliado. La mayoría de las guías está en portugués.</span><span class="ps-rodape-links"><a href="/sobre/">Acerca de</a><a href="/privacidade/">Privacidad</a></span></div>
 <script src="/rodape.js" defer></script>
-</footer>
+<p class="ps-rodape-nota">Fallback sin JavaScript: con los scripts desactivados las herramientas de IA no funcionan y no se pierde nada — el sitio entero sigue funcionando como sitio normal. Ese es el camino manual. Una llamada en curso puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="ps-rodape-nota">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: todo el contenido sigue funcionando como HTML comum — ese es el camino manual.</p></noscript></footer>
 </body>
 </html>

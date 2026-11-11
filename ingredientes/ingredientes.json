@@ -78,5 +78,21 @@
     "evidencia": "forte",
     "evidencia_motivo": "Há ensaio randomizado de longo prazo mostrando menos envelhecimento da pele com uso diário, e ensaio randomizado em melasma favorecendo protetor que também bloqueia luz visível.",
     "url": "/ingredientes/protetor-solar/"
+  },
+  {
+    "slug": "acido-mandelico",
+    "nome": "Ácido mandélico",
+    "resumo": "AHA de molécula grande, costuma ser a esfoliação mais gentil; estudos pequenos sugerem melhora de textura e manchas.",
+    "evidencia": "emergente",
+    "evidencia_motivo": "Os ensaios clínicos são pequenos e majoritariamente em peelings; para o uso diário em creme, a evidência direta é ainda mais limitada.",
+    "url": "/ingredientes/acido-mandelico/"
+  },
+  {
+    "slug": "acido-ferulico",
+    "nome": "Ácido ferúlico",
+    "resumo": "Antioxidante vegetal que ajuda a estabilizar vitaminas C e E; evidência maior na fórmula do que no ativo isolado.",
+    "evidencia": "emergente",
+    "evidencia_motivo": "A evidência é maior em estudos de estabilização de fórmula e fotoproteção adjuvante do que em ensaios clínicos grandes do ativo isolado.",
+    "url": "/ingredientes/acido-ferulico/"
   }
 ]

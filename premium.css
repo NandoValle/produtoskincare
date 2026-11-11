@@ -1,6 +1,6 @@
 /* Produto Skincare: mineral surfaces, rose accent, quiet editorial rhythm. */
 :root{color-scheme:light dark;--fundo:#f7f8f7;--fundo-grad:#f7f8f7;--papel:#fdfefd;--papel-2:#eef0ef;--tinta:#252b2a;--tinta-2:#39413f;--suave:#39413f;--suave-2:#65716d;--linha:#dce1de;--linha-2:#c8d0cb;--rosa:#9b405b;--rosa-2:#82344b;--rosa-claro:#f6e9ee;--verde:#375d4e;--verde-claro:#e7efea;--fonte-display:'Cormorant Garamond',Georgia,serif;--fonte-corpo:'Manrope','Segoe UI',sans-serif;--raio:8px;--raio-sm:8px;--raio-md:12px;--raio-lg:20px;--raio-xl:24px;--gradiente-rosa:linear-gradient(120deg,#9b405b,#82344b);--sombra-1:none;--sombra-2:0 8px 24px #24362c08;--sombra-3:0 16px 40px #24362c12}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--fundo);color:var(--tinta);font-family:var(--fonte-corpo);line-height:1.7}a{color:var(--rosa)}button,input,select,textarea{font:inherit}button,a,input,textarea,select{touch-action:manipulation}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--rosa);outline-offset:5px}h1,h2,h3{font-family:var(--fonte-display);font-weight:500;letter-spacing:-.045em;line-height:1.15}h1 em,h2 em{font-style:normal;color:var(--rosa);background:none;-webkit-text-fill-color:currentColor}p{text-wrap:pretty}img{max-width:100%;height:auto}main{padding-top:40px}main>h1{margin-top:24px}main>.marca{padding-bottom:20px;border-bottom:1px solid var(--linha)}.card,.artigo{border-color:var(--linha);box-shadow:none}.artigo{display:block;padding:28px}.artigo:hover{border-color:var(--rosa);box-shadow:none}.btn{border-radius:999px;box-shadow:none;min-height:48px}.btn:hover{box-shadow:none}.btn:disabled{cursor:not-allowed}.marca{letter-spacing:-.035em}.marca-icon{box-shadow:none}.sub,.lead{color:var(--suave)}textarea,input:not([type=checkbox]):not([type=radio]),select{background:var(--papel);color:var(--tinta);border-color:var(--linha-2);border-radius:8px}textarea::placeholder,input::placeholder{color:var(--suave)}.skip-link{position:absolute;left:16px;top:-100px;padding:10px 20px;background:var(--tinta);color:var(--fundo);z-index:30}.skip-link:focus{top:12px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:104px}body{margin:0;background:var(--fundo);color:var(--tinta);font-family:var(--fonte-corpo);line-height:1.7}a{color:var(--rosa)}button,input,select,textarea{font:inherit}button,a,input,textarea,select{touch-action:manipulation}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--rosa);outline-offset:5px}h1,h2,h3{font-family:var(--fonte-display);font-weight:500;letter-spacing:-.045em;line-height:1.15}h1 em,h2 em{font-style:normal;color:var(--rosa);background:none;-webkit-text-fill-color:currentColor}p{text-wrap:pretty}img{max-width:100%;height:auto}main{padding-top:40px}main>h1{margin-top:24px}main>.marca{padding-bottom:20px;border-bottom:1px solid var(--linha)}.card,.artigo{border-color:var(--linha);box-shadow:none}.artigo{display:block;padding:28px}.artigo:hover{border-color:var(--rosa);box-shadow:none}.btn{border-radius:999px;box-shadow:none;min-height:48px}.btn:hover{box-shadow:none}.btn:disabled{cursor:not-allowed}.marca{letter-spacing:-.035em}.marca-icon{box-shadow:none}.sub,.lead{color:var(--suave)}textarea,input:not([type=checkbox]):not([type=radio]),select{background:var(--papel);color:var(--tinta);border-color:var(--linha-2);border-radius:8px}textarea::placeholder,input::placeholder{color:var(--suave)}.skip-link{position:absolute;left:16px;top:-100px;padding:10px 20px;background:var(--tinta);color:var(--fundo);z-index:30}.skip-link:focus{top:12px}
 .ps-shell{max-width:1248px;padding:0 40px;margin:auto}.ps-header{display:flex;align-items:center;gap:32px;min-height:96px;border-bottom:1px solid var(--linha)}.ps-brand{display:flex;gap:12px;align-items:center;white-space:nowrap;text-decoration:none;color:var(--tinta);font-size:19px;letter-spacing:-.6px;font-weight:600}.ps-brand b{color:var(--rosa);font-weight:600}.ps-monogram{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--rosa);border-radius:8px;font-size:13px;letter-spacing:-.4px;color:var(--rosa)}.ps-nav{display:flex;gap:24px;align-items:center;margin-left:auto}.ps-nav a{color:var(--suave);font-size:13px;text-decoration:none;white-space:nowrap;padding:12px 0}.ps-nav a:hover{color:var(--rosa)}.ps-langs{display:flex;gap:4px;padding-left:20px;border-left:1px solid var(--linha)}.ps-langs a{text-decoration:none;color:var(--suave);font-size:12px;padding:7px 9px;border-radius:6px}.ps-langs a[aria-current]{background:var(--papel-2);color:var(--tinta);font-weight:700}.ps-menu{display:none}.ps-home main{padding:0;max-width:none}.ps-hero{display:grid;grid-template-columns:1.15fr 1fr;gap:70px;align-items:center;padding:64px 0 72px}.ps-eyebrow{color:var(--rosa);font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.16em;margin:0 0 22px}.ps-hero h1{font-size:clamp(42px,4.8vw,66px);line-height:1.08;margin:0 0 28px;max-width:650px;font-weight:450}.ps-hero h1 span{color:var(--rosa)}.ps-hero p:not(.ps-eyebrow){max-width:390px;font-size:17px;color:var(--suave);margin:0 0 32px}.ps-actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px}.ps-button{display:inline-flex;align-items:center;justify-content:center;gap:28px;min-height:54px;padding:12px 27px;border-radius:999px;background:var(--rosa);color:#fff8fb;text-decoration:none;font-size:14px;font-weight:600;transition:transform .2s,background .2s}.ps-button:hover{background:var(--rosa-2);transform:translateY(-2px)}.ps-text-link{color:var(--tinta);font-size:14px;text-underline-offset:6px;text-decoration-thickness:1px}.ps-photo{margin:0}.ps-photo img{display:block;width:100%;height:480px;object-fit:cover;border-radius:140px 16px 16px 16px;background:var(--papel-2)}.ps-photo figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:16px;color:var(--suave);font-size:12px}.ps-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;border-top:1px solid var(--linha);padding:48px 0}.ps-intro h2{font-size:32px;margin:0;max-width:400px}.ps-intro p{color:var(--suave);margin:0;max-width:460px}.ps-section{padding:68px 0}.ps-section h2{font-size:clamp(30px,3.4vw,44px);margin:0 0 16px}.ps-section-head{margin-bottom:36px;max-width:640px}.ps-section-head p{color:var(--suave);margin:0}.ps-skin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.ps-skin{display:flex;flex-direction:column;padding:28px 24px;border:1px solid var(--linha);border-radius:16px;color:var(--tinta);text-decoration:none;min-height:258px;transition:transform .2s,border-color .2s;background:var(--papel)}.ps-skin:hover{transform:translateY(-4px);border-color:var(--rosa)}.ps-skin small{color:var(--suave);font-size:12px}.ps-skin h3{font-size:28px;margin:38px 0 12px}.ps-skin p{color:var(--suave);font-size:14px;line-height:1.6;margin:0 0 28px}.ps-skin .ps-card-link{margin-top:auto;font-size:13px;color:var(--rosa)}.ps-skin:nth-child(2){background:var(--rosa-claro)}.ps-skin:nth-child(3){background:var(--papel-2)}.ps-journey{display:grid;grid-template-columns:.85fr 1.15fr;gap:96px;padding:56px;border-radius:24px;background:var(--papel-2)}.ps-journey h2{font-size:38px;margin:0 0 20px}.ps-journey p{color:var(--suave)}.ps-steps{display:grid;gap:28px}.ps-step{display:grid;grid-template-columns:40px 1fr;gap:16px}.ps-step-num{font-size:13px;color:var(--rosa);padding-top:5px}.ps-step h3{font-size:21px;margin:0 0 8px}.ps-step p{font-size:14px;margin:0}.ps-tools{display:grid;grid-template-columns:1fr 1fr;gap:24px}.ps-tool{padding:32px;border:1px solid var(--linha);border-radius:16px;text-decoration:none;color:var(--tinta);display:block}.ps-tool h3{font-size:25px;margin:0 0 12px}.ps-tool p{color:var(--suave);max-width:420px;margin:0 0 24px;font-size:15px}.ps-tool span{color:var(--rosa);font-size:14px}.ps-tool:hover{border-color:var(--rosa)}.ps-editorial{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-top:32px;border-top:1px solid var(--linha)}.ps-story{color:var(--tinta);text-decoration:none}.ps-story small{color:var(--rosa);font-size:12px}.ps-story h3{font-size:26px;max-width:450px;margin:16px 0}.ps-story p{color:var(--suave);font-size:14px}.ps-story:hover h3{color:var(--rosa)}.ps-note{font-size:12px;color:var(--suave);border-top:1px solid var(--linha);padding:28px 0}.ps-footer{border-top:1px solid var(--linha);padding:40px 0 32px;display:grid;grid-template-columns:1fr 1fr;gap:28px}.ps-footer p{font-size:12px;color:var(--suave)}.ps-footer nav{display:flex;flex-wrap:wrap;gap:20px;align-content:start;justify-content:flex-end}.ps-footer nav a{font-size:13px;color:var(--suave);text-decoration:none}.ps-credit{font-size:11px;color:var(--suave);text-align:right;margin:0 0 20px}.ps-credit a{color:inherit}.ps-home{padding:0}.ps-home h2 em{font-style:normal}
 @media(prefers-color-scheme:dark){:root{--fundo:#171c1a;--fundo-grad:#171c1a;--papel:#1e2522;--papel-2:#252e29;--tinta:#edf1ee;--tinta-2:#dbe3dd;--suave:#b1bdb5;--suave-2:#a6b3ab;--linha:#37443c;--linha-2:#536258;--rosa:#efa5ba;--rosa-2:#f5bed0;--rosa-claro:#382b32;--verde:#a2cbb3;--verde-claro:#24392d}.ps-button{background:#efa5ba;color:#28131b}.ps-button:hover{background:#f5bed0}.ps-photo img{filter:brightness(.88)}.ps-monogram{color:var(--rosa)}}
 @media(max-width:1100px){.ps-hero{gap:36px}.ps-photo img{height:450px}.ps-journey{gap:40px;padding:36px}}
@@ -21,9 +21,9 @@ table{display:block;max-width:100%;overflow-x:auto}
 .casca .marca span{margin-left:.22em}
 
 /* Editorial refinement. Font files are self-hosted under SIL OFL 1.1. */
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/cormorant-500.ttf') format('truetype')}
-@font-face{font-family:Manrope;font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/manrope-400.ttf') format('truetype')}
-@font-face{font-family:Manrope;font-style:normal;font-weight:500 800;font-display:swap;src:url('/fonts/manrope-600.ttf') format('truetype')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/cormorant-500.woff2') format('woff2'),url('/fonts/cormorant-500.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/manrope-400.woff2') format('woff2'),url('/fonts/manrope-400.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:500 800;font-display:swap;src:url('/fonts/manrope-600.woff2') format('woff2'),url('/fonts/manrope-600.ttf') format('truetype')}
 [hidden]{display:none!important}
 h1,h2,h3{letter-spacing:-.025em}
 .ps-header{gap:26px;padding:18px 0;flex-wrap:nowrap}
@@ -57,10 +57,10 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-section-head p{font-size:14px;max-width:500px}
 .ps-skin{padding:0 22px 24px;overflow:hidden;border-radius:8px;background:var(--papel)!important;min-height:365px}
 .ps-skin-visual{height:150px;margin:0 -22px 20px;background-size:cover;background-position:center;transition:background-position .5s}
-.ps-texture-serum{background-image:url('/img/tipo-oleosa.jpg');background-position:center;background-size:cover}
-.ps-texture-cream{background-image:url('/img/tipo-seca.jpg');background-position:center;background-size:cover}
-.ps-texture-balance{background-image:url('/img/tipo-mista.jpg');background-position:center;background-size:cover}
-.ps-texture-soft{background-image:url('/img/tipo-normal.jpg');background-position:center;background-size:cover}
+.ps-texture-serum{background-image:url('/img/tipo-oleosa.webp');background-position:center;background-size:cover}
+.ps-texture-cream{background-image:url('/img/tipo-seca.webp');background-position:center;background-size:cover}
+.ps-texture-balance{background-image:url('/img/tipo-mista.webp');background-position:center;background-size:cover}
+.ps-texture-soft{background-image:url('/img/tipo-normal.webp');background-position:center;background-size:cover}
 .ps-skin small{font-size:10px;letter-spacing:.06em;text-transform:uppercase}
 .ps-skin h3{font-size:34px;margin:10px 0}
 .ps-skin p{font-size:12px;margin-bottom:22px}
@@ -83,7 +83,7 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-story small{font-size:10px;letter-spacing:.1em}
 .ps-story p{font-size:13px}
 .ps-footer{padding-top:32px}
-.ps-revealed{animation:ps-arrive .55s cubic-bezier(.2,.7,.2,1) both}
+.ps-revealed{animation:ps-arrive .55s cubic-bezier(.2,.7,.2,1) backwards}
 @keyframes ps-arrive{from{transform:translateY(14px)}to{transform:translateY(0)}}
 
 /* The quiz retains its data and scoring, with a consistent reading surface. */
@@ -192,6 +192,7 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-rodape .ps-rodape-numeros{grid-template-columns:auto auto;justify-content:start;gap:12px 32px;margin-top:24px;font-size:12px;color:var(--suave)}
 .ps-rodape-numeros strong{display:block;font-family:var(--fonte-display);font-size:30px;font-weight:500;line-height:1.1;color:var(--rosa)}
 .ps-rodape-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;margin-top:40px;padding-top:20px;border-top:1px solid var(--linha);font-size:12px}
+.ps-rodape-nota{display:block;font-size:12px;line-height:1.65;max-width:62ch;margin:10px 0 0}
 .ps-rodape .ps-rodape-base a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .ps-rodape-links{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media(max-width:1248px){.ps-rodape-grid{grid-template-columns:1fr 1fr 1fr}.ps-rodape-marca{grid-column:1/-1}}
@@ -255,7 +256,7 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 }
 
 /* Provador: o botão de tema fica no topo da página e rola junto, em vez de flutuar sobre o texto. */
-.ps-quiz .btn-tema{position:absolute}
+.ps-quiz .btn-tema{position:absolute;z-index:30}
 
 /* Provador, resultado no celular: as tabelas cabem na largura do card, sem rolagem lateral. */
 @media(max-width:560px){
@@ -285,3 +286,500 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
  .ps-mais-btn{font-size:15px;color:var(--tinta-2)}
  .ps-langs a{font-size:13px}
 }
+
+/* Home: atalho "Já sabe seu tipo de pele?". O formulário também é a ferramenta WebMCP
+   declarativa "montar_rotina" (atributos toolname/tooldescription; ver webmcp.js). */
+.ps-atalho-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 20px;align-items:end;padding:28px;border:1px solid var(--linha);border-radius:16px;background:var(--papel)}
+.ps-atalho-form label{display:grid;gap:8px;font-size:13px;font-weight:600;color:var(--tinta)}
+.ps-atalho-form label small{display:inline;font-size:12px;font-weight:400;color:var(--suave)}
+.ps-atalho-form select{width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--linha-2);font-size:15px;font-weight:400}
+.ps-atalho-form .ps-atalho-check{display:flex;align-items:center;gap:10px;grid-column:1/3;min-height:48px;font-weight:400;font-size:14px}
+.ps-atalho-check input{accent-color:var(--rosa);width:20px;height:20px;margin:0}
+.ps-atalho-form .ps-button{grid-column:3/5;justify-self:end;border:0;cursor:pointer}
+.ps-atalho-nota{font-size:14px;color:var(--suave);margin:16px 0 0}
+.ps-note .ps-byline{margin:0 0 8px}
+.ps-byline a{color:inherit}
+@media(max-width:900px){.ps-atalho-form{grid-template-columns:1fr 1fr}.ps-atalho-form .ps-atalho-check{grid-column:1/-1}.ps-atalho-form .ps-button{grid-column:1/-1;justify-self:stretch}}
+@media(max-width:560px){.ps-atalho-form{grid-template-columns:1fr;padding:20px}}
+
+/* Menu superior nas páginas internas (gerado por _scripts/menu.py).
+   As páginas internas têm CSS próprio; aqui o menu fica igual ao da página inicial
+   e a marca repetida no topo do conteúdo some, já que a do menu está logo acima. */
+.ps-topo{box-sizing:border-box;width:100%;font-family:var(--fonte-corpo,'Manrope','Segoe UI',sans-serif);line-height:1.5}
+.ps-topo *{box-sizing:border-box}
+.ps-topo .ps-header{border-bottom:1px solid var(--linha)}
+.ps-topo a{text-decoration:none}
+.ps-topo .ps-nav a[data-secao],.ps-topo .ps-mais-btn[data-secao],.ps-topo .ps-nav a[aria-current=page]{color:var(--rosa)}
+.ps-topo ul,.ps-topo li{margin:0;padding:0;list-style:none}
+.ps-topo ~ main .ig-marca,.ps-topo ~ main > .marca,.ps-topo ~ main .mv-top > .marca,.ps-topo ~ .casca > header > .marca,.ps-topo ~ main .hc-marca{display:none}
+.ps-topo ~ main .hc-top{justify-content:flex-end}
+/* Botão de tema do provador: desce para baixo do menu em vez de cobrir o botão Menu. */
+body:has(> .ps-topo) .btn-tema{top:100px}
+/* Páginas cujo <body> já tem margem lateral: o menu desconta essa margem para alinhar com o texto. */
+@media(max-width:700px){.ps-topo.ps-topo-recuo{padding:0 4px}}
+
+/* Perguntas frequentes dos guias do blog (gerado por _scripts/faq_blog.py). */
+.ps-faq-bloco{margin:40px 0}
+.ps-faq{border:1px solid var(--linha);border-radius:12px;background:var(--papel);margin:8px 0;padding:0 16px}
+.ps-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
+.ps-faq p{margin:0 0 14px}
+
+/* "Leia também" no fim dos posts (mesmo visual do .ig-rel das páginas de guia). */
+.leia-tambem{margin:32px 0 8px}
+.leia-tambem h2{margin:0 0 12px}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+
+/* Editorial refinement. Shared chrome; page compositions scoped to the home.
+   Existing local fonts and photography. Pill controls / 12px panels / 4px photos.
+   Design variance 7, motion 4, density 3. */
+/* Reserve the collapsed navigation before deferred JS runs. With scripting
+   disabled the links stay expanded and usable, as in the original fallback. */
+@media (scripting: enabled) and (max-width:1040px){
+ .ps-header:has(.ps-menu[aria-expanded="false"]) .ps-navigation{display:none}
+}
+.ps-header{min-height:80px;padding:14px 0;gap:24px}
+.ps-brand{font-size:18px;letter-spacing:-.7px;gap:11px}
+.ps-monogram{border-radius:50%;width:38px;height:38px;font-size:12px}
+.ps-navigation{gap:22px}
+.ps-nav{gap:24px}
+.ps-langs a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.ps-menu{border-radius:999px;padding:9px 16px;background:transparent}
+.ps-mais-panel{border-radius:12px;padding:10px;box-shadow:0 18px 50px #252b2a12}
+.ps-rodape{margin-top:64px;padding-top:64px}
+.ps-rodape-grid{grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.ps-rodape-marca{grid-row:span 2}
+.ps-rodape .ps-rodape-titulo{font-size:11px;letter-spacing:.12em}
+.ps-rodape nav a{font-size:13px;line-height:1.8}
+.ps-rodape .ps-brand{font-size:18px}
+
+/* Sticky chrome is a sibling of the reading column, not confined by a short
+   header wrapper. Layer 40: navigation; layer 60: the keyboard skip link. */
+.ps-topo{position:sticky;top:0;z-index:40;background:var(--fundo);border-bottom:1px solid var(--linha)}
+.ps-topo-home{max-width:none;padding:0}
+.ps-topo .ps-header{border-bottom:0}
+.ps-topo-home>.ps-shell{max-width:1360px;padding-inline:56px}
+.skip-link{z-index:60}
+.ps-topo :is(a,summary,button){scroll-margin-top:104px}
+.ps-home main :is(a,button,input,select){scroll-margin-top:112px}
+.ps-home .ps-actions>.ps-text-link{padding:10px 22px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;color:var(--tinta);background:transparent;transition:border-color .32s,background-color .32s,transform .32s}
+.ps-home .ps-actions>.ps-text-link:hover{border-color:var(--rosa);background:var(--papel);transform:translateY(-2px)}
+.ps-home .ps-button span,.ps-home .ps-card-link span{transition:transform .32s var(--ease-calm)}
+.ps-home .ps-button:is(:hover,:focus-visible) span,.ps-home .ps-skin:is(:hover,:focus-visible) .ps-card-link span{transform:translate(2px,-2px)}
+.ps-home .ps-story img{transition:filter .45s}
+.ps-home .ps-story:hover img{filter:brightness(1.025)}
+.ps-home .ps-atalho-form select{transition:border-color .25s,box-shadow .25s}
+.ps-home .ps-atalho-form select:hover{border-color:var(--rosa)}
+.ps-home .ps-atalho-form select:focus-visible{box-shadow:0 0 0 4px var(--papel)}
+.ps-menu-lines{height:12px;border:0;position:relative}
+.ps-menu-lines::before,.ps-menu-lines::after{content:"";position:absolute;left:0;right:0;top:3px;height:1px;background:currentColor;transition:transform .3s ease}
+.ps-menu-lines::after{top:9px}
+.ps-menu[aria-expanded=true] .ps-menu-lines{transform:none}
+.ps-menu[aria-expanded=true] .ps-menu-lines::before{transform:translateY(3px) rotate(45deg)}
+.ps-menu[aria-expanded=true] .ps-menu-lines::after{transform:translateY(-3px) rotate(-45deg)}
+@supports(backdrop-filter:blur(12px)){
+ .ps-topo{background:color-mix(in srgb,var(--fundo) 95%,transparent);backdrop-filter:blur(12px)}
+}
+@media(max-width:1040px){
+ .ps-header:has(.ps-menu:not([hidden])) .ps-navigation{position:absolute;top:100%;left:0;right:0;width:auto;margin:0;padding:20px 24px 24px;background:var(--fundo);border:1px solid var(--linha);border-radius:0 0 12px 12px;box-shadow:0 16px 28px #302c2b0c;max-height:calc(100dvh - 104px);overflow-y:auto;overscroll-behavior:contain;scroll-padding:16px}
+ .ps-header:has(.ps-menu:not([hidden])) .ps-navigation :is(a,summary){scroll-margin-top:16px;scroll-margin-bottom:16px}
+ .ps-topo:has(.ps-menu[hidden]){position:static}
+}
+@media(prefers-reduced-motion:no-preference){
+ .ps-mais[open] .ps-mais-panel{animation:ps-menu-enter .28s ease-out}
+ .ps-header:has(.ps-menu[aria-expanded=true]) .ps-navigation{animation:ps-menu-enter .28s ease-out}
+ @keyframes ps-menu-enter{from{opacity:.3;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(prefers-reduced-transparency:reduce){.ps-topo{background:var(--fundo);backdrop-filter:none}}
+@media print{.ps-topo{position:static;backdrop-filter:none}}
+
+/* The home is composed as a beauty journal: generous imagery, restrained rose. */
+.ps-home{--fundo:#fcfaf9;--papel:#fffdfc;--papel-2:#f2eeeb;--tinta:#302c2b;--tinta-2:#48413f;--suave:#655b58;--suave-2:#756965;--linha:#e6ded9;--linha-2:#c8b9b1;--rosa:#913c55;--rosa-2:#763047;--rosa-claro:#f5e9ec;--sage:#eef2ec;--sage-ink:#455746;--cta-fill:#efdee4;--cta-ink:#713048;--cta-border:#d8b8c3;--ease-calm:cubic-bezier(.22,.61,.36,1);background:var(--fundo)}
+.ps-home>.ps-shell{max-width:1360px;padding-inline:56px}
+.ps-home .ps-header{border-bottom:0}
+.ps-home .ps-hero{grid-template-columns:1fr 1fr;gap:0;padding:48px 0 0;align-items:stretch}
+.ps-hero-copy{align-self:center;padding:44px 36px 44px 0}
+.ps-home .ps-eyebrow{font-size:10px;font-weight:600;letter-spacing:.19em;margin:0 0 26px}
+.ps-home .ps-hero h1{font-size:clamp(50px,5.1vw,74px);line-height:1.12;letter-spacing:-.012em;max-width:none;margin:0 0 28px}
+.ps-home .ps-hero h1 span{display:block;margin:0}
+.ps-home .ps-hero p:not(.ps-eyebrow){font-size:15px;line-height:1.85;max-width:365px;margin:0 0 30px}
+.ps-home .ps-actions{display:flex;align-items:flex-start;flex-direction:column;gap:18px}
+.ps-home .ps-button{background:var(--cta-fill);color:var(--cta-ink);border:1px solid var(--cta-border);min-height:56px;font-size:13px;letter-spacing:.015em;gap:28px;padding:15px 27px;white-space:nowrap;box-shadow:none;transition:transform .32s var(--ease-calm),background-color .32s,border-color .32s,box-shadow .32s}
+.ps-home .ps-button:hover{background:var(--rosa-claro);border-color:var(--rosa);transform:translateY(-2px);box-shadow:0 8px 20px #7130480c}
+.ps-home .ps-button:active{transform:translateY(0)}
+.ps-home .ps-button span{font-size:20px;line-height:1}
+.ps-home .ps-text-link{font-size:13px;text-decoration-color:var(--linha-2);text-underline-offset:6px;min-height:44px;display:inline-flex;align-items:center;transition:color .3s,text-decoration-color .3s}
+.ps-home .ps-text-link:hover{color:var(--rosa);text-decoration-color:var(--rosa)}
+.ps-home .ps-photo{position:relative;min-width:0}
+.ps-home .ps-photo-composition{padding:0;position:relative;height:100%}
+.ps-home .ps-photo .ps-portrait{height:570px;width:100%;object-fit:cover;object-position:center 35%;border-radius:4px}
+.ps-home .ps-photo figcaption{margin:14px 0 0;font-size:10px;letter-spacing:.01em}
+.ps-assurances{display:flex;justify-content:flex-start;gap:28px;flex-wrap:wrap;padding:24px 0;margin-top:18px;border-bottom:1px solid var(--linha);color:var(--suave);font-size:11px}
+.ps-assurances span+span{padding-left:28px;border-left:1px solid var(--linha-2)}
+.ps-home .ps-intro{display:block;text-align:center;border:0;padding:112px 0 48px}
+.ps-home .ps-intro h2{font-size:clamp(34px,3.4vw,48px);max-width:700px;margin:0 auto 22px;line-height:1.22;letter-spacing:-.008em}
+.ps-home .ps-intro p{font-size:14px;line-height:1.9;max-width:550px;margin:auto}
+.ps-home .ps-section{padding:88px 0}
+.ps-home .ps-section h2{font-size:clamp(34px,3.4vw,48px);line-height:1.2;letter-spacing:-.008em;margin-bottom:20px}
+.ps-home .ps-section-head{margin-bottom:44px;max-width:650px}
+.ps-home .ps-section-head p{font-size:14px;line-height:1.8;max-width:520px}
+.ps-home .ps-skin-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.ps-home .ps-skin{padding:12px 20px 20px;min-height:0;border:1px solid var(--linha);border-radius:12px;background:var(--papel)!important;overflow:visible;box-shadow:0 3px 14px #302c2b03;transition:transform .36s var(--ease-calm),border-color .36s,box-shadow .36s}
+.ps-home .ps-skin:hover{transform:translateY(-3px);border-color:var(--cta-border);box-shadow:0 10px 26px #302c2b08}
+.ps-home .ps-skin-visual{height:auto;aspect-ratio:1/.95;margin:0 -8px 24px;border-radius:7px;background-size:cover}
+.ps-home .ps-skin small{text-transform:none;letter-spacing:0;font-size:11px;color:var(--suave)}
+.ps-home .ps-skin h3{font-size:36px;line-height:1.22;letter-spacing:.005em;margin:8px 0 12px}
+.ps-home .ps-skin p{font-size:13px;line-height:1.85;margin:0 0 28px;max-width:24ch}
+.ps-home .ps-skin .ps-card-link{font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.ps-home .ps-skin .ps-card-link span{font-size:20px;font-weight:400}
+.ps-home .ps-atalho{display:grid;grid-template-columns:.8fr 1.2fr;gap:0 72px;padding:64px;margin:56px 0;background:var(--rosa-claro);border-radius:12px;align-items:start}
+.ps-home .ps-atalho .ps-section-head{margin:8px 0 0}
+.ps-home .ps-atalho .ps-section-head h2{max-width:11ch;font-size:46px}
+.ps-home .ps-atalho .ps-section-head p{max-width:33ch;font-size:13px}
+.ps-home .ps-atalho-form{grid-template-columns:1fr 1fr;padding:0;border:0;background:transparent;gap:22px 18px;border-radius:0}
+.ps-home .ps-atalho-form label{font-size:12px;line-height:1.5;gap:8px}
+.ps-home .ps-atalho-form label small{font-size:11px}
+.ps-home .ps-atalho-form select{min-height:50px;padding:12px;border-radius:6px;border-color:var(--linha-2);font-size:16px}
+.ps-home .ps-atalho-form .ps-atalho-check{grid-column:1/-1;min-height:24px;font-size:12px}
+.ps-home .ps-atalho-form .ps-button{grid-column:1/-1;justify-self:stretch;justify-content:space-between}
+.ps-home .ps-atalho-nota{grid-column:2;font-size:11px;margin-top:18px;line-height:1.8}
+.ps-home .ps-journey-section{padding:88px 0}
+.ps-home .ps-journey{grid-template-columns:.8fr 1fr 1.1fr;gap:40px;align-items:center;padding:0;border:0;border-radius:0;background:transparent}
+.ps-journey-photo{width:100%;height:360px;object-fit:cover;border-radius:4px}
+.ps-home .ps-journey h2{font-size:42px}
+.ps-home .ps-journey p{font-size:13px;line-height:1.85}
+.ps-home .ps-steps{gap:32px}
+.ps-home .ps-step{grid-template-columns:28px 1fr;gap:16px}
+.ps-home .ps-step-num{font-family:var(--fonte-corpo);font-size:11px;padding-top:8px}
+.ps-home .ps-step h3{font-size:26px;line-height:1.25;letter-spacing:0;margin:0 0 10px}
+.ps-home .ps-step p{font-size:13px}
+.ps-home .ps-tools{grid-template-columns:1fr 1fr;gap:24px}
+.ps-home .ps-tool{padding:44px;border:1px solid var(--linha);border-radius:12px;background:var(--papel);position:relative;transition:background-color .36s,border-color .36s,transform .36s var(--ease-calm)}
+.ps-home .ps-tool:nth-child(2){background:var(--sage)}
+.ps-home .ps-tool h3{font-size:32px;letter-spacing:0;line-height:1.25;max-width:360px}
+.ps-home .ps-tool p{font-size:13px;line-height:1.85;max-width:350px;margin:16px 0 30px}
+.ps-home .ps-tool span{font-size:12px}
+.ps-home .ps-tool:hover{border-color:var(--rosa);background:var(--rosa-claro)}
+.ps-home .ps-editorial{grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.ps-home .ps-story{overflow:visible}
+.ps-home .ps-story img{height:310px;object-position:center;border-radius:4px;margin-bottom:24px}
+.ps-home .ps-story:nth-child(2){padding-top:54px}
+.ps-home .ps-story:nth-child(2) img{height:256px;object-position:center}
+.ps-home .ps-story small{font-size:10px;letter-spacing:.12em}
+.ps-home .ps-story h3{font-size:34px;max-width:450px;letter-spacing:0;line-height:1.25;margin:12px 0}
+.ps-home .ps-story p{font-size:12px;line-height:1.8}
+.ps-home .ps-note{font-size:11px;line-height:1.9;padding:28px 0 0;margin-top:20px;color:var(--suave)}
+.ps-home .ps-note .ps-byline{margin-bottom:14px}
+.ps-home .ps-rodape{--rodape-fundo:var(--papel-2);box-shadow:none;clip-path:none}
+
+@media(min-width:1041px){
+ .ps-home .ps-nav a,.ps-home .ps-mais-btn{font-size:12px}
+ .ps-home .ps-langs a{font-size:11px}
+ .ps-home .ps-header .ps-brand{font-size:17px}
+}
+@media(max-width:1200px){
+ .ps-home>.ps-shell,.ps-topo-home>.ps-shell{padding-inline:36px}
+ .ps-home .ps-hero h1{font-size:56px}
+ .ps-home .ps-photo .ps-portrait{height:520px}
+ .ps-home .ps-atalho{padding:44px;gap:0 36px}
+ .ps-home .ps-journey{gap:28px}
+ .ps-home .ps-journey h2{font-size:36px}
+}
+@media(max-width:1040px){
+ .ps-header{flex-wrap:wrap;gap:12px;padding-block:14px}
+ .ps-navigation{padding:16px 0;display:block}
+ .ps-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+ .ps-nav a{padding:12px 0;font-size:14px}
+ .ps-home .ps-hero h1{font-size:clamp(40px,5.1vw,54px)}
+ .ps-home .ps-photo .ps-portrait{height:500px}
+ .ps-hero-copy{padding-right:24px}
+ .ps-home .ps-button{gap:16px;padding-inline:20px;font-size:12px}
+ .ps-home .ps-skin-grid{gap:18px}
+ .ps-home .ps-skin small{font-size:10px}
+ .ps-home .ps-journey{grid-template-columns:.8fr 1.2fr}
+ .ps-journey-photo{grid-row:span 2;height:440px}
+ .ps-home .ps-steps{grid-column:2}
+ .ps-rodape-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+ .ps-rodape-marca{grid-column:1/-1;grid-row:auto}
+}
+@media(max-width:767px){
+ .ps-home>.ps-shell,.ps-topo-home>.ps-shell{padding-inline:22px}
+ .ps-topo .ps-brand{font-size:16px;gap:8px}
+ .ps-topo .ps-monogram{width:32px;height:32px}
+ .ps-home .ps-hero{grid-template-columns:1fr;padding:12px 0 0;gap:36px}
+ .ps-hero-copy{padding:26px 0 0}
+ .ps-home .ps-eyebrow{font-size:9px;letter-spacing:.16em;margin-bottom:20px}
+ .ps-home .ps-hero h1{font-size:clamp(42px,7.8vw,58px);margin-bottom:24px;line-height:1.14}
+ .ps-home .ps-hero p:not(.ps-eyebrow){font-size:14px;line-height:1.8;max-width:390px;margin-bottom:24px}
+ .ps-home .ps-actions{gap:15px}
+ .ps-home .ps-button{font-size:12px;min-height:52px;padding:14px 22px;gap:22px}
+ .ps-home .ps-photo .ps-portrait{height:440px;object-position:center 32%}
+ .ps-home .ps-photo figcaption{font-size:9px;margin-top:12px}
+ .ps-assurances{gap:12px 20px;font-size:10px;padding:22px 0;margin-top:4px}
+ .ps-assurances span+span{padding-left:0;border:0}
+ .ps-home .ps-intro{padding:76px 0 28px}
+ .ps-home .ps-intro h2{font-size:34px}
+ .ps-home .ps-intro p{font-size:13px}
+ .ps-home .ps-section{padding:56px 0}
+ .ps-home .ps-section h2{font-size:36px}
+ .ps-home .ps-section-head p{font-size:13px}
+ .ps-home .ps-skin-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+ .ps-home .ps-skin-visual{aspect-ratio:1/1.05;margin:0 0 18px}
+ .ps-home .ps-skin h3{font-size:30px}
+ .ps-home .ps-skin{padding:10px 12px 14px}
+ .ps-home .ps-skin p{font-size:13px;margin-bottom:18px}
+ .ps-home .ps-skin small{font-size:10px}
+ .ps-home .ps-skin .ps-card-link{font-size:12px}
+ .ps-home .ps-atalho{display:block;padding:36px 24px;margin:36px 0}
+ .ps-home .ps-atalho .ps-section-head{margin:0 0 28px}
+ .ps-home .ps-atalho .ps-section-head h2{max-width:none;font-size:36px}
+ .ps-home .ps-atalho .ps-section-head p{max-width:none}
+ .ps-home .ps-atalho-nota{font-size:11px;margin-top:16px}
+ .ps-home .ps-journey{grid-template-columns:1fr;gap:26px}
+ .ps-journey-photo{height:300px;grid-row:auto;object-position:center 45%}
+ .ps-home .ps-steps{grid-column:1;gap:24px;margin-top:10px}
+ .ps-home .ps-journey h2{max-width:380px}
+ .ps-home .ps-journey p{max-width:390px}
+ .ps-home .ps-tools{grid-template-columns:1fr;gap:16px}
+ .ps-home .ps-tool{padding:32px}
+ .ps-home .ps-editorial{grid-template-columns:1fr;gap:34px}
+ .ps-home .ps-story:nth-child(2){padding:0}
+ .ps-home .ps-story img,.ps-home .ps-story:nth-child(2) img{height:240px}
+ .ps-home .ps-story h3{font-size:30px}
+ .ps-home .ps-note{margin-top:16px;font-size:11px}
+ .ps-rodape{margin-top:40px;padding:40px 0 24px}
+ .ps-rodape-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ .ps-home .ps-atalho-form{grid-template-columns:1fr}
+ .ps-rodape-grid{grid-template-columns:1fr;gap:0}
+ .ps-home .ps-photo .ps-portrait{height:400px}
+}
+@media(max-width:360px){
+ .ps-home>.ps-shell,.ps-topo-home>.ps-shell{padding-inline:18px}
+ .ps-topo .ps-brand{font-size:14px}
+ .ps-home .ps-hero h1{font-size:40px}
+ .ps-home .ps-button{padding-inline:17px;gap:12px;font-size:11px}
+ .ps-home .ps-skin-grid{gap:22px 14px}
+ .ps-home .ps-skin small{font-size:9px;line-height:1.6}
+ .ps-home .ps-atalho{padding:24px 18px}
+}
+@media(prefers-color-scheme:dark){
+ .ps-home{--fundo:#211d1e;--papel:#292425;--papel-2:#302a2c;--tinta:#f2eae7;--tinta-2:#e0d3ce;--suave:#c4b4af;--suave-2:#b6a6a1;--linha:#493d41;--linha-2:#766169;--rosa:#eeb0c0;--rosa-2:#f4c5d0;--rosa-claro:#35282e;--sage:#29322b;--sage-ink:#bed0be;--cta-fill:#3e2b33;--cta-ink:#f3c4d2;--cta-border:#83616d}
+ .ps-home .ps-button{color:var(--cta-ink);box-shadow:none}
+}
+@media(prefers-reduced-motion:no-preference){
+ .ps-hero-copy{animation:ps-atelier-enter .65s ease-out both}
+ .ps-home .ps-photo{animation:ps-atelier-enter .85s ease-out both}
+ @keyframes ps-atelier-enter{from{opacity:.4;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(hover:none){.ps-home .ps-skin:hover,.ps-home .ps-button:hover,.ps-home .ps-actions>.ps-text-link:hover{transform:none;box-shadow:none}}
+
+/* Perguntas frequentes e fontes da página inicial. A FAQ é aberta (sem sanfona): a resposta curta
+   fica logo abaixo da pergunta, para quem lê e para quem extrai a resposta. */
+.ps-perguntas-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px}
+.ps-pergunta{border-top:1px solid var(--linha);padding-top:22px;margin:0}
+.ps-pergunta h3{font-size:25px;line-height:1.3;letter-spacing:0;margin:0 0 12px}
+.ps-pergunta p{font-size:13px;line-height:1.85;margin:0 0 10px;color:var(--suave)}
+.ps-pergunta .ps-resposta{font-size:15px;color:var(--tinta)}
+.ps-pergunta dfn{font-style:normal;font-weight:600}
+.ps-fontes-lista{list-style:none;margin:0;padding:0;display:grid;gap:14px;font-size:13px;line-height:1.8;color:var(--suave)}
+.ps-fontes-lista li{padding-left:18px;border-left:2px solid var(--rosa)}
+.ps-fontes-lista cite{font-style:italic;color:var(--tinta)}
+@media(max-width:700px){.ps-perguntas-grid{grid-template-columns:1fr;gap:18px}.ps-pergunta h3{font-size:22px}}
+.ps-atalho-fallback{grid-column:1/-1;margin:0;font-size:11px;line-height:1.7;color:var(--suave)}
+.ps-home .ps-atalho-form .ps-atalho-fallback{grid-column:1/-1}
+.tool-fallback code,.ps-pergunta code{font:inherit;font-weight:600;color:var(--tinta)}
+.ps-home .tool-fallback{margin-top:18px}
+/* ============================================================
+   Camada de sonho — atmosfera lúcida (09/11/2026)
+   luz que respira + grão de filme + foco revelado + transições.
+   As fotos já têm moldura orgânica própria; nada aqui as toca.
+   ============================================================ */
+
+/* luz que respira — derrame de luz suave sobre a página inteira */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  z-index:60;
+  pointer-events:none;
+  background:
+    radial-gradient(42% 34% at 22% 26%, rgba(243,220,223,.55), transparent 70%),
+    radial-gradient(38% 30% at 78% 64%, rgba(232,218,209,.5), transparent 70%),
+    radial-gradient(30% 26% at 55% 12%, rgba(243,234,227,.6), transparent 70%);
+  mix-blend-mode:soft-light;
+  opacity:.75;
+  animation:sonho-luz 38s ease-in-out infinite alternate;
+}
+@keyframes sonho-luz{
+  0%{transform:translate3d(-1.5%,-1%,0) scale(1)}
+  100%{transform:translate3d(1.5%,1.5%,0) scale(1.05)}
+}
+
+/* grão de filme — textura analógica sutil */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:61;
+  pointer-events:none;
+  opacity:.13;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* revelações em foco — o conteúdo entra desfocado e se resolve (sem JS;
+   em navegadores sem scroll-driven animations, tudo já nasce visível) */
+@supports (animation-timeline: view()){
+  .ps-section,.mk-sec,.ig article > section{
+    animation:sonho-foco linear both;
+    animation-timeline:view();
+    animation-range:entry 0% entry 65%;
+  }
+}
+@keyframes sonho-foco{
+  from{opacity:0;filter:blur(8px);transform:translateY(16px)}
+  to{opacity:1;filter:blur(0);transform:none}
+}
+
+/* marginalia — anotações de diário nas margens (só telas largas) */
+.ps-intro,.ps-journey-section,.mk-hero{position:relative}
+.ps-intro::after,.ps-journey-section::after,.mk-hero::after{
+  position:absolute;
+  right:clamp(1rem,5vw,4.5rem);
+  max-width:12rem;
+  font-family:var(--fonte-display,Georgia,serif);
+  font-style:italic;
+  font-size:1.05rem;
+  line-height:1.55;
+  color:color-mix(in srgb,var(--rosa,#b4546a) 55%,transparent);
+  transform:rotate(-1.6deg);
+  pointer-events:none;
+  user-select:none;
+}
+.ps-intro::after{content:"a pele também sonha — acorde devagar com ela";top:.6rem}
+.ps-journey-section::after{content:"o sonho é comum; o ritual é seu";bottom:1.4rem;transform:rotate(1.2deg)}
+.mk-hero::after{content:"cada número tem uma pele atrás";top:.6rem}
+@media(max-width:1200px){
+  .ps-intro::after,.ps-journey-section::after,.mk-hero::after{display:none}
+}
+
+/* transições entre páginas — abrir e fechar os olhos */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:sonho-sai 260ms ease both}
+::view-transition-new(root){animation:sonho-entra 460ms ease both}
+@keyframes sonho-sai{to{opacity:0;filter:blur(7px)}}
+@keyframes sonho-entra{from{opacity:0;filter:blur(7px)}}
+
+/* modo escuro — a luz vira brilho rosado; o grão vira véu */
+@media (prefers-color-scheme:dark){
+  body::before{
+    background:
+      radial-gradient(42% 34% at 22% 26%, rgba(239,165,186,.14), transparent 70%),
+      radial-gradient(38% 30% at 78% 64%, rgba(162,203,179,.10), transparent 70%);
+    opacity:.9;
+  }
+  body::after{mix-blend-mode:overlay;opacity:.08}
+}
+
+/* movimento reduzido — a atmosfera fica; o movimento não */
+@media (prefers-reduced-motion:reduce){
+  body::before{animation:none!important;transform:none!important}
+  .ps-section,.mk-sec,.ig article > section{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+}
+
+
+/* ============================================================
+   Camada de sonho — estar dentro do sonho (fase 2)
+   vinheta + brilho das fotos + lente do cursor + particulas + entrada
+   ============================================================ */
+
+/* vinheta de sonho — o olhar atraves do sonho (compoe com o grao) */
+body::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+    radial-gradient(125% 110% at 50% 42%, transparent 52%, rgba(69,29,43,.20) 100%);
+  background-size:180px 180px, cover;
+}
+
+/* brilho suave — as fotos respiram luz propria */
+.ps-photo img,.ps-portrait,.ps-journey-photo{
+  filter:saturate(1.04);
+  box-shadow:0 0 70px rgba(243,220,223,.42);
+}
+
+/* entrada coreografada do hero — o sonho se abre */
+@keyframes sonho-entrada{
+  from{opacity:0;filter:blur(10px);transform:translateY(18px)}
+  to{opacity:1;filter:blur(0);transform:none}
+}
+.ps-hero > *{animation:sonho-entrada 1s cubic-bezier(.22,.61,.36,1) both}
+.ps-hero > *:nth-child(2){animation-delay:.18s}
+
+/* lente do cursor — a consciencia vagando pelo sonho */
+.sonho-lente{
+  position:fixed;
+  z-index:62;
+  width:340px;height:340px;
+  margin:-170px 0 0 -170px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle, rgba(243,220,223,.32), rgba(243,220,223,0) 68%);
+  mix-blend-mode:soft-light;
+  opacity:0;
+  transition:opacity .6s ease;
+  will-change:transform;
+}
+.sonho-lente.vida{opacity:1}
+
+/* particulas de luz — motes vagando no ar do sonho */
+.sonho-motes{position:fixed;inset:0;z-index:59;pointer-events:none;overflow:hidden}
+.sonho-motes i{
+  position:absolute;
+  bottom:-12px;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,236,240,.9), rgba(243,220,223,0) 70%);
+  opacity:0;
+  animation:sonho-mote linear infinite;
+}
+@keyframes sonho-mote{
+  0%{opacity:0;transform:translateY(0) translateX(0)}
+  12%{opacity:.55}
+  88%{opacity:.35}
+  100%{opacity:0;transform:translateY(-108vh) translateX(34px)}
+}
+
+@media (prefers-color-scheme:dark){
+  body::after{
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+      radial-gradient(125% 110% at 50% 42%, transparent 52%, rgba(0,0,0,.38) 100%);
+    background-size:180px 180px, cover;
+    opacity:.1;
+    mix-blend-mode:overlay;
+  }
+  .ps-photo img,.ps-portrait,.ps-journey-photo{box-shadow:0 0 70px rgba(239,165,186,.16)}
+  .sonho-lente{background:radial-gradient(circle, rgba(239,165,186,.18), rgba(239,165,186,0) 68%)}
+  .sonho-motes i{background:radial-gradient(circle, rgba(239,165,186,.75), rgba(239,165,186,0) 70%)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ps-hero > *{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+  .sonho-lente,.sonho-motes{display:none!important}
+}
+
+/* Perguntas frequentes e nota de atualização por página (geradas por _scripts/prontidao.py) */
+.ps-perguntas,.ps-nota-pagina{max-width:760px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+.ps-perguntas{margin-top:40px;margin-bottom:24px}
+.ps-perguntas h2{margin:0 0 6px}
+.ps-perguntas h3{font-size:1.05rem;line-height:1.35;margin:22px 0 6px}
+.ps-perguntas p{margin:0 0 10px}
+.ps-nota-pagina{font-size:.9rem;opacity:.85;margin-top:18px;margin-bottom:24px}
+main:not(.ig)>.ps-perguntas,main:not(.ig)>.ps-nota-pagina,main+.ps-perguntas,main~.ps-nota-pagina{padding-left:20px;padding-right:20px}
+.pd-faq .pq,.ps-faq .pq{font-size:1rem;line-height:1.35;font-weight:600;margin:0;padding:14px 0 6px}

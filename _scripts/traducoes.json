@@ -1,0 +1,8 @@
+{
+ "_leia": "Guias do blog traduzidos. Cada grupo liga a versão em português às versões em inglês e espanhol (hreflang, usado por seo.py). As páginas traduzidas são arquivos estáticos: ao mudar o guia em português, atualize as traduções também.",
+ "grupos": [
+  {"pt-BR": "/blog/protetor-solar-importancia/", "en": "/en/blog/sunscreen-why-it-matters/", "es": "/es/blog/protector-solar-por-que-importa/"},
+  {"pt-BR": "/blog/retinol-como-comecar/", "en": "/en/blog/retinol-how-to-start/", "es": "/es/blog/retinol-como-empezar/"},
+  {"pt-BR": "/blog/vitamina-c-skincare/", "en": "/en/blog/vitamin-c-skincare/", "es": "/es/blog/vitamina-c-skincare/"}
+ ]
+}

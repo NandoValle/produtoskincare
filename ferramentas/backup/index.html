@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Backup dos seus dados: tracker e diário | Produto Skincare</title>
+<meta name="description" content="Exportar e importar o tracker de rotina e o diário de fotos em um arquivo .json. Seus dados ficam só no seu aparelho — o backup é o paraquedas.">
+
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.item:last-child{border-bottom:0}
+.item input{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.item label{cursor:pointer;flex:1;font-size:1rem}
+.item.feito label{text-decoration:line-through;color:var(--suave)}
+.streak{background:linear-gradient(135deg,var(--tinta),#2d2825);color:var(--fundo);border-radius:var(--raio);padding:20px;text-align:center;margin:16px 0}
+.streak .num{font-family:var(--fonte-display);font-size:3rem;font-weight:300;line-height:1}
+.streak .label{font-size:.9rem;opacity:.7;margin-top:4px}
+.progresso-bar{background:var(--linha);border-radius:999px;height:8px;margin:12px 0;overflow:hidden}
+.progresso-fill{background:var(--verde);height:100%;border-radius:999px;transition:width 0.3s}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<style>
+
+.bk-caixa{max-width:640px;margin:0 auto;padding:24px 16px 60px;display:flex;flex-direction:column;gap:22px}
+.bk-cartao{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:22px}
+.bk-cartao h2{font-size:1.35rem;margin:0 0 8px}
+.bk-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.bk-status{margin-top:12px;font-size:.92rem;color:var(--verde);min-height:1.4em}
+
+</style>
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/backup/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/backup/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/respaldo/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/backup/">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/backup/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Backup dos seus dados">
+<meta property="og:description" content="Exportar e importar o tracker de rotina e o diário de fotos em um arquivo .json. Seus dados ficam só no seu aparelho — o backup é o paraquedas.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/backup/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-backup.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Backup dos seus dados">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/backup/#pagina", "url": "https://produtoskincare.com.br/ferramentas/backup/", "name": "Backup dos seus dados", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Exportar e importar o tracker de rotina e o diário de fotos em um arquivo .json. Seus dados ficam só no seu aparelho — o backup é o paraquedas.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/backup/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/backup/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Backup dos seus dados", "item": "https://produtoskincare.com.br/ferramentas/backup/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main id="conteudo">
+<div class="bk-caixa">
+<p class="ig-meta">Ferramenta · Backup dos seus dados</p>
+<h1>Backup dos seus dados</h1>
+<p class="ig-lede">Seu tracker, suas fotos e suas notas vivem só neste aparelho — é o que garante a privacidade. Este arquivo é o paraquedas: exporte um backup de vez em quando e guarde em lugar seguro. Se trocar de navegador ou limpar os dados, é ele que traz tudo de volta.</p>
+
+<div class="bk-cartao">
+<h2>Exportar backup</h2>
+<p class="ig-nota">Gera um arquivo .json com o tracker de rotina, o diário de fotos e as observações deste aparelho.</p>
+<div class="bk-acoes"><button class="btn" type="button" id="bk-exportar">Baixar meu backup</button></div>
+</div>
+
+<div class="bk-cartao">
+<h2>Importar backup</h2>
+<p class="ig-nota">Restaura os dados de um arquivo exportado por esta ferramenta. <strong>Os dados atuais deste navegador serão substituídos.</strong></p>
+<div class="bk-acoes">
+<label class="btn" for="bk-arquivo" style="cursor:pointer">Escolher arquivo de backup</label>
+<input type="file" id="bk-arquivo" accept="application/json,.json" hidden>
+</div>
+<p class="bk-status" id="bk-status" role="status"></p>
+</div>
+
+<p class="ig-nota"><strong>Privacidade:</strong> nenhum dado sai daqui sem você. O arquivo é gerado no seu navegador e baixado para a sua pasta de downloads — o site nunca o recebe.</p>
+</div>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>Como fazer backup do tracker e do diário de fotos do Produto Skincare?</h3>
+<p>A ferramenta de backup gera um arquivo .json com o tracker de rotina, o diário de fotos e as observações do aparelho. O arquivo é gerado no navegador e baixado para a pasta de downloads, e depois pode ser importado para restaurar os dados.</p>
+<h3>O que é o backup dos seus dados e o site recebe o arquivo?</h3>
+<p>O backup é um arquivo de segurança que traz seus dados de volta se você trocar de navegador ou limpar os dados. O site nunca recebe o arquivo, porque ele é gerado no seu navegador. Ao importar, os dados atuais do navegador são substituídos.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como fazer backup do tracker e do diário de fotos do Produto Skincare?", "acceptedAnswer": {"@type": "Answer", "text": "A ferramenta de backup gera um arquivo .json com o tracker de rotina, o diário de fotos e as observações do aparelho. O arquivo é gerado no navegador e baixado para a pasta de downloads, e depois pode ser importado para restaurar os dados."}}, {"@type": "Question", "name": "O que é o backup dos seus dados e o site recebe o arquivo?", "acceptedAnswer": {"@type": "Answer", "text": "O backup é um arquivo de segurança que traz seus dados de volta se você trocar de navegador ou limpar os dados. O site nunca recebe o arquivo, porque ele é gerado no seu navegador. Ao importar, os dados atuais do navegador são substituídos."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-09">9 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<script>
+(function(){
+  const status = document.getElementById("bk-status");
+  function ler(chave){ try { return JSON.parse(localStorage.getItem(chave) || "null"); } catch(e){ return null; } }
+
+  async function fotos(){
+    try{
+      const bd = await new Promise((res,rej)=>{ const req=indexedDB.open("ps_diario_site",1); req.onupgradeneeded=()=>{ if(!req.result.objectStoreNames.contains("fotos")) req.result.createObjectStore("fotos",{keyPath:"id",autoIncrement:true}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(req.error); });
+      return await new Promise((res)=>{ const t=bd.transaction("fotos","readonly"); const r=t.objectStore("fotos").getAll(); r.onsuccess=()=>res(r.result||[]); r.onerror=()=>res([]); });
+    }catch(e){ return []; }
+  }
+
+  document.getElementById("bk-exportar").addEventListener("click", async ()=>{
+    const pacote = {
+      app: "produto-skincare", versao: 1, exportadoEm: new Date().toISOString(),
+      rotina_tracker: ler("rotina_tracker") || {},
+      diario: await fotos()
+    };
+    const blob = new Blob([JSON.stringify(pacote)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "backup-produtoskincare-" + new Date().toISOString().slice(0,10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    status.textContent = "Backup baixado. Guarde o arquivo em lugar seguro.";
+  });
+
+  document.getElementById("bk-arquivo").addEventListener("change", async (ev)=>{
+    const arq = ev.target.files && ev.target.files[0];
+    if (!arq) return;
+    if (!confirm("Importar este backup? Os dados atuais deste navegador serão substituídos.")) { ev.target.value=""; return; }
+    try{
+      const pacote = JSON.parse(await arq.text());
+      if (!pacote || pacote.app !== "produto-skincare") throw new Error("arquivo não parece um backup deste site");
+      localStorage.setItem("rotina_tracker", JSON.stringify(pacote.rotina_tracker || {}));
+      const bd = await new Promise((res,rej)=>{ const req=indexedDB.open("ps_diario_site",1); req.onupgradeneeded=()=>{ if(!req.result.objectStoreNames.contains("fotos")) req.result.createObjectStore("fotos",{keyPath:"id",autoIncrement:true}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(req.error); });
+      await new Promise((res,rej)=>{
+        const tx=bd.transaction("fotos","readwrite");
+        const s=tx.objectStore("fotos");
+        const cl=s.clear();
+        cl.onsuccess=()=>{ (pacote.diario||[]).forEach(f=>s.add({ data:f.data, nota:f.nota||"", foto:f.foto, criadoEm:f.criadoEm||Date.now() })); };
+        tx.oncomplete=()=>res(); tx.onerror=()=>rej(tx.error);
+      });
+      status.style.color = "var(--verde)";
+      status.textContent = "Backup importado com sucesso.";
+      setTimeout(()=>location.reload(), 900);
+    }catch(e){
+      status.style.color = "var(--rosa)";
+      status.textContent = "Não foi possível importar: " + e.message;
+      ev.target.value = "";
+    }
+  });
+})();
+</script>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/" aria-current="page">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minha prateleira: o que combina entre os produtos que você já tem</title>
+<meta name="description" content="Cadastre os produtos de skincare que você já tem e veja o que não combina, o que está repetido, que passo falta e quando cada um acaba. Salvo só no seu aparelho.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/prateleira/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+
+.ft-rotulo{display:block;font-weight:600;margin:14px 0 6px}
+.ft-campo{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
+textarea.ft-campo{resize:vertical;min-height:96px}
+.ft-campo:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
+.ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.ft-cards-acoes{display:flex;flex-wrap:wrap;gap:0 12px;align-items:center}
+.ft-outro{margin-top:14px}.ft-outro summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.ft-periodo{border:0;padding:0;margin:0;display:flex;gap:18px;flex-wrap:wrap}.ft-periodo legend{padding:0}
+.ft-periodo label,.ft-check{display:flex;gap:8px;align-items:center;min-height:44px;cursor:pointer}
+.ft-sugestoes{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
+.ft-sugestoes li{margin:0}
+.ft-sugestao{font:inherit;width:100%;text-align:left;display:flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel);color:var(--tinta);cursor:pointer}
+.ft-sugestao span{font-size:.86rem;color:var(--suave)}
+.ft-sugestao:hover{border-color:var(--rosa)}
+.ft-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.ft-item{margin:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding:12px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel)}
+.ft-item>div:first-child{display:flex;flex-direction:column;min-width:0;flex:1 1 240px}
+.ft-item .ig-nota{margin:0}
+.ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
+.ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
+.ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
+.ft-ok{background:var(--verde-claro);border-color:var(--verde)}
+.ft-nao{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-horarios{background:#fff4dd;border-color:#b7791f;color:#5c3d00}
+.ft-sem{background:var(--papel);border:1.5px dashed var(--linha-2,var(--linha));border-left:4px solid #6b6b6b}
+.ft-info{background:var(--papel);border-color:var(--linha-2,var(--linha))}
+.ft-ok ul,.ft-nao ul,.ft-info ul{margin:6px 0 0}
+.ft-sub{display:block;font-size:.88rem;opacity:.85;margin:4px 0}
+.ft-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ft-tabela th,.ft-tabela td{padding:9px 10px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ft-tabela tr.ft-agora{background:var(--rosa-claro)}
+.ft-rolagem{overflow-x:auto}
+.ft-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;list-style:none;padding:0;margin:10px 0}
+.ft-grade li{margin:0}
+.ft-foto{font:inherit;width:100%;padding:0;border:2px solid transparent;border-radius:12px;background:var(--papel);overflow:hidden;cursor:pointer;color:var(--tinta);text-align:left}
+.ft-foto[aria-pressed="true"]{border-color:var(--rosa)}
+.ft-foto img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.ft-foto span{display:block;padding:6px 8px;font-size:.84rem}
+.ft-camera{position:relative;max-width:420px;border-radius:16px;overflow:hidden;background:#111;aspect-ratio:3/4}
+.ft-camera video,.ft-camera img.ft-fantasma{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.ft-camera img.ft-fantasma{opacity:.35;pointer-events:none}
+.ft-oval{position:absolute;inset:12% 18%;border:2px dashed rgba(255,255,255,.75);border-radius:50%;pointer-events:none}
+.ft-lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ft-lado figure{margin:0}.ft-lado img{width:100%;border-radius:12px;display:block}
+.ft-lado figcaption{font-size:.88rem;color:var(--suave);margin-top:4px}
+.ft-cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.ft-cards li{margin:0}
+.ft-cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);text-decoration:none;color:var(--tinta)}
+.ft-cards a:hover{border-color:var(--rosa)}
+.ft-cards strong{font-family:var(--fonte-display);font-size:1.15rem;font-weight:500}
+.ft-cards span{font-size:.92rem;color:var(--suave)}
+@media(prefers-color-scheme:dark){.ft-horarios{color:#5c3d00}}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Minha prateleira: o que combina entre os produtos que você já tem">
+<meta property="og:description" content="Cadastre os produtos de skincare que você já tem e veja o que não combina, o que está repetido, que passo falta e quando cada um acaba. Salvo só no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/prateleira/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-prateleira.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Minha prateleira">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/prateleira/#pagina", "url": "https://produtoskincare.com.br/ferramentas/prateleira/", "name": "Minha prateleira", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Cadastre os produtos de skincare que você já tem e veja o que não combina, o que está repetido, que passo falta e quando cada um acaba. Salvo só no seu aparelho.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/prateleira/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/prateleira/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Minha prateleira", "item": "https://produtoskincare.com.br/ferramentas/prateleira/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Minha prateleira</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Minha prateleira</h1>
+<p class="ig-lede">Cadastre os produtos que você já tem. O site mostra o que não combina entre eles, o que está repetido, que passo da rotina está faltando e ajuda a lembrar quando cada um acaba.</p>
+<p class="ig-meta">Fica salvo só neste aparelho. Sem cadastro: o site não recebe a sua lista.</p>
+</div>
+
+<section class="ig-caixa" aria-labelledby="adicionar">
+<h2 id="adicionar">Adicionar um produto</h2>
+<label class="ft-rotulo" for="pr-busca">Procure pelo nome</label>
+<input class="ft-campo" id="pr-busca" type="search" autocomplete="off" placeholder="Ex.: CeraVe, retinol, protetor…" aria-describedby="pr-busca-dica" aria-controls="pr-sugestoes">
+<p class="ig-nota" id="pr-busca-dica">Toque num produto da lista para adicionar. Não achou? Preencha abaixo com o nome e a lista de ingredientes.</p>
+<ul class="ft-sugestoes" id="pr-sugestoes" role="listbox" aria-label="Produtos encontrados"></ul>
+
+<details class="ft-outro" id="pr-outro">
+<summary>Produto que não está na lista</summary>
+<label class="ft-rotulo" for="pr-nome">Nome do produto</label>
+<input class="ft-campo" id="pr-nome" type="text" placeholder="Ex.: Sérum de vitamina C da marca X">
+<label class="ft-rotulo" for="pr-texto">Ingredientes ou ativos (da embalagem ou do anúncio)</label>
+<textarea class="ft-campo" id="pr-texto" rows="4" placeholder="Cole a lista de ingredientes ou escreva os ativos, ex.: retinol 0,3%, niacinamida"></textarea>
+<div class="ft-ocr">
+<label class="ft-btn ft-sec">📷 Ler o rótulo por foto<input type="file" id="pr-foto" accept="image/*" capture="environment" class="ft-arquivo"></label>
+<p class="ig-nota" id="pr-ocr" role="status" aria-live="polite">A leitura acontece neste aparelho: a foto não é enviada. Na primeira vez, o leitor baixa cerca de 7 MB.</p>
+</div>
+<label class="ft-rotulo" for="pr-passo">Passo da rotina</label>
+<select class="ft-campo" id="pr-passo">
+<option value="limpeza">Limpeza</option>
+<option value="tratamento" selected>Tratamento (sérum)</option>
+<option value="hidratacao">Hidratante</option>
+<option value="protetor">Protetor solar</option>
+<option value="outro">Outro</option>
+</select>
+<fieldset class="ft-periodo"><legend class="ft-rotulo">Quando você usa</legend>
+<label><input type="checkbox" id="pr-manha" checked> Manhã</label>
+<label><input type="checkbox" id="pr-noite" checked> Noite</label>
+</fieldset>
+<button class="ft-btn" type="button" id="pr-adicionar">Adicionar à prateleira</button>
+</details>
+<p class="ig-nota" id="pr-status" role="status" aria-live="polite"></p>
+</section>
+
+<section aria-labelledby="lista-titulo">
+<h2 id="lista-titulo">Seus produtos</h2>
+<p class="ig-nota">Ajuste quando você usa cada um: a análise considera manhã e noite separadas.</p>
+<ul class="ft-itens" id="pr-itens"></ul>
+<label class="ft-check"><input type="checkbox" id="pr-sensivel"> Tenho pele sensível (as regras ficam mais rígidas)</label>
+</section>
+
+<section aria-labelledby="analise-titulo" id="pr-analise-sec">
+<h2 id="analise-titulo">O que a sua prateleira diz</h2>
+<div id="pr-analise"><p class="ig-nota">Adicione pelo menos um produto para ver a análise.</p></div>
+<div id="pr-enviar" hidden></div>
+</section>
+
+<section class="ig-caixa">
+<p class="ig-rotulo">Também com a sua prateleira</p>
+<ul>
+<li><a href="/ferramentas/farmacia/">Modo farmácia</a>: antes de comprar, fotografe o rótulo e veja se combina com o que você já tem.</li>
+<li><a href="/ferramentas/equivalente/">Equivalente mais barato</a>: produtos do catálogo com os mesmos ativos.</li>
+<li><a href="/ferramentas/12-semanas/">Modo 12 semanas</a>: plano para começar um ativo novo aos poucos, com diário de fotos.</li>
+</ul>
+</section>
+
+<p class="ig-nota">A análise usa as <a href="/ferramentas/ingredientes/">regras de combinação do verificador</a> (versão <span id="pr-versao"></span>). Ela olha só os ativos que reconhece no nome e na lista de ingredientes: confira sempre a embalagem. Quando não temos regra para um par, dizemos que não sabemos. Informativo: não substitui o dermatologista. Os produtos sugeridos têm link de afiliado.</p>
+</article>
+<script src="/regras-ativos.js"></script>
+<script src="/prateleira.js"></script>
+<script src="/ocr-rotulo.js"></script>
+<script src="/compartilhar.js"></script>
+<script>
+(function () {
+  "use strict";
+  var R = window.PSRegras, P = window.PSPrateleira;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var ICONE = { ok: "✅", sem_regra: "❔", horarios: "🕐", nao: "⛔" };
+  var CSS = { sem_regra: "ft-sem", horarios: "ft-horarios", nao: "ft-nao" };
+  var catalogo = [], ultima = null;
+  if (!R || !P) { $("pr-analise").innerHTML = '<p class="ft-nao">Não foi possível carregar as regras. Recarregue a página.</p>'; return; }
+  $("pr-versao").textContent = R.VERSAO;
+
+  function semAcento(t) { return String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function reais(v) { return "R$ " + Number(v).toFixed(2).replace(".", ","); }
+  function evento(n) { try { if (window.PSAnalytics) window.PSAnalytics.evento(n); } catch (e) {} }
+
+  // ===== Busca no catálogo =====
+  function buscar() {
+    var q = semAcento($("pr-busca").value).trim();
+    var ul = $("pr-sugestoes");
+    if (q.length < 2) { ul.innerHTML = ""; return; }
+    var termos = q.split(/\s+/);
+    var achados = catalogo.filter(function (p) {
+      var t = semAcento([p.nome, p.marca, (p.ativos || []).join(" ")].join(" "));
+      return termos.every(function (x) { return t.indexOf(x) >= 0; });
+    }).slice(0, 8);
+    ul.innerHTML = achados.length ? achados.map(function (p) {
+      return '<li><button type="button" class="ft-sugestao" data-id="' + esc(p.id) + '"><strong>' + esc(p.nome) + '</strong><span>' +
+        esc(P.PASSOS[p.passo] || p.passo) + (p.ativos && p.ativos.length ? " · " + esc(p.ativos.join(", ")) : "") + '</span></button></li>';
+    }).join("") : '<li class="ig-nota">Nada no catálogo com esse nome. Use "Produto que não está na lista".</li>';
+    if (!achados.length) { $("pr-outro").open = true; if (!$("pr-nome").value) $("pr-nome").value = $("pr-busca").value; }
+  }
+  $("pr-busca").addEventListener("input", buscar);
+  $("pr-sugestoes").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-id]");
+    if (!b) return;
+    var p = catalogo.filter(function (x) { return x.id === b.dataset.id; })[0];
+    if (!p) return;
+    adicionar(P.doCatalogo(p));
+    $("pr-busca").value = ""; $("pr-sugestoes").innerHTML = "";
+    $("pr-busca").focus();
+  });
+
+  // ===== Produto de fora do catálogo =====
+  function sugerirPeriodo() {
+    var per = P.periodoSugerido($("pr-nome").value + ", " + $("pr-texto").value, $("pr-passo").value);
+    $("pr-manha").checked = per.indexOf("manha") >= 0;
+    $("pr-noite").checked = per.indexOf("noite") >= 0;
+  }
+  $("pr-texto").addEventListener("change", sugerirPeriodo);
+  $("pr-passo").addEventListener("change", sugerirPeriodo);
+  if (window.PSOcr) PSOcr.ligar($("pr-foto"), $("pr-ocr"), function (texto) {
+    $("pr-texto").value = ($("pr-texto").value.trim() ? $("pr-texto").value.trim() + ", " : "") + texto;
+    sugerirPeriodo();
+    $("pr-texto").focus();
+    evento("prateleira/ocr");
+  });
+  $("pr-adicionar").addEventListener("click", function () {
+    var nome = $("pr-nome").value.trim(), texto = $("pr-texto").value.trim();
+    var periodo = ["manha", "noite"].filter(function (p) { return $("pr-" + p).checked; });
+    if (!nome) { $("pr-status").textContent = "Escreva o nome do produto."; $("pr-nome").focus(); return; }
+    if (!periodo.length) { $("pr-status").textContent = "Marque manhã, noite ou os dois."; return; }
+    adicionar({ uid: P.novoId(), id: null, nome: nome, passo: $("pr-passo").value, periodo: periodo, texto: texto, link: null });
+    $("pr-nome").value = ""; $("pr-texto").value = "";
+  });
+
+  function adicionar(item) {
+    var d = P.ler();
+    if (item.id && d.itens.some(function (x) { return x.id === item.id; })) {
+      $("pr-status").textContent = item.nome + " já está na sua prateleira.";
+      return;
+    }
+    d.itens.push(item);
+    P.salvar(d);
+    var reconhecidos = P.ativosDe(item).map(function (a) { return a.nome; });
+    $("pr-status").textContent = item.nome + " adicionado." + (reconhecidos.length ? " Ativos reconhecidos: " + reconhecidos.join(", ") + "." :
+      " Não reconhecemos nenhum ativo: se ele tiver ativos, cole a lista de ingredientes para a análise ficar completa.");
+    evento("prateleira/adicionar");
+    desenhar();
+  }
+
+  // ===== Lista =====
+  $("pr-itens").addEventListener("change", function (e) {
+    var li = e.target.closest("[data-uid]");
+    if (!li) return;
+    var d = P.ler();
+    d.itens.forEach(function (it) {
+      if (it.uid !== li.dataset.uid) return;
+      if (e.target.dataset.per) {
+        var per = ["manha", "noite"].filter(function (p) { return li.querySelector('[data-per="' + p + '"]').checked; });
+        if (!per.length) { e.target.checked = true; $("pr-status").textContent = "Cada produto precisa de manhã, noite ou os dois."; return; }
+        it.periodo = per;
+      }
+    });
+    P.salvar(d);
+    desenhar();
+  });
+  $("pr-itens").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-remover]");
+    if (!b) return;
+    var d = P.ler();
+    d.itens = d.itens.filter(function (it) { return it.uid !== b.dataset.remover; });
+    P.salvar(d);
+    $("pr-status").textContent = "Produto removido.";
+    desenhar();
+  });
+  $("pr-sensivel").addEventListener("change", function () {
+    var d = P.ler(); d.sensivel = $("pr-sensivel").checked; P.salvar(d); desenhar();
+  });
+
+  function itemHTML(it) {
+    var ativos = P.ativosDe(it).map(function (a) { return a.nome; });
+    var nome = it.link ? '<a href="' + esc(it.link) + '">' + esc(it.nome) + '</a>' : esc(it.nome);
+    return '<li class="ft-item" data-uid="' + esc(it.uid) + '"><div><strong>' + nome + '</strong>' +
+      '<span class="ig-nota">' + esc(P.PASSOS[it.passo] || it.passo) + ' · ' + (ativos.length ? "ativos: " + esc(ativos.join(", ")) : "nenhum ativo reconhecido") + '</span></div>' +
+      '<div class="ft-item-acoes"><label><input type="checkbox" data-per="manha"' + (it.periodo.indexOf("manha") >= 0 ? " checked" : "") + '> Manhã</label>' +
+      '<label><input type="checkbox" data-per="noite"' + (it.periodo.indexOf("noite") >= 0 ? " checked" : "") + '> Noite</label>' +
+      '<a class="ft-mini" href="/ferramentas/reposicao/?produto=' + encodeURIComponent(it.nome) + '">Quando acaba?</a>' +
+      '<button type="button" class="ft-mini" data-remover="' + esc(it.uid) + '" aria-label="Remover ' + esc(it.nome) + '">Remover</button></div></li>';
+  }
+
+  function sugestoes(passo) {
+    var lista = catalogo.filter(function (p) { return p.passo === passo; }).sort(function (a, b) { return a.preco - b.preco; }).slice(0, 3);
+    return lista.map(function (p) {
+      return '<li><a href="/produtos/' + esc(p.id) + '/">' + esc(p.nome) + '</a> · ' + reais(p.preco) + '</li>';
+    }).join("");
+  }
+
+  function quando(periodos) {
+    return periodos.length === 2 ? "de manhã e à noite" : periodos[0] === "manha" ? "de manhã" : "à noite";
+  }
+
+  function desenhar() {
+    var d = P.ler();
+    $("pr-sensivel").checked = d.sensivel;
+    $("pr-itens").innerHTML = d.itens.length ? d.itens.map(itemHTML).join("") : '<li class="ig-nota">Sua prateleira está vazia.</li>';
+    if (!d.itens.length) { $("pr-analise").innerHTML = '<p class="ig-nota">Adicione pelo menos um produto para ver a análise.</p>'; $("pr-enviar").hidden = true; ultima = null; return; }
+    var a = P.analisar(d.itens, { sensivel: d.sensivel });
+    ultima = { itens: d.itens, a: a, sensivel: d.sensivel };
+    var h = [];
+    if (!a.conflitos.length) {
+      h.push('<div class="ft-ok"><strong>✅ Nenhum conflito encontrado</strong> entre os ativos que reconhecemos' + (d.itens.length < 2 ? " (com um produto só, ainda não há o que comparar)" : "") + '.</div>');
+    }
+    a.conflitos.forEach(function (c) {
+      var onde = c.resultado === "nao" ? "" : " quando os dois entram " + quando(c.periodos);
+      h.push('<div class="' + CSS[c.resultado] + '"><strong>' + ICONE[c.resultado] + " " + esc(c.x.nome) + " + " + esc(c.y.nome) + ": " + esc(c.rotulo) + '</strong>' +
+        '<span class="ft-sub">' + esc(c.ativoX) + " com " + esc(c.ativoY) + esc(onde) + '.</span>' + esc(c.motivo) +
+        (c.nota ? '<span class="ft-sub">' + esc(c.nota) + '</span>' : "") +
+        (c.porSensibilidade ? '<span class="ft-sub">Resultado mais rígido porque você marcou pele sensível.</span>' : "") +
+        (c.resultado === "horarios" ? '<span class="ft-sub">Dica: desmarque ' + esc(quando(c.periodos).replace(/^de |^à /, "")) + ' em um dos dois, na lista acima.</span>' : "") + '</div>');
+    });
+    a.repetidos.forEach(function (r) {
+      h.push('<div class="ft-info"><strong>🔁 Repetido: ' + esc(r.nomeClasse) + '</strong>' + esc(r.itens.map(function (i) { return i.nome; }).join(" e ")) +
+        ' trazem ' + esc(r.nomeClasse) + ' ' + quando(r.periodos) + '. Talvez um baste: dois do mesmo grupo somam mais chance de irritação e mais gasto.</div>');
+    });
+    a.faltando.forEach(function (passo) {
+      var texto = passo === "protetor"
+        ? "Não há protetor solar na sua prateleira." + (a.fotossensivel ? " Com ácidos ou retinoides, ele é indispensável todos os dias." : " Ele é o passo que mais protege a pele no dia a dia.")
+        : passo === "limpeza" ? "Não há um produto de limpeza na sua prateleira." : "Não há hidratante na sua prateleira.";
+      h.push('<div class="' + (passo === "protetor" ? "ft-nao" : "ft-info") + '"><strong>➕ Falta: ' + esc(P.PASSOS[passo]) + '</strong>' + esc(texto) +
+        '<span class="ft-sub">Opções do catálogo, das mais em conta:</span><ul>' + sugestoes(passo) + '</ul></div>');
+    });
+    if (!a.faltando.length) h.push('<div class="ft-ok"><strong>✅ Rotina básica completa</strong>Você tem limpeza, hidratante e protetor solar.</div>');
+    $("pr-analise").innerHTML = h.join("");
+    $("pr-enviar").hidden = false;
+  }
+
+  if (window.PSEnviar) PSEnviar.montar($("pr-enviar"), function () {
+    if (!ultima) return { texto: "" };
+    var t = ["Minha prateleira no Produto Skincare", ""];
+    ultima.itens.forEach(function (it) { t.push("- " + it.nome + " (" + quando(it.periodo) + ")"); });
+    t.push("");
+    ultima.a.conflitos.forEach(function (c) { t.push(c.x.nome + " + " + c.y.nome + ": " + c.rotulo + ". " + c.motivo); });
+    ultima.a.repetidos.forEach(function (r) { t.push("Repetido: " + r.nomeClasse + " em " + r.itens.map(function (i) { return i.nome; }).join(" e ")); });
+    ultima.a.faltando.forEach(function (p) { t.push("Falta: " + P.PASSOS[p]); });
+    t.push("", "Regras v" + R.VERSAO + ". Não é aconselhamento médico.");
+    return { assunto: "Minha prateleira de skincare", texto: t.join("\n"), url: location.origin + location.pathname };
+  }, { titulo: "📩 Guardar esta análise" });
+
+  fetch("/produtos.json").then(function (r) { return r.json(); }).then(function (d) { catalogo = d.produtos || []; })
+    .catch(function () { $("pr-busca-dica").textContent = "Não deu para carregar o catálogo agora. Você ainda pode adicionar produtos pelo nome e ingredientes."; })
+    .then(function () { buscar(); desenhar(); });
+  desenhar();
+})();
+</script>
+
+<footer class="ig-foot">
+<p>Ferramenta informativa, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é a Minha prateleira de skincare?</h3>
+<p>A Minha prateleira é uma ferramenta em que você cadastra os produtos que já tem. O site mostra o que não combina entre eles, o que está repetido, que passo da rotina falta e ajuda a lembrar quando cada um acaba.</p>
+<h3>A lista de produtos da Minha prateleira é enviada ao site?</h3>
+<p>Não. A lista fica salva só no aparelho, sem cadastro, e o site não a recebe. A análise usa as regras do verificador e olha só os ativos que reconhece, então convém conferir sempre a embalagem.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é a Minha prateleira de skincare?", "acceptedAnswer": {"@type": "Answer", "text": "A Minha prateleira é uma ferramenta em que você cadastra os produtos que já tem. O site mostra o que não combina entre eles, o que está repetido, que passo da rotina falta e ajuda a lembrar quando cada um acaba."}}, {"@type": "Question", "name": "A lista de produtos da Minha prateleira é enviada ao site?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A lista fica salva só no aparelho, sem cadastro, e o site não a recebe. A análise usa as regras do verificador e olha só os ativos que reconhece, então convém conferir sempre a embalagem."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-09">9 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/" aria-current="page">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+
+</body>
+</html>
