@@ -31,7 +31,7 @@ HOJE = date.today().isoformat()
 IGNORAR = {"_arquivo", "_scripts", "_servidor", ".git", "fotos", "fonts", "img", "icones"}
 ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condições", "pele": "Tipos de pele",
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
-           "privacidade": "Privacidade", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
+           "privacidade": "Privacidade", "termos": "Termos de uso", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
            "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?"}
 # Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.

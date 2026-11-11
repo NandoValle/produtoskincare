@@ -138,4 +138,5 @@ A página inicial tem perguntas frequentes com resposta curta (como saber o tipo
 
 - [Contato](https://produtoskincare.com.br/contato/)
 - [Privacidade](https://produtoskincare.com.br/privacidade/)
+- [Termos de uso](https://produtoskincare.com.br/termos/)
 - [Rotina de skincare](https://produtoskincare.com.br/rotina-de-skincare/): visão geral de como montar a rotina.

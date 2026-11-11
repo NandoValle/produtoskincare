@@ -562,7 +562,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/privacidade/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -804,4 +804,9 @@
     <lastmod>2026-11-09</lastmod></url>
   <url><loc>https://produtoskincare.com.br/es/ferramentas/respaldo/</loc>
     <lastmod>2026-11-09</lastmod></url>
+  <url>
+    <loc>https://produtoskincare.com.br/termos/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>
