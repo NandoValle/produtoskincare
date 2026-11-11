@@ -40,6 +40,274 @@
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+<!-- WebMCP: descoberta estática das ferramentas (gerado por gerar-manifesto.mjs; não editar à mão) -->
+<link rel="alternate" type="application/webmcp+json" href="/webmcp-tools.json" title="Ferramentas WebMCP do Produto Skincare">
+<script type="application/mcp+json">
+  {
+    "schemaVersion": 1,
+    "site": "https://produtoskincare.com.br",
+    "note": "Manifesto estático das ferramentas WebMCP do Produto Skincare. Gerado por gerar-manifesto.mjs a partir de webmcp.js e do form[toolname] da home. Descoberta para agentes e scanners; a execução continua em webmcp.js (imperativas) e no próprio form (declarativa). Só leitura: nenhuma ferramenta compra, cadastra ou envia dados.",
+    "tools": [
+      {
+        "kind": "declarative",
+        "name": "montar_rotina",
+        "description": "Abre o provador do Produto Skincare já com a rotina de skincare de manhã e de noite para o tipo de pele informado, usando produtos do catálogo do site, com preço e link. Só abre a página de resultado: não compra, não cadastra e não envia dados pessoais. Estimativa cosmética, não é diagnóstico médico.",
+        "autoSubmit": true,
+        "action": "/provador/",
+        "method": "get",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "tipo": {
+              "type": "string",
+              "enum": [
+                "oleosa",
+                "seca",
+                "mista",
+                "normal"
+              ],
+              "description": "Tipo de pele: oleosa, seca, mista ou normal. Obrigatório."
+            },
+            "conc": {
+              "type": "string",
+              "enum": [
+                "acne",
+                "manchas",
+                "poros",
+                "idade",
+                "desidratacao"
+              ],
+              "description": "Preocupação principal, opcional: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Vazio quando não houver."
+            },
+            "preco": {
+              "type": "string",
+              "enum": [
+                "qualquer",
+                "ate50",
+                "ate100",
+                "ate200"
+              ],
+              "description": "Preço máximo de cada produto: ate50 (até R$ 50), ate100 (até R$ 100), ate200 (até R$ 200) ou qualquer (sem limite)."
+            },
+            "rotina": {
+              "type": "string",
+              "enum": [
+                "5",
+                "3"
+              ],
+              "description": "Número de passos: 5 (completa, com tratamento) ou 3 (essencial: limpeza, hidratação e protetor solar)."
+            },
+            "sensivel": {
+              "type": "boolean",
+              "description": "Marque se a pele é sensível: arde, avermelha ou reage a produtos novos com frequência."
+            }
+          },
+          "required": [
+            "tipo"
+          ],
+          "additionalProperties": false
+        },
+        "fields": [
+          {
+            "name": "tipo",
+            "type": "select-one",
+            "required": true,
+            "description": "Tipo de pele: oleosa, seca, mista ou normal. Obrigatório.",
+            "options": [
+              "oleosa",
+              "seca",
+              "mista",
+              "normal"
+            ]
+          },
+          {
+            "name": "conc",
+            "type": "select-one",
+            "required": false,
+            "description": "Preocupação principal, opcional: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Vazio quando não houver.",
+            "options": [
+              "acne",
+              "manchas",
+              "poros",
+              "idade",
+              "desidratacao"
+            ]
+          },
+          {
+            "name": "preco",
+            "type": "select-one",
+            "required": false,
+            "description": "Preço máximo de cada produto: ate50 (até R$ 50), ate100 (até R$ 100), ate200 (até R$ 200) ou qualquer (sem limite).",
+            "options": [
+              "qualquer",
+              "ate50",
+              "ate100",
+              "ate200"
+            ]
+          },
+          {
+            "name": "rotina",
+            "type": "select-one",
+            "required": false,
+            "description": "Número de passos: 5 (completa, com tratamento) ou 3 (essencial: limpeza, hidratação e protetor solar).",
+            "options": [
+              "5",
+              "3"
+            ]
+          },
+          {
+            "name": "sensivel",
+            "type": "checkbox",
+            "required": false,
+            "description": "Marque se a pele é sensível: arde, avermelha ou reage a produtos novos com frequência."
+          }
+        ],
+        "sources": [
+          "declarative"
+        ]
+      },
+      {
+        "kind": "imperative",
+        "name": "buscar_produtos",
+        "title": "Buscar produtos de skincare",
+        "description": "Busca no catálogo de produtos de skincare do Produto Skincare (produtos vendidos no Brasil, com preço conferido em loja e data da conferência). Filtra por texto livre (nome, marca ou ativo, ex.: \"niacinamida\"), tipo de pele, preocupação, passo da rotina e preço máximo em reais. Devolve os mais bem avaliados primeiro, com link da página do produto e link da loja (afiliado). Só leitura: não compra nem adiciona nada ao carrinho.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "termo": {
+              "type": "string",
+              "maxLength": 80,
+              "description": "Texto livre: nome, marca ou ativo (ex.: \"vitamina C\", \"CeraVe\"). Opcional."
+            },
+            "tipo_pele": {
+              "type": "string",
+              "enum": [
+                "oleosa",
+                "seca",
+                "mista",
+                "normal",
+                "sensivel"
+              ],
+              "description": "Tipo de pele: oleosa, seca, mista, normal ou sensivel. Opcional."
+            },
+            "preocupacao": {
+              "type": "string",
+              "enum": [
+                "acne",
+                "manchas",
+                "poros",
+                "idade",
+                "desidratacao"
+              ],
+              "description": "Preocupação: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Opcional."
+            },
+            "passo": {
+              "type": "string",
+              "enum": [
+                "limpeza",
+                "tratamento",
+                "hidratacao",
+                "protetor"
+              ],
+              "description": "Passo da rotina: limpeza, tratamento, hidratacao ou protetor (protetor solar). Opcional."
+            },
+            "preco_max": {
+              "type": "number",
+              "minimum": 1,
+              "description": "Preço máximo por produto, em reais. Opcional."
+            },
+            "limite": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 5,
+              "description": "Quantos produtos devolver (1 a 10, padrão 5)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true
+        },
+        "sources": [
+          "imperative"
+        ]
+      },
+      {
+        "kind": "imperative",
+        "name": "explicar_tipo_de_pele",
+        "title": "Explicar um tipo de pele",
+        "description": "Explica um tipo de pele (oleosa, seca, mista ou normal) com os cuidados do dia a dia recomendados pelo Produto Skincare, e devolve os links do guia desse tipo e do provador já com a rotina. Use quando a pessoa já sabe o tipo de pele. Para descobrir o tipo, mande a pessoa ao provador (quiz ou selfie). Só leitura.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "tipo_pele": {
+              "type": "string",
+              "enum": [
+                "oleosa",
+                "seca",
+                "mista",
+                "normal"
+              ],
+              "description": "Tipo de pele: oleosa, seca, mista ou normal."
+            }
+          },
+          "required": [
+            "tipo_pele"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true
+        },
+        "sources": [
+          "imperative"
+        ]
+      },
+      {
+        "kind": "imperative",
+        "name": "ver_rotina_por_condicao",
+        "title": "Ver rotina por condição e faixa de preço",
+        "description": "Devolve a rotina de skincare de manhã e de noite que o Produto Skincare montou para uma condição (acne, anti-age, melasma ou rosacea) numa faixa de preço (economica, media ou premium): produto de cada passo com preço e link, ativos com nível de evidência, cuidados e quando procurar um dermatologista. Só leitura.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "condicao": {
+              "type": "string",
+              "enum": [
+                "acne",
+                "anti-age",
+                "melasma",
+                "rosacea"
+              ],
+              "description": "Condição: acne, anti-age (sinais de idade), melasma ou rosacea."
+            },
+            "faixa": {
+              "type": "string",
+              "enum": [
+                "economica",
+                "media",
+                "premium"
+              ],
+              "default": "economica",
+              "description": "Faixa de preço: economica, media (intermediária) ou premium. Padrão: economica."
+            }
+          },
+          "required": [
+            "condicao"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true
+        },
+        "sources": [
+          "imperative"
+        ]
+      }
+    ]
+  }
+</script>
 </head>
 <body class="ps-home">
 <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
