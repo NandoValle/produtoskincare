@@ -184,14 +184,15 @@ def passo_h1(t):
 
 
 def ancora(t):
-    """Onde entram os blocos: antes da nota de fallback do <main>; se não houver, antes de </main>;
+    """Onde entram os blocos: antes da nota de fallback do <main> (a nota fica só em <noscript>,
+    para o visitante com JavaScript não ver texto técnico); se não houver, antes de </main>;
     em página com <main> redesenhado por JavaScript, depois de </main>."""
     fim = t.find("</main>")
     if fim < 0:
         return None
     if MAIN_DINAMICO.search(t):
         return fim + len("</main>")
-    m = re.search(r'<p class="fallback" id="fallback-manual">', t)
+    m = re.search(r'<p class="fallback" id="fallback-manual">|<noscript><p class="fallback"', t)
     if m and m.start() < fim:
         return m.start()
     return fim
