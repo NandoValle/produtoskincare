@@ -31,6 +31,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/blog/experimento-coletivo-01/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/blog/ordem-dos-produtos-skincare/</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.7</priority>
@@ -441,6 +446,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/ferramentas/experimento/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/ferramentas/farmacia/</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.7</priority>
@@ -453,6 +463,11 @@
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/prateleira/</loc>
     <lastmod>2026-11-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/ferramentas/raio-x/</loc>
+    <lastmod>2026-11-11</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -699,6 +714,11 @@
     <loc>https://produtoskincare.com.br/produtos/skin-aqua-moisture-milk/</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/programa-12-semanas/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/provador/</loc>
