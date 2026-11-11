@@ -1,4 +1,4 @@
-const CACHE = "provador-premium-20261109-afiliado-correto";
+const CACHE = "provador-premium-20261111-sem-video";
 const ASSETS = [
   "/premium.css",
   "/premium.js",
@@ -42,7 +42,10 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
-  if (e.request.method !== "GET" || new URL(e.request.url).origin !== location.origin) return;
+  const url = new URL(e.request.url);
+  if (e.request.method !== "GET" || url.origin !== location.origin) return;
+  // Vídeos (e qualquer pedido por trechos) vão direto para a rede, sem cache.
+  if (url.pathname.toLowerCase().endsWith(".mp4") || e.request.headers.has("range")) return;
   // Rede primeiro: preços e produtos atualizados aparecem logo; cache só quando offline.
   e.respondWith(
     fetch(e.request).then(r => {
