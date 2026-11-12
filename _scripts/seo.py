@@ -33,11 +33,11 @@ ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condiç
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
            "privacidade": "Privacidade", "termos": "Termos de uso", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
-           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?"}
+           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?", "ativos": "Ativos"}
 # Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.
 TRADUCOES = [{"pt-BR": "/", "en": "/en/", "es": "/es/"}] + [
     g for g in json.loads((RAIZ / "_scripts" / "traducoes.json").read_text(encoding="utf-8"))["grupos"]]
-SECOES_ARTIGO = ("blog/", "en/blog/", "es/blog/", "ingredientes/", "en/ingredients/", "es/ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/")
+SECOES_ARTIGO = ("blog/", "en/blog/", "es/blog/", "ingredientes/", "en/ingredients/", "es/ingredientes/", "condicoes/", "pele/", "rotina-de-skincare/", "ativos/")
 
 
 class Leitor(HTMLParser):
