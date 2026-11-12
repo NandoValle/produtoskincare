@@ -1,0 +1,517 @@
+{
+ "_sobre": "Configuração do Atlas dos Ativos (/ativos/). Lida por _scripts/gerar_atlas.py. nomes/resumos: texto dos cartões, por id do guia. vocabulario: palavras da busca -> objetivo, tipo de pele ou filtro. temas: áreas do mapa da pele (texto educativo; revisar com farmacêutico(a) ou dermatologista antes de mudar). rotulo_extra: termos a mais para o leitor de rótulo, além do INCI do guia. classes: classe do verificador fixada à mão quando o nome não é reconhecido por regras-ativos.js (igual à ficha do ativo).",
+ "categorias": [
+  {
+   "id": "retinoides",
+   "titulo": "Retinoides"
+  },
+  {
+   "id": "esfoliantes",
+   "titulo": "Esfoliantes (ácidos)"
+  },
+  {
+   "id": "hidratantes",
+   "titulo": "Hidratantes"
+  },
+  {
+   "id": "clareadores-e-uniformizadores",
+   "titulo": "Clareadores e uniformizadores"
+  },
+  {
+   "id": "vitamina-c",
+   "titulo": "Vitamina C"
+  },
+  {
+   "id": "antioxidantes",
+   "titulo": "Antioxidantes"
+  },
+  {
+   "id": "calmantes-e-reparadores",
+   "titulo": "Calmantes e reparadores"
+  },
+  {
+   "id": "barreira-e-emolientes",
+   "titulo": "Barreira e emolientes"
+  },
+  {
+   "id": "antiacne",
+   "titulo": "Antiacne"
+  },
+  {
+   "id": "peptideos-e-biotecnologia",
+   "titulo": "Peptídeos e biotecnologia"
+  },
+  {
+   "id": "olheiras-e-area-dos-olhos",
+   "titulo": "Olheiras e área dos olhos"
+  },
+  {
+   "id": "filtros-solares",
+   "titulo": "Filtros solares"
+  }
+ ],
+ "sugestoes": [
+  "manchas",
+  "acne",
+  "pele sensível",
+  "rugas",
+  "poros",
+  "vitamina C",
+  "retinol",
+  "olheiras"
+ ],
+ "comparacoes": [
+  {
+   "titulo": "Retinol, retinal ou bakuchiol",
+   "ids": [
+    "retinol",
+    "retinal",
+    "bakuchiol"
+   ]
+  },
+  {
+   "titulo": "Ácido glicólico, lático ou mandélico",
+   "ids": [
+    "glicolico",
+    "latico",
+    "mandelico"
+   ]
+  },
+  {
+   "titulo": "Niacinamida, ácido tranexâmico ou ácido azelaico",
+   "ids": [
+    "niacinamida",
+    "tranexamico",
+    "azelaico"
+   ]
+  }
+ ],
+ "temas": [
+  {
+   "id": "sol",
+   "titulo": "Radiação solar",
+   "objetivos": [
+    "protecao"
+   ],
+   "texto": "A radiação ultravioleta está ligada a manchas, rugas e câncer de pele. Os filtros solares absorvem ou refletem parte dela antes que alcance as camadas vivas da pele."
+  },
+  {
+   "id": "superficie",
+   "titulo": "Superfície",
+   "objetivos": [
+    "textura"
+   ],
+   "texto": "A camada mais externa (camada córnea) é feita de células mortas e achatadas, que se soltam aos poucos. Quando elas se acumulam, a pele fica áspera e opaca. Os esfoliantes ajudam a soltar essas células."
+  },
+  {
+   "id": "barreira",
+   "titulo": "Barreira e hidratação",
+   "objetivos": [
+    "barreira",
+    "hidratacao",
+    "sensibilidade"
+   ],
+   "texto": "Entre as células da camada córnea há lipídios (ceramidas, colesterol e ácidos graxos) que seguram a água e barram irritantes. Com a barreira danificada, a pele resseca, arde e fica vermelha com facilidade."
+  },
+  {
+   "id": "pigmentacao",
+   "titulo": "Pigmentação",
+   "objetivos": [
+    "manchas"
+   ],
+   "texto": "A melanina é produzida pelos melanócitos, na base da epiderme, e distribuída para as células vizinhas. As manchas aparecem quando essa produção fica desigual, por sol, inflamação ou hormônios."
+  },
+  {
+   "id": "poros",
+   "titulo": "Poros e oleosidade",
+   "objetivos": [
+    "acne",
+    "oleosidade"
+   ],
+   "texto": "Cada poro é a saída de um folículo ligado a uma glândula sebácea. Sebo em excesso e células acumuladas entopem o poro e formam cravos e espinhas."
+  },
+  {
+   "id": "derme",
+   "titulo": "Firmeza",
+   "objetivos": [
+    "rugas"
+   ],
+   "texto": "A derme sustenta a pele com fibras de colágeno e elastina, que diminuem com a idade e com a exposição ao sol."
+  },
+  {
+   "id": "olhos",
+   "titulo": "Área dos olhos",
+   "objetivos": [
+    "olheiras"
+   ],
+   "texto": "A pele ao redor dos olhos é mais fina: vasos e pigmento ficam mais visíveis, e o inchaço varia com o sono e a retenção de líquido. Esta área não aparece no corte ilustrado."
+  }
+ ],
+ "vocabulario": {
+  "objetivos": {
+   "acne": [
+    "acne",
+    "espinha",
+    "espinhas",
+    "cravo",
+    "cravos",
+    "comedao",
+    "comedoes"
+   ],
+   "oleosidade": [
+    "oleosidade",
+    "oleosa",
+    "oleoso",
+    "poro",
+    "poros",
+    "poros abertos",
+    "brilho",
+    "sebo"
+   ],
+   "manchas": [
+    "mancha",
+    "manchas",
+    "melasma",
+    "sarda",
+    "sardas",
+    "hiperpigmentacao",
+    "clarear",
+    "clareador",
+    "tom desigual",
+    "uniformizar",
+    "marcas de espinha"
+   ],
+   "rugas": [
+    "ruga",
+    "rugas",
+    "linhas",
+    "linha fina",
+    "linhas finas",
+    "firmeza",
+    "flacidez",
+    "envelhecimento",
+    "anti idade",
+    "antiidade",
+    "antienvelhecimento",
+    "colageno"
+   ],
+   "textura": [
+    "textura",
+    "vico",
+    "opaca",
+    "aspera",
+    "renovacao",
+    "esfoliar",
+    "esfoliante",
+    "esfoliacao"
+   ],
+   "hidratacao": [
+    "hidratacao",
+    "hidratar",
+    "hidratante",
+    "desidratada",
+    "desidratacao",
+    "repuxando"
+   ],
+   "barreira": [
+    "barreira",
+    "ressecada",
+    "ressecamento",
+    "seca",
+    "descamando",
+    "descamacao"
+   ],
+   "sensibilidade": [
+    "sensivel",
+    "sensibilidade",
+    "vermelhidao",
+    "rosacea",
+    "irritada",
+    "irritacao",
+    "ardor",
+    "ardencia",
+    "calmante",
+    "acalmar"
+   ],
+   "olheiras": [
+    "olheira",
+    "olheiras",
+    "inchaco",
+    "bolsas",
+    "olhos"
+   ],
+   "protecao": [
+    "protecao solar",
+    "protetor",
+    "protetor solar",
+    "filtro solar",
+    "fps",
+    "sol",
+    "uva",
+    "uvb"
+   ]
+  },
+  "peles": {
+   "oleosa": [
+    "pele oleosa",
+    "oleosa"
+   ],
+   "mista": [
+    "pele mista",
+    "mista"
+   ],
+   "normal": [
+    "pele normal"
+   ],
+   "seca": [
+    "pele seca",
+    "seca"
+   ],
+   "sensivel": [
+    "pele sensivel",
+    "sensivel"
+   ]
+  },
+  "filtros": {
+   "gestacao": [
+    "gestante",
+    "gestacao",
+    "gravida",
+    "gravidez",
+    "amamentando",
+    "amamentacao"
+   ],
+   "iniciante": [
+    "iniciante",
+    "comecando",
+    "primeiro ativo",
+    "comecar"
+   ],
+   "sem-receita": [
+    "sem receita"
+   ]
+  }
+ },
+ "nomes": {
+  "retinol": "Retinol",
+  "retinal": "Retinal",
+  "palmitato-retinila": "Palmitato de retinila",
+  "hpr": "HPR",
+  "bakuchiol": "Bakuchiol",
+  "tretinoina": "Tretinoína",
+  "adapaleno": "Adapaleno",
+  "tazaroteno": "Tazaroteno",
+  "trifaroteno": "Trifaroteno",
+  "glicolico": "Ácido glicólico",
+  "latico": "Ácido lático",
+  "mandelico": "Ácido mandélico",
+  "outros-aha": "Ácidos málico, tartárico e cítrico",
+  "salicilico": "Ácido salicílico",
+  "lha": "LHA",
+  "gluconolactona": "Gluconolactona",
+  "lactobionico": "Ácido lactobiônico",
+  "piruvico": "Ácido pirúvico",
+  "enzimas": "Enzimas",
+  "ureia": "Ureia",
+  "niacinamida": "Niacinamida",
+  "tranexamico": "Ácido tranexâmico",
+  "azelaico": "Ácido azelaico",
+  "kojico": "Ácido kójico",
+  "alfa-arbutina": "Alfa-arbutina",
+  "tiamidol": "Tiamidol",
+  "butilresorcinol": "4-Butilresorcinol",
+  "fenetil-resorcinol": "Fenetil resorcinol",
+  "melasyl": "Melasyl",
+  "cisteamina": "Cisteamina",
+  "alcacuz": "Extrato de alcaçuz",
+  "fitico": "Ácido fítico",
+  "hidroquinona": "Hidroquinona",
+  "vitc-pura": "Vitamina C pura",
+  "vitc-glucosideo": "Ascorbil glucosídeo",
+  "vitc-sap": "Ascorbil fosfato de sódio",
+  "vitc-map": "Ascorbil fosfato de magnésio",
+  "vitc-etil": "Etil ascórbico",
+  "vitc-thd": "Tetrahexildecil ascorbato",
+  "vitamina-e": "Vitamina E",
+  "ferulico": "Ácido ferúlico",
+  "resveratrol": "Resveratrol",
+  "q10": "Coenzima Q10",
+  "cha-verde": "Chá verde",
+  "astaxantina": "Astaxantina",
+  "hialuronico": "Ácido hialurônico",
+  "glicerina": "Glicerina",
+  "pantenol": "Pantenol",
+  "betaglucana": "Beta-glucana",
+  "poliglutamato": "Poliglutamato de sódio",
+  "aloe": "Aloe vera",
+  "pca": "PCA de sódio e aminoácidos",
+  "ectoina": "Ectoína",
+  "ceramidas": "Ceramidas",
+  "lipidios": "Colesterol e ácidos graxos",
+  "esqualano": "Esqualano",
+  "karite": "Manteiga de karité",
+  "rosa-mosqueta": "Óleo de rosa mosqueta",
+  "petrolato": "Petrolato",
+  "centella": "Centella asiática",
+  "alantoina": "Alantoína",
+  "bisabolol": "Bisabolol",
+  "aveia": "Aveia coloidal",
+  "posbioticos": "Probióticos e pós-bióticos",
+  "glicirrizinato": "Dipotássio glicirrizinato",
+  "peroxido-benzoila": "Peróxido de benzoíla",
+  "enxofre": "Enxofre",
+  "melaleuca": "Óleo de melaleuca",
+  "zinco-pca": "Zinco PCA",
+  "argilas": "Argilas",
+  "clindamicina": "Clindamicina tópica",
+  "matrixyl": "Palmitoil pentapeptídeo-4",
+  "argireline": "Acetil hexapeptídeo-8",
+  "ghk-cu": "Peptídeo de cobre",
+  "mucina-caracol": "Mucina de caracol",
+  "pdrn": "PDRN",
+  "egf": "Fator de crescimento epidérmico",
+  "cafeina": "Cafeína",
+  "vitamina-k": "Vitamina K",
+  "oxido-zinco": "Óxido de zinco",
+  "dioxido-titanio": "Dióxido de titânio",
+  "tinosorb-s": "Bemotrizinol",
+  "tinosorb-m": "Bisoctrizol",
+  "avobenzona": "Avobenzona",
+  "octocrileno": "Octocrileno",
+  "mexoryl-sx": "Ecamsule",
+  "uvinul-a": "DHHB",
+  "uvinul-t": "Etilhexil triazona"
+ },
+ "resumos": {
+  "retinol": "Forma de vitamina A que acelera a renovação celular e estimula colágeno.",
+  "retinal": "Um passo mais próximo do ácido retinoico que o retinol.",
+  "palmitato-retinila": "Éster de vitamina A bem mais suave que o retinol, com efeito também mais discreto.",
+  "hpr": "Éster de ácido retinoico de uso cosmético, em geral menos irritante que o retinol.",
+  "bakuchiol": "Ativo vegetal (da planta Psoralea corylifolia) com efeito semelhante ao do retinol em alguns estudos, porém mais suave.",
+  "tretinoina": "Retinoide de referência para acne e fotoenvelhecimento.",
+  "adapaleno": "Retinoide de terceira geração, muito usado contra acne e cravos.",
+  "tazaroteno": "Retinoide potente, usado para acne, psoríase e fotoenvelhecimento.",
+  "trifaroteno": "Retinoide de quarta geração, aprovado para acne no rosto e no tronco.",
+  "glicolico": "O AHA (alfa-hidroxiácido) de molécula menor: penetra fácil e renova a superfície da pele, deixando-a mais lisa e uniforme.",
+  "latico": "AHA mais suave que o glicólico, que também ajuda a reter água na pele.",
+  "mandelico": "AHA de molécula grande, que penetra devagar e costuma ser bem tolerado.",
+  "outros-aha": "AHAs de frutas que costumam aparecer combinados com outros ácidos.",
+  "salicilico": "Lipossolúvel: entra no poro, dissolve o excesso de oleosidade e ajuda a desobstruir cravos.",
+  "lha": "Derivado do ácido salicílico que age mais na superfície e de forma gradual.",
+  "gluconolactona": "Poli-hidroxiácido: esfolia de leve e ajuda a hidratar.",
+  "lactobionico": "Ácido biônico suave, com ação esfoliante, hidratante e antioxidante.",
+  "piruvico": "Alfa-cetoácido de ação forte, usado sobretudo em consultório.",
+  "enzimas": "Enzimas do mamão e do abacaxi que soltam as células mortas, sem ácido.",
+  "ureia": "Componente natural da pele: hidrata e, em concentrações altas, amolece a camada grossa.",
+  "niacinamida": "Um dos ativos mais versáteis: uniformiza o tom, controla a oleosidade, fortalece a barreira e acalma.",
+  "tranexamico": "Muito usado contra melasma e manchas persistentes.",
+  "azelaico": "Trata acne, manchas e a vermelhidão da rosácea.",
+  "kojico": "Clareador obtido de fungos que inibe a produção de melanina.",
+  "alfa-arbutina": "Clareador suave que reduz a produção de melanina.",
+  "tiamidol": "Inibidor de tirosinase patenteado, com bons resultados em estudos contra manchas e melasma.",
+  "butilresorcinol": "Derivado do resorcinol, potente contra manchas.",
+  "fenetil-resorcinol": "Clareador sintético inspirado em compostos do pinheiro.",
+  "melasyl": "Ativo patenteado recente contra manchas, que age sobre os precursores da melanina.",
+  "cisteamina": "Clareador usado em melasma, em geral em protocolo de contato curto.",
+  "alcacuz": "Extrato vegetal que uniformiza o tom e acalma.",
+  "fitico": "Ácido de origem vegetal com ação antioxidante, clareadora leve e esfoliante suave.",
+  "hidroquinona": "Clareador potente, usado em manchas e melasma.",
+  "vitc-pura": "Antioxidante que reforça a proteção contra os danos do sol e da poluição, uniformiza o tom e estimula colágeno.",
+  "vitc-glucosideo": "Derivado estável e suave da vitamina C.",
+  "vitc-sap": "Derivado estável da vitamina C, com estudos também em pele acneica.",
+  "vitc-map": "Derivado estável e hidrossolúvel da vitamina C.",
+  "vitc-etil": "Derivado estável da vitamina C, muito usado em séruns clareadores.",
+  "vitc-thd": "Vitamina C lipossolúvel, comum em óleos e cremes.",
+  "vitamina-e": "Antioxidante lipossolúvel que protege os lipídios da pele e potencializa a vitamina C.",
+  "ferulico": "Antioxidante vegetal que estabiliza e potencializa as vitaminas C e E.",
+  "resveratrol": "Antioxidante da uva, usado em fórmulas antienvelhecimento.",
+  "q10": "Antioxidante presente naturalmente na pele, que diminui com a idade.",
+  "cha-verde": "Polifenóis antioxidantes e calmantes, com leve ação seborreguladora.",
+  "astaxantina": "Carotenoide de microalgas, antioxidante potente.",
+  "hialuronico": "Atrai e retém água, deixando a pele mais viçosa e disfarçando linhas finas por desidratação.",
+  "glicerina": "Um dos umectantes mais eficazes e baratos.",
+  "pantenol": "Hidrata, acalma e ajuda a reparar a pele irritada.",
+  "betaglucana": "Polissacarídeo de aveia ou cogumelos, hidratante e calmante.",
+  "poliglutamato": "Umectante de origem fermentada, com grande capacidade de reter água.",
+  "aloe": "Calmante e hidratante leve, clássico no pós-sol.",
+  "pca": "Componentes do fator natural de hidratação (NMF) da pele.",
+  "ectoina": "Molécula de microrganismos extremófilos que protege as células e acalma a pele.",
+  "ceramidas": "Lipídios que formam a barreira da pele.",
+  "lipidios": "Completam as ceramidas na reconstrução da barreira cutânea.",
+  "esqualano": "Emoliente leve, semelhante ao sebo natural, que amacia sem pesar.",
+  "karite": "Emoliente rico, nutre peles secas e ásperas.",
+  "rosa-mosqueta": "Óleo vegetal rico em ácidos graxos, muito usado em cicatrizes e marcas.",
+  "petrolato": "Um dos oclusivos mais eficazes: impede a perda de água e protege a pele irritada.",
+  "centella": "Calmante e reparador muito popular no skincare coreano (linhas “cica”).",
+  "alantoina": "Suaviza, acalma e ajuda a pele a se recuperar.",
+  "bisabolol": "Ativo calmante derivado da camomila.",
+  "aveia": "Alivia coceira e ressecamento.",
+  "posbioticos": "Fermentados que apoiam o equilíbrio da microbiota e da barreira.",
+  "glicirrizinato": "Derivado do alcaçuz com ação calmante e antivermelhidão.",
+  "peroxido-benzoila": "Elimina a bactéria ligada à acne inflamada, sem gerar resistência.",
+  "enxofre": "Seca as espinhas e reduz a oleosidade.",
+  "melaleuca": "Óleo essencial com ação antimicrobiana em acne leve.",
+  "zinco-pca": "Ajuda a controlar a oleosidade e tem leve ação antibacteriana.",
+  "argilas": "Absorvem o excesso de oleosidade e deixam a pele matificada.",
+  "clindamicina": "Antibiótico tópico para acne inflamada.",
+  "matrixyl": "Peptídeo sinalizador que estimula a produção de colágeno.",
+  "argireline": "Peptídeo voltado para linhas de expressão.",
+  "ghk-cu": "Peptídeo associado à reparação da pele e ao estímulo de colágeno.",
+  "mucina-caracol": "Filtrado rico em glicoproteínas e ácido glicólico natural, hidratante e reparador.",
+  "pdrn": "Fragmentos de DNA (em geral de salmão), associados à regeneração da pele.",
+  "egf": "Proteína sinalizadora associada à renovação e reparação da pele.",
+  "cafeina": "Vasoconstritora: ajuda a reduzir o inchaço e o aspecto arroxeado das olheiras.",
+  "vitamina-k": "Usada em produtos para olheiras de origem vascular e hematomas.",
+  "oxido-zinco": "Filtro mineral de amplo espectro (UVA e UVB) e muito bem tolerado.",
+  "dioxido-titanio": "Filtro mineral, forte em UVB e UVA curto.",
+  "tinosorb-s": "Filtro orgânico moderno de amplo espectro, muito estável.",
+  "tinosorb-m": "Filtro híbrido de amplo espectro, com partículas que absorvem e refletem a radiação.",
+  "avobenzona": "Um dos principais filtros contra UVA longo.",
+  "octocrileno": "Filtro UVB que também estabiliza a avobenzona.",
+  "mexoryl-sx": "Filtro UVA estável, patenteado.",
+  "uvinul-a": "Filtro UVA fotoestável, frequente em protetores modernos.",
+  "uvinul-t": "Filtro UVB muito eficiente e estável."
+ },
+ "rotulo_extra": {
+  "ceramidas": [
+   "ceramide"
+  ],
+  "centella": [
+   "centella asiatica",
+   "asiaticoside"
+  ],
+  "cha-verde": [
+   "camellia sinensis"
+  ],
+  "aloe": [
+   "aloe barbadensis"
+  ],
+  "alcacuz": [
+   "glycyrrhiza glabra"
+  ],
+  "aveia": [
+   "avena sativa"
+  ],
+  "karite": [
+   "butyrospermum parkii"
+  ],
+  "rosa-mosqueta": [
+   "rosa canina"
+  ],
+  "melaleuca": [
+   "melaleuca alternifolia"
+  ],
+  "vitamina-e": [
+   "tocopheryl acetate"
+  ],
+  "hialuronico": [
+   "hyaluronate"
+  ],
+  "hpr": [
+   "granactive"
+  ]
+ },
+ "classes": {
+  "outros-aha": "aha"
+ }
+}
