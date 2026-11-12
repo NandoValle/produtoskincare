@@ -33,7 +33,7 @@ ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condiç
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
            "privacidade": "Privacidade", "termos": "Termos de uso", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
-           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?", "ativos": "Ativos"}
+           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?", "ativos": "Ativos", "woocommerce": "WooCommerce"}
 # Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.
 TRADUCOES = [{"pt-BR": "/", "en": "/en/", "es": "/es/"}] + [
     g for g in json.loads((RAIZ / "_scripts" / "traducoes.json").read_text(encoding="utf-8"))["grupos"]]
