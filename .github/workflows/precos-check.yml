@@ -1,0 +1,28 @@
+# precos-check.yml — dados de preço nunca podem divergir do build.
+#
+# Em cada push/PR: roda o gerador e exige que precos.json e a tabela da página
+# /ferramentas/precos/ estejam idênticos aos gerados a partir de
+# _scripts/precos/dados/ (precos.ndjson append-only + tamanhos.json + doses.json).
+
+name: precos-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  paridade:
+    name: precos.json x fontes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Gerar a partir das fontes e conferir se nada mudou
+        run: |
+          node _scripts/precos/gerar-precos.mjs
+          git diff --exit-code precos.json ferramentas/precos/index.html \
+            || { echo "ERRO: precos.json ou a tabela da página estão defasados. Rode 'node _scripts/precos/gerar-precos.mjs' e commite o resultado."; exit 1; }

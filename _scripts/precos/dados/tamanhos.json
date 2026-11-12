@@ -1,0 +1,187 @@
+{
+ "_instrucoes": "Preencha size_ml (ou size_g para cremes/pastas; densidade≈1) conferindo a embalagem ou a ficha da loja. Fonte: anotar de onde veio o tamanho (ex.: 'embalagem', 'ficha da loja'). Enquanto size_ml for null, o custo por dia NÃO é exibido — nunca estimamos volume escondido.",
+ "produtos": {
+  "cerave-gel-limpeza": {
+   "size_ml": null,
+   "size_g": 454,
+   "fonte": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC",
+   "confianca": "alta",
+   "observacao": "Título do anúncio do ASIN registrado: 'CeraVe Gel de Limpeza Facial... 454g'. Embalagem rotulada em gramas (densidade≈1 → ≈454ml). Existem variantes de 150g e importadas de 473ml; o preço registrado corresponde ao de 454g."
+  },
+  "lrp-effaclar-gel": {
+   "size_ml": null,
+   "size_g": 240,
+   "fonte": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Refil Gel de Limpeza Facial... Effaclar Alta Tolerância, 240g'. O produto registrado é o REFIL de 240g, não o frasco de 200ml."
+  },
+  "hada-labo-oil-cleansing": {
+   "size_ml": 200,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Gokujyun Oil Cleansing... 200ml'. Existe refil de 180ml; o ASIN registrado é o frasco de 200ml."
+  },
+  "neutrogena-hydro-boost": {
+   "size_ml": null,
+   "size_g": 50,
+   "fonte": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Hydro Boost Water Gel, 50g'."
+  },
+  "lrp-cicaplast-baume": {
+   "size_ml": 40,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Cicaplast Baume B5+... 40ml'. Existem variantes de 40ml e 100ml; o ASIN do preço registrado é o de 40ml."
+  },
+  "cetaphil-creme-hidratante": {
+   "size_ml": null,
+   "size_g": 453,
+   "fonte": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Creme Hidratante... Cetaphil 453g'. Observação: o anúncio é do creme hidratante corporal ('para Pele Seca e Sensível'); o catálogo o lista como hidratante facial — vale revisar a indicação."
+  },
+  "mantecorp-epidrat-calm": {
+   "size_ml": 50,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Balm Gel Mantecorp Skincare Epidrat Calm B5, 50ml'."
+  },
+  "garnier-uniform-matte": {
+   "size_ml": null,
+   "size_g": 85,
+   "fonte": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Hidratante Facial Garnier Uniform & Matte Toque Seco 85g'."
+  },
+  "isdin-fusion-water": {
+   "size_ml": 50,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD",
+   "confianca": "alta",
+   "observacao": "Título do ASIN registrado: 'Fusion Water 5 Stars FPS 60 - 50ml' (R$89,00). Atenção: o título atual do anúncio menciona 'Sem Cor', enquanto o catálogo trata este ASIN como o Fusion Water clássico (com cor) — revisar a nomeação; o tamanho 50ml, porém, é explícito."
+  },
+  "isdin-fusion-water-sem-cor": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN",
+   "confianca": "alta",
+   "observacao": "Título do ASIN registrado: 'Fusion Water 5 Stars FPS 60 - 30ml' (R$57,90). Atenção: o título atual não traz 'Sem Cor'; preço bate com a versão de 30ml."
+  },
+  "neutrogena-sun-fresh-fps70": {
+   "size_ml": null,
+   "size_g": 40,
+   "fonte": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Sun Fresh Derm Care, Sem Cor, FPS 70, 40g'."
+  },
+  "skin-aqua-moisture-milk": {
+   "size_ml": null,
+   "size_g": 40,
+   "fonte": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Skin Aqua Super Moisture Milk FPS50 40g'."
+  },
+  "lrp-ultra-cover": {
+   "size_ml": null,
+   "size_g": 30,
+   "fonte": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Ultra Cover Protetor Solar Cor Clara 30g'. Variante de cor: Cor Clara."
+  },
+  "eucerin-anti-pigment": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'EUCERIN Dual Sérum Facial Antimanchas e Anti-idade 30ml, Anti-Pigment'."
+  },
+  "principia-vc10": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.araujo.com.br/serum-principia-vc-10-vitamina-c-e-acido-ferulico-30ml/96560.html",
+   "confianca": "alta",
+   "observacao": "30ml confirmado em drogarias (Araujo, CallFarma) e na loja oficial da Principia no Mercado Livre. O link do catálogo é uma busca na Shopee, sem variante única visível."
+  },
+  "principia-niacinamida": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/S%C3%A9rum-Nc-10-Principia-Niacinamida-Zinco/dp/B08R7RSJFX",
+   "confianca": "alta",
+   "observacao": "NC-10 vendido em 30ml (título do anúncio: 'Sérum 10% Niacinamida + 1% Zinco PCA NC-10 com 30ml'); confirmado também no Mercado Livre."
+  },
+  "principia-ah2": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.principiaskin.com/serum-hidratante-2-acido-hialuronico-1-vitamina-b5.html",
+   "confianca": "media",
+   "observacao": "O site oficial lista duas variantes: AH-2 30ml e AH-2 60ml. O preço registrado (R$42,90 na Shopee) corresponde à de 30ml (a de 60ml custa ~R$69+); confirmar na ficha do anúncio se era mesmo a de 30ml."
+  },
+  "principia-rn03": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/S%C3%A9rum-Principia-Retinol-3-Vitamina/dp/B09WB12BKW",
+   "confianca": "alta",
+   "observacao": "RN-0,3 vendido em 30ml (título do anúncio: 'com 30ml'); confirmado também em revendedores (30ml/1.01fl.oz)."
+  },
+  "ordinary-niacinamide": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.mercadolivre.com.br/the-ordinary-niacinamide-10-zinc-1-niacinamida-30ml-tipo-de-pele-todas/p/MLB25108722",
+   "confianca": "media",
+   "observacao": "Existem variantes de 30ml e 60ml. O preço registrado (R$39,90) está abaixo dos anúncios atuais de 30ml (~R$65–78), o que sugere oferta antiga ou importado; o tamanho padrão e mais vendido no ML é 30ml. Confirmar a variante exata do anúncio de nov/2026."
+  },
+  "creamy-calming-cream": {
+   "size_ml": null,
+   "size_g": 40,
+   "fonte": "https://www.amazon.com.br/Skincare-Sensibilizada-Vermelhid%C3%A3o-Especialmente-Sens%C3%ADveis/dp/B0BXV6V3JC",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Creamy Skincare Calming Cream 40g'. O site oficial da Creamy não exibe o volume na página (conteúdo dinâmico), mas o tamanho 40g é o único anunciado."
+  },
+  "creamy-vitamina-c": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.mercadolivre.com.br/creamy-skincare-vitamina-c-30ml-serum-facial-vitamina-c-10-aumenta-firmeza-da-pele-previne-rugas-finas-clareador-de-manchas-todos-os-tipos-de-pele/p/MLB19742247",
+   "confianca": "alta",
+   "observacao": "Sérum Vitamina C 10% da Creamy vendido em 30ml (título do anúncio no ML); confirmado em kit na Amazon ('Vitamina C 10% 30ml')."
+  },
+  "lrp-retinol-b3": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Roche-Posay-Antirrugas-concentrado-acentuadas-Vitamina/dp/B07Z9Y4M3C",
+   "confianca": "media",
+   "observacao": "Existem variantes de 15ml e 30ml. O link do catálogo é uma busca na Amazon; o preço registrado (R$149,90) bate com a versão de 30ml (a de 15ml custa ~R$110–130). Título: 'Retinol Concentrado 30ml'."
+  },
+  "loreal-revitalift-noturno": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.mercadolivre.com.br/serum-noturno-revitalift-retinol-30ml-loreal-paris/up/MLBU3684080327",
+   "confianca": "alta",
+   "observacao": "Sérum Noturno Revitalift (0,3% retinol puro) vendido em 30ml — tamanho único da linha no Brasil; preço R$59,90 coerente."
+  },
+  "mantecorp-ivy-c-ferulic": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/Mantecorp-Skincare-Rejuvenescedor-Facial-Ferulic/dp/B0B1RVQP3V",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Sérum Facial Mantecorp Skincare Ivy C Ferulic, 30ml'. O link do catálogo é uma busca na Amazon; este é o único tamanho anunciado."
+  },
+  "cerave-pm-locao": {
+   "size_ml": 52,
+   "size_g": null,
+   "fonte": "https://www.amazon.com.br/CeraVe-Hidratante-Hialur%C3%B4nico-Niacinamida-Textura/dp/B096XPFVLL",
+   "confianca": "alta",
+   "observacao": "Título do anúncio: 'Loção Facial Hidratante CeraVe PM Ceramidas Peles Normais a Secas 52ml'. O link do catálogo é uma busca na Amazon; esta é a versão brasileira de 52ml (a importada dos EUA é 3oz/89ml)."
+  },
+  "ordinary-azelaic": {
+   "size_ml": 30,
+   "size_g": null,
+   "fonte": "https://www.mercadolivre.com.br/creme-the-ordinary-azelaic-acid-suspension-10-30ml-melasma-acne-the-ordinary-18-anos/p/MLB24528120",
+   "confianca": "alta",
+   "observacao": "Azelaic Acid Suspension 10% vendido em 30ml — tamanho único da linha; confirmado em múltiplos anúncios do ML."
+  }
+ }
+}
