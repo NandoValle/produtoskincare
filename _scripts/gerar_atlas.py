@@ -13,6 +13,8 @@ Não inventa dado: tudo sai de fontes que já estão no repositório.
   - ativos/*/ e ingredientes/*/    -> data da última revisão de cada ficha (<time>)
   - _scripts/atlas.json            -> nomes e resumos dos cartões, vocabulário da busca,
                                       temas do mapa da pele
+  - _scripts/potencia-ativos.json  -> potência (suave a potente) e a frase da ficha que a sustenta.
+                                      Evidência só entra se a URL está em ingredientes.json.
 
 Escreve:
   - ativos/atlas-dados.js  (window.ATLAS, lido por ativos/atlas.js)
@@ -33,6 +35,9 @@ REGRAS = RAIZ / "regras-ativos.js"
 INDICE = RAIZ / "ativos" / "index.html"
 DADOS = RAIZ / "ativos" / "atlas-dados.js"
 CFG = RAIZ / "_scripts" / "atlas.json"
+POTENCIA = RAIZ / "_scripts" / "potencia-ativos.json"
+SEM_FICHA = "sem ficha com fontes ainda"
+EV_ROTULO = {"forte": "evidência forte", "moderada": "evidência moderada", "emergente": "evidência emergente"}
 
 NODE = r"""
 const fs = require('fs');
@@ -62,6 +67,7 @@ PELES = {"oleosa": "oleosa", "mista": "mista", "normal": "normal", "seca": "seca
 EVID = {"forte": 3, "moderada": 2, "emergente": 1}
 IRRITA = {0: "baixa", 1: "moderada", 2: "alta"}
 NIVEL = {1: "iniciante", 2: "intermediário", 3: "avançado"}
+POT_ROTULO = {1: "suave", 2: "moderada", 3: "alta", 4: "potente"}
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto",
          "setembro", "outubro", "novembro", "dezembro"]
 # Fora do leitor de rótulo, como no verificador: ácido cítrico costuma ser só ajuste de pH.
@@ -83,8 +89,25 @@ def data_longa(iso):
     return "%d de %s de %s" % (int(d), MESES[int(m) - 1], a)
 
 
+def gest_ficha(pagina):
+    """Frase da ficha curta (<b>Gestação:</b>). Vazio nas fichas de ingredientes."""
+    m = re.search(r"<b>Gestação:</b>\s*([^<]+)", pagina)
+    if not m:
+        return ""
+    t = norm(m.group(1))
+    if "evitar" in t:
+        return "evitar"
+    if "compativel" in t:
+        return "compativel"
+    if "consulte" in t or "confirme" in t:
+        return "consultar"
+    return ""
+
+
 def carregar():
     cfg = json.loads(CFG.read_text(encoding="utf-8"))
+    potencia = json.loads(POTENCIA.read_text(encoding="utf-8"))
+    pot_ativos = potencia.get("ativos") or {}
     r = subprocess.run(["node", "-e", NODE, str(GUIA), str(REGRAS)], capture_output=True)
     if r.returncode != 0:
         sys.exit("node falhou: " + r.stderr.decode("utf-8", "replace"))
@@ -103,6 +126,17 @@ def carregar():
         if len(x["classes"]) > 1:
             print("AVISO: %s caiu em mais de uma classe do verificador: %s (fica a primeira)" % (i, x["classes"]))
         e = evid.get(url)
+        if e and not url.startswith("/ingredientes/"):
+            sys.exit("evidência só pode vir de ficha com fontes: " + i)
+        if url.startswith("/ingredientes/") and not e:
+            sys.exit("ficha de ingredientes sem evidência em ingredientes.json: " + url)
+        gf = gest_ficha(pagina)
+        gest = gf or x.get("gest") or ""
+        if gf and x.get("gest") and gf != x.get("gest"):
+            print("AVISO gestação %s: guia=%s ficha=%s (fica a ficha)" % (i, x.get("gest"), gf))
+        pot = pot_ativos.get(i)
+        if not pot or pot.get("n") not in POT_ROTULO or not pot.get("nota"):
+            sys.exit("potência ausente ou inválida em _scripts/potencia-ativos.json: " + i)
         termos = [norm(p) for p in x["inci"].split("·")]
         termos += [norm(cfg["nomes"][i]), norm(re.sub(r"\(.*?\)", "", x["n"]))]
         termos += [norm(t) for t in extra.get(i, [])]
@@ -113,8 +147,9 @@ def carregar():
         ativos.append({
             "id": i, "n": x["n"], "nome": cfg["nomes"][i], "resumo": cfg["resumos"][i], "inci": x["inci"],
             "cat": x["cat"], "catId": cat_id[x["cat"]], "c": x["c"], "pele": x.get("pele") or [],
-            "irrita": x["irrita"], "nivel": x["nivel"], "turno": x["turno"], "conc": x["conc"],
-            "gest": x.get("gest") or "", "sol": bool(x.get("sol")), "rx": bool(x.get("rx")),
+            "irrita": x["irrita"], "nivel": x["nivel"], "pot": pot["n"], "potNota": pot["nota"],
+            "turno": x["turno"], "conc": x["conc"],
+            "gest": gest, "sol": bool(x.get("sol")), "rx": bool(x.get("rx")),
             "d": x["d"], "dica": x.get("dica", ""), "url": url, "rev": m.group(1) if m else "",
             "ev": e["evidencia"] if e else "", "evm": e["evidencia_motivo"] if e else "",
             "classe": cfg.get("classes", {}).get(i) or (x["classes"][0] if x["classes"] else ""), "rot": rot,
@@ -122,17 +157,17 @@ def carregar():
     return cfg, ativos, bruto["versaoRegras"]
 
 
-def barra(n, rotulo, classe=""):
-    segs = "".join('<i class="on"></i>' if k < n else "<i></i>" for k in range(3))
-    return '<span class="at-barra%s" aria-hidden="true">%s</span><span class="at-valor">%s</span>' % (
-        (" " + classe) if classe else "", segs, esc(rotulo))
+def barra(n, total, rotulo, classe="", vazia=False):
+    segs = "".join('<i class="on"></i>' if k < n else "<i></i>" for k in range(total))
+    cls = ((" " + classe) if classe else "") + (" vazia" if vazia else "")
+    return '<span class="at-barra%s" aria-hidden="true">%s</span><span class="at-valor">%s</span>' % (cls, segs, esc(rotulo))
 
 
 def cartao(a, ordem):
     if a["ev"]:
-        ev = barra(EVID[a["ev"]], a["ev"], "ev")
+        ev = barra(EVID[a["ev"]], 3, EV_ROTULO[a["ev"]], "ev")
     else:
-        ev = barra(0, "não avaliada", "ev vazia")
+        ev = barra(0, 3, SEM_FICHA, "ev", vazia=True)
     selos = []
     if a["rx"]:
         selos.append('<span class="at-selo rx">Receita médica</span>')
@@ -149,8 +184,8 @@ def cartao(a, ordem):
         '<p class="at-resumo">%(resumo)s</p>'
         '<dl class="at-medidores">'
         '<div><dt>Evidência</dt><dd>%(ev)s</dd></div>'
+        '<div><dt>Potência</dt><dd>%(pot)s</dd></div>'
         '<div><dt>Irritação</dt><dd>%(ir)s</dd></div>'
-        '<div><dt>Nível</dt><dd>%(nv)s</dd></div>'
         '</dl>'
         '%(selos)s'
         '<p class="at-acoes"><button type="button" class="at-bt" data-passaporte="%(id)s">Passaporte</button>'
@@ -159,8 +194,8 @@ def cartao(a, ordem):
     ) % {
         "id": a["id"], "ordem": ordem, "url": a["url"], "nome": esc(a["nome"]), "inci": esc(a["inci"]),
         "resumo": a["resumo"], "ev": ev,
-        "ir": barra(a["irrita"] + 1, IRRITA[a["irrita"]], "ir"),
-        "nv": barra(a["nivel"], NIVEL[a["nivel"]], "nv"),
+        "pot": barra(a["pot"], 4, POT_ROTULO[a["pot"]], "po"),
+        "ir": barra(a["irrita"] + 1, 3, IRRITA[a["irrita"]], "ir"),
         "selos": ('<p class="at-selos">%s</p>' % "".join(selos)) if selos else "",
     }
 
@@ -236,18 +271,46 @@ def corpo(cfg, ativos):
     partes = []
     partes.append(
         '<header class="at-hero">'
-        '<p class="at-olho">Atlas dos ativos</p>'
-        '<h1>Atlas dos princípios ativos de skincare</h1>'
+        '<p class="at-olho">Fichas de ativos</p>'
+        '<h1>Fichas de princípios ativos de skincare</h1>'
         '<p class="ig-meta">Por Equipe Produto Skincare · Atualizado em <time datetime="%s">%s</time></p>'
-        '<p class="ig-lede">%d ativos em %d categorias. Busque pelo seu objetivo, compare até três lado a lado e abra o passaporte de cada um. '
-        '%d já têm <a href="/ingredientes/">evidência avaliada, com estudos e fontes</a>; nos outros %d o site ainda não avaliou os estudos, e isso aparece escrito em cada cartão.</p>'
+        '<p class="ig-lede">%d ativos em %d categorias, cada um com uma página curta: o que é, para que serve, para quem, como usar, cuidados, combinações e gestação. '
+        'Busque por um objetivo ou pelo nome do ativo. Os %d que já têm <a href="/ingredientes/">ficha com estudos e fontes</a> mostram o nível de evidência; '
+        'nos outros %d o cartão diz “%s”, sem inventar uma nota.</p>'
         '<form class="at-busca" id="at-busca" role="search" hidden>'
-        '<label for="at-q">O que você quer entender sobre sua pele?</label>'
+        '<label for="at-q">Qual preocupação ou ativo você quer ver?</label>'
         '<div class="at-busca-linha"><input id="at-q" name="q" type="search" autocomplete="off" enterkeyhint="search" '
-        'placeholder="manchas, pele sensível, vitamina C ou um nome do rótulo">'
+        'placeholder="melasma, acne, poros, pele sensível, gestação ou o nome de um ativo">'
         '<button type="submit" class="at-bt cheio">Buscar</button></div>'
         '<p class="at-sugestoes"><span>Experimente:</span> %s</p>'
         '</form>'
+        '</header>' % (hoje, data_longa(hoje), n, len(cfg["categorias"]), n_ev, n - n_ev, SEM_FICHA, sug))
+    chips_cat = "".join(
+        '<button type="button" class="at-chip" data-cat="%s" aria-pressed="false">%s</button>' % (c["id"], esc(c["titulo"]))
+        for c in cfg["categorias"])
+    partes.append(
+        '<section class="at-painel" id="at-painel" aria-label="Filtros e ordem" hidden>'
+        '<div class="at-filtros" role="group" aria-labelledby="at-filtros-t">'
+        '<p class="at-filtros-rotulo" id="at-filtros-t">Filtros</p>'
+        '<button type="button" class="at-chip" data-filtro="gest" aria-pressed="false">Seguro na gestação</button>'
+        '<button type="button" class="at-chip" data-filtro="semrx" aria-pressed="false">Sem receita</button>'
+        '<button type="button" class="at-chip" data-filtro="sensivel" aria-pressed="false">Pele sensível</button>'
+        '<button type="button" class="at-chip" data-filtro="evid" aria-pressed="false">Com ficha e fontes</button>'
+        '<button type="button" class="at-chip" data-filtro="iniciante" aria-pressed="false">Para iniciantes</button>'
+        '<button type="button" class="at-chip" data-filtro="manha" aria-pressed="false">Uso de manhã</button>'
+        '</div>'
+        '<div class="at-filtros" role="group" aria-labelledby="at-cats-t">'
+        '<p class="at-filtros-rotulo" id="at-cats-t">Categorias</p>'
+        '%s</div>'
+        '<p class="at-ordem"><label for="at-ordem">Ordenar por</label> <select id="at-ordem">'
+        '<option value="padrao">Evidência primeiro</option><option value="encaixe">Melhor encaixe</option>'
+        '<option value="irrita">Menor irritação</option><option value="az">Nome (A a Z)</option></select>'
+        '<button type="button" class="at-link" id="at-limpar" hidden>Limpar tudo</button></p>'
+        '<p class="at-contagem" id="at-contagem" role="status" aria-live="polite"></p>'
+        '<p class="ig-nota at-aviso-gest" id="at-aviso-gest" hidden>“Seguro na gestação” reúne só quem a ficha diz que costuma ser considerado compatível. Confirme com seu médico. Quem a ficha manda evitar, ou só consultar, fica de fora.</p>'
+        '</section>' % chips_cat)
+    partes.append(
+        '<div class="at-extra">'
         '<details class="at-rotulo" id="at-rotulo" hidden><summary>Tenho a lista de ingredientes do rótulo</summary>'
         '<label for="at-inci">Cole aqui a lista de ingredientes (INCI)</label>'
         '<textarea id="at-inci" rows="4" placeholder="Aqua, Niacinamide, Glycerin, Zinc PCA, …"></textarea>'
@@ -257,24 +320,8 @@ def corpo(cfg, ativos):
         '</details>'
         '<noscript><p class="ig-nota">Sem JavaScript, a busca, os filtros e o comparador não funcionam. A lista completa dos %d ativos segue abaixo, por categoria.</p></noscript>'
         '<p class="ig-nota">Quer uma sugestão pelo seu objetivo e tipo de pele, com rotina de manhã e de noite? Use o <a href="/ferramentas/ativos/">guia de princípios ativos</a>.</p>'
-        '</header>' % (hoje, data_longa(hoje), n, len(cfg["categorias"]), n_ev, n - n_ev, sug, n))
-    partes.append(
-        '<section class="at-painel" id="at-painel" aria-label="Filtros e ordem" hidden>'
-        '<p class="at-filtros">'
-        '<button type="button" class="at-chip" data-filtro="evid" aria-pressed="false">Evidência avaliada</button>'
-        '<button type="button" class="at-chip" data-filtro="gest" aria-pressed="false">Compatível na gestação</button>'
-        '<button type="button" class="at-chip" data-filtro="semrx" aria-pressed="false">Sem receita</button>'
-        '<button type="button" class="at-chip" data-filtro="sensivel" aria-pressed="false">Pele sensível</button>'
-        '<button type="button" class="at-chip" data-filtro="iniciante" aria-pressed="false">Para iniciantes</button>'
-        '<button type="button" class="at-chip" data-filtro="manha" aria-pressed="false">Uso de manhã</button>'
-        '</p>'
-        '<p class="at-ordem"><label for="at-ordem">Ordenar por</label> <select id="at-ordem">'
-        '<option value="padrao">Relevância</option><option value="evid">Evidência avaliada</option>'
-        '<option value="irrita">Menor irritação</option><option value="az">Nome (A a Z)</option></select>'
-        '<button type="button" class="at-link" id="at-limpar" hidden>Limpar tudo</button></p>'
-        '<p class="at-contagem" id="at-contagem" role="status" aria-live="polite"></p>'
-        '<p class="ig-nota at-aviso-gest" id="at-aviso-gest" hidden>“Compatível na gestação” repete a classificação do guia: costuma ser considerado compatível. Confirme com seu médico antes de usar.</p>'
-        '</section>')
+        '</div>' % n)
+    extra = partes.pop()
     partes.append(
         '<section class="at-resultados" id="at-resultados" aria-labelledby="at-res-t" hidden>'
         '<h2 id="at-res-t" tabindex="-1">Resultado</h2>'
@@ -282,6 +329,7 @@ def corpo(cfg, ativos):
         '<ol class="at-grade" id="at-res-lista"></ol>'
         '<div class="ig-caixa" id="at-res-vazio" hidden></div>'
         '</section>')
+    partes.append(extra)
     partes.append(secao_mapa(cfg, ativos))
     partes.append(
         '<section class="at-prontas" id="at-prontas" aria-labelledby="comparacoes" hidden>'
@@ -301,15 +349,15 @@ def corpo(cfg, ativos):
     partes.append('</div>')
     partes.append(
         '<section aria-labelledby="como-ler">'
-        '<h2 id="como-ler">Como ler este atlas</h2>'
+        '<h2 id="como-ler">Como ler estas fichas</h2>'
         '<ul>'
-        '<li><b>Evidência</b>: forte, moderada ou emergente, só nos %d ativos em que o site já avaliou os estudos (o motivo e as fontes estão na ficha). Nos outros aparece “não avaliada”: quer dizer que o site não fez essa avaliação, e não que o ativo não funciona.</li>'
+        '<li><b>Evidência</b>: forte, moderada ou emergente, só nos %d ativos que já têm ficha com estudos e fontes. Nos outros aparece “%s”: o site ainda não publicou essa ficha. Não é uma nota, e não quer dizer que o ativo não funciona.</li>'
+        '<li><b>Potência</b>: suave, moderada, alta ou potente, conforme a força de ação que a ficha descreve. Não é uma dose nem uma nota de evidência. Em filtros solares, a barra mede a força do filtro, não a de um tratamento.</li>'
         '<li><b>Irritação</b>: baixa, moderada ou alta, conforme a chance de arder, descamar ou avermelhar no começo do uso.</li>'
-        '<li><b>Nível</b>: iniciante, intermediário ou avançado, conforme a experiência com ativos que o uso costuma pedir.</li>'
         '</ul>'
-        '<p>Irritação, nível, objetivos, concentração e gestação vêm da mesma base do <a href="/ferramentas/ativos/">guia de princípios ativos</a>. As fichas resumem orientações de uso comuns em dermatologia cosmética e não citam estudos. Concentrações são faixas usuais em cosméticos; os limites legais mudam de país para país e com o tempo. Ativos marcados como <b>receita médica</b> são medicamentos e só devem ser usados com prescrição.</p>'
-        '<p>As combinações do passaporte e do comparador saem das regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>. Quando não há regra cadastrada para um par, o atlas diz que não sabe. Para montar a rotina inteira, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a>.</p>'
-        '</section>' % n_ev)
+        '<p>Irritação, objetivos, concentração e gestação vêm da mesma base do <a href="/ferramentas/ativos/">guia de princípios ativos</a>, conferida com a frase de gestação de cada ficha. A potência fica nos dados da página, com a frase da ficha que sustenta cada número. As fichas sem fontes resumem orientações de uso comuns em dermatologia cosmética e não citam estudos. Concentrações são faixas usuais em cosméticos; os limites legais mudam de país para país e com o tempo. Ativos marcados como <b>receita médica</b> são medicamentos e só devem ser usados com prescrição.</p>'
+        '<p>As combinações do passaporte e do comparador saem das regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>. Quando não há regra cadastrada para um par, a página diz que não sabe. Para montar a rotina inteira, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a>.</p>'
+        '</section>' % (n_ev, SEM_FICHA))
     return "\n".join(partes)
 
 
