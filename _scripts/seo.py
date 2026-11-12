@@ -128,8 +128,13 @@ def gerar_og(titulo, secao, destino: Path):
     img.save(destino, "JPEG", quality=78, optimize=True, progressive=True)
 
 
+# og-cache.json: para cada img/og/*.jpg, o hash do título e da seção com que o cartão foi gerado.
+# O cartão só é refeito quando o hash muda. "manual" marca uma imagem feita à mão que fica no
+# caminho de img/og/ (ex.: fotos das ferramentas): o script nunca a sobrescreve.
 ARQ_CACHE_OG = RAIZ / "_scripts/og-cache.json"
 CACHE_OG = json.loads(ARQ_CACHE_OG.read_text()) if ARQ_CACHE_OG.exists() else {}
+CACHE_OG_MANUAL = "manual"
+OG_SEM_REGISTRO = []
 
 
 def nome_og(url):
@@ -160,7 +165,17 @@ def montar_bloco(arq, url, info, texto):
         og_path = nome_og(url)
         chave = hashlib.sha1((titulo_img + "|" + secao).encode()).hexdigest()[:10]
         destino = RAIZ / og_path
-        if not destino.exists() or CACHE_OG.get(og_path) != chave:
+        anterior = CACHE_OG.get(og_path)
+        if not destino.exists():
+            gerar_og(titulo_img, secao if secao != MARCA else "", destino)
+            CACHE_OG[og_path] = chave
+        elif anterior is None:
+            # Imagem que não saiu deste script (ou saiu sem o og-cache.json). Refazer apagaria uma
+            # foto feita à mão e, mesmo sendo cartão nosso, a versão local do Pillow muda o kerning
+            # e o arquivo inteiro. Fica como está.
+            OG_SEM_REGISTRO.append(og_path)
+        elif anterior != CACHE_OG_MANUAL and anterior != chave:
+            # o título ou a seção mudou: o cartão antigo está desatualizado
             gerar_og(titulo_img, secao if secao != MARCA else "", destino)
             CACHE_OG[og_path] = chave
         og_url, og_w, og_h, og_alt = f"{SITE}/{og_path}", "1200", "630", titulo_img
@@ -194,20 +209,33 @@ def montar_bloco(arq, url, info, texto):
     return "<!-- seo:inicio -->\n" + "\n".join(t for t in tags if t) + "\n<!-- seo:fim -->\n"
 
 
+BLOCO_SEO = re.compile(r"<!-- seo:inicio -->.*?<!-- seo:fim -->\n?", re.S)
+LUGAR_DO_BLOCO = "\0seo\0"  # marca provisória; não existe em HTML
+
+
 def processar(arq: Path):
-    texto = arq.read_text(encoding="utf-8")
+    original = arq.read_text(encoding="utf-8")
     info = Leitor()
-    info.feed(texto)  # lê antes de tirar o bloco antigo, para manter og:title/og:description já definidos
-    texto = re.sub(r"<!-- seo:inicio -->.*?<!-- seo:fim -->\n?", "", texto, flags=re.S)
+    info.feed(original)  # lê antes de tirar o bloco antigo, para manter og:title/og:description já definidos
+    # O bloco novo volta exatamente para o lugar do antigo. O prontidao.py põe linhas no fim do <head>
+    # (WebMCP, author) depois do bloco; mover o bloco para antes de </head> mudava a página a cada
+    # execução, e a página "mudada" ganhava lastmod de hoje no sitemap. Só página sem bloco o recebe
+    # antes de </head>.
+    texto = BLOCO_SEO.sub(LUGAR_DO_BLOCO, original, count=1)
+    texto = BLOCO_SEO.sub("", texto)
     url = caminho_url(arq)
-    bloco = montar_bloco(arq, url, info, texto)
+    bloco = montar_bloco(arq, url, info, texto.replace(LUGAR_DO_BLOCO, ""))
     # remove OG/Twitter antigos e linhas em branco que sobraram; o bloco novo os substitui
     texto = re.sub(r'[ \t]*<meta (property="og:[^"]+"|name="twitter:[^"]+")[^>]*>\n?', "", texto)
     texto = re.sub(r"\n{3,}", "\n\n", texto)
-    if "</head>" not in texto:
+    if LUGAR_DO_BLOCO in texto:
+        texto = texto.replace(LUGAR_DO_BLOCO, bloco, 1)
+    elif "</head>" in texto:
+        texto = texto.replace("</head>", bloco + "</head>", 1)
+    else:
         raise SystemExit(f"sem </head>: {arq}")
-    texto = texto.replace("</head>", bloco + "</head>", 1)
-    arq.write_text(texto, encoding="utf-8")
+    if texto != original:
+        arq.write_text(texto, encoding="utf-8")
     robots = info.meta.get("robots", "")
     return url, "noindex" not in robots
 
@@ -230,6 +258,17 @@ def mudou_desde_main(arq: Path):
         return True
 
 
+def data_do_git(arq: Path):
+    """Data do último commit do arquivo (para página sem mudança que ainda não estava no sitemap)."""
+    try:
+        r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(arq.relative_to(RAIZ))],
+                           cwd=RAIZ, capture_output=True, text=True, timeout=20)
+        d = r.stdout.strip()
+        return d if re.fullmatch(r"\d{4}-\d{2}-\d{2}", d) else None
+    except Exception:
+        return None
+
+
 def main():
     paginas = sorted((p for p in RAIZ.rglob("index.html")
                       if not (set(p.relative_to(RAIZ).parts[:-1]) & IGNORAR)), key=caminho_url)
@@ -239,7 +278,11 @@ def main():
         url, indexar = processar(arq)
         if indexar:
             loc = SITE + url
-            urls.append((loc, HOJE if mudou_desde_main(arq) else antigos.get(loc, HOJE), url))
+            if mudou_desde_main(arq):
+                mod = HOJE
+            else:
+                mod = antigos.get(loc) or data_do_git(arq) or HOJE
+            urls.append((loc, mod, url))
     prioridade = lambda u: "1.0" if u == "/" else "0.9" if u in ("/provador/", "/pergunte/") else "0.8" if u.count("/") <= 2 else "0.7"
     linhas = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, mod, url in urls:
@@ -249,6 +292,11 @@ def main():
     (RAIZ / "sitemap.xml").write_text("\n".join(linhas) + "\n", encoding="utf-8")
     ARQ_CACHE_OG.write_text(json.dumps(CACHE_OG, indent=1, sort_keys=True) + "\n")
     print(f"{len(paginas)} páginas processadas, {len(urls)} no sitemap")
+    if OG_SEM_REGISTRO:
+        print(f"  aviso: {len(OG_SEM_REGISTRO)} imagem(ns) em img/og/ fora do og-cache.json, mantida(s) como está(ão). "
+              f'Foto feita à mão: registre como "{CACHE_OG_MANUAL}". Cartão deste script: apague o arquivo para refazê-lo.')
+        for og_path in OG_SEM_REGISTRO:
+            print(f"    {og_path}")
 
 
 if __name__ == "__main__":
