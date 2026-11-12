@@ -1523,5 +1523,785 @@
    "O conteúdo do Produto Skincare substitui uma consulta com dermatologista?",
    "Não. Os termos de uso dizem que o conteúdo é informativo, não é diagnóstico nem prescrição, e que o resultado do provador e das ferramentas é uma estimativa cosmética. Em caso de lesão, reação a um produto ou dúvida de saúde, a orientação é procurar um médico."
   ]
+ ],
+ "/ativos/retinal/": [
+  [
+   "O que é retinal e para que serve?",
+   "Um passo mais próximo do ácido retinoico que o retinol. Costuma ser indicado para rugas e firmeza, textura e falta de viço, acne e cravos, manchas e melasma."
+  ],
+  [
+   "Como usar retinal?",
+   "Noite, em concentração usual de 0,05% a 0,1%. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/palmitato-de-retinila/": [
+  [
+   "O que é palmitato de retinila e para que serve?",
+   "Éster de vitamina A bem mais suave que o retinol, com efeito também mais discreto. Costuma ser indicado para rugas e firmeza, textura e falta de viço."
+  ],
+  [
+   "Como usar palmitato de retinila?",
+   "Noite, em concentração usual de variável. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/hpr-retinoato-de-hidroxipinacolona/": [
+  [
+   "O que é HPR e para que serve?",
+   "Éster de ácido retinoico de uso cosmético, em geral menos irritante que o retinol. Costuma ser indicado para rugas e firmeza, textura e falta de viço, acne e cravos."
+  ],
+  [
+   "Como usar HPR?",
+   "Noite, em concentração usual de conforme o fabricante (ex.: granactive retinoid). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/bakuchiol/": [
+  [
+   "O que é bakuchiol e para que serve?",
+   "Ativo vegetal (da planta Psoralea corylifolia) com efeito semelhante ao do retinol em alguns estudos, porém mais suave. Costuma ser indicado para rugas e firmeza, textura e falta de viço, acne e cravos, manchas e melasma."
+  ],
+  [
+   "Como usar bakuchiol?",
+   "Manhã ou noite, em concentração usual de 0,5% a 1%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/tretinoina/": [
+  [
+   "O que é tretinoína e para que serve?",
+   "Retinoide de referência para acne e fotoenvelhecimento. Costuma ser indicado para acne e cravos, rugas e firmeza, manchas e melasma, textura e falta de viço."
+  ],
+  [
+   "Como usar tretinoína?",
+   "Só com receita e acompanhamento médico. Noite, em concentração usual de 0,025% a 0,1%. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/adapaleno/": [
+  [
+   "O que é adapaleno e para que serve?",
+   "Retinoide de terceira geração, muito usado contra acne e cravos. Costuma ser indicado para acne e cravos, oleosidade e poros, textura e falta de viço."
+  ],
+  [
+   "Como usar adapaleno?",
+   "Só com receita e acompanhamento médico. Noite, em concentração usual de 0,1% a 0,3%. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/tazaroteno/": [
+  [
+   "O que é tazaroteno e para que serve?",
+   "Retinoide potente, usado para acne, psoríase e fotoenvelhecimento. Costuma ser indicado para acne e cravos, rugas e firmeza."
+  ],
+  [
+   "Como usar tazaroteno?",
+   "Só com receita e acompanhamento médico. Noite, em concentração usual de 0,05% a 0,1%. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/trifaroteno/": [
+  [
+   "O que é trifaroteno e para que serve?",
+   "Retinoide de quarta geração, aprovado para acne no rosto e no tronco. Costuma ser indicado para acne e cravos."
+  ],
+  [
+   "Como usar trifaroteno?",
+   "Só com receita e acompanhamento médico. Noite, em concentração usual de 0,005%. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/acido-glicolico/": [
+  [
+   "O que é ácido glicólico e para que serve?",
+   "O AHA (alfa-hidroxiácido) de molécula menor: penetra fácil e renova a superfície da pele, deixando-a mais lisa e uniforme. Costuma ser indicado para textura e falta de viço, manchas e melasma, rugas e firmeza, oleosidade e poros."
+  ],
+  [
+   "Como usar ácido glicólico?",
+   "Noite, em concentração usual de 5% a 10% em uso doméstico; mais alto só em peelings profissionais. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/acido-latico/": [
+  [
+   "O que é ácido lático e para que serve?",
+   "AHA mais suave que o glicólico, que também ajuda a reter água na pele. Costuma ser indicado para textura e falta de viço, desidratação, manchas e melasma."
+  ],
+  [
+   "Como usar ácido lático?",
+   "Noite, em concentração usual de 5% a 12%. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/acidos-malico-tartarico-e-citrico/": [
+  [
+   "O que é ácidos málico, tartárico e cítrico e para que serve?",
+   "AHAs de frutas que costumam aparecer combinados com outros ácidos. Costuma ser indicado para textura e falta de viço."
+  ],
+  [
+   "Como usar ácidos málico, tartárico e cítrico?",
+   "Noite, em concentração usual de geralmente em combinações. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/lha-acido-capriloil-salicilico/": [
+  [
+   "O que é LHA e para que serve?",
+   "Derivado do ácido salicílico que age mais na superfície e de forma gradual. Costuma ser indicado para acne e cravos, textura e falta de viço, oleosidade e poros."
+  ],
+  [
+   "Como usar LHA?",
+   "Noite, em concentração usual de conforme o fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/gluconolactona/": [
+  [
+   "O que é gluconolactona e para que serve?",
+   "Poli-hidroxiácido: esfolia de leve e ajuda a hidratar. Costuma ser indicado para textura e falta de viço, desidratação."
+  ],
+  [
+   "Como usar gluconolactona?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-lactobionico/": [
+  [
+   "O que é ácido lactobiônico e para que serve?",
+   "Ácido biônico suave, com ação esfoliante, hidratante e antioxidante. Costuma ser indicado para textura e falta de viço, desidratação, rugas e firmeza."
+  ],
+  [
+   "Como usar ácido lactobiônico?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-piruvico/": [
+  [
+   "O que é ácido pirúvico e para que serve?",
+   "Alfa-cetoácido de ação forte, usado sobretudo em consultório. Costuma ser indicado para acne e cravos, textura e falta de viço, oleosidade e poros."
+  ],
+  [
+   "Como usar ácido pirúvico?",
+   "Noite, em concentração usual de usado principalmente em peelings profissionais. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/enzimas-papaina-bromelina/": [
+  [
+   "O que é enzimas e para que serve?",
+   "Enzimas do mamão e do abacaxi que soltam as células mortas, sem ácido. Costuma ser indicado para textura e falta de viço."
+  ],
+  [
+   "Como usar enzimas?",
+   "Noite, em concentração usual de variável. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/ureia/": [
+  [
+   "O que é ureia e para que serve?",
+   "Componente natural da pele: hidrata e, em concentrações altas, amolece a camada grossa. Costuma ser indicado para desidratação, ressecamento e barreira danificada, textura e falta de viço."
+  ],
+  [
+   "Como usar ureia?",
+   "Manhã ou noite, em concentração usual de 2% a 10% para hidratar; acima de 10% esfolia (áreas espessas, como pés). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-kojico/": [
+  [
+   "O que é ácido kójico e para que serve?",
+   "Clareador obtido de fungos que inibe a produção de melanina. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar ácido kójico?",
+   "Noite, em concentração usual de até 1% (limite na ue). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/alfa-arbutina/": [
+  [
+   "O que é alfa-arbutina e para que serve?",
+   "Clareador suave que reduz a produção de melanina. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar alfa-arbutina?",
+   "Manhã ou noite, em concentração usual de 1% a 2% (na ue, até 2% no rosto). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/tiamidol/": [
+  [
+   "O que é tiamidol e para que serve?",
+   "Inibidor de tirosinase patenteado, com bons resultados em estudos contra manchas e melasma. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar tiamidol?",
+   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/butilresorcinol/": [
+  [
+   "O que é 4-Butilresorcinol e para que serve?",
+   "Derivado do resorcinol, potente contra manchas. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar 4-Butilresorcinol?",
+   "Manhã ou noite, em concentração usual de conforme o fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/fenetil-resorcinol/": [
+  [
+   "O que é fenetil resorcinol e para que serve?",
+   "Clareador sintético inspirado em compostos do pinheiro. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar fenetil resorcinol?",
+   "Manhã ou noite, em concentração usual de conforme o fabricante (ex.: symwhite 377). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/melasyl/": [
+  [
+   "O que é melasyl e para que serve?",
+   "Ativo patenteado recente contra manchas, que age sobre os precursores da melanina. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar melasyl?",
+   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/cisteamina/": [
+  [
+   "O que é cisteamina e para que serve?",
+   "Clareador usado em melasma, em geral em protocolo de contato curto. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar cisteamina?",
+   "Noite, em concentração usual de conforme o fabricante (aplica e remove após algum tempo). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/extrato-de-alcacuz/": [
+  [
+   "O que é extrato de alcaçuz e para que serve?",
+   "Extrato vegetal que uniformiza o tom e acalma. Costuma ser indicado para manchas e melasma, sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar extrato de alcaçuz?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-fitico/": [
+  [
+   "O que é ácido fítico e para que serve?",
+   "Ácido de origem vegetal com ação antioxidante, clareadora leve e esfoliante suave. Costuma ser indicado para manchas e melasma, textura e falta de viço."
+  ],
+  [
+   "Como usar ácido fítico?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/hidroquinona/": [
+  [
+   "O que é hidroquinona e para que serve?",
+   "Clareador potente, usado em manchas e melasma. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar hidroquinona?",
+   "Só com receita e acompanhamento médico. Noite, em concentração usual de 2% a 4% (medicamento). Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+  ]
+ ],
+ "/ativos/ascorbil-glucosideo/": [
+  [
+   "O que é ascorbil glucosídeo e para que serve?",
+   "Derivado estável e suave da vitamina C. Costuma ser indicado para manchas e melasma, rugas e firmeza."
+  ],
+  [
+   "Como usar ascorbil glucosídeo?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/ascorbil-fosfato-de-sodio/": [
+  [
+   "O que é ascorbil fosfato de sódio e para que serve?",
+   "Derivado estável da vitamina C, com estudos também em pele acneica. Costuma ser indicado para manchas e melasma, acne e cravos."
+  ],
+  [
+   "Como usar ascorbil fosfato de sódio?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/ascorbil-fosfato-de-magnesio/": [
+  [
+   "O que é ascorbil fosfato de magnésio e para que serve?",
+   "Derivado estável e hidrossolúvel da vitamina C. Costuma ser indicado para manchas e melasma, desidratação."
+  ],
+  [
+   "Como usar ascorbil fosfato de magnésio?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/etil-ascorbico/": [
+  [
+   "O que é etil ascórbico e para que serve?",
+   "Derivado estável da vitamina C, muito usado em séruns clareadores. Costuma ser indicado para manchas e melasma, rugas e firmeza."
+  ],
+  [
+   "Como usar etil ascórbico?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/tetrahexildecil-ascorbato/": [
+  [
+   "O que é tetrahexildecil ascorbato e para que serve?",
+   "Vitamina C lipossolúvel, comum em óleos e cremes. Costuma ser indicado para manchas e melasma, rugas e firmeza."
+  ],
+  [
+   "Como usar tetrahexildecil ascorbato?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/vitamina-e/": [
+  [
+   "O que é vitamina E e para que serve?",
+   "Antioxidante lipossolúvel que protege os lipídios da pele e potencializa a vitamina C. Costuma ser indicado para ressecamento e barreira danificada, desidratação, rugas e firmeza."
+  ],
+  [
+   "Como usar vitamina E?",
+   "Manhã ou noite, em concentração usual de 0,5% a 1%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/resveratrol/": [
+  [
+   "O que é resveratrol e para que serve?",
+   "Antioxidante da uva, usado em fórmulas antienvelhecimento. Costuma ser indicado para rugas e firmeza."
+  ],
+  [
+   "Como usar resveratrol?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/coenzima-q10/": [
+  [
+   "O que é coenzima Q10 e para que serve?",
+   "Antioxidante presente naturalmente na pele, que diminui com a idade. Costuma ser indicado para rugas e firmeza."
+  ],
+  [
+   "Como usar coenzima Q10?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/cha-verde/": [
+  [
+   "O que é chá verde e para que serve?",
+   "Polifenóis antioxidantes e calmantes, com leve ação seborreguladora. Costuma ser indicado para sensibilidade e vermelhidão, oleosidade e poros, rugas e firmeza."
+  ],
+  [
+   "Como usar chá verde?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/astaxantina/": [
+  [
+   "O que é astaxantina e para que serve?",
+   "Carotenoide de microalgas, antioxidante potente. Costuma ser indicado para rugas e firmeza."
+  ],
+  [
+   "Como usar astaxantina?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/glicerina/": [
+  [
+   "O que é glicerina e para que serve?",
+   "Um dos umectantes mais eficazes e baratos. Costuma ser indicado para desidratação, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar glicerina?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/pantenol/": [
+  [
+   "O que é pantenol e para que serve?",
+   "Hidrata, acalma e ajuda a reparar a pele irritada. Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada, desidratação."
+  ],
+  [
+   "Como usar pantenol?",
+   "Manhã ou noite, em concentração usual de 1% a 5%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/beta-glucana/": [
+  [
+   "O que é beta-glucana e para que serve?",
+   "Polissacarídeo de aveia ou cogumelos, hidratante e calmante. Costuma ser indicado para desidratação, sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar beta-glucana?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/poliglutamato-de-sodio/": [
+  [
+   "O que é poliglutamato de sódio e para que serve?",
+   "Umectante de origem fermentada, com grande capacidade de reter água. Costuma ser indicado para desidratação."
+  ],
+  [
+   "Como usar poliglutamato de sódio?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/aloe-vera/": [
+  [
+   "O que é aloe vera e para que serve?",
+   "Calmante e hidratante leve, clássico no pós-sol. Costuma ser indicado para sensibilidade e vermelhidão, desidratação."
+  ],
+  [
+   "Como usar aloe vera?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/pca-de-sodio-e-aminoacidos/": [
+  [
+   "O que é PCA de sódio e aminoácidos e para que serve?",
+   "Componentes do fator natural de hidratação (NMF) da pele. Costuma ser indicado para desidratação."
+  ],
+  [
+   "Como usar PCA de sódio e aminoácidos?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/ectoina/": [
+  [
+   "O que é ectoína e para que serve?",
+   "Molécula de microrganismos extremófilos que protege as células e acalma a pele. Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada, desidratação."
+  ],
+  [
+   "Como usar ectoína?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/colesterol-e-acidos-graxos/": [
+  [
+   "O que é colesterol e ácidos graxos e para que serve?",
+   "Completam as ceramidas na reconstrução da barreira cutânea. Costuma ser indicado para ressecamento e barreira danificada, desidratação."
+  ],
+  [
+   "Como usar colesterol e ácidos graxos?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/esqualano/": [
+  [
+   "O que é esqualano e para que serve?",
+   "Emoliente leve, semelhante ao sebo natural, que amacia sem pesar. Costuma ser indicado para desidratação, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar esqualano?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/manteiga-de-karite/": [
+  [
+   "O que é manteiga de karité e para que serve?",
+   "Emoliente rico, nutre peles secas e ásperas. Costuma ser indicado para ressecamento e barreira danificada, desidratação."
+  ],
+  [
+   "Como usar manteiga de karité?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/oleo-de-rosa-mosqueta/": [
+  [
+   "O que é óleo de rosa mosqueta e para que serve?",
+   "Óleo vegetal rico em ácidos graxos, muito usado em cicatrizes e marcas. Costuma ser indicado para desidratação, textura e falta de viço, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar óleo de rosa mosqueta?",
+   "Noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/petrolato/": [
+  [
+   "O que é petrolato e para que serve?",
+   "Um dos oclusivos mais eficazes: impede a perda de água e protege a pele irritada. Costuma ser indicado para ressecamento e barreira danificada, desidratação."
+  ],
+  [
+   "Como usar petrolato?",
+   "Noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/centella-asiatica/": [
+  [
+   "O que é centella asiática e para que serve?",
+   "Calmante e reparador muito popular no skincare coreano (linhas “cica”). Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada, rugas e firmeza."
+  ],
+  [
+   "Como usar centella asiática?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/alantoina/": [
+  [
+   "O que é alantoína e para que serve?",
+   "Suaviza, acalma e ajuda a pele a se recuperar. Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar alantoína?",
+   "Manhã ou noite, em concentração usual de 0,1% a 2%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/bisabolol/": [
+  [
+   "O que é bisabolol e para que serve?",
+   "Ativo calmante derivado da camomila. Costuma ser indicado para sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar bisabolol?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/aveia-coloidal/": [
+  [
+   "O que é aveia coloidal e para que serve?",
+   "Alivia coceira e ressecamento. Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada, desidratação."
+  ],
+  [
+   "Como usar aveia coloidal?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/probioticos-e-pos-bioticos/": [
+  [
+   "O que é probióticos e pós-bióticos e para que serve?",
+   "Fermentados que apoiam o equilíbrio da microbiota e da barreira. Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar probióticos e pós-bióticos?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/dipotassio-glicirrizinato/": [
+  [
+   "O que é dipotássio glicirrizinato e para que serve?",
+   "Derivado do alcaçuz com ação calmante e antivermelhidão. Costuma ser indicado para sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar dipotássio glicirrizinato?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/peroxido-de-benzoila/": [
+  [
+   "O que é peróxido de benzoíla e para que serve?",
+   "Elimina a bactéria ligada à acne inflamada, sem gerar resistência. Costuma ser indicado para acne e cravos."
+  ],
+  [
+   "Como usar peróxido de benzoíla?",
+   "Manhã ou noite, em concentração usual de 2,5% a 10% (2,5% a 5% costuma bastar). Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo."
+  ]
+ ],
+ "/ativos/enxofre/": [
+  [
+   "O que é enxofre e para que serve?",
+   "Seca as espinhas e reduz a oleosidade. Costuma ser indicado para acne e cravos, oleosidade e poros."
+  ],
+  [
+   "Como usar enxofre?",
+   "Noite, em concentração usual de 3% a 10%. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/oleo-de-melaleuca/": [
+  [
+   "O que é óleo de melaleuca e para que serve?",
+   "Óleo essencial com ação antimicrobiana em acne leve. Costuma ser indicado para acne e cravos."
+  ],
+  [
+   "Como usar óleo de melaleuca?",
+   "Manhã ou noite, em concentração usual de cerca de 5% em produtos prontos. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/zinco-pca/": [
+  [
+   "O que é zinco PCA e para que serve?",
+   "Ajuda a controlar a oleosidade e tem leve ação antibacteriana. Costuma ser indicado para oleosidade e poros, acne e cravos."
+  ],
+  [
+   "Como usar zinco PCA?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/argilas/": [
+  [
+   "O que é argilas e para que serve?",
+   "Absorvem o excesso de oleosidade e deixam a pele matificada. Costuma ser indicado para oleosidade e poros."
+  ],
+  [
+   "Como usar argilas?",
+   "Manhã ou noite, em concentração usual de máscaras e limpeza. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/clindamicina-topica/": [
+  [
+   "O que é clindamicina tópica e para que serve?",
+   "Antibiótico tópico para acne inflamada. Costuma ser indicado para acne e cravos."
+  ],
+  [
+   "Como usar clindamicina tópica?",
+   "Só com receita e acompanhamento médico. Manhã ou noite, em concentração usual de 1%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/palmitoil-pentapeptideo-4/": [
+  [
+   "O que é palmitoil pentapeptídeo-4 e para que serve?",
+   "Peptídeo sinalizador que estimula a produção de colágeno. Costuma ser indicado para rugas e firmeza."
+  ],
+  [
+   "Como usar palmitoil pentapeptídeo-4?",
+   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acetil-hexapeptideo-8/": [
+  [
+   "O que é acetil hexapeptídeo-8 e para que serve?",
+   "Peptídeo voltado para linhas de expressão. Costuma ser indicado para rugas e firmeza."
+  ],
+  [
+   "Como usar acetil hexapeptídeo-8?",
+   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/mucina-de-caracol/": [
+  [
+   "O que é mucina de caracol e para que serve?",
+   "Filtrado rico em glicoproteínas e ácido glicólico natural, hidratante e reparador. Costuma ser indicado para desidratação, ressecamento e barreira danificada, textura e falta de viço."
+  ],
+  [
+   "Como usar mucina de caracol?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/pdrn-polinucleotideos/": [
+  [
+   "O que é PDRN e para que serve?",
+   "Fragmentos de DNA (em geral de salmão), associados à regeneração da pele. Costuma ser indicado para ressecamento e barreira danificada, rugas e firmeza."
+  ],
+  [
+   "Como usar PDRN?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/fator-de-crescimento-epidermico/": [
+  [
+   "O que é fator de crescimento epidérmico e para que serve?",
+   "Proteína sinalizadora associada à renovação e reparação da pele. Costuma ser indicado para rugas e firmeza, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar fator de crescimento epidérmico?",
+   "Noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/cafeina/": [
+  [
+   "O que é cafeína e para que serve?",
+   "Vasoconstritora: ajuda a reduzir o inchaço e o aspecto arroxeado das olheiras. Costuma ser indicado para olheiras e inchaço."
+  ],
+  [
+   "Como usar cafeína?",
+   "Manhã, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/vitamina-k/": [
+  [
+   "O que é vitamina K e para que serve?",
+   "Usada em produtos para olheiras de origem vascular e hematomas. Costuma ser indicado para olheiras e inchaço."
+  ],
+  [
+   "Como usar vitamina K?",
+   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/oxido-de-zinco/": [
+  [
+   "O que é óxido de zinco e para que serve?",
+   "Filtro mineral de amplo espectro (UVA e UVB) e muito bem tolerado. Costuma ser indicado para proteção solar, sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar óxido de zinco?",
+   "Manhã, em concentração usual de até 25%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/dioxido-de-titanio/": [
+  [
+   "O que é dióxido de titânio e para que serve?",
+   "Filtro mineral, forte em UVB e UVA curto. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar dióxido de titânio?",
+   "Manhã, em concentração usual de até 25%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/bemotrizinol/": [
+  [
+   "O que é bemotrizinol e para que serve?",
+   "Filtro orgânico moderno de amplo espectro, muito estável. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar bemotrizinol?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/bisoctrizol/": [
+  [
+   "O que é bisoctrizol e para que serve?",
+   "Filtro híbrido de amplo espectro, com partículas que absorvem e refletem a radiação. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar bisoctrizol?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/avobenzona/": [
+  [
+   "O que é avobenzona e para que serve?",
+   "Um dos principais filtros contra UVA longo. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar avobenzona?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/octocrileno/": [
+  [
+   "O que é octocrileno e para que serve?",
+   "Filtro UVB que também estabiliza a avobenzona. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar octocrileno?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/ecamsule/": [
+  [
+   "O que é ecamsule e para que serve?",
+   "Filtro UVA estável, patenteado. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar ecamsule?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/dhhb-uvinul-a-plus/": [
+  [
+   "O que é DHHB e para que serve?",
+   "Filtro UVA fotoestável, frequente em protetores modernos. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar DHHB?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/etilhexil-triazona/": [
+  [
+   "O que é etilhexil triazona e para que serve?",
+   "Filtro UVB muito eficiente e estável. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar etilhexil triazona?",
+   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/": [
+  [
+   "Quantos ativos têm ficha no site?",
+   "São 88 ativos em 12 categorias. Cada ficha diz o que o ativo é, para que serve, para quem, como usar, cuidados, combinações e o que fazer na gestação."
+  ],
+  [
+   "Qual a diferença entre as fichas de ativos e as fichas de ingredientes?",
+   "As fichas de ativos resumem orientações de uso e não citam estudos. As fichas de ingredientes têm nível de evidência e fontes no PubMed; os ativos que já têm uma levam direto para ela."
+  ]
  ]
 }
