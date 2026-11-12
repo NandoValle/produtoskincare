@@ -9,39 +9,231 @@
 <link rel="canonical" href="https://produtoskincare.com.br/queridinhos-do-skincare/">
 <link rel="stylesheet" href="/premium.css">
 <style>
-/* Usa os tokens de cor e fonte do premium.css (claro e escuro). Uma seção por país, cards em grade. */
-.qd{max-width:1080px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-right,0px)) 60px max(18px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:40px}
-.qd h1{font-size:clamp(2.1rem,6vw,3.4rem);margin:0;text-wrap:balance}
-.qd h2{font-size:clamp(1.6rem,4vw,2.1rem);margin:0}
-.qd h3{font-family:var(--fonte-corpo);font-size:1.02rem;font-weight:600;letter-spacing:0;line-height:1.35;margin:0}
+/* Guia "Lumière": alabastro, café e ouro champanhe, só nesta página (escopo .qd).
+   Cabeçalho e rodapé seguem o premium.css. Fontes do site: Cormorant 500 e Manrope. */
+.qd{--q-bg:#F7F2EC;--q-papel:#FDFBF8;--q-areia:#EDE2D3;--q-areia2:#DFCFB9;--q-tinta:#17120E;--q-suave:#5A4C41;--q-ouro:#B08D57;--q-ouro-txt:#755728;--q-ouro-claro:#D9BE8E;--q-cafe:#1B1410;--q-linha:rgba(23,18,14,.14);--q-vidro:rgba(253,251,248,.95);--q-brilho:rgba(217,190,142,.34);--q-sombra:rgba(84,60,32,.4);--q-pad:clamp(1.25rem,5vw,6.5rem);--q-ease:cubic-bezier(.22,.61,.36,1);display:block;max-width:none;margin:0;padding:0;background:var(--q-bg);color:var(--q-tinta);overflow-x:clip}
+@media (prefers-color-scheme:dark){html:not([data-tema=claro]) .qd{--q-bg:#1A1511;--q-papel:#231C17;--q-areia:#2B231C;--q-areia2:#352B22;--q-tinta:#F3EBE0;--q-suave:#CDBFAE;--q-ouro:#B08D57;--q-ouro-txt:#DCC294;--q-linha:rgba(247,242,236,.17);--q-vidro:rgba(35,28,23,.95);--q-brilho:rgba(176,141,87,.16);--q-sombra:rgba(0,0,0,.55)}}
+html[data-tema=escuro] .qd{--q-bg:#1A1511;--q-papel:#231C17;--q-areia:#2B231C;--q-areia2:#352B22;--q-tinta:#F3EBE0;--q-suave:#CDBFAE;--q-ouro:#B08D57;--q-ouro-txt:#DCC294;--q-linha:rgba(247,242,236,.17);--q-vidro:rgba(35,28,23,.95);--q-brilho:rgba(176,141,87,.16);--q-sombra:rgba(0,0,0,.55)}
+.qd [hidden]{display:none !important}
+/* a página é de borda a borda: o fundo do cabeçalho fixo acompanha a largura toda */
+html,body{overflow-x:clip}
+.ps-topo::before{content:"";position:absolute;inset:0 -100vmax;background:var(--fundo);border-bottom:1px solid var(--linha);z-index:-1}
+.qd-defs{position:absolute}
+.qd h1,.qd h2,.qd h3{font-family:var(--fonte-display);font-weight:500;margin:0;letter-spacing:-.02em;line-height:1.06;color:var(--q-tinta)}
+.qd h1 em,.qd h2 em{font-style:normal;color:var(--q-ouro-txt)}
 .qd p{margin:0}
-.qd-top{display:flex;flex-direction:column;gap:12px}
-.qd-top .marca{font-family:var(--fonte-display);font-weight:500;font-size:1rem;padding-bottom:16px;border-bottom:1px solid var(--linha)}
-.qd-top .marca span{color:var(--rosa)}
-.qd-lede{color:var(--suave);font-size:1.05rem;max-width:64ch}
-.qd-aviso{font-size:.88rem;color:var(--suave);border-left:3px solid var(--linha-2);padding-left:12px;max-width:72ch}
-.qd-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:600}
-.qd-filtro{display:flex;flex-direction:column;gap:10px}
-.qd-chips{display:flex;flex-wrap:wrap;gap:8px}
-.qd-chip{border:1px solid var(--linha-2);background:transparent;color:var(--tinta);border-radius:999px;padding:7px 15px;cursor:pointer;font-size:.92rem}
-.qd-chip[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:var(--papel)}
-.qd-pais{display:flex;flex-direction:column;gap:14px;scroll-margin-top:24px}
-.qd-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--linha);padding-bottom:10px}
-.qd-count{font-size:.8rem;color:var(--suave);font-variant-numeric:tabular-nums}
-.qd-intro{color:var(--suave);max-width:64ch}
-.qd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.qd-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.qd-cat{align-self:flex-start;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--verde-claro);color:var(--verde)}
-.qd-marca{font-size:.85rem;color:var(--rosa);font-weight:600}
-.qd-desc{font-size:.92rem;color:var(--suave)}
-.qd-rate{font-size:.88rem;font-variant-numeric:tabular-nums;margin-top:auto !important;padding-top:6px}
-.qd-star{color:var(--rosa)}
-.qd-semnota{color:var(--suave);font-style:italic}
-.qd-buy{align-self:flex-start;text-decoration:none;font-weight:600;font-size:.9rem;color:var(--papel);background:var(--rosa);padding:8px 16px;border-radius:999px}
-.qd-buy:hover{background:var(--rosa-2)}
-.qd-foot{display:flex;flex-direction:column;gap:10px;font-size:.86rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:20px;max-width:80ch}
-.qd-apres{display:grid;grid-template-columns:minmax(0,280px) 1fr;gap:20px;align-items:center}.qd-foto{margin:0}.qd-foto img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}.qd-foto figcaption{font-size:.72rem;color:var(--suave);margin-top:6px}@media (max-width:640px){.qd-apres{grid-template-columns:1fr}.qd-foto{max-width:420px}}
-@media (prefers-reduced-motion:no-preference){.qd-buy,.qd-chip{transition:background .15s}}
+.qd a{color:inherit}
+.qd a:focus-visible,.qd button:focus-visible,.qd input:focus-visible{outline:2px solid var(--q-ouro-txt);outline-offset:4px}
+.qd-eyebrow{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:var(--q-ouro-txt);display:flex;align-items:center;gap:.9rem}
+.qd-eyebrow::before{content:"";width:38px;height:1px;background:var(--q-ouro);opacity:.7}
+.qd-lede{font-size:clamp(1rem,1.3vw,1.14rem);color:var(--q-suave);line-height:1.85;max-width:34rem}
+.qd-lede strong{color:var(--q-tinta);font-weight:600}
+.qd-titulo{font-size:clamp(2.3rem,5.2vw,4.5rem);margin-top:1.4rem !important;text-wrap:balance}
+.qd-grao{position:relative}
+.qd-grao::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.qd-grao>*{position:relative;z-index:1}
+
+/* botões */
+.qd-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.85rem;min-height:48px;padding:1rem 2.2rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;border-radius:2px;border:1px solid transparent;overflow:hidden;text-decoration:none;cursor:pointer;background:none;transition:transform .5s var(--q-ease),color .45s,border-color .45s,background .45s}
+.qd-btn:hover{transform:translateY(-3px)}
+.qd a.qd-btn-solid{background:var(--q-tinta);color:var(--q-bg)}
+.qd-btn-solid::before{content:"";position:absolute;inset:0;background:var(--q-ouro);transform:translateY(101%);transition:transform .55s var(--q-ease)}
+.qd-btn-solid:hover::before{transform:translateY(0)}
+.qd a.qd-btn-solid:hover{color:var(--q-cafe)}
+.qd-btn-solid span{position:relative;z-index:1}
+.qd .qd-btn-ghost{border-color:var(--q-linha);color:var(--q-tinta)}
+.qd .qd-btn-ghost:hover{border-color:var(--q-ouro);color:var(--q-ouro-txt)}
+.qd .arw{display:inline-block;transition:transform .45s var(--q-ease)}
+.qd a:hover .arw{transform:translate(4px,-3px)}
+
+/* faixa */
+.qd-faixa{background:var(--q-cafe);color:#EDE2D3;overflow:hidden;padding:.7rem 0;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase}
+.qd-faixa-trilho{display:flex;gap:3.5rem;width:max-content;animation:qd-desliza 46s linear infinite}
+.qd-faixa-trilho span{display:flex;align-items:center;gap:3.5rem;white-space:nowrap}
+.qd-faixa-trilho i{color:var(--q-ouro-claro);font-style:normal}
+@keyframes qd-desliza{to{transform:translateX(calc(-50% - 1.75rem))}}
+
+/* hero */
+.qd-hero{overflow:hidden;padding:clamp(2.5rem,5vw,4.5rem) var(--q-pad) clamp(3rem,6vw,5.5rem);background:radial-gradient(115% 92% at 88% 8%,var(--q-brilho) 0%,transparent 58%),radial-gradient(88% 70% at 2% 96%,var(--q-areia2) 0%,transparent 62%),var(--q-bg)}
+.qd a.qd-volta{display:inline-flex;align-items:center;gap:.75rem;min-height:44px;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--q-suave);text-decoration:none;margin-bottom:1.4rem;transition:color .4s}
+.qd a.qd-volta:hover{color:var(--q-ouro-txt)}
+.qd-volta span{transition:transform .45s var(--q-ease)}
+.qd-volta:hover span{transform:translateX(-5px)}
+.qd-hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(2.25rem,5vw,5.5rem);align-items:center}
+.qd-hero h1{font-size:clamp(2.7rem,6.6vw,5.6rem);line-height:1;letter-spacing:-.03em;margin:1.45rem 0 1.6rem;text-wrap:balance}
+.qd-aviso{font-size:.84rem;line-height:1.7;color:var(--q-suave);border-left:2px solid var(--q-ouro);padding-left:14px;max-width:38rem;margin-top:1.4rem !important}
+.qd-cta{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:2.3rem}
+.qd-stats{display:flex;flex-wrap:wrap;gap:2.4rem;margin:2.6rem 0 0;padding:2rem 0 0;list-style:none;border-top:1px solid var(--q-linha)}
+.qd-stats span{display:block;font-family:var(--fonte-display);font-size:2.3rem;line-height:1}
+.qd-stats small{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--q-suave)}
+
+/* globo */
+.qd-globo{position:relative;display:grid;place-items:center;aspect-ratio:1/1;width:100%;max-width:540px;margin-inline:auto}
+.qd-globo-anel{position:absolute;inset:0;width:100%;height:100%;animation:qd-gira 40s linear infinite}
+.qd-globo-anel text{font-family:var(--fonte-corpo);font-size:6.2px;letter-spacing:.42em;fill:var(--q-ouro-txt);text-transform:uppercase}
+@keyframes qd-gira{to{transform:rotate(360deg)}}
+@keyframes qd-sobe{from{opacity:0;transform:translateY(28px)}}
+.qd-globo-nucleo{position:absolute;inset:11%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 30% 24%,var(--q-papel),var(--q-areia) 42%,rgba(176,141,87,.42) 78%,rgba(120,90,50,.34) 100%);box-shadow:0 46px 100px -38px var(--q-sombra),inset 0 -22px 58px rgba(176,141,87,.2)}
+.qd-globo-nucleo svg{position:absolute;inset:0;width:100%;height:100%}
+.qd-meridianos{stroke:rgba(176,141,87,.5)}
+.qd-globo-centro{position:absolute;z-index:3;text-align:center}
+.qd-globo-centro b{display:block;font-family:var(--fonte-display);font-size:clamp(2.4rem,5vw,3.5rem);line-height:.9;font-weight:500}
+.qd-globo-centro small{display:block;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--q-suave);margin-top:.65rem}
+.qd a.qd-no{position:absolute;z-index:4;width:56px;height:56px;border-radius:50%;background:var(--q-papel);border:1px solid rgba(176,141,87,.6);display:grid;place-items:center;font-size:.7rem;letter-spacing:.14em;font-weight:600;color:var(--q-tinta);text-decoration:none;box-shadow:0 14px 30px -14px var(--q-sombra);transition:transform .45s var(--q-ease),background .4s,color .4s}
+.qd a.qd-no:hover{transform:scale(1.1);background:var(--q-tinta);color:var(--q-bg)}
+
+/* filtro */
+.qd-filtro{background:var(--q-vidro);border-top:1px solid var(--q-linha);border-bottom:1px solid var(--q-linha);padding:.8rem var(--q-pad);z-index:30}
+.qd-filtro-in{display:flex;align-items:center;gap:1.1rem}
+.qd-label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--q-ouro-txt);white-space:nowrap;display:flex;align-items:center;gap:.65rem}
+.qd-label b{font-family:var(--fonte-display);font-size:1.25rem;letter-spacing:.04em;color:var(--q-tinta);font-weight:500;font-variant-numeric:tabular-nums;min-width:1.4em}
+.qd-chips{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;padding:.3rem 26px .3rem 2px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent)}
+.qd-chips::-webkit-scrollbar{display:none}
+.qd-chip{display:inline-flex;align-items:center;min-height:44px;padding:0 .85rem;border:1px solid var(--q-linha);border-radius:999px;background:transparent;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;white-space:nowrap;color:var(--q-suave);cursor:pointer;transition:background .4s var(--q-ease),color .4s,border-color .4s}
+.qd-chip:hover{border-color:var(--q-ouro);color:var(--q-ouro-txt)}
+.qd-chip[aria-pressed="true"]{background:var(--q-tinta);border-color:var(--q-tinta);color:var(--q-bg)}
+.qd-busca{display:flex;align-items:center;gap:.6rem;border:1px solid var(--q-linha);border-radius:999px;padding:0 1.1rem;width:210px;flex:none;min-height:44px;color:var(--q-suave);transition:border-color .4s}
+.qd-busca:focus-within{border-color:var(--q-ouro)}
+.qd .qd-busca input{border:0;background:none;outline:none;font-size:.86rem;width:100%;min-width:0;color:var(--q-tinta);border-radius:0;padding:.5rem 0;-webkit-appearance:none;appearance:none}
+.qd .qd-busca input::placeholder{color:var(--q-suave);opacity:.85}
+.qd .qd-busca input::-webkit-search-cancel-button{display:none}
+.qd-busca button{border:0;background:none;color:var(--q-suave);font-size:1.25rem;line-height:1;cursor:pointer;min-width:32px;min-height:32px}
+
+/* trilho lateral */
+.qd-trilho{position:fixed;left:.9rem;top:50%;transform:translateY(-50%);z-index:20;display:none;flex-direction:column;gap:.5rem;opacity:0;pointer-events:none;transition:opacity .5s}
+.qd-trilho.on{opacity:1;pointer-events:auto}
+.qd .qd-trilho a{display:flex;align-items:center;gap:.7rem;min-height:26px;font-size:.66rem;letter-spacing:.18em;color:var(--q-suave);text-decoration:none;opacity:.7;transition:opacity .45s,color .45s}
+.qd-trilho a i{width:20px;height:1px;background:currentColor;display:block;transition:width .45s var(--q-ease)}
+.qd .qd-trilho a:hover,.qd .qd-trilho a.ativo{opacity:1;color:var(--q-ouro-txt)}
+.qd-trilho a.ativo i{width:34px}
+@media (min-width:1500px){.qd.qd-js .qd-trilho{display:flex}}
+
+/* sumário */
+.qd-sumario{padding:clamp(3.5rem,6.5vw,6rem) var(--q-pad) clamp(2.5rem,4vw,3.5rem)}
+.qd-sumario-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:2rem}
+.qd-sumario-head .qd-lede{max-width:29rem}
+.qd-sumario-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--q-linha);border:1px solid var(--q-linha);margin-top:3rem}
+.qd a.qd-sum{background:var(--q-bg);padding:2rem 1.7rem;text-decoration:none;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .55s var(--q-ease)}
+.qd a.qd-sum:hover{background:var(--q-papel)}
+.qd-sum .num{font-family:var(--fonte-display);font-size:1rem;letter-spacing:.2em;color:var(--q-ouro-txt)}
+.qd-sum .nome{font-family:var(--fonte-display);font-size:1.6rem;line-height:1.1;margin:.8rem 0 .5rem;color:var(--q-tinta)}
+.qd-sum .cnt{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--q-suave)}
+.qd-sum::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--q-ouro);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--q-ease)}
+.qd-sum:hover::after{transform:scaleX(1)}
+
+/* capítulos */
+.qd-capitulos{padding:0 var(--q-pad) clamp(2rem,4vw,3.5rem)}
+.qd-pais{padding:clamp(3rem,5.5vw,5.25rem) 0;border-top:1px solid var(--q-linha);scroll-margin-top:84px}
+.qd-sumario,.qd-notas{scroll-margin-top:70px}
+.qd-cap-head{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1.5rem,3.5vw,3.5rem);align-items:center}
+.qd-cap-num{font-family:var(--fonte-display);font-size:clamp(3.25rem,7vw,6.25rem);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--q-ouro)}
+.qd-cap-titulo h2{font-size:clamp(2.1rem,4.8vw,3.7rem)}
+.qd-intro{margin-top:1rem !important;max-width:44ch;color:var(--q-suave);font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.8}
+.qd-cap-meta{display:flex;align-items:center;gap:.85rem;margin-top:1.1rem !important;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--q-suave)}
+.qd-cap-meta b{color:var(--q-ouro-txt);font-weight:600}
+.qd-foto{margin:0;width:clamp(180px,19vw,240px)}
+.qd-foto img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid var(--q-linha);background:var(--q-areia);box-shadow:0 32px 60px -32px var(--q-sombra)}
+.qd-foto figcaption{margin-top:.7rem;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--q-suave);text-align:right}
+
+/* cards */
+.qd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:clamp(1.1rem,2.1vw,2.1rem);margin-top:clamp(2.2rem,4vw,3.4rem)}
+.qd-card{background:var(--q-papel);border:1px solid var(--q-linha);position:relative;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .65s var(--q-ease),box-shadow .65s var(--q-ease),border-color .5s,opacity .9s var(--q-ease)}
+.qd-card:hover{transform:translateY(-8px);box-shadow:0 44px 78px -46px var(--q-sombra);border-color:rgba(176,141,87,.55)}
+.qd-media{position:relative;aspect-ratio:1/.9;display:grid;place-items:center;overflow:hidden;background:linear-gradient(158deg,var(--q-areia) 0%,var(--q-areia2) 100%)}
+.qd-media::before{content:"";position:absolute;width:150%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(176,141,87,.32);top:24%;left:-25%}
+.qd-prod{width:50%;height:auto;position:relative;z-index:2;filter:drop-shadow(0 22px 26px rgba(84,60,32,.26));transition:transform .8s var(--q-ease)}
+.qd-card:hover .qd-prod{transform:translateY(-10px) scale(1.05)}
+.qd-cat{position:absolute;top:1rem;left:1rem;z-index:3;background:var(--q-vidro);color:var(--q-tinta);padding:.4rem .85rem;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.qd-rate{position:absolute;top:1rem;right:1rem;z-index:3;background:var(--q-cafe);color:var(--q-ouro-claro);padding:.4rem .8rem;font-size:.72rem;letter-spacing:.1em;font-weight:600;font-variant-numeric:tabular-nums}
+.qd-rate.alt{background:var(--q-vidro);color:var(--q-suave);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.qd-body{padding:1.55rem 1.5rem 1.65rem;display:flex;flex-direction:column;flex:1}
+.qd-marca{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--q-ouro-txt)}
+.qd-body h3{font-size:1.38rem;line-height:1.2;margin-top:.7rem;letter-spacing:-.01em}
+.qd-desc{font-size:.9rem;color:var(--q-suave);margin-top:.8rem !important;line-height:1.7}
+.qd-meta{margin-top:auto !important;padding-top:1.05rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:.8rem;color:var(--q-suave);font-variant-numeric:tabular-nums}
+.qd-meta::before{content:"";flex:0 0 100%;height:1px;background:var(--q-linha);margin-bottom:.45rem}
+.qd-desc+.qd-meta{margin-top:auto !important}
+.qd-body .qd-desc{margin-bottom:1.1rem}
+.qd-meta b{color:var(--q-tinta);font-weight:600}
+.qd-stars{color:var(--q-ouro);letter-spacing:.12em;font-size:.86rem}
+.qd-semnota{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.qd a.qd-buy{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.65rem;min-height:48px;padding:.6rem 1.2rem;border:1px solid var(--q-linha);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;text-decoration:none;color:var(--q-tinta);transition:background .45s var(--q-ease),color .45s,border-color .45s}
+.qd a.qd-buy:hover{background:var(--q-tinta);color:var(--q-bg);border-color:var(--q-tinta)}
+.qd a.qd-buy.solid{background:var(--q-tinta);color:var(--q-bg);border-color:var(--q-tinta)}
+.qd a.qd-buy.solid:hover{background:var(--q-ouro);border-color:var(--q-ouro);color:var(--q-cafe)}
+.qd-vazio{text-align:center;padding:4rem 1rem;border:1px solid var(--q-linha);background:var(--q-papel);margin:0 var(--q-pad) 3rem}
+.qd-vazio h2{font-size:1.9rem}
+.qd-vazio p{margin:.85rem 0 1.8rem;color:var(--q-suave)}
+
+/* notas */
+.qd-notas{padding:clamp(3.25rem,6vw,5.5rem) var(--q-pad);background:linear-gradient(180deg,var(--q-bg),var(--q-areia))}
+.qd-notas-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.85rem);margin-top:2.75rem}
+.qd-nota{background:var(--q-papel);border:1px solid var(--q-linha);border-left:2px solid var(--q-ouro);padding:2.1rem 2.1rem 2.2rem}
+.qd .qd-nota h3{font-family:var(--fonte-corpo);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--q-ouro-txt);line-height:1.4}
+.qd-nota p{margin-top:1rem !important;font-size:.95rem;line-height:1.85;color:var(--q-suave)}
+.qd-nota b,.qd-nota strong{color:var(--q-tinta);font-weight:600}
+.qd .qd-nota a{color:var(--q-ouro-txt);text-decoration:underline;text-underline-offset:3px}
+.qd-notas .ps-rodape-nota{margin-top:1.5rem;font-size:.86rem;color:var(--q-suave)}
+
+/* perguntas e nota de atualização (blocos do prontidao.py) */
+.qd>.ps-perguntas{max-width:980px;margin:0 auto;padding:clamp(3.5rem,6.5vw,6rem) var(--q-pad) 1rem;box-sizing:content-box}
+.qd>.ps-perguntas h2{font-size:clamp(2.2rem,4.6vw,3.6rem);text-align:center;margin-bottom:2.4rem}
+.qd>.ps-perguntas h3{font-size:clamp(1.3rem,2.4vw,1.8rem);line-height:1.3;letter-spacing:-.01em;border-top:1px solid var(--q-linha);padding-top:1.7rem;margin-top:1.7rem}
+.qd>.ps-perguntas p{color:var(--q-suave);font-size:.98rem;line-height:1.9;margin-top:.9rem;max-width:none}
+.qd>.ps-nota-pagina{max-width:980px;margin:0 auto;padding:1.5rem var(--q-pad) 3rem;box-sizing:content-box;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--q-suave);opacity:1}
+.qd>noscript .fallback{padding:0 var(--q-pad) 2rem;color:var(--q-suave)}
+
+/* voltar ao topo */
+.qd-topo{position:fixed;right:1.5rem;bottom:1.5rem;z-index:35;width:52px;height:52px;border-radius:50%;border:0;background:var(--q-cafe);color:var(--q-ouro-claro);display:grid;place-items:center;font-size:1.1rem;cursor:pointer;box-shadow:0 14px 30px -12px var(--q-sombra);transition:background .4s,color .4s}
+.qd-topo:hover{background:var(--q-ouro);color:var(--q-cafe)}
+
+/* entrada ao rolar: só com JavaScript e sem preferência por menos movimento */
+@media (prefers-reduced-motion:no-preference){
+.qd.qd-js .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--q-ease),transform .9s var(--q-ease)}
+.qd.qd-js .reveal.in{opacity:1;transform:none}
+.qd.qd-js .reveal[data-d="1"]{transition-delay:.08s}
+.qd.qd-js .reveal[data-d="2"]{transition-delay:.16s}
+.qd.qd-js .reveal[data-d="3"]{transition-delay:.24s}
+.qd.qd-js .reveal[data-d="4"]{transition-delay:.32s}
+/* o herói está na primeira tela: entra por animação CSS, sem depender do observador */
+.qd.qd-js .qd-hero .reveal{opacity:1;transform:none;transition:none;animation:qd-sobe .9s var(--q-ease) both}
+.qd.qd-js .qd-hero .reveal[data-d="1"]{animation-delay:.08s}
+.qd.qd-js .qd-hero .reveal[data-d="2"]{animation-delay:.16s}
+.qd.qd-js .qd-hero .reveal[data-d="3"]{animation-delay:.24s}
+.qd.qd-js .qd-hero .reveal[data-d="4"]{animation-delay:.32s}
+.qd.qd-js .qd-card.reveal.in{transition:transform .65s var(--q-ease),box-shadow .65s var(--q-ease),border-color .5s,opacity .9s var(--q-ease)}
+.qd.qd-js .qd-card.reveal.in:hover{transform:translateY(-8px)}
+}
+@media (prefers-reduced-motion:reduce){.qd-faixa-trilho,.qd-globo-anel{animation:none}}
+
+@media (min-width:761px){.qd.qd-js .qd-filtro{position:sticky;top:var(--qd-topo,0px)}}
+@media (max-width:1180px){.qd-sumario-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:980px){
+.qd-hero-grid{grid-template-columns:1fr}
+.qd-globo{max-width:400px}
+.qd-cap-head{grid-template-columns:1fr}
+.qd-foto{width:min(300px,70vw)}
+.qd-foto figcaption{text-align:left}
+.qd-notas-grid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+.qd-filtro-in{flex-wrap:wrap;gap:.7rem}
+.qd-label,.qd-chips{width:100%}
+.qd-chips{flex:none}
+.qd-busca{width:100%;min-width:0;flex:none}
+.qd-pais{scroll-margin-top:0}
+.qd-sumario,.qd-notas{scroll-margin-top:0}
+.qd-topo{right:.8rem;bottom:.8rem;width:44px;height:44px}
+.qd-globo{max-width:320px}
+}
+@media (max-width:520px){
+.qd-sumario-grid{grid-template-columns:1fr}
+.qd-stats{gap:1.6rem}
+.qd-stats span{font-size:1.9rem}
+.qd a.qd-no{width:46px;height:46px;font-size:.66rem}
+.qd-btn{width:100%}
+.qd-nota{padding:1.6rem 1.4rem}
+}
 </style>
 <!-- seo:inicio -->
 <meta property="og:type" content="website">
@@ -79,513 +271,882 @@
 <script src="/premium.js" defer></script>
 <!-- menu:fim -->
 <main class="qd" id="conteudo">
-  <div class="qd-top">
-    <div class="marca">Produto <span>Skincare</span> · Guia</div>
-    <p class="sub"><a href="/">← Voltar ao início</a></p>
-    <h1>Queridinhos do skincare pelo mundo</h1>
-    <p class="qd-lede">Produtos que viraram referência no país de origem e fazem sucesso também no Brasil. São 47 ícones de 8 países, separados pela origem da marca.</p>
-    <p class="qd-aviso">Nota e número de avaliações vêm da Amazon Brasil, coletados em 02/11/2026, e podem ter mudado desde então. Produtos sem nota abrem uma busca na Amazon. Contém links de afiliado: como Associado da Amazon, ganho com compras qualificadas, sem custo extra para você.</p>
-  </div>
+<svg class="qd-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="qg0" x1="0" x2="1"><stop offset="0" stop-color="#6B4A2C"/><stop offset=".42" stop-color="#D2A472"/><stop offset="1" stop-color="#5A3D24"/></linearGradient><linearGradient id="qg1" x1="0" x2="1"><stop offset="0" stop-color="#8A7355"/><stop offset=".42" stop-color="#F0E4D0"/><stop offset="1" stop-color="#7A6248"/></linearGradient><linearGradient id="qg2" x1="0" x2="1"><stop offset="0" stop-color="#6B2233"/><stop offset=".42" stop-color="#C57A85"/><stop offset="1" stop-color="#5B1B2B"/></linearGradient><linearGradient id="qg3" x1="0" x2="1"><stop offset="0" stop-color="#1B1410"/><stop offset=".42" stop-color="#4E3E31"/><stop offset="1" stop-color="#120D0A"/></linearGradient><linearGradient id="qg4" x1="0" x2="1"><stop offset="0" stop-color="#2E4B57"/><stop offset=".42" stop-color="#89B2BD"/><stop offset="1" stop-color="#234048"/></linearGradient><linearGradient id="qg5" x1="0" x2="1"><stop offset="0" stop-color="#4E4468"/><stop offset=".42" stop-color="#A99BC4"/><stop offset="1" stop-color="#3D3457"/></linearGradient><linearGradient id="qgc" x1="0" x2="1"><stop offset="0" stop-color="#8E7248"/><stop offset=".5" stop-color="#E9D2A2"/><stop offset="1" stop-color="#8E7248"/></linearGradient></defs></svg>
+  <div class="qd-faixa" aria-hidden="true"><div class="qd-faixa-trilho"><span>Curadoria independente <i>✦</i> 47 ícones de 8 países <i>✦</i> Notas coletadas na Amazon Brasil em 02/11/2026 <i>✦</i> Contém links de afiliado <i>✦</i></span><span>Curadoria independente <i>✦</i> 47 ícones de 8 países <i>✦</i> Notas coletadas na Amazon Brasil em 02/11/2026 <i>✦</i> Contém links de afiliado <i>✦</i></span></div></div>
 
-  <div class="qd-filtro" role="group" aria-labelledby="filtro-label">
-    <span class="qd-label" id="filtro-label">Filtrar por país</span>
-    <div class="qd-chips" id="chips">
-      <button type="button" class="qd-chip" id="pais-todos" data-alvo="" aria-pressed="true">Todos</button>
-      <button type="button" class="qd-chip" id="pais-eua" data-alvo="eua" aria-pressed="false">Estados Unidos</button>
-      <button type="button" class="qd-chip" id="pais-brasil" data-alvo="brasil" aria-pressed="false">Brasil</button>
-      <button type="button" class="qd-chip" id="pais-coreia" data-alvo="coreia" aria-pressed="false">Coreia do Sul</button>
-      <button type="button" class="qd-chip" id="pais-japao" data-alvo="japao" aria-pressed="false">Japão</button>
-      <button type="button" class="qd-chip" id="pais-franca" data-alvo="franca" aria-pressed="false">França</button>
-      <button type="button" class="qd-chip" id="pais-canada" data-alvo="canada" aria-pressed="false">Canadá</button>
-      <button type="button" class="qd-chip" id="pais-alemanha" data-alvo="alemanha" aria-pressed="false">Alemanha</button>
-      <button type="button" class="qd-chip" id="pais-espanha" data-alvo="espanha" aria-pressed="false">Espanha</button>
+  <section class="qd-hero qd-grao">
+    <a href="/" class="qd-volta"><span aria-hidden="true">←</span> Voltar ao início</a>
+    <div class="qd-hero-grid">
+      <div>
+        <p class="qd-eyebrow reveal">Produto Skincare · Guia</p>
+        <h1 class="reveal" data-d="1">Queridinhos do skincare pelo <em>mundo</em></h1>
+        <p class="qd-lede reveal" data-d="2">Produtos que viraram referência no país de origem e fazem sucesso também no Brasil. São <strong>47 ícones de 8 países</strong>, separados pela origem da marca.</p>
+        <p class="qd-aviso reveal" data-d="2">Nota e número de avaliações vêm da Amazon Brasil, coletados em 02/11/2026, e podem ter mudado desde então. Produtos sem nota abrem uma busca na Amazon. Contém links de afiliado: como Associado da Amazon, ganho com compras qualificadas, sem custo extra para você.</p>
+        <div class="qd-cta reveal" data-d="3">
+          <a href="#sumario" class="qd-btn qd-btn-solid"><span>Explorar os capítulos</span></a>
+          <a href="#notas" class="qd-btn qd-btn-ghost">Como funciona a curadoria</a>
+        </div>
+        <ul class="qd-stats reveal" data-d="4">
+          <li><span>47</span><small>Ícones selecionados</small></li>
+          <li><span>8</span><small>Países de origem</small></li>
+          <li><span>34</span><small>Marcas citadas</small></li>
+        </ul>
+      </div>
+      <div class="qd-globo reveal" data-d="2">
+        <svg class="qd-globo-anel" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><path id="qd-anel" d="M100,100 m-89,0 a89,89 0 1,1 178,0 a89,89 0 1,1 -178,0"/></defs><text><textPath href="#qd-anel" startOffset="0">· Queridinhos do Skincare · Referências do Mundo · Curadoria Independente ·</textPath></text></svg>
+        <div class="qd-globo-nucleo" aria-hidden="true"><svg viewBox="0 0 400 400" focusable="false"><g class="qd-meridianos" fill="none" stroke-width="1"><ellipse cx="200" cy="200" rx="176" ry="58"/><ellipse cx="200" cy="200" rx="176" ry="118"/><ellipse cx="200" cy="200" rx="58" ry="176"/><ellipse cx="200" cy="200" rx="118" ry="176"/><line x1="24" y1="200" x2="376" y2="200"/><line x1="200" y1="24" x2="200" y2="376"/></g></svg></div>
+        <div class="qd-globo-centro" aria-hidden="true"><b>47</b><small>ícones · 8 países</small></div>
+        <a class="qd-no" href="#eua" style="top:2%;left:46%" aria-label="Estados Unidos">US</a>
+        <a class="qd-no" href="#brasil" style="top:16%;right:4%" aria-label="Brasil">BR</a>
+        <a class="qd-no" href="#coreia" style="top:50%;right:-2%" aria-label="Coreia do Sul">KR</a>
+        <a class="qd-no" href="#japao" style="bottom:12%;right:12%" aria-label="Japão">JP</a>
+        <a class="qd-no" href="#franca" style="bottom:0;left:42%" aria-label="França">FR</a>
+        <a class="qd-no" href="#canada" style="bottom:16%;left:6%" aria-label="Canadá">CA</a>
+        <a class="qd-no" href="#alemanha" style="top:44%;left:-3%" aria-label="Alemanha">DE</a>
+        <a class="qd-no" href="#espanha" style="top:12%;left:10%" aria-label="Espanha">ES</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="qd-filtro" id="filtro" role="group" aria-labelledby="filtro-label">
+    <div class="qd-filtro-in">
+      <span class="qd-label" id="filtro-label">Filtrar por país <b id="qd-total" aria-live="polite">47</b></span>
+      <div class="qd-chips" id="chips">
+        <button type="button" class="qd-chip" id="pais-todos" data-alvo="" aria-pressed="true">Todos</button>
+        <button type="button" class="qd-chip" id="pais-eua" data-alvo="eua" aria-pressed="false">Estados Unidos</button>
+        <button type="button" class="qd-chip" id="pais-brasil" data-alvo="brasil" aria-pressed="false">Brasil</button>
+        <button type="button" class="qd-chip" id="pais-coreia" data-alvo="coreia" aria-pressed="false">Coreia do Sul</button>
+        <button type="button" class="qd-chip" id="pais-japao" data-alvo="japao" aria-pressed="false">Japão</button>
+        <button type="button" class="qd-chip" id="pais-franca" data-alvo="franca" aria-pressed="false">França</button>
+        <button type="button" class="qd-chip" id="pais-canada" data-alvo="canada" aria-pressed="false">Canadá</button>
+        <button type="button" class="qd-chip" id="pais-alemanha" data-alvo="alemanha" aria-pressed="false">Alemanha</button>
+        <button type="button" class="qd-chip" id="pais-espanha" data-alvo="espanha" aria-pressed="false">Espanha</button>
+      </div>
+      <label class="qd-busca"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><input type="search" id="qd-busca" placeholder="Buscar produto ou marca" aria-label="Buscar produto ou marca" autocomplete="off"><button type="button" id="qd-limpar" aria-label="Limpar busca" hidden>×</button></label>
     </div>
   </div>
 
+  <nav class="qd-trilho" id="trilho" aria-label="Capítulos por país">
+    <a href="#eua" data-trilho="eua" title="Estados Unidos" aria-label="Capítulo 01: Estados Unidos"><i></i>01</a>
+    <a href="#brasil" data-trilho="brasil" title="Brasil" aria-label="Capítulo 02: Brasil"><i></i>02</a>
+    <a href="#coreia" data-trilho="coreia" title="Coreia do Sul" aria-label="Capítulo 03: Coreia do Sul"><i></i>03</a>
+    <a href="#japao" data-trilho="japao" title="Japão" aria-label="Capítulo 04: Japão"><i></i>04</a>
+    <a href="#franca" data-trilho="franca" title="França" aria-label="Capítulo 05: França"><i></i>05</a>
+    <a href="#canada" data-trilho="canada" title="Canadá" aria-label="Capítulo 06: Canadá"><i></i>06</a>
+    <a href="#alemanha" data-trilho="alemanha" title="Alemanha" aria-label="Capítulo 07: Alemanha"><i></i>07</a>
+    <a href="#espanha" data-trilho="espanha" title="Espanha" aria-label="Capítulo 08: Espanha"><i></i>08</a>
+  </nav>
+
+  <section class="qd-sumario" id="sumario" aria-labelledby="t-sumario">
+    <div class="qd-sumario-head">
+      <div>
+        <p class="qd-eyebrow reveal">O guia</p>
+        <h2 class="qd-titulo reveal" data-d="1" id="t-sumario">Oito capítulos. <em>Um atlas de beleza.</em></h2>
+      </div>
+      <p class="qd-lede reveal" data-d="2">Cada país tem uma escola própria de formulação. Escolha um capítulo ou percorra o guia completo — a ordem dentro de cada país não é um ranking.</p>
+    </div>
+    <div class="qd-sumario-grid reveal">
+      <a class="qd-sum" href="#eua" data-salto="eua"><span class="num">01</span><span class="nome">Estados Unidos</span><span class="cnt">5 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#brasil" data-salto="brasil"><span class="num">02</span><span class="nome">Brasil</span><span class="cnt">8 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#coreia" data-salto="coreia"><span class="num">03</span><span class="nome">Coreia do Sul</span><span class="cnt">9 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#japao" data-salto="japao"><span class="num">04</span><span class="nome">Japão</span><span class="cnt">5 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#franca" data-salto="franca"><span class="num">05</span><span class="nome">França</span><span class="cnt">10 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#canada" data-salto="canada"><span class="num">06</span><span class="nome">Canadá</span><span class="cnt">3 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#alemanha" data-salto="alemanha"><span class="num">07</span><span class="nome">Alemanha</span><span class="cnt">5 produtos <span aria-hidden="true">→</span></span></a>
+      <a class="qd-sum" href="#espanha" data-salto="espanha"><span class="num">08</span><span class="nome">Espanha</span><span class="cnt">2 produtos <span aria-hidden="true">→</span></span></a>
+    </div>
+  </section>
+
+  <div class="qd-capitulos" id="capitulos">
   <section class="qd-pais" id="eua" data-pais="eua" aria-labelledby="t-eua">
-    <div class="qd-head">
-      <h2 id="t-eua">Estados Unidos</h2>
-      <span class="qd-count">5 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/eua-480.webp" srcset="/img/queridinhos/eua-480.webp 480w, /img/queridinhos/eua-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Produtos CeraVe, Neutrogena e Paula's Choice sobre mármore, com a bandeira dos Estados Unidos ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">Marcas de farmácia que viraram referência de hidratação e limpeza.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">01</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-eua">Estados Unidos</h2>
+        <p class="qd-intro">Marcas de farmácia que viraram referência de hidratação e limpeza.</p>
+        <p class="qd-cap-meta"><b class="qd-count">5 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/eua-480.webp" srcset="/img/queridinhos/eua-480.webp 480w, /img/queridinhos/eua-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Produtos CeraVe, Neutrogena e Paula's Choice sobre mármore, com a bandeira dos Estados Unidos ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>Neutrogena Hydro Boost Water Gel 50g</h3>
-        <p class="qd-marca">Neutrogena</p>
-        <p class="qd-desc">Hidratante em gel com ácido hialurônico, textura de água.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 78.736 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B06XQ27YLL?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="neutrogena hydro boost water gel 50g neutrogena hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg0)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Neutrogena</p>
+          <h3>Neutrogena Hydro Boost Water Gel 50g</h3>
+          <p class="qd-desc">Hidratante em gel com ácido hialurônico, textura de água.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 78.736 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B06XQ27YLL?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Limpeza</span>
-        <h3>CeraVe Gel de Limpeza Facial 236ml</h3>
-        <p class="qd-marca">CeraVe</p>
-        <p class="qd-desc">Limpeza com ceramidas que não resseca.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 12.759 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B07XP6N3BC?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="cerave gel de limpeza facial 236ml cerave limpeza">
+        <div class="qd-media">
+          <span class="qd-cat">Limpeza</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg1)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">CeraVe</p>
+          <h3>CeraVe Gel de Limpeza Facial 236ml</h3>
+          <p class="qd-desc">Limpeza com ceramidas que não resseca.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 12.759 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B07XP6N3BC?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>CeraVe PM Loção Facial 52ml</h3>
-        <p class="qd-marca">CeraVe</p>
-        <p class="qd-desc">Hidratante facial leve com ceramidas e niacinamida.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 11.832 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="cerave pm loção facial 52ml cerave hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg2)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">CeraVe</p>
+          <h3>CeraVe PM Loção Facial 52ml</h3>
+          <p class="qd-desc">Hidratante facial leve com ceramidas e niacinamida.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 11.832 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>Neutrogena Sun Fresh Derm Care FPS 70 Facial 40g</h3>
-        <p class="qd-marca">Neutrogena</p>
-        <p class="qd-desc">Protetor solar facial de toque seco.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 43.808 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B08NVMP2YZ?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="neutrogena sun fresh derm care fps 70 facial 40g neutrogena protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg3)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Neutrogena</p>
+          <h3>Neutrogena Sun Fresh Derm Care FPS 70 Facial 40g</h3>
+          <p class="qd-desc">Protetor solar facial de toque seco.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 43.808 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B08NVMP2YZ?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Esfoliante</span>
-        <h3>Paula&#x27;s Choice 2% BHA</h3>
-        <p class="qd-marca">Paula&#x27;s Choice</p>
-        <p class="qd-desc">Esfoliante líquido com 2% de ácido salicílico.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Paulas+Choice+2%25+BHA&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="paula&#x27;s choice 2% bha paula&#x27;s choice esfoliante">
+        <div class="qd-media">
+          <span class="qd-cat">Esfoliante</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg4)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Paula&#x27;s Choice</p>
+          <h3>Paula&#x27;s Choice 2% BHA</h3>
+          <p class="qd-desc">Esfoliante líquido com 2% de ácido salicílico.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Paulas+Choice+2%25+BHA&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="brasil" data-pais="brasil" aria-labelledby="t-brasil">
-    <div class="qd-head">
-      <h2 id="t-brasil">Brasil</h2>
-      <span class="qd-count">8 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/brasil-480.webp" srcset="/img/queridinhos/brasil-480.webp 480w, /img/queridinhos/brasil-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Produtos Mantecorp, Principia, Adcos e outras marcas brasileiras sobre mármore, com a bandeira do Brasil ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">Dermocosméticos nacionais com fórmulas simples e preço acessível.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">02</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-brasil">Brasil</h2>
+        <p class="qd-intro">Dermocosméticos nacionais com fórmulas simples e preço acessível.</p>
+        <p class="qd-cap-meta"><b class="qd-count">8 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/brasil-480.webp" srcset="/img/queridinhos/brasil-480.webp 480w, /img/queridinhos/brasil-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Produtos Mantecorp, Principia, Adcos e outras marcas brasileiras sobre mármore, com a bandeira do Brasil ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>Mantecorp Epidrat Calm B5 50ml</h3>
-        <p class="qd-marca">Mantecorp</p>
-        <p class="qd-desc">Hidratante calmante com pantenol (vitamina B5).</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 5.395 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B09RL3X7RB?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="mantecorp epidrat calm b5 50ml mantecorp hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg0)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Mantecorp</p>
+          <h3>Mantecorp Epidrat Calm B5 50ml</h3>
+          <p class="qd-desc">Hidratante calmante com pantenol (vitamina B5).</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 5.395 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B09RL3X7RB?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>Principia Hidratante Karité + Niacinamida 50g</h3>
-        <p class="qd-marca">Principia</p>
-        <p class="qd-desc">Hidratante facial com manteiga de karité e niacinamida.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,7</b> · 5.421 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0FBDLYLSZ?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="principia hidratante karité + niacinamida 50g principia hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,7</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg1)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Principia</p>
+          <h3>Principia Hidratante Karité + Niacinamida 50g</h3>
+          <p class="qd-desc">Hidratante facial com manteiga de karité e niacinamida.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,7</b> · 5.421 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0FBDLYLSZ?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Principia VC-10 vitamina C</h3>
-        <p class="qd-marca">Principia</p>
-        <p class="qd-desc">Sérum de vitamina C da linha de ativos da marca.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Principia+VC-10+vitamina+C&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="principia vc-10 vitamina c principia sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg2)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Principia</p>
+          <h3>Principia VC-10 vitamina C</h3>
+          <p class="qd-desc">Sérum de vitamina C da linha de ativos da marca.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Principia+VC-10+vitamina+C&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Principia NC-10 niacinamida</h3>
-        <p class="qd-marca">Principia</p>
-        <p class="qd-desc">Sérum de niacinamida para oleosidade e poros.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Principia+NC-10+niacinamida&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="principia nc-10 niacinamida principia sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg3)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Principia</p>
+          <h3>Principia NC-10 niacinamida</h3>
+          <p class="qd-desc">Sérum de niacinamida para oleosidade e poros.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Principia+NC-10+niacinamida&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Sallve</h3>
-        <p class="qd-marca">Sallve</p>
-        <p class="qd-desc">Marca brasileira de ativos. A busca mostra a linha completa.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Sallve&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="sallve sallve sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg4)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Sallve</p>
+          <h3>Sallve</h3>
+          <p class="qd-desc">Marca brasileira de ativos. A busca mostra a linha completa.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Sallve&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Creamy</h3>
-        <p class="qd-marca">Creamy</p>
-        <p class="qd-desc">Séruns de ativos de marca brasileira.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Creamy+skincare&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="creamy creamy sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg5)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Creamy</p>
+          <h3>Creamy</h3>
+          <p class="qd-desc">Séruns de ativos de marca brasileira.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Creamy+skincare&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>Episol</h3>
-        <p class="qd-marca">Mantecorp</p>
-        <p class="qd-desc">Linha de protetores solares da Mantecorp.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Episol+protetor+solar&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="episol mantecorp protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg0)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Mantecorp</p>
+          <h3>Episol</h3>
+          <p class="qd-desc">Linha de protetores solares da Mantecorp.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Episol+protetor+solar&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Dermocosmético</span>
-        <h3>Adcos</h3>
-        <p class="qd-marca">Adcos</p>
-        <p class="qd-desc">Dermocosméticos de marca brasileira.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Adcos&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="adcos adcos dermocosmético">
+        <div class="qd-media">
+          <span class="qd-cat">Dermocosmético</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg1)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Adcos</p>
+          <h3>Adcos</h3>
+          <p class="qd-desc">Dermocosméticos de marca brasileira.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Adcos&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="coreia" data-pais="coreia" aria-labelledby="t-coreia">
-    <div class="qd-head">
-      <h2 id="t-coreia">Coreia do Sul</h2>
-      <span class="qd-count">9 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/coreia-480.webp" srcset="/img/queridinhos/coreia-480.webp 480w, /img/queridinhos/coreia-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Produtos COSRX, Beauty of Joseon, Anua, SKIN1004 e Missha sobre mármore, com a bandeira da Coreia do Sul ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">O K-beauty popularizou ativos como centella, mucina de caracol e BB cream.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">03</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-coreia">Coreia do Sul</h2>
+        <p class="qd-intro">O K-beauty popularizou ativos como centella, mucina de caracol e BB cream.</p>
+        <p class="qd-cap-meta"><b class="qd-count">9 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/coreia-480.webp" srcset="/img/queridinhos/coreia-480.webp 480w, /img/queridinhos/coreia-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Produtos COSRX, Beauty of Joseon, Anua, SKIN1004 e Missha sobre mármore, com a bandeira da Coreia do Sul ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Kit skincare</span>
-        <h3>SKIN1004 Madagascar Centella Kit Viagem</h3>
-        <p class="qd-marca">SKIN1004</p>
-        <p class="qd-desc">Linha com extrato de centella asiática em tamanho de viagem.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,6</b> · 4.940 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B08BZ89KKR?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="skin1004 madagascar centella kit viagem skin1004 kit skincare">
+        <div class="qd-media">
+          <span class="qd-cat">Kit skincare</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,6</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="26" y="96" width="82" height="172" rx="14" fill="url(#qg0)"/><rect x="118" y="132" width="72" height="136" rx="14" fill="url(#qgc)"/><rect x="36" y="118" width="11" height="128" rx="5.5" fill="#fff" opacity=".22"/><rect x="128" y="152" width="10" height="96" rx="5" fill="#fff" opacity=".2"/><rect x="42" y="168" width="52" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="132" y="192" width="44" height="52" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="56" y="192" width="24" height="2.6" rx="1.3" fill="#B08D57"/><rect x="144" y="214" width="20" height="2.6" rx="1.3" fill="#B08D57"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">SKIN1004</p>
+          <h3>SKIN1004 Madagascar Centella Kit Viagem</h3>
+          <p class="qd-desc">Linha com extrato de centella asiática em tamanho de viagem.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,6</b> · 4.940 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B08BZ89KKR?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Máscara</span>
-        <h3>medicube Colágeno Night Wrapping Mask</h3>
-        <p class="qd-marca">medicube</p>
-        <p class="qd-desc">Máscara noturna de colágeno, usada como último passo da noite.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,5</b> · 25.607 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0BRMYHMS5?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="medicube colágeno night wrapping mask medicube máscara">
+        <div class="qd-media">
+          <span class="qd-cat">Máscara</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,5</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg1)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">medicube</p>
+          <h3>medicube Colágeno Night Wrapping Mask</h3>
+          <p class="qd-desc">Máscara noturna de colágeno, usada como último passo da noite.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★</span> <span><b>4,5</b> · 25.607 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0BRMYHMS5?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">BB Cream</span>
-        <h3>M Perfect Cover Missha BB Cream 50ml</h3>
-        <p class="qd-marca">Missha</p>
-        <p class="qd-desc">BB cream com cobertura e proteção solar.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,4</b> · 5.379 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B07WRSH9L4?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="m perfect cover missha bb cream 50ml missha bb cream">
+        <div class="qd-media">
+          <span class="qd-cat">BB Cream</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,4</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg2)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Missha</p>
+          <h3>M Perfect Cover Missha BB Cream 50ml</h3>
+          <p class="qd-desc">BB cream com cobertura e proteção solar.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★</span> <span><b>4,4</b> · 5.379 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B07WRSH9L4?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Essência</span>
-        <h3>COSRX Advanced Snail 96 Mucin Power Essence</h3>
-        <p class="qd-marca">COSRX</p>
-        <p class="qd-desc">Essência com mucina de caracol, um dos ícones do K-beauty.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=COSRX+Advanced+Snail+96+Mucin+Power+Essence&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="cosrx advanced snail 96 mucin power essence cosrx essência">
+        <div class="qd-media">
+          <span class="qd-cat">Essência</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg3)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">COSRX</p>
+          <h3>COSRX Advanced Snail 96 Mucin Power Essence</h3>
+          <p class="qd-desc">Essência com mucina de caracol, um dos ícones do K-beauty.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=COSRX+Advanced+Snail+96+Mucin+Power+Essence&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>Beauty of Joseon Relief Sun protetor solar</h3>
-        <p class="qd-marca">Beauty of Joseon</p>
-        <p class="qd-desc">Protetor solar coreano com extrato de arroz.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Beauty+of+Joseon+Relief+Sun+protetor+solar&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="beauty of joseon relief sun protetor solar beauty of joseon protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg4)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Beauty of Joseon</p>
+          <h3>Beauty of Joseon Relief Sun protetor solar</h3>
+          <p class="qd-desc">Protetor solar coreano com extrato de arroz.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Beauty+of+Joseon+Relief+Sun+protetor+solar&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Tônico</span>
-        <h3>Anua Heartleaf 77% Toner</h3>
-        <p class="qd-marca">Anua</p>
-        <p class="qd-desc">Tônico com extrato de heartleaf, usado para acalmar a pele.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Anua+Heartleaf+77+Toner&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="anua heartleaf 77% toner anua tônico">
+        <div class="qd-media">
+          <span class="qd-cat">Tônico</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="86" y="34" width="48" height="34" rx="8" fill="url(#qgc)"/><rect x="72" y="68" width="76" height="206" rx="16" fill="url(#qg5)"/><rect x="84" y="92" width="11" height="156" rx="5.5" fill="#fff" opacity=".22"/><rect x="84" y="158" width="52" height="80" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="96" y="186" width="28" height="2.6" rx="1.3" fill="#B08D57"/><rect x="92" y="200" width="36" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Anua</p>
+          <h3>Anua Heartleaf 77% Toner</h3>
+          <p class="qd-desc">Tônico com extrato de heartleaf, usado para acalmar a pele.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Anua+Heartleaf+77+Toner&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Tônico</span>
-        <h3>Round Lab Dokdo Toner</h3>
-        <p class="qd-marca">Round Lab</p>
-        <p class="qd-desc">Tônico suave para o uso diário.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Round+Lab+Dokdo+Toner&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="round lab dokdo toner round lab tônico">
+        <div class="qd-media">
+          <span class="qd-cat">Tônico</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="86" y="34" width="48" height="34" rx="8" fill="url(#qgc)"/><rect x="72" y="68" width="76" height="206" rx="16" fill="url(#qg0)"/><rect x="84" y="92" width="11" height="156" rx="5.5" fill="#fff" opacity=".22"/><rect x="84" y="158" width="52" height="80" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="96" y="186" width="28" height="2.6" rx="1.3" fill="#B08D57"/><rect x="92" y="200" width="36" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Round Lab</p>
+          <h3>Round Lab Dokdo Toner</h3>
+          <p class="qd-desc">Tônico suave para o uso diário.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Round+Lab+Dokdo+Toner&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Torriden Dive-In Serum</h3>
-        <p class="qd-marca">Torriden</p>
-        <p class="qd-desc">Sérum de ácido hialurônico para hidratação.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Torriden+Dive-In+Serum&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="torriden dive-in serum torriden sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg1)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Torriden</p>
+          <h3>Torriden Dive-In Serum</h3>
+          <p class="qd-desc">Sérum de ácido hialurônico para hidratação.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Torriden+Dive-In+Serum&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Labial</span>
-        <h3>Laneige Lip Sleeping Mask</h3>
-        <p class="qd-marca">Laneige</p>
-        <p class="qd-desc">Máscara noturna para os lábios.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Laneige+Lip+Sleeping+Mask&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="laneige lip sleeping mask laneige labial">
+        <div class="qd-media">
+          <span class="qd-cat">Labial</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="76" y="112" width="68" height="158" rx="18" fill="url(#qg2)"/><rect x="86" y="134" width="11" height="110" rx="5.5" fill="#fff" opacity=".24"/><rect x="70" y="72" width="80" height="44" rx="12" fill="url(#qgc)"/><rect x="88" y="176" width="44" height="52" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="98" y="198" width="24" height="2.6" rx="1.3" fill="#B08D57"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Laneige</p>
+          <h3>Laneige Lip Sleeping Mask</h3>
+          <p class="qd-desc">Máscara noturna para os lábios.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Laneige+Lip+Sleeping+Mask&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="japao" data-pais="japao" aria-labelledby="t-japao">
-    <div class="qd-head">
-      <h2 id="t-japao">Japão</h2>
-      <span class="qd-count">5 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/japao-480.webp" srcset="/img/queridinhos/japao-480.webp 480w, /img/queridinhos/japao-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Produtos Hada Labo, Skin Aqua, Bioré, Melano CC e Senka sobre mármore, com a bandeira do Japão ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">Texturas leves e protetores solares que viraram objeto de culto.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">04</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-japao">Japão</h2>
+        <p class="qd-intro">Texturas leves e protetores solares que viraram objeto de culto.</p>
+        <p class="qd-cap-meta"><b class="qd-count">5 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/japao-480.webp" srcset="/img/queridinhos/japao-480.webp 480w, /img/queridinhos/japao-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Produtos Hada Labo, Skin Aqua, Bioré, Melano CC e Senka sobre mármore, com a bandeira do Japão ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Limpeza</span>
-        <h3>Hada Labo Gokujyun Oil Cleansing 200ml</h3>
-        <p class="qd-marca">Hada Labo</p>
-        <p class="qd-desc">Óleo de limpeza que remove maquiagem e protetor solar.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,7</b> · 24.472 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B07ZD6R4QK?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="hada labo gokujyun oil cleansing 200ml hada labo limpeza">
+        <div class="qd-media">
+          <span class="qd-cat">Limpeza</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,7</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg0)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Hada Labo</p>
+          <h3>Hada Labo Gokujyun Oil Cleansing 200ml</h3>
+          <p class="qd-desc">Óleo de limpeza que remove maquiagem e protetor solar.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,7</b> · 24.472 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B07ZD6R4QK?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>Skin Aqua Super Moisture Milk FPS 50 40g</h3>
-        <p class="qd-marca">Skin Aqua</p>
-        <p class="qd-desc">Protetor solar em textura de leite, muito leve.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 4.578 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0C9L4ZNZ8?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="skin aqua super moisture milk fps 50 40g skin aqua protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg1)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Skin Aqua</p>
+          <h3>Skin Aqua Super Moisture Milk FPS 50 40g</h3>
+          <p class="qd-desc">Protetor solar em textura de leite, muito leve.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 4.578 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0C9L4ZNZ8?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>Bioré UV Aqua Rich Watery Essence</h3>
-        <p class="qd-marca">Bioré</p>
-        <p class="qd-desc">Protetor solar em textura de gel, bem leve.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Biore+UV+Aqua+Rich+Watery+Essence&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="bioré uv aqua rich watery essence bioré protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg2)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Bioré</p>
+          <h3>Bioré UV Aqua Rich Watery Essence</h3>
+          <p class="qd-desc">Protetor solar em textura de gel, bem leve.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Biore+UV+Aqua+Rich+Watery+Essence&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Melano CC sérum de vitamina C</h3>
-        <p class="qd-marca">Melano CC</p>
-        <p class="qd-desc">Sérum de vitamina C da Rohto, a mesma empresa do Hada Labo.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Melano+CC+serum+vitamina+C&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="melano cc sérum de vitamina c melano cc sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg3)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Melano CC</p>
+          <h3>Melano CC sérum de vitamina C</h3>
+          <p class="qd-desc">Sérum de vitamina C da Rohto, a mesma empresa do Hada Labo.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Melano+CC+serum+vitamina+C&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Limpeza</span>
-        <h3>Senka Perfect Whip</h3>
-        <p class="qd-marca">Senka</p>
-        <p class="qd-desc">Espuma de limpeza facial.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Senka+Perfect+Whip&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="senka perfect whip senka limpeza">
+        <div class="qd-media">
+          <span class="qd-cat">Limpeza</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg4)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Senka</p>
+          <h3>Senka Perfect Whip</h3>
+          <p class="qd-desc">Espuma de limpeza facial.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Senka+Perfect+Whip&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="franca" data-pais="franca" aria-labelledby="t-franca">
-    <div class="qd-head">
-      <h2 id="t-franca">França</h2>
-      <span class="qd-count">10 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/franca-480.webp" srcset="/img/queridinhos/franca-480.webp 480w, /img/queridinhos/franca-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Produtos La Roche-Posay, Bioderma, Vichy, Garnier e L'Oréal sobre mármore, com a bandeira da França ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">A tradição da dermocosmética de farmácia francesa.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">05</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-franca">França</h2>
+        <p class="qd-intro">A tradição da dermocosmética de farmácia francesa.</p>
+        <p class="qd-cap-meta"><b class="qd-count">10 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/franca-480.webp" srcset="/img/queridinhos/franca-480.webp 480w, /img/queridinhos/franca-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Produtos La Roche-Posay, Bioderma, Vichy, Garnier e L'Oréal sobre mármore, com a bandeira da França ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante reparador</span>
-        <h3>La Roche-Posay Cicaplast Baume B5+ 40ml</h3>
-        <p class="qd-marca">La Roche-Posay</p>
-        <p class="qd-desc">Bálsamo reparador para pele irritada ou ressecada.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 27.628 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B072MK7BN2?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="la roche-posay cicaplast baume b5+ 40ml la roche-posay hidratante reparador">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante reparador</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg0)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">La Roche-Posay</p>
+          <h3>La Roche-Posay Cicaplast Baume B5+ 40ml</h3>
+          <p class="qd-desc">Bálsamo reparador para pele irritada ou ressecada.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 27.628 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B072MK7BN2?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Limpeza</span>
-        <h3>La Roche-Posay Effaclar Gel Alta Tolerância</h3>
-        <p class="qd-marca">La Roche-Posay</p>
-        <p class="qd-desc">Gel de limpeza para pele oleosa e acneica.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 12.128 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0B3SGCCY5?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="la roche-posay effaclar gel alta tolerância la roche-posay limpeza">
+        <div class="qd-media">
+          <span class="qd-cat">Limpeza</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg1)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">La Roche-Posay</p>
+          <h3>La Roche-Posay Effaclar Gel Alta Tolerância</h3>
+          <p class="qd-desc">Gel de limpeza para pele oleosa e acneica.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 12.128 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0B3SGCCY5?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>La Roche-Posay Anthelios Airlicium FPS 70</h3>
-        <p class="qd-marca">La Roche-Posay</p>
-        <p class="qd-desc">Protetor solar facial de toque seco.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 10.230 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0BJ347WND?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="la roche-posay anthelios airlicium fps 70 la roche-posay protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg2)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">La Roche-Posay</p>
+          <h3>La Roche-Posay Anthelios Airlicium FPS 70</h3>
+          <p class="qd-desc">Protetor solar facial de toque seco.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 10.230 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0BJ347WND?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>L&#x27;Oréal Revitalift Hialurônico Noturno 49g</h3>
-        <p class="qd-marca">L&#x27;Oréal Paris</p>
-        <p class="qd-desc">Creme noturno com ácido hialurônico.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 14.521 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B07VGF2P6L?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="l&#x27;oréal revitalift hialurônico noturno 49g l&#x27;oréal paris hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg3)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">L&#x27;Oréal Paris</p>
+          <h3>L&#x27;Oréal Revitalift Hialurônico Noturno 49g</h3>
+          <p class="qd-desc">Creme noturno com ácido hialurônico.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 14.521 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B07VGF2P6L?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>Garnier Uniform &amp; Matte Toque Seco 85g</h3>
-        <p class="qd-marca">Garnier</p>
-        <p class="qd-desc">Hidratante com efeito matte e uniformizador.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 2.178 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0DP82WCWS?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="garnier uniform &amp; matte toque seco 85g garnier hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg4)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Garnier</p>
+          <h3>Garnier Uniform &amp; Matte Toque Seco 85g</h3>
+          <p class="qd-desc">Hidratante com efeito matte e uniformizador.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 2.178 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0DP82WCWS?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Tratamento acne</span>
-        <h3>La Roche-Posay Effaclar Duo</h3>
-        <p class="qd-marca">La Roche-Posay</p>
-        <p class="qd-desc">Tratamento para pele com tendência acneica.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=La+Roche-Posay+Effaclar+Duo&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="la roche-posay effaclar duo la roche-posay tratamento acne">
+        <div class="qd-media">
+          <span class="qd-cat">Tratamento acne</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="76" y="112" width="68" height="158" rx="18" fill="url(#qg5)"/><rect x="86" y="134" width="11" height="110" rx="5.5" fill="#fff" opacity=".24"/><rect x="70" y="72" width="80" height="44" rx="12" fill="url(#qgc)"/><rect x="88" y="176" width="44" height="52" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="98" y="198" width="24" height="2.6" rx="1.3" fill="#B08D57"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">La Roche-Posay</p>
+          <h3>La Roche-Posay Effaclar Duo</h3>
+          <p class="qd-desc">Tratamento para pele com tendência acneica.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=La+Roche-Posay+Effaclar+Duo&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Limpeza</span>
-        <h3>Bioderma Sensibio H2O</h3>
-        <p class="qd-marca">Bioderma</p>
-        <p class="qd-desc">Água micelar para pele sensível.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Bioderma+Sensibio+H2O&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="bioderma sensibio h2o bioderma limpeza">
+        <div class="qd-media">
+          <span class="qd-cat">Limpeza</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg0)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Bioderma</p>
+          <h3>Bioderma Sensibio H2O</h3>
+          <p class="qd-desc">Água micelar para pele sensível.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Bioderma+Sensibio+H2O&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Bruma</span>
-        <h3>Avène Água Termal</h3>
-        <p class="qd-marca">Avène</p>
-        <p class="qd-desc">Spray de água termal para acalmar a pele.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Avene+agua+termal&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="avène água termal avène bruma">
+        <div class="qd-media">
+          <span class="qd-cat">Bruma</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg1)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Avène</p>
+          <h3>Avène Água Termal</h3>
+          <p class="qd-desc">Spray de água termal para acalmar a pele.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Avene+agua+termal&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Vichy Minéral 89</h3>
-        <p class="qd-marca">Vichy</p>
-        <p class="qd-desc">Hidratante leve com ácido hialurônico.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Vichy+Mineral+89&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="vichy minéral 89 vichy sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg2)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Vichy</p>
+          <h3>Vichy Minéral 89</h3>
+          <p class="qd-desc">Hidratante leve com ácido hialurônico.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Vichy+Mineral+89&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>Embryolisse Lait-Crème Concentré</h3>
-        <p class="qd-marca">Embryolisse</p>
-        <p class="qd-desc">Hidratante clássico, muito usado como preparo para a maquiagem.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Embryolisse+Lait-Creme+Concentre&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="embryolisse lait-crème concentré embryolisse hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg3)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Embryolisse</p>
+          <h3>Embryolisse Lait-Crème Concentré</h3>
+          <p class="qd-desc">Hidratante clássico, muito usado como preparo para a maquiagem.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Embryolisse+Lait-Creme+Concentre&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="canada" data-pais="canada" aria-labelledby="t-canada">
-    <div class="qd-head">
-      <h2 id="t-canada">Canadá</h2>
-      <span class="qd-count">3 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/canada-480.webp" srcset="/img/queridinhos/canada-480.webp 480w, /img/queridinhos/canada-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Três frascos de sérum The Ordinary sobre mármore, com a bandeira do Canadá ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">Ativos isolados, rótulos diretos e preços baixos.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">06</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-canada">Canadá</h2>
+        <p class="qd-intro">Ativos isolados, rótulos diretos e preços baixos.</p>
+        <p class="qd-cap-meta"><b class="qd-count">3 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/canada-480.webp" srcset="/img/queridinhos/canada-480.webp 480w, /img/queridinhos/canada-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Três frascos de sérum The Ordinary sobre mármore, com a bandeira do Canadá ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>The Ordinary Niacinamide 10% Zinc 1%</h3>
-        <p class="qd-marca">The Ordinary</p>
-        <p class="qd-desc">Sérum de niacinamida e zinco para oleosidade.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=The+Ordinary+Niacinamide+10%25+Zinc+1%25&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="the ordinary niacinamide 10% zinc 1% the ordinary sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg0)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">The Ordinary</p>
+          <h3>The Ordinary Niacinamide 10% Zinc 1%</h3>
+          <p class="qd-desc">Sérum de niacinamida e zinco para oleosidade.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=The+Ordinary+Niacinamide+10%25+Zinc+1%25&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>The Ordinary Hyaluronic Acid 2% B5</h3>
-        <p class="qd-marca">The Ordinary</p>
-        <p class="qd-desc">Sérum de ácido hialurônico com vitamina B5.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=The+Ordinary+Hyaluronic+Acid+2%25+B5&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="the ordinary hyaluronic acid 2% b5 the ordinary sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg1)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">The Ordinary</p>
+          <h3>The Ordinary Hyaluronic Acid 2% B5</h3>
+          <p class="qd-desc">Sérum de ácido hialurônico com vitamina B5.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=The+Ordinary+Hyaluronic+Acid+2%25+B5&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Tônico</span>
-        <h3>The Ordinary Glycolic Acid 7%</h3>
-        <p class="qd-marca">The Ordinary</p>
-        <p class="qd-desc">Tônico esfoliante com ácido glicólico.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=The+Ordinary+Glycolic+Acid+7%25&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="the ordinary glycolic acid 7% the ordinary tônico">
+        <div class="qd-media">
+          <span class="qd-cat">Tônico</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="86" y="34" width="48" height="34" rx="8" fill="url(#qgc)"/><rect x="72" y="68" width="76" height="206" rx="16" fill="url(#qg2)"/><rect x="84" y="92" width="11" height="156" rx="5.5" fill="#fff" opacity=".22"/><rect x="84" y="158" width="52" height="80" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="96" y="186" width="28" height="2.6" rx="1.3" fill="#B08D57"/><rect x="92" y="200" width="36" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">The Ordinary</p>
+          <h3>The Ordinary Glycolic Acid 7%</h3>
+          <p class="qd-desc">Tônico esfoliante com ácido glicólico.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=The+Ordinary+Glycolic+Acid+7%25&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="alemanha" data-pais="alemanha" aria-labelledby="t-alemanha">
-    <div class="qd-head">
-      <h2 id="t-alemanha">Alemanha</h2>
-      <span class="qd-count">5 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/alemanha-480.webp" srcset="/img/queridinhos/alemanha-480.webp 480w, /img/queridinhos/alemanha-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Produtos NIVEA, Eucerin e Sebamed sobre mármore, com a bandeira da Alemanha ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">Marcas centenárias de cuidado com a pele.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">07</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-alemanha">Alemanha</h2>
+        <p class="qd-intro">Marcas centenárias de cuidado com a pele.</p>
+        <p class="qd-cap-meta"><b class="qd-count">5 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/alemanha-480.webp" srcset="/img/queridinhos/alemanha-480.webp 480w, /img/queridinhos/alemanha-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Produtos NIVEA, Eucerin e Sebamed sobre mármore, com a bandeira da Alemanha ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>NIVEA SUN Protetor Facial Toque Seco FPS 70 40ml</h3>
-        <p class="qd-marca">NIVEA</p>
-        <p class="qd-desc">Protetor solar facial de toque seco.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,7</b> · 23.683 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B0BD6755LC?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="nivea sun protetor facial toque seco fps 70 40ml nivea protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,7</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg0)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">NIVEA</p>
+          <h3>NIVEA SUN Protetor Facial Toque Seco FPS 70 40ml</h3>
+          <p class="qd-desc">Protetor solar facial de toque seco.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,7</b> · 23.683 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B0BD6755LC?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Sérum</span>
-        <h3>Eucerin Anti-Pigment Dual Sérum 30ml</h3>
-        <p class="qd-marca">Eucerin</p>
-        <p class="qd-desc">Sérum duplo para manchas.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,7</b> · 12.662 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B07SJSZHD7?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="eucerin anti-pigment dual sérum 30ml eucerin sérum">
+        <div class="qd-media">
+          <span class="qd-cat">Sérum</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,7</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="82" y="18" width="56" height="28" rx="7" fill="url(#qgc)"/><rect x="94" y="46" width="32" height="30" rx="3" fill="#2C1E12" opacity=".5"/><rect x="62" y="76" width="96" height="196" rx="20" fill="url(#qg1)"/><rect x="76" y="100" width="12" height="146" rx="6" fill="#fff" opacity=".2"/><rect x="72" y="150" width="56" height="72" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="84" y="172" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="80" y="186" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Eucerin</p>
+          <h3>Eucerin Anti-Pigment Dual Sérum 30ml</h3>
+          <p class="qd-desc">Sérum duplo para manchas.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,7</b> · 12.662 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B07SJSZHD7?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Hidratante</span>
-        <h3>Nivea Creme (lata azul)</h3>
-        <p class="qd-marca">NIVEA</p>
-        <p class="qd-desc">O creme hidratante clássico da marca, para rosto e corpo.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Nivea+Creme+lata&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="nivea creme (lata azul) nivea hidratante">
+        <div class="qd-media">
+          <span class="qd-cat">Hidratante</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg2)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">NIVEA</p>
+          <h3>Nivea Creme (lata azul)</h3>
+          <p class="qd-desc">O creme hidratante clássico da marca, para rosto e corpo.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Nivea+Creme+lata&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Antissinais</span>
-        <h3>Eucerin Hyaluron-Filler</h3>
-        <p class="qd-marca">Eucerin</p>
-        <p class="qd-desc">Linha antissinais com ácido hialurônico.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Eucerin+Hyaluron-Filler&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="eucerin hyaluron-filler eucerin antissinais">
+        <div class="qd-media">
+          <span class="qd-cat">Antissinais</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="38" y="126" width="144" height="140" rx="18" fill="url(#qg3)"/><rect x="52" y="150" width="14" height="92" rx="7" fill="#fff" opacity=".26"/><rect x="32" y="76" width="156" height="54" rx="14" fill="url(#qgc)"/><rect x="32" y="122" width="156" height="7" fill="#8E7248" opacity=".32"/><rect x="56" y="172" width="108" height="62" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="78" y="196" width="64" height="2.6" rx="1.3" fill="#B08D57"/><rect x="72" y="210" width="76" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Eucerin</p>
+          <h3>Eucerin Hyaluron-Filler</h3>
+          <p class="qd-desc">Linha antissinais com ácido hialurônico.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Eucerin+Hyaluron-Filler&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Limpeza</span>
-        <h3>Sebamed</h3>
-        <p class="qd-marca">Sebamed</p>
-        <p class="qd-desc">Linha de limpeza com pH 5,5.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=Sebamed+limpeza+facial&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="sebamed sebamed limpeza">
+        <div class="qd-media">
+          <span class="qd-cat">Limpeza</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><rect x="70" y="72" width="80" height="200" rx="18" fill="url(#qg4)"/><rect x="82" y="96" width="11" height="150" rx="5.5" fill="#fff" opacity=".22"/><rect x="86" y="42" width="48" height="32" rx="8" fill="url(#qgc)"/><rect x="96" y="18" width="28" height="26" rx="8" fill="#8E7248"/><rect x="82" y="152" width="56" height="76" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="94" y="178" width="32" height="2.6" rx="1.3" fill="#B08D57"/><rect x="90" y="192" width="40" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">Sebamed</p>
+          <h3>Sebamed</h3>
+          <p class="qd-desc">Linha de limpeza com pH 5,5.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=Sebamed+limpeza+facial&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
-
   <section class="qd-pais" id="espanha" data-pais="espanha" aria-labelledby="t-espanha">
-    <div class="qd-head">
-      <h2 id="t-espanha">Espanha</h2>
-      <span class="qd-count">2 produtos</span>
-    </div>
-    <div class="qd-apres">
-      <figure class="qd-foto"><img src="/img/queridinhos/espanha-480.webp" srcset="/img/queridinhos/espanha-480.webp 480w, /img/queridinhos/espanha-960.webp 960w" sizes="(max-width: 640px) min(420px, calc(100vw - 36px)), 280px" width="480" height="480" alt="Protetores solares ISDIN Fusion Water e Eryfotona Actinica sobre mármore, com a bandeira da Espanha ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
-      <p class="qd-intro">Protetores solares de textura fluida.</p>
+    <div class="qd-cap-head">
+      <div class="qd-cap-num" aria-hidden="true">08</div>
+      <div class="qd-cap-titulo">
+        <h2 id="t-espanha">Espanha</h2>
+        <p class="qd-intro">Protetores solares de textura fluida.</p>
+        <p class="qd-cap-meta"><b class="qd-count">2 produtos</b><span aria-hidden="true">·</span><span>Curadoria editorial</span></p>
+      </div>
+      <figure class="qd-foto"><img src="/img/queridinhos/espanha-480.webp" srcset="/img/queridinhos/espanha-480.webp 480w, /img/queridinhos/espanha-960.webp 960w" sizes="(max-width: 980px) min(300px, 70vw), 255px" width="480" height="480" alt="Protetores solares ISDIN Fusion Water e Eryfotona Actinica sobre mármore, com a bandeira da Espanha ao fundo" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa, gerada por IA</figcaption></figure>
     </div>
     <div class="qd-grid">
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>ISDIN Fusion Water 5 Stars FPS 60 50ml</h3>
-        <p class="qd-marca">ISDIN</p>
-        <p class="qd-desc">Protetor solar facial ultrafluido, à base de água.</p>
-        <p class="qd-rate"><span class="qd-star" aria-hidden="true">★</span> <b>4,8</b> · 17.955 avaliações</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/dp/B08F864LDD?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="isdin fusion water 5 stars fps 60 50ml isdin protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate"><span aria-hidden="true">★</span> 4,8</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg0)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">ISDIN</p>
+          <h3>ISDIN Fusion Water 5 Stars FPS 60 50ml</h3>
+          <p class="qd-desc">Protetor solar facial ultrafluido, à base de água.</p>
+          <p class="qd-meta"><span class="qd-stars" aria-hidden="true">★★★★★</span> <span><b>4,8</b> · 17.955 avaliações</span></p>
+          <a class="qd-buy solid" href="https://www.amazon.com.br/dp/B08F864LDD?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Ver na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
-      <article class="qd-card">
-        <span class="qd-cat">Protetor solar</span>
-        <h3>ISDIN Eryfotona Actinica</h3>
-        <p class="qd-marca">ISDIN</p>
-        <p class="qd-desc">Protetor solar facial de alta proteção.</p>
-        <p class="qd-rate qd-semnota">Abre a busca na Amazon</p>
-        <a class="qd-buy" href="https://www.amazon.com.br/s?k=ISDIN+Eryfotona+Actinica&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon ↗</a>
+      <article class="qd-card reveal" data-key="isdin eryfotona actinica isdin protetor solar">
+        <div class="qd-media">
+          <span class="qd-cat">Protetor solar</span>
+          <span class="qd-rate alt">Busca</span>
+          <svg class="qd-prod" viewBox="0 0 220 300" aria-hidden="true" focusable="false"><ellipse cx="110" cy="282" rx="66" ry="11" fill="#3E2B1B" opacity=".17"/><path d="M52 118 q58 -20 116 0 v148 q-58 18 -116 0 z" fill="url(#qg1)"/><rect x="66" y="142" width="13" height="94" rx="6.5" fill="#fff" opacity=".26"/><path d="M52 118 q58 -20 116 0 v-12 q-58 -20 -116 0 z" fill="#8E7248" opacity=".5"/><rect x="72" y="164" width="76" height="66" rx="5" fill="#FBF7F1" opacity=".93"/><rect x="92" y="188" width="36" height="2.6" rx="1.3" fill="#B08D57"/><rect x="86" y="202" width="48" height="2" rx="1" fill="#8E7248" opacity=".5"/></svg>
+        </div>
+        <div class="qd-body">
+          <p class="qd-marca">ISDIN</p>
+          <h3>ISDIN Eryfotona Actinica</h3>
+          <p class="qd-desc">Protetor solar facial de alta proteção.</p>
+          <p class="qd-meta qd-semnota">Sem nota · abre a busca na Amazon</p>
+          <a class="qd-buy" href="https://www.amazon.com.br/s?k=ISDIN+Eryfotona+Actinica&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener">Buscar na Amazon <span class="arw" aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
+  </div>
 
-  <footer class="qd-foot">
-    <p>Seleção editorial do Produto Skincare a partir dos mais vendidos da Amazon Brasil. A ordem dentro de cada país não é um ranking.</p>
-    <p><strong>Não é diagnóstico médico.</strong> Um produto popular não é garantia de que serve para a sua pele. Se tiver acne, manchas, rosácea ou alergias, procure um dermatologista. Para montar a ordem de uso, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a>.</p>
-  <noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+  <div class="qd-vazio" id="qd-vazio" hidden>
+    <h2>Nenhum produto encontrado</h2>
+    <p>Tente outro termo ou volte para a visualização completa do guia.</p>
+    <button type="button" class="qd-btn qd-btn-ghost" id="qd-reset">Limpar filtros</button>
+  </div>
+
+  <section class="qd-notas qd-grao" id="notas" aria-labelledby="t-notas">
+    <p class="qd-eyebrow reveal">Transparência</p>
+    <h2 class="qd-titulo reveal" data-d="1" id="t-notas">Como esta seleção foi <em>feita</em></h2>
+    <div class="qd-notas-grid">
+      <div class="qd-nota reveal">
+        <h3>Origem dos dados</h3>
+        <p>Nota e número de avaliações vêm da <b>Amazon Brasil</b>, coletados em <b>02/11/2026</b>, e podem ter mudado desde então. Produtos sem nota abrem uma busca na Amazon.</p>
+        <p>Contém links de afiliado: como Associado da Amazon, ganho com compras qualificadas, <b>sem custo extra para você</b>.</p>
+      </div>
+      <div class="qd-nota reveal" data-d="1">
+        <h3>Nota importante</h3>
+        <p>Seleção editorial do Produto Skincare a partir dos mais vendidos da Amazon Brasil. <b>A ordem dentro de cada país não é um ranking.</b></p>
+        <p><strong>Não é diagnóstico médico.</strong> Um produto popular não é garantia de que serve para a sua pele. Se tiver acne, manchas, rosácea ou alergias, procure um dermatologista. Para montar a ordem de uso, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a>.</p>
+      </div>
+    </div>
+    <noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+  </section>
+
+  <button type="button" class="qd-topo" id="qd-topo" aria-label="Voltar ao topo" hidden>↑</button>
 <!-- perguntas:inicio -->
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Perguntas frequentes</h2>
@@ -597,7 +1158,7 @@
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-11">11 de novembro de 2026</time>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-12">12 de novembro de 2026</time>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
@@ -616,16 +1177,127 @@
 </footer>
 <script>
 (function(){
-  var chips = document.querySelectorAll("#chips .qd-chip");
-  var secoes = document.querySelectorAll(".qd-pais");
-  function aplicar(alvo){
-    secoes.forEach(function(s){ s.hidden = !!alvo && s.dataset.pais !== alvo; });
-    chips.forEach(function(c){ c.setAttribute("aria-pressed", String(c.dataset.alvo === alvo)); });
+  var raiz = document.getElementById("conteudo");
+  if (!raiz) return;
+  raiz.classList.add("qd-js");
+
+  var chips = raiz.querySelectorAll("#chips .qd-chip");
+  var secoes = raiz.querySelectorAll(".qd-pais");
+  var cards = raiz.querySelectorAll(".qd-card");
+  var busca = document.getElementById("qd-busca");
+  var limpar = document.getElementById("qd-limpar");
+  var vazio = document.getElementById("qd-vazio");
+  var totalEl = document.getElementById("qd-total");
+  var topo = document.getElementById("qd-topo");
+  var trilho = document.getElementById("trilho");
+  var capitulos = document.getElementById("capitulos");
+  var cabecalho = document.querySelector(".ps-topo");
+  var alvo = "";
+
+  function semAcento(s){
+    s = s.toLowerCase();
+    return s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s;
   }
-  chips.forEach(function(c){ c.addEventListener("click", function(){ aplicar(c.dataset.alvo); }); });
-  var hash = location.hash.slice(1);
-  var valido = Array.prototype.some.call(secoes, function(s){ return s.dataset.pais === hash; });
-  aplicar(valido ? hash : "");
+  cards.forEach(function(c){ c._chave = semAcento(c.getAttribute("data-key") || ""); });
+
+  /* entrada ao rolar */
+  var olheiro = null;
+  var olheiroVivo = false;
+  if ("IntersectionObserver" in window) {
+    olheiro = new IntersectionObserver(function(itens){
+      olheiroVivo = true;
+      itens.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("in"); olheiro.unobserve(e.target); }
+      });
+    }, {threshold: .08, rootMargin: "0px 0px -5% 0px"});
+  }
+  function observar(){
+    raiz.querySelectorAll(".reveal:not(.in)").forEach(function(el){
+      if (olheiro) olheiro.observe(el); else el.classList.add("in");
+    });
+  }
+  observar();
+  /* se o observador não responder (aba em segundo plano, navegador antigo), mostra tudo: nada fica invisível */
+  setTimeout(function(){
+    if (olheiroVivo) return;
+    if (olheiro) olheiro.disconnect();
+    olheiro = null;
+    observar();
+  }, 1500);
+
+  /* filtro por país + busca */
+  function aplicar(){
+    var termo = semAcento(busca.value.trim());
+    var visiveis = 0;
+    limpar.hidden = !termo;
+    secoes.forEach(function(s){
+      var doPais = !alvo || s.dataset.pais === alvo;
+      var n = 0;
+      s.querySelectorAll(".qd-card").forEach(function(c){
+        var ok = doPais && (!termo || c._chave.indexOf(termo) !== -1);
+        c.hidden = !ok;
+        if (ok) { n++; visiveis++; }
+      });
+      s.hidden = !n;
+    });
+    chips.forEach(function(c){ c.setAttribute("aria-pressed", String(c.dataset.alvo === alvo)); });
+    vazio.hidden = visiveis > 0;
+    totalEl.textContent = visiveis;
+    observar();
+  }
+  function zerar(){ alvo = ""; busca.value = ""; aplicar(); }
+
+  chips.forEach(function(c){
+    c.addEventListener("click", function(){
+      alvo = c.dataset.alvo;
+      aplicar();
+      var sec = alvo && document.getElementById(alvo);
+      if (sec && !sec.hidden) sec.scrollIntoView();
+    });
+  });
+  var espera;
+  busca.addEventListener("input", function(){ clearTimeout(espera); espera = setTimeout(aplicar, 150); });
+  limpar.addEventListener("click", function(){ busca.value = ""; aplicar(); busca.focus(); });
+  document.getElementById("qd-reset").addEventListener("click", zerar);
+
+  /* âncoras internas: se o capítulo de destino estiver filtrado, volta a mostrar tudo antes de rolar */
+  raiz.addEventListener("click", function(ev){
+    var a = ev.target.closest && ev.target.closest('a[href^="#"]');
+    if (!a) return;
+    var destino = document.getElementById(a.getAttribute("href").slice(1));
+    if (destino && destino.classList.contains("qd-pais") && destino.hidden) zerar();
+  });
+
+  /* trilho lateral: capítulo em leitura */
+  if ("IntersectionObserver" in window) {
+    var espia = new IntersectionObserver(function(itens){
+      itens.forEach(function(e){
+        if (!e.isIntersecting) return;
+        trilho.querySelectorAll("a").forEach(function(a){
+          a.classList.toggle("ativo", a.dataset.trilho === e.target.dataset.pais);
+        });
+      });
+    }, {rootMargin: "-45% 0px -50% 0px"});
+    secoes.forEach(function(s){ espia.observe(s); });
+    new IntersectionObserver(function(itens){
+      trilho.classList.toggle("on", itens[0].isIntersecting);
+    }, {rootMargin: "-30% 0px -30% 0px"}).observe(capitulos);
+  }
+
+  /* altura do cabeçalho fixo, para a barra de filtro grudar logo abaixo dele */
+  function medir(){
+    var h = 0;
+    if (cabecalho && getComputedStyle(cabecalho).position === "sticky") h = cabecalho.offsetHeight;
+    raiz.style.setProperty("--qd-topo", h + "px");
+  }
+  medir();
+  window.addEventListener("resize", medir);
+
+  /* voltar ao topo */
+  function aoRolar(){ topo.hidden = window.scrollY < 900; }
+  window.addEventListener("scroll", aoRolar, {passive: true});
+  aoRolar();
+  topo.addEventListener("click", function(){ window.scrollTo(0, 0); });
 })();
 </script>
 </body>
