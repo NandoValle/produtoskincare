@@ -193,4 +193,34 @@
 @media(prefers-reduced-motion:no-preference){
 .at-card,.at-bt,.at-chip{transition:border-color .15s,background-color .15s,color .15s,box-shadow .15s}
 }
-@media print{.at-painel,.at-bandeja,.at-busca,.at-rotulo,.at-card .at-acoes,.at-prontas{display:none!important}}
+@media print{.at-painel,.at-bandeja,.at-busca,.at-rotulo,.at-card .at-acoes,.at-prontas,.at-grafo{display:none!important}}
+
+.at-ciencia{margin:8px 0 0;font-size:.9rem;color:var(--tinta-2)}
+.at-selo.novo{background:var(--rosa-claro);color:var(--rosa)}
+.at-prazo,.at-onde ul,.at-regras{margin:8px 0 0;padding-left:18px}
+.at-prazo-t,.at-onde-t{list-style:none;margin-left:-18px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--tinta)}
+.at-onde-t{margin:8px 0 0}
+.at-stories{margin:8px 0 0;font-size:.88rem}
+.at-grafo-palco{position:relative}
+.at-grafo-linhas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.at-grafo-nos{position:relative;display:flex;flex-wrap:wrap;gap:8px;z-index:1}
+.at-no{font:inherit;cursor:pointer;min-height:44px;padding:8px 12px;border-radius:999px;border:1px solid var(--linha-2);background:var(--papel);color:var(--tinta)}
+.at-no[aria-pressed=true]{background:var(--tinta);color:var(--fundo);border-color:var(--tinta)}
+.at-aresta{stroke-width:2;fill:none}
+.at-aresta.ok{stroke:#375d4e}
+.at-aresta.horarios{stroke:#8a5a00}
+.at-aresta.nao{stroke:#9b405b}
+.at-regras{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.at-regras li{margin:0;padding:10px 12px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel)}
+.at-cor{display:inline-block;min-width:6.5rem;margin-right:8px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.at-cor.ok{color:#375d4e}
+.at-cor.horarios{color:#8a5a00}
+.at-cor.nao{color:#9b405b}
+@media(prefers-color-scheme:dark){
+  html:not([data-tema=claro]) .at-aresta.ok,html:not([data-tema=claro]) .at-cor.ok{stroke:#a2cbb3;color:#a2cbb3}
+  html:not([data-tema=claro]) .at-aresta.horarios,html:not([data-tema=claro]) .at-cor.horarios{stroke:#f2cf98;color:#f2cf98}
+  html:not([data-tema=claro]) .at-aresta.nao,html:not([data-tema=claro]) .at-cor.nao{stroke:#efa5ba;color:#efa5ba}
+}
+html[data-tema=escuro] .at-aresta.ok,html[data-tema=escuro] .at-cor.ok{stroke:#a2cbb3;color:#a2cbb3}
+html[data-tema=escuro] .at-aresta.horarios,html[data-tema=escuro] .at-cor.horarios{stroke:#f2cf98;color:#f2cf98}
+html[data-tema=escuro] .at-aresta.nao,html[data-tema=escuro] .at-cor.nao{stroke:#efa5ba;color:#efa5ba}

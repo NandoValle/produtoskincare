@@ -70,6 +70,42 @@
   function medEv(a) { return barra(EV_N[a.ev], "ev", 3, !a.ev) + '<span class="at-valor">' + (EV_ROTULO[a.ev] || SEM_FICHA) + "</span>"; }
   function medIr(a) { return barra(a.irrita + 1, "ir", 3) + '<span class="at-valor">' + IRRITA[a.irrita] + "</span>"; }
   function medPo(a) { return barra(a.pot, "po", 4) + '<span class="at-valor">' + POT[a.pot] + "</span>"; }
+  function reais(n) { return "R$ " + Number(n).toFixed(2).replace(".", ","); }
+  function dataCurta(iso) {
+    var p = String(iso || "").split("-");
+    return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : "";
+  }
+  function precoTexto(a) {
+    var ps = a.produtos || [];
+    if (!ps.length) return "Sem preço no catálogo do site.";
+    var vals = ps.map(function (p) { return p.historia[p.historia.length - 1].preco; });
+    var datas = ps.map(function (p) { return p.historia[p.historia.length - 1].em; }).filter(Boolean);
+    var media = vals.reduce(function (s, n) { return s + n; }, 0) / vals.length;
+    var quando = "";
+    if (datas.length) quando = " Conferido em " + dataCurta(datas[0]) + (datas.some(function (d) { return d !== datas[0]; }) ? " e em outras datas" : "") + ".";
+    if (ps.length === 1) return "1 produto no catálogo: " + reais(vals[0]) + "." + quando;
+    return "Média de " + ps.length + " produtos do catálogo: " + reais(media) + "." + quando;
+  }
+  function ondeHTML(a) {
+    if (!a.produtos || !a.produtos.length) return "<p>Nenhum produto do catálogo do site lista este ativo. Sem preço para inventar.</p>";
+    return "<ul>" + a.produtos.map(function (p) {
+      var bits = [];
+      if (p.conc) bits.push(p.conc + " no catálogo");
+      var u = p.historia[p.historia.length - 1];
+      bits.push(reais(u.preco) + (u.em ? " em " + dataCurta(u.em) : ""));
+      var rel = p.externo ? ' target="_blank" rel="sponsored noopener"' : "";
+      var hist = p.historia.length > 1
+        ? "<br><small>Histórico: " + p.historia.map(function (h) { return (h.em ? dataCurta(h.em) + " " : "") + reais(h.preco); }).join("; ") + ".</small>"
+        : "<br><small>O histórico do site tem só essa data.</small>";
+      return '<li><a href="' + esc(p.href) + '"' + rel + ">" + esc(p.nome) + "</a> " + esc(bits.join(" · ")) + "." + hist + "</li>";
+    }).join("") + "</ul>";
+  }
+  function prazoHTML(a) {
+    if (!a.prazo || !a.prazo.length) return "";
+    return "<section><h3>Quando costuma dar sinal</h3><ul>" + a.prazo.map(function (x) {
+      return "<li><b>" + esc(D.objetivos[x.objetivo] || x.objetivo) + ":</b> " + esc(x.de) + " a " + esc(x.ate) + ". " + esc(x.texto) + "</li>";
+    }).join("") + '</ul><p class="ig-nota">Faixa usual, não é promessa.</p></section>';
+  }
   function objetivos(a) { return a.c.map(function (o) { return D.objetivos[o].toLowerCase(); }); }
   function peles(a) {
     return a.pele.length ? "Pele " + lista(a.pele.map(function (p) { return D.peles[p]; })) : "Todos os tipos de pele";
@@ -396,6 +432,9 @@
       "<section><h3>Para que é usado</h3><p>" + esc(a.d) + "</p><p>Objetivos, do mais ao menos comum: " + esc(lista(objetivos(a))) + ".</p></section>" +
       "<section><h3>O que os estudos mostram</h3>" + estudos + "</section>" +
       "<section><h3>Para quem</h3><p>" + esc(peles(a)) + ". Experiência sugerida: " + NIVEL[a.nivel] + ".</p></section>" +
+      prazoHTML(a) +
+      (a.ciencia && a.ciencia.texto ? "<section><h3>O que se sabe até agora</h3><p>" + esc(a.ciencia.texto) + "</p></section>" : "") +
+      "<section><h3>Onde tem no catálogo</h3>" + ondeHTML(a) + '<p class="ig-nota">Preço da data em que foi conferido. Links de loja podem ser de afiliado.</p></section>' +
       "<section><h3>Como usar</h3><ul><li><b>Quando:</b> " + TURNO[a.turno].toLowerCase() + ".</li><li><b>Concentração usual:</b> " + esc(a.conc) + ".</li>" +
       (a.dica ? "<li><b>Dica:</b> " + esc(a.dica) + "</li>" : "") + "</ul></section>" +
       "<section><h3>Cuidados</h3><ul>" + cuidados.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul></section>" +
@@ -424,13 +463,14 @@
       linha("Quando", function (a) { return TURNO[a.turno]; }) +
       linha("Concentração usual", function (a) { return esc(a.conc); }) +
       linha("Gestação", function (a) { return esc(GEST[a.gest]); }) +
+      linha("Preço no catálogo", precoTexto) +
       linha("Sol", function (a) { return a.sol ? "Aumenta a sensibilidade ao sol" : "Sem alerta de sol no guia"; }) +
       linha("Receita", function (a) { return a.rx ? "Medicamento: só com prescrição" : "Uso cosmético, sem receita"; }) +
       linha("Limites e dica", function (a) { return esc(a.dica || "Sem observação no guia."); }) +
       linha("Ficha", function (a) { return '<a href="' + a.url + '">Abrir a ficha</a>' + (a.rev ? "<br><small>Revisada em " + dataLonga(a.rev) + "</small>" : ""); }) +
       "</tbody></table></div>" +
       "<section><h3>Dá para usar juntos?</h3><ul class=\"at-combina\">" + pares.join("") + "</ul>" +
-      '<p class="ig-nota">Regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>, versão ' + esc(D.regras) + ". Orientações de uso comuns, sem citação de estudo. Preço não entra na comparação: o atlas não tem esse dado por ativo.</p></section>" +
+      '<p class="ig-nota">Regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>, versão ' + esc(D.regras) + ". Orientações de uso comuns, sem citação de estudo. O preço é a média dos produtos do catálogo que listam o ativo, na data em que foi conferido. Se não há produto, a célula diz isso.</p></section>" +
       '<p class="at-acoes"><button type="button" class="at-bt" data-copiar-link>Copiar o link desta comparação</button></p>';
     abrirJanela("Comparação lado a lado", esc(lista(as.map(function (a) { return a.nome; }))), corpo, true, "comparar=" + as.map(function (a) { return a.id; }).join(","));
   }
@@ -533,10 +573,83 @@
   window.addEventListener("load", medirTopo);
 
   /* ===== LIGAR ===== */
+  function ligarGrafo() {
+    var caixa = document.getElementById("at-grafo");
+    var nos = document.getElementById("at-grafo-nos");
+    var svg = document.getElementById("at-grafo-linhas");
+    var focoEl = document.getElementById("at-grafo-foco");
+    var lista = document.getElementById("at-regras");
+    if (!caixa || !nos || !svg || !R) return;
+    caixa.hidden = false;
+    var comClasse = D.ativos.filter(function (a) { return a.classe; });
+    nos.innerHTML = comClasse.map(function (a) {
+      return '<button type="button" class="at-no" data-grafo="' + a.id + '" aria-pressed="false">' + esc(a.nome) + "</button>";
+    }).join("");
+    var escolhido = "";
+    function centro(el) {
+      var b = el.getBoundingClientRect();
+      var p = caixa.querySelector(".at-grafo-palco").getBoundingClientRect();
+      return { x: b.left - p.left + b.width / 2, y: b.top - p.top + b.height / 2 };
+    }
+    function desenhar() {
+      var palco = caixa.querySelector(".at-grafo-palco");
+      svg.setAttribute("viewBox", "0 0 " + palco.clientWidth + " " + palco.clientHeight);
+      svg.setAttribute("width", palco.clientWidth);
+      svg.setAttribute("height", palco.clientHeight);
+      svg.innerHTML = "";
+      if (!escolhido) return;
+      var origem = nos.querySelector('[data-grafo="' + escolhido + '"]');
+      var a = POR_ID[escolhido];
+      if (!origem || !a) return;
+      var c0 = centro(origem);
+      D.ativos.forEach(function (b) {
+        if (!b.classe || b.id === a.id) return;
+        var r = R.avaliarPar({ classe: a.classe, id: a.id }, { classe: b.classe, id: b.id });
+        if (!r || r.resultado === "sem_regra" || String(r.regra).indexOf("neutra-") === 0) return;
+        var dest = nos.querySelector('[data-grafo="' + b.id + '"]');
+        if (!dest) return;
+        var c1 = centro(dest);
+        var linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        linha.setAttribute("x1", c0.x);
+        linha.setAttribute("y1", c0.y);
+        linha.setAttribute("x2", c1.x);
+        linha.setAttribute("y2", c1.y);
+        linha.setAttribute("class", "at-aresta " + r.resultado);
+        svg.appendChild(linha);
+      });
+    }
+    function escolher(id) {
+      escolhido = escolhido === id ? "" : id;
+      nos.querySelectorAll("[data-grafo]").forEach(function (b) {
+        var on = b.getAttribute("data-grafo") === escolhido;
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      var a = escolhido ? POR_ID[escolhido] : null;
+      if (lista) {
+        Array.prototype.forEach.call(lista.children, function (li) {
+          if (!a) { li.hidden = false; return; }
+          li.hidden = (li.getAttribute("data-classes") || "").split(" ").indexOf(a.classe) < 0;
+        });
+      }
+      var neutra = a && { hidratante: 1, antioxidante: 1, filtro: 1, clareador: 1 }[a.classe];
+      if (focoEl) focoEl.textContent = !a
+        ? "Nenhum ativo selecionado. A lista mostra os pares que têm regra."
+        : "Ligações de " + a.nome + "." + (neutra ? " Este grupo combina com os outros pela regra geral do verificador." : "");
+      desenhar();
+    }
+    caixa.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("[data-grafo]") : null;
+      if (b) escolher(b.getAttribute("data-grafo"));
+    });
+    window.addEventListener("resize", desenhar);
+    escolher("");
+  }
+
   medirTopo();
   raiz.classList.add("atlas-js");
   [el.busca, el.rotulo, el.painel, el.prontas, $(".at-temas")].forEach(function (x) { if (x) x.hidden = false; });
   escolherTema("barreira");
+  ligarGrafo();
   render();
   lerHash();
 })();
