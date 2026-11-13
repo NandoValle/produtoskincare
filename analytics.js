@@ -1,14 +1,12 @@
 /* Estatística de visitas sem cookies (GoatCounter) e contagem de cliques nos links de loja.
  *
- * DESLIGADA até você preencher GOATCOUNTER_CODIGO:
- * 1. Crie uma conta em https://www.goatcounter.com (o "code" é o subdomínio, ex.: produtoskincare).
- * 2. Preencha o código abaixo e publique.
- * Nada é enviado enquanto o código estiver vazio. GoatCounter não usa cookies
+ * LIGADA: o painel fica em https://produtoskincare.goatcounter.com.
+ * Para desligar, deixe GOATCOUNTER_CODIGO vazio e publique: nada é enviado com o código vazio. GoatCounter não usa cookies
  * e não guarda o IP completo (confira a política atual no site deles).
  */
 (function () {
   "use strict";
-  var GOATCOUNTER_CODIGO = ""; // ex.: "produtoskincare"
+  var GOATCOUNTER_CODIGO = "produtoskincare";
 
   var ativo = !!GOATCOUNTER_CODIGO;
   var fila = [];
