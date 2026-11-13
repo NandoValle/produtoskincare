@@ -145,8 +145,8 @@ def pagina_par(a, b):
 </ul>
 </section>
 </article>"""
-    descricao = (f"{a['nome']} ou {b['nome']}: preço conferido, ativos em destaque, textura e tipos de pele lado a lado, "
-                 "com dados do catálogo.")[:300]
+    # Até ~140 caracteres com os nomes mais longos do catálogo; o Google costuma cortar perto de 160.
+    descricao = f"{a['nome']} ou {b['nome']}: preço, ativos, textura e tipos de pele lado a lado."
     return pagina(titulo, descricao, f"/comparativos/{slug(a['id'], b['id'])}/",
                   [("/", "Início"), ("/comparativos/", "Comparativos"), (None, f"{a['marca']} ou {b['marca']}")],
                   corpo, css_extra=CSS)

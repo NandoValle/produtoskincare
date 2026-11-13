@@ -77,7 +77,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 PAGINAS = [
     {"fonte": "prateleira.html", "caminho": "/ferramentas/prateleira/", "trilha": "Minha prateleira",
      "titulo": "Minha prateleira: o que combina entre os produtos que você já tem",
-     "descricao": "Cadastre os produtos de skincare que você já tem e veja o que não combina, o que está repetido, que passo falta e quando cada um acaba. Salvo só no seu aparelho."},
+     "descricao": "Cadastre os produtos de skincare que você já tem e veja o que não combina, o que se repete, que passo falta e quando cada um acaba. Salvo só no seu aparelho."},
     {"fonte": "farmacia.html", "caminho": "/ferramentas/farmacia/", "trilha": "Modo farmácia",
      "titulo": "Modo farmácia: combina com o que eu já tenho?",
      "descricao": "Na loja, fotografe a lista de ingredientes e veja se o produto combina com os que você já usa, se repete algum ativo e se preenche um passo que falta."},
@@ -86,7 +86,7 @@ PAGINAS = [
      "descricao": "Digite o produto de skincare que você usa e veja opções do catálogo com os mesmos ativos e a mesma concentração, com o preço conferido e a data."},
     {"fonte": "12-semanas.html", "caminho": "/ferramentas/12-semanas/", "trilha": "Modo 12 semanas",
      "titulo": "Modo 12 semanas: comece um ativo novo aos poucos",
-     "descricao": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho."},
+     "descricao": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e diário de fotos só no seu aparelho."},
     {"fonte": "indice.html", "caminho": "/ferramentas/", "trilha": "Ferramentas", "larga": True,
      "titulo": "Ferramentas de skincare grátis",
      "descricao": "Todas as ferramentas do Produto Skincare: provador, prateleira, modo farmácia, verificador de ingredientes, equivalente mais barato, modo 12 semanas e mais."},
