@@ -54,7 +54,7 @@ const out = ATIVOS.map(function (x) {
   x.classes = classes;
   return x;
 });
-process.stdout.write(JSON.stringify({ ativos: out, versaoRegras: R.VERSAO }));
+process.stdout.write(JSON.stringify({ ativos: out, versaoRegras: R.VERSAO, combinacoes: R.COMBINACOES, classes: R.CLASSES }));
 """
 
 OBJETIVOS = {
@@ -154,7 +154,95 @@ def carregar():
             "ev": e["evidencia"] if e else "", "evm": e["evidencia_motivo"] if e else "",
             "classe": cfg.get("classes", {}).get(i) or (x["classes"][0] if x["classes"] else ""), "rot": rot,
         })
-    return cfg, ativos, bruto["versaoRegras"]
+    enriquecer(ativos)
+    return cfg, ativos, bruto["versaoRegras"], bruto.get("combinacoes") or [], bruto.get("classes") or {}
+
+
+# Nome no catálogo (produtos.json) -> id do atlas. Ordem: o prefixo mais longo ganha.
+# "zinco 1%" não entra: o catálogo não diz se é PCA.
+MAPA_CATALOGO = [
+    ("pca de zinco", "zinco-pca"),
+    ("acido hialuronico", "hialuronico"),
+    ("acido azelaico", "azelaico"),
+    ("acido ferulico", "ferulico"),
+    ("alfa bisabolol", "bisabolol"),
+    ("madecassoside", "centella"),
+    ("niacinamida", "niacinamida"),
+    ("ceramidas", "ceramidas"),
+    ("glicerina", "glicerina"),
+    ("pantenol", "pantenol"),
+    ("thiamidol", "tiamidol"),
+    ("tiamidol", "tiamidol"),
+    ("vitamina e", "vitamina-e"),
+    ("vitamina c", "vitc-pura"),
+    ("retinol", "retinol"),
+]
+
+
+def id_catalogo(rotulo):
+    n = norm(rotulo)
+    melhor = ("", "")
+    for prefixo, iid in MAPA_CATALOGO:
+        if n == prefixo or n.startswith(prefixo + " "):
+            if len(prefixo) > len(melhor[0]):
+                melhor = (prefixo, iid)
+    return melhor[1]
+
+
+def conc_catalogo(rotulo):
+    m = re.search(r"(\d+(?:[.,]\d+)?)\s*%", rotulo)
+    return m.group(0).replace(".", ",") if m else ""
+
+
+def reais(valor):
+    return ("R$ %.2f" % valor).replace(".", ",")
+
+
+def data_curta(iso):
+    a, m, d = iso.split("-")
+    return "%s/%s/%s" % (d, m, a)
+
+
+def enriquecer(ativos):
+    por_id = {a["id"]: a for a in ativos}
+    for a in ativos:
+        a["produtos"] = []
+        a["prazo"] = []
+        a["ciencia"] = None
+    historia = json.loads((RAIZ / "produtos" / "historico-precos.json").read_text(encoding="utf-8"))
+    cat = json.loads((RAIZ / "produtos.json").read_text(encoding="utf-8"))["produtos"]
+    for p in cat:
+        if not isinstance(p.get("preco"), (int, float)):
+            continue
+        pontos = historia.get(p["id"]) or [{"em": p.get("preco_em") or "", "preco": p["preco"], "loja": p.get("plataforma") or ""}]
+        pontos = [x for x in pontos if isinstance(x.get("preco"), (int, float))]
+        if not pontos:
+            continue
+        vistos = set()
+        for rotulo in p.get("ativos") or []:
+            iid = id_catalogo(rotulo)
+            if not iid or iid in vistos or iid not in por_id:
+                continue
+            vistos.add(iid)
+            pagina = "/produtos/%s/" % p["id"]
+            href = pagina if (RAIZ / "produtos" / p["id"] / "index.html").exists() else p.get("link") or pagina
+            por_id[iid]["produtos"].append({
+                "id": p["id"], "nome": p["nome"], "marca": p.get("marca") or "",
+                "href": href, "externo": not href.startswith("/"),
+                "como": rotulo, "conc": conc_catalogo(rotulo),
+                "historia": [{"em": x.get("em") or "", "preco": x["preco"], "loja": x.get("loja") or ""} for x in pontos],
+            })
+    prazos = json.loads((RAIZ / "_scripts" / "linha-do-tempo.json").read_text(encoding="utf-8"))
+    ciencia = json.loads((RAIZ / "_scripts" / "ciencia-recente.json").read_text(encoding="utf-8"))
+    for iid, itens in (prazos.get("ativos") or {}).items():
+        if iid not in por_id:
+            sys.exit("linha do tempo sem ativo: " + iid)
+        por_id[iid]["prazo"] = itens
+    for iid, info in (ciencia.get("ativos") or {}).items():
+        if iid not in por_id:
+            sys.exit("ciência recente sem ativo: " + iid)
+        por_id[iid]["ciencia"] = info
+    return prazos.get("nota") or "", ciencia.get("nota") or ""
 
 
 def barra(n, total, rotulo, classe="", vazia=False):
@@ -177,6 +265,41 @@ def cartao(a, ordem):
         selos.append('<span class="at-selo">Exige protetor solar</span>')
     if a["ev"]:
         selos.append('<span class="at-selo ok">Ficha com estudos e fontes</span>')
+    ciencia = ""
+    if a.get("ciencia") and a["ciencia"].get("texto"):
+        info = a["ciencia"]
+        selo = ""
+        if info.get("selo"):
+            ano = (" · %s" % info["ano"]) if info.get("ano") else ""
+            selo = '<span class="at-selo novo">%s%s</span> ' % (esc(info["selo"]), ano)
+        elif info.get("ano"):
+            selo = '<span class="at-selo">Desde %s</span> ' % info["ano"]
+        ciencia = '<p class="at-ciencia">%s%s</p>' % (selo, esc(info["texto"]))
+    prazo = ""
+    if a.get("prazo"):
+        itens = "".join("<li><b>%s:</b> %s a %s. %s</li>" % (esc(OBJETIVOS.get(x["objetivo"], x["objetivo"])), esc(x["de"]), esc(x["ate"]), esc(x["texto"])) for x in a["prazo"])
+        prazo = '<ul class="at-prazo"><li class="at-prazo-t">Quando costuma dar sinal</li>%s</ul>' % itens
+    onde = ""
+    if a.get("produtos"):
+        lis = []
+        for p in a["produtos"]:
+            extra = []
+            if p["conc"]:
+                extra.append(esc(p["conc"]) + " no catálogo")
+            elif p["como"]:
+                extra.append(esc(p["como"]))
+            ultimo = p["historia"][-1]
+            extra.append(reais(ultimo["preco"]) + (" em " + data_curta(ultimo["em"]) if ultimo["em"] else ""))
+            rel = ' rel="sponsored noopener"' if p["externo"] else ""
+            alvo = ' target="_blank"' if p["externo"] else ""
+            hist = ""
+            if len(p["historia"]) > 1:
+                hist = " <small>Histórico: %s.</small>" % "; ".join(
+                    "%s %s" % (data_curta(h["em"]) if h["em"] else "sem data", reais(h["preco"])) for h in p["historia"])
+            lis.append('<li><a href="%s"%s%s>%s</a> <small>%s.</small>%s</li>' % (
+                esc(p["href"]), alvo, rel, esc(p["nome"]), " · ".join(extra), hist))
+        onde = '<div class="at-onde"><p class="at-onde-t">Onde tem no catálogo</p><ul>%s</ul></div>' % "".join(lis)
+    stories = '<p class="at-stories"><a href="/img/stories/%s.png">Card para stories</a></p>' % a["id"]
     return (
         '<li class="at-card" id="a-%(id)s" data-id="%(id)s" data-ordem="%(ordem)d">'
         '<h3><a href="%(url)s">%(nome)s</a></h3>'
@@ -187,6 +310,7 @@ def cartao(a, ordem):
         '<div><dt>Potência</dt><dd>%(pot)s</dd></div>'
         '<div><dt>Irritação</dt><dd>%(ir)s</dd></div>'
         '</dl>'
+        '%(ciencia)s%(prazo)s%(onde)s%(stories)s'
         '%(selos)s'
         '<p class="at-acoes"><button type="button" class="at-bt" data-passaporte="%(id)s">Passaporte</button>'
         '<button type="button" class="at-bt" data-comparar="%(id)s" aria-pressed="false">Comparar</button></p>'
@@ -196,6 +320,7 @@ def cartao(a, ordem):
         "resumo": a["resumo"], "ev": ev,
         "pot": barra(a["pot"], 4, POT_ROTULO[a["pot"]], "po"),
         "ir": barra(a["irrita"] + 1, 3, IRRITA[a["irrita"]], "ir"),
+        "ciencia": ciencia, "prazo": prazo, "onde": onde, "stories": stories,
         "selos": ('<p class="at-selos">%s</p>' % "".join(selos)) if selos else "",
     }
 
@@ -259,7 +384,35 @@ def secao_mapa(cfg, ativos):
         '</section>' % (SVG, "".join(botoes), "".join(paineis)))
 
 
-def corpo(cfg, ativos):
+def secao_combinacoes(combinacoes, classes):
+    lis = []
+    for r in combinacoes:
+        if r["a"] == "irritada" or r["b"] == "irritada":
+            continue
+        cor = {"ok": "Pode junto", "horarios": "Alternar", "nao": "Evitar"}.get(r["resultado"], r["resultado"])
+        lis.append(
+            '<li data-classes="%s %s" data-res="%s"><span class="at-cor %s">%s</span> '
+            '<b>%s e %s.</b> %s%s</li>' % (
+                esc(r["a"]), esc(r["b"]), esc(r["resultado"]), esc(r["resultado"]), esc(cor),
+                esc(classes.get(r["a"], r["a"])), esc(classes.get(r["b"], r["b"])),
+                esc(r["motivo"]), (" " + esc(r["nota"])) if r.get("nota") else ""))
+    return (
+        '<section class="at-combina-mapa" id="mapa-combina" aria-labelledby="titulo-combina">'
+        '<h2 id="titulo-combina">O que combina com o quê</h2>'
+        '<p>Verde pode usar junto, amarelo é para alternar manhã e noite, vermelho é para evitar juntos. '
+        'As regras são as do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>. '
+        'Com JavaScript, toque num ativo para ver só as ligações dele. Sem JavaScript, a lista abaixo já cobre os pares que têm regra.</p>'
+        '<div class="at-grafo" id="at-grafo" hidden>'
+        '<p class="at-grafo-foco" id="at-grafo-foco" aria-live="polite"></p>'
+        '<div class="at-grafo-palco"><svg class="at-grafo-linhas" id="at-grafo-linhas" aria-hidden="true"></svg>'
+        '<div class="at-grafo-nos" id="at-grafo-nos"></div></div>'
+        '<p class="ig-nota">Linha só aparece para regra explícita do verificador. Hidratante, antioxidante, filtro solar e clareador suave combinam com os outros por uma regra geral: o texto diz isso, sem desenhar uma teia.</p>'
+        '</div>'
+        '<ul class="at-regras" id="at-regras">%s</ul>'
+        '</section>' % "".join(lis))
+
+
+def corpo(cfg, ativos, combinacoes, classes):
     hoje = max(a["rev"] for a in ativos)
     n = len(ativos)
     n_ev = sum(1 for a in ativos if a["ev"])
@@ -330,6 +483,7 @@ def corpo(cfg, ativos):
         '<div class="ig-caixa" id="at-res-vazio" hidden></div>'
         '</section>')
     partes.append(extra)
+    partes.append(secao_combinacoes(combinacoes, classes))
     partes.append(secao_mapa(cfg, ativos))
     partes.append(
         '<section class="at-prontas" id="at-prontas" aria-labelledby="comparacoes" hidden>'
@@ -356,13 +510,72 @@ def corpo(cfg, ativos):
         '<li><b>Irritação</b>: baixa, moderada ou alta, conforme a chance de arder, descamar ou avermelhar no começo do uso.</li>'
         '</ul>'
         '<p>Irritação, objetivos, concentração e gestação vêm da mesma base do <a href="/ferramentas/ativos/">guia de princípios ativos</a>, conferida com a frase de gestação de cada ficha. A potência fica nos dados da página, com a frase da ficha que sustenta cada número. As fichas sem fontes resumem orientações de uso comuns em dermatologia cosmética e não citam estudos. Concentrações são faixas usuais em cosméticos; os limites legais mudam de país para país e com o tempo. Ativos marcados como <b>receita médica</b> são medicamentos e só devem ser usados com prescrição.</p>'
-        '<p>As combinações do passaporte e do comparador saem das regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>. Quando não há regra cadastrada para um par, a página diz que não sabe. Para montar a rotina inteira, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a>.</p>'
+        '<p>As combinações do mapa, do passaporte e do comparador saem das regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>. Quando não há regra cadastrada para um par, a página diz que não sabe. Preço só aparece quando o produto está no catálogo do site, com a data em que foi conferido. O prazo é uma faixa usual, não uma garantia. Para montar a rotina inteira, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a>.</p>'
         '</section>' % (n_ev, SEM_FICHA))
     return "\n".join(partes)
 
 
+def gerar_stories(ativos):
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        faltam = [a["id"] for a in ativos if not (RAIZ / "img" / "stories" / (a["id"] + ".png")).exists()]
+        if faltam:
+            sys.exit("Instale Pillow para gerar os cards de stories. Faltam: " + ", ".join(faltam[:8]))
+        print("Pillow ausente: os cards de stories já gerados foram mantidos.")
+        return
+    pasta = RAIZ / "img" / "stories"
+    pasta.mkdir(parents=True, exist_ok=True)
+    fonte_nome = ImageFont.truetype(str(RAIZ / "fonts" / "cormorant-500.ttf"), 92)
+    fonte_corpo = ImageFont.truetype(str(RAIZ / "fonts" / "manrope-400.ttf"), 40)
+    fonte_marca = ImageFont.truetype(str(RAIZ / "fonts" / "manrope-600.ttf"), 36)
+    fonte_selo = ImageFont.truetype(str(RAIZ / "fonts" / "manrope-600.ttf"), 32)
+
+    def quebra(draw, texto, fonte, largura):
+        linhas, atual = [], ""
+        for palavra in texto.split():
+            teste = (atual + " " + palavra).strip()
+            if draw.textlength(teste, font=fonte) <= largura:
+                atual = teste
+            else:
+                if atual:
+                    linhas.append(atual)
+                atual = palavra
+        if atual:
+            linhas.append(atual)
+        return linhas
+
+    for a in ativos:
+        im = Image.new("RGB", (1080, 1920), "#f7f8f7")
+        d = ImageDraw.Draw(im)
+        d.rectangle((0, 0, 1080, 28), fill="#9b405b")
+        d.text((80, 120), "PRODUTO SKINCARE", font=fonte_marca, fill="#9b405b")
+        y = 280
+        for linha in quebra(d, a["nome"], fonte_nome, 920)[:4]:
+            d.text((80, y), linha, font=fonte_nome, fill="#252b2a")
+            y += 100
+        y += 40
+        if a["ev"]:
+            selo = "Ficha com fontes · evidência " + a["ev"]
+            cor, tinta = "#e7efea", "#375d4e"
+        else:
+            selo = "Sem ficha com fontes ainda"
+            cor, tinta = "#eef0ef", "#39413f"
+        caixa = d.textbbox((0, 0), selo, font=fonte_selo)
+        larg = caixa[2] - caixa[0] + 48
+        d.rounded_rectangle((80, y, 80 + larg, y + 72), radius=36, fill=cor)
+        d.text((104, y + 16), selo, font=fonte_selo, fill=tinta)
+        y += 120
+        for linha in quebra(d, a["resumo"], fonte_corpo, 920)[:8]:
+            d.text((80, y), linha, font=fonte_corpo, fill="#39413f")
+            y += 56
+        d.text((80, 1760), "produtoskincare.com.br/ativos/", font=fonte_corpo, fill="#65716d")
+        d.rectangle((0, 1892, 1080, 1920), fill="#9b405b")
+        im.save(pasta / (a["id"] + ".png"), "PNG", optimize=True)
+
+
 def main():
-    cfg, ativos, versao = carregar()
+    cfg, ativos, versao, combinacoes, classes = carregar()
     dados = {
         "regras": versao,
         "objetivos": OBJETIVOS, "peles": PELES,
@@ -375,7 +588,8 @@ def main():
                      encoding="utf-8", newline="\n")
 
     t = INDICE.read_text(encoding="utf-8")
-    novo = "<!-- atlas:inicio -->\n<article class=\"at\">\n" + corpo(cfg, ativos) + "\n</article>\n<!-- atlas:fim -->"
+    gerar_stories(ativos)
+    novo = "<!-- atlas:inicio -->\n<article class=\"at\">\n" + corpo(cfg, ativos, combinacoes, classes) + "\n</article>\n<!-- atlas:fim -->"
     if "<!-- atlas:inicio -->" in t:
         t = re.sub(r"<!-- atlas:inicio -->.*?<!-- atlas:fim -->", lambda m: novo, t, count=1, flags=re.S)
     else:

@@ -1,0 +1,25 @@
+{
+  "nota": "Só entra fato com ano conferido ou limite já escrito na ficha. Ectoína é de 1985: não leva o selo de ativo novo. PDRN não leva ano inventado.",
+  "ativos": {
+    "melasyl": {
+      "selo": "Novo na ciência",
+      "ano": 2024,
+      "texto": "Em 2024, a equipe da L'Oréal publicou estudos sobre a 2-mercaptonicotinoilglicina (Melasyl): mecanismo no Pigment Cell & Melanoma Research e um ensaio em pessoas no Journal of Cosmetic Dermatology, sobre escurecimento induzido pelo sol. São trabalhos do fabricante. A ficha deste site ainda não avalia essa evidência."
+    },
+    "trifaroteno": {
+      "selo": "Novo na ciência",
+      "ano": 2019,
+      "texto": "O FDA aprovou em 2019 o creme de trifaroteno a 0,005% para acne no rosto e no tronco. É medicamento, só com receita. A ficha deste site ainda não cita os estudos."
+    },
+    "pdrn": {
+      "selo": "",
+      "ano": null,
+      "texto": "A ficha diz que as evidências do uso tópico em cosméticos ainda são limitadas. Este site não tem um ano de descoberta conferido para tratar o PDRN como ativo novo."
+    },
+    "ectoina": {
+      "selo": "",
+      "ano": 1985,
+      "texto": "A ectoína foi descrita em 1985, em bactérias de ambiente muito salino. Não é uma molécula nova. A ficha descreve o uso para proteger e acalmar a pele."
+    }
+  }
+}
