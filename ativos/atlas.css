@@ -1,0 +1,192 @@
+/* Atlas dos Ativos (/ativos/). Usa os tokens do premium.css: funciona no claro e no escuro. */
+.ig.ig-larga.atlas{max-width:1120px;gap:36px}
+.atlas .at{display:flex;flex-direction:column;gap:44px;min-width:0}
+.atlas h2{font-size:clamp(1.6rem,4.6vw,2.1rem)}
+.atlas [hidden]{display:none!important}
+
+/* Abertura */
+.at-hero{display:flex;flex-direction:column;gap:14px;padding:clamp(22px,5vw,44px);border:1px solid var(--linha);border-radius:var(--raio-lg);background:linear-gradient(160deg,var(--papel),var(--rosa-claro))}
+.at-olho{margin:0;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--rosa);display:flex;align-items:center;gap:12px}
+.at-olho::after{content:"";flex:0 0 56px;height:1px;background:var(--rosa)}
+.at-hero h1{font-size:clamp(2.1rem,7vw,3.4rem);line-height:1.04;max-width:16ch}
+.at-hero .ig-lede{max-width:64ch;margin:0}
+.at-hero .ig-meta,.at-hero .ig-nota{margin:0}
+.at-busca{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.at-busca label,.at-rotulo label{font-family:var(--fonte-display);font-size:clamp(1.3rem,4vw,1.65rem);font-weight:500;color:var(--tinta)}
+.at-busca-linha{display:flex;gap:8px;flex-wrap:wrap}
+.at-busca input{flex:1 1 240px;min-width:0;min-height:54px;padding:0 18px;font:inherit;font-size:1.05rem;color:var(--tinta);background:var(--papel);border:1px solid var(--linha-2);border-radius:999px}
+.at-busca input:focus-visible,.at-rotulo textarea:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+.at-sugestoes{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;font-size:.9rem;color:var(--suave)}
+.at-rotulo{border-top:1px solid var(--linha);padding-top:12px}
+.at-rotulo summary{cursor:pointer;font-weight:600;color:var(--tinta);min-height:40px;display:flex;align-items:center}
+.at-rotulo label{display:block;font-size:1.15rem;margin:8px 0}
+.at-rotulo textarea{width:100%;box-sizing:border-box;padding:12px 14px;font:inherit;color:var(--tinta);background:var(--papel);border:1px solid var(--linha-2);border-radius:var(--raio-md);resize:vertical}
+
+/* Botões e chips */
+.at-bt,.at-chip{font:inherit;cursor:pointer;color:var(--tinta);background:var(--papel);border:1px solid var(--linha-2);border-radius:999px;min-height:40px;padding:6px 16px;font-size:.92rem;font-weight:600;line-height:1.2}
+.at-bt:hover,.at-chip:hover{border-color:var(--rosa)}
+.at-bt:focus-visible,.at-chip:focus-visible,.at-link:focus-visible,.at-card a:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+.at-bt.cheio{background:var(--tinta);color:var(--fundo);border-color:var(--tinta);min-height:48px;padding:8px 22px}
+.at-bt.cheio:hover{background:var(--rosa);border-color:var(--rosa)}
+.at-bt[disabled]{opacity:.5;cursor:not-allowed}
+.at-chip{font-weight:500}
+.at-chip[aria-pressed=true],.at-bt[aria-pressed=true]{background:var(--rosa);border-color:var(--rosa);color:var(--fundo)}
+.at-link{font:inherit;font-size:.92rem;background:none;border:0;padding:8px 4px;color:var(--rosa);text-decoration:underline;cursor:pointer}
+.at-acoes{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+
+/* Painel de filtros */
+.at-painel{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:12px 0;background:var(--fundo);border-bottom:1px solid var(--linha)}
+.at-painel .at-filtros,.at-painel .at-aviso-gest{flex:1 1 100%}
+.at-painel .at-contagem{flex:1 1 200px;order:2}
+.at-painel .at-ordem{order:3}
+.at-painel .at-aviso-gest{order:4}
+.at-filtros{display:flex;gap:8px;margin:0;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.at-filtros .at-chip{flex:0 0 auto}
+.at-ordem{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;font-size:.92rem;color:var(--suave)}
+.at-ordem select{font:inherit;min-height:40px;padding:4px 10px;color:var(--tinta);background:var(--papel);border:1px solid var(--linha-2);border-radius:var(--raio)}
+.at-contagem{margin:0;font-size:.92rem;color:var(--tinta-2)}
+.at-aviso-gest{margin:0}
+@media(min-width:760px){.at-filtros{flex-wrap:wrap;overflow:visible}.at-painel{position:sticky;top:var(--at-topo,0px);z-index:5}}
+
+/* Cartões */
+.atlas .at-grade{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:14px}
+.atlas .at-grade>li{margin:0}
+@media(min-width:640px){.atlas .at-grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:980px){.atlas .at-grade{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.at-cat,.at-resultados{scroll-margin-top:calc(var(--at-topo,0px) + 130px)}
+.at-mapa{scroll-margin-top:calc(var(--at-topo,0px) + 16px)}
+.at-cat+.at-cat{margin-top:40px}
+.at-cat h2{display:flex;align-items:baseline;gap:10px;padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--linha)}
+.at-n{font-family:var(--fonte-corpo);font-size:.8rem;font-weight:700;color:var(--suave-2);letter-spacing:.06em}
+.at-card{display:flex;flex-direction:column;gap:8px;padding:18px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);min-width:0}
+.at-card:hover{border-color:var(--linha-2);box-shadow:var(--sombra-2)}
+.at-card h3{font-size:1.4rem;margin:0;line-height:1.15}
+.at-card h3 a{color:var(--tinta);text-decoration:none}
+.at-card h3 a:hover{color:var(--rosa);text-decoration:underline}
+.atlas .at-inci{margin:0;font-size:.78rem;letter-spacing:.04em;color:var(--suave-2);overflow-wrap:anywhere}
+.atlas .at-resumo{margin:0;font-size:.95rem;color:var(--tinta-2)}
+.at-medidores{display:grid;grid-template-columns:1fr;gap:6px;margin:6px 0 0;padding:10px 0 0;border-top:1px solid var(--linha)}
+.at-medidores>div{display:grid;grid-template-columns:84px 54px 1fr;align-items:center;gap:8px}
+.at-medidores dt{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--suave-2)}
+.at-medidores dd{display:contents}
+.at-barra{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:3px;width:54px}
+.at-barra i{height:6px;border-radius:3px;background:var(--linha)}
+.at-barra.ev i.on{background:var(--verde)}
+.at-barra.ir i.on{background:var(--rosa)}
+.at-barra.nv i.on{background:var(--tinta-2)}
+.at-barra.vazia i{background:none;border:1px dashed var(--linha-2);height:4px}
+.at-valor{font-size:.86rem;color:var(--tinta)}
+.at-barra.vazia+.at-valor{color:var(--suave-2);font-style:italic}
+.atlas .at-selos{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0}
+.at-selo{font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--papel-2);color:var(--tinta)}
+.at-selo.rx{background:var(--rosa-claro);color:var(--rosa)}
+.at-selo.ok{background:var(--verde-claro);color:var(--verde)}
+.at-card .at-acoes{display:none;margin-top:auto;padding-top:8px}
+.atlas-js .at-card .at-acoes{display:flex}
+.atlas .at-porque{margin:0;padding:8px 12px;font-size:.86rem;border-left:3px solid var(--rosa);background:var(--rosa-claro);color:var(--tinta);border-radius:0 var(--raio) var(--raio) 0}
+.at-porque b{font-weight:700}
+.at-resultados h2{margin-bottom:12px}
+
+/* Mapa da pele */
+.at-mapa-grade{display:grid;grid-template-columns:1fr;gap:20px;align-items:start}
+@media(min-width:860px){.at-mapa-grade{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+.at-mapa figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.at-pele{display:block;width:100%;height:auto;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);overflow:hidden}
+.at-pele text{font-family:var(--fonte-corpo);font-size:13px;font-weight:700;fill:var(--tinta);paint-order:stroke;stroke:var(--papel);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+.at-hit{fill:transparent}
+.at-fx.c1{fill:var(--papel-2)}
+.at-fx.c2{fill:var(--rosa-claro)}
+.at-fx.c3{fill:var(--rosa-claro);opacity:.55}
+.at-tr{stroke:var(--linha-2);stroke-width:1.5;fill:none;stroke-linecap:round}
+.at-sol{fill:none;stroke:var(--rosa);stroke-width:1.5}
+.at-raio{stroke:var(--rosa);stroke-width:1.5;stroke-dasharray:4 5;fill:none;stroke-linecap:round}
+.at-mel circle{fill:var(--rosa)}
+.at-mel path{stroke:var(--rosa);stroke-width:1.5;fill:none;stroke-linecap:round}
+.at-col{stroke:var(--verde);stroke-width:1.5;fill:none;opacity:.6}
+.at-fol{fill:var(--papel);stroke:var(--linha-2);stroke-width:1.5}
+.at-pelo{stroke:var(--tinta-2);stroke-width:2;fill:none;stroke-linecap:round}
+.at-gl{fill:var(--verde-claro);stroke:var(--verde);stroke-width:1.5}
+.atlas-js .at-zona{cursor:pointer}
+.atlas-js .at-zona:hover .at-hit{fill:var(--rosa);fill-opacity:.07}
+.at-zona.ativa .at-hit{fill:var(--rosa);fill-opacity:.16;stroke:var(--rosa);stroke-width:2}
+.at-mapa-lado{display:flex;flex-direction:column;gap:14px;min-width:0}
+.at-temas{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.at-tema{padding:16px 18px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.at-tema h3{margin:0 0 6px;font-size:1.35rem}
+.at-tema p:last-child{margin-bottom:0}
+.at-tema .at-acoes{display:none}
+.atlas-js .at-tema .at-acoes{display:flex}
+
+/* Comparações prontas */
+.atlas .at-prontas-lista{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.at-prontas-lista li{margin:0}
+
+/* Bandeja do comparador */
+.at-bandeja{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--papel);border-top:1px solid var(--linha-2);box-shadow:var(--sombra-3)}
+.at-bandeja p{margin:0;font-size:.9rem;color:var(--tinta-2)}
+.atlas .at-bandeja ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;flex:1 1 200px}
+.at-bandeja li{margin:0}
+.at-bandeja .at-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px}
+.atlas.com-bandeja{padding-bottom:150px}
+
+/* Janelas: passaporte e comparador */
+.at-janela{width:min(760px,calc(100vw - 24px));max-height:min(88vh,900px);padding:0;border:1px solid var(--linha-2);border-radius:var(--raio-lg);background:var(--fundo);color:var(--tinta);font-family:var(--fonte-corpo);box-shadow:var(--sombra-3);overflow:hidden}
+.at-janela.larga{width:min(1040px,calc(100vw - 24px))}
+.at-janela::backdrop{background:#0f1412a6}
+.at-janela-dentro{display:flex;flex-direction:column;max-height:min(88vh,900px)}
+.at-janela-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:20px 22px 14px;border-bottom:1px solid var(--linha);background:var(--papel)}
+.at-janela-topo h2{font-family:var(--fonte-display);font-weight:500;font-size:clamp(1.6rem,5vw,2.1rem);margin:0;line-height:1.1}
+.at-janela-topo p{margin:4px 0 0;font-size:.82rem;color:var(--suave-2);overflow-wrap:anywhere}
+.at-fechar{flex:0 0 auto;font:inherit;font-size:.9rem;font-weight:600;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;background:var(--papel);color:var(--tinta);cursor:pointer}
+.at-fechar:hover{border-color:var(--rosa)}
+.at-janela-corpo{overflow:auto;padding:18px 22px 24px;display:flex;flex-direction:column;gap:18px;overscroll-behavior:contain}
+.at-janela-corpo>*{flex:0 0 auto}
+.at-janela-corpo h3{font-family:var(--fonte-corpo);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--rosa);margin:0 0 8px}
+.at-janela-corpo p{margin:0 0 8px}
+.at-janela-corpo ul{margin:0;padding-left:20px}
+.at-janela-corpo li{margin:5px 0}
+.at-janela-corpo section>:last-child{margin-bottom:0}
+.at-pass-med{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:0}
+.at-pass-med>div{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.at-pass-med dt{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--suave-2)}
+.at-pass-med dd{margin:0;display:flex;align-items:center;gap:8px}
+.at-combina{list-style:none!important;padding:0!important;display:flex;flex-direction:column;gap:8px}
+.at-combina li{margin:0;padding:10px 12px;border:1px solid var(--linha);border-left-width:4px;border-radius:var(--raio);background:var(--papel);font-size:.94rem}
+.at-combina li.ok{border-left-color:var(--verde)}
+.at-combina li.horarios{border-left-color:var(--linha-2)}
+.at-combina li.nao{border-left-color:var(--rosa)}
+.at-combina li.sem_regra{border-left-style:dashed;border-left-color:var(--suave-2)}
+.at-veredito{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--suave-2)}
+.at-combina li.nao .at-veredito{color:var(--rosa)}
+.at-combina li.ok .at-veredito{color:var(--verde)}
+.at-rolagem{overflow-x:auto;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.at-tabela{--rot:132px;--col:170px;width:100%;min-width:calc(var(--rot) + var(--n,3)*var(--col));border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+.at-tabela thead td{width:var(--rot)}
+
+.at-tabela th,.at-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.at-tabela tr:last-child th,.at-tabela tr:last-child td{border-bottom:0}
+.at-tabela thead th{font-family:var(--fonte-display);font-weight:500;font-size:1.25rem;background:var(--papel-2)}
+.at-tabela thead th small{display:block;font-family:var(--fonte-corpo);font-size:.72rem;color:var(--suave-2);font-weight:500;overflow-wrap:anywhere}
+.at-tabela tbody th{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave-2);font-weight:700;background:var(--papel);position:sticky;left:0}
+.at-tabela td .at-barra{margin-right:8px;vertical-align:middle}
+.at-tabela ul{padding-left:16px}
+
+/* No celular a comparação fica em colunas iguais, com o rótulo de cada linha em faixa inteira. */
+@media(max-width:600px){
+.at-janela-corpo{padding:14px 12px 20px}
+.at-rolagem{overflow:visible}
+.at-tabela{display:block;min-width:0;font-size:.84rem}
+.at-tabela thead,.at-tabela tbody{display:block}
+.at-tabela tr{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
+.at-tabela thead{position:sticky;top:-14px;z-index:1}
+.at-tabela thead td{display:none}
+.at-tabela thead th{font-size:1.05rem;padding:8px;overflow-wrap:anywhere}
+.at-tabela tbody th{grid-column:1/-1;position:static;border-bottom:0;padding:10px 8px 0;background:none}
+.at-tabela td{padding:6px 8px 10px;overflow-wrap:anywhere;hyphens:auto}
+.at-tabela ul{padding-left:14px}
+.at-tabela td .at-barra{display:grid;margin:2px 0 4px}
+}
+@media(prefers-reduced-motion:no-preference){
+.at-card,.at-bt,.at-chip{transition:border-color .15s,background-color .15s,color .15s,box-shadow .15s}
+}
+@media print{.at-painel,.at-bandeja,.at-busca,.at-rotulo,.at-card .at-acoes,.at-prontas{display:none!important}}

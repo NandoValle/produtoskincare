@@ -39,3 +39,10 @@ No third-party image request is made by visitors. Illustrative only: no testimon
 - Prompts asked for no text, no logos, no brand names, no readable labels and no identifiable faces. Products shown are generic and unbranded, even when the news is about a specific company.
 - Illustrative only: they do not depict any specific product sold or linked on the site, and imply no endorsement or result.
 - Stored locally; no third-party image request is made by visitors.
+
+## Queridinhos pelo mundo — country images, added 2026-11-11
+
+- Files: `img/queridinhos/<country>-480.webp` and `-960.webp` (square) for `eua`, `brasil`, `coreia`, `japao`, `franca`, `canada`, `alemanha`, `espanha`, shown at the top of each country section of `/queridinhos-do-skincare/` with the caption "Imagem ilustrativa, gerada por IA".
+- Origin: AI-generated images. `coreia`, `japao`, `alemanha` and `espanha` were made in ChatGPT (OpenAI image generation, the site owner's account, 1254×1254). `eua`, `brasil`, `franca` and `canada` were supplied by the site owner (1024×1024); the generator was not recorded.
+- They show product packaging of the brands listed in each section as rendered by an AI model. They are illustrations, not photographs of the actual products: packaging, labels and text may differ from the real items. No endorsement by the brands is implied.
+- Stored locally; no third-party image request is made by visitors.

@@ -1,8 +1,17 @@
 {
- "_leia": "Guias do blog traduzidos. Cada grupo liga a versão em português às versões em inglês e espanhol (hreflang, usado por seo.py). As páginas traduzidas são arquivos estáticos: ao mudar o guia em português, atualize as traduções também.",
+ "_leia": "Páginas traduzidas: guias do blog, série Mito x regra, fichas de ingredientes e ferramentas. Cada grupo liga a versão em português às versões em inglês e espanhol (hreflang, usado por seo.py). Página traduzida que não está aqui perde o hreflang na próxima execução do seo.py. As páginas traduzidas são arquivos estáticos: ao mudar a página em português, atualize as traduções também.",
  "grupos": [
   {"pt-BR": "/blog/protetor-solar-importancia/", "en": "/en/blog/sunscreen-why-it-matters/", "es": "/es/blog/protector-solar-por-que-importa/"},
   {"pt-BR": "/blog/retinol-como-comecar/", "en": "/en/blog/retinol-how-to-start/", "es": "/es/blog/retinol-como-empezar/"},
-  {"pt-BR": "/blog/vitamina-c-skincare/", "en": "/en/blog/vitamin-c-skincare/", "es": "/es/blog/vitamina-c-skincare/"}
+  {"pt-BR": "/blog/vitamina-c-skincare/", "en": "/en/blog/vitamin-c-skincare/", "es": "/es/blog/vitamina-c-skincare/"},
+  {"pt-BR": "/blog/mito-x-regra-ardencia-nao-e-eficacia/", "en": "/en/blog/myth-rule-tingling/", "es": "/es/blog/mito-regla-ardencia/"},
+  {"pt-BR": "/blog/mito-x-regra-resistente-agua/", "en": "/en/blog/myth-rule-water-resistant/", "es": "/es/blog/mito-regla-resistente-agua/"},
+  {"pt-BR": "/blog/mito-x-regra-sunblock-100/", "en": "/en/blog/myth-rule-sunblock-100/", "es": "/es/blog/mito-regla-sunblock-100/"},
+  {"pt-BR": "/ingredientes/acido-ferulico/", "en": "/en/ingredients/ferulic-acid/", "es": "/es/ingredientes/acido-ferulico/"},
+  {"pt-BR": "/ingredientes/acido-mandelico/", "en": "/en/ingredients/mandelic-acid/", "es": "/es/ingredientes/acido-mandelico/"},
+  {"pt-BR": "/ferramentas/ritual/", "en": "/en/ferramentas/ritual/", "es": "/es/ferramentas/ritual/"},
+  {"pt-BR": "/ferramentas/diario/", "en": "/en/ferramentas/diary/", "es": "/es/ferramentas/diario/"},
+  {"pt-BR": "/ferramentas/relatorio/", "en": "/en/ferramentas/report/", "es": "/es/ferramentas/informe/"},
+  {"pt-BR": "/ferramentas/backup/", "en": "/en/ferramentas/backup/", "es": "/es/ferramentas/respaldo/"}
  ]
 }

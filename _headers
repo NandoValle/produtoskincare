@@ -14,6 +14,17 @@
 #
 # Quando houver token do WebMCP Origin Trial (Chrome Origin Trials), ele pode entrar aqui
 # como "Origin-Trial: <token>" ou como <meta http-equiv="origin-trial"> na página.
+# Segurança (11/11/2026):
+#   Strict-Transport-Security -> o navegador só volta por HTTPS durante 6 meses. Sem includeSubDomains
+#                                e sem preload, de propósito: vale só para este endereço e dá para recuar.
+#   X-Content-Type-Options    -> o navegador respeita o tipo de arquivo declarado.
+#   Referrer-Policy           -> para outros sites vai só a origem (https://produtoskincare.com.br/),
+#                                nunca o caminho da página.
+# Content-Security-Policy ficou de fora: precisa de teste com o Pergunte à IA (Supabase), o MediaPipe,
+# o Tesseract (jsDelivr) e o Open-Meteo antes de ligar.
 /*
+  Strict-Transport-Security: max-age=15552000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
   Origin-Agent-Cluster: ?1
   Permissions-Policy: tools=(self), camera=(self), clipboard-write=(self), web-share=(self), microphone=(), geolocation=(), payment=(), usb=()

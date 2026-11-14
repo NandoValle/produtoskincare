@@ -39,7 +39,7 @@ P_RE = re.compile(r"\n?" + re.escape(P_INI) + r".*?" + re.escape(P_FIM) + r"\n?"
 N_RE = re.compile(r"\n?" + re.escape(N_INI) + r".*?" + re.escape(N_FIM) + r"\n?", re.S)
 
 # Páginas que ficam sem a linha de referências (não são conteúdo de skincare do site).
-SEM_REFERENCIAS = {"/contato/", "/privacidade/", "/fortskin/"}
+SEM_REFERENCIAS = {"/contato/", "/privacidade/", "/termos/", "/fortskin/"}
 # Páginas que não recebem nem perguntas nem nota: /fortskin/ é uma experiência de tela cheia que
 # trava a rolagem, então o bloco ficaria escondido do visitante (e FAQ escondida é má prática).
 SEM_BLOCOS = {"/fortskin/"}
