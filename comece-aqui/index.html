@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comece aqui: sua rotina de skincare em 5 níveis</title>
+<meta name="description" content="Do zero à rotina completa em 5 níveis: limpeza, hidratante, protetor solar, um ativo por vez e retinol devagar. Suba um nível só quando a pele estiver confortável.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/comece-aqui/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Cartão-convite. Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ca{max-width:760px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-right,0px)) 64px max(18px,env(safe-area-inset-left,0px))}
+.ca-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio-xl);padding:clamp(26px,5vw,52px);box-shadow:var(--sombra-3);position:relative;overflow:hidden}
+.ca-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--rosa) 0%,var(--rosa-2) 50%,var(--verde) 100%)}
+.ca-topo{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:24px}
+.ca-eyebrow{font-size:12px;font-weight:650;letter-spacing:.16em;text-transform:uppercase;color:var(--rosa)}
+.ca-chip{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--rosa-claro);color:var(--rosa);border:1px solid var(--linha)}
+.ca h1{font-size:clamp(2.2rem,5.6vw,3.4rem);line-height:1.04;margin:0 0 18px;text-wrap:balance}
+.ca h1 em{color:var(--rosa)}
+.ca-lede{font-size:clamp(1.02rem,2.2vw,1.12rem);color:var(--suave);max-width:54ch;margin:0 0 34px}
+.ca-niveis{list-style:none;margin:0 0 8px;padding:0;border-top:1px solid var(--linha)}
+.ca-niveis li{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:18px;padding:18px 4px;border-bottom:1px solid var(--linha);transition:background .25s,padding-left .25s}
+.ca-niveis li:hover{background:var(--papel-2);padding-left:12px}
+.ca-num{font-family:var(--fonte-display);font-size:1.5rem;font-weight:500;color:var(--rosa);font-variant-numeric:tabular-nums}
+.ca-item{min-width:0}
+.ca-item strong{display:block;font-size:1.05rem;font-weight:650;letter-spacing:-.01em}
+.ca-item span{display:block;font-size:.92rem;color:var(--suave);line-height:1.55}
+.ca-item a{font-size:.88rem}
+.ca-barras{display:flex;gap:4px;align-items:flex-end;height:16px}
+.ca-barras i{display:block;width:4px;border-radius:2px;background:var(--linha-2)}
+.ca-barras i:nth-child(1){height:6px}.ca-barras i:nth-child(2){height:9px}.ca-barras i:nth-child(3){height:12px}.ca-barras i:nth-child(4){height:14px}.ca-barras i:nth-child(5){height:16px}
+.ca-barras i.on{background:var(--rosa)}
+.ca-meta{display:flex;align-items:center;gap:14px;margin:30px 0 22px;padding:16px 20px;border-radius:var(--raio-md);background:var(--verde-claro);border:1px solid var(--linha)}
+.ca-selo{width:40px;height:40px;flex:none;border-radius:50%;background:var(--verde);color:var(--papel);display:grid;place-items:center;font-family:var(--fonte-display);font-size:15px;font-weight:600}
+.ca-meta p{margin:0;font-size:.97rem;color:var(--tinta)}
+.ca-aviso{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:var(--raio-md);background:var(--papel-2);border:1px solid var(--linha);font-size:.95rem;color:var(--suave)}
+.ca-aviso strong{color:var(--tinta)}
+.ca-aviso p{margin:0}
+.ca-aviso p+p{margin-top:6px}
+.ca-share{margin-top:30px;padding:26px;border-radius:var(--raio-lg);border:1.5px dashed var(--linha-2);text-align:center}
+.ca-share h2{margin:0 0 6px;font-size:1.6rem}
+.ca-share p{margin:0 0 18px;color:var(--suave);font-size:.96rem}
+.ca-botoes{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.ca-btn{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:12px 24px;border-radius:999px;border:0;background:var(--rosa);color:var(--papel);font:inherit;font-size:.96rem;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .18s,background .18s}
+.ca-btn:hover{transform:translateY(-2px);background:var(--rosa-2)}
+.ca-btn.sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
+.ca-btn.sec:hover{background:var(--papel-2)}
+.ca-btn .seta{transition:transform .18s}
+.ca-btn:hover .seta{transform:translateX(4px)}
+.ca-ok{display:block;min-height:1.3em;margin-top:10px;font-size:.85rem;color:var(--verde)}
+.ca-fim{margin:34px 0 0;padding-top:22px;border-top:1px solid var(--linha);font-family:var(--fonte-display);font-size:1.45rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ca-fim span{font-family:var(--fonte-corpo);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--suave-2)}
+.ca-nota{font-size:.84rem;color:var(--suave);margin:22px 4px 0}
+@media(max-width:560px){.ca-niveis li{grid-template-columns:38px 1fr;gap:12px}.ca-barras{display:none}.ca-fim{font-size:1.25rem}}
+</style>
+<meta name="author" content="Equipe Produto Skincare">
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Comece aqui: sua rotina de skincare em 5 níveis">
+<meta property="og:description" content="Do zero à rotina completa em 5 níveis: limpeza, hidratante, protetor solar, um ativo por vez e retinol devagar. Suba um nível só quando a pele estiver confortável.">
+<meta property="og:url" content="https://produtoskincare.com.br/comece-aqui/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/comece-aqui.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Da pia vazia → a uma rotina que funciona">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/comece-aqui/#pagina", "url": "https://produtoskincare.com.br/comece-aqui/", "name": "Da pia vazia → a uma rotina que funciona", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Do zero à rotina completa em 5 níveis: limpeza, hidratante, protetor solar, um ativo por vez e retinol devagar. Suba um nível só quando a pele estiver confortável.", "breadcrumb": {"@id": "https://produtoskincare.com.br/comece-aqui/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/comece-aqui/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Da pia vazia → a uma rotina que funciona", "item": "https://produtoskincare.com.br/comece-aqui/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+</head>
+<body>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ca" id="conteudo">
+<article class="ca-card">
+
+<div class="ca-topo">
+<span class="ca-eyebrow">Comece aqui · Guia</span>
+<span class="ca-chip">Um nível de cada vez</span>
+</div>
+
+<h1>Da pia vazia <em>→</em><br>a uma rotina que funciona</h1>
+<p class="ca-lede">Cinco níveis, na ordem em que fazem diferença. Comece pelo primeiro, faça todo dia e só suba quando a pele estiver confortável.</p>
+
+<ol class="ca-niveis">
+<li>
+<div class="ca-num">01</div>
+<div class="ca-item"><strong>Limpeza suave, de manhã e à noite</strong><span>Tira a oleosidade, o suor e, à noite, o protetor do dia. Um limpador suave basta. <a href="/blog/rotina-de-skincare-para-iniciantes/">Rotina para iniciantes</a></span></div>
+<div class="ca-barras" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+</li>
+<li>
+<div class="ca-num">02</div>
+<div class="ca-item"><strong>Hidratante na textura da sua pele</strong><span>Gel-creme para pele oleosa, creme mais encorpado para pele seca. <a href="/blog/como-saber-tipo-de-pele/">Como saber seu tipo de pele</a></span></div>
+<div class="ca-barras" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+</li>
+<li>
+<div class="ca-num">03</div>
+<div class="ca-item"><strong>Protetor solar todo dia</strong><span>O passo da manhã que não se pula, mesmo em dia nublado. A SBD orienta FPS 30 no mínimo, com proteção UVA e UVB. <a href="/blog/protetor-solar-importancia/">Por que o protetor importa</a></span></div>
+<div class="ca-barras" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+</li>
+<li>
+<div class="ca-num">04</div>
+<div class="ca-item"><strong>Um ativo à noite, um de cada vez</strong><span>Niacinamida para oleosidade ou ácido hialurônico para hidratação. Veja como a pele reage antes de somar outro. <a href="/combina/">Quais ativos combinam</a></span></div>
+<div class="ca-barras" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+</li>
+<li>
+<div class="ca-num">05</div>
+<div class="ca-item"><strong>Retinol, começando devagar</strong><span>Poucas noites por semana no início, e protetor solar no dia seguinte. <a href="/blog/retinol-como-comecar/">Como começar com retinol</a></span></div>
+<div class="ca-barras" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+</li>
+</ol>
+
+<div class="ca-meta">
+<div class="ca-selo" aria-hidden="true">PS</div>
+<p><strong>No nível 5, a sua rotina de manhã e de noite está montada.</strong><br>
+Veja a ordem completa na <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a> ou deixe o <a href="/provador/">quiz do Provador</a> sugerir os produtos para o seu tipo de pele.</p>
+</div>
+
+<div class="ca-aviso">
+<div aria-hidden="true">⚠️</div>
+<div>
+<p><strong>Sem pressa entre os níveis.</strong> Uma rotina curta que você faz todo dia vale mais do que uma longa que você abandona.</p>
+<p>Se estiver grávida ou amamentando, <strong>fale com um médico antes do retinol</strong>. Este guia não é diagnóstico e não substitui o dermatologista.</p>
+</div>
+</div>
+
+<div class="ca-share">
+<h2>Conhece alguém começando no skincare?</h2>
+<p>Mande este guia e comecem juntos.</p>
+<div class="ca-botoes">
+<a class="ca-btn" id="ca-whats" href="https://wa.me/?text=Comece%20aqui%3A%20sua%20rotina%20de%20skincare%20em%205%20n%C3%ADveis%20https%3A%2F%2Fprodutoskincare.com.br%2Fcomece-aqui%2F" target="_blank" rel="noopener">Enviar pelo WhatsApp <span class="seta" aria-hidden="true">→</span></a>
+<button class="ca-btn sec" id="ca-copiar" type="button" hidden>Copiar link</button>
+</div>
+<span class="ca-ok" id="ca-ok" role="status"></span>
+</div>
+
+<p class="ca-fim">Boa rotina. <span>Produto Skincare · Comece aqui</span></p>
+
+</article>
+<p class="ca-nota">O conteúdo desta página resume os guias do site e as fontes citadas neles.</p>
+<script>
+(function () {
+  var url = "https://produtoskincare.com.br/comece-aqui/";
+  var titulo = "Comece aqui: sua rotina de skincare em 5 níveis";
+  var btn = document.getElementById("ca-copiar");
+  var ok = document.getElementById("ca-ok");
+  if (navigator.share) {
+    btn.textContent = "Compartilhar";
+  } else if (!(navigator.clipboard && navigator.clipboard.writeText)) {
+    return;
+  }
+  btn.hidden = false;
+  btn.addEventListener("click", function () {
+    if (navigator.share) {
+      navigator.share({ title: titulo, url: url }).catch(function () {});
+      return;
+    }
+    navigator.clipboard.writeText(url).then(function () { ok.textContent = "Link copiado."; });
+  });
+})();
+</script>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>Quais são os 5 níveis da rotina de skincare para começar?</h3>
+<p>Nível 1: limpeza suave de manhã e à noite. Nível 2: hidratante na textura do seu tipo de pele. Nível 3: protetor solar todo dia, com FPS 30 no mínimo e proteção UVA e UVB, como orienta a SBD. Nível 4: um ativo à noite, um de cada vez. Nível 5: retinol, começando devagar.</p>
+<h3>Quando passar para o próximo nível da rotina de skincare?</h3>
+<p>A página orienta subir um nível só quando a pele estiver confortável com o anterior, sem pressa, e somar um ativo de cada vez. Quem está grávida ou amamentando deve falar com um médico antes do retinol.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quais são os 5 níveis da rotina de skincare para começar?", "acceptedAnswer": {"@type": "Answer", "text": "Nível 1: limpeza suave de manhã e à noite. Nível 2: hidratante na textura do seu tipo de pele. Nível 3: protetor solar todo dia, com FPS 30 no mínimo e proteção UVA e UVB, como orienta a SBD. Nível 4: um ativo à noite, um de cada vez. Nível 5: retinol, começando devagar."}}, {"@type": "Question", "name": "Quando passar para o próximo nível da rotina de skincare?", "acceptedAnswer": {"@type": "Answer", "text": "A página orienta subir um nível só quando a pele estiver confortável com o anterior, sem pressa, e somar um ativo de cada vez. Quem está grávida ou amamentando deve falar com um médico antes do retinol."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-15">15 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/" aria-current="page">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<script src="/rodape.js" defer></script>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+</body>
+</html>
