@@ -103,7 +103,7 @@ PAGINAS = [
      "descricao": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e diário de fotos só no seu aparelho."},
     {"fonte": "protocolo-n1.html", "caminho": "/ferramentas/protocolo-n1/", "trilha": "Protocolo N=1",
      "titulo": "Protocolo N=1: uma mudança, 35 dias, um veredito",
-     "descricao": "Teste uma mudança na sua rotina com o método 7+28 do Experimento Coletivo, só seu: linha de base, intervenção, registro semanal e um veredito lido nos seus números. Tudo fica no aparelho."},
+     "descricao": "Teste uma mudança na rotina com o método 7+28 do Experimento Coletivo: linha de base, intervenção, registro semanal e um veredito nos seus números."},
     {"fonte": "indice.html", "caminho": "/ferramentas/", "trilha": "Ferramentas", "larga": True,
      "titulo": "Ferramentas de skincare grátis",
      "descricao": "Todas as ferramentas do Produto Skincare: provador, prateleira, modo farmácia, verificador de ingredientes, equivalente mais barato, modo 12 semanas e mais."},
