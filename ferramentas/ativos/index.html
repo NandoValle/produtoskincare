@@ -49,17 +49,6 @@ html[data-tema=escuro] .ga-pagina #guia-ativos{--ga-warn-bg:#3b2f1f;--ga-warn-in
 <script src="/webmcp.js" defer></script>
 </head>
 <body>
-<!-- menu:inicio -->
-<div class="ps-shell ps-topo">
-<header class="ps-header">
-<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
-<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/" aria-current="page">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
-<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
-</header>
-</div>
-<script src="/premium.js" defer></script>
-<!-- menu:fim -->
 <main class="ga-pagina" id="conteudo">
 <p class="marca">Produto <span>Skincare</span> · Ferramentas</p>
 <p class="ga-voltar"><a href="/">← Voltar ao início</a> · <a href="/ativos/">Fichas de cada ativo</a> · <a href="/ferramentas/ingredientes/">Verificar ingredientes</a> · <a href="/rotina-de-skincare/">Rotina passo a passo</a></p>
@@ -463,7 +452,7 @@ window.GUIA_ATIVOS_CONFIG = {
       dica:"Textura mais rica: boa para peles secas." },
 
     /* Antioxidantes */
-    { id:"vitamina-e", n:"Vitamina E (tocoferol)", inci:"Tocopherol", cat:"Antioxidantes", c:["barreira","hidratacao","rugas"], irrita:0, turno:"ambos", conc:"0,5% a 1%", gest:"compativel", nivel:1, sol:false,
+    { id:"vitamina-e", n:"Vitamina E (tocoferol)", inci:"Tocopherol", cat:"Antioxidantes", c:["barreira","hidratacao","rugas"], irrita:0, turno:"ambos", conc:"0,1% a 1%", gest:"compativel", nivel:1, sol:false,
       d:"Antioxidante lipossolúvel que protege os lipídios da pele e potencializa a vitamina C.",
       dica:"Em pele muito oleosa ou acneica, prefira texturas leves." },
     { id:"ferulico", n:"Ácido ferúlico", inci:"Ferulic Acid", cat:"Antioxidantes", c:["rugas","manchas"], irrita:0, turno:"manha", conc:"Cerca de 0,5%", gest:"compativel", nivel:1, sol:false,
@@ -532,7 +521,7 @@ window.GUIA_ATIVOS_CONFIG = {
     { id:"centella", n:"Centella asiática (madecassosídeo)", inci:"Centella Asiatica Extract · Madecassoside", cat:"Calmantes e reparadores", c:["sensibilidade","barreira","rugas"], irrita:0, turno:"ambos", conc:"Variável", gest:"compativel", nivel:1, sol:false,
       d:"Calmante e reparador muito popular no skincare coreano (linhas “cica”).",
       dica:"Ótima para acalmar a pele durante o uso de ativos fortes." },
-    { id:"alantoina", n:"Alantoína", inci:"Allantoin", cat:"Calmantes e reparadores", c:["sensibilidade","barreira"], irrita:0, turno:"ambos", conc:"0,1% a 2%", gest:"compativel", nivel:1, sol:false,
+    { id:"alantoina", n:"Alantoína", inci:"Allantoin", cat:"Calmantes e reparadores", c:["sensibilidade","barreira"], irrita:0, turno:"ambos", conc:"0,5% a 2%", gest:"compativel", nivel:1, sol:false,
       d:"Suaviza, acalma e ajuda a pele a se recuperar.",
       dica:"Muito bem tolerada." },
     { id:"bisabolol", n:"Bisabolol", inci:"Bisabolol", cat:"Calmantes e reparadores", c:["sensibilidade"], irrita:0, turno:"ambos", conc:"Variável", gest:"compativel", nivel:1, sol:false,
@@ -603,25 +592,25 @@ window.GUIA_ATIVOS_CONFIG = {
     { id:"dioxido-titanio", n:"Dióxido de titânio", inci:"Titanium Dioxide", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 25%", gest:"compativel", nivel:1, sol:false,
       d:"Filtro mineral, forte em UVB e UVA curto.",
       dica:"Combinado ao óxido de zinco e a filtros orgânicos para ampliar a proteção." },
-    { id:"tinosorb-s", n:"Bemotrizinol (Tinosorb S)", inci:"Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+    { id:"tinosorb-s", n:"Bemotrizinol (Tinosorb S)", inci:"Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 10% (UE e Brasil); até 6% nos EUA", nivel:1, sol:false,
       d:"Filtro orgânico moderno de amplo espectro, muito estável.",
       dica:"Permitido no Brasil e na UE (até 10%). Nos EUA, a FDA aprovou o bemotrizinol em junho de 2026, até 6%: o primeiro filtro novo em mais de 20 anos." },
-    { id:"tinosorb-m", n:"Bisoctrizol (Tinosorb M)", inci:"Methylene Bis-Benzotriazolyl Tetramethylbutylphenol", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+    { id:"tinosorb-m", n:"Bisoctrizol (Tinosorb M)", inci:"Methylene Bis-Benzotriazolyl Tetramethylbutylphenol", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 10% (limite da UE)", nivel:1, sol:false,
       d:"Filtro híbrido de amplo espectro, com partículas que absorvem e refletem a radiação.",
-      dica:"Comum em protetores europeus e brasileiros." },
-    { id:"avobenzona", n:"Avobenzona", inci:"Butyl Methoxydibenzoylmethane", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+      dica:"Comum em protetores europeus e brasileiros. Ainda não é aprovado nos EUA." },
+    { id:"avobenzona", n:"Avobenzona", inci:"Butyl Methoxydibenzoylmethane", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 5% (limite da UE); até 3% nos EUA", nivel:1, sol:false,
       d:"Um dos principais filtros contra UVA longo.",
       dica:"Sozinho é instável à luz. Precisa de estabilizadores como octocrileno ou Tinosorb S." },
-    { id:"octocrileno", n:"Octocrileno", inci:"Octocrylene", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+    { id:"octocrileno", n:"Octocrileno", inci:"Octocrylene", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 10% (limite da UE)", nivel:1, sol:false,
       d:"Filtro UVB que também estabiliza a avobenzona.",
       dica:"Algumas pessoas têm alergia de contato a ele. Use dentro da validade: com o tempo, parte dele se degrada em benzofenona." },
-    { id:"mexoryl-sx", n:"Ecamsule (Mexoryl SX)", inci:"Terephthalylidene Dicamphor Sulfonic Acid", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+    { id:"mexoryl-sx", n:"Ecamsule (Mexoryl SX)", inci:"Terephthalylidene Dicamphor Sulfonic Acid", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 10% (limite da UE)", nivel:1, sol:false,
       d:"Filtro UVA estável, patenteado.",
-      dica:"Costuma aparecer junto com o Mexoryl XL." },
-    { id:"uvinul-a", n:"DHHB (Uvinul A Plus)", inci:"Diethylamino Hydroxybenzoyl Hexyl Benzoate", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+      dica:"Costuma aparecer junto com o Mexoryl XL. Nos EUA, só em produtos específicos aprovados pela FDA." },
+    { id:"uvinul-a", n:"DHHB (Uvinul A Plus)", inci:"Diethylamino Hydroxybenzoyl Hexyl Benzoate", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 10% (limite da UE)", nivel:1, sol:false,
       d:"Filtro UVA fotoestável, frequente em protetores modernos.",
-      dica:"Alternativa estável à avobenzona." },
-    { id:"uvinul-t", n:"Etilhexil triazona (Uvinul T 150)", inci:"Ethylhexyl Triazone", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Conforme a regulamentação local", nivel:1, sol:false,
+      dica:"Alternativa estável à avobenzona. Não é aprovado nos EUA." },
+    { id:"uvinul-t", n:"Etilhexil triazona (Uvinul T 150)", inci:"Ethylhexyl Triazone", cat:"Filtros solares", c:["protecao"], irrita:0, turno:"manha", conc:"Até 5% (limite da UE)", nivel:1, sol:false,
       d:"Filtro UVB muito eficiente e estável.",
       dica:"Permite fórmulas com FPS alto e textura leve." }
   ];
@@ -1055,7 +1044,7 @@ window.GUIA_ATIVOS_CONFIG = {
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-12">12 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-16">16 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
 </main>
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
