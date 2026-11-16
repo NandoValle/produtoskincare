@@ -99,6 +99,7 @@
 - [Relatório para a consulta](https://produtoskincare.com.br/ferramentas/relatorio/): resumo para levar ao dermatologista.
 - [Backup dos seus dados](https://produtoskincare.com.br/ferramentas/backup/): exportar e restaurar o que está no aparelho.
 - [Experimento Coletivo #01](https://produtoskincare.com.br/ferramentas/experimento/): o protocolo 7+28 do FPS que não deixa branco, com registros guardados no próprio aparelho.
+- [Protocolo N=1](https://produtoskincare.com.br/ferramentas/protocolo-n1/): o experimento solo — uma mudança na rotina, 7 dias de linha de base, 28 de intervenção e um veredito lido nos seus números.
 
 ## Programa 12 semanas (pago)
 
