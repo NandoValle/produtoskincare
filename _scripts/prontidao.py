@@ -78,6 +78,8 @@ TEXTOS = {
 
 # Títulos que continuam longos mesmo sem o sufixo. Mesma informação, menos palavras.
 TITULOS = {
+    "/ativos/acidos-malico-tartarico-e-citrico/": "Ácidos málico, tartárico e cítrico: o que são e como usar",
+    "/ativos/fator-de-crescimento-epidermico/": "Fator de crescimento epidérmico: o que é e como usar",
     "/en/blog/myth-rule-sunblock-100/": 'Myth vs rule: no "sunblock" or "100% protection" on labels',
     "/es/blog/mito-regla-ardencia/": "Mito × regla: el escozor no indica que el producto funciona",
     "/es/blog/mito-regla-sunblock-100/": "Mito × regla: ni «sunblock» ni «100% de protección»",

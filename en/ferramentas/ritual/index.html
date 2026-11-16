@@ -115,21 +115,21 @@ h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-09">9 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
+<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-16">16 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Without JavaScript the assistant tools don’t run and nothing is lost: the guides, the product catalog and the routines stay open as plain HTML.</p></noscript></main>
 <script>
 const ITENS_RT = {
   manha: [
-    { id: "m1", label: "Limpeza facial", seg: 30, nota: "Massage for 30 seconds and rinse with lukewarm water." },
-    { id: "m2", label: "Tratamento (sérum)", seg: 20, nota: "A few drops — no need to rub hard." },
-    { id: "m3", label: "Hidratante", seg: 20, nota: "A thin layer, while the skin is still slightly damp." },
-    { id: "m4", label: "Protetor solar ☀️", seg: 30, nota: "Two fingers of product for face and neck. The last step." }
+    { id: "m1", label: "Facial cleanser", seg: 30, nota: "Massage for 30 seconds and rinse with lukewarm water." },
+    { id: "m2", label: "Treatment (serum)", seg: 20, nota: "A few drops — no need to rub hard." },
+    { id: "m3", label: "Moisturizer", seg: 20, nota: "A thin layer, while the skin is still slightly damp." },
+    { id: "m4", label: "Sunscreen ☀️", seg: 30, nota: "Two fingers of product for face and neck. The last step." }
   ],
   night: [
-    { id: "n1", label: "Limpeza facial", seg: 30, nota: "Remove sunscreen and the day's pollution." },
-    { id: "n2", label: "Tratamento (sérum/retinol)", seg: 25, nota: "One active at a time. If the skin burns, pause." },
-    { id: "n3", label: "Hidratante", seg: 20, nota: "Close the ritual to seal in hydration." }
+    { id: "n1", label: "Facial cleanser", seg: 30, nota: "Remove sunscreen and the day's pollution." },
+    { id: "n2", label: "Treatment (serum/retinol)", seg: 25, nota: "One active at a time. If the skin burns, pause." },
+    { id: "n3", label: "Moisturizer", seg: 20, nota: "Close the ritual to seal in hydration." }
   ]
 };
 let periodo = null, itens = [], idx = 0, restante = 0, timer = null, rodando = false;
@@ -225,11 +225,11 @@ function telaFim(){
   raiz.innerHTML = `
   <div class="rt-anim">
     <p class="ig-meta">Ritual complete</p>
-    <h1>Pronto. <em style="font-family:var(--fonte-display)">Your skin says thank you.</em></h1>
-    <p class="rt-nota">O check-in da rotina da ${periodo === "manha" ? "morning" : "night"} já foi registrado no <a href="/ferramentas/rotina/">tracker de rotina</a>. Volte amorning — constância é uma forma de cuidado.</p>
+    <h1>Done. <em style="font-family:var(--fonte-display)">Your skin says thank you.</em></h1>
+    <p class="rt-nota">Your ${periodo === "manha" ? "morning" : "night"} routine check-in is now in the <a href="/ferramentas/rotina/">routine tracker</a>. Come back tomorrow — consistency is a form of care.</p>
     <div class="rt-acoes" style="margin-top:22px">
       <a class="btn" href="/ferramentas/rotina/">Open my tracker</a>
-      <a class="btn" href="/ferramentas/diario/" style="background:var(--papel-2);color:var(--tinta)">Log it in the diary</a>
+      <a class="btn" href="/en/ferramentas/diary/#dg-hoje" style="background:var(--papel-2);color:var(--tinta)">Log it in the diary</a>
     </div>
     <p style="margin-top:18px"><button class="rt-nota" type="button" id="rt-novo" style="background:none;border:none;cursor:pointer;text-decoration:underline">Do the other ritual</button></p>
   </div>`;

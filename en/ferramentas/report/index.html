@@ -111,7 +111,7 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-09">9 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
+<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-16">16 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Without JavaScript the assistant tools don’t run and nothing is lost: the guides, the product catalog and the routines stay open as plain HTML.</p></noscript></main>
 <script src="/evolucao.js"></script>
@@ -168,13 +168,13 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
     const a = E.analisar(registros, dados);
     const notas = JSON.parse(localStorage.getItem("rotina_notas")||"[]");
     const notasHTML = notas.length ? '<h2>Recorded notes</h2><ul>' + notas.map(n=>'<li><strong>'+fmt(n.data)+'</strong> — '+String(n.texto).replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</li>').join("") + '</ul>' : '';
-    const fotoHTML = fotos.length ? '<div class="rel-fotos">'+fotos.map(f=>'<img src="'+f.foto+'" alt="Registro de '+fmt(f.data)+'">').join("")+'</div><p class="ig-nota">Most recent diary records ('+fotos.map(f=>fmt(f.data)).join(" · ")+'). Personal photos, under non-standardized light.</p>' : '<p class="ig-nota">No photos in the diary.</p>';
+    const fotoHTML = fotos.length ? '<div class="rel-fotos">'+fotos.map(f=>'<img src="'+f.foto+'" alt="Record from '+fmt(f.data)+'">').join("")+'</div><p class="ig-nota">Most recent diary records ('+fotos.map(f=>fmt(f.data)).join(" · ")+'). Personal photos, under non-standardized light.</p>' : '<p class="ig-nota">No photos in the diary.</p>';
     document.getElementById("rel-folha").innerHTML = `
       <div>
         <p class="ig-rotulo">Produto Skincare · Follow-up summary</p>
         <h2 style="border-top:0;padding-top:0">Profile</h2>
         <table><tbody>
-          <tr><th>Rotina</th><td>Morning: 4 steps · Night: 3 steps</td></tr>
+          <tr><th>Routine</th><td>Morning: 4 steps · Night: 3 steps</td></tr>
           <tr><th>Period</th><td>Last 30 days (up to ${fmt(dataHoje())})</td></tr>
           <tr><th>Consistency</th><td>${manhas} mornings and ${noites} nights complete · ${dias} days with records</td></tr>
         </tbody></table>
