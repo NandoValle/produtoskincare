@@ -103,6 +103,82 @@ html, body { overflow-x: clip; }
 .lm-confianca strong { font: 500 23px/1.2 var(--serif); }
 .lm-confianca span { font-size: 10px; line-height: 1.7; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
 
+/* 03b carta aberta (carta de vendas da home). Corpo em Manrope; Cormorant só em título,
+   frase de destaque e assinatura (sem circunflexo, que sai deslocado nessa fonte). */
+.lm-carta { padding-top: clamp(56px, 7vw, 110px); background: linear-gradient(180deg, var(--paper) 0%, var(--champagne) 38%, var(--champagne) 100%); }
+.lm-carta-folha { position: relative; max-width: 860px; margin-inline: auto; padding: clamp(40px, 6.4vw, 92px) clamp(24px, 6.6vw, 100px) clamp(36px, 5vw, 72px); background: var(--white); border: 1px solid var(--line); box-shadow: 0 70px 120px -80px rgba(84,60,32,.6); }
+.lm-carta-folha::before { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(176,141,87,.32); pointer-events: none; }
+.lm-carta-carimbo { position: absolute; top: clamp(26px, 4vw, 54px); right: clamp(22px, 4vw, 54px); width: clamp(92px, 11vw, 138px); aspect-ratio: 1; color: var(--lm-ouro); transform: rotate(-12deg); pointer-events: none; }
+.lm-carta-carimbo svg { display: block; width: 100%; height: 100%; }
+.lm-carta-carimbo text { font: 500 9.6px var(--sans); letter-spacing: .18em; text-transform: uppercase; fill: var(--gold); }
+.lm-carta-carimbo .lm-carimbo-centro { font: 500 56px/1 var(--serif); letter-spacing: 0; }
+.lm-carta-carimbo .lm-carimbo-legenda { font-size: 9px; letter-spacing: .3em; }
+.lm-carta-cabeca { padding-right: clamp(0px, 12vw, 150px); }
+.lm-carta-cabeca .lm-titulo { margin: 24px 0 26px; font-size: clamp(38px, 4.7vw, 66px); line-height: 1.04; }
+.lm-carta-para { max-width: 34rem; padding-bottom: 34px; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.8; letter-spacing: .06em; color: var(--muted); }
+.lm-carta-corpo { max-width: 39rem; margin-top: 40px; }
+.lm-carta-corpo > p, .lm-carta-lista li, .lm-carta-travas dd { font-size: clamp(16px, 1.25vw, 18px); line-height: 1.95; color: #3A2F27; }
+.lm-carta-corpo > p { margin: 0 0 22px; }
+.lm-carta-corpo strong { font-weight: 600; color: var(--ink); }
+.lm-carta-corpo a { color: var(--gold); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.lm-carta-corpo a:hover { color: var(--ink); }
+.lm-carta-abre::first-letter { float: left; margin: 10px 14px 0 0; font: 500 5.1em/.72 var(--serif); color: var(--gold); }
+.lm-carta-corpo h3 { position: relative; margin: 68px 0 26px; padding-top: 30px; font-size: clamp(29px, 3vw, 42px); line-height: 1.1; }
+.lm-carta-corpo h3::before { content: ""; position: absolute; top: 0; left: 0; width: 56px; height: 1px; background: var(--lm-ouro); }
+.lm-carta-corpo > .lm-carta-frase { margin: 46px 0; padding: 34px 0 32px; border-block: 1px solid var(--line); font: 500 clamp(32px, 3.9vw, 54px)/1.08 var(--serif); letter-spacing: -.015em; color: var(--ink); }
+.lm-carta-frase small { display: block; margin-top: 18px; font: 500 12px/1.9 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.lm-carta-corpo > .lm-carta-rodape-nota { margin-top: -6px; padding-left: 16px; border-left: 1px solid var(--lm-ouro); font-size: 13px; line-height: 1.75; color: var(--muted); }
+.lm-carta-rodape-nota cite { font-style: normal; }
+.lm-carta-corpo > .lm-carta-hoje { display: inline-block; margin-top: 6px; padding: 14px 20px; background: var(--champagne); border: 1px solid var(--lm-areia-funda); font-size: 14px; line-height: 1.6; font-weight: 600; letter-spacing: .02em; color: var(--ink); }
+.lm-carta-lista { margin: 0 0 22px; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.lm-carta-lista li { position: relative; padding: 18px 0 18px 34px; border-bottom: 1px solid var(--line); }
+.lm-carta-lista li::before { content: "→"; position: absolute; left: 0; top: 18px; color: var(--lm-ouro); }
+.lm-carta-lista b { font-weight: 600; color: var(--ink); }
+.lm-carta-travas { margin: 0 0 22px; border-top: 1px solid var(--line); }
+.lm-carta-travas > div { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.lm-carta-travas dt { font: 500 clamp(24px, 2.3vw, 30px)/1.2 var(--serif); color: var(--ink); }
+.lm-carta-travas dd { margin: 8px 0 0; }
+.lm-carta-corpo > .lm-carta-assina { margin: 44px 0 0; }
+.lm-carta-assina span { display: block; font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+.lm-carta-corpo .lm-carta-assina a { display: inline-block; margin-top: 4px; font: 500 clamp(30px, 3vw, 40px)/1.2 var(--serif); color: var(--ink); text-decoration: none; }
+.lm-carta-corpo .lm-carta-assina a:hover { color: var(--gold); }
+.lm-carta-corpo > .lm-carta-ps { margin: 38px 0 0; padding-top: 28px; border-top: 1px dashed #BDB0A0; font-size: clamp(15px, 1.15vw, 17px); }
+.lm-carta-ps b { font-weight: 600; letter-spacing: .08em; color: var(--gold); }
+
+.lm-carta-escolha { max-width: 860px; margin-inline: auto; padding: clamp(34px, 5vw, 64px) clamp(24px, 6.6vw, 100px) clamp(34px, 4.6vw, 58px); background: var(--lm-cafe); color: var(--champagne); }
+.lm-carta-escolha .lm-olho { color: var(--lm-ouro-claro); }
+.lm-carta-escolha .lm-olho::before { background: var(--lm-ouro-claro); }
+.lm-carta-escolha h3 { margin: 22px 0 30px; font-size: clamp(32px, 3.6vw, 50px); line-height: 1.08; color: var(--white); }
+.lm-carta-escolha ul { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.lm-carta-escolha li a { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 100%; min-height: 72px; padding: 16px 22px; border: 1px solid rgba(217,190,142,.42); border-radius: 2px; color: var(--white); text-decoration: none; transition: background .4s var(--ease), color .4s, border-color .4s, transform .4s var(--ease); }
+.lm-carta-escolha li a b { font-size: 15px; line-height: 1.45; font-weight: 500; }
+.lm-carta-escolha li a span { flex: none; font-size: 18px; color: var(--lm-ouro-claro); transition: transform .4s var(--ease), color .4s; }
+.lm-carta-escolha li a:hover { background: var(--lm-ouro-claro); border-color: var(--lm-ouro-claro); color: var(--lm-cafe); transform: translateY(-2px); }
+.lm-carta-escolha li a:hover span { color: var(--lm-cafe); transform: translateX(5px); }
+.lm-carta-escolha :focus-visible { outline: 2px solid var(--lm-ouro-claro); outline-offset: 3px; }
+.lm-carta-naosei { grid-column: 1 / -1; }
+.lm-carta-escolha .lm-carta-naosei a { background: var(--lm-ouro-claro); border-color: var(--lm-ouro-claro); color: var(--lm-cafe); }
+.lm-carta-escolha .lm-carta-naosei a span { color: var(--lm-cafe); }
+.lm-carta-escolha .lm-carta-naosei a:hover { background: var(--white); border-color: var(--white); }
+.lm-carta-escolha-nota { margin: 26px 0 0; font-size: 14px; line-height: 1.8; color: var(--lm-texto-escuro); }
+.lm-carta-escolha-nota a { color: var(--lm-ouro-claro); text-underline-offset: 4px; }
+.lm-carta-escolha-legal { margin: 14px 0 0; font-size: 10px; line-height: 1.8; letter-spacing: .2em; text-transform: uppercase; color: #A2978A; }
+.lm-carta + .lm-abertura { padding-top: clamp(64px, 8vw, 120px); }
+@media (max-width: 700px) {
+  .lm-carta .lm-wrap { width: calc(100% - 24px); }
+  .lm-carta-folha::before { inset: 7px; }
+  .lm-carta-carimbo { top: 20px; right: 18px; width: 78px; }
+  .lm-carta-cabeca { padding-right: 0; }
+  .lm-carta-cabeca .lm-olho { max-width: calc(100% - 92px); min-height: 62px; }
+  .lm-carta-escolha ul { grid-template-columns: 1fr; }
+  .lm-carta-escolha li a { min-height: 60px; padding: 14px 18px; }
+  .lm-carta-corpo h3 { margin-top: 54px; }
+  .lm-carta-frase br { display: none; }
+  .lm-carta-corpo > p, .lm-carta-lista li, .lm-carta-travas dd { line-height: 1.8; }
+}
+@media (hover: none) { .lm-carta-escolha li a:hover { transform: none; } }
+@media print { .lm-carta { background: none; } .lm-carta-folha { box-shadow: none; } .lm-carta-carimbo { display: none; } .lm-carta-escolha { background: none; color: inherit; } }
+
 /* 04 abertura */
 .lm-abertura { text-align: center; padding-bottom: clamp(20px, 3vw, 40px); }
 .lm-abertura .lm-titulo { margin: 26px auto 28px; max-width: 16ch; }
