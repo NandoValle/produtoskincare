@@ -34,6 +34,11 @@ const linhas = readFileSync(join(AQUI, "dados/precos.ndjson"), "utf8")
   .split("\n")
   .filter(Boolean)
   .map((l) => JSON.parse(l));
+// Data-às determinística = observação mais nova de precos.ndjson.
+// A mesma base sempre gera os mesmos arquivos (o CI de paridade exige isso) e
+// "desatualizado" passa a significar "antigo em relação ao dado mais novo".
+const AS_OF = linhas.map((o) => String(o.checked_at).slice(0, 10)).sort().at(-1);
+if (!AS_OF) throw new Error("precos.ndjson sem observações: impossível definir a data-às");
 const tamanhos = JSON.parse(readFileSync(join(AQUI, "dados/tamanhos.json"), "utf8")).produtos;
 const doses = JSON.parse(readFileSync(join(AQUI, "dados/doses.json"), "utf8"));
 
@@ -62,7 +67,7 @@ function diasEntre(a, b) {
 }
 
 function calcular(produtoId, catalogo) {
-  const hoje = new Date().toISOString().slice(0, 10);
+  const hoje = AS_OF;
   const obs = linhas
     .filter((o) => o.product_id === produtoId)
     .filter((o) => diasEntre(o.checked_at.slice(0, 10), hoje) <= JANELA_DIAS);
@@ -141,7 +146,9 @@ function calcular(produtoId, catalogo) {
 const catalogo = await carregarCatalogo();
 const saida = {
   versao: 1,
-  gerado_em: new Date().toISOString(),
+  // Determinístico: espelha a observação mais nova (AS_OF), não o relógio.
+  // Geração repetida sobre os mesmos dados produz bytes idênticos.
+  gerado_em: AS_OF + "T00:00:00.000Z",
   janela_dias: JANELA_DIAS,
   regras: {
     selo_min_observacoes: MIN_OBS,
