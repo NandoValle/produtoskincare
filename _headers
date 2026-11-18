@@ -20,11 +20,22 @@
 #   X-Content-Type-Options    -> o navegador respeita o tipo de arquivo declarado.
 #   Referrer-Policy           -> para outros sites vai só a origem (https://produtoskincare.com.br/),
 #                                nunca o caminho da página.
-# Content-Security-Policy ficou de fora: precisa de teste com o Pergunte à IA (Supabase), o MediaPipe,
-# o Tesseract (jsDelivr) e o Open-Meteo antes de ligar.
+#   Content-Security-Policy (16/11/2026), só as regras que não limitam scripts, estilos nem conexões:
+#     frame-ancestors 'self' -> outro site não pode abrir estas páginas dentro de um iframe
+#                               (proteção contra clickjacking). X-Frame-Options faz o mesmo em
+#                               navegador antigo.
+#     base-uri 'self'        -> ninguém troca o endereço-base dos links com uma tag <base> injetada.
+#     object-src 'none'      -> nada de <object>/<embed> (plugins). O site não usa.
+#     form-action 'self'     -> formulários só enviam para o próprio site. Todos já fazem isso.
+#   Ainda de fora: script-src, connect-src e style-src. O site usa muito script e estilo inline, então
+#   essas regras precisariam de 'unsafe-inline' e protegeriam pouco. Além disso, exigem teste com o
+#   Pergunte à IA (Supabase), o MediaPipe, o Tesseract (jsDelivr), o Open-Meteo, o GoatCounter e o
+#   Cloudflare Web Analytics antes de ligar.
 /*
   Strict-Transport-Security: max-age=15552000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'
+  X-Frame-Options: SAMEORIGIN
   Origin-Agent-Cluster: ?1
   Permissions-Policy: tools=(self), camera=(self), clipboard-write=(self), web-share=(self), microphone=(), geolocation=(), payment=(), usb=()

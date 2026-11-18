@@ -116,20 +116,20 @@ h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-09">9 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
+<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-16">16 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertas como HTML común.</p></noscript></main>
 <script>
 const ITENS_RT = {
   manha: [
-    { id: "m1", label: "Limpeza facial", seg: 30, nota: "Masajea 30 segundos y enjuaga con agua tibia." },
-    { id: "m2", label: "Tratamento (sérum)", seg: 20, nota: "Unas gotas, sin frotar en exceso." },
+    { id: "m1", label: "Limpieza facial", seg: 30, nota: "Masajea 30 segundos y enjuaga con agua tibia." },
+    { id: "m2", label: "Tratamiento (sérum)", seg: 20, nota: "Unas gotas, sin frotar en exceso." },
     { id: "m3", label: "Hidratante", seg: 20, nota: "Capa fina, con la piel aún ligeramente húmeda." },
-    { id: "m4", label: "Protetor solar ☀️", seg: 30, nota: "Dos dedos de producto para rostro y cuello. Último paso." }
+    { id: "m4", label: "Protector solar ☀️", seg: 30, nota: "Dos dedos de producto para rostro y cuello. Último paso." }
   ],
   noche: [
-    { id: "n1", label: "Limpeza facial", seg: 30, nota: "Retira el protector y la contaminación del día." },
-    { id: "n2", label: "Tratamento (sérum/retinol)", seg: 25, nota: "Un activo por vez. Si la piel arde, pausa." },
+    { id: "n1", label: "Limpieza facial", seg: 30, nota: "Retira el protector y la contaminación del día." },
+    { id: "n2", label: "Tratamiento (sérum/retinol)", seg: 25, nota: "Un activo por vez. Si la piel arde, pausa." },
     { id: "n3", label: "Hidratante", seg: 20, nota: "Cierra el ritual para sellar la hidratación." }
   ]
 };
@@ -184,7 +184,7 @@ function telaPasso(){
     <div class="rt-acoes">
       <button class="btn" type="button" id="rt-concluir">${idx+1 === itens.length ? "Completar el ritual" : "Completar paso"}</button>
       <button class="btn" type="button" id="rt-pausar" style="background:var(--papel-2);color:var(--tinta)">Pausar</button>
-      <button class="btn" type="button" id="rt-zerar" style="background:var(--papel-2);color:var(--tinta)">Pular o tempo</button>
+      <button class="btn" type="button" id="rt-zerar" style="background:var(--papel-2);color:var(--tinta)">Saltar el tiempo</button>
     </div>
     <p style="margin-top:18px"><button class="rt-nota" type="button" id="rt-sair" style="background:none;border:none;cursor:pointer;text-decoration:underline">Salir del ritual</button></p>
   </div>`;
@@ -226,11 +226,11 @@ function telaFim(){
   raiz.innerHTML = `
   <div class="rt-anim">
     <p class="ig-meta">Ritual completo</p>
-    <h1>Pronto. <em style="font-family:var(--fonte-display)">La piel lo agradece.</em></h1>
-    <p class="rt-nota">O check-in da rotina da ${periodo === "manha" ? "mañana" : "noche"} já foi registrado no <a href="/ferramentas/rotina/">tracker de rotina</a>. Volte amañana — constância é uma forma de cuidado.</p>
+    <h1>Listo. <em style="font-family:var(--fonte-display)">La piel lo agradece.</em></h1>
+    <p class="rt-nota">El check-in de la rutina de la ${periodo === "manha" ? "mañana" : "noche"} ya quedó registrado en el <a href="/ferramentas/rotina/">tracker de rutina</a>. Vuelve mañana — la constancia es una forma de cuidado.</p>
     <div class="rt-acoes" style="margin-top:22px">
       <a class="btn" href="/ferramentas/rotina/">Ver mi tracker</a>
-      <a class="btn" href="/ferramentas/diario/" style="background:var(--papel-2);color:var(--tinta)">Registrar no diário</a>
+      <a class="btn" href="/es/ferramentas/diario/#dg-hoje" style="background:var(--papel-2);color:var(--tinta)">Registrar en el diario</a>
     </div>
     <p style="margin-top:18px"><button class="rt-nota" type="button" id="rt-novo" style="background:none;border:none;cursor:pointer;text-decoration:underline">Hacer el otro ritual</button></p>
   </div>`;

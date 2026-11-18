@@ -30,3 +30,21 @@
     mostrarTudo();
   }, 1500);
 })();
+
+/* Carta aberta da home: a linha "hoje" (dia da semana) e a contagem de cliques nas respostas.
+   Sem JavaScript a linha mostra "Hoje ainda dá tempo." e os links funcionam igual. */
+(function () {
+  var hoje = document.querySelector('[data-carta-hoje]');
+  if (hoje) {
+    var agora = new Date();
+    var dia = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'][agora.getDay()];
+    hoje.textContent = agora.getHours() < 15
+      ? 'Hoje é ' + dia + '. Ainda dá tempo de proteger a pele de hoje.'
+      : 'Hoje é ' + dia + '. A rotina desta noite ainda está de pé: limpar e hidratar.';
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[data-carta]');
+    if (!a || !window.PSAnalytics) return;
+    window.PSAnalytics.evento('carta/' + a.getAttribute('data-carta'), 'Carta da home: ' + a.getAttribute('data-carta'));
+  });
+})();
