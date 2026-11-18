@@ -72,6 +72,7 @@ input[type=text],select{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <!-- menu:inicio -->
 <div class="ps-shell ps-topo ps-topo-recuo">
 <header class="ps-header">
@@ -120,9 +121,9 @@ input[type=text],select{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <div class="card">
 <p class="ig-nota">Ao fim dos 35 dias, você pode mandar o seu resumo anônimo para o boletim. É só isso que sai do seu aparelho: um vetor de números, sem foto, sem nome, sem cidade. Envio é <strong>opcional</strong> — o experimento serve primeiro a você.</p>
 <div class="ec-nota-linha">
-<div class="ec-nota-item"><p class="rot">Tipo de pele</p><select id="ec-pele"><option value="oleosa">Oleosa</option><option value="seca">Seca</option><option value="mista" selected>Mista</option><option value="normal">Normal</option></select></div>
-<div class="ec-nota-item"><p class="rot">Faixa de idade</p><select id="ec-idade"><option value="18-29">18–29</option><option value="30-39" selected>30–39</option><option value="40-49">40–49</option><option value="50+">50+</option></select></div>
-<div class="ec-nota-item"><p class="rot">Clima da sua região</p><select id="ec-clima"><option value="norte-umido">Norte · úmido</option><option value="nordeste-seco">Nordeste · seco</option><option value="sudeste-umido" selected>Sudeste · úmido</option><option value="sul-frio">Sul · frio</option><option value="centro-oeste">Centro-Oeste</option></select></div>
+<div class="ec-nota-item"><label class="rot" for="ec-pele">Tipo de pele</label><select id="ec-pele"><option value="oleosa">Oleosa</option><option value="seca">Seca</option><option value="mista" selected>Mista</option><option value="normal">Normal</option></select></div>
+<div class="ec-nota-item"><label class="rot" for="ec-idade">Faixa de idade</label><select id="ec-idade"><option value="18-29">18–29</option><option value="30-39" selected>30–39</option><option value="40-49">40–49</option><option value="50+">50+</option></select></div>
+<div class="ec-nota-item"><label class="rot" for="ec-clima">Clima da sua região</label><select id="ec-clima"><option value="norte-umido">Norte · úmido</option><option value="nordeste-seco">Nordeste · seco</option><option value="sudeste-umido" selected>Sudeste · úmido</option><option value="sul-frio">Sul · frio</option><option value="centro-oeste">Centro-Oeste</option></select></div>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:10px">
 <button class="btn" type="button" id="ec-exportar">Gerar meu resumo anônimo</button>

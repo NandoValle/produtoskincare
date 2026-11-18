@@ -58,6 +58,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <!-- menu:inicio -->
 <div class="ps-shell ps-topo ps-topo-recuo">
 <header class="ps-header">
@@ -69,7 +70,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 </div>
 <script src="/premium.js" defer></script>
 <!-- menu:fim -->
-<main>
+<main id="conteudo">
 <div class="marca">Produto <span>Skincare</span> · Ferramentas</div>
 <p class="sub"><a href="/" style="color:var(--rosa)">← Voltar ao início</a></p>
 
@@ -79,15 +80,15 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <div class="card">
 <div class="grade">
 <div>
-<label style="font-weight:600;display:block;margin-bottom:6px">Produto 1</label>
+<label for="p1" style="font-weight:600;display:block;margin-bottom:6px">Produto 1</label>
 <select id="p1"><option value="">Selecione...</option></select>
 </div>
 <div>
-<label style="font-weight:600;display:block;margin-bottom:6px">Produto 2</label>
+<label for="p2" style="font-weight:600;display:block;margin-bottom:6px">Produto 2</label>
 <select id="p2"><option value="">Selecione...</option></select>
 </div>
 <div>
-<label style="font-weight:600;display:block;margin-bottom:6px">Produto 3 (opcional)</label>
+<label for="p3" style="font-weight:600;display:block;margin-bottom:6px">Produto 3 (opcional)</label>
 <select id="p3"><option value="">Selecione...</option></select>
 </div>
 </div>
