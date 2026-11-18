@@ -3,3 +3,6 @@
 
 # Cache do Python
 __pycache__/
+
+# Arquivos locais do "wrangler dev"
+.wrangler/
