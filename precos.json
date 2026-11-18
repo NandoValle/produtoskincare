@@ -1,0 +1,949 @@
+{
+ "versao": 1,
+ "gerado_em": "2026-11-12T00:24:18.020Z",
+ "janela_dias": 90,
+ "regras": {
+  "selo_min_observacoes": 8,
+  "selo_min_idade_dias": 30,
+  "preco_fresco_dias": 14,
+  "aviso": "Preço conferido na data indicada; pode ter mudado na loja. Custo por dia é estimativa com base na dose média da categoria. Não é diagnóstico médico."
+ },
+ "produtos": {
+  "cerave-gel-limpeza": {
+   "product_id": "cerave-gel-limpeza",
+   "nome": "CeraVe Gel de Limpeza Facial",
+   "marca": "CeraVe",
+   "current": {
+    "price_cents": 9690,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 9690,
+   "p50_cents": 9690,
+   "p75_cents": 9690,
+   "min_cents": 9690,
+   "max_cents": 9690,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     9690
+    ]
+   ],
+   "custo": {
+    "size_ml": 454,
+    "dose_ml_dia": 2,
+    "dose_categoria": "limpeza",
+    "custo_dia_cents": 43,
+    "custo_30d_cents": 1290,
+    "rendimento_dias": 227,
+    "fonte_tamanho": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC"
+   }
+  },
+  "lrp-effaclar-gel": {
+   "product_id": "lrp-effaclar-gel",
+   "nome": "La Roche-Posay Effaclar Gel Alta Tolerância",
+   "marca": "La Roche-Posay",
+   "current": {
+    "price_cents": 7357,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 7357,
+   "p50_cents": 7357,
+   "p75_cents": 7357,
+   "min_cents": 7357,
+   "max_cents": 7357,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     7357
+    ]
+   ],
+   "custo": {
+    "size_ml": 240,
+    "dose_ml_dia": 2,
+    "dose_categoria": "limpeza",
+    "custo_dia_cents": 61,
+    "custo_30d_cents": 1830,
+    "rendimento_dias": 120,
+    "fonte_tamanho": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5"
+   }
+  },
+  "hada-labo-oil-cleansing": {
+   "product_id": "hada-labo-oil-cleansing",
+   "nome": "Hada Labo Gokujyun Oil Cleansing",
+   "marca": "Hada Labo",
+   "current": {
+    "price_cents": 6490,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 6490,
+   "p50_cents": 6490,
+   "p75_cents": 6490,
+   "min_cents": 6490,
+   "max_cents": 6490,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     6490
+    ]
+   ],
+   "custo": {
+    "size_ml": 200,
+    "dose_ml_dia": 2,
+    "dose_categoria": "limpeza",
+    "custo_dia_cents": 65,
+    "custo_30d_cents": 1950,
+    "rendimento_dias": 100,
+    "fonte_tamanho": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK"
+   }
+  },
+  "neutrogena-hydro-boost": {
+   "product_id": "neutrogena-hydro-boost",
+   "nome": "Neutrogena Hydro Boost Water Gel",
+   "marca": "Neutrogena",
+   "current": {
+    "price_cents": 5516,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 5516,
+   "p50_cents": 5516,
+   "p75_cents": 5516,
+   "min_cents": 5516,
+   "max_cents": 5516,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     5516
+    ]
+   ],
+   "custo": {
+    "size_ml": 50,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 165,
+    "custo_30d_cents": 4950,
+    "rendimento_dias": 33,
+    "fonte_tamanho": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL"
+   }
+  },
+  "lrp-cicaplast-baume": {
+   "product_id": "lrp-cicaplast-baume",
+   "nome": "La Roche-Posay Cicaplast Baume B5+",
+   "marca": "La Roche-Posay",
+   "current": {
+    "price_cents": 7152,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 7152,
+   "p50_cents": 7152,
+   "p75_cents": 7152,
+   "min_cents": 7152,
+   "max_cents": 7152,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     7152
+    ]
+   ],
+   "custo": {
+    "size_ml": 40,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 268,
+    "custo_30d_cents": 8040,
+    "rendimento_dias": 27,
+    "fonte_tamanho": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2"
+   }
+  },
+  "cetaphil-creme-hidratante": {
+   "product_id": "cetaphil-creme-hidratante",
+   "nome": "Cetaphil Creme Hidratante",
+   "marca": "Cetaphil",
+   "current": {
+    "price_cents": 8590,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 8590,
+   "p50_cents": 8590,
+   "p75_cents": 8590,
+   "min_cents": 8590,
+   "max_cents": 8590,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     8590
+    ]
+   ],
+   "custo": {
+    "size_ml": 453,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 28,
+    "custo_30d_cents": 840,
+    "rendimento_dias": 302,
+    "fonte_tamanho": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79"
+   }
+  },
+  "mantecorp-epidrat-calm": {
+   "product_id": "mantecorp-epidrat-calm",
+   "nome": "Mantecorp Epidrat Calm B5",
+   "marca": "Mantecorp Skincare",
+   "current": {
+    "price_cents": 8392,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 8392,
+   "p50_cents": 8392,
+   "p75_cents": 8392,
+   "min_cents": 8392,
+   "max_cents": 8392,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     8392
+    ]
+   ],
+   "custo": {
+    "size_ml": 50,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 252,
+    "custo_30d_cents": 7560,
+    "rendimento_dias": 33,
+    "fonte_tamanho": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB"
+   }
+  },
+  "garnier-uniform-matte": {
+   "product_id": "garnier-uniform-matte",
+   "nome": "Garnier Uniform & Matte Toque Seco",
+   "marca": "Garnier",
+   "current": {
+    "price_cents": 2661,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 2661,
+   "p50_cents": 2661,
+   "p75_cents": 2661,
+   "min_cents": 2661,
+   "max_cents": 2661,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     2661
+    ]
+   ],
+   "custo": {
+    "size_ml": 85,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 47,
+    "custo_30d_cents": 1410,
+    "rendimento_dias": 57,
+    "fonte_tamanho": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS"
+   }
+  },
+  "isdin-fusion-water": {
+   "product_id": "isdin-fusion-water",
+   "nome": "ISDIN Protetor Solar Fusion Water FPS 60",
+   "marca": "ISDIN",
+   "current": {
+    "price_cents": 8900,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 8900,
+   "p50_cents": 8900,
+   "p75_cents": 8900,
+   "min_cents": 8900,
+   "max_cents": 8900,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     8900
+    ]
+   ],
+   "custo": {
+    "size_ml": 50,
+    "dose_ml_dia": 2,
+    "dose_categoria": "protetor",
+    "custo_dia_cents": 356,
+    "custo_30d_cents": 10680,
+    "rendimento_dias": 25,
+    "fonte_tamanho": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD"
+   }
+  },
+  "isdin-fusion-water-sem-cor": {
+   "product_id": "isdin-fusion-water-sem-cor",
+   "nome": "ISDIN Fusion Water 5 Stars Sem Cor FPS 60",
+   "marca": "ISDIN",
+   "current": {
+    "price_cents": 5790,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 5790,
+   "p50_cents": 5790,
+   "p75_cents": 5790,
+   "min_cents": 5790,
+   "max_cents": 5790,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     5790
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 2,
+    "dose_categoria": "protetor",
+    "custo_dia_cents": 386,
+    "custo_30d_cents": 11580,
+    "rendimento_dias": 15,
+    "fonte_tamanho": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN"
+   }
+  },
+  "neutrogena-sun-fresh-fps70": {
+   "product_id": "neutrogena-sun-fresh-fps70",
+   "nome": "Neutrogena Sun Fresh Derm Care FPS 70",
+   "marca": "Neutrogena",
+   "current": {
+    "price_cents": 4770,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 4770,
+   "p50_cents": 4770,
+   "p75_cents": 4770,
+   "min_cents": 4770,
+   "max_cents": 4770,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     4770
+    ]
+   ],
+   "custo": {
+    "size_ml": 40,
+    "dose_ml_dia": 2,
+    "dose_categoria": "protetor",
+    "custo_dia_cents": 239,
+    "custo_30d_cents": 7170,
+    "rendimento_dias": 20,
+    "fonte_tamanho": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ"
+   }
+  },
+  "skin-aqua-moisture-milk": {
+   "product_id": "skin-aqua-moisture-milk",
+   "nome": "Skin Aqua Super Moisture Milk FPS 50",
+   "marca": "Skin Aqua",
+   "current": {
+    "price_cents": 5026,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 5026,
+   "p50_cents": 5026,
+   "p75_cents": 5026,
+   "min_cents": 5026,
+   "max_cents": 5026,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     5026
+    ]
+   ],
+   "custo": {
+    "size_ml": 40,
+    "dose_ml_dia": 2,
+    "dose_categoria": "protetor",
+    "custo_dia_cents": 251,
+    "custo_30d_cents": 7530,
+    "rendimento_dias": 20,
+    "fonte_tamanho": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8"
+   }
+  },
+  "lrp-ultra-cover": {
+   "product_id": "lrp-ultra-cover",
+   "nome": "La Roche-Posay Ultra Cover FPS 60",
+   "marca": "La Roche-Posay",
+   "current": {
+    "price_cents": 7889,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 7889,
+   "p50_cents": 7889,
+   "p75_cents": 7889,
+   "min_cents": 7889,
+   "max_cents": 7889,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     7889
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 2,
+    "dose_categoria": "protetor",
+    "custo_dia_cents": 526,
+    "custo_30d_cents": 15780,
+    "rendimento_dias": 15,
+    "fonte_tamanho": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5"
+   }
+  },
+  "eucerin-anti-pigment": {
+   "product_id": "eucerin-anti-pigment",
+   "nome": "Eucerin Anti-Pigment Dual Sérum",
+   "marca": "Eucerin",
+   "current": {
+    "price_cents": 22699,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 22699,
+   "p50_cents": 22699,
+   "p75_cents": 22699,
+   "min_cents": 22699,
+   "max_cents": 22699,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     22699
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 378,
+    "custo_30d_cents": 11340,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7"
+   }
+  },
+  "principia-vc10": {
+   "product_id": "principia-vc10",
+   "nome": "Principia VC-10 Vitamina C 10%",
+   "marca": "Principia",
+   "current": {
+    "price_cents": 4990,
+    "checked_at": "2026-11-02",
+    "retailer": "shopee",
+    "promo": false,
+    "url": "https://shopee.com.br/search?keyword=principia%20vc-10"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 4990,
+   "p50_cents": 4990,
+   "p75_cents": 4990,
+   "min_cents": 4990,
+   "max_cents": 4990,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     4990
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 83,
+    "custo_30d_cents": 2490,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.araujo.com.br/serum-principia-vc-10-vitamina-c-e-acido-ferulico-30ml/96560.html"
+   }
+  },
+  "principia-niacinamida": {
+   "product_id": "principia-niacinamida",
+   "nome": "Principia Niacinamida NC-10",
+   "marca": "Principia",
+   "current": {
+    "price_cents": 4590,
+    "checked_at": "2026-11-02",
+    "retailer": "shopee",
+    "promo": false,
+    "url": "https://shopee.com.br/search?keyword=principia%20niacinamida%20nc-10"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 4590,
+   "p50_cents": 4590,
+   "p75_cents": 4590,
+   "min_cents": 4590,
+   "max_cents": 4590,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     4590
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 77,
+    "custo_30d_cents": 2310,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.amazon.com.br/S%C3%A9rum-Nc-10-Principia-Niacinamida-Zinco/dp/B08R7RSJFX"
+   }
+  },
+  "principia-ah2": {
+   "product_id": "principia-ah2",
+   "nome": "Principia AH-2 Ácido Hialurônico",
+   "marca": "Principia",
+   "current": {
+    "price_cents": 4290,
+    "checked_at": "2026-11-02",
+    "retailer": "shopee",
+    "promo": false,
+    "url": "https://shopee.com.br/search?keyword=principia%20ah-2"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 4290,
+   "p50_cents": 4290,
+   "p75_cents": 4290,
+   "min_cents": 4290,
+   "max_cents": 4290,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     4290
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 72,
+    "custo_30d_cents": 2160,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.principiaskin.com/serum-hidratante-2-acido-hialuronico-1-vitamina-b5.html"
+   }
+  },
+  "principia-rn03": {
+   "product_id": "principia-rn03",
+   "nome": "Principia RN-0,3 Retinol",
+   "marca": "Principia",
+   "current": {
+    "price_cents": 5290,
+    "checked_at": "2026-11-02",
+    "retailer": "shopee",
+    "promo": false,
+    "url": "https://shopee.com.br/search?keyword=principia%20retinol%20rn-0%2C3"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 5290,
+   "p50_cents": 5290,
+   "p75_cents": 5290,
+   "min_cents": 5290,
+   "max_cents": 5290,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     5290
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 88,
+    "custo_30d_cents": 2640,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.amazon.com.br/S%C3%A9rum-Principia-Retinol-3-Vitamina/dp/B09WB12BKW"
+   }
+  },
+  "ordinary-niacinamide": {
+   "product_id": "ordinary-niacinamide",
+   "nome": "The Ordinary Niacinamide 10% + Zinc 1%",
+   "marca": "The Ordinary",
+   "current": {
+    "price_cents": 3990,
+    "checked_at": "2026-11-02",
+    "retailer": "mercadolivre",
+    "promo": false,
+    "url": "https://lista.mercadolivre.com.br/the-ordinary-niacinamide"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 3990,
+   "p50_cents": 3990,
+   "p75_cents": 3990,
+   "min_cents": 3990,
+   "max_cents": 3990,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     3990
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 67,
+    "custo_30d_cents": 2010,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.mercadolivre.com.br/the-ordinary-niacinamide-10-zinc-1-niacinamida-30ml-tipo-de-pele-todas/p/MLB25108722"
+   }
+  },
+  "creamy-calming-cream": {
+   "product_id": "creamy-calming-cream",
+   "nome": "Creamy Calming Cream",
+   "marca": "Creamy",
+   "current": {
+    "price_cents": 5590,
+    "checked_at": "2026-11-02",
+    "retailer": "shopee",
+    "promo": false,
+    "url": "https://shopee.com.br/search?keyword=creamy%20calming%20cream"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 5590,
+   "p50_cents": 5590,
+   "p75_cents": 5590,
+   "min_cents": 5590,
+   "max_cents": 5590,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     5590
+    ]
+   ],
+   "custo": {
+    "size_ml": 40,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 210,
+    "custo_30d_cents": 6300,
+    "rendimento_dias": 27,
+    "fonte_tamanho": "https://www.amazon.com.br/Skincare-Sensibilizada-Vermelhid%C3%A3o-Especialmente-Sens%C3%ADveis/dp/B0BXV6V3JC"
+   }
+  },
+  "creamy-vitamina-c": {
+   "product_id": "creamy-vitamina-c",
+   "nome": "Creamy Vitamina C 10%",
+   "marca": "Creamy",
+   "current": {
+    "price_cents": 6990,
+    "checked_at": "2026-11-02",
+    "retailer": "shopee",
+    "promo": false,
+    "url": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 6990,
+   "p50_cents": 6990,
+   "p75_cents": 6990,
+   "min_cents": 6990,
+   "max_cents": 6990,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     6990
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 117,
+    "custo_30d_cents": 3510,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.mercadolivre.com.br/creamy-skincare-vitamina-c-30ml-serum-facial-vitamina-c-10-aumenta-firmeza-da-pele-previne-rugas-finas-clareador-de-manchas-todos-os-tipos-de-pele/p/MLB19742247"
+   }
+  },
+  "lrp-retinol-b3": {
+   "product_id": "lrp-retinol-b3",
+   "nome": "La Roche-Posay Retinol B3",
+   "marca": "La Roche-Posay",
+   "current": {
+    "price_cents": 14990,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3&tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 14990,
+   "p50_cents": 14990,
+   "p75_cents": 14990,
+   "min_cents": 14990,
+   "max_cents": 14990,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     14990
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 250,
+    "custo_30d_cents": 7500,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.amazon.com.br/Roche-Posay-Antirrugas-concentrado-acentuadas-Vitamina/dp/B07Z9Y4M3C"
+   }
+  },
+  "loreal-revitalift-noturno": {
+   "product_id": "loreal-revitalift-noturno",
+   "nome": "L'Oréal Revitalift Sérum Noturno Antissinais",
+   "marca": "L'Oréal Paris",
+   "current": {
+    "price_cents": 5990,
+    "checked_at": "2026-11-02",
+    "retailer": "mercadolivre",
+    "promo": false,
+    "url": "https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 5990,
+   "p50_cents": 5990,
+   "p75_cents": 5990,
+   "min_cents": 5990,
+   "max_cents": 5990,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     5990
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 100,
+    "custo_30d_cents": 3000,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.mercadolivre.com.br/serum-noturno-revitalift-retinol-30ml-loreal-paris/up/MLBU3684080327"
+   }
+  },
+  "mantecorp-ivy-c-ferulic": {
+   "product_id": "mantecorp-ivy-c-ferulic",
+   "nome": "Mantecorp Ivy C Ferulic Sérum",
+   "marca": "Mantecorp Skincare",
+   "current": {
+    "price_cents": 8990,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 8990,
+   "p50_cents": 8990,
+   "p75_cents": 8990,
+   "min_cents": 8990,
+   "max_cents": 8990,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     8990
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 150,
+    "custo_30d_cents": 4500,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.amazon.com.br/Mantecorp-Skincare-Rejuvenescedor-Facial-Ferulic/dp/B0B1RVQP3V"
+   }
+  },
+  "cerave-pm-locao": {
+   "product_id": "cerave-pm-locao",
+   "nome": "CeraVe PM Loção Facial",
+   "marca": "CeraVe",
+   "current": {
+    "price_cents": 6290,
+    "checked_at": "2026-11-02",
+    "retailer": "amazon",
+    "promo": false,
+    "url": "https://www.amazon.com.br/s?k=cerave+pm+locao+facial&tag=produtoskincare0f-20"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 6290,
+   "p50_cents": 6290,
+   "p75_cents": 6290,
+   "min_cents": 6290,
+   "max_cents": 6290,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     6290
+    ]
+   ],
+   "custo": {
+    "size_ml": 52,
+    "dose_ml_dia": 1.5,
+    "dose_categoria": "hidratante",
+    "custo_dia_cents": 181,
+    "custo_30d_cents": 5430,
+    "rendimento_dias": 35,
+    "fonte_tamanho": "https://www.amazon.com.br/CeraVe-Hidratante-Hialur%C3%B4nico-Niacinamida-Textura/dp/B096XPFVLL"
+   }
+  },
+  "ordinary-azelaic": {
+   "product_id": "ordinary-azelaic",
+   "nome": "The Ordinary Azelaic Acid 10%",
+   "marca": "The Ordinary",
+   "current": {
+    "price_cents": 4590,
+    "checked_at": "2026-11-02",
+    "retailer": "mercadolivre",
+    "promo": false,
+    "url": "https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid"
+   },
+   "window_days": 90,
+   "n_observations": 1,
+   "p25_cents": 4590,
+   "p50_cents": 4590,
+   "p75_cents": 4590,
+   "min_cents": 4590,
+   "max_cents": 4590,
+   "badge": "sem-historico",
+   "badge_motivo": "Histórico em construção: 1 observação · primeiro registro em 2026-11-02. Selo a partir de 8 observações e 30 dias.",
+   "series": [
+    [
+     "2026-11-02",
+     4590
+    ]
+   ],
+   "custo": {
+    "size_ml": 30,
+    "dose_ml_dia": 0.5,
+    "dose_categoria": "tratamento",
+    "custo_dia_cents": 77,
+    "custo_30d_cents": 2310,
+    "rendimento_dias": 60,
+    "fonte_tamanho": "https://www.mercadolivre.com.br/creme-the-ordinary-azelaic-acid-suspension-10-30ml-melasma-acne-the-ordinary-18-anos/p/MLB24528120"
+   }
+  }
+ }
+}
