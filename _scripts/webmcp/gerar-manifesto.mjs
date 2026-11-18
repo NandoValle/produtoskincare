@@ -159,7 +159,8 @@ if (process.argv.includes("--check")) {
     process.exit(1);
   }
   const publicado = readFileSync(caminhoJson, "utf8");
-  if (publicado !== json) {
+  // O conteúdo é o que importa: no Windows o checkout pode trazer CRLF (autocrlf).
+  if (publicado.replace(/\r\n/g, "\n") !== json) {
     console.error("FALHA: webmcp-tools.json publicado diverge das fontes (webmcp.js / home.html).");
     process.exit(1);
   }
