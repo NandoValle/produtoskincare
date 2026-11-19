@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Herramientas | Produto Skincare</title>
+<meta name="description" content="Herramientas gratuitas de skincare en espanol: costo por dia y la cronologia honesta de resultados.">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa los tokens de color y fuente de premium.css (claro y oscuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}}
+
+/* Cuándo aparece el resultado */
+.ep-grade{display:grid;grid-template-columns:1fr;gap:6px;margin:0 0 8px}
+.ep-opcao{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);cursor:pointer}
+.ep-opcao:hover{border-color:var(--rosa)}
+.ep-opcao input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--rosa)}
+.ep-opcao b{display:block}
+.ep-opcao small{color:var(--suave)}
+.ep-tl{position:relative;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);padding:16px 16px 10px;margin:12px 0}
+.ep-tl-camadas{position:relative;padding-bottom:22px}
+.ep-zona{position:absolute;top:0;bottom:22px;border-radius:8px;background:var(--rosa-claro);opacity:.6;pointer-events:none}
+.ep-zona-rot{position:absolute;bottom:0;transform:translateX(-50%);font-size:.68rem;font-weight:700;color:var(--rosa);white-space:nowrap}
+.ep-eixo{position:relative;height:20px;margin-top:8px;font-size:.72rem;color:var(--suave)}
+.ep-eixo span{position:absolute;white-space:nowrap}
+.ep-linha{margin:10px 0}
+.ep-linha-nome{font-size:.86rem;font-weight:600;margin:0 0 4px}
+.ep-barra{position:relative;height:14px;border-radius:999px;background:var(--papel-2);overflow:hidden}
+.ep-barra i{position:absolute;top:0;height:100%;display:block}
+.ep-inicial{background:var(--verde-claro);border-right:1px solid var(--verde)}
+.ep-visivel{background:var(--verde)}
+.ep-purga{background:var(--rosa)}
+.ep-continua{background:repeating-linear-gradient(90deg,var(--verde) 0 6px,var(--verde-claro) 6px 12px)}
+.ep-legenda{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;color:var(--suave);margin:10px 0 0}
+.ep-legenda i{display:inline-block;width:14px;height:8px;border-radius:4px;margin-right:5px;vertical-align:middle}
+.ep-resumo{font-weight:600}
+@media(min-width:600px){.ep-grade{grid-template-columns:1fr 1fr}}
+</style>
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/expectativa/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/expectativa/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/expectativa/">
+<link rel="canonical" href="https://produtoskincare.com.br/es/ferramentas/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cuándo aparece el resultado (de verdad)">
+<meta property="og:description" content="La línea de tiempo honesta del skincare: qué cambia en los primeros días, qué tarda de 8 a 12 semanas y dónde abandona la mayoría.">
+<meta property="og:url" content="https://produtoskincare.com.br/es/ferramentas/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/es-ferramentas-expectativa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="¿Cuándo aparece el resultado? El calendario honesto del skincare">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/ferramentas/#pagina", "url": "https://produtoskincare.com.br/es/ferramentas/", "name": "Herramientas", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Herramientas gratuitas de skincare en espanol: costo por dia y la cronologia honesta de resultados.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/ferramentas/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/ferramentas/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://produtoskincare.com.br/es/"}, {"@type": "ListItem", "position": 2, "name": "Herramientas", "item": "https://produtoskincare.com.br/es/ferramentas/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial de Chrome: token solo de este origen (https://produtoskincare.com.br), caduca 2027-03-30. No copiar a otro dominio. Renovar en developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Saltar al contenido</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegación principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español" aria-current="true">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Ruta">
+<ol>
+<li><a href="/">Inicio</a></li>
+<li><a href="/ferramentas/">Herramientas</a></li>
+<li aria-current="page">Cuándo aparece el resultado</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Cuándo aparece el resultado</h1>
+<p class="ig-lede">El error más caro del skincare no es elegir el producto equivocado: es abandonar en la semana equivocada. Cada activo tiene su ritmo: unos aparecen en días, otros solo después de tres meses. Elige los activos de tu rutina y mira el calendario honesto de qué esperar, semana a semana.</p>
+</div>
+
+<div class="ig-caixa ig-evid">
+<p class="ig-rotulo">Qué es este calendario (y qué no es)</p>
+<p>Los rangos de tiempo son <b>estimaciones</b> para gestionar expectativas, en el formato de las orientaciones comunes de la práctica dermatológica. No son promesa, no son prescripción y varían con la concentración, la frecuencia, el tipo de piel y la constancia. La referencia fija del sitio es el <a href="/ferramentas/12-semanas/">Modo 12 semanas</a>: <b>espera al menos 6 semanas antes de juzgar el resultado</b>.</p>
+</div>
+
+<section aria-labelledby="ep-escolha-t">
+<h2 id="ep-escolha-t">Elige los activos de tu rutina</h2>
+<p>Marca lo que usas o piensas empezar. El calendario de abajo se ajusta.</p>
+<div class="ep-grade" id="ep-grade"></div>
+</section>
+
+<section aria-labelledby="ep-tl-t">
+<h2 id="ep-tl-t">El calendario de tu kit</h2>
+<div class="ep-tl" id="ep-tl" aria-live="polite">
+<div class="ep-tl-camadas" id="ep-tl-camadas"></div>
+<div class="ep-eixo" id="ep-eixo"></div>
+<p class="ep-legenda"><span><i class="ep-inicial"></i>primeros cambios</span><span><i class="ep-visivel"></i>resultado visible</span><span><i class="ep-purga"></i>ajuste posible (purga, descamación)</span></p>
+</div>
+<p class="ep-resumo" id="ep-resumo"></p>
+</section>
+
+<section aria-labelledby="ep-tabela-t">
+<h2 id="ep-tabela-t">Qué cambia y cuándo</h2>
+<table class="ig-tabela">
+<caption>Rangos estimados por activo. "Cuándo juzgar" es el momento de decidir si continúas.</caption>
+<thead><tr><th>Activo</th><th>Primeros cambios</th><th>Resultado visible</th><th>Cuándo juzgar</th><th>Nota honesta</th></tr></thead>
+<tbody id="ep-tabela">
+<tr><td>Hidratación (ceramidas, ácido hialurónico)</td><td>días a 1 semana</td><td>1 a 4 semanas</td><td>4 semanas (barrera)</td><td>La sensación mejora rápido; la barrera tarda más.</td></tr>
+<tr><td>Niacinamida</td><td>2 a 4 semanas (grasa)</td><td>4 a 8 semanas</td><td>8 a 12 semanas (manchas)</td><td>La grasa responde antes que poros y manchas.</td></tr>
+<tr><td>Vitamina C</td><td>3 a 4 semanas (brillo)</td><td>6 a 12 semanas</td><td>3 meses o más (manchas)</td><td>Brillo antes que mancha; la constancia diaria vale más que la fórmula.</td></tr>
+<tr><td>Retinol y retinoides</td><td>4 a 6 semanas (textura)</td><td>8 a 12 semanas</td><td>6 meses o más (líneas finas)</td><td>Las semanas 2 a 4 son donde la mayoría abandona; ajuste y purga son comunes.</td></tr>
+<tr><td>Adapaleno</td><td>4 a 8 semanas (menos lesiones)</td><td>8 a 12 semanas</td><td>3 meses</td><td>Purga posible en las primeras semanas; usa según el prospecto.</td></tr>
+<tr><td>Peróxido de benzoilo</td><td>2 a 4 semanas (menos inflamación)</td><td>4 a 8 semanas</td><td>8 a 12 semanas</td><td>Puede resecar la piel al principio; hidrata.</td></tr>
+<tr><td>Ácido salicílico (BHA)</td><td>2 a 4 semanas</td><td>4 a 8 semanas</td><td>8 semanas (comedones)</td><td>Los comedones tardan más que la inflamación.</td></tr>
+<tr><td>Ácido azelaico</td><td>4 a 8 semanas (acné)</td><td>8 a 12 semanas</td><td>3 meses o más (manchas)</td><td>La frecuencia del prospecto vale más que el consejo genérico.</td></tr>
+<tr><td>Ácido tranexámico</td><td>6 a 8 semanas</td><td>8 a 12 semanas</td><td>3 a 6 meses</td><td>Sin protector solar, el melasma suele volver.</td></tr>
+<tr><td>Ácidos AHA (glicólico, láctico, mandélico)</td><td>días (brillo)</td><td>4 a 6 semanas (textura)</td><td>6 semanas</td><td>Brillo rápido, textura lenta; no lo uses la misma noche que un retinoide.</td></tr>
+<tr><td>Péptidos</td><td>4 a 8 semanas</td><td>8 a 12 semanas</td><td>3 meses</td><td>Efecto sutil: difícil de notar sin foto del antes.</td></tr>
+<tr><td>Protector solar</td><td>desde el primer día</td><td>8 semanas o más (manchas)</td><td>continuo</td><td>El único que vale el primer día y nunca termina.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section aria-labelledby="ep-erro-t">
+<h2 id="ep-erro-t">El error más caro del skincare</h2>
+<p>Abandonar en la semana 3. El dinero del frasco ya se gastó; el resultado, no. El retinol y los ácidos suelen pasar por una fase de ajuste (descamación, purga, piel más sensible) justo cuando todavía no hay resultado visible: es la zona donde la mayoría se detiene, y es donde el calendario de arriba muestra que la cuenta empieza a cerrar.</p>
+<div class="ig-caixa">
+<p class="ig-rotulo">Dos costos, una sola cuenta</p>
+<p>El <a href="/es/ferramentas/matematica/">costo por día</a> muestra cuánto pesa el producto en el bolsillo. Este calendario muestra cuánto pesa en la paciencia: un retinol de R$ 100 que abandonas en la semana 3 sale caro por día de uso y devuelve cero de resultado. El trato es simple: empieza despacio (el <a href="/ferramentas/12-semanas/">Modo 12 semanas</a> hace ese papel), protégete del sol todos los días y solo juzga después de 6 semanas.</p>
+</div>
+</section>
+
+<section class="ig-caixa ig-resumo" aria-labelledby="ep-resumo-t">
+<p class="ig-rotulo" id="ep-resumo-t">En resumen</p>
+<ul>
+<li>La hidratación cambia en días. La grasa y la textura tardan semanas. Manchas y líneas tardan meses.</li>
+<li>Las primeras 2 a 4 semanas de un activo nuevo son de ajuste: el resultado casi nunca está ahí.</li>
+<li>Regla del sitio: espera al menos 6 semanas antes de juzgar. Si pasan 3 meses sin ningún cambio, vale la conversa con el dermatólogo.</li>
+<li>La constancia le gana a la potencia: el producto que usas todos los días vence al producto perfecto que abandonas.</li>
+</ul>
+</section>
+
+<section aria-labelledby="ep-rel">
+<h2 id="ep-rel">Lee también</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/12-semanas/">Modo 12 semanas</a></li>
+<li><a href="/es/ferramentas/matematica/">La matemática del frasco</a></li>
+<li><a href="/es/ferramentas/diario/">Diario de la piel</a></li>
+<li><a href="/ingredientes/">Ingredientes y activos</a></li>
+<li><a href="/blog/retinol-como-comecar/">Retinol: cómo empezar</a></li>
+<li><a href="/ferramentas/ativos/">Guía de activos</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="ep-fontes">
+<h2 id="ep-fontes">Fuentes y límites</h2>
+<ol>
+<li>Línea fija de juicio: "espera al menos 6 semanas antes de juzgar el resultado", del <a href="/ferramentas/12-semanas/">Modo 12 semanas</a> (plano-ativos.js v0.2.0, 09/11/2026).</li>
+<li>Los rangos semana a semana de esta página son estimaciones propias para expectativa, no extraídas de un estudio específico. La variación individual es la regla, no la excepción.</li>
+<li>Páginas que el Modo 12 semanas consultó el 09/11/2026: <cite><a href="https://www.aad.org/public/everyday-care/skin-care-secrets/anti-aging/retinoid-retinol">AAD: Retinoid or retinol?</a></cite> y <cite><a href="https://sbd.org.br/campanha/2024/05/07/o-que-esta-liberado-e-proibido-na-gravidez/">SBD: ¿Qué está permitido y prohibido en el embarazo?</a></cite>.</li>
+<li>Este contenido es informativo y no sustituye la consulta con un dermatólogo. Embarazada o buscando embarazo: no uses retinoides; para el resto, habla con tu médico.</li>
+</ol>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Contenido informativo, no sustituye la consulta con un dermatólogo.</p>
+<p><a href="/privacidade/">Privacidad</a> · <a href="/sobre/">Acerca de Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback sin JavaScript: con los scripts desactivados las herramientas de IA no funcionan y no se pierde nada — el sitio entero sigue funcionando como sitio normal. Ese es el camino manual. Una llamada en curso puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="ps-rodape-nota">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: todo el contenido sigue funcionando como HTML común — ese es el camino manual.</p></noscript></footer>
+<p class="fallback" id="fallback-manual"><strong>Fallback sin JavaScript.</strong> Con los scripts desactivados las herramientas de IA no funcionan y no se pierde nada: el catálogo entero está en <a href="/produtos/">Productos</a>, las guías de cada tipo de piel en <a href="/pele/oleosa/">Piel</a> y las rutinas por condición en <a href="/rotinas/">Rutinas</a>, todo como HTML común. Ese es el camino manual. Una llamada en curso también puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="fallback">Sin JavaScript, las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertos como HTML común. La tabla "Qué cambia y cuándo" de esta página sigue legible como texto.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Cuidado de la piel para cada tipo, con precios fechados y enlaces.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guías por tipo de piel</li><li><strong>5</strong>condiciones explicadas</li></ul>
+</div>
+<nav aria-label="Pie de página: Tipos de piel"><p class="ps-rodape-titulo">Tipos de piel</p><ul><li><a href="/pele/oleosa/">Piel grasa</a></li><li><a href="/pele/seca/">Piel seca</a></li><li><a href="/pele/mista/">Piel mixta</a></li><li><a href="/pele/normal/">Piel normal</a></li></ul></nav>
+<nav aria-label="Pie de página: Condiciones"><p class="ps-rodape-titulo">Condiciones</p><ul><li><a href="/condicoes/acne/">Acné</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Ojeras</a></li><li><a href="/condicoes/desidratacao/">Deshidratación</a></li><li><a href="/condicoes/">Todas las condiciones</a></li></ul></nav>
+<nav aria-label="Pie de página: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Quiz de piel</a></li><li><a href="/achados/">Hallazgos</a></li><li><a href="/rotina-de-skincare/">Rutina de skincare</a></li><li><a href="/rotinas/">Rutinas por precio</a></li><li><a href="/ferramentas/comparar/">Comparar productos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guía de activos</a></li><li><a href="/ferramentas/rotina/">Seguimiento de rutina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredients</a></li><li><a href="/mais-vendidos/">Los más vendidos</a></li><li><a href="/queridinhos-do-skincare/">Favoritos del skincare en el mundo</a></li><li><a href="/produtos/">Productos</a></li><li><a href="/ferramentas/reposicao/">Recordatorio de reposición</a></li><li><a href="/ferramentas/clima/">Índice UV de hoy</a></li><li><a href="/pergunte/">Pregunta a la IA</a></li><li><a href="/mercado-skincare-brasil/">Datos del mercado</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Producto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contiene enlaces de afiliado. La mayoría de las guías está en portugués.</span><span class="ps-rodape-links"><a href="/sobre/">Acerca de</a><a href="/privacidade/">Privacidad</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var SEMANAS = 16;
+  // Rangos estimados en semanas para gestionar expectativas (no son promesa).
+  var ATIVOS = [
+    { id: "hidratacao", nome: "Hidratación", completo: "Hidratación (ceramidas, ácido hialurónico)", primeiros: [0, 1], visivel: [1, 4], purga: null, padrao: false },
+    { id: "niacinamida", nome: "Niacinamida", completo: "Niacinamida", primeiros: [2, 4], visivel: [4, 8], purga: null, padrao: true },
+    { id: "vitamina-c", nome: "Vitamina C", completo: "Vitamina C", primeiros: [3, 4], visivel: [6, 12], purga: null, padrao: false },
+    { id: "retinol", nome: "Retinol y retinoides", completo: "Retinol y retinoides", primeiros: [4, 6], visivel: [8, 12], purga: [1, 4], padrao: true },
+    { id: "adapaleno", nome: "Adapaleno", completo: "Adapaleno", primeiros: [4, 8], visivel: [8, 12], purga: [1, 6], padrao: false },
+    { id: "peroxido", nome: "Peróxido de benzoilo", completo: "Peróxido de benzoilo", primeiros: [2, 4], visivel: [4, 8], purga: [1, 3], padrao: false },
+    { id: "bha", nome: "Ácido salicílico (BHA)", completo: "Ácido salicílico (BHA)", primeiros: [2, 4], visivel: [4, 8], purga: null, padrao: false },
+    { id: "azelaico", nome: "Ácido azelaico", completo: "Ácido azelaico", primeiros: [4, 8], visivel: [8, 12], purga: null, padrao: false },
+    { id: "tranexamico", nome: "Ácido tranexámico", completo: "Ácido tranexámico", primeiros: [6, 8], visivel: [8, 12], purga: null, padrao: false },
+    { id: "aha", nome: "Ácidos AHA", completo: "Ácidos AHA (glicólico, láctico, mandélico)", primeiros: [0, 1], visivel: [4, 6], purga: null, padrao: false },
+    { id: "peptideos", nome: "Péptidos", completo: "Péptidos", primeiros: [4, 8], visivel: [8, 12], purga: null, padrao: false },
+    { id: "protetor", nome: "Protector solar", completo: "Protector solar", primeiros: [0, 0.5], visivel: [8, 16], purga: null, continua: true, padrao: true }
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function pctSemana(w) { return (Math.max(0, Math.min(SEMANAS, w)) / SEMANAS) * 100; }
+  function faixaTexto(r) { return r[0] === r[1] ? "semana " + r[0] : "semanas " + r[0] + " a " + r[1]; }
+
+  function montarOpcoes() {
+    $("ep-grade").innerHTML = ATIVOS.map(function (a) {
+      return '<label class="ep-opcao" for="ep-' + esc(a.id) + '">' +
+        '<input type="checkbox" id="ep-' + esc(a.id) + '" value="' + esc(a.id) + '"' + (a.padrao ? " checked" : "") + '>' +
+        '<span><b>' + esc(a.nome) + '</b><small>resultado visible: ' + esc(faixaTexto(a.visivel)) + '</small></span></label>';
+    }).join("");
+    Array.prototype.forEach.call($("ep-grade").querySelectorAll("input"), function (i) {
+      i.addEventListener("change", desenhar);
+    });
+  }
+
+  function selecionados() {
+    return ATIVOS.filter(function (a) {
+      var el = $("ep-" + a.id);
+      return el && el.checked;
+    });
+  }
+
+  function desenhar() {
+    var sel = selecionados();
+    var camadas = $("ep-tl-camadas");
+    if (!sel.length) {
+      camadas.innerHTML = '<p class="ig-nota">Marca al menos un activo para ver el calendario.</p>';
+      $("ep-resumo").textContent = "";
+      desenharEixo();
+      return;
+    }
+    // Zona donde la mayoría abandona: semanas 2 a 4.
+    var html = '<div class="ep-zona" style="left:' + pctSemana(2) + '%;width:' + (pctSemana(4) - pctSemana(2)) + '%"></div>' +
+      '<div class="ep-zona-rot" style="left:' + ((pctSemana(2) + pctSemana(4)) / 2) + '%">zona de abandono</div>';
+    html += sel.map(function (a) {
+      var segs = "";
+      if (a.purga) segs += '<i class="ep-purga" style="left:' + pctSemana(a.purga[0]) + '%;width:' + (pctSemana(a.purga[1]) - pctSemana(a.purga[0])) + '%"></i>';
+      segs += '<i class="ep-inicial" style="left:' + pctSemana(a.primeiros[0]) + '%;width:' + Math.max(1.5, pctSemana(a.primeiros[1]) - pctSemana(a.primeiros[0])) + '%"></i>';
+      segs += '<i class="' + (a.continua ? "ep-continua" : "ep-visivel") + '" style="left:' + pctSemana(a.visivel[0]) + '%;width:' + (pctSemana(a.visivel[1]) - pctSemana(a.visivel[0])) + '%"></i>';
+      return '<div class="ep-linha"><p class="ep-linha-nome">' + esc(a.completo) + '</p>' +
+        '<div class="ep-barra" role="img" aria-label="' + esc(a.completo + ": primeros cambios " + faixaTexto(a.primeiros) + ", resultado visible " + faixaTexto(a.visivel)) + '">' + segs + '</div></div>';
+    }).join("");
+    camadas.innerHTML = html;
+    desenharEixo();
+
+    var minPrimeiros = Math.min.apply(null, sel.map(function (a) { return a.primeiros[0]; }));
+    var minVisivel = Math.min.apply(null, sel.map(function (a) { return a.visivel[0]; }));
+    var maxVisivel = Math.max.apply(null, sel.map(function (a) { return a.visivel[1]; }));
+    $("ep-resumo").textContent = "En tu kit: primeros cambios desde la semana " + minPrimeiros +
+      "; resultado visible entre las semanas " + minVisivel + " y " + Math.min(maxVisivel, SEMANAS) +
+      ". Juzga el conjunto después de la semana 6: esa es la regla del Modo 12 semanas.";
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("expectativa-desenhar"); } catch (e) {}
+  }
+
+  function desenharEixo() {
+    var marcas = [0, 2, 4, 8, 12, 16];
+    $("ep-eixo").innerHTML = marcas.map(function (w) {
+      var t = w === 0 ? "hoy" : "sem " + w;
+      var css = w === 0 ? "left:0" : (w === SEMANAS ? "left:100%;transform:translateX(-100%)" : "left:" + pctSemana(w) + "%;transform:translateX(-50%)");
+      return '<span style="' + css + '">' + t + '</span>';
+    }).join("");
+  }
+
+  function iniciar() {
+    montarOpcoes();
+    desenhar();
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ferramentas-expectativa"); } catch (e) {}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>
