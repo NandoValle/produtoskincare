@@ -421,8 +421,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/ferramentas/anti-impulso/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/ferramentas/ativos/</loc>
     <lastmod>2026-11-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/ferramentas/busca/</loc>
+    <lastmod>2026-11-16</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -441,6 +451,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/ferramentas/expectativa/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/ferramentas/extrato/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/ferramentas/farmacia/</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.7</priority>
@@ -451,8 +471,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/ferramentas/matematica/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/ferramentas/prateleira/</loc>
     <lastmod>2026-11-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/ferramentas/raio-x/</loc>
+    <lastmod>2026-11-12</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -463,6 +493,11 @@
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/rotina/</loc>
     <lastmod>2026-11-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/ferramentas/termometro/</loc>
+    <lastmod>2026-11-16</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -712,7 +747,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/queridinhos-do-skincare/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -796,6 +831,10 @@
     <lastmod>2026-11-09</lastmod></url>
   <url><loc>https://produtoskincare.com.br/en/ferramentas/backup/</loc>
     <lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://produtoskincare.com.br/en/ferramentas/matematica/</loc>
+    <lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://produtoskincare.com.br/en/ferramentas/expectativa/</loc>
+    <lastmod>2026-11-16</lastmod></url>
   <url><loc>https://produtoskincare.com.br/es/ferramentas/ritual/</loc>
     <lastmod>2026-11-09</lastmod></url>
   <url><loc>https://produtoskincare.com.br/es/ferramentas/diario/</loc>
@@ -804,4 +843,8 @@
     <lastmod>2026-11-09</lastmod></url>
   <url><loc>https://produtoskincare.com.br/es/ferramentas/respaldo/</loc>
     <lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://produtoskincare.com.br/es/ferramentas/matematica/</loc>
+    <lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://produtoskincare.com.br/es/ferramentas/expectativa/</loc>
+    <lastmod>2026-11-16</lastmod></url>
 </urlset>

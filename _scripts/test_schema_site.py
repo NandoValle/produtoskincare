@@ -49,7 +49,11 @@ class SchemaFactsTests(unittest.TestCase):
     def test_no_inferred_update_or_author_or_generic_image(self):
         article = self.one(self.graph('<h1>Notícia</h1><p class="sub">Publicado em 9 de novembro de 2026</p><ul><li>Fonte. Atualizado em 5 de novembro de 2026.</li></ul>', head='<meta property="og:image" content="/img/og/noticia.jpg">'), "Article")
         self.assertEqual(article["datePublished"], "2026-11-09")
-        self.assertFalse({"dateModified", "author", "image"} & article.keys())
+        # Sem rótulo de atualização visível, dateModified espelha datePublished
+        # (regra do schema.org, commits b57c9ea/a78d27e) — e a data da lista de
+        # fontes ("Atualizado em 5 de novembro") não pode vazar para o schema.
+        self.assertEqual(article["dateModified"], "2026-11-09")
+        self.assertFalse({"author", "image"} & article.keys())
 
     def test_hidden_byline_and_script_dates_ignored(self):
         article = self.one(self.graph('<h1>Artigo</h1><p class="ig-meta" hidden>Por Equipe Produto Skincare · Atualizado em 4 de novembro de 2026</p><script>"Publicado em 1 de novembro de 2026"</script>'), "Article")

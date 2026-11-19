@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Busca inteligente por ingrediente e produto | Produto Skincare</title>
+<meta name="description" content="Busque por ingrediente, produto, marca ou ativo com autocomplete: niacinamida, retinol, ácido salicílico, CeraVe e mais. Sugestões enquanto você digita, com evidência e preço datado.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/busca/">
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--ouro:#b08d57;--ouro-claro:#f7f1e6;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:760px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.25rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.aviso{border-left:3px solid var(--verde);background:var(--verde-claro);border-radius:0 var(--raio) var(--raio) 0}
+a{color:var(--tinta)}
+.ig-top{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0 4px}
+.ig-trilha{font-size:.82rem;color:var(--suave)}.ig-trilha ol{list-style:none;display:flex;gap:8px}.ig-trilha li+li::before{content:"›";margin-right:8px;color:var(--linha)}
+.ig-trilha a{color:var(--suave);text-decoration:none}.ig-trilha a:hover{color:var(--rosa)}
+
+/* busca */
+.bs-wrap{position:relative;margin:18px 0 6px}
+.bs-campo{width:100%;min-height:62px;padding:0 20px 0 52px;border:1.5px solid var(--linha);border-radius:var(--raio);background:var(--papel);font:inherit;font-size:17px;color:var(--tinta)}
+.bs-campo:focus-visible{outline:2px solid var(--ouro);outline-offset:1px;border-color:var(--ouro)}
+.bs-lupa{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:20px;height:20px;opacity:.55;pointer-events:none}
+.bs-sugestoes{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);list-style:none;overflow:hidden;box-shadow:0 18px 38px rgba(26,22,20,.12)}
+.bs-sug{display:flex;align-items:center;gap:12px;padding:11px 16px;cursor:pointer;border-top:1px solid var(--linha)}
+.bs-sug:first-child{border-top:0}
+.bs-sug-ativa,.bs-sug:hover{background:var(--ouro-claro)}
+.bs-sug-tipo{flex:0 0 auto;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);border:1px solid var(--linha);border-radius:99px;padding:2px 9px}
+.bs-sug strong{font-weight:600;font-size:.95rem}
+.bs-sug-sub{display:block;font-size:.78rem;color:var(--suave);line-height:1.4}
+.bs-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.bs-chip{font:inherit;font-size:.82rem;color:var(--tinta);background:var(--papel);border:1px solid var(--linha);border-radius:99px;padding:7px 14px;cursor:pointer}
+.bs-chip:hover{border-color:var(--ouro);background:var(--ouro-claro)}
+.bs-dica{font-size:.85rem;color:var(--suave);margin:10px 0 0}
+
+/* resultados */
+.bs-contagem{color:var(--suave);font-size:.9rem;margin:22px 0 2px}
+.bs-secao{margin:26px 0 10px}
+.bs-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.bs-card{display:flex;flex-direction:column;gap:6px;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px;text-decoration:none;color:var(--tinta);transition:transform .15s ease,border-color .15s ease}
+.bs-card:hover{transform:translateY(-3px);border-color:var(--ouro)}
+.bs-card strong{font-size:1rem;line-height:1.35}
+.bs-tag{align-self:flex-start;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:2px 9px}
+.bs-tag-ing{background:var(--verde-claro);color:var(--verde)}
+.bs-tag-prod{background:var(--ouro-claro);color:#8a6a38}
+.bs-tag-guia{background:var(--rosa-claro);color:var(--rosa)}
+.bs-sub{font-size:.82rem;color:var(--suave)}
+.bs-desc{font-size:.84rem;color:var(--suave);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bs-ir{font-size:.82rem;color:var(--rosa);margin-top:2px}
+.bs-vazio{color:var(--suave);margin:22px 0}
+.bs-card-aviso{background:var(--rosa-claro);border-color:transparent}
+a.bs-rodape{color:var(--suave)}
+@media (max-width:520px){.bs-grade{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Busca inteligente por ingrediente e produto">
+<meta property="og:description" content="Busque por ingrediente, produto, marca ou ativo com autocomplete: niacinamida, retinol, ácido salicílico, CeraVe e mais. Sugestões enquanto você digita, com evidência e preço datado.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/busca/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-busca.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Busca inteligente: encontre ingrediente, produto ou ativo">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/busca/#pagina", "url": "https://produtoskincare.com.br/ferramentas/busca/", "name": "Busca inteligente por ingrediente e produto", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Busque por ingrediente, produto, marca ou ativo com autocomplete: niacinamida, retinol, ácido salicílico, CeraVe e mais. Sugestões enquanto você digita, com evidência e preço datado.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/busca/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/busca/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Busca", "item": "https://produtoskincare.com.br/ferramentas/busca/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<header class="ig-top">
+<a class="marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha"><ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Busca</li>
+</ol></nav>
+</header>
+<main id="conteudo">
+<h1>Busca inteligente</h1>
+<p class="sub">Digite um ingrediente, produto, marca ou ativo — com autocomplete e tolerância a erro de digitação. Ex.: <em>niacinamida</em>, <em>bha</em>, <em>CeraVe</em>, <em>protetor solar</em>, <em>pele oleosa</em>.</p>
+
+<form id="bs-form" role="search" aria-label="Buscar ingredientes e produtos" action="/ferramentas/busca/" method="get">
+<div class="bs-wrap">
+<svg class="bs-lupa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input id="bs-campo" class="bs-campo" type="search" name="q" placeholder="Buscar ingrediente ou produto…"
+ autocomplete="off" enterkeyhint="search" role="combobox" aria-expanded="false"
+ aria-controls="bs-sugestoes" aria-autocomplete="list" aria-label="Buscar ingrediente ou produto">
+<ul id="bs-sugestoes" class="bs-sugestoes" role="listbox" aria-label="Sugestões" hidden></ul>
+</div>
+</form>
+
+<div id="bs-chips" class="bs-chips" aria-label="Buscas populares"></div>
+<p class="bs-dica">Dica: <kbd>↑</kbd> <kbd>↓</kbd> navegam nas sugestões, <kbd>Enter</kbd> abre a selecionada, <kbd>Esc</kbd> fecha.</p>
+
+<section id="bs-resultados" aria-live="polite"></section>
+
+<div class="card aviso">
+<strong>Como a busca funciona</strong>
+<p class="sub" style="margin-top:8px">O termo é comparado com os nomes, marcas, ativos e resumos do catálogo — sem diferenciar caixa ou acento. Sinônimos de ativos também contam: <em>bha</em> acha <em>ácido salicílico</em>, <em>vitamina C</em> acha <em>ácido ascórbico</em>. Os dados vêm dos mesmos arquivos do <a href="/provador/">provador</a> (preço datado e link conferidos). Preferir a lista completa com filtros? Use o <a href="/produtos/">catálogo de produtos</a>.</p>
+</div>
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, a busca com sugestões não roda, e nada se perde: o catálogo de produtos segue aberto como HTML comum em <a href="/produtos/">Produtos</a>.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script src="busca.js" defer></script>
+</body>
+</html>

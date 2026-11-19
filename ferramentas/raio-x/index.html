@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Raio-X do Rótulo — o que a lista de ingredientes realmente diz</title>
-<meta name="description" content="Cole a lista de ingredientes (INCI) e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.">
+<meta name="description" content="Fotografe ou cole a lista de ingredientes (INCI) e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.">
 <style>
 .rx-form{display:flex;flex-direction:column;gap:14px}
 .rx-form label{font-weight:600;display:block;margin-bottom:6px}
@@ -13,6 +13,10 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 .btn{font:inherit;font-weight:600;min-height:52px;padding:0 28px;border-radius:12px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,22,20,0.1)}
 .btn-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha)}
+.rx-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.rx-foto{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:14px}
+.rx-foto label.btn{cursor:pointer;display:inline-flex;margin-bottom:0}
+.rx-foto label.btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font:inherit;font-size:.92rem;border:1.5px solid var(--linha);background:var(--papel);color:var(--tinta);border-radius:999px;padding:8px 14px;cursor:pointer}
 .chip:hover{border-color:var(--rosa)}
@@ -34,7 +38,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <link rel="canonical" href="https://produtoskincare.com.br/ferramentas/raio-x/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raio-X do Rótulo — Decodificador de Ingredientes">
-<meta property="og:description" content="Cole a lista de ingredientes e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.">
+<meta property="og:description" content="Fotografe ou cole a lista de ingredientes e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.">
 <meta property="og:url" content="https://produtoskincare.com.br/ferramentas/raio-x/">
 <meta property="og:site_name" content="Produto Skincare">
 <meta property="og:locale" content="pt_BR">
@@ -43,7 +47,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Raio-X do rótulo">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/raio-x/#pagina", "url": "https://produtoskincare.com.br/ferramentas/raio-x/", "name": "Raio-X do rótulo", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Cole a lista de ingredientes e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/raio-x/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/raio-x/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Raio-X do rótulo", "item": "https://produtoskincare.com.br/ferramentas/raio-x/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/raio-x/#pagina", "url": "https://produtoskincare.com.br/ferramentas/raio-x/", "name": "Raio-X do rótulo", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Fotografe ou cole a lista de ingredientes e as promessas da embalagem: agrupe por função, veja pontos de atenção e confira se as promessas se sustentam na lista.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/raio-x/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/raio-x/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Raio-X do rótulo", "item": "https://produtoskincare.com.br/ferramentas/raio-x/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -70,14 +74,18 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <p class="sub"><a href="/ferramentas/" style="color:var(--rosa)">← Voltar às ferramentas</a></p>
 
 <h1>Raio-X do rótulo</h1>
-<p class="sub">Cole a lista de ingredientes (INCI) do produto — e, se quiser, as promessas da embalagem. O raio-x agrupa os ingredientes pela função, aponta o que merece atenção e confere se cada promessa se sustenta na própria lista. Sem alarme: a lista mostra composição, não concentração.</p>
+<p class="sub">Fotografe ou cole a lista de ingredientes (INCI) do produto — e, se quiser, as promessas da embalagem. O raio-x agrupa os ingredientes pela função, aponta o que merece atenção, reconhece os ativos que você já sabe usar e confere se cada promessa se sustenta na própria lista. Sem alarme: a lista mostra composição, não concentração.</p>
 
 <div class="card aviso">
-<strong>Como usar:</strong> cole tudo que vem depois de "INGREDIENTES:" ou "INCI:" — vírgulas, "·" ou quebra de linha separam os itens. No segundo campo, escreva as promessas como estão na embalagem ("sem álcool", "oil-free", "hipoalergênico"…). Nada é enviado: tudo acontece só neste aparelho.
+<strong>Como usar:</strong> fotografe a lista de ingredientes (a leitura acontece só neste aparelho) ou cole tudo que vem depois de "INGREDIENTES:" ou "INCI:" — vírgulas, "·" ou quebra de linha separam os itens. No segundo campo, escreva as promessas como estão na embalagem ("sem álcool", "oil-free", "hipoalergênico"…). Nada é enviado: tudo acontece só neste aparelho.
 </div>
 
 <div class="card">
 <div class="rx-form">
+<div class="rx-foto">
+<label class="btn btn-sec">📷 Ler o rótulo por foto<input type="file" id="rx-foto" accept="image/*" capture="environment" class="rx-arquivo"></label>
+<p class="sub" id="rx-ocr" role="status" aria-live="polite">Fotografe só a lista de ingredientes, de perto, com boa luz e sem reflexo. A leitura acontece neste aparelho; na primeira vez, o leitor baixa cerca de 7 MB.</p>
+</div>
 <div>
 <label for="rx-inci">Lista de ingredientes (INCI)</label>
 <textarea id="rx-inci" placeholder="Ex: Aqua, Glycerin, Niacinamide, Dimethicone, Tocopherol, Phenoxyethanol…"></textarea>
@@ -113,6 +121,8 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <p class="sub">Quer saber se dois ativos podem ser usados juntos? Use o <a href="/ferramentas/ingredientes/" style="color:var(--rosa)">verificador de combinações</a>. Para entender o que cada ativo faz, veja o <a href="/ferramentas/ativos/" style="color:var(--rosa)">guia de princípios ativos</a>.</p>
 
 <div id="areaEnviar"></div>
+<script src="/ocr-rotulo.js"></script>
+<script src="/regras-ativos.js"></script>
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -343,6 +353,17 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
       html += '<div class="vazio"><strong>Fora do nosso dicionário (' + desconhecidos.length + '):</strong> ' + desconhecidos.join(", ") + '. O dicionário não é exaustivo — nomes raros, misturas proprietárias e novidades podem faltar. Pesquise cada um no <a href="/ingredientes/" style="color:var(--rosa)">fichário de ingredientes</a> ou no site do fabricante.</div>';
     }
 
+    if (window.PSRegras) {
+      const ativos = PSRegras.detectar($("rx-inci").value);
+      if (ativos.length) {
+        const ids = ativos.map((a) => a.id).join(",");
+        html += "<h2>Ativos reconhecidos na lista</h2>";
+        html += '<div class="ok"><strong>' + ativos.map((a) => a.nome).join(", ") + "</strong> — " +
+          (ativos.length === 1 ? "este ativo foi reconhecido" : "estes ativos foram reconhecidos") +
+          ' pela mesma base do verificador de combinações. <a href="/ferramentas/ingredientes/?ativos=' + ids + '" style="color:var(--rosa)">Ver se combinam entre si</a> ou com o que você já usa.</div>';
+      }
+    }
+
     if (promessas.length) {
       html += "<h2>Auditoria das promessas</h2>";
       promessas.forEach((p) => {
@@ -375,6 +396,12 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
   $("rx-rodar").addEventListener("click", render);
   $("rx-inci").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.ctrlKey) render(); });
   $("rx-claims").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.ctrlKey) render(); });
+  if (window.PSOcr) PSOcr.ligar($("rx-foto"), $("rx-ocr"), (texto) => {
+    $("rx-inci").value = texto;
+    render();
+    $("rx-inci").focus();
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("raio-x/ocr"); } catch (e) {}
+  });
   document.querySelectorAll("[data-ex]").forEach((b) => b.addEventListener("click", () => {
     const ex = EXEMPLOS[+b.dataset.ex];
     $("rx-inci").value = ex.inci;

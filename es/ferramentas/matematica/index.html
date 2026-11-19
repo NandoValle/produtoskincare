@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La matemática del frasco | Produto Skincare</title>
+<meta name="description" content="El precio de la etiqueta es lo que pagas hoy; lo que decide si el skincare cabe en el presupuesto es lo que cuesta por día. La cuenta abierta, en dos columnas: la dosis que la mayoría aplica y la dosis correcta.">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa los tokens de color y fuente de premium.css (claro y oscuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.ig-rolagem{overflow-x:auto}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}}
+
+/* La matemática del frasco */
+.mf-form .mf-grade{display:grid;grid-template-columns:1fr;gap:14px;margin:0 0 6px}
+.mf-form label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px}
+.mf-form input,.mf-form select{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
+.mf-form input:focus,.mf-form select:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.mf-dica{font-size:.82rem;color:var(--suave);margin:6px 0 0}
+.mf-acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 0}
+.mf-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none}
+.mf-btn.mf-btn-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.mf-btn:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+.mf-previa{margin:14px 0 0}
+.mf-comp{display:grid;grid-template-columns:1fr;gap:12px}
+.mf-comp-col{border:1px solid var(--linha);border-radius:var(--raio);padding:14px 16px;background:var(--papel)}
+.mf-comp-col.mf-certo{border-color:var(--verde);background:var(--verde-claro)}
+.mf-comp-tag{font-size:.82rem;font-weight:600;margin:0 0 6px}
+.mf-num{font-size:1.6rem;font-weight:600;margin:0 0 4px}
+.mf-num small{font-size:.85rem;font-weight:400;color:var(--suave)}
+.mf-linha{font-size:.86rem;color:var(--suave);margin:0}
+.mf-recibo{border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);padding:18px}
+.mf-recibo-cab{border-bottom:1px solid var(--linha);padding-bottom:10px;margin-bottom:10px}
+.mf-recibo-cab h3{margin:0}
+.mf-recibo-cab p{margin:4px 0 0;font-size:.82rem;color:var(--suave)}
+.mf-vazio{color:var(--suave);font-size:.92rem}
+.mf-rec-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.mf-rec-itens li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;padding:10px 0;border-bottom:1px solid var(--linha)}
+.mf-rec-nome{font-weight:600}
+.mf-rec-meta{flex:1 1 100%;font-size:.82rem;color:var(--suave)}
+.mf-rec-valores{display:flex;gap:14px;font-size:.92rem}
+.mf-rec-remover{font:inherit;font-size:.8rem;background:none;border:1px solid var(--linha-2);border-radius:999px;padding:4px 12px;min-height:36px;cursor:pointer;color:var(--tinta)}
+.mf-rec-total{display:flex;flex-wrap:wrap;gap:12px 24px;border-top:1px solid var(--linha);padding-top:12px;margin-top:12px}
+.mf-rec-total div{display:flex;flex-direction:column}
+.mf-rec-total span{font-size:.82rem;color:var(--suave)}
+.mf-rec-total strong{font-size:1.25rem}
+@media(min-width:600px){.mf-form .mf-grade{grid-template-columns:1fr 1fr}.mf-comp{grid-template-columns:1fr 1fr}}
+</style>
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/matematica/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/matematica/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/matematica/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/matematica/">
+<link rel="canonical" href="https://produtoskincare.com.br/es/ferramentas/matematica/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="La matemática del frasco">
+<meta property="og:description" content="Lo que el skincare cuesta de verdad por día: la dosis que la mayoría aplica contra la dosis correcta, con el recibo de la rutina en tres números.">
+<meta property="og:url" content="https://produtoskincare.com.br/es/ferramentas/matematica/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/es-ferramentas-matematica.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La matemática del frasco: lo que cuesta el skincare por día">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/ferramentas/matematica/#pagina", "url": "https://produtoskincare.com.br/es/ferramentas/matematica/", "name": "La matemática del frasco", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Lo que el skincare cuesta de verdad por día: la dosis que la mayoría aplica contra la dosis correcta, con el recibo de la rutina en tres números.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/ferramentas/matematica/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/ferramentas/matematica/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Herramientas", "item": "https://produtoskincare.com.br/es/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "La matemática del frasco", "item": "https://produtoskincare.com.br/es/ferramentas/matematica/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial de Chrome: token solo de este origen (https://produtoskincare.com.br), caduca 2027-03-30. No copiar a otro dominio. Renovar en developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Saltar al contenido</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegación principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español" aria-current="true">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Ruta">
+<ol>
+<li><a href="/">Inicio</a></li>
+<li><a href="/es/ferramentas/">Herramientas</a></li>
+<li aria-current="page">La matemática del frasco</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>La matemática del frasco</h1>
+<p class="ig-lede">El precio de la etiqueta es lo que pagas hoy. Lo que decide si el skincare cabe en el presupuesto es lo que cuesta por día: el mismo frasco puede ser barato o caro según la cantidad que te pasas en la cara. Aquí la cuenta sale abierta, con dos columnas: la dosis que la mayoría aplica y la dosis correcta.</p>
+</div>
+
+<div class="ig-caixa ig-resumo">
+<p class="ig-rotulo">Cómo funciona</p>
+<ul>
+<li>La cuenta es la misma del <a href="/ferramentas/reposicao/">Recordatorio de reposición</a>: el tamaño dividido por lo que usas al día da los días que dura; el precio dividido por esos días da el <b>costo por día</b>.</li>
+<li>Las dosis son <b>estimaciones promedio</b>. Ajústalas a tu forma de usarlo.</li>
+<li>Todo resultado sale en dos columnas: la dosis que la mayoría aplica (como la mitad de la recomendada) y la dosis correcta.</li>
+<li>Lo que escribes se queda solo en tu dispositivo. Sin registro.</li>
+</ul>
+</div>
+
+<section aria-labelledby="mf-calc-t">
+<h2 id="mf-calc-t">Calcula tu frasco</h2>
+<form id="mf-form" class="mf-form">
+<div class="mf-grade">
+<div>
+<label for="mf-nome">Nombre del producto</label>
+<input id="mf-nome" name="nome" list="mf-catalogo" autocomplete="off" placeholder="Ej.: Neutrogena Sun Fresh FPS 70">
+<datalist id="mf-catalogo"></datalist>
+<p class="mf-dica" id="mf-nome-dica">Si el producto está en el catálogo, el precio y la categoría se completan solos.</p>
+</div>
+<div>
+<label for="mf-preco">Precio pagado (R$)</label>
+<input id="mf-preco" name="preco" type="number" min="0" step="0.01" inputmode="decimal" placeholder="47,70">
+<p class="mf-dica" id="mf-preco-dica">Precio del catálogo con la fecha de la conferencia, cuando esté disponible.</p>
+</div>
+<div>
+<label for="mf-tam">Tamaño del frasco (ml o g)</label>
+<input id="mf-tam" name="tam" type="number" min="0" step="0.1" inputmode="decimal" placeholder="50">
+<p class="mf-dica">Míralo en tu etiqueta. Sin número en el nombre, entra un tamaño típico como estimación.</p>
+</div>
+<div>
+<label for="mf-cat">Dónde entra en la rutina</label>
+<select id="mf-cat" name="cat">
+<option value="limpeza">Limpieza</option>
+<option value="tratamento">Sérum o tratamiento</option>
+<option value="hidratacao">Hidratación</option>
+<option value="protetor">Protector solar</option>
+<option value="olhos">Contorno de ojos</option>
+<option value="outro">Otro</option>
+</select>
+</div>
+<div>
+<label for="mf-porcao">Dosis por uso</label>
+<input id="mf-porcao" name="porcao" type="number" min="0" step="0.05" inputmode="decimal" value="1">
+<p class="mf-dica" id="mf-porcao-dica">Estimación: como una avellana de gel o espuma.</p>
+</div>
+<div class="mf-grade">
+<div>
+<label for="mf-vezes">Veces por día</label>
+<select id="mf-vezes"><option value="1">1 vez</option><option value="2" selected>2 veces</option><option value="3">3 veces</option></select>
+</div>
+<div>
+<label for="mf-dias">Días por semana</label>
+<select id="mf-dias"><option value="7" selected>Todos los días</option><option value="5">5 días</option><option value="3">3 días</option><option value="2">2 días</option><option value="1">1 día</option></select>
+</div>
+</div>
+</div>
+<div class="mf-acoes">
+<button class="mf-btn" type="button" id="mf-add">Añadir al recibo</button>
+<button class="mf-btn mf-btn-sec" type="button" id="mf-limpar">Limpiar</button>
+</div>
+</form>
+
+<div id="mf-previa" class="mf-previa" aria-live="polite"></div>
+</section>
+
+<section aria-labelledby="mf-licao-t">
+<h2 id="mf-licao-t">La lección que cambia el precio de todo: la dosis correcta</h2>
+<p>Los estudios de aplicación suelen mostrar que la gente usa bastante menos producto de la dosis recomendada. En la etiqueta, el frasco parece durar meses; con la dosis correcta, se acaba a mitad de camino. No es que el producto se haya encarecido: antes faltaba producto en la cara.</p>
+<div class="ig-caixa">
+<p class="ig-rotulo">Ejemplo con las suposiciones a la vista</p>
+<p>Precio real: <b>Neutrogena Sun Fresh Derm Care FPS 70 a R$ 47,70</b>, conferido el 02/11/2026 (catálogo del sitio). Para la cuenta, supongamos un frasco de 50 ml usado una vez al día: tamaño de mercado común, pero revisa tu etiqueta.</p>
+<table class="ig-tabela">
+<caption>Un mismo frasco, dos costos por día</caption>
+<thead><tr><th>Cómo lo aplicas</th><th>Dosis por día</th><th>Dura</th><th>Costo por día</th></tr></thead>
+<tbody>
+<tr><td>Dosis que la mayoría aplica (como la mitad)</td><td>0,5 ml</td><td>unos 100 días</td><td>unos R$ 0,48</td></tr>
+<tr><td><b>Dosis correcta (la recomendada)</b></td><td>1 ml</td><td>unos 50 días</td><td><b>unos R$ 0,95</b></td></tr>
+</tbody>
+</table>
+<p class="ig-nota">Con las mismas suposiciones, el costo por mes (30 días) pasa de unos R$ 14,31 a unos R$ 28,62. El protector solar es donde más duele: es el producto que más sufre con la dosis baja y el único cuya función depende de la cantidad aplicada. Usar la mitad del FPS no es ahorro: es menos protección por el mismo precio.</p>
+</div>
+</section>
+
+<section aria-labelledby="mf-recibo-t">
+<h2 id="mf-recibo-t">El recibo de tu rutina</h2>
+<p>Suma los frascos que entran de verdad en tu rutina. El recibo muestra tres números que la etiqueta nunca muestra juntos: lo que sale del bolsillo hoy, en qué se convierte por día y en qué se convierte por mes.</p>
+<div id="mf-recibo-print">
+<div class="mf-recibo" id="mf-recibo">
+<div class="mf-recibo-cab">
+<h3>Recibo de la rutina</h3>
+<p id="mf-recibo-data">Produto Skincare · cuenta hecha en tu dispositivo</p>
+</div>
+<p class="mf-vazio" id="mf-recibo-vazio">Todavía no hay frascos en el recibo. Usa la calculadora de arriba y haz clic en "Añadir al recibo".</p>
+<ul class="mf-rec-itens" id="mf-rec-itens"></ul>
+<div class="mf-rec-total" id="mf-rec-total" hidden>
+<div><span>Inversión de hoy</span><strong id="mf-total-invest">R$ 0,00</strong></div>
+<div><span>Por día (dosis correcta)</span><strong id="mf-total-dia">R$ 0,00</strong></div>
+<div><span>Por mes (30 días)</span><strong id="mf-total-mes">R$ 0,00</strong></div>
+</div>
+</div>
+</div>
+<div class="mf-acoes">
+<button class="mf-btn" type="button" id="mf-imprimir">Imprimir recibo</button>
+<button class="mf-btn mf-btn-sec" type="button" id="mf-copiar">Copiar resumen</button>
+</div>
+<div id="mf-enviar"></div>
+</section>
+
+<section class="ig-caixa ig-resumo" aria-labelledby="mf-resumo-t">
+<p class="ig-rotulo" id="mf-resumo-t">En resumen</p>
+<ul>
+<li>El precio de la etiqueta dice poco. El costo por día y la duración dicen si el producto cabe en tu presupuesto.</li>
+<li>La dosis que la mayoría aplica hace que el frasco parezca durar el doble y costar la mitad. Con la dosis correcta, la cuenta cambia.</li>
+<li>El protector solar merece la dosis completa: la dosis baja no ahorra, solo protege menos.</li>
+<li>Las estimaciones de dosis y tamaño son promedios. El número que vale es el de tu etiqueta y de tu forma de usarlo.</li>
+</ul>
+</section>
+
+<section aria-labelledby="mf-rel">
+<h2 id="mf-rel">Lee también</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/reposicao/">Recordatorio de reposición</a></li>
+<li><a href="/es/ferramentas/expectativa/">Cuándo aparece el resultado</a></li>
+<li><a href="/ferramentas/comparar/">Comparar productos</a></li>
+<li><a href="/ferramentas/prateleira/">Mi estante</a></li>
+<li><a href="/rotinas/">Rutinas por rango de precio</a></li>
+<li><a href="/blog/rotina-de-skincare-barata/">Rutina barata</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="mf-fontes">
+<h2 id="mf-fontes">Fuentes y límites</h2>
+<ol>
+<li>Cuentas y estimaciones de dosis en el patrón del <a href="/ferramentas/reposicao/">Recordatorio de reposición</a> (misma tabla de cantidad por uso).</li>
+<li>Precio del ejemplo: <cite>catálogo Produto Skincare</cite>, Neutrogena Sun Fresh Derm Care FPS 70, conferido el 02/11/2026.</li>
+<li>El tamaño de 50 ml del ejemplo es una suposición declarada para la cuenta; el tamaño real está en la etiqueta de cada frasco.</li>
+<li>Este contenido es informativo y no sustituye la consulta con un dermatólogo. Las cantidades son estimaciones promedio, no prescripción.</li>
+</ol>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Contenido informativo, no sustituye la consulta con un dermatólogo.</p>
+<p><a href="/privacidade/">Privacidad</a> · <a href="/sobre/">Acerca de Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback sin JavaScript: con los scripts desactivados las herramientas de IA no funcionan y no se pierde nada — el sitio entero sigue funcionando como sitio normal. Ese es el camino manual. Una llamada en curso puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="ps-rodape-nota">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: todo el contenido sigue funcionando como HTML común — ese es el camino manual.</p></noscript></footer>
+<p class="fallback" id="fallback-manual"><strong>Fallback sin JavaScript.</strong> Con los scripts desactivados las herramientas de IA no funcionan y no se pierde nada: el catálogo entero está en <a href="/produtos/">Productos</a>, las guías de cada tipo de piel en <a href="/pele/oleosa/">Piel</a> y las rutinas por condición en <a href="/rotinas/">Rutinas</a>, todo como HTML común. Ese es el camino manual. Una llamada en curso también puede ser cancelada por el agente en cualquier momento.</p><noscript><p class="fallback">Sin JavaScript, las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertos como HTML común. La tabla de ejemplo y las reglas de esta página siguen legibles como texto — la calculadora y el recibo necesitan el script.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Cuidado de la piel para cada tipo, con precios fechados y enlaces.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guías por tipo de piel</li><li><strong>5</strong>condiciones explicadas</li></ul>
+</div>
+<nav aria-label="Pie de página: Tipos de piel"><p class="ps-rodape-titulo">Tipos de piel</p><ul><li><a href="/pele/oleosa/">Piel grasa</a></li><li><a href="/pele/seca/">Piel seca</a></li><li><a href="/pele/mista/">Piel mixta</a></li><li><a href="/pele/normal/">Piel normal</a></li></ul></nav>
+<nav aria-label="Pie de página: Condiciones"><p class="ps-rodape-titulo">Condiciones</p><ul><li><a href="/condicoes/acne/">Acné</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Ojeras</a></li><li><a href="/condicoes/desidratacao/">Deshidratación</a></li><li><a href="/condicoes/">Todas las condiciones</a></li></ul></nav>
+<nav aria-label="Pie de página: Recursos"><p class="ps-rodape-titulo">Recursos</p><ul><li><a href="/provador/">Quiz de piel</a></li><li><a href="/achados/">Hallazgos</a></li><li><a href="/rotina-de-skincare/">Rutina de skincare</a></li><li><a href="/rotinas/">Rutinas por precio</a></li><li><a href="/ferramentas/comparar/">Comparar productos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guía de activos</a></li><li><a href="/ferramentas/rotina/">Seguimiento de rutina</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredients</a></li><li><a href="/mais-vendidos/">Los más vendidos</a></li><li><a href="/queridinhos-do-skincare/">Favoritos del skincare en el mundo</a></li><li><a href="/produtos/">Productos</a></li><li><a href="/ferramentas/reposicao/">Recordatorio de reposición</a></li><li><a href="/ferramentas/clima/">Índice UV de hoy</a></li><li><a href="/pergunte/">Pregunta a la IA</a></li><li><a href="/mercado-skincare-brasil/">Datos del mercado</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Producto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contiene enlaces de afiliado. La mayoría de las guías está en portugués.</span><span class="ps-rodape-links"><a href="/sobre/">Acerca de</a><a href="/privacidade/">Privacidad</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script src="/compartilhar.js" defer></script>
+<script>
+(function () {
+  "use strict";
+  var CHAVE = "ps_matematica_v1";
+  // Cantidad promedio por uso (estimación, editable). Misma tabla que el Recordatorio de reposición.
+  var PORCAO = {
+    limpeza: [1, "como una avellana de gel o espuma"],
+    tratamento: [0.3, "4 a 6 gotas de sérum"],
+    hidratacao: [0.5, "un poco menos que un guisante grande"],
+    protetor: [1, "la regla de los dos dedos para cara y cuello; ajusta si usas más"],
+    olhos: [0.1, "un grano de arroz para los dos ojos"],
+    outro: [0.5, "ajusta a tu uso"]
+  };
+  // Tamaño típico de mercado cuando el nombre no trae ml/g (estimación, editable).
+  var TAM_TIPO = { limpeza: 200, tratamento: 30, hidratacao: 50, protetor: 50, olhos: 15, outro: 50 };
+  var DE_CATEGORIA = {
+    "Hidratante": "hidratacao", "Hidratante reparador": "hidratacao", "Hidratante corporal": "outro",
+    "Protetor solar": "protetor", "Limpeza": "limpeza", "Sérum": "tratamento", "Tratamento acne": "tratamento"
+  };
+  var DOSE_MAIORIA = 0.5; // lo que la mayoría aplica, como la mitad de la dosis recomendada
+  var VEZES_POR_CAT = { protetor: 1, olhos: 1, limpeza: 2, tratamento: 2, hidratacao: 2, outro: 1 };
+  var $ = function (id) { return document.getElementById(id); };
+  var catalogo = [];
+  var precoTocado = false;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function brl(v) { return (isFinite(v) ? v : 0).toLocaleString("es-ES", { style: "currency", currency: "BRL" }); }
+  function nDias(n) { n = Math.round(n); return n + (n === 1 ? " día" : " días"); }
+  function chaveNome(n) { return String(n || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim(); }
+  function tamanhoDoNome(nome) {
+    var m = String(nome).match(/(\d+(?:[.,]\d+)?)\s?(ml|g)\b/i);
+    return m ? { v: parseFloat(m[1].replace(",", ".")) } : null;
+  }
+  function fmtData(d) { return d.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+  function addDias(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + Math.round(n)); return x; }
+
+  function ler() {
+    try { var d = JSON.parse(localStorage.getItem(CHAVE) || "{}"); d.itens = d.itens || []; return d; }
+    catch (e) { return { itens: [] }; }
+  }
+  function salvar(d) { try { localStorage.setItem(CHAVE, JSON.stringify(d)); } catch (e) {} }
+
+  function carregarCatalogo() {
+    return Promise.all([
+      fetch("/produtos.json").then(function (r) { return r.json(); }).catch(function () { return { produtos: [] }; }),
+      fetch("/top50-skincare-amazon.json").then(function (r) { return r.json(); }).catch(function () { return { produtos: [] }; })
+    ]).then(function (res) {
+      var vistos = {};
+      (res[0].produtos || []).forEach(function (p) {
+        var k = chaveNome(p.nome); if (vistos[k]) return; vistos[k] = 1;
+        catalogo.push({ nome: p.nome, cat: p.passo, preco: p.preco, precoEm: p.preco_em, link: p.link, tam: tamanhoDoNome(p.nome) });
+      });
+      (res[1].produtos || []).forEach(function (p) {
+        var k = chaveNome(p.nome); if (vistos[k]) return; vistos[k] = 1;
+        catalogo.push({ nome: p.nome, cat: DE_CATEGORIA[p.categoria] || "outro", preco: p.preco, precoEm: p.preco_em, link: p.link, tam: tamanhoDoNome(p.nome) });
+      });
+      $("mf-catalogo").innerHTML = catalogo.map(function (p) { return '<option value="' + esc(p.nome) + '"></option>'; }).join("");
+    });
+  }
+
+  function doCatalogo(nome) {
+    var k = chaveNome(nome);
+    for (var i = 0; i < catalogo.length; i++) if (chaveNome(catalogo[i].nome) === k) return catalogo[i];
+    return null;
+  }
+
+  function atualizarPorcao() {
+    var cat = $("mf-cat").value;
+    var p = PORCAO[cat] || PORCAO.outro;
+    $("mf-porcao").value = p[0];
+    $("mf-porcao-dica").textContent = "Estimación: " + p[1] + ".";
+    $("mf-vezes").value = String(VEZES_POR_CAT[cat] || 2);
+  }
+
+  function aoMudarNome() {
+    var p = doCatalogo($("mf-nome").value);
+    if (!p) return;
+    if (p.preco != null && !precoTocado) $("mf-preco").value = p.preco;
+    if (p.cat && PORCAO[p.cat]) { $("mf-cat").value = p.cat; atualizarPorcao(); }
+    if (p.tam) { $("mf-tam").value = p.tam.v; }
+    else if (!(parseFloat($("mf-tam").value) > 0)) { $("mf-tam").value = TAM_TIPO[$("mf-cat").value] || 50; }
+    if (p.precoEm && !precoTocado) $("mf-preco-dica").textContent = "Precio conferido el " + esc(p.precoEm) + " en el catálogo del sitio.";
+    calcular();
+  }
+
+  function valoresForm() {
+    return {
+      nome: $("mf-nome").value.trim() || "Producto sin nombre",
+      cat: $("mf-cat").value,
+      preco: parseFloat($("mf-preco").value) || 0,
+      tam: parseFloat($("mf-tam").value) || 0,
+      porcao: parseFloat($("mf-porcao").value) || 0,
+      vezes: +$("mf-vezes").value,
+      dias: +$("mf-dias").value
+    };
+  }
+
+  // días de duración = tamaño ÷ (dosis × usos por día), igual que el Recordatorio de reposición.
+  function duracao(tam, porcaoDia) { return (porcaoDia > 0 && tam > 0) ? tam / porcaoDia : null; }
+
+  function calcular() {
+    var v = valoresForm();
+    var alvo = $("mf-previa");
+    var p = doCatalogo(v.nome);
+    if (!(v.preco > 0) || !(v.tam > 0) || !(v.porcao > 0)) { alvo.innerHTML = ""; return; }
+    var porDiaCerto = v.porcao * v.vezes * (v.dias / 7);
+    var porDiaMaioria = porDiaCerto * DOSE_MAIORIA;
+    var diasCerto = duracao(v.tam, porDiaCerto);
+    var diasMaioria = duracao(v.tam, porDiaMaioria);
+    if (!diasCerto) { alvo.innerHTML = ""; return; }
+    var custoDiaCerto = v.preco / diasCerto;
+    var custoDiaMaioria = v.preco / diasMaioria;
+    var fim = addDias(new Date(), diasCerto);
+    alvo.innerHTML =
+      '<div class="mf-comp">' +
+      '<div class="mf-comp-col"><p class="mf-comp-tag">Dosis que la mayoría aplica (como la mitad)</p>' +
+      '<p class="mf-num">' + esc(brl(custoDiaMaioria)) + '<small> por día</small></p>' +
+      '<p class="mf-linha">dura ' + esc(nDias(diasMaioria)) + ' · ' + esc(brl(custoDiaMaioria * 30)) + ' por mes</p></div>' +
+      '<div class="mf-comp-col mf-certo"><p class="mf-comp-tag">Dosis correcta (la recomendada)</p>' +
+      '<p class="mf-num">' + esc(brl(custoDiaCerto)) + '<small> por día</small></p>' +
+      '<p class="mf-linha">dura ' + esc(nDias(diasCerto)) + ' (hasta ' + esc(fmtData(fim)) + ') · ' + esc(brl(custoDiaCerto * 30)) + ' por mes</p></div>' +
+      '</div>' +
+      '<p class="ig-nota">' + esc(v.nome) + ': ' + esc(brl(v.preco)) + ' en ' + esc(String(v.tam)) + ' ml/g, ' +
+      esc(String(v.vezes)) + ' vez(es) por día, ' + esc(String(v.dias)) + ' día(s) por semana.' +
+      (p && p.link ? ' <a href="' + esc(p.link) + '" rel="nofollow sponsored">Ver en la tienda ↗</a>' : '') +
+      ' Con la dosis correcta el frasco dura como la mitad de lo que parece durar: el costo por día se duplica, y el producto por fin hace el trabajo que promete.</p>';
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-calcular"); } catch (e) {}
+  }
+
+  function renderRecibo() {
+    var d = ler();
+    var ul = $("mf-rec-itens");
+    var vazio = $("mf-recibo-vazio");
+    var tot = $("mf-rec-total");
+    if (!d.itens.length) { ul.innerHTML = ""; vazio.hidden = false; tot.hidden = true; return; }
+    vazio.hidden = true; tot.hidden = false;
+    var inv = 0, dia = 0;
+    ul.innerHTML = d.itens.map(function (it, i) {
+      var porDiaCerto = it.porcao * it.vezes * (it.dias / 7);
+      var dias = duracao(it.tam, porDiaCerto) || 1;
+      var custoDia = it.preco / dias;
+      inv += it.preco; dia += custoDia;
+      return '<li><span class="mf-rec-nome">' + esc(it.nome) + '</span>' +
+        '<span class="mf-rec-meta">' + esc(String(it.tam)) + ' ml/g · dosis ' + esc(String(it.porcao)) + ' · ' +
+        esc(String(it.vezes)) + ' vez(es)/día · dura ' + esc(nDias(dias)) +
+        (it.link ? ' · <a href="' + esc(it.link) + '" rel="nofollow sponsored">tienda ↗</a>' : '') + '</span>' +
+        '<span class="mf-rec-valores"><span>' + esc(brl(it.preco)) + ' el frasco</span><span>' + esc(brl(custoDia)) + '/día</span></span>' +
+        '<button class="mf-rec-remover" type="button" data-i="' + i + '">Quitar</button></li>';
+    }).join("");
+    $("mf-total-invest").textContent = brl(inv);
+    $("mf-total-dia").textContent = brl(dia);
+    $("mf-total-mes").textContent = brl(dia * 30);
+    $("mf-recibo-data").textContent = "Produto Skincare · cuenta hecha en tu dispositivo · " + fmtData(new Date());
+    Array.prototype.forEach.call(ul.querySelectorAll(".mf-rec-remover"), function (b) {
+      b.addEventListener("click", function () {
+        var dd = ler(); dd.itens.splice(+b.getAttribute("data-i"), 1); salvar(dd); renderRecibo();
+      });
+    });
+  }
+
+  function adicionar() {
+    var v = valoresForm();
+    if (!(v.preco > 0) || !(v.tam > 0) || !(v.porcao > 0)) {
+      $("mf-previa").innerHTML = '<p class="ig-nota">Rellena precio, tamaño y dosis para montar el recibo.</p>';
+      return;
+    }
+    var p = doCatalogo(v.nome);
+    v.link = p && p.link ? p.link : "";
+    var d = ler(); d.itens.push(v); salvar(d);
+    renderRecibo();
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-recibo"); } catch (e) {}
+    $("mf-recibo-print").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function textoRecibo() {
+    var d = ler();
+    var linhas = ["Recibo de la rutina (Produto Skincare)"];
+    var inv = 0, dia = 0;
+    d.itens.forEach(function (it) {
+      var porDiaCerto = it.porcao * it.vezes * (it.dias / 7);
+      var dias = duracao(it.tam, porDiaCerto) || 1;
+      var custoDia = it.preco / dias;
+      inv += it.preco; dia += custoDia;
+      linhas.push("- " + it.nome + ": " + brl(it.preco) + " el frasco, dura " + nDias(dias) + ", " + brl(custoDia) + "/día");
+    });
+    linhas.push("Inversión de hoy: " + brl(inv));
+    linhas.push("Por día (dosis correcta): " + brl(dia) + " · por mes: " + brl(dia * 30));
+    linhas.push("Cuenta abierta en " + window.location.href);
+    return linhas.join("\n");
+  }
+
+  function copiar() {
+    var t = textoRecibo();
+    function ok() { $("mf-recibo-data").textContent = "Resumen copiado."; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(ok, function () { window.prompt("Copia el resumen:", t); });
+    } else { window.prompt("Copia el resumen:", t); }
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-copiar"); } catch (e) {}
+  }
+
+  function iniciar() {
+    atualizarPorcao();
+    renderRecibo();
+    carregarCatalogo();
+    ["mf-nome", "mf-preco", "mf-tam", "mf-porcao", "mf-vezes", "mf-dias"].forEach(function (id) {
+      $(id).addEventListener("input", calcular);
+      $(id).addEventListener("change", calcular);
+    });
+    $("mf-nome").addEventListener("change", aoMudarNome);
+    $("mf-preco").addEventListener("input", function () { precoTocado = true; });
+    // Número ya rellenado (autofill o estimación): seleccionar todo al enfocar, para escribir encima.
+    ["mf-preco", "mf-tam", "mf-porcao"].forEach(function (id) {
+      $(id).addEventListener("focus", function () { this.select(); });
+    });
+    $("mf-cat").addEventListener("change", function () { atualizarPorcao(); aoMudarNome(); calcular(); });
+    $("mf-form").addEventListener("submit", function (e) { e.preventDefault(); adicionar(); });
+    $("mf-add").addEventListener("click", adicionar);
+    $("mf-limpar").addEventListener("click", function () {
+      precoTocado = false;
+      $("mf-form").reset(); atualizarPorcao(); $("mf-previa").innerHTML = "";
+      $("mf-preco-dica").textContent = "Precio del catálogo con la fecha de la conferencia, cuando esté disponible.";
+    });
+    $("mf-imprimir").addEventListener("click", function () {
+      try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-imprimir"); } catch (e) {}
+      window.print();
+    });
+    $("mf-copiar").addEventListener("click", copiar);
+    if (window.PSEnviar && window.PSEnviar.montar) {
+      window.PSEnviar.montar($("mf-enviar"), function () {
+        return { assunto: "Recibo de la rutina de skincare", texto: textoRecibo(), url: window.location.href };
+      }, { titulo: "Recibir este recibo" });
+    }
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ferramentas-matematica"); } catch (e) {}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>

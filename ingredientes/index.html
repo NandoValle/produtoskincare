@@ -41,6 +41,12 @@
 .ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
 .ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
 .ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-icone-evid{flex:none;display:inline-block}
+.ig-filtro{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px}
+.ig-filtro-btn{min-height:40px;padding:6px 16px;border:1px solid var(--linha-2);border-radius:999px;background:var(--papel);color:var(--tinta);font:inherit;font-size:.92rem;cursor:pointer}
+.ig-filtro-btn:hover{border-color:var(--rosa)}
+.ig-filtro-btn[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.ig-filtro .ig-nota{margin:0 0 0 6px}
 .ig-nota{font-size:.88rem;color:var(--suave)}
 .ig-alerta{border-left:4px solid var(--rosa)}
 .ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
@@ -56,7 +62,7 @@
 .ig-card:hover{border-color:var(--rosa)}
 .ig-card h2{font-size:1.35rem;margin:0}
 .ig-card p{color:var(--suave);font-size:.95rem;margin:0}
-.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0;display:inline-flex;align-items:center;gap:6px}
 .ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
 .ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
 .ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
@@ -125,29 +131,36 @@
 </div>
 <section aria-labelledby="lista">
 <h2 id="lista" class="ig-rotulo">Os 10 ingredientes</h2>
+<div class="ig-filtro" role="group" aria-label="Filtrar por nível de evidência" hidden>
+<button type="button" class="ig-filtro-btn" data-filtro="todos" aria-pressed="true">Todos</button>
+<button type="button" class="ig-filtro-btn" data-filtro="forte" aria-pressed="false">Forte</button>
+<button type="button" class="ig-filtro-btn" data-filtro="moderada" aria-pressed="false">Moderada</button>
+<button type="button" class="ig-filtro-btn" data-filtro="emergente" aria-pressed="false">Emergente</button>
+<p class="ig-nota" id="ig-filtro-cont" aria-live="polite"></p>
+</div>
 <ul class="ig-grade">
-<li><a class="ig-card" href="/ingredientes/niacinamida/"><h2>Niacinamida</h2><p>Vitamina B3 tópica, bem tolerada; estudos sugerem ajuda com manchas, oleosidade e barreira.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/retinol/"><h2>Retinol e retinoides</h2><p>Família da vitamina A; os de receita são os mais estudados para acne e fotoenvelhecimento. Evitar na gestação.</p><span class="ig-selo forte">Evidência forte</span></a></li>
-<li><a class="ig-card" href="/ingredientes/vitamina-c/"><h2>Vitamina C</h2><p>Antioxidante usado de manhã para viço e manchas; o resultado depende muito da fórmula.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-hialuronico/"><h2>Ácido hialurônico</h2><p>Atrai e retém água; estudos mostram melhora da hidratação, com efeito em rugas menos consistente.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-azelaico/"><h2>Ácido azelaico</h2><p>Estudado em rosácea, acne e melasma; costuma ser opção para pele sensível.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-salicilico/"><h2>Ácido salicílico</h2><p>Esfoliante usado para cravos, acne leve e oleosidade; recomendação condicional em diretriz de acne.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/ceramidas/"><h2>Ceramidas</h2><p>Lipídios da barreira da pele; estudos sugerem conforto e menos ressecamento em pele fragilizada.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-tranexamico/"><h2>Ácido tranexâmico</h2><p>Estudado no melasma por via oral, injetável e tópica; o creme é a forma de venda livre mais comum.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/peptideo-de-cobre/"><h2>Peptídeo de cobre (GHK-Cu)</h2><p>Muito estudado em laboratório e em animais; em pessoas, a evidência ainda é pequena.</p><span class="ig-selo emergente">Evidência emergente</span></a></li>
-<li><a class="ig-card" href="/ingredientes/protetor-solar/"><h2>Protetor solar (filtros UV)</h2><p>Uso diário tem ensaio randomizado mostrando menos envelhecimento; com cor, ajuda no melasma.</p><span class="ig-selo forte">Evidência forte</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/niacinamida/"><h2>Niacinamida</h2><p>Vitamina B3 tópica, bem tolerada; estudos sugerem ajuda com manchas, oleosidade e barreira.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="forte"><a class="ig-card" href="/ingredientes/retinol/"><h2>Retinol e retinoides</h2><p>Família da vitamina A; os de receita são os mais estudados para acne e fotoenvelhecimento. Evitar na gestação.</p><span class="ig-selo forte"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.4" fill="currentColor"/></svg>Evidência forte</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/vitamina-c/"><h2>Vitamina C</h2><p>Antioxidante usado de manhã para viço e manchas; o resultado depende muito da fórmula.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-hialuronico/"><h2>Ácido hialurônico</h2><p>Atrai e retém água; estudos mostram melhora da hidratação, com efeito em rugas menos consistente.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-azelaico/"><h2>Ácido azelaico</h2><p>Estudado em rosácea, acne e melasma; costuma ser opção para pele sensível.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-salicilico/"><h2>Ácido salicílico</h2><p>Esfoliante usado para cravos, acne leve e oleosidade; recomendação condicional em diretriz de acne.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/ceramidas/"><h2>Ceramidas</h2><p>Lipídios da barreira da pele; estudos sugerem conforto e menos ressecamento em pele fragilizada.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-tranexamico/"><h2>Ácido tranexâmico</h2><p>Estudado no melasma por via oral, injetável e tópica; o creme é a forma de venda livre mais comum.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="emergente"><a class="ig-card" href="/ingredientes/peptideo-de-cobre/"><h2>Peptídeo de cobre (GHK-Cu)</h2><p>Muito estudado em laboratório e em animais; em pessoas, a evidência ainda é pequena.</p><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span></a></li>
+<li data-evid="forte"><a class="ig-card" href="/ingredientes/protetor-solar/"><h2>Protetor solar (filtros UV)</h2><p>Uso diário tem ensaio randomizado mostrando menos envelhecimento; com cor, ajuda no melasma.</p><span class="ig-selo forte"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.4" fill="currentColor"/></svg>Evidência forte</span></a></li>
 
-<li><a class="ig-card" href="/ingredientes/acido-mandelico/"><h2>Ácido mandélico</h2><p>AHA de molécula grande, costuma ser a esfoliação mais gentil; estudos pequenos sugerem melhora de textura e manchas.</p><span class="ig-selo emergente">Evidência emergente</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-ferulico/"><h2>Ácido ferúlico</h2><p>Antioxidante vegetal que ajuda a estabilizar vitaminas C e E; evidência maior na fórmula do que no ativo isolado.</p><span class="ig-selo emergente">Evidência emergente</span></a></li>
+<li data-evid="emergente"><a class="ig-card" href="/ingredientes/acido-mandelico/"><h2>Ácido mandélico</h2><p>AHA de molécula grande, costuma ser a esfoliação mais gentil; estudos pequenos sugerem melhora de textura e manchas.</p><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span></a></li>
+<li data-evid="emergente"><a class="ig-card" href="/ingredientes/acido-ferulico/"><h2>Ácido ferúlico</h2><p>Antioxidante vegetal que ajuda a estabilizar vitaminas C e E; evidência maior na fórmula do que no ativo isolado.</p><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span></a></li>
 </ul>
 </section>
 <section aria-labelledby="niveis" id="niveis-sec">
 <h2 id="niveis">Como ler o nível de evidência</h2>
 <p>O selo resume a qualidade e a quantidade dos estudos sobre o <b>ingrediente</b>. Ele não é uma nota para nenhum produto ou marca: dois produtos com o mesmo ativo podem ter concentração, estabilidade e resultado bem diferentes.</p>
 <ul>
-<li><span class="ig-selo forte">Evidência forte</span><br>Há ensaios randomizados de boa qualidade, revisões consistentes ou recomendação forte em diretriz médica.</li>
-<li><span class="ig-selo moderada">Evidência moderada</span><br>Há ensaios em pessoas com resultados favoráveis, mas pequenos, curtos, heterogêneos ou muito ligados a fabricantes.</li>
-<li><span class="ig-selo emergente">Evidência emergente</span><br>A maior parte dos dados vem de laboratório ou de animais; os estudos em pessoas ainda são poucos e pequenos.</li>
+<li><span class="ig-selo forte"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.4" fill="currentColor"/></svg>Evidência forte</span><br>Há ensaios randomizados de boa qualidade, revisões consistentes ou recomendação forte em diretriz médica.</li>
+<li><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span><br>Há ensaios em pessoas com resultados favoráveis, mas pequenos, curtos, heterogêneos ou muito ligados a fabricantes.</li>
+<li><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span><br>A maior parte dos dados vem de laboratório ou de animais; os estudos em pessoas ainda são poucos e pequenos.</li>
 </ul>
 <p>Quer saber se dois ativos podem ser usados juntos? Use o <a href="/ferramentas/ingredientes/">combinador de ingredientes</a>. Para montar a rotina inteira, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a> ou faça o <a href="/provador/">quiz de tipo de pele</a>.</p>
 </section>
@@ -175,5 +188,31 @@
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
 <script src="/rodape.js" defer></script>
 </footer>
+<script>
+(function(){
+  var barra=document.querySelector('.ig-filtro');
+  var itens=document.querySelectorAll('.ig-grade > li[data-evid]');
+  var cont=document.getElementById('ig-filtro-cont');
+  if(!barra||!itens.length)return;
+  barra.hidden=false;
+  function atualiza(f,rotulo){
+    var vis=0;
+    for(var i=0;i<itens.length;i++){
+      var ok=(f==='todos'||itens[i].getAttribute('data-evid')===f);
+      itens[i].hidden=!ok;
+      if(ok)vis++;
+    }
+    if(cont)cont.textContent=vis+' de '+itens.length+' ativos · filtro: '+rotulo;
+  }
+  barra.addEventListener('click',function(e){
+    var b=e.target.closest('.ig-filtro-btn');
+    if(!b)return;
+    var bts=barra.querySelectorAll('.ig-filtro-btn');
+    for(var j=0;j<bts.length;j++)bts[j].setAttribute('aria-pressed',String(bts[j]===b));
+    atualiza(b.getAttribute('data-filtro'),b.textContent);
+  });
+  atualiza('todos','Todos');
+})();
+</script>
 </body>
 </html>
