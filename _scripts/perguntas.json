@@ -1128,6 +1128,20 @@
    "Não. A lista fica salva só no aparelho, sem cadastro, e o site não a recebe. A análise usa as regras do verificador e olha só os ativos que reconhece, então convém conferir sempre a embalagem."
   ]
  ],
+ "/ferramentas/precos/": [
+  [
+   "De onde vêm os preços?",
+   "Da conferência da equipe nas lojas, com a data registrada em cada produto, e de feeds oficiais de afiliado quando disponíveis. Toda observação guarda loja, data e link."
+  ],
+  [
+   "O que significa “em construção”?",
+   "Que ainda não há histórico suficiente para comparar o preço de hoje. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
+  ],
+  [
+   "Posso ser avisado quando o preço cair?",
+   "Sim, nas páginas de produto: o alerta fica guardado só no seu aparelho, sem cadastro. Quando você voltar ao site, se o preço tiver atingido o valor que você escolheu, o aviso aparece."
+  ]
+ ],
  "/ferramentas/protocolo-n1/": [
   [
    "O que é o Protocolo N=1 do Produto Skincare?",
