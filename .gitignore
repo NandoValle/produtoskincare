@@ -4,3 +4,6 @@
 # Cache do Python
 __pycache__/
 .missiva/
+
+# Arquivos locais do "wrangler dev"
+.wrangler/

@@ -45,10 +45,12 @@ a{color:var(--rosa)}
 
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
 <meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <!-- menu:inicio -->
 <div class="ps-shell ps-topo ps-topo-recuo">
 <header class="ps-header">
@@ -60,14 +62,14 @@ a{color:var(--rosa)}
 </div>
 <script src="/premium.js" defer></script>
 <!-- menu:fim -->
-<main>
+<main id="conteudo">
 <div class="marca">Produto <span>Skincare</span> · Privacidade</div>
 
 <h1>Política de Privacidade</h1>
-<p class="sub">Última atualização: 4 de novembro de 2026</p>
+<p class="sub">Última atualização: 13 de novembro de 2026</p>
 
 <div class="card aviso">
-<strong>Resumo:</strong> o quiz, a selfie, a leitura de rótulos e as suas listas ficam no seu navegador. Não usamos cookies e não vendemos dados. Só saem do seu aparelho: as perguntas que você faz à IA (para gerar a resposta), o nome da cidade se você consultar o índice UV, o seu e-mail se você assinar a newsletter (vai direto para o serviço de envio), as mensagens que você mesmo mandar pelo contato e, se ligada, uma contagem anônima de visitas e cliques.
+<strong>Resumo:</strong> o quiz, a selfie, a leitura de rótulos e as suas listas ficam no seu navegador. Não usamos cookies e não vendemos dados. Só saem do seu aparelho: as perguntas que você faz à IA (para gerar a resposta), o nome da cidade se você consultar o índice UV, o seu e-mail se você assinar a newsletter (vai direto para o serviço de envio), as mensagens que você mesmo mandar pelo contato, a contagem de visitas da Cloudflare (sem cookies) e a contagem de visitas e cliques do GoatCounter (também sem cookies).
 </div>
 
 <h2>1. O que fica só no seu aparelho</h2>
@@ -109,7 +111,8 @@ a{color:var(--rosa)}
 <p>Quando você faz uma pergunta na página <a href="/pergunte/">Pergunte à IA</a>, a pergunta e as mensagens anteriores da mesma conversa são enviadas ao nosso servidor (Supabase) e dele à <strong>Anthropic</strong>, empresa da IA Claude, que gera a resposta. Nós não gravamos as conversas. A Anthropic trata esses dados conforme a <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">política de privacidade dela</a>. Não escreva dados pessoais (nome, telefone, documentos) nas perguntas. Para limitar abusos, o servidor conta por alguns minutos quantas perguntas chegam de cada endereço IP, só na memória, sem gravar.</p>
 
 <h2>9. Estatística de visitas</h2>
-<p>Podemos usar o <strong>GoatCounter</strong>, uma ferramenta de estatística sem cookies, para contar visitas às páginas e cliques nos botões de loja e de envio. Ela não identifica você e não cria perfil. Enquanto essa contagem não estiver ligada, nenhum dado é enviado. Detalhes na <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">política do GoatCounter</a>.</p>
+<p>A <strong>Cloudflare</strong>, que serve o site, conta as visitas e mede o tempo de carregamento das páginas com o <strong>Cloudflare Web Analytics</strong>. Para isso, cada página carrega um pequeno script da Cloudflare, que envia a ela dados técnicos da visita, como a página aberta e o tempo que ela levou para carregar. Segundo a Cloudflare, essa medição não usa cookies nem armazenamento no navegador e não identifica nem cria perfil de quem visita; o endereço IP chega a ela como em qualquer acesso, mas é descartado sem ser guardado. Detalhes na <a href="https://developers.cloudflare.com/speed/observatory/rum-beacon/" target="_blank" rel="noopener">documentação da Cloudflare</a>.</p>
+<p>Também usamos o <strong>GoatCounter</strong>, uma ferramenta de estatística sem cookies, para contar visitas às páginas e cliques nos botões de loja e de envio. Ela não identifica você e não cria perfil. Detalhes na <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">política do GoatCounter</a>.</p>
 
 <h2>10. Cookies</h2>
 <p><strong>Não usamos cookies</strong> de rastreamento, publicidade ou estatística.</p>
@@ -120,20 +123,20 @@ a{color:var(--rosa)}
 <h2>12. Outros serviços de terceiros</h2>
 <ul>
 <li>As fontes do site ficam no nosso próprio servidor, exceto na página da FortSkin, que carrega fontes do <strong>Google Fonts</strong> (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política do Google</a>).</li>
-<li>O site é hospedado no <strong>GitHub Pages</strong>, que registra dados técnicos de acesso (como o endereço IP) por segurança, conforme a política do GitHub.</li>
+<li>O site é servido pela <strong>Cloudflare</strong>, que registra dados técnicos de acesso (como o endereço IP) por segurança, conforme a política dela. O código do site fica guardado no GitHub.</li>
 </ul>
 
 <h2>13. Menores de idade</h2>
 <p>O site não pede cadastro. Pais e responsáveis podem supervisionar o uso normalmente.</p>
 
 <h2>14. Seus direitos (LGPD)</h2>
-<p>Não mantemos cadastro nem banco de dados com informações pessoais. Os dados guardados no seu aparelho são seus e você pode apagá-los quando quiser. Se você nos mandou uma mensagem pelo contato, pode pedir que ela seja apagada pelo mesmo canal. Sobre dados tratados pela Anthropic, pelo serviço de newsletter, pela Open-Meteo, pelo GoatCounter ou pelas lojas, procure esses serviços diretamente.</p>
+<p>Não mantemos cadastro nem banco de dados com informações pessoais. Os dados guardados no seu aparelho são seus e você pode apagá-los quando quiser. Se você nos mandou uma mensagem pelo contato, pode pedir que ela seja apagada pelo mesmo canal. Pedidos sobre os seus dados (confirmar se tratamos algum, acessar, corrigir ou apagar) podem ser feitos pelo e-mail <a href="mailto:contato@produtoskincare.com.br">contato@produtoskincare.com.br</a>. Sobre dados tratados pela Anthropic, pela Cloudflare, pelo serviço de newsletter, pela Open-Meteo, pelo GoatCounter ou pelas lojas, procure esses serviços diretamente.</p>
 
 <h2>15. Mudanças nesta política</h2>
 <p>Se mudarmos esta política, atualizaremos a data no topo da página.</p>
 
 <h2>16. Contato</h2>
-<p>Dúvidas sobre privacidade? Use a página de <a href="/contato/">contato</a>. Veja também a página <a href="/sobre/">Sobre o site</a>.</p>
+<p>O responsável pelo site é o Produto Skincare (CNPJ 35.878.957/0001-10). Dúvidas sobre privacidade? Escreva para <a href="mailto:contato@produtoskincare.com.br">contato@produtoskincare.com.br</a> ou use a página de <a href="/contato/">contato</a>. Veja também os <a href="/termos/">Termos de Uso</a> e a página <a href="/sobre/">Sobre o site</a>.</p>
 
 <div class="card aviso">
 <strong>Disclaimer:</strong> Este site é uma ferramenta cosmética de estimativa. Não é diagnóstico médico e não substitui consulta com dermatologista.
@@ -141,7 +144,22 @@ a{color:var(--rosa)}
 
 <p style="margin-top:30px"><a class="btn" href="/">← Voltar ao início</a></p>
 
-<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que a política de privacidade do Produto Skincare diz sobre fotos de selfie?</h3>
+<p>As fotos são analisadas no navegador, com a tecnologia MediaPipe (Google), e nenhuma imagem é enviada a servidores, nem do site nem de terceiros. O navegador baixa o código e o modelo de rosto, e esses serviços recebem o pedido de download, não a foto.</p>
+<h3>O que o Produto Skincare guarda no aparelho e como apagar?</h3>
+<p>O site usa armazenamento local do navegador para histórico de resultados, preferências, tracker de rotina, lembrete de reposição, última cidade do índice UV e conversa com a IA, esta só com a aba aberta. Para apagar tudo, limpe os dados do site nas configurações do navegador.</p>
+<h3>O site do Produto Skincare usa cookies?</h3>
+<p>Não usa cookies de rastreamento, publicidade ou estatística, segundo a política de privacidade. A política é a página que explica como as ferramentas tratam os dados e diz que o site não mantém cadastro nem banco de dados com informações pessoais.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que a política de privacidade do Produto Skincare diz sobre fotos de selfie?", "acceptedAnswer": {"@type": "Answer", "text": "As fotos são analisadas no navegador, com a tecnologia MediaPipe (Google), e nenhuma imagem é enviada a servidores, nem do site nem de terceiros. O navegador baixa o código e o modelo de rosto, e esses serviços recebem o pedido de download, não a foto."}}, {"@type": "Question", "name": "O que o Produto Skincare guarda no aparelho e como apagar?", "acceptedAnswer": {"@type": "Answer", "text": "O site usa armazenamento local do navegador para histórico de resultados, preferências, tracker de rotina, lembrete de reposição, última cidade do índice UV e conversa com a IA, esta só com a aba aberta. Para apagar tudo, limpe os dados do site nas configurações do navegador."}}, {"@type": "Question", "name": "O site do Produto Skincare usa cookies?", "acceptedAnswer": {"@type": "Answer", "text": "Não usa cookies de rastreamento, publicidade ou estatística, segundo a política de privacidade. A política é a página que explica como as ferramentas tratam os dados e diz que o site não mantém cadastro nem banco de dados com informações pessoais."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-12">12 de novembro de 2026</time>.</p>
+<!-- nota-pagina:fim -->
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -151,10 +169,10 @@ a{color:var(--rosa)}
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/" aria-current="page">Privacidade</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/" aria-current="page">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
-<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
 </body>
 </html>

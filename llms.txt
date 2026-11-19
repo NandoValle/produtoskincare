@@ -67,6 +67,7 @@
 
 ## Blog (destaques)
 
+- [Rotina de skincare para iniciantes](https://produtoskincare.com.br/blog/rotina-de-skincare-para-iniciantes/): os 3 passos (limpar, hidratar, proteger) de manhã e à noite, o que comprar primeiro e quando acrescentar um ativo.
 - [Como saber o tipo de pele](https://produtoskincare.com.br/blog/como-saber-tipo-de-pele/): o passo zero de qualquer rotina.
 - [A ordem dos produtos na rotina](https://produtoskincare.com.br/blog/ordem-dos-produtos-skincare/): em que ordem aplicar.
 - [Por que o protetor solar importa](https://produtoskincare.com.br/blog/protetor-solar-importancia/): fotoproteção e fotoenvelhecimento.
@@ -104,6 +105,7 @@
 - [Relatório para a consulta](https://produtoskincare.com.br/ferramentas/relatorio/): resumo para levar ao dermatologista.
 - [Backup dos seus dados](https://produtoskincare.com.br/ferramentas/backup/): exportar e restaurar o que está no aparelho.
 - [Experimento Coletivo #01](https://produtoskincare.com.br/ferramentas/experimento/): o protocolo 7+28 do FPS que não deixa branco, com registros guardados no próprio aparelho.
+- [Protocolo N=1](https://produtoskincare.com.br/ferramentas/protocolo-n1/): o experimento solo — uma mudança na rotina, 7 dias de linha de base, 28 de intervenção e um veredito lido nos seus números.
 
 ## Programa 12 semanas (pago)
 
@@ -122,7 +124,9 @@
 
 ## Ferramentas para agentes (WebMCP)
 
-Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra ferramentas só de leitura. Nenhuma compra, cadastra ou envia dados; todas devolvem o link da página correspondente para a pessoa continuar manualmente.
+Na página inicial, em navegadores com WebMCP (document.modelContext), o site registra ferramentas só de leitura. Nenhuma compra, cadastra ou envia dados; todas devolvem o link da página correspondente para a pessoa continuar manualmente. Em navegadores sem WebMCP nativo, o arquivo webmcp-polyfill.js cria document.modelContext com a mesma interface da especificação (registerTool, getTools, executeTool), para agentes e extensões que rodam na página; document.modelContext.isPolyfill === true indica esse caso. A descoberta estática (schemas completos, sem precisar executar JS) está no manifesto [webmcp-tools.json](https://produtoskincare.com.br/webmcp-tools.json).
+
+- [Manifesto estático (webmcp-tools.json)](https://produtoskincare.com.br/webmcp-tools.json): as 4 ferramentas com inputSchema completo, para agentes e scanners.
 
 - [buscar_produtos](https://produtoskincare.com.br/produtos/): filtra o catálogo por texto, tipo de pele, preocupação, passo e preço máximo; devolve preço com data, avaliação e links.
 - [explicar_tipo_de_pele](https://produtoskincare.com.br/pele/oleosa/): explica oleosa, seca, mista ou normal e devolve os links do guia e do provador.
@@ -145,4 +149,5 @@ A página inicial tem perguntas frequentes com resposta curta (como saber o tipo
 
 - [Contato](https://produtoskincare.com.br/contato/)
 - [Privacidade](https://produtoskincare.com.br/privacidade/)
+- [Termos de uso](https://produtoskincare.com.br/termos/)
 - [Rotina de skincare](https://produtoskincare.com.br/rotina-de-skincare/): visão geral de como montar a rotina.

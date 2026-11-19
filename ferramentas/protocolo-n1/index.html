@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Protocolo N=1: uma mudança, 35 dias, um veredito</title>
+<meta name="description" content="Teste uma mudança na rotina com o método 7+28 do Experimento Coletivo: linha de base, intervenção, registro semanal e um veredito nos seus números.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/protocolo-n1/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+
+.ft-rotulo{display:block;font-weight:600;margin:14px 0 6px}
+.ft-campo{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
+textarea.ft-campo{resize:vertical;min-height:96px}
+.ft-campo:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
+.ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.ft-cards-acoes{display:flex;flex-wrap:wrap;gap:0 12px;align-items:center}
+.ft-outro{margin-top:14px}.ft-outro summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.ft-periodo{border:0;padding:0;margin:0;display:flex;gap:18px;flex-wrap:wrap}.ft-periodo legend{padding:0}
+.ft-periodo label,.ft-check{display:flex;gap:8px;align-items:center;min-height:44px;cursor:pointer}
+.ft-sugestoes{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
+.ft-sugestoes li{margin:0}
+.ft-sugestao{font:inherit;width:100%;text-align:left;display:flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel);color:var(--tinta);cursor:pointer}
+.ft-sugestao span{font-size:.86rem;color:var(--suave)}
+.ft-sugestao:hover{border-color:var(--rosa)}
+.ft-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.ft-item{margin:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding:12px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel)}
+.ft-item>div:first-child{display:flex;flex-direction:column;min-width:0;flex:1 1 240px}
+.ft-item .ig-nota{margin:0}
+.ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
+.ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
+.ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
+.ft-ok{background:var(--verde-claro);border-color:var(--verde)}
+.ft-nao{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-horarios{background:#fff4dd;border-color:#b7791f;color:#5c3d00}
+.ft-sem{background:var(--papel);border:1.5px dashed var(--linha-2,var(--linha));border-left:4px solid #6b6b6b}
+.ft-info{background:var(--papel);border-color:var(--linha-2,var(--linha))}
+.ft-ok ul,.ft-nao ul,.ft-info ul{margin:6px 0 0}
+.ft-sub{display:block;font-size:.88rem;opacity:.85;margin:4px 0}
+.ft-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ft-tabela th,.ft-tabela td{padding:9px 10px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ft-tabela tr.ft-agora{background:var(--rosa-claro)}
+.ft-rolagem{overflow-x:auto}
+.ft-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;list-style:none;padding:0;margin:10px 0}
+.ft-grade li{margin:0}
+.ft-foto{font:inherit;width:100%;padding:0;border:2px solid transparent;border-radius:12px;background:var(--papel);overflow:hidden;cursor:pointer;color:var(--tinta);text-align:left}
+.ft-foto[aria-pressed="true"]{border-color:var(--rosa)}
+.ft-foto img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.ft-foto span{display:block;padding:6px 8px;font-size:.84rem}
+.ft-camera{position:relative;max-width:420px;border-radius:16px;overflow:hidden;background:#111;aspect-ratio:3/4}
+.ft-camera video,.ft-camera img.ft-fantasma{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.ft-camera img.ft-fantasma{opacity:.35;pointer-events:none}
+.ft-oval{position:absolute;inset:12% 18%;border:2px dashed rgba(255,255,255,.75);border-radius:50%;pointer-events:none}
+.ft-lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ft-lado figure{margin:0}.ft-lado img{width:100%;border-radius:12px;display:block}
+.ft-lado figcaption{font-size:.88rem;color:var(--suave);margin-top:4px}
+.ft-cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.ft-cards li{margin:0}
+.ft-cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);text-decoration:none;color:var(--tinta)}
+.ft-cards a:hover{border-color:var(--rosa)}
+.ft-cards strong{font-family:var(--fonte-display);font-size:1.15rem;font-weight:500}
+.ft-cards span{font-size:.92rem;color:var(--suave)}
+@media(prefers-color-scheme:dark){.ft-horarios{color:#5c3d00}}
+.ft-regras{margin:8px 0 0;padding-left:1.1em}
+.ft-regras li{margin:.45em 0}
+.ft-banner{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid;font-weight:600}
+.ft-banner.base{background:var(--papel);border-color:var(--linha-2,var(--linha));border-left-color:#6b6b6b}
+.ft-banner.inter{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-banner.fim{background:var(--verde-claro);border-color:var(--verde)}
+.ft-escalas{margin:10px 0 0;display:flex;flex-direction:column;gap:12px}
+.ft-escala-item{margin:0}
+.ft-escala-item .rot{margin:0 0 4px;font-weight:600}
+.ft-escala-item .rot small{display:block;font-weight:400;font-size:.84rem;color:var(--suave)}
+.ft-escala{display:flex;gap:6px}
+.ft-escala button{flex:1;min-height:40px;border:1px solid var(--linha);border-radius:9px;background:var(--papel);color:var(--suave);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
+.ft-escala button[aria-checked=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.ft-escala button:hover{border-color:var(--rosa)}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Protocolo N=1: uma mudança, 35 dias, um veredito">
+<meta property="og:description" content="Teste uma mudança na sua rotina com o método 7+28 do Experimento Coletivo, só seu: linha de base, intervenção, registro semanal e um veredito lido nos seus números. Tudo fica no aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/protocolo-n1/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-protocolo-n1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Protocolo N=1: uma mudança, 35 dias, um veredito">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/protocolo-n1/#pagina", "url": "https://produtoskincare.com.br/ferramentas/protocolo-n1/", "name": "Protocolo N=1: uma mudança, 35 dias, um veredito", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Teste uma mudança na rotina com o método 7+28 do Experimento Coletivo: linha de base, intervenção, registro semanal e um veredito nos seus números.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/protocolo-n1/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/protocolo-n1/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Protocolo N=1", "item": "https://produtoskincare.com.br/ferramentas/protocolo-n1/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<meta name="author" content="Equipe Produto Skincare">
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Protocolo N=1</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Protocolo N=1: uma mudança, 35 dias, um veredito</h1>
+<p class="ig-lede">Para testar UMA mudança na sua rotina e ver se ela fez diferença na sua pele: 7 dias de linha de base, 28 de intervenção e um veredito lido nos seus próprios números. N=1 quer dizer um sujeito — você.</p>
+<p class="ig-meta">Registros e curva ficam neste aparelho e aparecem também no <a href="/ferramentas/diario/">Diário da pele</a>. Nada é enviado ao site. Não é ensaio clínico nem diagnóstico.</p>
+</div>
+
+<section class="ig-caixa" aria-labelledby="n1-protocolo">
+<h2 id="n1-protocolo">O protocolo 7 + 28</h2>
+<p><strong>7 dias · linha de base.</strong> Não mude nada na sua rotina. Registre como a sua pele está — é a referência contra a qual o depois é comparado.</p>
+<p><strong>28 dias · intervenção.</strong> Faça SÓ a mudança que você escolheu. Nada mais muda. Registre toda semana, sempre no mesmo dia.</p>
+<p class="ig-nota">Os 28 dias cobrem um ciclo completo de renovação da pele — o mesmo recorte do <a href="/ferramentas/experimento/">Experimento Coletivo #01</a>. Para ativos como o retinol, o resultado pode levar mais tempo: o <a href="/ferramentas/12-semanas/">Modo 12 semanas</a> acompanha a introdução inteira.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-regras">
+<h2 id="n1-regras">As cinco regras do protocolo</h2>
+<ul class="ft-regras">
+<li><strong>Uma mudança por vez</strong> — só a que você escreveu abaixo. Nada de produto novo junto.</li>
+<li><strong>A linha de base vem primeiro</strong> — sem ela, não há comparação que sustente um veredito.</li>
+<li><strong>Registre toda semana, sempre no mesmo dia</strong> — e no mesmo horário, se der.</li>
+<li><strong>Fotos sempre iguais</strong> — mesma luz, mesmo ângulo. O <a href="/ferramentas/diario/">Diário da pele</a> guarda as suas.</li>
+<li><strong>O veredito sai dos números, não da memória</strong> — linha de base × intervenção, com o que você registrou.</li>
+</ul>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-montar">
+<h2 id="n1-montar">Montar o experimento</h2>
+<label class="ft-rotulo" for="n1-pergunta">A sua pergunta</label>
+<input class="ft-campo" type="text" id="n1-pergunta" maxlength="140" placeholder="Ex.: A niacinamida melhora a textura da minha pele?">
+<label class="ft-rotulo" for="n1-mudanca">A ÚNICA mudança da intervenção</label>
+<input class="ft-campo" type="text" id="n1-mudanca" maxlength="140" placeholder="Ex.: Sérum de niacinamida 10% à noite, antes do hidratante">
+<label class="ft-rotulo" for="n1-inicio">Data de início</label>
+<input class="ft-campo" type="date" id="n1-inicio">
+<button class="ft-btn" type="button" id="n1-iniciar">Iniciar (ou reiniciar) o meu experimento</button>
+<p class="ig-nota" id="n1-cfg">Reiniciar apaga o acompanhamento do experimento atual e começa um novo. Os registros já salvos no Diário continuam no aparelho.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-registro">
+<h2 id="n1-registro">O seu registro da semana</h2>
+<p class="ft-banner base" id="n1-fase">Monte o experimento acima para começar.</p>
+<p class="ig-nota">Toque em um número por linha. 5 é o melhor dia, para você — a escala é sua.</p>
+<div class="ft-escalas" id="n1-escalas"></div>
+<label class="ft-rotulo" for="n1-nota">Nota desta semana (opcional)</label>
+<textarea class="ft-campo" id="n1-nota" rows="2" placeholder="Ex.: Semana tranquila, dormi bem; leve descamação no queixo."></textarea>
+<button class="ft-btn" type="button" id="n1-salvar">Salvar registro da semana</button>
+<p class="ig-nota" id="n1-recado" role="status" aria-live="polite"></p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-veredito">
+<h2 id="n1-veredito">O seu veredito</h2>
+<div id="n1-curva"></div>
+<div id="n1-tabela"></div>
+<p class="ig-nota" id="n1-aderencia"></p>
+<p class="ig-nota">N=1 não prova causa: luz, ciclo, sono, estresse e o que você comeu também mexem com a pele. O veredito é um sinal seu — se a mudança valeu, siga com ela; se nada mudou, o seu dado também é resposta.</p>
+<div class="ft-cards-acoes">
+<button class="ft-btn ft-sec" type="button" id="n1-exportar">Exportar o meu veredito (.json)</button>
+<a class="ft-mini" href="/ferramentas/relatorio/">Levar para a consulta</a>
+<a class="ft-mini" href="/ferramentas/backup/">Backup dos seus dados</a>
+</div>
+</section>
+
+<p class="ig-nota"><strong>Não é diagnóstico médico.</strong> Experimento educacional de acompanhamento pessoal. Em caso de irritação, pare a mudança e procure um dermatologista (<a href="https://www.sbd.org.br/encontre-um-dermatologista/" target="_blank" rel="noopener">busca da SBD</a>). Se a sua pergunta for sobre protetor solar e marca branca, o <a href="/ferramentas/experimento/">Experimento Coletivo #01</a> já roda esse protocolo em grupo.</p>
+</article>
+<script src="/evolucao.js"></script>
+<script>
+(function () {
+  "use strict";
+  var E = window.PSEvolucao;
+  if (!E) return;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var BD_CFG = "ps_n1", TOTAL = 35, BASE = 7;
+  var escolhas = {};
+
+  function cfg() { try { return JSON.parse(localStorage.getItem(BD_CFG) || "{}"); } catch (e) { return {}; } }
+  function salvarCfg(c) { localStorage.setItem(BD_CFG, JSON.stringify(c)); }
+  function somaDias(iso, n) {
+    var d = new Date(iso + "T12:00:00");
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function fmt(iso) { return E.fmtData(iso); }
+
+  function faseTexto(inicio, dia) {
+    if (!inicio) return { cls: "base", txt: "Monte o experimento acima para começar. O dia 1 é a linha de base." };
+    if (dia <= BASE) return { cls: "base", txt: "Dia " + dia + " de 35 · linha de base: não mude nada na rotina — só registre." };
+    if (dia <= TOTAL) return { cls: "inter", txt: "Dia " + dia + " de 35 · intervenção: faça SÓ a mudança do experimento e registre toda semana." };
+    return { cls: "fim", txt: "35 dias completos. Leia o veredito abaixo — e guarde-o no backup ou leve para a consulta." };
+  }
+
+  function registrosN1(lista) {
+    var c = cfg();
+    if (!c.inicio) return [];
+    var fim = somaDias(c.inicio, TOTAL - 1);
+    return (lista || []).filter(function (r) {
+      return r.data >= c.inicio && r.data <= fim && E.mediaScores(r.scores) !== null;
+    });
+  }
+
+  function media(regs, dim) {
+    var v = [];
+    regs.forEach(function (r) {
+      if (dim === "_media") { var m = E.mediaScores(r.scores); if (m !== null) v.push(m); }
+      else if (typeof r.scores[dim] === "number") v.push(r.scores[dim]);
+    });
+    if (!v.length) return null;
+    return v.reduce(function (a, b) { return a + b; }, 0) / v.length;
+  }
+
+  function montarEscalas() {
+    var raiz = $("n1-escalas");
+    raiz.innerHTML = E.DIMS.map(function (d) {
+      return '<div class="ft-escala-item">' +
+        '<p class="rot" id="n1rot-' + d.id + '">' + esc(d.rotulo) + "<small>" + esc(d.de) + " → " + esc(d.para) + "</small></p>" +
+        '<div class="ft-escala" role="radiogroup" aria-labelledby="n1rot-' + d.id + '" data-dim="' + d.id + '">' +
+        [1, 2, 3, 4, 5].map(function (n) {
+          return '<button type="button" role="radio" aria-checked="false" data-v="' + n + '" aria-label="' + esc(d.rotulo) + " " + n + ' de 5">' + n + "</button>";
+        }).join("") +
+        "</div></div>";
+    }).join("");
+    raiz.querySelectorAll(".ft-escala").forEach(function (grupo) {
+      var dim = grupo.getAttribute("data-dim");
+      grupo.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var v = Number(b.getAttribute("data-v"));
+          escolhas[dim] = (escolhas[dim] === v) ? undefined : v;
+          grupo.querySelectorAll("button").forEach(function (x) {
+            x.setAttribute("aria-checked", String(Number(x.getAttribute("data-v")) === escolhas[dim]));
+          });
+        });
+      });
+    });
+  }
+
+  function render() {
+    var c = cfg();
+    if (c.inicio) {
+      $("n1-pergunta").value = c.pergunta || "";
+      $("n1-mudanca").value = c.mudanca || "";
+      $("n1-inicio").value = c.inicio;
+      $("n1-cfg").textContent = "Experimento em curso desde " + fmt(c.inicio) + " · " + (c.pergunta || "sem pergunta") + " · mudança única: " + (c.mudanca || "—");
+    } else {
+      $("n1-cfg").textContent = "Monte o experimento: escreva a pergunta e a única mudança, confira a data e inicie.";
+    }
+    var dia = c.inicio ? E.diffDias(c.inicio, E.dataHoje()) + 1 : 1;
+    var f = faseTexto(c.inicio, dia);
+    var banner = $("n1-fase");
+    banner.className = "ft-banner " + f.cls;
+    banner.textContent = f.txt;
+
+    E.registros().then(function (lista) {
+      var regs = registrosN1(lista);
+      var a = E.analisar(regs);
+      $("n1-curva").innerHTML = a && a.serie && a.serie.length
+        ? E.graficoSVG(a)
+        : '<p class="ig-nota">A curva aparece com o primeiro registro avaliado.</p>';
+
+      var c2 = cfg();
+      var base = [], inter = [];
+      if (c2.inicio) {
+        var corte = somaDias(c2.inicio, BASE - 1);
+        base = regs.filter(function (r) { return r.data <= corte; });
+        inter = regs.filter(function (r) { return r.data > corte; });
+      }
+      if (!base.length || !inter.length) {
+        $("n1-tabela").innerHTML = '<p class="ig-nota">O veredito precisa de pelo menos um registro na linha de base e um na intervenção. ' +
+          (base.length ? "A linha de base já tem " + base.length + " registro(s)." : "") +
+          (inter.length ? " A intervenção já tem " + inter.length + " registro(s)." : "") + "</p>";
+      } else {
+        var linhas = E.DIMS.map(function (d) { return { id: d.id, rotulo: d.rotulo }; });
+        linhas.push({ id: "_media", rotulo: "Como um todo" });
+        var corpo = linhas.map(function (d) {
+          var mb = media(base, d.id), mi = media(inter, d.id);
+          var delta = (mb !== null && mi !== null) ? mi - mb : null;
+          var dTxt = "—";
+          if (delta !== null) {
+            if (Math.abs(delta) < 0.5) dTxt = "estável";
+            else dTxt = (delta > 0 ? "↑ " : "↓ ") + Math.abs(delta).toFixed(1);
+          }
+          return "<tr><td>" + esc(d.rotulo) + "</td><td>" + (mb === null ? "—" : mb.toFixed(1)) +
+            "</td><td>" + (mi === null ? "—" : mi.toFixed(1)) + "</td><td>" + dTxt + "</td></tr>";
+        }).join("");
+        $("n1-tabela").innerHTML = '<div class="ft-rolagem"><table class="ft-tabela"><thead><tr><th>Dimensão</th><th>Linha de base</th><th>Intervenção</th><th>Mudança</th></tr></thead><tbody>' +
+          corpo + "</tbody></table></div>";
+      }
+
+      var dias = c2.inicio ? Math.min(TOTAL, Math.max(1, E.diffDias(c2.inicio, E.dataHoje()) + 1)) : 0;
+      var semanas = Math.max(1, Math.ceil(dias / 7));
+      var ader = Math.min(1, regs.length / semanas);
+      $("n1-aderencia").textContent = c2.inicio
+        ? "Registros: " + regs.length + " em " + semanas + " semana(s) de acompanhamento — aderência " + Math.round(ader * 100) + "%. 5 é o melhor dia, para você; as médias são das suas notas."
+        : "Monte o experimento para ver a aderência.";
+    });
+  }
+
+  $("n1-iniciar").addEventListener("click", function () {
+    var pergunta = ($("n1-pergunta").value || "").trim();
+    var mudanca = ($("n1-mudanca").value || "").trim();
+    var inicio = $("n1-inicio").value || E.dataHoje();
+    if (!pergunta || !mudanca) {
+      $("n1-recado").textContent = "Escreva a pergunta e a única mudança para começar.";
+      return;
+    }
+    salvarCfg({ pergunta: pergunta, mudanca: mudanca, inicio: inicio, versao: "1.0" });
+    $("n1-recado").textContent = "Experimento iniciado em " + fmt(inicio) + ". Registre agora a linha de base.";
+    render();
+  });
+
+  $("n1-salvar").addEventListener("click", function () {
+    var scores = {}, tem = false;
+    E.DIMS.forEach(function (d) {
+      if (typeof escolhas[d.id] === "number") { scores[d.id] = escolhas[d.id]; tem = true; }
+    });
+    if (!tem) { $("n1-recado").textContent = "Marque pelo menos uma escala para salvar."; return; }
+    var nota = ($("n1-nota").value || "").trim();
+    E.salvarHoje({ nota: nota ? "N=1 · " + nota : "N=1", scores: scores }).then(function () {
+      $("n1-recado").textContent = "Registro do Protocolo N=1 salvo neste aparelho.";
+      $("n1-nota").value = "";
+      escolhas = {};
+      document.querySelectorAll(".ft-escala button").forEach(function (b) { b.setAttribute("aria-checked", "false"); });
+      render();
+    }).catch(function (e) {
+      $("n1-recado").textContent = "Não foi possível salvar: " + e.message;
+    });
+  });
+
+  $("n1-exportar").addEventListener("click", function () {
+    E.registros().then(function (lista) {
+      var regs = registrosN1(lista);
+      if (regs.length < 1) { $("n1-recado").textContent = "Ainda não há registros para exportar."; return; }
+      var c = cfg();
+      var corte = c.inicio ? somaDias(c.inicio, BASE - 1) : null;
+      var base = regs.filter(function (r) { return corte && r.data <= corte; });
+      var inter = regs.filter(function (r) { return corte && r.data > corte; });
+      var dims = E.DIMS.map(function (d) { return d.id; }).concat(["_media"]);
+      var mediasB = {}, mediasI = {}, delta = {};
+      dims.forEach(function (id) {
+        var k = id === "_media" ? "como_um_todo" : id;
+        mediasB[k] = media(base, id);
+        mediasI[k] = media(inter, id);
+        delta[k] = (mediasB[k] !== null && mediasI[k] !== null) ? Math.round((mediasI[k] - mediasB[k]) * 100) / 100 : null;
+      });
+      var dias = c.inicio ? Math.min(TOTAL, Math.max(1, E.diffDias(c.inicio, E.dataHoje()) + 1)) : 0;
+      var pacote = {
+        protocolo: "n1-solo",
+        versao_metodo: "1.0",
+        pergunta: c.pergunta || null,
+        mudanca: c.mudanca || null,
+        inicio: c.inicio || null,
+        dias_uso: dias,
+        aderencia: Math.min(1, regs.length / Math.max(1, Math.ceil(dias / 7))),
+        medias: { linha_base: mediasB, intervencao: mediasI },
+        delta: delta,
+        registros: regs.map(function (r) { return { data: r.data, scores: r.scores, nota: r.nota || "" }; })
+      };
+      var blob = new Blob([JSON.stringify(pacote, null, 2)], { type: "application/json" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "meu-experimento-n1-" + E.dataHoje() + ".json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      $("n1-recado").textContent = "Veredito exportado. O arquivo é seu — guarde-o no backup ou leve para a consulta.";
+    });
+  });
+
+  montarEscalas();
+  if (!($("n1-inicio").value)) $("n1-inicio").value = E.dataHoje();
+  render();
+})();
+</script>
+
+<footer class="ig-foot">
+<p>Ferramenta informativa, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é o Protocolo N=1 do Produto Skincare?</h3>
+<p>O Protocolo N=1 é uma ferramenta gratuita para testar uma mudança por vez na sua rotina de skincare. São 7 dias de linha de base e 28 de intervenção, com registro semanal, curva e um veredito que compara as duas fases. N=1 quer dizer um sujeito: você.</p>
+<h3>O Protocolo N=1 prova que o produto funciona?</h3>
+<p>Não. A página diz que N=1 não é ensaio clínico nem diagnóstico: o veredito compara a linha de base com a intervenção e é um sinal seu. Luz, ciclo, sono e estresse também mexem com a pele, e para decisão de tratamento segue valendo o dermatologista.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Protocolo N=1 do Produto Skincare?", "acceptedAnswer": {"@type": "Answer", "text": "O Protocolo N=1 é uma ferramenta gratuita para testar uma mudança por vez na sua rotina de skincare. São 7 dias de linha de base e 28 de intervenção, com registro semanal, curva e um veredito que compara as duas fases. N=1 quer dizer um sujeito: você."}}, {"@type": "Question", "name": "O Protocolo N=1 prova que o produto funciona?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A página diz que N=1 não é ensaio clínico nem diagnóstico: o veredito compara a linha de base com a intervenção e é um sinal seu. Luz, ciclo, sono e estresse também mexem com a pele, e para decisão de tratamento segue valendo o dermatologista."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-16">16 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+
+</body>
+</html>

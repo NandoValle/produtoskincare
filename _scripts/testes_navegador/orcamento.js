@@ -56,7 +56,7 @@ async function lerRotina(page) {
     for (const x of comProduto) {
       const u = new URL(x.href);
       const amazonAfiliado = /amazon\.com\.br$/.test(u.hostname) && u.searchParams.has("tag");
-      if (!/^(www\.)?(amazon\.com\.br|shopee\.com\.br|lista\.mercadolivre\.com\.br|produto\.mercadolivre\.com\.br)$/.test(u.hostname) || u.protocol !== "https:" || x.alvo !== "_blank")
+      if (!/^(www\.)?(amazon\.com\.br|shopee\.com\.br|mercadolivre\.com\.br|lista\.mercadolivre\.com\.br|produto\.mercadolivre\.com\.br)$/.test(u.hostname) || u.protocol !== "https:" || x.alvo !== "_blank")
         checar(`[${f}] link válido: ${x.nome}`, false, x.href);
       if (amazonAfiliado !== /link de afiliado/.test(x.nota)) checar(`[${f}] rótulo de afiliado correto: ${x.nome}`, false, x.nota + " " + x.href);
       if (amazonAfiliado !== /sponsored/.test(x.rel)) checar(`[${f}] rel=sponsored só em afiliado: ${x.nome}`, false, x.rel);

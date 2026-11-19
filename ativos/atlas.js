@@ -1,0 +1,655 @@
+/* Atlas dos Ativos (/ativos/): busca por objetivo, filtros, comparador, passaporte, mapa da pele
+ * e leitor de rótulo. Os dados vêm de /ativos/atlas-dados.js (gerado por _scripts/gerar_atlas.py)
+ * e as combinações, de /regras-ativos.js (as mesmas regras do verificador de ingredientes).
+ * Nada aqui cria informação: o script só cruza o que já está nessas duas fontes.
+ * Sem JavaScript a página continua sendo a lista completa, por categoria.
+ */
+(function () {
+  "use strict";
+  var D = window.ATLAS;
+  var raiz = document.querySelector("main.atlas");
+  if (!D || !raiz) return;
+  var R = window.PSRegras || null;
+  var $ = function (s) { return raiz.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(raiz.querySelectorAll(s)); };
+
+  var POR_ID = {};
+  var TOTAL = D.ativos.length;
+  var EV_N = { forte: 3, moderada: 2, emergente: 1, "": 0 };
+  var EV_ROTULO = { forte: "evidência forte", moderada: "evidência moderada", emergente: "evidência emergente" };
+  var SEM_FICHA = "sem ficha com fontes ainda";
+  var IRRITA = ["baixa", "moderada", "alta"];
+  var POT = ["", "suave", "moderada", "alta", "potente"];
+  var NIVEL = { 1: "iniciante", 2: "intermediário", 3: "avançado" };
+  var TURNO = { manha: "De manhã", noite: "À noite", ambos: "De manhã ou à noite" };
+  var GEST = {
+    evitar: "Evitar na gestação e na amamentação.",
+    consultar: "Consulte seu médico antes de usar na gestação.",
+    compativel: "Costuma ser considerado compatível com a gestação. Confirme com seu médico.",
+    "": "O guia não traz orientação de gestação para este ativo. Pergunte ao seu médico."
+  };
+  var CLASSES = ["retinoide", "aha", "bha", "vitc", "bpo", "niacinamida", "azelaico", "clareador", "hidratante", "antioxidante", "filtro", "irritada"];
+  var ROTULO_CLASSE = {
+    retinoide: "retinoides (retinol, retinal, tretinoína, adapaleno)", aha: "ácidos AHA (glicólico, lático, mandélico)",
+    bha: "ácido salicílico (BHA)", vitc: "vitamina C", bpo: "peróxido de benzoíla", niacinamida: "niacinamida",
+    azelaico: "ácido azelaico", clareador: "clareadores suaves (ácido tranexâmico, alfa-arbutina)",
+    hidratante: "hidratantes e calmantes", antioxidante: "antioxidantes e peptídeos", filtro: "protetor solar",
+    irritada: "a pele irritada"
+  };
+  var VEREDITO = { ok: "Pode usar junto", horarios: "Use em horários diferentes", nao: "Não combine", sem_regra: "Sem regra cadastrada: não sabemos" };
+  var PARADAS = " a o as os e de da do das dos para pra com sem em no na nos nas um uma que eu tenho minha meu pele quero como muito muita estou sou tratar melhorar ativo ativos qual quais melhor melhores tem ter tipo sobre ";
+  var FILTROS = {
+    evid: { rotulo: "com ficha e fontes", f: function (a) { return !!a.ev; } },
+    gest: { rotulo: "seguro na gestação", f: function (a) { return a.gest === "compativel"; } },
+    semrx: { rotulo: "sem receita", f: function (a) { return !a.rx; } },
+    sensivel: { rotulo: "pele sensível", f: function (a) { return a.irrita === 0; } },
+    iniciante: { rotulo: "para iniciantes", f: function (a) { return a.nivel === 1; } },
+    manha: { rotulo: "uso de manhã", f: function (a) { return a.turno === "manha" || a.turno === "ambos"; } }
+  };
+
+  function norm(s) {
+    return String(s == null ? "" : s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; });
+  }
+  function lista(arr) {
+    if (arr.length < 2) return arr.join("");
+    return arr.slice(0, -1).join(", ") + " e " + arr[arr.length - 1];
+  }
+  function dataLonga(iso) {
+    var m = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+    var p = String(iso).split("-");
+    return p.length === 3 ? parseInt(p[2], 10) + " de " + m[parseInt(p[1], 10) - 1] + " de " + p[0] : "";
+  }
+  function barra(n, tipo, total, vazia) {
+    var h = '<span class="at-barra ' + tipo + (vazia ? " vazia" : "") + '" aria-hidden="true">';
+    for (var k = 0; k < (total || 3); k++) h += k < n ? '<i class="on"></i>' : "<i></i>";
+    return h + "</span>";
+  }
+  function medEv(a) { return barra(EV_N[a.ev], "ev", 3, !a.ev) + '<span class="at-valor">' + (EV_ROTULO[a.ev] || SEM_FICHA) + "</span>"; }
+  function medIr(a) { return barra(a.irrita + 1, "ir", 3) + '<span class="at-valor">' + IRRITA[a.irrita] + "</span>"; }
+  function medPo(a) { return barra(a.pot, "po", 4) + '<span class="at-valor">' + POT[a.pot] + "</span>"; }
+  function reais(n) { return "R$ " + Number(n).toFixed(2).replace(".", ","); }
+  function dataCurta(iso) {
+    var p = String(iso || "").split("-");
+    return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : "";
+  }
+  function precoTexto(a) {
+    var ps = a.produtos || [];
+    if (!ps.length) return "Sem preço no catálogo do site.";
+    var vals = ps.map(function (p) { return p.historia[p.historia.length - 1].preco; });
+    var datas = ps.map(function (p) { return p.historia[p.historia.length - 1].em; }).filter(Boolean);
+    var media = vals.reduce(function (s, n) { return s + n; }, 0) / vals.length;
+    var quando = "";
+    if (datas.length) quando = " Conferido em " + dataCurta(datas[0]) + (datas.some(function (d) { return d !== datas[0]; }) ? " e em outras datas" : "") + ".";
+    if (ps.length === 1) return "1 produto no catálogo: " + reais(vals[0]) + "." + quando;
+    return "Média de " + ps.length + " produtos do catálogo: " + reais(media) + "." + quando;
+  }
+  function ondeHTML(a) {
+    if (!a.produtos || !a.produtos.length) return "<p>Nenhum produto do catálogo do site lista este ativo. Sem preço para inventar.</p>";
+    return "<ul>" + a.produtos.map(function (p) {
+      var bits = [];
+      if (p.conc) bits.push(p.conc + " no catálogo");
+      var u = p.historia[p.historia.length - 1];
+      bits.push(reais(u.preco) + (u.em ? " em " + dataCurta(u.em) : ""));
+      var rel = p.externo ? ' target="_blank" rel="sponsored noopener"' : "";
+      var hist = p.historia.length > 1
+        ? "<br><small>Histórico: " + p.historia.map(function (h) { return (h.em ? dataCurta(h.em) + " " : "") + reais(h.preco); }).join("; ") + ".</small>"
+        : "<br><small>O histórico do site tem só essa data.</small>";
+      return '<li><a href="' + esc(p.href) + '"' + rel + ">" + esc(p.nome) + "</a> " + esc(bits.join(" · ")) + "." + hist + "</li>";
+    }).join("") + "</ul>";
+  }
+  function prazoHTML(a) {
+    if (!a.prazo || !a.prazo.length) return "";
+    return "<section><h3>Quando costuma dar sinal</h3><ul>" + a.prazo.map(function (x) {
+      return "<li><b>" + esc(D.objetivos[x.objetivo] || x.objetivo) + ":</b> " + esc(x.de) + " a " + esc(x.ate) + ". " + esc(x.texto) + "</li>";
+    }).join("") + '</ul><p class="ig-nota">Faixa usual, não é promessa.</p></section>';
+  }
+  function objetivos(a) { return a.c.map(function (o) { return D.objetivos[o].toLowerCase(); }); }
+  function peles(a) {
+    return a.pele.length ? "Pele " + lista(a.pele.map(function (p) { return D.peles[p]; })) : "Todos os tipos de pele";
+  }
+
+  D.ativos.forEach(function (a, i) {
+    POR_ID[a.id] = a;
+    a._ordem = i;
+    a._nome = norm(a.nome);
+    a._texto = " " + [a._nome, norm(a.n), norm(a.inci)].join(" ") + " ";
+    a._cat = " " + norm(a.cat) + " ";
+    a._cartao = document.getElementById("a-" + a.id);
+  });
+
+  var S = { q: "", rotulo: "", tema: "", filtros: {}, cats: {}, ordem: "padrao", comp: [] };
+  var el = {
+    busca: $("#at-busca"), q: $("#at-q"), rotulo: $("#at-rotulo"), inci: $("#at-inci"), painel: $("#at-painel"),
+    ordem: $("#at-ordem"), limpar: $("#at-limpar"), contagem: $("#at-contagem"), avisoGest: $("#at-aviso-gest"),
+    res: $("#at-resultados"), resT: $("#at-res-t"), resNota: $("#at-res-nota"), resLista: $("#at-res-lista"),
+    resVazio: $("#at-res-vazio"), cats: $("#at-categorias"), prontas: $("#at-prontas")
+  };
+
+  /* ===== BUSCA ===== */
+  /* Peso de um objetivo pela posição na lista do ativo (a primeira é o objetivo principal). */
+  function peso(i) { return i === 0 ? 34 : i === 1 ? 28 : i < 4 ? 18 : 10; }
+  function interpretar(q) {
+    var nq = norm(q), resto = " " + nq + " ";
+    var out = { nq: nq, objs: [], peles: [], filtros: [], texto: "" };
+    function casar(mapa, destino) {
+      Object.keys(mapa).forEach(function (id) {
+        var achou = false;
+        mapa[id].forEach(function (termo) {
+          if ((" " + nq + " ").indexOf(" " + termo + " ") >= 0) { achou = true; resto = resto.split(" " + termo + " ").join(" "); }
+          else if (nq.length >= 4 && nq.indexOf(" ") < 0 && termo.indexOf(nq) === 0) { achou = true; resto = " "; }
+        });
+        if (achou && destino.indexOf(id) < 0) destino.push(id);
+      });
+    }
+    casar(D.vocabulario.peles, out.peles);
+    casar(D.vocabulario.objetivos, out.objs);
+    casar(D.vocabulario.filtros, out.filtros);
+    out.texto = resto.split(" ").filter(function (t) { return t && PARADAS.indexOf(" " + t + " ") < 0; }).join(" ");
+    return out;
+  }
+
+  function buscar(q) {
+    var I = interpretar(q);
+    var sens = I.peles.indexOf("sensivel") >= 0 || I.objs.indexOf("sensibilidade") >= 0;
+    var porNome = {}, algumInteiro = false;
+    if (I.nq) {
+      D.ativos.forEach(function (a) {
+        var frase = I.texto || I.nq;
+        if (a._texto.indexOf(" " + frase) >= 0) { porNome[a.id] = { p: a._nome.indexOf(frase) === 0 ? 130 : 100, tipo: "nome" }; algumInteiro = true; }
+        else if (frase.length >= 4 && a._cat.indexOf(" " + frase) >= 0) { porNome[a.id] = { p: 60, tipo: "cat" }; algumInteiro = true; }
+      });
+      if (!algumInteiro && I.texto) {
+        var tokens = I.texto.split(" ").filter(function (t) { return t.length >= 3; });
+        D.ativos.forEach(function (a) {
+          var n = tokens.filter(function (t) { return a._texto.indexOf(" " + t) >= 0; }).length;
+          if (n) porNome[a.id] = { p: 40 * n, tipo: "nome" };
+        });
+      }
+    }
+    var itens = [];
+    D.ativos.forEach(function (a) {
+      var pontos = 0, motivos = [], base = false;
+      var pn = porNome[a.id];
+      var nomeHit = 0;
+      if (pn) {
+        base = true; pontos += pn.p; nomeHit = pn.p;
+        motivos.push(pn.tipo === "cat" ? "faz parte da categoria <b>" + esc(a.cat) + "</b>"
+          : "o nome combina com a busca (no rótulo: <b>" + esc(a.inci) + "</b>)");
+      }
+      I.objs.forEach(function (o) {
+        var i = a.c.indexOf(o);
+        if (i < 0) return;
+        base = true; pontos += peso(i);
+        motivos.push("costuma ser indicado para <b>" + esc(D.objetivos[o].toLowerCase()) + "</b>" + (i === 0 ? " (é o objetivo principal dele)" : ""));
+      });
+      if (!base) return;
+      I.peles.forEach(function (p) {
+        if (!a.pele.length) { pontos += 4; motivos.push("serve para todos os tipos de pele"); }
+        else if (a.pele.indexOf(p) >= 0) { pontos += 8; motivos.push("é indicado para pele <b>" + esc(D.peles[p]) + "</b>"); }
+        else { pontos -= 12; motivos.push("atenção: não costuma ser a primeira escolha para pele " + esc(D.peles[p])); }
+      });
+      if (sens) {
+        if (a.irrita === 0) { pontos += 6; motivos.push("a chance de irritar é baixa"); }
+        if (a.irrita === 2) { pontos -= 25; motivos.push("atenção: pode irritar bastante"); }
+      }
+      pontos += EV_N[a.ev] * 2;
+      if (a.rx) pontos -= 5;
+      itens.push({ a: a, pontos: pontos, nomeHit: nomeHit, motivos: motivos.filter(function (m, k) { return motivos.indexOf(m) === k; }) });
+    });
+    return { itens: itens, I: I };
+  }
+
+  /* ===== LEITOR DE RÓTULO ===== */
+  function lerRotulo(texto) {
+    var t = " " + norm(texto) + " ";
+    var itens = [];
+    D.ativos.forEach(function (a) {
+      var pos = -1, achado = "";
+      a.rot.forEach(function (termo) {
+        var p = t.indexOf(" " + termo + " ");
+        if (p >= 0 && (pos < 0 || p < pos)) { pos = p; achado = termo; }
+      });
+      if (pos >= 0) itens.push({ a: a, pontos: -pos, motivos: ["reconhecido na lista como <b>" + esc(achado) + "</b>"] });
+    });
+    return itens;
+  }
+
+  /* ===== RENDER ===== */
+  function passa(a, implicitos) {
+    var chaves = Object.keys(S.filtros).concat(implicitos || []);
+    if (!chaves.every(function (k) { return FILTROS[k].f(a); })) return false;
+    var cats = Object.keys(S.cats);
+    return !cats.length || cats.indexOf(a.catId) >= 0;
+  }
+  function comparador(modo) {
+    var cmpNome = function (x, y) { return x.a.nome.localeCompare(y.a.nome, "pt"); };
+    if (S.ordem === "irrita") return function (x, y) { return x.a.irrita - y.a.irrita || cmpNome(x, y); };
+    if (S.ordem === "az") return function (x, y) { return cmpNome(x, y); };
+    if (S.ordem === "encaixe") return function (x, y) { return (y.pontos || 0) - (x.pontos || 0) || EV_N[y.a.ev] - EV_N[x.a.ev] || cmpNome(x, y); };
+    if (modo === "cats") return function (x, y) { return x.a._ordem - y.a._ordem; };
+    /* Na busca, quem tem ficha com fontes vem primeiro. O nome digitado por inteiro continua na frente. */
+    return function (x, y) {
+      var hx = x.nomeHit || 0, hy = y.nomeHit || 0;
+      if ((hx >= 100) !== (hy >= 100)) return (hy >= 100) - (hx >= 100);
+      return EV_N[y.a.ev] - EV_N[x.a.ev] || (y.pontos || 0) - (x.pontos || 0) || x.a._ordem - y.a._ordem;
+    };
+  }
+  function clonar(item) {
+    var li = item.a._cartao.cloneNode(true);
+    li.removeAttribute("id");
+    li.hidden = false;
+    if (item.motivos.length) {
+      var p = document.createElement("p");
+      p.className = "at-porque";
+      p.innerHTML = "<b>Por que apareceu:</b> " + item.motivos.join("; ") + ".";
+      li.insertBefore(p, li.querySelector(".at-medidores"));
+    }
+    return li;
+  }
+
+  function render(foco) {
+    var modo = S.rotulo ? "rotulo" : S.q ? "busca" : S.tema ? "tema" : "cats";
+    var nFiltros = Object.keys(S.filtros).length;
+    var nCats = Object.keys(S.cats).length;
+    var contexto = "", nota = "", implicitos = [], vistos = 0;
+
+    if (modo === "cats") {
+      el.res.hidden = true;
+      el.cats.hidden = false;
+      var ordenar = comparador("cats");
+      $$("#at-categorias .at-cat").forEach(function (sec) {
+        var ul = sec.querySelector(".at-grade"), n = 0;
+        var itens = Array.prototype.slice.call(ul.children).map(function (li) { return { a: POR_ID[li.getAttribute("data-id")], li: li }; });
+        itens.sort(ordenar).forEach(function (it) {
+          var ok = passa(it.a);
+          it.li.hidden = !ok;
+          if (ok) n++;
+          ul.appendChild(it.li);
+        });
+        sec.hidden = n === 0;
+        vistos += n;
+      });
+      contexto = (nFiltros || nCats) ? "Mostrando " + vistos + " de " + TOTAL + " ativos" : TOTAL + " ativos em " + $$("#at-categorias .at-cat").length + " categorias";
+    } else {
+      var itens, titulo;
+      if (modo === "rotulo") {
+        itens = lerRotulo(S.rotulo);
+        titulo = "Ativos reconhecidos no rótulo";
+        nota = "Reconhecemos " + itens.length + " dos " + TOTAL + " ativos do atlas nesta lista. Ingredientes que não estão no atlas não aparecem. " +
+          "A lista não mostra a concentração e não comprova eficácia nem segurança da fórmula. Para ver se combinam entre si, use o " +
+          '<a href="/ferramentas/ingredientes/">verificador de ingredientes</a>.';
+      } else if (modo === "busca") {
+        var b = buscar(S.q);
+        itens = b.itens;
+        implicitos = b.I.filtros.map(function (f) { return f === "gestacao" ? "gest" : f === "sem-receita" ? "semrx" : f; })
+          .filter(function (f) { return FILTROS[f] && !S.filtros[f]; });
+        titulo = "Resultado para “" + S.q + "”";
+        if (implicitos.length) nota = "A busca aplicou o filtro: " + lista(implicitos.map(function (f) { return FILTROS[f].rotulo; })) + ".";
+        if (!itens.length && implicitos.length) {
+          itens = D.ativos.map(function (a) { return { a: a, pontos: 0, nomeHit: 0, motivos: [] }; });
+        }
+      } else {
+        var tema = D.temas.filter(function (t) { return t.id === S.tema; })[0];
+        itens = [];
+        D.ativos.forEach(function (a) {
+          var melhor = -1, nomes = [];
+          tema.objetivos.forEach(function (o) {
+            var i = a.c.indexOf(o);
+            if (i < 0) return;
+            nomes.push("<b>" + esc(D.objetivos[o].toLowerCase()) + "</b>" + (i === 0 ? " (objetivo principal)" : ""));
+            if (melhor < 0 || i < melhor) melhor = i;
+          });
+          if (melhor >= 0) itens.push({ a: a, pontos: peso(melhor) + EV_N[a.ev] * 2 - (a.rx ? 5 : 0), motivos: ["costuma ser indicado para " + lista(nomes)] });
+        });
+        titulo = "Mapa da pele: " + tema.titulo.toLowerCase();
+      }
+      var antes = itens.length;
+      itens = itens.filter(function (it) { return passa(it.a, implicitos); }).sort(comparador(modo));
+      if (modo === "busca" && S.ordem === "padrao" && itens.some(function (it) { return it.a.ev; })) {
+        nota = (nota ? nota + " " : "") + "Quem tem ficha com fontes aparece primeiro.";
+      }
+      vistos = itens.length;
+      el.resT.textContent = titulo;
+      el.resNota.innerHTML = nota;
+      el.resNota.hidden = !nota;
+      el.resLista.textContent = "";
+      itens.forEach(function (it) { el.resLista.appendChild(clonar(it)); });
+      el.resVazio.hidden = vistos > 0;
+      if (!vistos) {
+        el.resVazio.innerHTML = antes
+          ? "<p>Nenhum ativo passa pelos filtros marcados. Desmarque um filtro para ver os " + antes + " encontrados.</p>"
+          : modo === "rotulo"
+            ? "<p>Não reconhecemos nenhum dos " + TOTAL + " ativos do atlas nesta lista. Confira se ela está em formato INCI (nomes em inglês, separados por vírgula).</p>"
+            : "<p>Não encontramos “" + esc(S.q) + "” entre os " + TOTAL + " ativos do atlas.</p><p>Tente o nome que aparece no rótulo ou um objetivo, como manchas, acne, rugas ou pele sensível. Para uma pergunta mais aberta, use o <a href=\"/pergunte/\">Pergunte à IA</a>.</p>";
+      }
+      el.res.hidden = false;
+      el.cats.hidden = true;
+      contexto = vistos + (vistos === 1 ? " ativo" : " ativos") + (modo === "rotulo" ? " reconhecidos" : " de " + TOTAL);
+    }
+
+    el.prontas.hidden = modo !== "cats";
+    if (nFiltros) contexto += " · filtros: " + lista(Object.keys(S.filtros).map(function (k) { return FILTROS[k].rotulo; }));
+    if (nCats) contexto += " · categorias: " + lista(Object.keys(S.cats).map(function (id) {
+      var a = D.ativos.filter(function (x) { return x.catId === id; })[0];
+      return a ? a.cat : id;
+    }));
+    el.contagem.textContent = contexto;
+    el.avisoGest.hidden = !(S.filtros.gest || implicitos.indexOf("gest") >= 0);
+    el.limpar.hidden = modo === "cats" && !nFiltros && !nCats && S.ordem === "padrao";
+    $$("[data-filtro]").forEach(function (b) { b.setAttribute("aria-pressed", S.filtros[b.getAttribute("data-filtro")] ? "true" : "false"); });
+    $$("[data-cat]").forEach(function (b) { b.setAttribute("aria-pressed", S.cats[b.getAttribute("data-cat")] ? "true" : "false"); });
+    sincronizarComparar();
+    if (foco && modo !== "cats") {
+      el.res.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      el.resT.focus({ preventScroll: true });
+    }
+  }
+
+  /* ===== COMBINAÇÕES (regras do verificador) ===== */
+  function combinacoes(a) {
+    if (!R) return "<p>As regras de combinação não carregaram. Use o <a href=\"/ferramentas/ingredientes/\">verificador de ingredientes</a>.</p>";
+    if (!a.classe) {
+      return "<p>O <a href=\"/ferramentas/ingredientes/\">verificador de ingredientes</a> ainda não tem regra de combinação para este ativo, então não sabemos dizer com o que ele combina. Na dúvida, use em horários diferentes dos ativos mais fortes e introduza um ativo novo por vez.</p>";
+    }
+    var grupos = {}, ordem = [];
+    CLASSES.forEach(function (c) {
+      var r = R.avaliarPar({ classe: a.classe }, { classe: c });
+      if (c === a.classe && (r.regra === "sem-regra" || r.regra.indexOf("neutra-") === 0)) return;
+      var rot = c === a.classe ? "outro ativo da mesma família" : ROTULO_CLASSE[c];
+      var chave = r.resultado + "|" + r.motivo + "|" + r.nota;
+      if (!grupos[chave]) { grupos[chave] = { r: r, com: [] }; ordem.push(chave); }
+      grupos[chave].com.push(rot);
+    });
+    var peso = { nao: 0, horarios: 1, sem_regra: 2, ok: 3 };
+    ordem.sort(function (x, y) { return peso[grupos[x].r.resultado] - peso[grupos[y].r.resultado]; });
+    return '<ul class="at-combina">' + ordem.map(function (k) {
+      var g = grupos[k];
+      return '<li class="' + g.r.resultado + '"><span class="at-veredito">' + VEREDITO[g.r.resultado] + "</span><b>Com " + esc(lista(g.com)) + ":</b> " +
+        esc(g.r.motivo) + (g.r.nota ? " <i>" + esc(g.r.nota) + "</i>" : "") + "</li>";
+    }).join("") + '</ul><p class="ig-nota">Regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>, versão ' + esc(D.regras) + ". São orientações de uso comuns, sem citação de estudo.</p>";
+  }
+  function parDeAtivos(a, b) {
+    var titulo = "<b>" + esc(a.nome) + " com " + esc(b.nome) + ":</b> ";
+    if (!R || !a.classe || !b.classe) {
+      var sem = [a, b].filter(function (x) { return !x.classe; }).map(function (x) { return x.nome; });
+      return '<li class="sem_regra"><span class="at-veredito">' + VEREDITO.sem_regra + "</span>" + titulo +
+        "o verificador ainda não tem regra de combinação para " + esc(lista(sem)) + ". Isso não quer dizer que é seguro usar junto: na dúvida, use em horários diferentes e introduza um ativo novo por vez.</li>";
+    }
+    var r = R.avaliarPar({ classe: a.classe }, { classe: b.classe });
+    return '<li class="' + r.resultado + '"><span class="at-veredito">' + VEREDITO[r.resultado] + "</span>" + titulo + esc(r.motivo) + (r.nota ? " <i>" + esc(r.nota) + "</i>" : "") + "</li>";
+  }
+
+  /* ===== JANELAS ===== */
+  var janela = null, voltarFoco = null;
+  function abrirJanela(titulo, sub, corpo, larga, hash) {
+    fecharJanela(true);
+    voltarFoco = document.activeElement;
+    janela = document.createElement("dialog");
+    janela.className = "at-janela" + (larga ? " larga" : "");
+    janela.setAttribute("aria-labelledby", "at-janela-t");
+    janela.innerHTML = '<div class="at-janela-dentro"><div class="at-janela-topo"><div><h2 id="at-janela-t" tabindex="-1">' + titulo + "</h2>" +
+      (sub ? "<p>" + sub + "</p>" : "") + '</div><button type="button" class="at-fechar" data-fechar>Fechar</button></div>' +
+      '<div class="at-janela-corpo">' + corpo + "</div></div>";
+    raiz.appendChild(janela);
+    /* Fecha por conta própria: o evento "close" do <dialog> nem sempre chega (aba em segundo plano). */
+    var esta = janela;
+    esta.addEventListener("cancel", function (e) { e.preventDefault(); if (janela === esta) fecharJanela(); });
+    esta.addEventListener("close", function () { if (janela === esta) fecharJanela(); });
+    esta.addEventListener("click", function (e) { if (e.target === esta && janela === esta) fecharJanela(); });
+    if (janela.showModal) janela.showModal(); else janela.setAttribute("open", "");
+    janela.querySelector("#at-janela-t").focus();
+    if (hash) history.replaceState(null, "", "#" + hash);
+  }
+  function fecharJanela(silencioso) {
+    if (!janela) return;
+    var j = janela;
+    janela = null;
+    if (j.open && j.close) j.close();
+    j.remove();
+    if (silencioso) return;
+    if (/^#(ativo|comparar)=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
+    if (voltarFoco && document.contains(voltarFoco)) voltarFoco.focus();
+  }
+
+  function abrirPassaporte(id) {
+    var a = POR_ID[id];
+    if (!a) return;
+    var cuidados = [];
+    if (a.rx) cuidados.push("É medicamento: só use com prescrição.");
+    if (a.sol) cuidados.push("Aumenta a sensibilidade ao sol: protetor solar todas as manhãs é parte do uso.");
+    cuidados.push(a.irrita === 2 ? "Pode irritar bastante no início. Introduza um ativo novo por vez."
+      : a.irrita === 1 ? "Pode irritar um pouco no início. Comece devagar e observe a pele." : "A chance de irritar é baixa, mas faça um teste numa área pequena antes.");
+    cuidados.push(GEST[a.gest]);
+    var estudos = a.ev
+      ? '<p><span class="at-selo ok">Evidência ' + esc(a.ev) + "</span></p><p>" + esc(a.evm) + '</p><p><a href="' + a.url + '#o-que-faz">O que os estudos sugerem</a> · <a href="' + a.url + '#fontes">Fontes</a></p>'
+      : "<p><b>" + SEM_FICHA.charAt(0).toUpperCase() + SEM_FICHA.slice(1) + ".</b> A ficha resume orientações de uso comuns em dermatologia cosmética e não cita estudos. Isso não diz se o ativo funciona ou não.</p>";
+    var corpo =
+      '<dl class="at-pass-med"><div><dt>Evidência</dt><dd>' + medEv(a) + "</dd></div><div><dt>Potência</dt><dd>" + medPo(a) + "</dd></div><div><dt>Irritação</dt><dd>" + medIr(a) + "</dd></div></dl>" +
+      (a.potNota ? '<p class="ig-nota">' + esc(a.potNota) + "</p>" : "") +
+      "<section><h3>Para que é usado</h3><p>" + esc(a.d) + "</p><p>Objetivos, do mais ao menos comum: " + esc(lista(objetivos(a))) + ".</p></section>" +
+      "<section><h3>O que os estudos mostram</h3>" + estudos + "</section>" +
+      "<section><h3>Para quem</h3><p>" + esc(peles(a)) + ". Experiência sugerida: " + NIVEL[a.nivel] + ".</p></section>" +
+      prazoHTML(a) +
+      (a.ciencia && a.ciencia.texto ? "<section><h3>O que se sabe até agora</h3><p>" + esc(a.ciencia.texto) + "</p></section>" : "") +
+      "<section><h3>Onde tem no catálogo</h3>" + ondeHTML(a) + '<p class="ig-nota">Preço da data em que foi conferido. Links de loja podem ser de afiliado.</p></section>' +
+      "<section><h3>Como usar</h3><ul><li><b>Quando:</b> " + TURNO[a.turno].toLowerCase() + ".</li><li><b>Concentração usual:</b> " + esc(a.conc) + ".</li>" +
+      (a.dica ? "<li><b>Dica:</b> " + esc(a.dica) + "</li>" : "") + "</ul></section>" +
+      "<section><h3>Cuidados</h3><ul>" + cuidados.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul></section>" +
+      "<section><h3>Combinações</h3>" + combinacoes(a) + "</section>" +
+      "<section><h3>Fontes e revisão</h3><p>" + (a.ev ? "Esta ficha tem estudos e fontes listados." : "Esta ficha não cita estudos.") +
+      (a.rev ? " Última revisão da ficha: " + dataLonga(a.rev) + "." : "") + '</p><p class="at-acoes"><a class="at-bt cheio" href="' + a.url + '">Abrir a ficha completa</a>' +
+      '<button type="button" class="at-bt" data-comparar="' + a.id + '" aria-pressed="false">Comparar</button>' +
+      '<a class="at-bt" href="/ferramentas/ativos/#ativo=' + a.id + '">Ver no guia, com produtos</a></p></section>';
+    abrirJanela(esc(a.n), "No rótulo (INCI): " + esc(a.inci) + " · " + esc(a.cat), corpo, false, "ativo=" + a.id);
+    sincronizarComparar();
+  }
+
+  function abrirComparador(ids) {
+    var as = ids.map(function (i) { return POR_ID[i]; }).filter(Boolean).slice(0, 3);
+    if (as.length < 2) return;
+    function linha(rotulo, f) { return "<tr><th scope=\"row\">" + rotulo + "</th>" + as.map(function (a) { return "<td>" + f(a) + "</td>"; }).join("") + "</tr>"; }
+    var pares = [];
+    for (var i = 0; i < as.length; i++) for (var j = i + 1; j < as.length; j++) pares.push(parDeAtivos(as[i], as[j]));
+    var corpo = '<div class="at-rolagem"><table class="at-tabela" style="--n:' + as.length + '"><thead><tr><td></td>' +
+      as.map(function (a) { return '<th scope="col">' + esc(a.nome) + "<small>" + esc(a.inci) + "</small></th>"; }).join("") + "</tr></thead><tbody>" +
+      linha("Objetivos", function (a) { return "<ul>" + objetivos(a).map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul>"; }) +
+      linha("Evidência", function (a) { return medEv(a) + (a.ev ? "<br><small>" + esc(a.evm) + "</small>" : "<br><small>" + SEM_FICHA + ".</small>"); }) +
+      linha("Potência", medPo) +
+      linha("Irritação", medIr) +
+      linha("Para quem", function (a) { return esc(peles(a)); }) +
+      linha("Quando", function (a) { return TURNO[a.turno]; }) +
+      linha("Concentração usual", function (a) { return esc(a.conc); }) +
+      linha("Gestação", function (a) { return esc(GEST[a.gest]); }) +
+      linha("Preço no catálogo", precoTexto) +
+      linha("Sol", function (a) { return a.sol ? "Aumenta a sensibilidade ao sol" : "Sem alerta de sol no guia"; }) +
+      linha("Receita", function (a) { return a.rx ? "Medicamento: só com prescrição" : "Uso cosmético, sem receita"; }) +
+      linha("Limites e dica", function (a) { return esc(a.dica || "Sem observação no guia."); }) +
+      linha("Ficha", function (a) { return '<a href="' + a.url + '">Abrir a ficha</a>' + (a.rev ? "<br><small>Revisada em " + dataLonga(a.rev) + "</small>" : ""); }) +
+      "</tbody></table></div>" +
+      "<section><h3>Dá para usar juntos?</h3><ul class=\"at-combina\">" + pares.join("") + "</ul>" +
+      '<p class="ig-nota">Regras do <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>, versão ' + esc(D.regras) + ". Orientações de uso comuns, sem citação de estudo. O preço é a média dos produtos do catálogo que listam o ativo, na data em que foi conferido. Se não há produto, a célula diz isso.</p></section>" +
+      '<p class="at-acoes"><button type="button" class="at-bt" data-copiar-link>Copiar o link desta comparação</button></p>';
+    abrirJanela("Comparação lado a lado", esc(lista(as.map(function (a) { return a.nome; }))), corpo, true, "comparar=" + as.map(function (a) { return a.id; }).join(","));
+  }
+
+  /* ===== BANDEJA DO COMPARADOR ===== */
+  var bandeja = document.createElement("div");
+  bandeja.className = "at-bandeja";
+  bandeja.setAttribute("role", "region");
+  bandeja.setAttribute("aria-label", "Comparador");
+  bandeja.hidden = true;
+  raiz.appendChild(bandeja);
+  function sincronizarComparar(aviso) {
+    $$("[data-comparar]").forEach(function (b) {
+      var dentro = S.comp.indexOf(b.getAttribute("data-comparar")) >= 0;
+      b.setAttribute("aria-pressed", dentro ? "true" : "false");
+      b.textContent = dentro ? "No comparador" : "Comparar";
+    });
+    bandeja.hidden = !S.comp.length;
+    raiz.classList.toggle("com-bandeja", !!S.comp.length);
+    if (!S.comp.length) return;
+    bandeja.innerHTML = '<p role="status">' + (aviso || "Comparar " + S.comp.length + " de 3") + "</p><ul>" +
+      S.comp.map(function (id) { return '<li><button type="button" class="at-chip" data-tirar="' + id + '" aria-label="Tirar ' + esc(POR_ID[id].nome) + ' do comparador">' + esc(POR_ID[id].nome) + ' <span aria-hidden="true">×</span></button></li>'; }).join("") +
+      '</ul><button type="button" class="at-bt cheio" data-abrir-comparador' + (S.comp.length < 2 ? " disabled" : "") + ">" +
+      (S.comp.length < 2 ? "Escolha mais um" : "Comparar agora") + "</button>";
+  }
+  function alternarComparar(id) {
+    var i = S.comp.indexOf(id), aviso = "";
+    if (i >= 0) S.comp.splice(i, 1);
+    else if (S.comp.length >= 3) aviso = "O máximo é 3. Tire um para trocar.";
+    else S.comp.push(id);
+    sincronizarComparar(aviso);
+  }
+
+  /* ===== MAPA DA PELE ===== */
+  function escolherTema(id) {
+    $$(".at-tema").forEach(function (p) { p.hidden = p.getAttribute("data-tema") !== id; });
+    $$(".at-temas [data-tema]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-tema") === id ? "true" : "false"); });
+    $$(".at-zona").forEach(function (z) { z.classList.toggle("ativa", z.getAttribute("data-tema") === id); });
+  }
+
+  /* ===== EVENTOS ===== */
+  function limparModo() { S.q = ""; S.rotulo = ""; S.tema = ""; }
+  raiz.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest("button,[data-tema]") : null;
+    if (!t || !raiz.contains(t)) return;
+    var v;
+    if ((v = t.getAttribute("data-passaporte"))) abrirPassaporte(v);
+    else if ((v = t.getAttribute("data-comparar"))) alternarComparar(v);
+    else if ((v = t.getAttribute("data-tirar"))) alternarComparar(v);
+    else if (t.hasAttribute("data-abrir-comparador")) abrirComparador(S.comp);
+    else if ((v = t.getAttribute("data-comparacao"))) abrirComparador(v.split(","));
+    else if (t.hasAttribute("data-fechar")) fecharJanela();
+    else if (t.hasAttribute("data-copiar-link")) {
+      var link = location.href;
+      if (navigator.clipboard) navigator.clipboard.writeText(link).then(function () { t.textContent = "Link copiado"; }, function () { t.textContent = link; });
+      else t.textContent = link;
+    }
+    else if ((v = t.getAttribute("data-filtro"))) { if (S.filtros[v]) delete S.filtros[v]; else S.filtros[v] = 1; render(); }
+    else if ((v = t.getAttribute("data-cat"))) { if (S.cats[v]) delete S.cats[v]; else S.cats[v] = 1; render(); }
+    else if ((v = t.getAttribute("data-q"))) { limparModo(); S.q = v; el.q.value = v; render(true); }
+    else if ((v = t.getAttribute("data-ver-tema"))) { limparModo(); S.tema = v; el.q.value = ""; render(true); }
+    else if ((v = t.getAttribute("data-tema"))) escolherTema(v);
+    else if (t === el.limpar) {
+      limparModo(); S.filtros = {}; S.cats = {}; S.ordem = "padrao"; el.ordem.value = "padrao"; el.q.value = ""; el.inci.value = "";
+      render(); el.q.focus();
+    }
+    else if (t.id === "at-ler") { limparModo(); S.rotulo = el.inci.value.trim(); el.q.value = ""; render(!!S.rotulo); }
+  });
+  el.busca.addEventListener("submit", function (e) {
+    e.preventDefault();
+    limparModo(); S.q = el.q.value.trim();
+    render(!!S.q);
+  });
+  var espera = 0;
+  el.q.addEventListener("input", function () {
+    clearTimeout(espera);
+    espera = setTimeout(function () { limparModo(); S.q = el.q.value.trim(); render(); }, 160);
+  });
+  el.ordem.addEventListener("change", function () { S.ordem = el.ordem.value; render(); });
+
+  function lerHash() {
+    var m = /^#(ativo|comparar|q|tema)=(.+)$/.exec(location.hash);
+    if (!m) return;
+    var v;
+    try { v = decodeURIComponent(m[2]); } catch (err) { return; }
+    if (m[1] === "ativo") abrirPassaporte(v);
+    else if (m[1] === "comparar") abrirComparador(v.split(","));
+    else if (m[1] === "q") { limparModo(); S.q = v.slice(0, 80); el.q.value = S.q; render(true); }
+    else if (m[1] === "tema" && D.temas.some(function (t) { return t.id === v; })) { escolherTema(v); limparModo(); S.tema = v; render(true); }
+  }
+  window.addEventListener("hashchange", lerHash);
+
+  /* O site tem cabeçalho fixo: o painel de filtros gruda logo abaixo dele. */
+  function medirTopo() {
+    var topo = document.querySelector(".ps-topo");
+    var fixo = topo && getComputedStyle(topo).position === "sticky";
+    raiz.style.setProperty("--at-topo", (fixo ? topo.offsetHeight : 0) + "px");
+  }
+  window.addEventListener("resize", medirTopo);
+  window.addEventListener("load", medirTopo);
+
+  /* ===== LIGAR ===== */
+  function ligarGrafo() {
+    var caixa = document.getElementById("at-grafo");
+    var nos = document.getElementById("at-grafo-nos");
+    var svg = document.getElementById("at-grafo-linhas");
+    var focoEl = document.getElementById("at-grafo-foco");
+    var lista = document.getElementById("at-regras");
+    if (!caixa || !nos || !svg || !R) return;
+    caixa.hidden = false;
+    var comClasse = D.ativos.filter(function (a) { return a.classe; });
+    nos.innerHTML = comClasse.map(function (a) {
+      return '<button type="button" class="at-no" data-grafo="' + a.id + '" aria-pressed="false">' + esc(a.nome) + "</button>";
+    }).join("");
+    var escolhido = "";
+    function centro(el) {
+      var b = el.getBoundingClientRect();
+      var p = caixa.querySelector(".at-grafo-palco").getBoundingClientRect();
+      return { x: b.left - p.left + b.width / 2, y: b.top - p.top + b.height / 2 };
+    }
+    function desenhar() {
+      var palco = caixa.querySelector(".at-grafo-palco");
+      svg.setAttribute("viewBox", "0 0 " + palco.clientWidth + " " + palco.clientHeight);
+      svg.setAttribute("width", palco.clientWidth);
+      svg.setAttribute("height", palco.clientHeight);
+      svg.innerHTML = "";
+      if (!escolhido) return;
+      var origem = nos.querySelector('[data-grafo="' + escolhido + '"]');
+      var a = POR_ID[escolhido];
+      if (!origem || !a) return;
+      var c0 = centro(origem);
+      D.ativos.forEach(function (b) {
+        if (!b.classe || b.id === a.id) return;
+        var r = R.avaliarPar({ classe: a.classe, id: a.id }, { classe: b.classe, id: b.id });
+        if (!r || r.resultado === "sem_regra" || String(r.regra).indexOf("neutra-") === 0) return;
+        var dest = nos.querySelector('[data-grafo="' + b.id + '"]');
+        if (!dest) return;
+        var c1 = centro(dest);
+        var linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        linha.setAttribute("x1", c0.x);
+        linha.setAttribute("y1", c0.y);
+        linha.setAttribute("x2", c1.x);
+        linha.setAttribute("y2", c1.y);
+        linha.setAttribute("class", "at-aresta " + r.resultado);
+        svg.appendChild(linha);
+      });
+    }
+    function escolher(id) {
+      escolhido = escolhido === id ? "" : id;
+      nos.querySelectorAll("[data-grafo]").forEach(function (b) {
+        var on = b.getAttribute("data-grafo") === escolhido;
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      var a = escolhido ? POR_ID[escolhido] : null;
+      if (lista) {
+        Array.prototype.forEach.call(lista.children, function (li) {
+          if (!a) { li.hidden = false; return; }
+          li.hidden = (li.getAttribute("data-classes") || "").split(" ").indexOf(a.classe) < 0;
+        });
+      }
+      var neutra = a && { hidratante: 1, antioxidante: 1, filtro: 1, clareador: 1 }[a.classe];
+      if (focoEl) focoEl.textContent = !a
+        ? "Nenhum ativo selecionado. A lista mostra os pares que têm regra."
+        : "Ligações de " + a.nome + "." + (neutra ? " Este grupo combina com os outros pela regra geral do verificador." : "");
+      desenhar();
+    }
+    caixa.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("[data-grafo]") : null;
+      if (b) escolher(b.getAttribute("data-grafo"));
+    });
+    window.addEventListener("resize", desenhar);
+    escolher("");
+  }
+
+  medirTopo();
+  raiz.classList.add("atlas-js");
+  [el.busca, el.rotulo, el.painel, el.prontas, $(".at-temas")].forEach(function (x) { if (x) x.hidden = false; });
+  escolherTema("barreira");
+  ligarGrafo();
+  render();
+  lerHash();
+})();
