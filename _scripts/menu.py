@@ -36,6 +36,7 @@ MAIS = [
     ("/combina/", "Posso usar junto?", ("combina",)),
     ("/queridinhos-do-skincare/", "Queridinhos", ("queridinhos-do-skincare",)),
     ("/pergunte/", "Pergunte à IA", ("pergunte",)),
+    ("/newsletter/", "Newsletter", ("newsletter",)),
 ]
 
 INICIO, FIM = "<!-- menu:inicio -->", "<!-- menu:fim -->"
