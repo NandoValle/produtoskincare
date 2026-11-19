@@ -135,6 +135,7 @@ const ITENS_RT = {
 };
 let periodo = null, itens = [], idx = 0, restante = 0, timer = null, rodando = false;
 const raiz = document.getElementById("rt-raiz");
+const som = (n) => { try { if (window.SonhoSom && window.SonhoSom.estaAtivo()) window.SonhoSom[n] && window.SonhoSom[n](); } catch {} };
 
 function mmss(s){ const m = Math.floor(s/60); return String(m).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
 function pararTimer(){ if (timer) clearInterval(timer); timer = null; rodando = false; }
@@ -203,25 +204,32 @@ function pintar(){
 
 function ligarCronometro(){
   pararTimer(); rodando = true;
-  timer = setInterval(() => { restante = Math.max(0, restante - 1); pintar(); if (restante <= 0) pararTimer(); }, 1000);
+  timer = setInterval(() => {
+    restante = Math.max(0, restante - 1);
+    pintar();
+    if (restante <= 0) { pararTimer(); som("sino"); }
+  }, 1000);
 }
 
 function ligar(){
   document.getElementById("rt-concluir").addEventListener("click", () => {
     pararTimer();
-    if (idx + 1 < itens.length) { idx += 1; restante = itens[idx].seg; telaPasso(); }
+    som("passo");
+    if (idx + 1 < itens.length) { idx += 1; restante = itens[idx].seg; som("transicao"); telaPasso(); }
     else telaFim();
   });
   document.getElementById("rt-pausar").addEventListener("click", (ev) => {
+    som("clique");
     if (rodando) { pararTimer(); ev.target.textContent = "Continuar"; const d = document.getElementById("rt-dica"); if (d) d.textContent = "Pausado. Respire e volte quando quiser."; }
     else { ligarCronometro(); ev.target.textContent = "Pausar"; const d = document.getElementById("rt-dica"); if (d) d.textContent = "Siga o seu ritmo — o tempo é só um guia."; }
   });
-  document.getElementById("rt-zerar").addEventListener("click", () => { restante = 0; pararTimer(); pintar(); });
-  document.getElementById("rt-sair").addEventListener("click", telaEscolha);
+  document.getElementById("rt-zerar").addEventListener("click", () => { som("clique"); restante = 0; pararTimer(); pintar(); });
+  document.getElementById("rt-sair").addEventListener("click", () => { som("clique"); telaEscolha(); });
 }
 
 function telaFim(){
   pararTimer();
+  som("sino");
   registrarCheckin();
   raiz.innerHTML = `
   <div class="rt-anim">
@@ -252,6 +260,7 @@ document.querySelectorAll("[data-periodo]").forEach(b => b.addEventListener("cli
 </div>
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
+<script src="/sons.js" defer></script>
 <noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
 </body>
 </html>

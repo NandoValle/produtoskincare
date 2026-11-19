@@ -83,3 +83,13 @@
     requestAnimationFrame(seguir);
   })();
 })();
+
+/* Som do sonho — carrega o motor de áudio (sons.js) em todas as páginas
+   que já têm este rodapé. O script se protege contra dupla inclusão. */
+(() => {
+  if (document.querySelector('script[src="/sons.js"]')) return;
+  const s = document.createElement('script');
+  s.src = '/sons.js';
+  s.defer = true;
+  document.body.appendChild(s);
+})();
