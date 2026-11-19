@@ -262,6 +262,52 @@
         "sources": [
           "imperative"
         ]
+      },
+      {
+        "kind": "imperative",
+        "name": "calcular_custo_por_dia",
+        "title": "Calcular quanto o skincare custa por dia",
+        "description": "Calcula quanto um produto de skincare custa por dia de uso, a partir do preço pago, do tamanho do frasco e de quanto se aplica por uso — a mesma conta da página A matemática do frasco. Devolve a duração estimada do frasco, o custo por dia e o custo por mês (30 dias), e o link da página com o comparativo entre a dose que a maioria aplica e a dose recomendada. Conta pura: não compra, não guarda e não envia nada.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "preco_brl": {
+              "type": "number",
+              "minimum": 0.01,
+              "description": "Preço pago pelo produto, em reais (ex.: 47.7)."
+            },
+            "tamanho_ml": {
+              "type": "number",
+              "minimum": 1,
+              "description": "Tamanho do frasco em mililitros (ex.: 50). Para produtos vendidos em gramas, use o número igual (1 g ≈ 1 ml)."
+            },
+            "dose_ml_por_uso": {
+              "type": "number",
+              "minimum": 0.01,
+              "maximum": 20,
+              "description": "Quanto se aplica por uso, em mililitros (ex.: 1 na maioria dos hidratantes; 2 de protetor solar é a dose que a maioria aplica)."
+            },
+            "usos_por_dia": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 1,
+              "description": "Quantas vezes por dia o produto é usado (1 = uma vez ao dia). Padrão: 1."
+            }
+          },
+          "required": [
+            "preco_brl",
+            "tamanho_ml",
+            "dose_ml_por_uso"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true
+        },
+        "sources": [
+          "imperative"
+        ]
       }
     ]
   }
