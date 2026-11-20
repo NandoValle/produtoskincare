@@ -192,6 +192,7 @@ h1,h2,h3{letter-spacing:-.025em}
 .ps-rodape .ps-rodape-numeros{grid-template-columns:auto auto;justify-content:start;gap:12px 32px;margin-top:24px;font-size:12px;color:var(--suave)}
 .ps-rodape-numeros strong{display:block;font-family:var(--fonte-display);font-size:30px;font-weight:500;line-height:1.1;color:var(--rosa)}
 .ps-rodape-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;margin-top:40px;padding-top:20px;border-top:1px solid var(--linha);font-size:12px}
+.ps-rodape-nota{display:block;font-size:12px;line-height:1.65;max-width:62ch;margin:10px 0 0}
 .ps-rodape .ps-rodape-base a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .ps-rodape-links{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media(max-width:1248px){.ps-rodape-grid{grid-template-columns:1fr 1fr 1fr}.ps-rodape-marca{grid-column:1/-1}}
@@ -310,7 +311,7 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 .ps-topo a{text-decoration:none}
 .ps-topo .ps-nav a[data-secao],.ps-topo .ps-mais-btn[data-secao],.ps-topo .ps-nav a[aria-current=page]{color:var(--rosa)}
 .ps-topo ul,.ps-topo li{margin:0;padding:0;list-style:none}
-.ps-topo ~ main .ig-marca,.ps-topo ~ main > .marca,.ps-topo ~ main .mv-top > .marca,.ps-topo ~ .casca > header > .marca,.ps-topo ~ main .hc-marca{display:none}
+.ps-topo ~ main .ig-marca,.ps-topo ~ main > .marca,.ps-topo ~ main .mv-top > .marca,.ps-topo ~ .casca > header > .marca,.ps-topo ~ .casca > .topo-achados > .marca,.ps-topo ~ main .hc-marca{display:none}
 .ps-topo ~ main .hc-top{justify-content:flex-end}
 /* Botão de tema do provador: desce para baixo do menu em vez de cobrir o botão Menu. */
 body:has(> .ps-topo) .btn-tema{top:100px}
@@ -772,3 +773,16 @@ body::after{
   .ps-hero > *{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
   .sonho-lente,.sonho-motes{display:none!important}
 }
+
+/* Perguntas frequentes e nota de atualização por página (geradas por _scripts/prontidao.py) */
+.ps-perguntas,.ps-nota-pagina{max-width:760px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+.ps-perguntas{margin-top:40px;margin-bottom:24px}
+.ps-perguntas h2{margin:0 0 6px}
+.ps-perguntas h3{font-size:1.05rem;line-height:1.35;margin:22px 0 6px}
+.ps-perguntas p{margin:0 0 10px}
+.ps-nota-pagina{font-size:.9rem;color:var(--suave);margin-top:18px;margin-bottom:24px}
+main:not(.ig)>.ps-perguntas,main:not(.ig)>.ps-nota-pagina,main+.ps-perguntas,main~.ps-nota-pagina{padding-left:20px;padding-right:20px}
+.pd-faq .pq,.ps-faq .pq{font-size:1rem;line-height:1.35;font-weight:600;margin:0;padding:14px 0 6px}
+
+/* Posts: a linha "Publicado em… · Leitura de…" fica do mesmo tamanho da linha de autoria (.ig-meta). */
+.sub.post-data{font-size:.88rem}

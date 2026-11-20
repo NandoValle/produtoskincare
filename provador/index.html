@@ -261,21 +261,28 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body class="ps-quiz">
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <!-- menu:inicio -->
 <div class="ps-shell ps-topo">
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/" aria-current="page">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/" aria-current="page">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></details></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
 <script src="/premium.js" defer></script>
 <!-- menu:fim -->
 <button class="btn-tema" id="btnTema" aria-label="Alternar tema claro/escuro" title="Alternar tema">🌙</button>
-<main role="main" aria-label="Provador virtual de tipo de pele">
+<main role="main" aria-label="Provador virtual de tipo de pele" id="conteudo">
 <a class="ps-back-home" href="/">← Voltar ao site</a><div class="marca"><div class="marca-icon">PS</div>Produto <span>Skincare</span> · Provador</div>
 
 <!-- ===== TELA INICIAL ===== -->
@@ -290,7 +297,8 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <button class="btn sec" id="btnJaSei">Já sei meu tipo</button>
 </div>
 
-<p class="sub" style="margin-top:24px;font-size:.85rem">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar.</p>
+<p class="sub" style="margin-top:24px;font-size:.85rem">Quer entender a base antes? Leia a <a href="/blog/rotina-de-skincare-para-iniciantes/">rotina de skincare para iniciantes</a>.</p>
+<p class="sub" style="font-size:.85rem">Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. Preços são os vistos na data indicada e podem mudar.</p>
 </div>
 
 <!-- ===== MODO "JÁ SEI" ===== -->
@@ -551,7 +559,20 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 </div>
 
 <p class="sub" style="font-size:.78rem;margin-top:40px;text-align:center">Critérios de análise definidos pelo projeto Produto Skincare. Protótipo de teste.</p>
-</main>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é o provador virtual do Produto Skincare?</h3>
+<p>É um quiz gratuito, sem cadastro, em que você conta como a pele se comporta e recebe um perfil estimado e sugestões de rotina de manhã e noite. A selfie opcional roda no navegador e a foto não sai do seu aparelho.</p>
+<h3>O resultado do provador é um diagnóstico?</h3>
+<p>Não. O resultado é uma estimativa cosmética, não um diagnóstico médico. A página sugere repetir o quiz em 3 a 4 semanas para confirmar o tipo, que pode mudar com hormônios, estação e hábitos.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o provador virtual do Produto Skincare?", "acceptedAnswer": {"@type": "Answer", "text": "É um quiz gratuito, sem cadastro, em que você conta como a pele se comporta e recebe um perfil estimado e sugestões de rotina de manhã e noite. A selfie opcional roda no navegador e a foto não sai do seu aparelho."}}, {"@type": "Question", "name": "O resultado do provador é um diagnóstico?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O resultado é uma estimativa cosmética, não um diagnóstico médico. A página sugere repetir o quiz em 3 a 4 semanas para confirmar o tipo, que pode mudar com hormônios, estação e hábitos."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-14">14 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 
 <script src="/compartilhar.js"></script>
 <script src="/regras-ativos.js"></script>
@@ -3653,11 +3674,11 @@ if (new URLSearchParams(location.search).get("modo") === "selfie") {
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
-</footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
 </body>
 </html>
 

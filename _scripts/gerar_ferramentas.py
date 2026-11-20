@@ -74,12 +74,26 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-cards strong{font-family:var(--fonte-display);font-size:1.15rem;font-weight:500}
 .ft-cards span{font-size:.92rem;color:var(--suave)}
 @media(prefers-color-scheme:dark){.ft-horarios{color:#5c3d00}}
+.ft-regras{margin:8px 0 0;padding-left:1.1em}
+.ft-regras li{margin:.45em 0}
+.ft-banner{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid;font-weight:600}
+.ft-banner.base{background:var(--papel);border-color:var(--linha-2,var(--linha));border-left-color:#6b6b6b}
+.ft-banner.inter{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-banner.fim{background:var(--verde-claro);border-color:var(--verde)}
+.ft-escalas{margin:10px 0 0;display:flex;flex-direction:column;gap:12px}
+.ft-escala-item{margin:0}
+.ft-escala-item .rot{margin:0 0 4px;font-weight:600}
+.ft-escala-item .rot small{display:block;font-weight:400;font-size:.84rem;color:var(--suave)}
+.ft-escala{display:flex;gap:6px}
+.ft-escala button{flex:1;min-height:40px;border:1px solid var(--linha);border-radius:9px;background:var(--papel);color:var(--suave);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
+.ft-escala button[aria-checked=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.ft-escala button:hover{border-color:var(--rosa)}
 """
 
 PAGINAS = [
     {"fonte": "prateleira.html", "caminho": "/ferramentas/prateleira/", "trilha": "Minha prateleira",
      "titulo": "Minha prateleira: o que combina entre os produtos que você já tem",
-     "descricao": "Cadastre os produtos de skincare que você já tem e veja o que não combina, o que está repetido, que passo falta e quando cada um acaba. Salvo só no seu aparelho."},
+     "descricao": "Cadastre os produtos de skincare que você já tem e veja o que não combina, o que se repete, que passo falta e quando cada um acaba. Salvo só no seu aparelho."},
     {"fonte": "farmacia.html", "caminho": "/ferramentas/farmacia/", "trilha": "Modo farmácia",
      "titulo": "Modo farmácia: combina com o que eu já tenho?",
      "descricao": "Na loja, fotografe a lista de ingredientes e veja se o produto combina com os que você já usa, se repete algum ativo e se preenche um passo que falta."},
@@ -88,7 +102,10 @@ PAGINAS = [
      "descricao": "Digite o produto de skincare que você usa e veja opções do catálogo com os mesmos ativos e a mesma concentração, com o preço conferido e a data."},
     {"fonte": "12-semanas.html", "caminho": "/ferramentas/12-semanas/", "trilha": "Modo 12 semanas",
      "titulo": "Modo 12 semanas: comece um ativo novo aos poucos",
-     "descricao": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho."},
+     "descricao": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e diário de fotos só no seu aparelho."},
+    {"fonte": "protocolo-n1.html", "caminho": "/ferramentas/protocolo-n1/", "trilha": "Protocolo N=1",
+     "titulo": "Protocolo N=1: uma mudança, 35 dias, um veredito",
+     "descricao": "Teste uma mudança na rotina com o método 7+28 do Experimento Coletivo: linha de base, intervenção, registro semanal e um veredito nos seus números."},
     {"fonte": "indice.html", "caminho": "/ferramentas/", "trilha": "Ferramentas", "larga": True,
      "titulo": "Ferramentas de skincare grátis",
      "descricao": "Todas as ferramentas do Produto Skincare: provador, prateleira, modo farmácia, verificador de ingredientes, equivalente mais barato, modo 12 semanas e mais."},

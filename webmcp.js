@@ -7,8 +7,9 @@
  *     https://webmachinelearning.github.io/webmcp/
  *   Guia do Chrome: https://developer.chrome.com/docs/ai/webmcp/imperative-api
  *
- * Todas as ferramentas daqui só LEEM arquivos públicos do site (produtos.json, quiz.json,
- * rotinas/rotinas.json). Nenhuma compra, cadastra, envia ou grava nada.
+ * As ferramentas de dados daqui só LEEM arquivos públicos do site (produtos.json, quiz.json,
+ * rotinas/rotinas.json); a "calcular_custo_por_dia" é conta pura, sem ler nem escrever nada.
+ * Nenhuma compra, cadastra, envia ou grava nada.
  * A quarta ferramenta, "montar_rotina", é o formulário "Já sabe seu tipo de pele?" da página
  * inicial (API declarativa: atributos toolname/tooldescription no <form>).
  *
@@ -120,9 +121,9 @@
       type: "object",
       properties: {
         termo: { type: "string", maxLength: 80, description: "Texto livre: nome, marca ou ativo (ex.: \"vitamina C\", \"CeraVe\"). Opcional." },
-        tipo_pele: { type: "string", enum: TIPOS_BUSCA, description: "Tipo de pele: oleosa, seca, mista, normal ou sensivel. Opcional." },
-        preocupacao: { type: "string", enum: PREOCUPACOES, description: "Preocupação: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Opcional." },
-        passo: { type: "string", enum: PASSOS, description: "Passo da rotina: limpeza, tratamento, hidratacao ou protetor (protetor solar). Opcional." },
+        tipo_pele: { type: "string", enum: ["oleosa", "seca", "mista", "normal", "sensivel"], description: "Tipo de pele: oleosa, seca, mista, normal ou sensivel. Opcional." },
+        preocupacao: { type: "string", enum: ["acne", "manchas", "poros", "idade", "desidratacao"], description: "Preocupação: acne, manchas, poros, idade (sinais de idade) ou desidratacao. Opcional." },
+        passo: { type: "string", enum: ["limpeza", "tratamento", "hidratacao", "protetor"], description: "Passo da rotina: limpeza, tratamento, hidratacao ou protetor (protetor solar). Opcional." },
         preco_max: { type: "number", minimum: 1, description: "Preço máximo por produto, em reais. Opcional." },
         limite: { type: "integer", minimum: 1, maximum: 10, default: 5, description: "Quantos produtos devolver (1 a 10, padrão 5)." }
       },
@@ -172,7 +173,7 @@
     inputSchema: {
       type: "object",
       properties: {
-        tipo_pele: { type: "string", enum: TIPOS, description: "Tipo de pele: oleosa, seca, mista ou normal." }
+        tipo_pele: { type: "string", enum: ["oleosa", "seca", "mista", "normal"], description: "Tipo de pele: oleosa, seca, mista ou normal." }
       },
       required: ["tipo_pele"],
       additionalProperties: false
@@ -203,8 +204,8 @@
     inputSchema: {
       type: "object",
       properties: {
-        condicao: { type: "string", enum: CONDICOES, description: "Condição: acne, anti-age (sinais de idade), melasma ou rosacea." },
-        faixa: { type: "string", enum: FAIXAS, default: "economica", description: "Faixa de preço: economica, media (intermediária) ou premium. Padrão: economica." }
+        condicao: { type: "string", enum: ["acne", "anti-age", "melasma", "rosacea"], description: "Condição: acne, anti-age (sinais de idade), melasma ou rosacea." },
+        faixa: { type: "string", enum: ["economica", "media", "premium"], default: "economica", description: "Faixa de preço: economica, media (intermediária) ou premium. Padrão: economica." }
       },
       required: ["condicao"],
       additionalProperties: false
@@ -264,7 +265,45 @@
     }
   };
 
-  var FERRAMENTAS = [buscarProdutos, explicarTipo, verRotina];
+  var calcularCusto = {
+    name: "calcular_custo_por_dia",
+    title: "Calcular quanto o skincare custa por dia",
+    description: "Calcula quanto um produto de skincare custa por dia de uso, a partir do preço pago, do tamanho do frasco e de quanto se aplica por uso — a mesma conta da página A matemática do frasco. Devolve a duração estimada do frasco, o custo por dia e o custo por mês (30 dias), e o link da página com o comparativo entre a dose que a maioria aplica e a dose recomendada. Conta pura: não compra, não guarda e não envia nada.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        preco_brl: { type: "number", minimum: 0.01, description: "Preço pago pelo produto, em reais (ex.: 47.7)." },
+        tamanho_ml: { type: "number", minimum: 1, description: "Tamanho do frasco em mililitros (ex.: 50). Para produtos vendidos em gramas, use o número igual (1 g ≈ 1 ml)." },
+        dose_ml_por_uso: { type: "number", minimum: 0.01, maximum: 20, description: "Quanto se aplica por uso, em mililitros (ex.: 1 na maioria dos hidratantes; 2 de protetor solar é a dose que a maioria aplica)." },
+        usos_por_dia: { type: "integer", minimum: 1, maximum: 10, default: 1, description: "Quantas vezes por dia o produto é usado (1 = uma vez ao dia). Padrão: 1." }
+      },
+      required: ["preco_brl", "tamanho_ml", "dose_ml_por_uso"],
+      additionalProperties: false
+    },
+    annotations: { readOnlyHint: true },
+    execute: function (args) {
+      args = args || {};
+      var preco = Number(args.preco_brl), tam = Number(args.tamanho_ml), dose = Number(args.dose_ml_por_uso);
+      if (!(preco > 0) || !(tam > 0) || !(dose > 0)) {
+        throw new TypeError("Informe preco_brl, tamanho_ml e dose_ml_por_uso com valores maiores que zero.");
+      }
+      var usos = Math.min(Math.max(parseInt(args.usos_por_dia, 10) || 1, 1), 10);
+      var mlDia = dose * usos;
+      var duracaoDias = tam / mlDia;
+      var custoDia = preco / duracaoDias;
+      return JSON.stringify({
+        dose_total_por_dia_ml: Math.round(mlDia * 100) / 100,
+        frasco_dura_dias: Math.round(duracaoDias * 10) / 10,
+        frasco_dura_semanas: Math.round((duracaoDias / 7) * 10) / 10,
+        custo_por_dia_brl: Math.round(custoDia * 100) / 100,
+        custo_por_mes_brl: Math.round(custoDia * 30 * 100) / 100,
+        comparativo_entre_doses: pagina("/ferramentas/matematica/"),
+        aviso: "Estimativa de duração a partir da dose informada; a dose que a maioria aplica costuma ser maior que a recomendada. Preços conferidos na data indicada; podem ter mudado na loja. Os links de loja são de afiliado: o site pode receber comissão, sem custo extra para quem compra. Sugestão cosmética, não é diagnóstico médico: em caso de acne intensa, lesões, dor ou irritação persistente, procure um dermatologista."
+      });
+    }
+  };
+
+  var FERRAMENTAS = [buscarProdutos, explicarTipo, verRotina, calcularCusto];
 
   // ---------- registro ----------
   // Cada registro recebe um AbortSignal: abortar remove as ferramentas (ex.: ao sair da página).

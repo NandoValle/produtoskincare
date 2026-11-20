@@ -63,7 +63,13 @@
   const lente = document.createElement('div');
   lente.className = 'sonho-lente';
   lente.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(lente);
+  // Palco fixo com overflow:hidden (estilo inline porque a home nao carrega premium.css):
+  // a lente, ao seguir o mouse ate a borda, nao cria rolagem lateral.
+  const palco = document.createElement('div');
+  palco.style.cssText = 'position:fixed;inset:0;z-index:62;pointer-events:none;overflow:hidden';
+  palco.setAttribute('aria-hidden', 'true');
+  palco.appendChild(lente);
+  document.body.appendChild(palco);
   let alvoX = -500, alvoY = -500, x = -500, y = -500, vivo = false;
   addEventListener('pointermove', (e) => {
     if (e.pointerType && e.pointerType !== 'mouse') return;
@@ -76,4 +82,14 @@
     lente.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
     requestAnimationFrame(seguir);
   })();
+})();
+
+/* Som do sonho — carrega o motor de áudio (sons.js) em todas as páginas
+   que já têm este rodapé. O script se protege contra dupla inclusão. */
+(() => {
+  if (document.querySelector('script[src="/sons.js"]')) return;
+  const s = document.createElement('script');
+  s.src = '/sons.js';
+  s.defer = true;
+  document.body.appendChild(s);
 })();

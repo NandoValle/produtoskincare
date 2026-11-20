@@ -41,6 +41,12 @@
 .ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
 .ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
 .ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-icone-evid{flex:none;display:inline-block}
+.ig-filtro{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px}
+.ig-filtro-btn{min-height:40px;padding:6px 16px;border:1px solid var(--linha-2);border-radius:999px;background:var(--papel);color:var(--tinta);font:inherit;font-size:.92rem;cursor:pointer}
+.ig-filtro-btn:hover{border-color:var(--rosa)}
+.ig-filtro-btn[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.ig-filtro .ig-nota{margin:0 0 0 6px}
 .ig-nota{font-size:.88rem;color:var(--suave)}
 .ig-alerta{border-left:4px solid var(--rosa)}
 .ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
@@ -56,7 +62,7 @@
 .ig-card:hover{border-color:var(--rosa)}
 .ig-card h2{font-size:1.35rem;margin:0}
 .ig-card p{color:var(--suave);font-size:.95rem;margin:0}
-.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0;display:inline-flex;align-items:center;gap:6px}
 .ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
 .ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
 .ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
@@ -87,6 +93,12 @@
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -95,7 +107,7 @@
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/" aria-current="page">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/" aria-current="page">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></details></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
@@ -115,34 +127,41 @@
 <div class="ig-cab">
 <h1>Ingredientes de skincare, com o que os estudos dizem</h1>
 <p class="ig-meta">Por Equipe Produto Skincare · Atualizado em <time datetime="2026-11-04">4 de novembro de 2026</time></p>
-<p class="ig-nota">Procura um ativo que não está aqui, ou quer uma sugestão pelo seu objetivo? Veja o <a href="/ferramentas/ativos/">guia de princípios ativos</a>, com 88 ativos e alertas de combinação.</p>
+<p class="ig-nota">Procura um ativo que não está aqui, ou quer uma sugestão pelo seu objetivo? Veja o <a href="/ferramentas/ativos/">guia de princípios ativos</a>, com 88 ativos e alertas de combinação, ou as <a href="/ativos/">fichas de cada ativo</a>.</p>
 <p class="ig-lede">Dez ativos comuns, explicados em linguagem simples: o que são, para quem servem, como usar e qual a força da evidência por trás de cada um. Cada página lista as fontes, com link para o PubMed.</p>
 </div>
 <section aria-labelledby="lista">
 <h2 id="lista" class="ig-rotulo">Os 10 ingredientes</h2>
+<div class="ig-filtro" role="group" aria-label="Filtrar por nível de evidência" hidden>
+<button type="button" class="ig-filtro-btn" data-filtro="todos" aria-pressed="true">Todos</button>
+<button type="button" class="ig-filtro-btn" data-filtro="forte" aria-pressed="false">Forte</button>
+<button type="button" class="ig-filtro-btn" data-filtro="moderada" aria-pressed="false">Moderada</button>
+<button type="button" class="ig-filtro-btn" data-filtro="emergente" aria-pressed="false">Emergente</button>
+<p class="ig-nota" id="ig-filtro-cont" aria-live="polite"></p>
+</div>
 <ul class="ig-grade">
-<li><a class="ig-card" href="/ingredientes/niacinamida/"><h2>Niacinamida</h2><p>Vitamina B3 tópica, bem tolerada; estudos sugerem ajuda com manchas, oleosidade e barreira.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/retinol/"><h2>Retinol e retinoides</h2><p>Família da vitamina A; os de receita são os mais estudados para acne e fotoenvelhecimento. Evitar na gestação.</p><span class="ig-selo forte">Evidência forte</span></a></li>
-<li><a class="ig-card" href="/ingredientes/vitamina-c/"><h2>Vitamina C</h2><p>Antioxidante usado de manhã para viço e manchas; o resultado depende muito da fórmula.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-hialuronico/"><h2>Ácido hialurônico</h2><p>Atrai e retém água; estudos mostram melhora da hidratação, com efeito em rugas menos consistente.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-azelaico/"><h2>Ácido azelaico</h2><p>Estudado em rosácea, acne e melasma; costuma ser opção para pele sensível.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-salicilico/"><h2>Ácido salicílico</h2><p>Esfoliante usado para cravos, acne leve e oleosidade; recomendação condicional em diretriz de acne.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/ceramidas/"><h2>Ceramidas</h2><p>Lipídios da barreira da pele; estudos sugerem conforto e menos ressecamento em pele fragilizada.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-tranexamico/"><h2>Ácido tranexâmico</h2><p>Estudado no melasma por via oral, injetável e tópica; o creme é a forma de venda livre mais comum.</p><span class="ig-selo moderada">Evidência moderada</span></a></li>
-<li><a class="ig-card" href="/ingredientes/peptideo-de-cobre/"><h2>Peptídeo de cobre (GHK-Cu)</h2><p>Muito estudado em laboratório e em animais; em pessoas, a evidência ainda é pequena.</p><span class="ig-selo emergente">Evidência emergente</span></a></li>
-<li><a class="ig-card" href="/ingredientes/protetor-solar/"><h2>Protetor solar (filtros UV)</h2><p>Uso diário tem ensaio randomizado mostrando menos envelhecimento; com cor, ajuda no melasma.</p><span class="ig-selo forte">Evidência forte</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/niacinamida/"><h2>Niacinamida</h2><p>Vitamina B3 tópica, bem tolerada; estudos sugerem ajuda com manchas, oleosidade e barreira.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="forte"><a class="ig-card" href="/ingredientes/retinol/"><h2>Retinol e retinoides</h2><p>Família da vitamina A; os de receita são os mais estudados para acne e fotoenvelhecimento. Evitar na gestação.</p><span class="ig-selo forte"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.4" fill="currentColor"/></svg>Evidência forte</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/vitamina-c/"><h2>Vitamina C</h2><p>Antioxidante usado de manhã para viço e manchas; o resultado depende muito da fórmula.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-hialuronico/"><h2>Ácido hialurônico</h2><p>Atrai e retém água; estudos mostram melhora da hidratação, com efeito em rugas menos consistente.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-azelaico/"><h2>Ácido azelaico</h2><p>Estudado em rosácea, acne e melasma; costuma ser opção para pele sensível.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-salicilico/"><h2>Ácido salicílico</h2><p>Esfoliante usado para cravos, acne leve e oleosidade; recomendação condicional em diretriz de acne.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/ceramidas/"><h2>Ceramidas</h2><p>Lipídios da barreira da pele; estudos sugerem conforto e menos ressecamento em pele fragilizada.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="moderada"><a class="ig-card" href="/ingredientes/acido-tranexamico/"><h2>Ácido tranexâmico</h2><p>Estudado no melasma por via oral, injetável e tópica; o creme é a forma de venda livre mais comum.</p><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span></a></li>
+<li data-evid="emergente"><a class="ig-card" href="/ingredientes/peptideo-de-cobre/"><h2>Peptídeo de cobre (GHK-Cu)</h2><p>Muito estudado em laboratório e em animais; em pessoas, a evidência ainda é pequena.</p><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span></a></li>
+<li data-evid="forte"><a class="ig-card" href="/ingredientes/protetor-solar/"><h2>Protetor solar (filtros UV)</h2><p>Uso diário tem ensaio randomizado mostrando menos envelhecimento; com cor, ajuda no melasma.</p><span class="ig-selo forte"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.4" fill="currentColor"/></svg>Evidência forte</span></a></li>
 
-<li><a class="ig-card" href="/ingredientes/acido-mandelico/"><h2>Ácido mandélico</h2><p>AHA de molécula grande, costuma ser a esfoliação mais gentil; estudos pequenos sugerem melhora de textura e manchas.</p><span class="ig-selo emergente">Evidência emergente</span></a></li>
-<li><a class="ig-card" href="/ingredientes/acido-ferulico/"><h2>Ácido ferúlico</h2><p>Antioxidante vegetal que ajuda a estabilizar vitaminas C e E; evidência maior na fórmula do que no ativo isolado.</p><span class="ig-selo emergente">Evidência emergente</span></a></li>
+<li data-evid="emergente"><a class="ig-card" href="/ingredientes/acido-mandelico/"><h2>Ácido mandélico</h2><p>AHA de molécula grande, costuma ser a esfoliação mais gentil; estudos pequenos sugerem melhora de textura e manchas.</p><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span></a></li>
+<li data-evid="emergente"><a class="ig-card" href="/ingredientes/acido-ferulico/"><h2>Ácido ferúlico</h2><p>Antioxidante vegetal que ajuda a estabilizar vitaminas C e E; evidência maior na fórmula do que no ativo isolado.</p><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span></a></li>
 </ul>
 </section>
 <section aria-labelledby="niveis" id="niveis-sec">
 <h2 id="niveis">Como ler o nível de evidência</h2>
 <p>O selo resume a qualidade e a quantidade dos estudos sobre o <b>ingrediente</b>. Ele não é uma nota para nenhum produto ou marca: dois produtos com o mesmo ativo podem ter concentração, estabilidade e resultado bem diferentes.</p>
 <ul>
-<li><span class="ig-selo forte">Evidência forte</span><br>Há ensaios randomizados de boa qualidade, revisões consistentes ou recomendação forte em diretriz médica.</li>
-<li><span class="ig-selo moderada">Evidência moderada</span><br>Há ensaios em pessoas com resultados favoráveis, mas pequenos, curtos, heterogêneos ou muito ligados a fabricantes.</li>
-<li><span class="ig-selo emergente">Evidência emergente</span><br>A maior parte dos dados vem de laboratório ou de animais; os estudos em pessoas ainda são poucos e pequenos.</li>
+<li><span class="ig-selo forte"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.4" fill="currentColor"/></svg>Evidência forte</span><br>Há ensaios randomizados de boa qualidade, revisões consistentes ou recomendação forte em diretriz médica.</li>
+<li><span class="ig-selo moderada"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.4" fill="currentColor"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência moderada</span><br>Há ensaios em pessoas com resultados favoráveis, mas pequenos, curtos, heterogêneos ou muito ligados a fabricantes.</li>
+<li><span class="ig-selo emergente"><svg class="ig-icone-evid" width="22" height="6" viewBox="0 0 22 6" aria-hidden="true"><circle cx="3" cy="3" r="2.4" fill="currentColor"/><circle cx="11" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="3" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Evidência emergente</span><br>A maior parte dos dados vem de laboratório ou de animais; os estudos em pessoas ainda são poucos e pequenos.</li>
 </ul>
 <p>Quer saber se dois ativos podem ser usados juntos? Use o <a href="/ferramentas/ingredientes/">combinador de ingredientes</a>. Para montar a rotina inteira, veja a <a href="/rotina-de-skincare/">rotina de skincare passo a passo</a> ou faça o <a href="/provador/">quiz de tipo de pele</a>.</p>
 </section>
@@ -154,8 +173,21 @@
 <footer class="ig-foot">
 <p>Conteúdo informativo, não substitui consulta com dermatologista. Este texto ainda não foi revisado por um dermatologista.</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
-</footer>
-</main>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>Quais ingredientes de skincare têm guia e o que cada um faz?</h3>
+<p>O guia explica ativos comuns como niacinamida, retinol, vitamina C, ácido hialurônico, ácido azelaico, ácido salicílico, ceramidas, ácido tranexâmico, peptídeo de cobre e protetor solar, com o nível de evidência de cada um.</p>
+<h3>O que significa evidência forte, moderada ou emergente nos ingredientes?</h3>
+<p>O selo é um resumo da qualidade e da quantidade dos estudos sobre o ingrediente, não uma nota para produto ou marca. Forte: ensaios randomizados de boa qualidade; moderada: ensaios favoráveis, mas pequenos; emergente: mais dados de laboratório ou animais.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quais ingredientes de skincare têm guia e o que cada um faz?", "acceptedAnswer": {"@type": "Answer", "text": "O guia explica ativos comuns como niacinamida, retinol, vitamina C, ácido hialurônico, ácido azelaico, ácido salicílico, ceramidas, ácido tranexâmico, peptídeo de cobre e protetor solar, com o nível de evidência de cada um."}}, {"@type": "Question", "name": "O que significa evidência forte, moderada ou emergente nos ingredientes?", "acceptedAnswer": {"@type": "Answer", "text": "O selo é um resumo da qualidade e da quantidade dos estudos sobre o ingrediente, não uma nota para produto ou marca. Forte: ensaios randomizados de boa qualidade; moderada: ensaios favoráveis, mas pequenos; emergente: mais dados de laboratório ou animais."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -165,10 +197,36 @@
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/" aria-current="page">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/" aria-current="page">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 </footer>
+<script>
+(function(){
+  var barra=document.querySelector('.ig-filtro');
+  var itens=document.querySelectorAll('.ig-grade > li[data-evid]');
+  var cont=document.getElementById('ig-filtro-cont');
+  if(!barra||!itens.length)return;
+  barra.hidden=false;
+  function atualiza(f,rotulo){
+    var vis=0;
+    for(var i=0;i<itens.length;i++){
+      var ok=(f==='todos'||itens[i].getAttribute('data-evid')===f);
+      itens[i].hidden=!ok;
+      if(ok)vis++;
+    }
+    if(cont)cont.textContent=vis+' de '+itens.length+' ativos · filtro: '+rotulo;
+  }
+  barra.addEventListener('click',function(e){
+    var b=e.target.closest('.ig-filtro-btn');
+    if(!b)return;
+    var bts=barra.querySelectorAll('.ig-filtro-btn');
+    for(var j=0;j<bts.length;j++)bts[j].setAttribute('aria-pressed',String(bts[j]===b));
+    atualiza(b.getAttribute('data-filtro'),b.textContent);
+  });
+  atualiza('todos','Todos');
+})();
+</script>
 </body>
 </html>
