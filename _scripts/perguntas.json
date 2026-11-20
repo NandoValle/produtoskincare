@@ -2321,11 +2321,401 @@
  "/ativos/": [
   [
    "Quantos ativos têm ficha no site?",
-   "São 88 ativos em 12 categorias. Cada ficha diz o que o ativo é, para que serve, para quem, como usar, cuidados, combinações e o que fazer na gestação."
+   "São 127 ativos em 14 categorias. Cada ficha diz o que o ativo é, para que serve, para quem, como usar, cuidados, combinações e o que fazer na gestação."
   ],
   [
    "Qual a diferença entre as fichas de ativos e as fichas de ingredientes?",
    "As fichas de ativos resumem orientações de uso e não citam estudos. As fichas de ingredientes têm nível de evidência e fontes no PubMed; os ativos que já têm uma levam direto para ela."
+  ]
+ ],
+ "/ativos/homosalato/": [
+  [
+   "O que é homosalato e para que serve?",
+   "Filtro UVB clássico, muito usado nos protetores americanos. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar homosalato?",
+   "Manhã, em concentração de até 7,34% (limite da UE); até 15% nos EUA. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/octisalato/": [
+  [
+   "O que é octisalato e para que serve?",
+   "Filtro UVB fraco, usado para completar o FPS e ajudar a dissolver outros filtros. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar octisalato?",
+   "Manhã, em concentração de até 5% (UE e EUA). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/octinoxato/": [
+  [
+   "O que é octinoxato e para que serve?",
+   "Um dos filtros UVB mais usados no mundo, em queda nas fórmulas novas. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar octinoxato?",
+   "Manhã, em concentração de até 10% (limite da UE); até 7,5% nos EUA. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/oxibenzona/": [
+  [
+   "O que é oxibenzona e para que serve?",
+   "Filtro UVB e UVA curto, cada vez menos usado. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar oxibenzona?",
+   "Manhã, em concentração de até 6% no rosto e 2,2% no corpo (UE); até 6% nos EUA. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/ensulizol/": [
+  [
+   "O que é ensulizol e para que serve?",
+   "Filtro UVB solúvel em água: permite texturas leves, de gel e sérum. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar ensulizol?",
+   "Manhã, em concentração de até 8% (limite da UE); até 4% nos EUA. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/drometrizol-trisiloxano/": [
+  [
+   "O que é drometrizol trisiloxano e para que serve?",
+   "Filtro UVB e UVA fotoestável, patenteado pela L'Oréal. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar drometrizol trisiloxano?",
+   "Manhã, em concentração de até 15% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/mexoryl-400/": [
+  [
+   "O que é mexoryl 400 e para que serve?",
+   "Primeiro filtro dedicado ao UVA longo (380 a 400 nm), aprovado na UE em 2021. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar mexoryl 400?",
+   "Manhã, em concentração de até 3% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/tris-bifenil-triazina/": [
+  [
+   "O que é tris-bifenil triazina e para que serve?",
+   "Filtro em micropartículas que cobre UVB e UVA curto, muito fotoestável. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar tris-bifenil triazina?",
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/iscotrizinol/": [
+  [
+   "O que é iscotrizinol e para que serve?",
+   "Filtro UVB muito eficiente, parente da etilhexil triazona. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar iscotrizinol?",
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/polissilicone-15/": [
+  [
+   "O que é polissilicone-15 e para que serve?",
+   "Filtro UVB em forma de silicone: toque seco e boa aderência à pele. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar polissilicone-15?",
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/bisdisulizol-dissodico/": [
+  [
+   "O que é bisdisulizol dissódico e para que serve?",
+   "Filtro UVA solúvel em água, para fórmulas leves. Costuma ser indicado para proteção solar."
+  ],
+  [
+   "Como usar bisdisulizol dissódico?",
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/adenosina/": [
+  [
+   "O que é adenosina e para que serve?",
+   "Molécula presente em todas as células; em cosméticos, é ativo antirrugas reconhecido pela Coreia do Sul a partir de 0,04%. Costuma ser indicado para rugas e firmeza, textura e falta de viço."
+  ],
+  [
+   "Como usar adenosina?",
+   "Manhã ou noite, em concentração usual de 0,04% a 0,1%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/carnosina/": [
+  [
+   "O que é carnosina e para que serve?",
+   "Dipeptídeo antiglicação: ajuda a frear o enrijecimento do colágeno causado pelo açúcar. Costuma ser indicado para rugas e firmeza, textura e falta de viço."
+  ],
+  [
+   "Como usar carnosina?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/pro-xylane/": [
+  [
+   "O que é pro-Xylane e para que serve?",
+   "Derivado de um açúcar da madeira, patenteado pela L'Oréal, que estimula componentes da matriz da pele. Costuma ser indicado para rugas e firmeza, desidratação."
+  ],
+  [
+   "Como usar pro-Xylane?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/colageno-hidrolisado/": [
+  [
+   "O que é colágeno hidrolisado e para que serve?",
+   "Fragmentos de colágeno que formam um filme hidratante na superfície: não penetram nem repõem o colágeno da pele. Costuma ser indicado para desidratação, textura e falta de viço."
+  ],
+  [
+   "Como usar colágeno hidrolisado?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/matrixyl-3000/": [
+  [
+   "O que é matrixyl 3000 e para que serve?",
+   "Dupla de peptídeos sinalizadores que imitam fragmentos de colágeno e estimulam a renovação da matriz da pele. Costuma ser indicado para rugas e firmeza, textura e falta de viço."
+  ],
+  [
+   "Como usar matrixyl 3000?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/snap-8/": [
+  [
+   "O que é SNAP-8 e para que serve?",
+   "Peptídeo da mesma família do Argireline, voltado às rugas de expressão. Costuma ser indicado para rugas e firmeza."
+  ],
+  [
+   "Como usar SNAP-8?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/eyeseryl/": [
+  [
+   "O que é eyeseryl e para que serve?",
+   "Peptídeo voltado a bolsas e inchaço sob os olhos. Costuma ser indicado para olheiras e inchaço."
+  ],
+  [
+   "Como usar eyeseryl?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-lipoico/": [
+  [
+   "O que é ácido lipoico e para que serve?",
+   "Antioxidante solúvel em água e em óleo. Costuma ser indicado para rugas e firmeza, textura e falta de viço."
+  ],
+  [
+   "Como usar ácido lipoico?",
+   "Noite, em concentração usual de 1% a 5%. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/idebenona/": [
+  [
+   "O que é idebenona e para que serve?",
+   "Análogo sintético da coenzima Q10, com poder antioxidante maior. Costuma ser indicado para rugas e firmeza, textura e falta de viço."
+  ],
+  [
+   "Como usar idebenona?",
+   "Manhã ou noite, em concentração usual de 0,5% a 1%. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/glutationa/": [
+  [
+   "O que é glutationa e para que serve?",
+   "Antioxidante natural do organismo, vendido também como clareador. Costuma ser indicado para manchas e melasma, textura e falta de viço."
+  ],
+  [
+   "Como usar glutationa?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/ergotioneina/": [
+  [
+   "O que é ergotioneína e para que serve?",
+   "Aminoácido antioxidante de cogumelos, com transportador próprio nas células. Costuma ser indicado para rugas e firmeza, sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar ergotioneína?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/silimarina/": [
+  [
+   "O que é silimarina e para que serve?",
+   "Flavonoide antioxidante que reduz a oxidação do sebo, ligada ao surgimento da acne. Costuma ser indicado para oleosidade e poros, acne e cravos, manchas e melasma."
+  ],
+  [
+   "Como usar silimarina?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/pycnogenol/": [
+  [
+   "O que é pycnogenol e para que serve?",
+   "Extrato rico em procianidinas, antioxidante e protetor dos vasos. Costuma ser indicado para manchas e melasma, rugas e firmeza."
+  ],
+  [
+   "Como usar pycnogenol?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-elagico/": [
+  [
+   "O que é ácido elágico e para que serve?",
+   "Polifenol de frutas vermelhas e romã que inibe a tirosinase, a enzima da melanina. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar ácido elágico?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/hexilresorcinol/": [
+  [
+   "O que é hexilresorcinol e para que serve?",
+   "Clareador da família dos resorcinóis, com ação antiglicação e antioxidante. Costuma ser indicado para manchas e melasma, rugas e firmeza."
+  ],
+  [
+   "Como usar hexilresorcinol?",
+   "Manhã ou noite, em concentração usual de 0,5% a 1%. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/n-acetilglucosamina/": [
+  [
+   "O que é n-acetilglucosamina e para que serve?",
+   "Açúcar aminado, precursor do ácido hialurônico, que também reduz a produção de melanina. Costuma ser indicado para manchas e melasma, desidratação."
+  ],
+  [
+   "Como usar n-acetilglucosamina?",
+   "Manhã ou noite, em concentração usual de 2% a 4%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/sepiwhite/": [
+  [
+   "O que é sepiwhite e para que serve?",
+   "Clareador que bloqueia o sinal hormonal (alfa-MSH) que dispara a produção de melanina. Costuma ser indicado para manchas e melasma."
+  ],
+  [
+   "Como usar sepiwhite?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/trealose/": [
+  [
+   "O que é trealose e para que serve?",
+   "Açúcar que protege as células contra a desidratação e o estresse. Costuma ser indicado para desidratação, sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar trealose?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/hidroxietilureia/": [
+  [
+   "O que é hidroxietilureia e para que serve?",
+   "Versão mais estável e suave da ureia, só para hidratar. Costuma ser indicado para desidratação, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar hidroxietilureia?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/sacarideo-isomerato/": [
+  [
+   "O que é sacarídeo isomerato e para que serve?",
+   "Carboidrato que se liga à queratina e segura água por até 72 horas, segundo o fabricante. Costuma ser indicado para desidratação, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar sacarídeo isomerato?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/dimeticona/": [
+  [
+   "O que é dimeticona e para que serve?",
+   "Silicone que forma um filme respirável, reduz a perda de água e dá toque sedoso. Costuma ser indicado para ressecamento e barreira danificada, textura e falta de viço."
+  ],
+  [
+   "Como usar dimeticona?",
+   "Manhã ou noite, em concentração usual de 1% a 30%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/oleo-de-jojoba/": [
+  [
+   "O que é óleo de jojoba e para que serve?",
+   "Cera líquida muito parecida com o sebo humano, bem tolerada até por pele oleosa. Costuma ser indicado para ressecamento e barreira danificada, oleosidade e poros."
+  ],
+  [
+   "Como usar óleo de jojoba?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/canabidiol/": [
+  [
+   "O que é canabidiol e para que serve?",
+   "Composto da cannabis sem efeito psicoativo, estudado para inflamação e produção de sebo. Costuma ser indicado para ."
+  ],
+  [
+   "Como usar canabidiol?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/pea-palmitoiletanolamida/": [
+  [
+   "O que é palmitoiletanolamida e para que serve?",
+   "Lipídio produzido pelo próprio corpo, que reduz coceira e inflamação. Costuma ser indicado para sensibilidade e vermelhidão."
+  ],
+  [
+   "Como usar palmitoiletanolamida?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/calendula/": [
+  [
+   "O que é calêndula e para que serve?",
+   "Extrato tradicional para acalmar e ajudar na recuperação da pele. Costuma ser indicado para sensibilidade e vermelhidão, ressecamento e barreira danificada."
+  ],
+  [
+   "Como usar calêndula?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/acido-succinico/": [
+  [
+   "O que é ácido succínico e para que serve?",
+   "Ácido de origem fermentada, suave, com ação antimicrobiana e sebo-reguladora. Costuma ser indicado para acne e cravos, oleosidade e poros."
+  ],
+  [
+   "Como usar ácido succínico?",
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+  ]
+ ],
+ "/ativos/betaina-salicilato/": [
+  [
+   "O que é betaína salicilato e para que serve?",
+   "BHA mais suave, comum em produtos coreanos, onde o ácido salicílico tem limite baixo. Costuma ser indicado para acne e cravos, oleosidade e poros, textura e falta de viço."
+  ],
+  [
+   "Como usar betaína salicilato?",
+   "Noite, em concentração de até 4% (equivale a cerca de 2% de ácido salicílico). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+  ]
+ ],
+ "/ativos/autobronzeadores-dha-eritrulose/": [
+  [
+   "O que é DHA e eritrulose e para que serve?",
+   "Açúcares que reagem com a camada mais superficial da pele e a escurecem em algumas horas, sem sol. Costuma ser indicado para ."
+  ],
+  [
+   "Como usar DHA e eritrulose?",
+   "Noite, em concentração de até 10% (limite da UE para a DHA). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ]
 }
