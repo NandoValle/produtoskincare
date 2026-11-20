@@ -36,6 +36,7 @@ MAIS = [
     ("/combina/", "Posso usar junto?", ("combina",)),
     ("/queridinhos-do-skincare/", "Queridinhos", ("queridinhos-do-skincare",)),
     ("/pergunte/", "Pergunte à IA", ("pergunte",)),
+    ("/newsletter/", "Newsletter", ("newsletter",)),
 ]
 
 INICIO, FIM = "<!-- menu:inicio -->", "<!-- menu:fim -->"
@@ -87,7 +88,7 @@ def bloco(caminho, recuo=False):
 def paginas():
     for p in sorted(RAIZ.rglob("index.html")):
         rel = p.relative_to(RAIZ)
-        if rel.parts[0] in IGNORAR_PASTAS or str(rel) in IGNORAR_PAGINAS:
+        if rel.parts[0] in IGNORAR_PASTAS or rel.as_posix() in IGNORAR_PAGINAS:
             continue
         yield p, "/" + str(rel.parent).replace("\\", "/").strip(".") + "/"
     # Página de erro: não é index.html, mas também leva o menu (caminho fictício, nada fica marcado).

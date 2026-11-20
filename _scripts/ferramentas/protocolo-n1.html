@@ -1,0 +1,273 @@
+<article>
+<div class="ig-cab">
+<h1>Protocolo N=1: uma mudança, 35 dias, um veredito</h1>
+<p class="ig-lede">Para testar UMA mudança na sua rotina e ver se ela fez diferença na sua pele: 7 dias de linha de base, 28 de intervenção e um veredito lido nos seus próprios números. N=1 quer dizer um sujeito — você.</p>
+<p class="ig-meta">Registros e curva ficam neste aparelho e aparecem também no <a href="/ferramentas/diario/">Diário da pele</a>. Nada é enviado ao site. Não é ensaio clínico nem diagnóstico.</p>
+</div>
+
+<section class="ig-caixa" aria-labelledby="n1-protocolo">
+<h2 id="n1-protocolo">O protocolo 7 + 28</h2>
+<p><strong>7 dias · linha de base.</strong> Não mude nada na sua rotina. Registre como a sua pele está — é a referência contra a qual o depois é comparado.</p>
+<p><strong>28 dias · intervenção.</strong> Faça SÓ a mudança que você escolheu. Nada mais muda. Registre toda semana, sempre no mesmo dia.</p>
+<p class="ig-nota">Os 28 dias cobrem um ciclo completo de renovação da pele — o mesmo recorte do <a href="/ferramentas/experimento/">Experimento Coletivo #01</a>. Para ativos como o retinol, o resultado pode levar mais tempo: o <a href="/ferramentas/12-semanas/">Modo 12 semanas</a> acompanha a introdução inteira.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-regras">
+<h2 id="n1-regras">As cinco regras do protocolo</h2>
+<ul class="ft-regras">
+<li><strong>Uma mudança por vez</strong> — só a que você escreveu abaixo. Nada de produto novo junto.</li>
+<li><strong>A linha de base vem primeiro</strong> — sem ela, não há comparação que sustente um veredito.</li>
+<li><strong>Registre toda semana, sempre no mesmo dia</strong> — e no mesmo horário, se der.</li>
+<li><strong>Fotos sempre iguais</strong> — mesma luz, mesmo ângulo. O <a href="/ferramentas/diario/">Diário da pele</a> guarda as suas.</li>
+<li><strong>O veredito sai dos números, não da memória</strong> — linha de base × intervenção, com o que você registrou.</li>
+</ul>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-montar">
+<h2 id="n1-montar">Montar o experimento</h2>
+<label class="ft-rotulo" for="n1-pergunta">A sua pergunta</label>
+<input class="ft-campo" type="text" id="n1-pergunta" maxlength="140" placeholder="Ex.: A niacinamida melhora a textura da minha pele?">
+<label class="ft-rotulo" for="n1-mudanca">A ÚNICA mudança da intervenção</label>
+<input class="ft-campo" type="text" id="n1-mudanca" maxlength="140" placeholder="Ex.: Sérum de niacinamida 10% à noite, antes do hidratante">
+<label class="ft-rotulo" for="n1-inicio">Data de início</label>
+<input class="ft-campo" type="date" id="n1-inicio">
+<button class="ft-btn" type="button" id="n1-iniciar">Iniciar (ou reiniciar) o meu experimento</button>
+<p class="ig-nota" id="n1-cfg">Reiniciar apaga o acompanhamento do experimento atual e começa um novo. Os registros já salvos no Diário continuam no aparelho.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-registro">
+<h2 id="n1-registro">O seu registro da semana</h2>
+<p class="ft-banner base" id="n1-fase">Monte o experimento acima para começar.</p>
+<p class="ig-nota">Toque em um número por linha. 5 é o melhor dia, para você — a escala é sua.</p>
+<div class="ft-escalas" id="n1-escalas"></div>
+<label class="ft-rotulo" for="n1-nota">Nota desta semana (opcional)</label>
+<textarea class="ft-campo" id="n1-nota" rows="2" placeholder="Ex.: Semana tranquila, dormi bem; leve descamação no queixo."></textarea>
+<button class="ft-btn" type="button" id="n1-salvar">Salvar registro da semana</button>
+<p class="ig-nota" id="n1-recado" role="status" aria-live="polite"></p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="n1-veredito">
+<h2 id="n1-veredito">O seu veredito</h2>
+<div id="n1-curva"></div>
+<div id="n1-tabela"></div>
+<p class="ig-nota" id="n1-aderencia"></p>
+<p class="ig-nota">N=1 não prova causa: luz, ciclo, sono, estresse e o que você comeu também mexem com a pele. O veredito é um sinal seu — se a mudança valeu, siga com ela; se nada mudou, o seu dado também é resposta.</p>
+<div class="ft-cards-acoes">
+<button class="ft-btn ft-sec" type="button" id="n1-exportar">Exportar o meu veredito (.json)</button>
+<a class="ft-mini" href="/ferramentas/relatorio/">Levar para a consulta</a>
+<a class="ft-mini" href="/ferramentas/backup/">Backup dos seus dados</a>
+</div>
+</section>
+
+<p class="ig-nota"><strong>Não é diagnóstico médico.</strong> Experimento educacional de acompanhamento pessoal. Em caso de irritação, pare a mudança e procure um dermatologista (<a href="https://www.sbd.org.br/encontre-um-dermatologista/" target="_blank" rel="noopener">busca da SBD</a>). Se a sua pergunta for sobre protetor solar e marca branca, o <a href="/ferramentas/experimento/">Experimento Coletivo #01</a> já roda esse protocolo em grupo.</p>
+</article>
+<script src="/evolucao.js"></script>
+<script>
+(function () {
+  "use strict";
+  var E = window.PSEvolucao;
+  if (!E) return;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var BD_CFG = "ps_n1", TOTAL = 35, BASE = 7;
+  var escolhas = {};
+
+  function cfg() { try { return JSON.parse(localStorage.getItem(BD_CFG) || "{}"); } catch (e) { return {}; } }
+  function salvarCfg(c) { localStorage.setItem(BD_CFG, JSON.stringify(c)); }
+  function somaDias(iso, n) {
+    var d = new Date(iso + "T12:00:00");
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function fmt(iso) { return E.fmtData(iso); }
+
+  function faseTexto(inicio, dia) {
+    if (!inicio) return { cls: "base", txt: "Monte o experimento acima para começar. O dia 1 é a linha de base." };
+    if (dia <= BASE) return { cls: "base", txt: "Dia " + dia + " de 35 · linha de base: não mude nada na rotina — só registre." };
+    if (dia <= TOTAL) return { cls: "inter", txt: "Dia " + dia + " de 35 · intervenção: faça SÓ a mudança do experimento e registre toda semana." };
+    return { cls: "fim", txt: "35 dias completos. Leia o veredito abaixo — e guarde-o no backup ou leve para a consulta." };
+  }
+
+  function registrosN1(lista) {
+    var c = cfg();
+    if (!c.inicio) return [];
+    var fim = somaDias(c.inicio, TOTAL - 1);
+    return (lista || []).filter(function (r) {
+      return r.data >= c.inicio && r.data <= fim && E.mediaScores(r.scores) !== null;
+    });
+  }
+
+  function media(regs, dim) {
+    var v = [];
+    regs.forEach(function (r) {
+      if (dim === "_media") { var m = E.mediaScores(r.scores); if (m !== null) v.push(m); }
+      else if (typeof r.scores[dim] === "number") v.push(r.scores[dim]);
+    });
+    if (!v.length) return null;
+    return v.reduce(function (a, b) { return a + b; }, 0) / v.length;
+  }
+
+  function montarEscalas() {
+    var raiz = $("n1-escalas");
+    raiz.innerHTML = E.DIMS.map(function (d) {
+      return '<div class="ft-escala-item">' +
+        '<p class="rot" id="n1rot-' + d.id + '">' + esc(d.rotulo) + "<small>" + esc(d.de) + " → " + esc(d.para) + "</small></p>" +
+        '<div class="ft-escala" role="radiogroup" aria-labelledby="n1rot-' + d.id + '" data-dim="' + d.id + '">' +
+        [1, 2, 3, 4, 5].map(function (n) {
+          return '<button type="button" role="radio" aria-checked="false" data-v="' + n + '" aria-label="' + esc(d.rotulo) + " " + n + ' de 5">' + n + "</button>";
+        }).join("") +
+        "</div></div>";
+    }).join("");
+    raiz.querySelectorAll(".ft-escala").forEach(function (grupo) {
+      var dim = grupo.getAttribute("data-dim");
+      grupo.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var v = Number(b.getAttribute("data-v"));
+          escolhas[dim] = (escolhas[dim] === v) ? undefined : v;
+          grupo.querySelectorAll("button").forEach(function (x) {
+            x.setAttribute("aria-checked", String(Number(x.getAttribute("data-v")) === escolhas[dim]));
+          });
+        });
+      });
+    });
+  }
+
+  function render() {
+    var c = cfg();
+    if (c.inicio) {
+      $("n1-pergunta").value = c.pergunta || "";
+      $("n1-mudanca").value = c.mudanca || "";
+      $("n1-inicio").value = c.inicio;
+      $("n1-cfg").textContent = "Experimento em curso desde " + fmt(c.inicio) + " · " + (c.pergunta || "sem pergunta") + " · mudança única: " + (c.mudanca || "—");
+    } else {
+      $("n1-cfg").textContent = "Monte o experimento: escreva a pergunta e a única mudança, confira a data e inicie.";
+    }
+    var dia = c.inicio ? E.diffDias(c.inicio, E.dataHoje()) + 1 : 1;
+    var f = faseTexto(c.inicio, dia);
+    var banner = $("n1-fase");
+    banner.className = "ft-banner " + f.cls;
+    banner.textContent = f.txt;
+
+    E.registros().then(function (lista) {
+      var regs = registrosN1(lista);
+      var a = E.analisar(regs);
+      $("n1-curva").innerHTML = a && a.serie && a.serie.length
+        ? E.graficoSVG(a)
+        : '<p class="ig-nota">A curva aparece com o primeiro registro avaliado.</p>';
+
+      var c2 = cfg();
+      var base = [], inter = [];
+      if (c2.inicio) {
+        var corte = somaDias(c2.inicio, BASE - 1);
+        base = regs.filter(function (r) { return r.data <= corte; });
+        inter = regs.filter(function (r) { return r.data > corte; });
+      }
+      if (!base.length || !inter.length) {
+        $("n1-tabela").innerHTML = '<p class="ig-nota">O veredito precisa de pelo menos um registro na linha de base e um na intervenção. ' +
+          (base.length ? "A linha de base já tem " + base.length + " registro(s)." : "") +
+          (inter.length ? " A intervenção já tem " + inter.length + " registro(s)." : "") + "</p>";
+      } else {
+        var linhas = E.DIMS.map(function (d) { return { id: d.id, rotulo: d.rotulo }; });
+        linhas.push({ id: "_media", rotulo: "Como um todo" });
+        var corpo = linhas.map(function (d) {
+          var mb = media(base, d.id), mi = media(inter, d.id);
+          var delta = (mb !== null && mi !== null) ? mi - mb : null;
+          var dTxt = "—";
+          if (delta !== null) {
+            if (Math.abs(delta) < 0.5) dTxt = "estável";
+            else dTxt = (delta > 0 ? "↑ " : "↓ ") + Math.abs(delta).toFixed(1);
+          }
+          return "<tr><td>" + esc(d.rotulo) + "</td><td>" + (mb === null ? "—" : mb.toFixed(1)) +
+            "</td><td>" + (mi === null ? "—" : mi.toFixed(1)) + "</td><td>" + dTxt + "</td></tr>";
+        }).join("");
+        $("n1-tabela").innerHTML = '<div class="ft-rolagem"><table class="ft-tabela"><thead><tr><th>Dimensão</th><th>Linha de base</th><th>Intervenção</th><th>Mudança</th></tr></thead><tbody>' +
+          corpo + "</tbody></table></div>";
+      }
+
+      var dias = c2.inicio ? Math.min(TOTAL, Math.max(1, E.diffDias(c2.inicio, E.dataHoje()) + 1)) : 0;
+      var semanas = Math.max(1, Math.ceil(dias / 7));
+      var ader = Math.min(1, regs.length / semanas);
+      $("n1-aderencia").textContent = c2.inicio
+        ? "Registros: " + regs.length + " em " + semanas + " semana(s) de acompanhamento — aderência " + Math.round(ader * 100) + "%. 5 é o melhor dia, para você; as médias são das suas notas."
+        : "Monte o experimento para ver a aderência.";
+    });
+  }
+
+  $("n1-iniciar").addEventListener("click", function () {
+    var pergunta = ($("n1-pergunta").value || "").trim();
+    var mudanca = ($("n1-mudanca").value || "").trim();
+    var inicio = $("n1-inicio").value || E.dataHoje();
+    if (!pergunta || !mudanca) {
+      $("n1-recado").textContent = "Escreva a pergunta e a única mudança para começar.";
+      return;
+    }
+    salvarCfg({ pergunta: pergunta, mudanca: mudanca, inicio: inicio, versao: "1.0" });
+    $("n1-recado").textContent = "Experimento iniciado em " + fmt(inicio) + ". Registre agora a linha de base.";
+    render();
+  });
+
+  $("n1-salvar").addEventListener("click", function () {
+    var scores = {}, tem = false;
+    E.DIMS.forEach(function (d) {
+      if (typeof escolhas[d.id] === "number") { scores[d.id] = escolhas[d.id]; tem = true; }
+    });
+    if (!tem) { $("n1-recado").textContent = "Marque pelo menos uma escala para salvar."; return; }
+    var nota = ($("n1-nota").value || "").trim();
+    E.salvarHoje({ nota: nota ? "N=1 · " + nota : "N=1", scores: scores }).then(function () {
+      $("n1-recado").textContent = "Registro do Protocolo N=1 salvo neste aparelho.";
+      $("n1-nota").value = "";
+      escolhas = {};
+      document.querySelectorAll(".ft-escala button").forEach(function (b) { b.setAttribute("aria-checked", "false"); });
+      render();
+    }).catch(function (e) {
+      $("n1-recado").textContent = "Não foi possível salvar: " + e.message;
+    });
+  });
+
+  $("n1-exportar").addEventListener("click", function () {
+    E.registros().then(function (lista) {
+      var regs = registrosN1(lista);
+      if (regs.length < 1) { $("n1-recado").textContent = "Ainda não há registros para exportar."; return; }
+      var c = cfg();
+      var corte = c.inicio ? somaDias(c.inicio, BASE - 1) : null;
+      var base = regs.filter(function (r) { return corte && r.data <= corte; });
+      var inter = regs.filter(function (r) { return corte && r.data > corte; });
+      var dims = E.DIMS.map(function (d) { return d.id; }).concat(["_media"]);
+      var mediasB = {}, mediasI = {}, delta = {};
+      dims.forEach(function (id) {
+        var k = id === "_media" ? "como_um_todo" : id;
+        mediasB[k] = media(base, id);
+        mediasI[k] = media(inter, id);
+        delta[k] = (mediasB[k] !== null && mediasI[k] !== null) ? Math.round((mediasI[k] - mediasB[k]) * 100) / 100 : null;
+      });
+      var dias = c.inicio ? Math.min(TOTAL, Math.max(1, E.diffDias(c.inicio, E.dataHoje()) + 1)) : 0;
+      var pacote = {
+        protocolo: "n1-solo",
+        versao_metodo: "1.0",
+        pergunta: c.pergunta || null,
+        mudanca: c.mudanca || null,
+        inicio: c.inicio || null,
+        dias_uso: dias,
+        aderencia: Math.min(1, regs.length / Math.max(1, Math.ceil(dias / 7))),
+        medias: { linha_base: mediasB, intervencao: mediasI },
+        delta: delta,
+        registros: regs.map(function (r) { return { data: r.data, scores: r.scores, nota: r.nota || "" }; })
+      };
+      var blob = new Blob([JSON.stringify(pacote, null, 2)], { type: "application/json" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "meu-experimento-n1-" + E.dataHoje() + ".json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      $("n1-recado").textContent = "Veredito exportado. O arquivo é seu — guarde-o no backup ou leve para a consulta.";
+    });
+  });
+
+  montarEscalas();
+  if (!($("n1-inicio").value)) $("n1-inicio").value = E.dataHoje();
+  render();
+})();
+</script>

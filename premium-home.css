@@ -78,7 +78,7 @@ summary::-webkit-details-marker { display: none; }
 .ps-assurances { display: flex; gap: 28px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding: 30px 0 34px; margin-top: 8px; font-size: 10px; color: var(--muted); letter-spacing: .035em; }
 .ps-assurances span + span { padding-left: 28px; border-left: 1px solid var(--line); }
 .ps-intro { padding: 132px 0 70px; text-align: center; }
-.ps-intro::before { content: ''; display: block; width: 1px; height: 48px; background: #b6a68c; margin: 0 auto 36px; }
+.ps-intro::before { content: ''; display: block; width: 1px; height: 48px; background: #b6a68c; margin: 0 auto 36px; position: relative; z-index: 1; }
 .ps-intro h2 { font-size: clamp(42px,4.4vw,64px); line-height: 1.12; letter-spacing: -.02em; margin-bottom: 28px; }
 .ps-intro p { max-width: 560px; margin-inline: auto; font-size: 15px; font-weight: 300; color: var(--muted); }
 .ps-section { padding: 90px 0; }
@@ -93,6 +93,14 @@ summary::-webkit-details-marker { display: none; }
 .ps-texture-cream { background-image: url('/img/tipo-seca.webp'); }
 .ps-texture-balance { background-image: url('/img/tipo-mista.webp'); }
 .ps-texture-soft { background-image: url('/img/tipo-normal.webp'); }
+/* Bio-texturas — fundos de seção e divisor (galeria "Ciência Orgânica") */
+.ps-fundo { position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.ps-fundo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(252,251,247,.80), rgba(252,251,247,.72)); pointer-events: none; }
+.ps-fundo > * { position: relative; z-index: 1; }
+.ps-fundo-cristais { background-image: url('/img/textura-cristais-niacinamida.webp'); }
+.ps-fundo-emulsao { background-image: url('/img/textura-emulsao-dourada.webp'); }
+.ps-fundo-gel { background-image: url('/img/textura-microbolhas-ha.webp'); }
+.ps-divisor { height: clamp(120px, 14vw, 190px); background-size: cover; background-position: center; background-repeat: no-repeat; }
 .ps-skin small { font-size: 10px; line-height: 1.6; color: var(--muted); letter-spacing: .015em; }
 .ps-skin h3 { margin: 8px 0 12px; font-size: 38px; line-height: 1.12; letter-spacing: -.01em; }
 .ps-skin p { color: var(--muted); font-size: 13px; line-height: 1.8; margin-bottom: 28px; }
@@ -184,9 +192,12 @@ summary::-webkit-details-marker { display: none; }
   .ps-header { min-height: 80px; }
   .ps-header > .ps-navigation { display: none; }
   .ps-mobile-menu { display: block; }
-  .ps-mobile-menu > summary { list-style: none; min-height: 44px; display: flex; align-items: center; gap: 16px; padding: 10px 16px; border: 1px solid #b9ac95; cursor: pointer; font-size: 11px; }
-  .ps-mobile-menu > summary::after { content: '+'; color: var(--gold); font-size: 18px; line-height: 1; }
-  .ps-mobile-menu[open] > summary::after { content: '−'; }
+  /* Mesmo botão das outras páginas (premium.css .ps-menu): pílula com "Menu" e duas linhas que viram um X. */
+  .ps-mobile-menu > summary { position: relative; list-style: none; min-height: 44px; display: flex; align-items: center; padding: 9px 42px 9px 16px; border: 1px solid #b9ac95; border-radius: 999px; background: transparent; cursor: pointer; font-size: 12px; }
+  .ps-mobile-menu > summary::before, .ps-mobile-menu > summary::after { content: ''; position: absolute; right: 16px; top: calc(50% - 3px); width: 16px; height: 1px; background: currentColor; transition: transform .3s ease; }
+  .ps-mobile-menu > summary::after { top: calc(50% + 3px); }
+  .ps-mobile-menu[open] > summary::before { transform: translateY(3px) rotate(45deg); }
+  .ps-mobile-menu[open] > summary::after { transform: translateY(-3px) rotate(-45deg); }
   .ps-mobile-panel { position: absolute; top: calc(100% + 1px); left: 0; right: 0; padding: 24px; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 16px 30px #292a2610; max-height: calc(100dvh - 104px); overflow-y: auto; overscroll-behavior: contain; }
   .ps-mobile-panel .ps-navigation { display: block; margin: 0; }
   .ps-mobile-panel .ps-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
@@ -213,7 +224,6 @@ summary::-webkit-details-marker { display: none; }
   .ps-header { gap: 12px; }
   .ps-brand { font-size: 15px; gap: 9px; }
   .ps-monogram { width: 32px; height: 32px; font-size: 14px; }
-  .ps-mobile-menu > summary { gap: 12px; padding-inline: 13px; }
   .ps-hero { display: flex; flex-direction: column; gap: 32px; padding-top: 0; min-height: 0; }
   .ps-hero-copy { width: 100%; padding: 46px 0 0; }
   .ps-eyebrow { font-size: 9px; letter-spacing: .18em; margin-bottom: 25px; }

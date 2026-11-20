@@ -1128,6 +1128,30 @@
    "Não. A lista fica salva só no aparelho, sem cadastro, e o site não a recebe. A análise usa as regras do verificador e olha só os ativos que reconhece, então convém conferir sempre a embalagem."
   ]
  ],
+ "/ferramentas/precos/": [
+  [
+   "De onde vêm os preços?",
+   "Da conferência da equipe nas lojas, com a data registrada em cada produto, e de feeds oficiais de afiliado quando disponíveis. Toda observação guarda loja, data e link."
+  ],
+  [
+   "O que significa “em construção”?",
+   "Que ainda não há histórico suficiente para comparar o preço de hoje. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
+  ],
+  [
+   "Posso ser avisado quando o preço cair?",
+   "Sim, nas páginas de produto: o alerta fica guardado só no seu aparelho, sem cadastro. Quando você voltar ao site, se o preço tiver atingido o valor que você escolheu, o aviso aparece."
+  ]
+ ],
+ "/ferramentas/protocolo-n1/": [
+  [
+   "O que é o Protocolo N=1 do Produto Skincare?",
+   "O Protocolo N=1 é uma ferramenta gratuita para testar uma mudança por vez na sua rotina de skincare. São 7 dias de linha de base e 28 de intervenção, com registro semanal, curva e um veredito que compara as duas fases. N=1 quer dizer um sujeito: você."
+  ],
+  [
+   "O Protocolo N=1 prova que o produto funciona?",
+   "Não. A página diz que N=1 não é ensaio clínico nem diagnóstico: o veredito compara a linha de base com a intervenção e é um sinal seu. Luz, ciclo, sono e estresse também mexem com a pele, e para decisão de tratamento segue valendo o dermatologista."
+  ]
+ ],
  "/ferramentas/raio-x/": [
   [
    "O que é o Raio-X do rótulo de skincare?",
@@ -1541,7 +1565,7 @@
   ],
   [
    "Como usar palmitato de retinila?",
-   "Noite, em concentração usual de variável. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+   "Noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
   ]
  ],
  "/ativos/hpr-retinoato-de-hidroxipinacolona/": [
@@ -1551,7 +1575,7 @@
   ],
   [
    "Como usar HPR?",
-   "Noite, em concentração usual de conforme o fabricante (ex.: granactive retinoid). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+   "Noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
   ]
  ],
  "/ativos/bakuchiol/": [
@@ -1631,7 +1655,7 @@
   ],
   [
    "Como usar ácidos málico, tartárico e cítrico?",
-   "Noite, em concentração usual de geralmente em combinações. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
+   "Noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário. Use protetor solar todos os dias."
   ]
  ],
  "/ativos/lha-acido-capriloil-salicilico/": [
@@ -1641,7 +1665,7 @@
   ],
   [
    "Como usar LHA?",
-   "Noite, em concentração usual de conforme o fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/gluconolactona/": [
@@ -1651,7 +1675,7 @@
   ],
   [
    "Como usar gluconolactona?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/acido-lactobionico/": [
@@ -1661,7 +1685,7 @@
   ],
   [
    "Como usar ácido lactobiônico?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/acido-piruvico/": [
@@ -1671,7 +1695,7 @@
   ],
   [
    "Como usar ácido pirúvico?",
-   "Noite, em concentração usual de usado principalmente em peelings profissionais. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
+   "Noite, usado principalmente em peelings profissionais. Comece com 2 ou 3 aplicações por semana e aumente aos poucos. Vermelhidão e descamação no início são comuns; se incomodarem, dê um intervalo. Use protetor solar todos os dias."
   ]
  ],
  "/ativos/enzimas-papaina-bromelina/": [
@@ -1681,7 +1705,7 @@
   ],
   [
    "Como usar enzimas?",
-   "Noite, em concentração usual de variável. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/ureia/": [
@@ -1701,7 +1725,7 @@
   ],
   [
    "Como usar ácido kójico?",
-   "Noite, em concentração usual de até 1% (limite na ue, em produtos para rosto e mãos). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Noite, em concentração de até 1% (limite na UE, em produtos para rosto e mãos). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/alfa-arbutina/": [
@@ -1711,7 +1735,7 @@
   ],
   [
    "Como usar alfa-arbutina?",
-   "Manhã ou noite, em concentração usual de 1% a 2% (na ue, até 2% no rosto e 0,5% no corpo). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, em concentração usual de 1% a 2% (na UE, até 2% no rosto e 0,5% no corpo). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/tiamidol/": [
@@ -1721,7 +1745,7 @@
   ],
   [
    "Como usar tiamidol?",
-   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/butilresorcinol/": [
@@ -1731,7 +1755,7 @@
   ],
   [
    "Como usar 4-Butilresorcinol?",
-   "Manhã ou noite, em concentração usual de conforme o fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/fenetil-resorcinol/": [
@@ -1741,7 +1765,7 @@
   ],
   [
    "Como usar fenetil resorcinol?",
-   "Manhã ou noite, em concentração usual de conforme o fabricante (ex.: symwhite 377). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/melasyl/": [
@@ -1751,7 +1775,7 @@
   ],
   [
    "Como usar melasyl?",
-   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/cisteamina/": [
@@ -1761,7 +1785,7 @@
   ],
   [
    "Como usar cisteamina?",
-   "Noite, em concentração usual de conforme o fabricante (aplica e remove após algum tempo). Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Noite, na concentração indicada pelo fabricante. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/extrato-de-alcacuz/": [
@@ -1771,7 +1795,7 @@
   ],
   [
    "Como usar extrato de alcaçuz?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/acido-fitico/": [
@@ -1781,7 +1805,7 @@
   ],
   [
    "Como usar ácido fítico?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/hidroquinona/": [
@@ -1801,7 +1825,7 @@
   ],
   [
    "Como usar ascorbil glucosídeo?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/ascorbil-fosfato-de-sodio/": [
@@ -1811,7 +1835,7 @@
   ],
   [
    "Como usar ascorbil fosfato de sódio?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/ascorbil-fosfato-de-magnesio/": [
@@ -1821,7 +1845,7 @@
   ],
   [
    "Como usar ascorbil fosfato de magnésio?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/etil-ascorbico/": [
@@ -1831,7 +1855,7 @@
   ],
   [
    "Como usar etil ascórbico?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/tetrahexildecil-ascorbato/": [
@@ -1841,7 +1865,7 @@
   ],
   [
    "Como usar tetrahexildecil ascorbato?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/vitamina-e/": [
@@ -1851,7 +1875,7 @@
   ],
   [
    "Como usar vitamina E?",
-   "Manhã ou noite, em concentração usual de 0,5% a 1%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, em concentração usual de 0,1% a 1%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/resveratrol/": [
@@ -1861,7 +1885,7 @@
   ],
   [
    "Como usar resveratrol?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/coenzima-q10/": [
@@ -1871,7 +1895,7 @@
   ],
   [
    "Como usar coenzima Q10?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/cha-verde/": [
@@ -1881,7 +1905,7 @@
   ],
   [
    "Como usar chá verde?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/astaxantina/": [
@@ -1891,7 +1915,7 @@
   ],
   [
    "Como usar astaxantina?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/glicerina/": [
@@ -1901,7 +1925,7 @@
   ],
   [
    "Como usar glicerina?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/pantenol/": [
@@ -1921,7 +1945,7 @@
   ],
   [
    "Como usar beta-glucana?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/poliglutamato-de-sodio/": [
@@ -1931,7 +1955,7 @@
   ],
   [
    "Como usar poliglutamato de sódio?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/aloe-vera/": [
@@ -1941,7 +1965,7 @@
   ],
   [
    "Como usar aloe vera?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/pca-de-sodio-e-aminoacidos/": [
@@ -1951,7 +1975,7 @@
   ],
   [
    "Como usar PCA de sódio e aminoácidos?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/ectoina/": [
@@ -1961,7 +1985,7 @@
   ],
   [
    "Como usar ectoína?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/colesterol-e-acidos-graxos/": [
@@ -1971,7 +1995,7 @@
   ],
   [
    "Como usar colesterol e ácidos graxos?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/esqualano/": [
@@ -1981,7 +2005,7 @@
   ],
   [
    "Como usar esqualano?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/manteiga-de-karite/": [
@@ -1991,7 +2015,7 @@
   ],
   [
    "Como usar manteiga de karité?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/oleo-de-rosa-mosqueta/": [
@@ -2001,7 +2025,7 @@
   ],
   [
    "Como usar óleo de rosa mosqueta?",
-   "Noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/petrolato/": [
@@ -2011,7 +2035,7 @@
   ],
   [
    "Como usar petrolato?",
-   "Noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/centella-asiatica/": [
@@ -2021,7 +2045,7 @@
   ],
   [
    "Como usar centella asiática?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/alantoina/": [
@@ -2031,7 +2055,7 @@
   ],
   [
    "Como usar alantoína?",
-   "Manhã ou noite, em concentração usual de 0,1% a 2%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, em concentração usual de 0,5% a 2%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/bisabolol/": [
@@ -2041,7 +2065,7 @@
   ],
   [
    "Como usar bisabolol?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/aveia-coloidal/": [
@@ -2051,7 +2075,7 @@
   ],
   [
    "Como usar aveia coloidal?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/probioticos-e-pos-bioticos/": [
@@ -2061,7 +2085,7 @@
   ],
   [
    "Como usar probióticos e pós-bióticos?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/dipotassio-glicirrizinato/": [
@@ -2071,7 +2095,7 @@
   ],
   [
    "Como usar dipotássio glicirrizinato?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/peroxido-de-benzoila/": [
@@ -2101,7 +2125,7 @@
   ],
   [
    "Como usar óleo de melaleuca?",
-   "Manhã ou noite, em concentração usual de cerca de 5% em produtos prontos. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
+   "Manhã ou noite, em concentração de cerca de 5% em produtos prontos. Comece em dias alternados e, se a pele estiver bem depois de uma ou duas semanas, passe para o uso diário."
   ]
  ],
  "/ativos/zinco-pca/": [
@@ -2111,7 +2135,7 @@
   ],
   [
    "Como usar zinco PCA?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/argilas/": [
@@ -2121,7 +2145,7 @@
   ],
   [
    "Como usar argilas?",
-   "Manhã ou noite, em concentração usual de máscaras e limpeza. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, em máscaras e produtos de limpeza. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/clindamicina-topica/": [
@@ -2141,7 +2165,7 @@
   ],
   [
    "Como usar palmitoil pentapeptídeo-4?",
-   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/acetil-hexapeptideo-8/": [
@@ -2151,7 +2175,7 @@
   ],
   [
    "Como usar acetil hexapeptídeo-8?",
-   "Manhã ou noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/mucina-de-caracol/": [
@@ -2161,7 +2185,7 @@
   ],
   [
    "Como usar mucina de caracol?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/pdrn-polinucleotideos/": [
@@ -2171,7 +2195,7 @@
   ],
   [
    "Como usar PDRN?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/fator-de-crescimento-epidermico/": [
@@ -2181,7 +2205,7 @@
   ],
   [
    "Como usar fator de crescimento epidérmico?",
-   "Noite, em concentração usual de conforme o fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/cafeina/": [
@@ -2191,7 +2215,7 @@
   ],
   [
    "Como usar cafeína?",
-   "Manhã, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/vitamina-k/": [
@@ -2201,7 +2225,7 @@
   ],
   [
    "Como usar vitamina K?",
-   "Manhã ou noite, em concentração usual de variável. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã ou noite, na concentração indicada pelo fabricante. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/oxido-de-zinco/": [
@@ -2211,7 +2235,7 @@
   ],
   [
    "Como usar óxido de zinco?",
-   "Manhã, em concentração usual de até 25%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 25%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/dioxido-de-titanio/": [
@@ -2221,7 +2245,7 @@
   ],
   [
    "Como usar dióxido de titânio?",
-   "Manhã, em concentração usual de até 25%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 25%. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/bemotrizinol/": [
@@ -2231,7 +2255,7 @@
   ],
   [
    "Como usar bemotrizinol?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 10% (UE e Brasil); até 6% nos EUA. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/bisoctrizol/": [
@@ -2241,7 +2265,7 @@
   ],
   [
    "Como usar bisoctrizol?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/avobenzona/": [
@@ -2251,7 +2275,7 @@
   ],
   [
    "Como usar avobenzona?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 5% (limite da UE); até 3% nos EUA. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/octocrileno/": [
@@ -2261,7 +2285,7 @@
   ],
   [
    "Como usar octocrileno?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/ecamsule/": [
@@ -2271,7 +2295,7 @@
   ],
   [
    "Como usar ecamsule?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/dhhb-uvinul-a-plus/": [
@@ -2281,7 +2305,7 @@
   ],
   [
    "Como usar DHHB?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 10% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/etilhexil-triazona/": [
@@ -2291,7 +2315,7 @@
   ],
   [
    "Como usar etilhexil triazona?",
-   "Manhã, em concentração usual de conforme a regulamentação local. Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
+   "Manhã, em concentração de até 5% (limite da UE). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
  ],
  "/ativos/": [

@@ -311,7 +311,7 @@ html[data-tema=claro] .ps-photo img,html[data-tema=claro] .ps-skin-visual{filter
 .ps-topo a{text-decoration:none}
 .ps-topo .ps-nav a[data-secao],.ps-topo .ps-mais-btn[data-secao],.ps-topo .ps-nav a[aria-current=page]{color:var(--rosa)}
 .ps-topo ul,.ps-topo li{margin:0;padding:0;list-style:none}
-.ps-topo ~ main .ig-marca,.ps-topo ~ main > .marca,.ps-topo ~ main .mv-top > .marca,.ps-topo ~ .casca > header > .marca,.ps-topo ~ main .hc-marca{display:none}
+.ps-topo ~ main .ig-marca,.ps-topo ~ main > .marca,.ps-topo ~ main .mv-top > .marca,.ps-topo ~ .casca > header > .marca,.ps-topo ~ .casca > .topo-achados > .marca,.ps-topo ~ main .hc-marca{display:none}
 .ps-topo ~ main .hc-top{justify-content:flex-end}
 /* Botão de tema do provador: desce para baixo do menu em vez de cobrir o botão Menu. */
 body:has(> .ps-topo) .btn-tema{top:100px}
@@ -780,6 +780,9 @@ body::after{
 .ps-perguntas h2{margin:0 0 6px}
 .ps-perguntas h3{font-size:1.05rem;line-height:1.35;margin:22px 0 6px}
 .ps-perguntas p{margin:0 0 10px}
-.ps-nota-pagina{font-size:.9rem;opacity:.85;margin-top:18px;margin-bottom:24px}
+.ps-nota-pagina{font-size:.9rem;color:var(--suave);margin-top:18px;margin-bottom:24px}
 main:not(.ig)>.ps-perguntas,main:not(.ig)>.ps-nota-pagina,main+.ps-perguntas,main~.ps-nota-pagina{padding-left:20px;padding-right:20px}
 .pd-faq .pq,.ps-faq .pq{font-size:1rem;line-height:1.35;font-weight:600;margin:0;padding:14px 0 6px}
+
+/* Posts: a linha "Publicado em… · Leitura de…" fica do mesmo tamanho da linha de autoria (.ig-meta). */
+.sub.post-data{font-size:.88rem}

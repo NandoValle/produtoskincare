@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Termômetro de preço | Produto Skincare</title>
+<meta name="description" content="O preço de hoje está na mínima, no meio ou no topo da faixa? Veja o histórico datado dos preços do catálogo e anote novos preços no seu aparelho para decidir quando comprar.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/termometro/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+
+/* Termômetro de preço */
+.tp-grade{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.tp-item{margin:0;padding:16px 18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);display:flex;flex-direction:column;gap:8px}
+.tp-topo{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;align-items:baseline}
+.tp-nome{font-weight:600;margin:0}
+.tp-nome a{color:var(--tinta)}
+.tp-nome small{display:block;font-weight:400;color:var(--suave);font-size:.85rem}
+.tp-preco{font-weight:600;white-space:nowrap}
+.tp-preco small{display:block;font-weight:400;color:var(--suave);font-size:.8rem}
+.tp-barra{position:relative;height:12px;border-radius:999px;background:var(--papel-2);overflow:visible;margin:2px 0}
+.tp-barra i{position:absolute;top:0;height:100%;border-radius:999px;background:var(--linha-2)}
+.tp-barra b{position:absolute;top:-3px;width:18px;height:18px;border-radius:50%;background:var(--rosa);transform:translateX(-50%);border:3px solid var(--papel)}
+.tp-ponto{position:absolute;top:2px;width:8px;height:8px;border-radius:50%;background:var(--linha-2);transform:translateX(-50%)}
+.tp-escala{display:flex;justify-content:space-between;font-size:.76rem;color:var(--suave)}
+.tp-veredito{font-size:.88rem;font-weight:600;margin:0}
+.tp-veredito.ok{color:var(--verde)}
+.tp-veredito.alto{color:var(--rosa)}
+.tp-veredito.meio{color:var(--tinta-2)}
+.tp-acoes{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tp-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none}
+.tp-btn.tp-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.tp-btn:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+.tp-form{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.tp-campo{display:flex;flex-direction:column;gap:4px;font-size:.88rem;flex:1 1 180px}
+.tp-campo input,.tp-campo select{font:inherit;padding:11px 12px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta);min-height:44px}
+.tp-campo input:focus,.tp-campo select:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.tp-locais{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
+.tp-locais li{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:.88rem;padding:8px 12px;border:1px dashed var(--linha-2);border-radius:12px}
+.tp-rm{font:inherit;font-size:.82rem;background:none;border:1px solid var(--linha-2);border-radius:999px;padding:4px 12px;min-height:36px;cursor:pointer;color:var(--tinta)}
+.tp-status{min-height:1.4em;font-size:.88rem;color:var(--verde);margin:8px 0 0}
+@media(min-width:600px){.tp-form{flex-wrap:nowrap}}
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Termômetro de preço — é hora de comprar?">
+<meta property="og:description" content="O preço de hoje está na mínima, no meio ou no topo da faixa? Veja o histórico datado dos preços do catálogo e anote novos preços no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/termometro/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-termometro.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Termômetro de preço: quando comprar skincare">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/termometro/#pagina", "url": "https://produtoskincare.com.br/ferramentas/termometro/", "name": "Termômetro de preço", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "O preço de hoje está na mínima, no meio ou no topo da faixa? Veja o histórico datado dos preços do catálogo e anote novos preços no seu aparelho para decidir quando comprar.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/termometro/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/termometro/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Termômetro de preço", "item": "https://produtoskincare.com.br/ferramentas/termometro/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Termômetro de preço</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Termômetro de preço</h1>
+<p class="ig-lede">Preço bom não é o mais barato que já se viu: é o mais barato nesta época do ano, para este produto. O termômetro mostra onde o preço de hoje está na faixa histórica de cada produto — na mínima, no meio ou no topo — e você pode anotar preços novos para a faixa ficar mais precisa com o tempo.</p>
+</div>
+
+<section aria-labelledby="tp-como">
+<h2 id="tp-como">Como funciona</h2>
+<div class="ig-caixa ig-resumo">
+<ul>
+<li><strong>Histórico do site.</strong> Cada preço que a gente confere na loja entra no histórico com a data da conferência. Com dois ou mais pontos, nasce a faixa: mínima e topo observados.</li>
+<li><strong>Leitura honesta.</strong> Com só um ponto ainda não há faixa — o termômetro diz isso em vez de inventar tendência.</li>
+<li><strong>No seu aparelho.</strong> Os preços que você anotar ficam salvos só no seu navegador e somam aos do site. Nada é enviado para lugar nenhum.</li>
+</ul>
+<p class="ig-nota">Preços conferidos nas datas indicadas; podem ter mudado na loja. Os links de loja são de afiliado: o site pode receber comissão, sem custo extra para quem compra.</p>
+</div>
+</section>
+
+<section aria-labelledby="tp-lista">
+<h2 id="tp-lista">Os produtos e as faixas</h2>
+<ul class="tp-grade" id="tp-grade"><li class="tp-item"><p class="ig-nota">Carregando o histórico…</p></li></ul>
+<p class="ig-nota" id="tp-vazio" hidden>Sem histórico de preços neste aparelho. Confira a página de <a href="/produtos/">produtos</a> com preço e data de cada conferência.</p>
+</section>
+
+<section aria-labelledby="tp-anotar">
+<h2 id="tp-anotar">Anotar um preço que você viu</h2>
+<p>Viu o produto numa promoção ou passou pela farmácia? Anote o preço: ele entra na conta do termômetro só no seu aparelho, e você pode remover quando quiser.</p>
+<form class="tp-form" id="tp-form">
+<p class="tp-campo"><label for="tp-produto">Produto</label>
+<select id="tp-produto" required></select></p>
+<p class="tp-campo"><label for="tp-preco">Preço (R$)</label>
+<input id="tp-preco" type="number" min="0.01" step="0.01" inputmode="decimal" required placeholder="47,70"></p>
+<p class="tp-campo"><label for="tp-data">Data</label>
+<input id="tp-data" type="date" required></p>
+<button class="tp-btn" type="submit">Anotar preço</button>
+</form>
+<p class="tp-status" id="tp-status" role="status"></p>
+<h3>Preços anotados no seu aparelho</h3>
+<ul class="tp-locais" id="tp-locais"></ul>
+<p class="ig-nota">O que você digita fica no seu aparelho (localStorage). Limpar os dados do navegador apaga estes registros. Use o <a href="/ferramentas/backup/">Backup</a> se quiser guardar uma cópia das suas ferramentas.</p>
+</section>
+
+<section aria-labelledby="tp-regras">
+<h2 id="tp-regras">Como ler o veredito</h2>
+<div class="ig-rolagem"><table class="ig-tabela">
+<caption>Leitura da faixa de preço (só com dois pontos ou mais no histórico)</caption>
+<thead><tr><th scope="col">Onde o preço de hoje está</th><th scope="col">Regra</th><th scope="col">O que fazer</th></tr></thead>
+<tbody>
+<tr><td><strong>Na mínima da faixa</strong></td><td>até 5% acima do menor preço observado</td><td>bom momento para comprar, se o produto já está validado para você</td></tr>
+<tr><td><strong>No meio da faixa</strong></td><td>entre a mínima e o topo</td><td>preço normal; compre se precisar, sem pressa</td></tr>
+<tr><td><strong>No topo da faixa</strong></td><td>a partir de 95% do maior preço observado</td><td>caro para os padrões do histórico — vale esperar</td></tr>
+</tbody>
+</table></div>
+<p class="ig-nota">A faixa é uma leitura do próprio histórico do produto, não uma previsão de promoção. Com um único ponto registrado, o termômetro mostra o preço e a data e não julga.</p>
+</section>
+
+<section aria-labelledby="tp-rel">
+<h2 id="tp-rel">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/matematica/">A matemática do frasco</a></li>
+<li><a href="/ferramentas/comparar/">Comparar produtos</a></li>
+<li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li>
+<li><a href="/produtos/">Catálogo de produtos</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="tp-fontes">
+<h2 id="tp-fontes">Fontes e limites</h2>
+<ol>
+<li>Os preços do site vêm da conferência manual nas lojas (hoje, Amazon Brasil) e cada ponto carrega a data da conferência em <code>produtos/historico-precos.json</code>. Este conteúdo é informativo e não substitui consulta com dermatologista.</li>
+<li>As faixas são calculadas a partir dos pontos existentes: mínimo e máximo observados, sem projeção de desconto nem alerta de promoção. Variação de preço por cupom, frete ou parcelamento não entra na conta.</li>
+<li>Os preços que você anotar ficam apenas neste navegador, não são verificados pela equipe e aparecem marcados como <em>seu aparelho</em> na lista.</li>
+</ol>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. A tabela "Como ler o veredito" e as regras desta página seguem legíveis como texto — a lista de preços precisa do script e dos arquivos JSON do site.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var CHAVE = "ps-termometro";
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function brl(n) { return "R$ " + Number(n).toFixed(2).replace(".", ","); }
+
+  function locais() {
+    try { return JSON.parse(localStorage.getItem(CHAVE) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function salvarLocal(obj) {
+    try { localStorage.setItem(CHAVE, JSON.stringify(obj)); } catch (e) {}
+  }
+
+  function vereditoDe(pontos) {
+    if (pontos.length < 2) return { classe: "meio", texto: "Sem faixa ainda — só " + pontos.length + " ponto no histórico" };
+    var precos = pontos.map(function (p) { return p.preco; });
+    var min = Math.min.apply(null, precos);
+    var max = Math.max.apply(null, precos);
+    var atual = pontos[pontos.length - 1].preco;
+    if (max === min) return { classe: "meio", texto: "Preço estável até agora — sem faixa para julgar" };
+    if (atual <= min * 1.05) return { classe: "ok", texto: "Na mínima da faixa — bom momento" };
+    if (atual >= max * 0.95) return { classe: "alto", texto: "No topo da faixa — vale esperar" };
+    return { classe: "meio", texto: "No meio da faixa — preço normal" };
+  }
+
+  function desenharBarra(pontos) {
+    var precos = pontos.map(function (p) { return p.preco; });
+    var min = Math.min.apply(null, precos);
+    var max = Math.max.apply(null, precos);
+    if (pontos.length < 2 || max === min) {
+      return '<div class="tp-barra" role="img" aria-label="Sem faixa: um único preço registrado (' + esc(brl(pontos[0].preco)) + ')">' +
+        '<span class="tp-ponto" style="left:50%"></span></div>' +
+        '<div class="tp-escala"><span>um ponto registrado</span><span>anote mais preços para formar a faixa</span></div>';
+    }
+    var span = max - min;
+    var atual = pontos[pontos.length - 1].preco;
+    var pos = ((atual - min) / span) * 100;
+    var marcas = pontos.map(function (p) {
+      return '<span class="tp-ponto" style="left:' + (((p.preco - min) / span) * 100).toFixed(1) + '%;opacity:.55"></span>';
+    }).join("");
+    return '<div class="tp-barra" role="img" aria-label="Faixa de preço: de ' + esc(brl(min)) + ' a ' + esc(brl(max)) + '; preço de hoje ' + esc(brl(atual)) + '">' +
+      '<i style="left:0;width:100%"></i>' + marcas +
+      '<b style="left:' + Math.max(0, Math.min(100, pos)).toFixed(1) + '%"></b></div>' +
+      '<div class="tp-escala"><span>mínima ' + esc(brl(min)) + '</span><span>topo ' + esc(brl(max)) + '</span></div>';
+  }
+
+  function desenhar() {
+    return Promise.all([
+      fetch("/produtos/historico-precos.json", { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json() : {}; }),
+      fetch("/produtos.json", { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json() : { produtos: [] }; })
+    ]).then(function (res) {
+      var hist = res[0] || {};
+      var cat = (res[1] && res[1].produtos) || [];
+      var porId = {};
+      cat.forEach(function (p) { porId[p.id] = p; });
+      var loc = locais();
+      var ids = Object.keys(porId);
+      var linha = $("tp-grade");
+      var achou = false;
+      linha.innerHTML = ids.map(function (id) {
+        var p = porId[id];
+        var pontos = (hist[id] || []).map(function (pt) { return { em: pt.em, preco: pt.preco, loja: pt.loja, origem: "site" }; })
+          .concat((loc[id] || []).map(function (pt) { return { em: pt.em, preco: pt.preco, loja: "seu aparelho", origem: "local" }; }));
+        if (!pontos.length) return "";
+        achou = true;
+        pontos.sort(function (a, b) { return a.em < b.em ? -1 : a.em > b.em ? 1 : 0; });
+        var atual = pontos[pontos.length - 1];
+        var v = vereditoDe(pontos);
+        return '<li class="tp-item">' +
+          '<div class="tp-topo"><p class="tp-nome"><a href="/produtos/' + esc(id) + '/">' + esc(p.nome) + '</a>' +
+          '<small>' + esc(p.marca || "") + (p.plataforma ? " · " + esc(p.plataforma) : "") + '</small></p>' +
+          '<p class="tp-preco">' + esc(brl(atual.preco)) + '<small>conferido em ' + esc(atual.em) + (atual.origem === "local" ? " · seu aparelho" : "") + '</small></p></div>' +
+          desenharBarra(pontos) +
+          '<p class="tp-veredito ' + v.classe + '">' + esc(v.texto) + '</p>' +
+          '<div class="tp-acoes">' + (p.link ? '<a class="tp-btn tp-sec" href="' + esc(p.link) + '" rel="sponsored noopener" target="_blank">Ver na loja</a>' : "") +
+          '<a class="tp-btn tp-sec" href="/produtos/' + esc(id) + '">Página do produto</a></div>' +
+          '</li>';
+      }).join("");
+      $("tp-vazio").hidden = achou;
+      if (!achou) linha.innerHTML = "";
+      desenharLocais(loc, porId);
+      var sel = $("tp-produto");
+      if (sel && !sel.options.length) {
+        sel.innerHTML = ids.map(function (id) {
+          return '<option value="' + esc(id) + '">' + esc(porId[id].nome) + '</option>';
+        }).join("");
+      }
+      try { if (window.PSAnalytics) window.PSAnalytics.evento("termometro-lista"); } catch (e) {}
+    }).catch(function () {
+      $("tp-grade").innerHTML = '<li class="tp-item"><p class="ig-nota">Não foi possível carregar o histórico agora. O catálogo com preço e data segue em <a href="/produtos/">Produtos</a>.</p></li>';
+    });
+  }
+
+  function desenharLocais(loc, porId) {
+    var ul = $("tp-locais");
+    if (!ul) return;
+    var linhas = [];
+    Object.keys(loc).forEach(function (id) {
+      (loc[id] || []).forEach(function (pt, i) {
+        var nome = porId[id] ? porId[id].nome : id;
+        linhas.push('<li><span>' + esc(nome) + ' — ' + esc(brl(pt.preco)) + ' em ' + esc(pt.em) + '</span>' +
+          '<button class="tp-rm" type="button" data-id="' + esc(id) + '" data-i="' + i + '">Remover</button></li>');
+      });
+    });
+    ul.innerHTML = linhas.join("") || '<li><span class="ig-nota">Nenhum preço anotado neste aparelho.</span></li>';
+    Array.prototype.forEach.call(ul.querySelectorAll(".tp-rm"), function (btn) {
+      btn.addEventListener("click", function () {
+        var l = locais();
+        var id = btn.getAttribute("data-id"), i = parseInt(btn.getAttribute("data-i"), 10);
+        if (l[id]) { l[id].splice(i, 1); if (!l[id].length) delete l[id]; salvarLocal(l); desenhar(); }
+      });
+    });
+  }
+
+  function iniciar() {
+    var form = $("tp-form");
+    if (form) {
+      var data = $("tp-data");
+      if (data && !data.value) data.value = new Date().toISOString().slice(0, 10);
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var id = $("tp-produto").value;
+        var preco = parseFloat(String($("tp-preco").value).replace(",", "."));
+        var em = $("tp-data").value;
+        if (!id || !(preco > 0) || !em) {
+          $("tp-status").textContent = "Preencha produto, preço e data.";
+          return;
+        }
+        var l = locais();
+        if (!l[id]) l[id] = [];
+        l[id].push({ em: em, preco: Math.round(preco * 100) / 100, loja: "seu aparelho" });
+        salvarLocal(l);
+        $("tp-status").textContent = "Preço anotado neste aparelho.";
+        $("tp-preco").value = "";
+        desenhar();
+      });
+    }
+    desenhar();
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ferramentas-termometro"); } catch (e) {}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>

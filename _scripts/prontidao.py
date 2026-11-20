@@ -18,7 +18,9 @@ O que ele garante em cada página (a página inicial fica de fora: é feita à m
 5. Linha de atualização e referências, entre <!-- nota-pagina:inicio --> e <!-- nota-pagina:fim -->:
    a data vem do <lastmod> do sitemap.xml; as referências só entram onde a página tem menos de
    duas fontes ou links externos.
-6. <title> com até 65 caracteres (tira o sufixo " | Produto Skincare" ou usa TITULOS abaixo) e
+6. Link "Pular para o conteúdo" logo depois do <body>, apontando para o <main> (que ganha
+   id="conteudo" se não tiver id). Quem navega pelo teclado ou leitor de tela pula o menu.
+7. <title> com até 65 caracteres (tira o sufixo " | Produto Skincare" ou usa TITULOS abaixo) e
    meta description com até 180 (corta na última frase inteira).
 
 Só usa a biblioteca padrão. Não inventa conteúdo: o que não está em perguntas.json não aparece.
@@ -78,6 +80,8 @@ TEXTOS = {
 
 # Títulos que continuam longos mesmo sem o sufixo. Mesma informação, menos palavras.
 TITULOS = {
+    "/ativos/acidos-malico-tartarico-e-citrico/": "Ácidos málico, tartárico e cítrico: o que são e como usar",
+    "/ativos/fator-de-crescimento-epidermico/": "Fator de crescimento epidérmico: o que é e como usar",
     "/en/blog/myth-rule-sunblock-100/": 'Myth vs rule: no "sunblock" or "100% protection" on labels',
     "/es/blog/mito-regla-ardencia/": "Mito × regla: el escozor no indica que el producto funciona",
     "/es/blog/mito-regla-sunblock-100/": "Mito × regla: ni «sunblock» ni «100% de protección»",
@@ -136,6 +140,32 @@ def passo_webmcp(t, origin_trial, lang):
     if not re.search(r'<noscript>\s*<p class="[^"]*\bfallback\b', t) and "</main>" in t:
         t = t.replace("</main>", f'</main>\n<noscript><p class="fallback">{TEXTOS[lang]["fallback"]}</p></noscript>', 1)
     return t
+
+
+PULAR = {"pt": "Pular para o conteúdo", "en": "Skip to content", "es": "Saltar al contenido"}
+
+
+def passo_pular(t, lang):
+    """Link de pular o menu (WCAG 2.4.1). Não mexe em página que já tem um."""
+    if 'class="skip-link"' in t:
+        return t
+    m_main = re.search(r"<main\b[^>]*>", t)
+    m_body = re.search(r"<body\b[^>]*>\n?", t)
+    if not m_main or not m_body:
+        return t
+    m_id = re.search(r'\bid="([^"]+)"', m_main.group(0))
+    if m_id:
+        alvo = m_id.group(1)
+    else:
+        alvo = "conteudo"
+        if 'id="conteudo"' in t:
+            return t
+        t = t[:m_main.start()] + m_main.group(0)[:-1].rstrip() + ' id="conteudo">' + t[m_main.end():]
+    link = f'<a class="skip-link" href="#{alvo}">{PULAR[lang]}</a>\n'
+    pos = m_body.end()
+    if not t[pos - 1:pos] == "\n":
+        link = "\n" + link
+    return t[:pos] + link + t[pos:]
 
 
 def passo_faq_aberto(t):
@@ -294,6 +324,8 @@ def main():
         lang = idioma(t)
         t = passo_webmcp(t, origin_trial, lang)
         t = passo_faq_aberto(t)
+        if rel not in SEM_BLOCOS:
+            t = passo_pular(t, lang)
         if rel in SEM_BLOCOS:  # só tira blocos antigos, se houver
             t = N_RE.sub("\n", P_RE.sub("\n", t, count=1), count=1)
         else:

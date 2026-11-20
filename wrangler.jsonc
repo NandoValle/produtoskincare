@@ -1,15 +1,22 @@
 // Configuração da Cloudflare (Workers com arquivos estáticos) para produtoskincare.com.br.
-// O site é estático: não há script de Worker, só arquivos. Cada push no main publica o site.
+// O site é estático: só arquivos. Cada push no main publica o site.
+// Exceção: os vídeos .mp4 passam antes pelo _worker/index.js, que responde pedidos por
+// trecho (Range) com 206; sem ele não dá para avançar/voltar nos vídeos.
 // O nome abaixo precisa ser igual ao nome do Worker no painel da Cloudflare.
 {
   "name": "produtoskincare",
   "compatibility_date": "2026-11-08",
+  "main": "./_worker/index.js",
   "assets": {
     // A raiz do repositório é o site. O que não deve ir ao ar está em .assetsignore.
     "directory": "./",
     // Padrão da Cloudflare: /pasta/ serve pasta/index.html e /pasta redireciona para /pasta/.
     "html_handling": "auto-trailing-slash",
     // Endereço que não existe mostra o 404.html (com status 404).
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // O Worker acessa os arquivos por este nome e só roda primeiro para os .mp4;
+    // o resto do site continua servido direto, sem passar por ele.
+    "binding": "ASSETS",
+    "run_worker_first": ["/*.mp4"]
   }
 }

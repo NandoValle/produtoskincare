@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The math of the bottle | Produto Skincare</title>
+<meta name="description" content="The sticker price is what you pay today; what decides if skincare fits your budget is what it costs per day. See the open math with two columns: the dose most people apply and the right dose.">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Uses the color and font tokens from premium.css (light and dark). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.ig-rolagem{overflow-x:auto}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}}
+
+/* The math of the bottle */
+.mf-form .mf-grade{display:grid;grid-template-columns:1fr;gap:14px;margin:0 0 6px}
+.mf-form label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px}
+.mf-form input,.mf-form select{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
+.mf-form input:focus,.mf-form select:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.mf-dica{font-size:.82rem;color:var(--suave);margin:6px 0 0}
+.mf-acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 0}
+.mf-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none}
+.mf-btn.mf-btn-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.mf-btn:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+.mf-previa{margin:14px 0 0}
+.mf-comp{display:grid;grid-template-columns:1fr;gap:12px}
+.mf-comp-col{border:1px solid var(--linha);border-radius:var(--raio);padding:14px 16px;background:var(--papel)}
+.mf-comp-col.mf-certo{border-color:var(--verde);background:var(--verde-claro)}
+.mf-comp-tag{font-size:.82rem;font-weight:600;margin:0 0 6px}
+.mf-num{font-size:1.6rem;font-weight:600;margin:0 0 4px}
+.mf-num small{font-size:.85rem;font-weight:400;color:var(--suave)}
+.mf-linha{font-size:.86rem;color:var(--suave);margin:0}
+.mf-recibo{border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);padding:18px}
+.mf-recibo-cab{border-bottom:1px solid var(--linha);padding-bottom:10px;margin-bottom:10px}
+.mf-recibo-cab h3{margin:0}
+.mf-recibo-cab p{margin:4px 0 0;font-size:.82rem;color:var(--suave)}
+.mf-vazio{color:var(--suave);font-size:.92rem}
+.mf-rec-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.mf-rec-itens li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;padding:10px 0;border-bottom:1px solid var(--linha)}
+.mf-rec-nome{font-weight:600}
+.mf-rec-meta{flex:1 1 100%;font-size:.82rem;color:var(--suave)}
+.mf-rec-valores{display:flex;gap:14px;font-size:.92rem}
+.mf-rec-remover{font:inherit;font-size:.8rem;background:none;border:1px solid var(--linha-2);border-radius:999px;padding:4px 12px;min-height:36px;cursor:pointer;color:var(--tinta)}
+.mf-rec-total{display:flex;flex-wrap:wrap;gap:12px 24px;border-top:1px solid var(--linha);padding-top:12px;margin-top:12px}
+.mf-rec-total div{display:flex;flex-direction:column}
+.mf-rec-total span{font-size:.82rem;color:var(--suave)}
+.mf-rec-total strong{font-size:1.25rem}
+@media(min-width:600px){.mf-form .mf-grade{grid-template-columns:1fr 1fr}.mf-comp{grid-template-columns:1fr 1fr}}
+</style>
+<!-- seo:inicio -->
+<link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/ferramentas/matematica/">
+<link rel="alternate" hreflang="en" href="https://produtoskincare.com.br/en/ferramentas/matematica/">
+<link rel="alternate" hreflang="es" href="https://produtoskincare.com.br/es/ferramentas/matematica/">
+<link rel="alternate" hreflang="x-default" href="https://produtoskincare.com.br/ferramentas/matematica/">
+<link rel="canonical" href="https://produtoskincare.com.br/en/ferramentas/matematica/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The math of the bottle">
+<meta property="og:description" content="What skincare really costs per day: the dose most people apply against the right dose, with the routine receipt in three numbers.">
+<meta property="og:url" content="https://produtoskincare.com.br/en/ferramentas/matematica/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/en-ferramentas-matematica.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The math of the bottle: what skincare costs per day">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/en/ferramentas/matematica/#pagina", "url": "https://produtoskincare.com.br/en/ferramentas/matematica/", "name": "The math of the bottle", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "en", "description": "What skincare really costs per day: the dose most people apply against the right dose, with the routine receipt in three numbers.", "breadcrumb": {"@id": "https://produtoskincare.com.br/en/ferramentas/matematica/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/en/ferramentas/matematica/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://produtoskincare.com.br/en/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "The math of the bottle", "item": "https://produtoskincare.com.br/en/ferramentas/matematica/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial for Chrome: token only for this origin (https://produtoskincare.com.br), expires 2027-03-30. Do not copy to another domain. Renew at developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Skip to content</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Main navigation"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<nav class="ps-langs" aria-label="Language"><a href="/" lang="pt-BR" aria-label="PT - Português">PT</a><a href="/en/" lang="en" aria-label="EN - English" aria-current="true">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Breadcrumb">
+<ol>
+<li><a href="/">Home</a></li>
+<li><a href="/en/ferramentas/">Tools</a></li>
+<li aria-current="page">The math of the bottle</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>The math of the bottle</h1>
+<p class="ig-lede">The sticker price is what you pay today. What decides whether skincare fits the budget is what it costs per day: the same bottle can be cheap or expensive depending on how much you put on your face. Here the math is done in the open, in two columns: the dose most people apply and the right dose.</p>
+</div>
+
+<div class="ig-caixa ig-resumo">
+<p class="ig-rotulo">How it works</p>
+<ul>
+<li>The math is the same as the <a href="/ferramentas/reposicao/">Refill reminder</a>: size divided by how much you use per day gives the days it lasts; the price divided by those days gives the <b>cost per day</b>.</li>
+<li>The doses are <b>average estimates</b>. Adjust to the way you actually use it.</li>
+<li>Every result comes in two columns: the dose most people apply (about half the recommended one) and the right dose.</li>
+<li>What you type stays on your device. No sign-up.</li>
+</ul>
+</div>
+
+<section aria-labelledby="mf-calc-t">
+<h2 id="mf-calc-t">Do the math on your bottle</h2>
+<form id="mf-form" class="mf-form">
+<div class="mf-grade">
+<div>
+<label for="mf-nome">Product name</label>
+<input id="mf-nome" name="nome" list="mf-catalogo" autocomplete="off" placeholder="e.g. Neutrogena Sun Fresh FPS 70">
+<datalist id="mf-catalogo"></datalist>
+<p class="mf-dica" id="mf-nome-dica">If the product is in the catalog, the price and category fill in by themselves.</p>
+</div>
+<div>
+<label for="mf-preco">Price paid (R$)</label>
+<input id="mf-preco" name="preco" type="number" min="0" step="0.01" inputmode="decimal" placeholder="47.70">
+<p class="mf-dica" id="mf-preco-dica">Catalog price with the date it was checked, when available.</p>
+</div>
+<div>
+<label for="mf-tam">Bottle size (ml or g)</label>
+<input id="mf-tam" name="tam" type="number" min="0" step="0.1" inputmode="decimal" placeholder="50">
+<p class="mf-dica">Check your label. With no number in the name, a typical size is used as an estimate.</p>
+</div>
+<div>
+<label for="mf-cat">Where it fits in the routine</label>
+<select id="mf-cat" name="cat">
+<option value="limpeza">Cleanser</option>
+<option value="tratamento">Serum or treatment</option>
+<option value="hidratacao">Moisturizer</option>
+<option value="protetor">Sunscreen</option>
+<option value="olhos">Eye contour</option>
+<option value="outro">Other</option>
+</select>
+</div>
+<div>
+<label for="mf-porcao">Amount per use</label>
+<input id="mf-porcao" name="porcao" type="number" min="0" step="0.05" inputmode="decimal" value="1">
+<p class="mf-dica" id="mf-porcao-dica">Estimate: about a hazelnut of gel or foam.</p>
+</div>
+<div class="mf-grade">
+<div>
+<label for="mf-vezes">Times per day</label>
+<select id="mf-vezes"><option value="1">1 time</option><option value="2" selected>2 times</option><option value="3">3 times</option></select>
+</div>
+<div>
+<label for="mf-dias">Days per week</label>
+<select id="mf-dias"><option value="7" selected>Every day</option><option value="5">5 days</option><option value="3">3 days</option><option value="2">2 days</option><option value="1">1 day</option></select>
+</div>
+</div>
+</div>
+<div class="mf-acoes">
+<button class="mf-btn" type="button" id="mf-add">Add to the receipt</button>
+<button class="mf-btn mf-btn-sec" type="button" id="mf-limpar">Clear</button>
+</div>
+</form>
+
+<div id="mf-previa" class="mf-previa" aria-live="polite"></div>
+</section>
+
+<section aria-labelledby="mf-licao-t">
+<h2 id="mf-licao-t">The lesson that changes the price of everything: the right dose</h2>
+<p>Application studies usually show people use far less product than the recommended dose. On the label, the bottle seems to last months; at the right dose, it runs out halfway through. It is not that the product got expensive — before, there was product missing from your face.</p>
+<div class="ig-caixa">
+<p class="ig-rotulo">An example with the assumptions in plain sight</p>
+<p>Real price: <b>Neutrogena Sun Fresh Derm Care FPS 70 at R$ 47.70</b>, checked on 02/11/2026 (site catalog). For the math, assume a 50 ml bottle used once a day — a common market size, but check your own label.</p>
+<table class="ig-tabela">
+<caption>One bottle, two costs per day</caption>
+<thead><tr><th>How you apply it</th><th>Dose per day</th><th>Lasts</th><th>Cost per day</th></tr></thead>
+<tbody>
+<tr><td>Dose most people apply (about half)</td><td>0.5 ml</td><td>about 100 days</td><td>about R$ 0.48</td></tr>
+<tr><td><b>Right dose (the recommended one)</b></td><td>1 ml</td><td>about 50 days</td><td><b>about R$ 0.95</b></td></tr>
+</tbody>
+</table>
+<p class="ig-nota">With the same assumptions, the monthly cost (30 days) goes from about R$ 14.31 to about R$ 28.62. Sunscreen is where it hurts most: it is the product that suffers most from underdosing, and the only one whose job depends on how much you apply. Using half the SPF is not saving — it is less protection for the same price.</p>
+</div>
+</section>
+
+<section aria-labelledby="mf-recibo-t">
+<h2 id="mf-recibo-t">Your routine's receipt</h2>
+<p>Add up the bottles that actually go into your routine. The receipt shows three numbers the label never shows together: what leaves your pocket today, what that turns into per day, and what it turns into per month.</p>
+<div id="mf-recibo-print">
+<div class="mf-recibo" id="mf-recibo">
+<div class="mf-recibo-cab">
+<h3>Routine receipt</h3>
+<p id="mf-recibo-data">Produto Skincare · math done on your device</p>
+</div>
+<p class="mf-vazio" id="mf-recibo-vazio">No bottles on the receipt yet. Use the calculator above and click "Add to the receipt".</p>
+<ul class="mf-rec-itens" id="mf-rec-itens"></ul>
+<div class="mf-rec-total" id="mf-rec-total" hidden>
+<div><span>Today's investment</span><strong id="mf-total-invest">R$ 0.00</strong></div>
+<div><span>Per day (right dose)</span><strong id="mf-total-dia">R$ 0.00</strong></div>
+<div><span>Per month (30 days)</span><strong id="mf-total-mes">R$ 0.00</strong></div>
+</div>
+</div>
+</div>
+<div class="mf-acoes">
+<button class="mf-btn" type="button" id="mf-imprimir">Print receipt</button>
+<button class="mf-btn mf-btn-sec" type="button" id="mf-copiar">Copy summary</button>
+</div>
+<div id="mf-enviar"></div>
+</section>
+
+<section class="ig-caixa ig-resumo" aria-labelledby="mf-resumo-t">
+<p class="ig-rotulo" id="mf-resumo-t">In short</p>
+<ul>
+<li>The sticker price says little. The cost per day and how long it lasts say whether the product fits your budget.</li>
+<li>The dose most people apply makes the bottle look like it lasts twice as long and costs half as much. At the right dose, the math changes.</li>
+<li>Sunscreen deserves the full dose: underdosing saves nothing and protects less.</li>
+<li>Dose and size estimates are averages. The numbers that count are the ones on your label and in your own habits.</li>
+</ul>
+</section>
+
+<section aria-labelledby="mf-rel">
+<h2 id="mf-rel">Read also</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/reposicao/">Refill reminder</a></li>
+<li><a href="/en/ferramentas/expectativa/">When the results show up</a></li>
+<li><a href="/ferramentas/comparar/">Compare products</a></li>
+<li><a href="/ferramentas/prateleira/">My shelf</a></li>
+<li><a href="/rotinas/">Routines by budget</a></li>
+<li><a href="/blog/rotina-de-skincare-barata/">Budget routine</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="mf-fontes">
+<h2 id="mf-fontes">Sources and limits</h2>
+<ol>
+<li>Math and dose estimates follow the <a href="/ferramentas/reposicao/">Refill reminder</a> (same quantity-per-use table).</li>
+<li>Example price: <cite>Produto Skincare catalog</cite>, Neutrogena Sun Fresh Derm Care FPS 70, checked on 02/11/2026.</li>
+<li>The 50 ml size in the example is a declared assumption for the math; the real size is on each bottle's label.</li>
+<li>This content is informational and does not replace a dermatologist visit. The quantities are average estimates, not a prescription.</li>
+</ol>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Informational content, not a substitute for a dermatologist.</p>
+<p><a href="/privacidade/">Privacy</a> · <a href="/sobre/">About Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback without JavaScript: with scripts off, the AI tools don't run and nothing is lost — the whole site keeps working as a normal website. That is the manual path. A call in progress can be cancelled by the agent at any time.</p><noscript><p class="ps-rodape-nota">Without JavaScript the assistant tools don't run and nothing is lost: all content keeps working as plain HTML — that is the manual path.</p></noscript></footer>
+<p class="fallback" id="fallback-manual"><strong>Fallback without JavaScript.</strong> With scripts off, the AI tools don't run and nothing is lost: the whole catalog is at <a href="/produtos/">Products</a>, the skin type guides under <a href="/pele/oleosa/">Skin</a>, and the routines by condition at <a href="/rotinas/">Routines</a> — all plain HTML. That is the manual path. A call in progress can also be cancelled by the agent at any time.</p><noscript><p class="fallback">Without JavaScript, the assistant tools don't run and nothing is lost: the guides, the product catalog and the routines stay open as plain HTML. The example table and rules on this page stay readable as text — the calculator and the receipt need the script.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curated skincare for every skin type, with dated prices and links.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>skin type guides</li><li><strong>5</strong>skin conditions explained</li></ul>
+</div>
+<nav aria-label="Footer: Skin types"><p class="ps-rodape-titulo">Skin types</p><ul><li><a href="/pele/oleosa/">Oily skin</a></li><li><a href="/pele/seca/">Dry skin</a></li><li><a href="/pele/mista/">Combination skin</a></li><li><a href="/pele/normal/">Normal skin</a></li></ul></nav>
+<nav aria-label="Footer: Conditions"><p class="ps-rodape-titulo">Conditions</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosacea</a></li><li><a href="/condicoes/olheiras/">Dark circles</a></li><li><a href="/condicoes/desidratacao/">Dehydration</a></li><li><a href="/condicoes/">All conditions</a></li></ul></nav>
+<nav aria-label="Footer: Resources"><p class="ps-rodape-titulo">Resources</p><ul><li><a href="/provador/">Skin quiz</a></li><li><a href="/achados/">Finds</a></li><li><a href="/rotina-de-skincare/">Skincare routine</a></li><li><a href="/rotinas/">Routines by budget</a></li><li><a href="/ferramentas/comparar/">Compare products</a></li><li><a href="/ferramentas/ingredientes/">Check ingredients</a></li><li><a href="/ferramentas/ativos/">Actives guide</a></li><li><a href="/ferramentas/rotina/">Routine tracker</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredients</a></li><li><a href="/mais-vendidos/">Bestsellers</a></li><li><a href="/queridinhos-do-skincare/">World skincare favorites</a></li><li><a href="/produtos/">Products</a></li><li><a href="/ferramentas/reposicao/">Refill reminder</a></li><li><a href="/ferramentas/clima/">Today's UV index</a></li><li><a href="/pergunte/">Ask the AI</a></li><li><a href="/mercado-skincare-brasil/">Skincare market data</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Skincare Product (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contains affiliate links. Most guides are in Portuguese.</span><span class="ps-rodape-links"><a href="/sobre/">About</a><a href="/privacidade/">Privacy</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script src="/compartilhar.js" defer></script>
+<script>
+(function () {
+  "use strict";
+  var CHAVE = "ps_matematica_v1";
+  // Average amount per use (estimate, editable). Same table as the Refill reminder.
+  var PORCAO = {
+    limpeza: [1, "about a hazelnut of gel or foam"],
+    tratamento: [0.3, "4 to 6 drops of serum"],
+    hidratacao: [0.5, "a little less than a large pea"],
+    protetor: [1, "the two-finger rule for face and neck; adjust if you use more"],
+    olhos: [0.1, "a grain of rice for both eyes"],
+    outro: [0.5, "adjust to your use"]
+  };
+  // Typical market size when the name has no ml/g (estimate, editable).
+  var TAM_TIPO = { limpeza: 200, tratamento: 30, hidratacao: 50, protetor: 50, olhos: 15, outro: 50 };
+  var DE_CATEGORIA = {
+    "Hidratante": "hidratacao", "Hidratante reparador": "hidratacao", "Hidratante corporal": "outro",
+    "Protetor solar": "protetor", "Limpeza": "limpeza", "Sérum": "tratamento", "Tratamento acne": "tratamento"
+  };
+  var DOSE_MAIORIA = 0.5; // what most people apply, about half the recommended dose
+  var VEZES_POR_CAT = { protetor: 1, olhos: 1, limpeza: 2, tratamento: 2, hidratacao: 2, outro: 1 };
+  var $ = function (id) { return document.getElementById(id); };
+  var catalogo = [];
+  var precoTocado = false;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function brl(v) { return (isFinite(v) ? v : 0).toLocaleString("en-US", { style: "currency", currency: "BRL" }); }
+  function nDias(n) { n = Math.round(n); return n + (n === 1 ? " day" : " days"); }
+  function chaveNome(n) { return String(n || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim(); }
+  function tamanhoDoNome(nome) {
+    var m = String(nome).match(/(\d+(?:[.,]\d+)?)\s?(ml|g)\b/i);
+    return m ? { v: parseFloat(m[1].replace(",", ".")) } : null;
+  }
+  function fmtData(d) { return d.toLocaleDateString("en-US", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+  function addDias(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + Math.round(n)); return x; }
+
+  function ler() {
+    try { var d = JSON.parse(localStorage.getItem(CHAVE) || "{}"); d.itens = d.itens || []; return d; }
+    catch (e) { return { itens: [] }; }
+  }
+  function salvar(d) { try { localStorage.setItem(CHAVE, JSON.stringify(d)); } catch (e) {} }
+
+  function carregarCatalogo() {
+    return Promise.all([
+      fetch("/produtos.json").then(function (r) { return r.json(); }).catch(function () { return { produtos: [] }; }),
+      fetch("/top50-skincare-amazon.json").then(function (r) { return r.json(); }).catch(function () { return { produtos: [] }; })
+    ]).then(function (res) {
+      var vistos = {};
+      (res[0].produtos || []).forEach(function (p) {
+        var k = chaveNome(p.nome); if (vistos[k]) return; vistos[k] = 1;
+        catalogo.push({ nome: p.nome, cat: p.passo, preco: p.preco, precoEm: p.preco_em, link: p.link, tam: tamanhoDoNome(p.nome) });
+      });
+      (res[1].produtos || []).forEach(function (p) {
+        var k = chaveNome(p.nome); if (vistos[k]) return; vistos[k] = 1;
+        catalogo.push({ nome: p.nome, cat: DE_CATEGORIA[p.categoria] || "outro", preco: p.preco, precoEm: p.preco_em, link: p.link, tam: tamanhoDoNome(p.nome) });
+      });
+      $("mf-catalogo").innerHTML = catalogo.map(function (p) { return '<option value="' + esc(p.nome) + '"></option>'; }).join("");
+    });
+  }
+
+  function doCatalogo(nome) {
+    var k = chaveNome(nome);
+    for (var i = 0; i < catalogo.length; i++) if (chaveNome(catalogo[i].nome) === k) return catalogo[i];
+    return null;
+  }
+
+  function atualizarPorcao() {
+    var cat = $("mf-cat").value;
+    var p = PORCAO[cat] || PORCAO.outro;
+    $("mf-porcao").value = p[0];
+    $("mf-porcao-dica").textContent = "Estimate: " + p[1] + ".";
+    $("mf-vezes").value = String(VEZES_POR_CAT[cat] || 2);
+  }
+
+  function aoMudarNome() {
+    var p = doCatalogo($("mf-nome").value);
+    if (!p) return;
+    if (p.preco != null && !precoTocado) $("mf-preco").value = p.preco;
+    if (p.cat && PORCAO[p.cat]) { $("mf-cat").value = p.cat; atualizarPorcao(); }
+    if (p.tam) { $("mf-tam").value = p.tam.v; }
+    else if (!(parseFloat($("mf-tam").value) > 0)) { $("mf-tam").value = TAM_TIPO[$("mf-cat").value] || 50; }
+    if (p.precoEm && !precoTocado) $("mf-preco-dica").textContent = "Price checked on " + esc(p.precoEm) + " in the site catalog.";
+    calcular();
+  }
+
+  function valoresForm() {
+    return {
+      nome: $("mf-nome").value.trim() || "Unnamed product",
+      cat: $("mf-cat").value,
+      preco: parseFloat($("mf-preco").value) || 0,
+      tam: parseFloat($("mf-tam").value) || 0,
+      porcao: parseFloat($("mf-porcao").value) || 0,
+      vezes: +$("mf-vezes").value,
+      dias: +$("mf-dias").value
+    };
+  }
+
+  // days it lasts = size ÷ (dose × uses per day), same as the Refill reminder.
+  function duracao(tam, porcaoDia) { return (porcaoDia > 0 && tam > 0) ? tam / porcaoDia : null; }
+
+  function calcular() {
+    var v = valoresForm();
+    var alvo = $("mf-previa");
+    var p = doCatalogo(v.nome);
+    if (!(v.preco > 0) || !(v.tam > 0) || !(v.porcao > 0)) { alvo.innerHTML = ""; return; }
+    var porDiaCerto = v.porcao * v.vezes * (v.dias / 7);
+    var porDiaMaioria = porDiaCerto * DOSE_MAIORIA;
+    var diasCerto = duracao(v.tam, porDiaCerto);
+    var diasMaioria = duracao(v.tam, porDiaMaioria);
+    if (!diasCerto) { alvo.innerHTML = ""; return; }
+    var custoDiaCerto = v.preco / diasCerto;
+    var custoDiaMaioria = v.preco / diasMaioria;
+    var fim = addDias(new Date(), diasCerto);
+    alvo.innerHTML =
+      '<div class="mf-comp">' +
+      '<div class="mf-comp-col"><p class="mf-comp-tag">Dose most people apply (about half)</p>' +
+      '<p class="mf-num">' + esc(brl(custoDiaMaioria)) + '<small> per day</small></p>' +
+      '<p class="mf-linha">lasts ' + esc(nDias(diasMaioria)) + ' · ' + esc(brl(custoDiaMaioria * 30)) + ' per month</p></div>' +
+      '<div class="mf-comp-col mf-certo"><p class="mf-comp-tag">Right dose (the recommended one)</p>' +
+      '<p class="mf-num">' + esc(brl(custoDiaCerto)) + '<small> per day</small></p>' +
+      '<p class="mf-linha">lasts ' + esc(nDias(diasCerto)) + ' (until ' + esc(fmtData(fim)) + ') · ' + esc(brl(custoDiaCerto * 30)) + ' per month</p></div>' +
+      '</div>' +
+      '<p class="ig-nota">' + esc(v.nome) + ': ' + esc(brl(v.preco)) + ' for ' + esc(String(v.tam)) + ' ml/g, ' +
+      esc(String(v.vezes)) + ' time(s) per day, ' + esc(String(v.dias)) + ' day(s) per week.' +
+      (p && p.link ? ' <a href="' + esc(p.link) + '" rel="nofollow sponsored">See in store ↗</a>' : '') +
+      ' At the right dose the bottle lasts about half as long as it seems: the cost per day doubles, and the product finally does the job it promises.</p>';
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-calcular"); } catch (e) {}
+  }
+
+  function renderRecibo() {
+    var d = ler();
+    var ul = $("mf-rec-itens");
+    var vazio = $("mf-recibo-vazio");
+    var tot = $("mf-rec-total");
+    if (!d.itens.length) { ul.innerHTML = ""; vazio.hidden = false; tot.hidden = true; return; }
+    vazio.hidden = true; tot.hidden = false;
+    var inv = 0, dia = 0;
+    ul.innerHTML = d.itens.map(function (it, i) {
+      var porDiaCerto = it.porcao * it.vezes * (it.dias / 7);
+      var dias = duracao(it.tam, porDiaCerto) || 1;
+      var custoDia = it.preco / dias;
+      inv += it.preco; dia += custoDia;
+      return '<li><span class="mf-rec-nome">' + esc(it.nome) + '</span>' +
+        '<span class="mf-rec-meta">' + esc(String(it.tam)) + ' ml/g · dose ' + esc(String(it.porcao)) + ' · ' +
+        esc(String(it.vezes)) + ' time(s)/day · lasts ' + esc(nDias(dias)) +
+        (it.link ? ' · <a href="' + esc(it.link) + '" rel="nofollow sponsored">store ↗</a>' : '') + '</span>' +
+        '<span class="mf-rec-valores"><span>' + esc(brl(it.preco)) + ' per bottle</span><span>' + esc(brl(custoDia)) + '/day</span></span>' +
+        '<button class="mf-rec-remover" type="button" data-i="' + i + '">Remove</button></li>';
+    }).join("");
+    $("mf-total-invest").textContent = brl(inv);
+    $("mf-total-dia").textContent = brl(dia);
+    $("mf-total-mes").textContent = brl(dia * 30);
+    $("mf-recibo-data").textContent = "Produto Skincare · math done on your device · " + fmtData(new Date());
+    Array.prototype.forEach.call(ul.querySelectorAll(".mf-rec-remover"), function (b) {
+      b.addEventListener("click", function () {
+        var dd = ler(); dd.itens.splice(+b.getAttribute("data-i"), 1); salvar(dd); renderRecibo();
+      });
+    });
+  }
+
+  function adicionar() {
+    var v = valoresForm();
+    if (!(v.preco > 0) || !(v.tam > 0) || !(v.porcao > 0)) {
+      $("mf-previa").innerHTML = '<p class="ig-nota">Fill in price, size and dose to build the receipt.</p>';
+      return;
+    }
+    var p = doCatalogo(v.nome);
+    v.link = p && p.link ? p.link : "";
+    var d = ler(); d.itens.push(v); salvar(d);
+    renderRecibo();
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-recibo"); } catch (e) {}
+    $("mf-recibo-print").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function textoRecibo() {
+    var d = ler();
+    var linhas = ["Routine receipt (Produto Skincare)"];
+    var inv = 0, dia = 0;
+    d.itens.forEach(function (it) {
+      var porDiaCerto = it.porcao * it.vezes * (it.dias / 7);
+      var dias = duracao(it.tam, porDiaCerto) || 1;
+      var custoDia = it.preco / dias;
+      inv += it.preco; dia += custoDia;
+      linhas.push("- " + it.nome + ": " + brl(it.preco) + " per bottle, lasts " + nDias(dias) + ", " + brl(custoDia) + "/day");
+    });
+    linhas.push("Today's investment: " + brl(inv));
+    linhas.push("Per day (right dose): " + brl(dia) + " · per month: " + brl(dia * 30));
+    linhas.push("Math opened at " + window.location.href);
+    return linhas.join("\n");
+  }
+
+  function copiar() {
+    var t = textoRecibo();
+    function ok() { $("mf-recibo-data").textContent = "Summary copied."; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(ok, function () { window.prompt("Copy the summary:", t); });
+    } else { window.prompt("Copy the summary:", t); }
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-copiar"); } catch (e) {}
+  }
+
+  function iniciar() {
+    atualizarPorcao();
+    renderRecibo();
+    carregarCatalogo();
+    ["mf-nome", "mf-preco", "mf-tam", "mf-porcao", "mf-vezes", "mf-dias"].forEach(function (id) {
+      $(id).addEventListener("input", calcular);
+      $(id).addEventListener("change", calcular);
+    });
+    $("mf-nome").addEventListener("change", aoMudarNome);
+    $("mf-preco").addEventListener("input", function () { precoTocado = true; });
+    // Number prefilled (autofill or estimate): select all on focus, to type over it.
+    ["mf-preco", "mf-tam", "mf-porcao"].forEach(function (id) {
+      $(id).addEventListener("focus", function () { this.select(); });
+    });
+    $("mf-cat").addEventListener("change", function () { atualizarPorcao(); aoMudarNome(); calcular(); });
+    $("mf-form").addEventListener("submit", function (e) { e.preventDefault(); adicionar(); });
+    $("mf-add").addEventListener("click", adicionar);
+    $("mf-limpar").addEventListener("click", function () {
+      precoTocado = false;
+      $("mf-form").reset(); atualizarPorcao(); $("mf-previa").innerHTML = "";
+      $("mf-preco-dica").textContent = "Catalog price with the date it was checked, when available.";
+    });
+    $("mf-imprimir").addEventListener("click", function () {
+      try { if (window.PSAnalytics) window.PSAnalytics.evento("matematica-imprimir"); } catch (e) {}
+      window.print();
+    });
+    $("mf-copiar").addEventListener("click", copiar);
+    if (window.PSEnviar && window.PSEnviar.montar) {
+      window.PSEnviar.montar($("mf-enviar"), function () {
+        return { assunto: "Skincare routine receipt", texto: textoRecibo(), url: window.location.href };
+      }, { titulo: "Get this receipt" });
+    }
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ferramentas-matematica"); } catch (e) {}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>
