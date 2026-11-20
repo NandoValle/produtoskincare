@@ -152,3 +152,4 @@ A página inicial tem perguntas frequentes com resposta curta (como saber o tipo
 - [Privacidade](https://produtoskincare.com.br/privacidade/)
 - [Termos de uso](https://produtoskincare.com.br/termos/)
 - [Rotina de skincare](https://produtoskincare.com.br/rotina-de-skincare/): visão geral de como montar a rotina.
+- [Comece aqui](https://produtoskincare.com.br/comece-aqui/): rotina de skincare em 5 níveis, do zero ao retinol, um passo por vez, com links para os guias de cada nível.

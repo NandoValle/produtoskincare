@@ -49,14 +49,17 @@ echo "$HEADERS" | grep -qi '^origin-agent-cluster: *?1' && ok "Origin-Agent-Clus
 echo "$HEADERS" | grep -qi '^permissions-policy:.*tools=(self)' && ok "Permissions-Policy tools=(self)" || falha "Permissions-Policy tools ausente"
 
 echo "== Descoberta WebMCP estática =="
+# Quantas ferramentas o manifesto do repositório declara (o job "paridade" garante repo == publicado).
+ESPERADO=$(python3 -c 'import json,sys; print(len(json.load(open(sys.argv[1])).get("tools", [])))' "$(dirname "$0")/../../webmcp-tools.json" 2>/dev/null || echo 5)
 if MANIFESTO=$(curl -sf --max-time 20 "$BASE/webmcp-tools.json"); then
   echo "$MANIFESTO" | python3 -c '
 import json, sys
 d = json.load(sys.stdin)
 ts = d.get("tools", [])
 erros = []
-if len(ts) != 4:
-    erros.append("esperado 4 ferramentas, veio %d" % len(ts))
+esperado = int(sys.argv[1])
+if len(ts) != esperado:
+    erros.append("esperado %d ferramentas (manifesto do repo), veio %d" % (esperado, len(ts)))
 for t in ts:
     nome = t.get("name", "?")
     if not nome or len(t.get("description", "")) < 80:
@@ -69,8 +72,8 @@ for t in ts:
             erros.append("parâmetro sem description em %s" % nome)
 if erros:
     print("; ".join(erros)); sys.exit(1)
-print("manifesto ok: 4 ferramentas, schemas completos")
-' && ok "webmcp-tools.json válido e completo" || falha "webmcp-tools.json inválido"
+print("manifesto ok: %d ferramentas, schemas completos" % len(ts))
+' "$ESPERADO" && ok "webmcp-tools.json válido e completo" || falha "webmcp-tools.json inválido"
 else
   falha "webmcp-tools.json inacessível (404?)"
 fi

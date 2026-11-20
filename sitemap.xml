@@ -891,13 +891,48 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/comece-aqui/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/comparativos/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/comparativos/cerave-gel-limpeza-ou-lrp-effaclar-gel/</loc>
     <lastmod>2026-11-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/comparativos/cetaphil-creme-hidratante-ou-cerave-pm-locao/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/comparativos/isdin-fusion-water-ou-isdin-fusion-water-sem-cor/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/comparativos/lrp-cicaplast-baume-ou-mantecorp-epidrat-calm/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/comparativos/neutrogena-hydro-boost-ou-cerave-pm-locao/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/comparativos/neutrogena-sun-fresh-fps70-ou-skin-aqua-moisture-milk/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/comparativos/principia-vc10-ou-mantecorp-ivy-c-ferulic/</loc>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -912,7 +947,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/comparativos/mantecorp-epidrat-calm-ou-creamy-calming-cream/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1142,12 +1177,12 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/12-semanas/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1187,7 +1222,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/equivalente/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1207,7 +1242,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/farmacia/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1222,7 +1257,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/prateleira/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1392,12 +1427,12 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/cerave-pm-locao/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/cetaphil-creme-hidratante/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1427,12 +1462,12 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/isdin-fusion-water-sem-cor/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/isdin-fusion-water/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1442,7 +1477,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/lrp-cicaplast-baume/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1462,22 +1497,22 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/mantecorp-epidrat-calm/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/mantecorp-ivy-c-ferulic/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/neutrogena-hydro-boost/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/neutrogena-sun-fresh-fps70/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1507,12 +1542,12 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/principia-vc10/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/produtos/skin-aqua-moisture-milk/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
