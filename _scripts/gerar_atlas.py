@@ -1,4 +1,4 @@
-"""Gera o Atlas dos Ativos em /ativos/ (índice interativo dos 88 ativos).
+"""Gera o Atlas dos Ativos em /ativos/ (índice interativo dos ativos do guia).
 
 Uso:  python -I _scripts/gerar_atlas.py        (precisa do Node no PATH)
 Depois: python -I _scripts/prontidao.py
