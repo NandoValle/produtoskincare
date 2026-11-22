@@ -5,5 +5,9 @@
 __pycache__/
 .missiva/
 
+# Dependências locais dos testes de navegador (npm install playwright)
+node_modules/
+package-lock.json
+
 # Arquivos locais do "wrangler dev"
 .wrangler/

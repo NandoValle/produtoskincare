@@ -5,6 +5,10 @@ _*
 # Configuração da Cloudflare e documentos internos.
 wrangler.jsonc
 *.md
+# Dependências dos testes de navegador: não são páginas do site.
+node_modules/
+package.json
+package-lock.json
 # Script de apoio (gera as rotinas); não é página do site.
 scripts/
 __pycache__/
