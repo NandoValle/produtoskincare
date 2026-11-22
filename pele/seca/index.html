@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -150,6 +150,31 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <tr><td data-label="Ingrediente"><strong>Ácido láctico</strong></td><td data-label="O que faz">Esfolia e alisa (é um AHA), mas pode arder (Grimes et al., 2004)</td><td data-label="Quando usar">1-2x/semana (comece devagar)</td></tr>
 </table>
 <p class="sub">Para pele muito ressecada, um consenso de dermatologistas alemães aponta a ureia como o ingrediente com melhor evidência (Augustin et al., 2019).</p>
+
+<h2>Qual textura usar</h2>
+<div class="card">
+<p style="margin-top:0">Na pele seca, a textura do produto importa tanto quanto o ativo. Arraste para comparar as duas famílias de textura.</p>
+<style>
+.ct{position:relative;aspect-ratio:3/2;overflow:hidden;border:1px solid var(--linha,#d8d3c8);border-radius:var(--raio,8px);background:var(--papel-2,#efece4);margin:14px 0 10px}
+.ct-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ct-top{clip-path:inset(0 50% 0 0)}
+.ct-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.ct-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--papel,#fff);pointer-events:none;transform:translateX(-1px)}
+.ct-handle::after{content:'';position:absolute;top:50%;left:50%;width:34px;height:34px;border-radius:50%;border:2px solid var(--papel,#fff);background:var(--rosa,#9b405b);transform:translate(-50%,-50%)}
+.ct-tag{position:absolute;bottom:12px;font-size:.78rem;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--tinta,#252b2a);pointer-events:none}
+.ct-tag-e{left:12px}.ct-tag-d{right:12px}
+</style>
+<div class="ct" data-ct>
+<img class="ct-img" src="/img/tipo-seca.webp" alt="Textura de bálsamo denso: creme espesso e opaco" width="1152" height="864" loading="lazy" decoding="async">
+<img class="ct-img ct-top" src="/img/tipo-oleosa.webp" alt="Textura de gel-creme leve: sérum translúcido e fluido" width="1152" height="864" loading="lazy" decoding="async">
+<div class="ct-handle" aria-hidden="true"></div>
+<span class="ct-tag ct-tag-e">Gel-creme leve</span>
+<span class="ct-tag ct-tag-d">Bálsamo denso</span>
+<input type="range" class="ct-range" min="0" max="100" value="50" aria-label="Arraste para comparar gel-creme leve e bálsamo denso">
+</div>
+<p class="sub">Gel-creme leve: absorve rápido e costuma funcionar bem sob o protetor solar. Bálsamo denso: sela a hidratação por mais tempo, ideal para a noite. As imagens são texturas ilustrativas — não mostram resultado de produto algum.</p>
+</div>
+<script src="/comparador-produtos.js" defer></script>
 
 <h2>Produtos recomendados</h2>
 <div class="card">
