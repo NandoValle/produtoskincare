@@ -10,7 +10,7 @@
 (function () {
   "use strict";
   var W = 1080, H = 1920, M = 96;
-  var COR = { fundo: "#f7f8f7", papel: "#fdfefd", tinta: "#252b2a", suave: "#39413f", linha: "#dce1de", rosa: "#9b405b", rosaClaro: "#f6e9ee" };
+  var COR = { fundo: "#F7F2EC", papel: "#FDFBF7", tinta: "#17120E", suave: "#3A3028", linha: "#E4DBCE", rosa: "#755728", rosaClaro: "#F1E7D6" };
   var DISPLAY = "'Cormorant Garamond', Georgia, serif", CORPO = "Manrope, 'Segoe UI', Arial, sans-serif";
 
   function quebrar(ctx, texto, largura) {

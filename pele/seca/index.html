@@ -71,12 +71,11 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a data-secao="atual" href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></details></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a data-secao="atual" href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/blog/">Blog</a></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
 <script src="/premium.js" defer></script>
-<script src="/comparador-texturas.js" defer></script>
 <!-- menu:fim -->
 <main id="conteudo">
 <div class="marca">Produto <span>Skincare</span> · Guia de tipos de pele</div>
@@ -160,8 +159,8 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 .ct-top{clip-path:inset(0 50% 0 0)}
 .ct-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
 .ct-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--papel,#fff);pointer-events:none;transform:translateX(-1px)}
-.ct-handle::after{content:'';position:absolute;top:50%;left:50%;width:34px;height:34px;border-radius:50%;border:2px solid var(--papel,#fff);background:var(--rosa,#9b405b);transform:translate(-50%,-50%)}
-.ct-tag{position:absolute;bottom:12px;font-size:.78rem;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--tinta,#252b2a);pointer-events:none}
+.ct-handle::after{content:'';position:absolute;top:50%;left:50%;width:34px;height:34px;border-radius:50%;border:2px solid var(--papel,#fff);background:var(--rosa,#755728);transform:translate(-50%,-50%)}
+.ct-tag{position:absolute;bottom:12px;font-size:.78rem;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--tinta,#17120E);pointer-events:none}
 .ct-tag-e{left:12px}.ct-tag-d{right:12px}
 </style>
 <div class="ct" data-ct>

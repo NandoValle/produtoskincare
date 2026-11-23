@@ -1,3 +1,27 @@
+/* Redes sociais no rodapé. Cole o link de cada perfil aqui; o que ficar vazio não aparece.
+   Depois de preencher, acrescente os mesmos links em "sameAs" da organização em _scripts/schema_site.py. */
+(() => {
+  const REDES = {
+    Instagram: '',
+    TikTok: '',
+    Pinterest: '',
+    YouTube: '',
+    WhatsApp: '',
+  };
+  const base = document.querySelector('.ps-rodape-links');
+  if (!base || base.dataset.redes) return;
+  base.dataset.redes = '1';
+  Object.entries(REDES).forEach(([nome, url]) => {
+    if (!/^https:\/\//.test(url)) return;
+    const a = document.createElement('a');
+    a.href = url;
+    a.rel = 'me noopener';
+    a.target = '_blank';
+    a.textContent = nome;
+    base.prepend(a);
+  });
+})();
+
 /* Rodapé no celular: cada coluna (Tipos de pele, Ferramentas, Conteúdo...) vira um acordeão fechado.
    Sem JavaScript, ou em telas maiores, o rodapé continua todo aberto. */
 (() => {

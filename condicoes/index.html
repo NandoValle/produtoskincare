@@ -53,12 +53,11 @@ h1{font-family:var(--fonte-display);font-size:clamp(1.8rem,5vw,2.6rem);font-weig
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/" aria-current="page">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></details></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/" aria-current="page">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/blog/">Blog</a></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
 <script src="/premium.js" defer></script>
-<script src="/comparador-texturas.js" defer></script>
 <!-- menu:fim -->
 <main id="conteudo">
 <div class="marca">Produto <span>Skincare</span> · Condições</div>
@@ -108,21 +107,6 @@ Quer saber o que a <strong>sua</strong> pele tem? <a href="/provador/" style="co
 <p class="sub" style="margin-top:30px;font-size:.82rem">© 2026 Produto Skincare. Conteúdo educativo, não substitui consulta médica.</p>
 <!-- perguntas:inicio -->
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
-<section aria-labelledby="comparador-textura">
-<h2 id="comparador-textura">Barreira hidratada ou sensibilizada?</h2>
-<p>Antes das condições abaixo, uma ilustração da barreira da pele em dois estados: hidratada e sensibilizada.</p>
-<div class="ps-textura">
-<div class="ps-textura-moldura">
-<svg viewBox="0 0 400 300" role="img" aria-label="Ilustração: barreira da pele sensibilizada"><defs><filter id="tx-hub-b" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.05 0.09" numOctaves="3" seed="33" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0.86 0 0 0 0 0.48 0 0 0 0 0.42 0 0 0 0.5 0" result="c"/><feGaussianBlur in="c" stdDeviation="2.5"/></filter></defs><rect width="400" height="300" fill="#eec1ad"/><rect width="400" height="300" filter="url(#tx-hub-b)"/><path d="M30 90 L 120 96 L 170 84 L 260 92 L 370 80" stroke="#c26a58" stroke-width="2" fill="none" opacity="0.5"/><path d="M20 170 L 110 178 L 190 166 L 280 176 L 382 164" stroke="#c26a58" stroke-width="2" fill="none" opacity="0.45"/><path d="M36 250 L 140 258 L 230 246 L 350 254" stroke="#c26a58" stroke-width="2" fill="none" opacity="0.4"/></svg>
-<div class="ps-textura-cima"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração: barreira da pele hidratada"><defs><filter id="tx-hub-a" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.025 0.06" numOctaves="2" seed="21" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0.96 0 0 0 0 0.80 0 0 0 0 0.70 0 0 0 0.28 0" result="c"/><feGaussianBlur in="c" stdDeviation="5"/></filter></defs><rect width="400" height="300" fill="#f5d8c4"/><rect width="400" height="300" filter="url(#tx-hub-a)"/><circle cx="88" cy="110" r="5" fill="#fff" opacity="0.5"/><circle cx="186" cy="76" r="4" fill="#fff" opacity="0.45"/><circle cx="290" cy="138" r="6" fill="#fff" opacity="0.4"/><circle cx="130" cy="212" r="4" fill="#fff" opacity="0.5"/><circle cx="322" cy="222" r="5" fill="#fff" opacity="0.4"/></svg></div>
-<div class="ps-textura-alca" aria-hidden="true"></div>
-</div>
-<input type="range" min="0" max="100" value="50" aria-label="Comparar barreira hidratada e sensibilizada">
-<p class="ps-textura-rotulos"><span>← Barreira hidratada: superfície lisa</span><span>Sensibilizada: vermelhidão e marcas →</span></p>
-<noscript><p class="ig-nota">Sem JavaScript o comparador fica parado na metade — a ilustração já mostra os dois lados. É ilustração, não foto.</p></noscript>
-</div>
-</section>
-
 <h2 id="perguntas-pagina">Perguntas frequentes</h2>
 <h3>Quais condições da pele o guia de condições cobre?</h3>
 <p>Melasma, rosácea, acne, olheiras e desidratação. Para cada uma, o guia traz sinais, causas, tratamentos e quando procurar dermatologista.</p>
@@ -132,7 +116,7 @@ Quer saber o que a <strong>sua</strong> pele tem? <a href="/provador/" style="co
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-09">9 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-23">23 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
