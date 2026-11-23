@@ -21,13 +21,13 @@
     // 1) newsletter_form: endereço "action" do formulário de inscrição do seu serviço
     //    (Buttondown, Brevo, Mailchimp, MailerLite…). O e-mail vai direto para o serviço.
     //    Buttondown: "https://buttondown.com/api/emails/embed-subscribe/SEU-USUARIO"
-    newsletter_form: "",
+    newsletter_form: "https://buttondown.com/api/emails/embed-subscribe/produtoskincare",
     newsletter_campo: "email",  // nome do campo de e-mail que o serviço espera
     // Campos ocultos que o serviço pede junto com o e-mail. O Buttondown pede { embed: "1" }.
     newsletter_ocultos: { embed: "1" },
     // 2) newsletter_link: link de inscrição (Substack, canal do WhatsApp, canal do Telegram).
     newsletter_link: "",
-    newsletter_servico: "",     // nome do serviço, para o aviso de privacidade. Ex.: "Buttondown"
+    newsletter_servico: "Buttondown", // nome do serviço, para o aviso de privacidade. Ex.: "Buttondown"
     newsletter_nome: "Achados da semana",
     newsletter_descricao: "Um e-mail curto com produtos que baixaram de preço, achados novos e um guia da semana. Sem spam."
   };

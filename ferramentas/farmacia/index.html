@@ -231,7 +231,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 
 <section aria-live="polite" id="fa-resultado"></section>
 
-<p class="ig-nota">A comparação usa as <a href="/ferramentas/ingredientes/">regras de combinação do verificador</a> (versão <span id="fa-versao"></span>) e só enxerga os ativos que reconhece no texto. Leitura por foto pode trocar letras: confira o texto antes. Quando não temos regra para um par, dizemos que não sabemos. Informativo: não substitui o dermatologista nem o farmacêutico da loja.</p>
+<p class="ig-nota">A comparação usa as <a href="/ferramentas/ingredientes/">regras de combinação do verificador</a> (versão <span id="fa-versao"></span>) e só enxerga os ativos que reconhece no texto. Leitura por foto pode trocar letras: confira o texto antes. Quando não temos regra para um par, dizemos que não sabemos. Cada ativo no resultado leva à ficha dele, com o nível de evidência: o aviso vem da regra versionada; a evidência, da ficha. Informativo: não substitui o dermatologista nem o farmacêutico da loja.</p>
 </article>
 <script src="/regras-ativos.js"></script>
 <script src="/prateleira.js"></script>
@@ -245,6 +245,35 @@ textarea.ft-campo{resize:vertical;min-height:96px}
   var ICONE = { sem_regra: "❔", horarios: "🕐", nao: "⛔" };
   var CSS = { sem_regra: "ft-sem", horarios: "ft-horarios", nao: "ft-nao" };
   var candidato = null;
+  /* Ficha de cada ativo: as fichas com evidência ficam em /ingredientes/;
+   * o resto do hub fica no guia de ativos. Toda a análise continua vindo
+   * das regras versionadas — a ficha é só o link para a evidência. */
+  var FICHA = {
+    retinol: "/ingredientes/retinol/", retinal: "/ingredientes/retinol/", retinila: "/ingredientes/retinol/",
+    hpr: "/ingredientes/retinol/", tretinoina: "/ingredientes/retinol/", adapaleno: "/ingredientes/retinol/",
+    tazaroteno: "/ingredientes/retinol/", trifaroteno: "/ingredientes/retinol/",
+    salicilico: "/ingredientes/acido-salicilico/", lha: "/ingredientes/acido-salicilico/",
+    vitc: "/ingredientes/vitamina-c/", niacinamida: "/ingredientes/niacinamida/",
+    azelaico: "/ingredientes/acido-azelaico/", tranexamico: "/ingredientes/acido-tranexamico/",
+    hialuronico: "/ingredientes/acido-hialuronico/", ceramidas: "/ingredientes/ceramidas/",
+    mandelico: "/ingredientes/acido-mandelico/"
+  };
+  function linkAtivo(id, nome) {
+    /* id vem das regras; o nome é reserva quando o prateleira.js em cache
+     * ainda não manda o id (degrada com elegância para /ativos/). */
+    var FICHA_POR_NOME = {
+      "Retinol": "/ingredientes/retinol/", "Retinal (retinaldeído)": "/ingredientes/retinol/",
+      "Tretinoína (ácido retinoico)": "/ingredientes/retinol/", "Adapaleno": "/ingredientes/retinol/",
+      "Ácido salicílico (BHA)": "/ingredientes/acido-salicilico/", "Vitamina C": "/ingredientes/vitamina-c/",
+      "Niacinamida": "/ingredientes/niacinamida/", "Ácido azelaico": "/ingredientes/acido-azelaico/",
+      "Ácido tranexâmico": "/ingredientes/acido-tranexamico/", "Ácido hialurônico": "/ingredientes/acido-hialuronico/",
+      "Ceramidas": "/ingredientes/ceramidas/", "Ácido mandélico": "/ingredientes/acido-mandelico/"
+    };
+    return '<a href="' + (FICHA[id] || FICHA_POR_NOME[nome] || "/ativos/") + '">' + esc(nome) + '</a>';
+  }
+  function dosesDe(texto) {
+    return (String(texto).match(/\d+(?:[.,]\d+)?\s*%/g) || []).map(function (s) { return s.replace(/\s+/g, ""); });
+  }
   if (!R || !P) { $("fa-resultado").innerHTML = '<p class="ft-nao">Não foi possível carregar as regras. Recarregue a página.</p>'; return; }
   $("fa-versao").textContent = R.VERSAO;
   function evento(n) { try { if (window.PSAnalytics) window.PSAnalytics.evento(n); } catch (e) {} }
@@ -282,7 +311,12 @@ textarea.ft-campo{resize:vertical;min-height:96px}
     var d = P.ler();
     var ativos = P.ativosDe(candidato);
     var h = ['<h2>Resultado</h2>'];
-    h.push('<p><strong>Ativos reconhecidos:</strong> ' + (ativos.length ? esc(ativos.map(function (a) { return a.nome; }).join(", ")) : "nenhum. Confira se o texto está legível.") + '</p>');
+    h.push('<p><strong>Ativos reconhecidos:</strong> ' + (ativos.length ? ativos.map(function (a) { return linkAtivo(a.id, a.nome); }).join(", ") : "nenhum. Confira se o texto está legível.") + '</p>');
+    var doses = dosesDe(texto);
+    if (doses.length) {
+      h.push('<p class="ig-nota">Concentração declarada no texto: ' + esc(doses.join(", ")) +
+        ' — quem escreveu pode ter errado; a lista de ingredientes mostra composição, não quantidade. Cada ativo leva à ficha com o nível de evidência.</p>');
+    }
 
     var antes = P.analisar(d.itens, { sensivel: d.sensivel });
     var depois = P.analisar(d.itens.concat([candidato]), { sensivel: d.sensivel });
@@ -295,7 +329,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
       conflitos.forEach(function (c) {
         var outro = c.x === candidato ? c.y : c.x;
         h.push('<div class="' + CSS[c.resultado] + '"><strong>' + ICONE[c.resultado] + " Com " + esc(outro.nome) + ": " + esc(c.rotulo) + '</strong>' +
-          '<span class="ft-sub">' + esc(c.ativoX) + " com " + esc(c.ativoY) + (c.resultado === "nao" ? "" : ", " + quando(c.periodos)) + '.</span>' + esc(c.motivo) +
+          '<span class="ft-sub">' + linkAtivo(c.aId, c.ativoX) + " com " + linkAtivo(c.bId, c.ativoY) + (c.resultado === "nao" ? "" : ", " + quando(c.periodos)) + '.</span>' + esc(c.motivo) +
           (c.nota ? '<span class="ft-sub">' + esc(c.nota) + '</span>' : "") + '</div>');
       });
       repetidos.forEach(function (r) {
@@ -347,7 +381,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-20">20 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-22">22 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
 </main>
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>

@@ -1,0 +1,31 @@
+# qa-navegador.yml — QA semanal do site com a suíte de testes de navegador.
+#
+# Rode sempre que mexer em JavaScript das ferramentas; no automático, toda
+# segunda de manhã pega regressões que o schema não vê (links quebrados,
+# fluxo do provador, combinações de ingredientes, mobile).
+#
+# A suíte sobe o site num servidor local e roda: regras (node) + link,
+# link_extra, sensivel, orcamento, verificador, confianca, mobile, novas.
+
+name: qa-navegador
+
+on:
+  schedule:
+    - cron: "13 11 * * 1"   # segunda 08h13 BRT (11h13 UTC)
+  workflow_dispatch:
+
+jobs:
+  suite:
+    name: Suíte de navegador (regras + 8 testes)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Instalar Playwright + Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Rodar a suíte
+        run: bash _scripts/testes_navegador/rodar.sh

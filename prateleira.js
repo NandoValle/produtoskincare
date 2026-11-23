@@ -83,7 +83,8 @@
         // "Use em horários diferentes" e "sem regra" só pesam quando os dois caem no mesmo período.
         if (r.resultado !== "nao" && !comuns.length) continue;
         conflitos.push({ x: x, y: y, periodos: comuns, resultado: r.resultado, rotulo: R.ROTULOS[r.resultado],
-          motivo: r.motivo, nota: r.nota || "", ativoX: r.a.nome, ativoY: r.b.nome, porSensibilidade: !!r.porSensibilidade });
+          motivo: r.motivo, nota: r.nota || "", ativoX: r.a.nome, ativoY: r.b.nome, aId: r.a.id, bId: r.b.id,
+          porSensibilidade: !!r.porSensibilidade });
       }
     }
     conflitos.sort(function (p, q) { return PESO[q.resultado] - PESO[p.resultado]; });

@@ -174,6 +174,23 @@ function brl(cents) {
 function dataBR(iso) {
   return iso ? iso.slice(0, 10).split("-").reverse().join("/") : "—";
 }
+// Sparkline SVG dos últimos 90 dias: estático, sem JS, determinístico.
+// Mesmo critério do precos-widget.js: linha só com 2+ observações; antes disso, traço.
+function sparkline(serie) {
+  if (!serie || serie.length < 2) return '<span class="ig-nota" title="Com 2 ou mais observações aparece a linha dos últimos 90 dias">—</span>';
+  const w = 88, h = 26, pad = 3;
+  const valores = serie.map(([, v]) => v);
+  const min = Math.min(...valores), max = Math.max(...valores);
+  const span = max - min || 1;
+  const pts = serie.map(([, v], i) => {
+    const x = pad + (i * (w - 2 * pad)) / (serie.length - 1);
+    const y = max === min ? h / 2 : h - pad - ((v - min) / span) * (h - 2 * pad);
+    return [x.toFixed(1), y.toFixed(1)];
+  });
+  const [ux, uy] = pts[pts.length - 1];
+  const alvo = `${dataBR(serie[0][0])} a ${dataBR(serie[serie.length - 1][0])}: mín ${brl(min)} · máx ${brl(max)}`;
+  return `<svg class="ps-spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Preços em 90 dias — ${alvo}"><title>${alvo}</title><polyline points="${pts.map((p) => p.join(",")).join(" ")}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${ux}" cy="${uy}" r="2.2" fill="currentColor"/></svg>`;
+}
 const paginaTabela = join(RAIZ, "ferramentas", "precos", "index.html");
 try {
   const html = readFileSync(paginaTabela, "utf8");
@@ -185,7 +202,7 @@ try {
       .map(([id, cat]) => {
         const p = saida.produtos[id];
         const custo = p.custo ? "≈ " + brl(p.custo.custo_dia_cents) + "/dia" : "—";
-        return `      <tr>\n        <td><a href="/produtos/${id}/">${cat.nome}</a>${cat.marca ? ` <span class="ig-nota">${cat.marca}</span>` : ""}</td>\n        <td>${brl(p.current && p.current.price_cents)}</td>\n        <td>${dataBR(p.current && p.current.checked_at)}</td>\n        <td>${p.n_observations}</td>\n        <td><span class="ps-selo ps-selo-${p.badge}" title="${p.badge_motivo}">${ROTULO_BADGE[p.badge]}</span></td>\n        <td>${custo}</td>\n      </tr>`;
+        return `      <tr>\n        <td><a href="/produtos/${id}/">${cat.nome}</a>${cat.marca ? ` <span class="ig-nota">${cat.marca}</span>` : ""}</td>\n        <td>${brl(p.current && p.current.price_cents)}</td>\n        <td>${dataBR(p.current && p.current.checked_at)}</td>\n        <td>${p.n_observations}</td>\n        <td class="ps-spark-cel">${sparkline(p.series)}</td>\n        <td><span class="ps-selo ps-selo-${p.badge}" title="${p.badge_motivo}">${ROTULO_BADGE[p.badge]}</span></td>\n        <td>${custo}</td>\n      </tr>`;
       })
       .join("\n");
     writeFileSync(paginaTabela, html.slice(0, a + ini.length) + "\n" + linhas + "\n    " + html.slice(b));
