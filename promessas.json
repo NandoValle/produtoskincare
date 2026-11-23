@@ -1,0 +1,79 @@
+{
+ "_instrucoes": "Dicionário do raio-X de promessa. Cada entrada casa trechos de texto de marketing e devolve veredito + fonte. Fontes: regras escritas do Raio-X do rótulo (/ferramentas/raio-x/), fichas de ingredientes (/ingredientes/…) e o guia de ativos (/ativos/). Nada de veredito sem fonte: sem ficha no hub, a resposta é 'sem base aqui'. veredito: conferivel | nao-verificavel | nao-sustentado | exagero | depende-do-ativo.",
+ "promessas": [
+  {
+   "id": "sem-alcool",
+   "rotulo": "Sem álcool / alcohol-free",
+   "padroes": ["sem álcool", "sem alcool", "alcohol free", "alcohol-free", "0% álcool", "0% alcool", "sem etanol"],
+   "veredito": "conferivel",
+   "texto": "Afirmação conferível contra a lista de ingredientes: procure ÁLCOOL, ALCOHOL, ETHANOL, ISOPROPYL ALCOHOL. Se estiver na lista, a promessa não se sustenta; se não estiver, ela se sustenta só para os álcools listados — a lista não revela traços.",
+   "fonte": "regras do Raio-X do rótulo",
+   "checar_lista": "alcool"
+  },
+  {
+   "id": "hipoalergenico",
+   "rotulo": "Hipoalergênico",
+   "padroes": ["hipoalergênico", "hipoalergenico", "hypoallergenic"],
+   "veredito": "nao-verificavel",
+   "texto": "Não existe padrão de teste único para \"hipoalergênico\": o rótulo não diz onde, em quantos, com que método foi testado. Marcado como não verificável — inclusive quando é verdade.",
+   "fonte": "regras do Raio-X do rótulo"
+  },
+  {
+   "id": "nao-comedogenico",
+   "rotulo": "Não comedogênico / oil-free",
+   "padroes": ["não comedogênico", "nao comedogenico", "non-comedogenic", "não comedog", "oil free", "oil-free", "livre de óleo"],
+   "veredito": "nao-verificavel",
+   "texto": "\"Não comedogênico\" e \"oil-free\" não têm padrão de teste universal nem método declarado na embalagem. O que se pode conferir é a lista de ingredientes — e ela mostra composição, não concentração.",
+   "fonte": "regras do Raio-X do rótulo"
+  },
+  {
+   "id": "dermatologicamente-testado",
+   "rotulo": "Dermatologicamente testado",
+   "padroes": ["dermatologicamente testado", "testado por dermatologistas", "dermatologist tested", "testado dermatologicamente"],
+   "veredito": "nao-verificavel",
+   "texto": "Sem o protocolo (quantos, que tipo de pele, que teste), a frase não é conferível pelo rótulo nem pelo catálogo.",
+   "fonte": "regras do Raio-X do rótulo"
+  },
+  {
+   "id": "reconstroi-colageno",
+   "rotulo": "\"Reconstrói\" o colágeno / repõe colágeno",
+   "padroes": ["reconstrói colágeno", "reconstroi colageno", "reconstruir colágeno", "reconstruir colageno", "repõe colágeno", "repor colágeno", "colágeno reconstrói", "colageno reconstroi", "devolve o colágeno"],
+   "veredito": "nao-sustentado",
+   "texto": "O hub não tem ficha de colágeno tópico. O que o hub sustenta é outra coisa: retinol e vitamina C estimulam a produção de colágeno do PRÓPRIO corpo (fichas com evidência forte e moderada), e a derme perde colágeno e elastina com idade e sol. \"Reconstruir\" ou \"repor\" não é o que os nossos dados afirmam.",
+   "fonte": "hub de ativos (retinol, vitamina C) + guia de firmeza em /ativos/"
+  },
+  {
+   "id": "estimula-colageno",
+   "rotulo": "Estimula a produção de colágeno",
+   "padroes": ["estimula a produção de colágeno", "estimula colágeno", "estimula colageno", "aumenta o colágeno", "aumenta colageno", "produção de colágeno", "producao de colageno"],
+   "veredito": "depende-do-ativo",
+   "texto": "Depende de qual ativo está na fórmula: retinol/retinoides (evidência forte no hub) e vitamina C (ficha com evidência moderada) têm base; peptídeo de cobre aparece como emergente. Se a lista não traz nenhum desses ativos, a promessa não se sustenta sozinha.",
+   "fonte": "hub de ativos: retinol, vitamina C, peptídeo de cobre",
+   "checar_lista": "colageno"
+  },
+  {
+   "id": "remove-rugas",
+   "rotulo": "Remove / elimina / apaga rugas",
+   "padroes": ["remove rugas", "elimina rugas", "apaga rugas", "rugas somem", "tira rugas", "acaba com as rugas", "sem rugas"],
+   "veredito": "exagero",
+   "texto": "O hub sustenta efeito na APARÊNCIA de linhas e fotoenvelhecimento com tempo e uso contínuo (retinol: evidência forte para os de receita; o retinol cosmético é menos potente). \"Remover\" ou \"eliminar\" não é o que a evidência descreve.",
+   "fonte": "hub de ativos: retinol e retinoides"
+  },
+  {
+   "id": "elimina-manchas",
+   "rotulo": "Elimina / clareia manchas de vez",
+   "padroes": ["elimina manchas", "acaba com as manchas", "manchas somem", "clareia de vez", "tira manchas", "apaga manchas", "branqueia"],
+   "veredito": "exagero",
+   "texto": "As fichas de niacinamida (evidência moderada), ácido azelaico e ácido tranexâmico descrevem ajuda na aparência de manchas e pigmentação — com tempo, uso continuado e proteção solar. \"Eliminar de vez\" não é o que elas dizem.",
+   "fonte": "hub de ingredientes: niacinamida, ácido azelaico, ácido tranexâmico"
+  },
+  {
+   "id": "hidrata-24h",
+   "rotulo": "Hidratação por 24h/48h/72h",
+   "padroes": ["hidratação por 24", "hidratacao por 24", "24 horas de hidratação", "24 horas de hidratacao", "hidrata por 24", "48 horas de hidratação", "48 horas de hidratacao", "hidratação 24h", "hidratacao 24h", "hidrata 24h"],
+   "veredito": "nao-verificavel",
+   "texto": "Duração de hidratação declarada sem método no rótulo: não dá para conferir pela lista de ingredientes nem pelas fichas do hub. O que dá para ver: se há humectantes conhecidos (glicerina, ácido hialurônico, pantenol) — presença não garante a duração prometida.",
+   "fonte": "regras do Raio-X do rótulo (composição ≠ concentração)"
+  }
+ ]
+}

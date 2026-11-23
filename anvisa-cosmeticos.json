@@ -1,0 +1,485 @@
+{
+ "verificado_em": "2026-11-20",
+ "fonte_url": "https://dados.anvisa.gov.br/dados/CONSULTAS/PRODUTOS/TA_CONSULTA_COSMETICOS.CSV",
+ "fonte_nota": "Dados abertos da ANVISA — cosméticos regularizados/notificados. 'Não encontrado' não prova irregularidade: confira no portal oficial https://consultas.anvisa.gov.br/",
+ "produtos": [
+  {
+   "id": "cerave-gel-limpeza",
+   "nome": "CeraVe Gel de Limpeza Facial",
+   "marca": "CeraVe",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "CERAVE GEL DE LIMPEZA",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351022462202676",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "lrp-effaclar-gel",
+   "nome": "La Roche-Posay Effaclar Gel Alta Tolerância",
+   "marca": "La Roche-Posay",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.92,
+    "nome_anvisa": "LA ROCHE-POSAY EFFACLAR ALTA TOLERÂNCIA GEL DE LIMPEZA SUAVE",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351012285202610",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "hada-labo-oil-cleansing",
+   "nome": "Hada Labo Gokujyun Oil Cleansing",
+   "marca": "Hada Labo",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "Hada Labo Gokujyun Oil Cleansing",
+    "empresa": "ROHTO-MENTHOLATUM DO BRASIL COMÉRCIO DE PRODUTOS PARA SAÚDE LTDA",
+    "nu_processo": "25351535128201959",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "neutrogena-hydro-boost",
+   "nome": "Neutrogena Hydro Boost Water Gel",
+   "marca": "Neutrogena",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "NEUTROGENA HYDRO BOOST WATER GEL ",
+    "empresa": "KENVUE LTDA.",
+    "nu_processo": "25351043443202179",
+    "situacao": "N",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "lrp-cicaplast-baume",
+   "nome": "La Roche-Posay Cicaplast Baume B5+",
+   "marca": "La Roche-Posay",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "LA ROCHE POSAY CICAPLAST BAUME B5",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351571787201289",
+    "situacao": "S",
+    "tipo_peticao": "",
+    "nu_registro": "200703870",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "cetaphil-creme-hidratante",
+   "nome": "Cetaphil Creme Hidratante",
+   "marca": "Cetaphil",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "CETAPHIL CREME HIDRATANTE",
+    "empresa": "GALDERMA BRASIL LTDA",
+    "nu_processo": "250000395049601",
+    "situacao": "N",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "222620016",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "mantecorp-epidrat-calm",
+   "nome": "Mantecorp Epidrat Calm B5",
+   "marca": "Mantecorp Skincare",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.95,
+    "nome_anvisa": "EPIDRAT CALM B5",
+    "empresa": "COSMED INDUSTRIA DE COSMETICOS E MEDICAMENTOS S.A.",
+    "nu_processo": "25351087903202685",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "garnier-uniform-matte",
+   "nome": "Garnier Uniform & Matte Toque Seco",
+   "marca": "Garnier",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.67,
+    "nome_anvisa": "GARNIER BI-O INTENSIVE TOQUE SECO",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351570390201477",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "200704185",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "isdin-fusion-water",
+   "nome": "ISDIN Protetor Solar Fusion Water FPS 60",
+   "marca": "ISDIN",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.8,
+    "nome_anvisa": "FOTOPROTECTOR ISDIN FUSION WATER FPS 50  ISDIN",
+    "empresa": "Isdin Produtos Farmaceuticos Ltda",
+    "nu_processo": "25351291155201551",
+    "situacao": "S",
+    "tipo_peticao": "",
+    "nu_registro": "253860031",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "isdin-fusion-water-sem-cor",
+   "nome": "ISDIN Fusion Water 5 Stars Sem Cor FPS 60",
+   "marca": "ISDIN",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": false,
+    "similaridade": 0.5
+   }
+  },
+  {
+   "id": "neutrogena-sun-fresh-fps70",
+   "nome": "Neutrogena Sun Fresh Derm Care FPS 70",
+   "marca": "Neutrogena",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "NEUTROGENA SUN FRESH DERM CARE FPS 70",
+    "empresa": "KENVUE LTDA.",
+    "nu_processo": "25351131269202030",
+    "situacao": "S",
+    "tipo_peticao": "",
+    "nu_registro": "200921386",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "skin-aqua-moisture-milk",
+   "nome": "Skin Aqua Super Moisture Milk FPS 50",
+   "marca": "Skin Aqua",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "Skin Aqua Super Moisture Milk",
+    "empresa": "ROHTO-MENTHOLATUM DO BRASIL COMÉRCIO DE PRODUTOS PARA SAÚDE LTDA",
+    "nu_processo": "25351089914202276",
+    "situacao": "S",
+    "tipo_peticao": "",
+    "nu_registro": "268100007",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "lrp-ultra-cover",
+   "nome": "La Roche-Posay Ultra Cover FPS 60",
+   "marca": "La Roche-Posay",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.8,
+    "nome_anvisa": "LA ROCHE-POSAY ANTHELIOS ULTRA COVER FPS 60 COR 4.0",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351840724202172",
+    "situacao": "S",
+    "tipo_peticao": "",
+    "nu_registro": "200704342",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "eucerin-anti-pigment",
+   "nome": "Eucerin Anti-Pigment Dual Sérum",
+   "marca": "Eucerin",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "EUCERIN ANTI-PIGMENT DUAL SERUM FACIAL",
+    "empresa": "BEIERSDORF INDÚSTRIA E COMÉRCIO LTDA",
+    "nu_processo": "25351105130202545",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "principia-vc10",
+   "nome": "Principia VC-10 Vitamina C 10%",
+   "marca": "Principia",
+   "plataforma": "shopee",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.8,
+    "nome_anvisa": "PRINCIPIA SÉRUM FACIAL VC-10",
+    "empresa": "PRINCIPIA ES COMERCIO DE COSMETICOS LTDA",
+    "nu_processo": "25351203354202601",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "principia-niacinamida",
+   "nome": "Principia Niacinamida NC-10",
+   "marca": "Principia",
+   "plataforma": "shopee",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.8,
+    "nome_anvisa": "PRINCIPIA SÉRUM FACIAL NC-10",
+    "empresa": "PRINCIPIA ES COMERCIO DE COSMETICOS LTDA",
+    "nu_processo": "25351204273202610",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "principia-ah2",
+   "nome": "Principia AH-2 Ácido Hialurônico",
+   "marca": "Principia",
+   "plataforma": "shopee",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.8,
+    "nome_anvisa": "PRINCIPIA SÉRUM FACIAL AH-2",
+    "empresa": "PRINCIPIA ES COMERCIO DE COSMETICOS LTDA",
+    "nu_processo": "25351199264202608",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "principia-rn03",
+   "nome": "Principia RN-0,3 Retinol",
+   "marca": "Principia",
+   "plataforma": "shopee",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.8,
+    "nome_anvisa": "PRINCIPIA SÉRUM FACIAL RN-0,3",
+    "empresa": "PRINCIPIA ES COMERCIO DE COSMETICOS LTDA",
+    "nu_processo": "25351203316202640",
+    "situacao": "S",
+    "tipo_peticao": "Notificado",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "ordinary-niacinamide",
+   "nome": "The Ordinary Niacinamide 10% + Zinc 1%",
+   "marca": "The Ordinary",
+   "plataforma": "mercadolivre",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "THE ORDINARY NIACINAMIDE 10% + ZINC 1%",
+    "empresa": "Intercos do Brasil Indústria e Comércio de Produtos Cosméticos ltda",
+    "nu_processo": "25351044757202512",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "creamy-calming-cream",
+   "nome": "Creamy Calming Cream",
+   "marca": "Creamy",
+   "plataforma": "shopee",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "CREAMY SKINCARE CALMING CREAM",
+    "empresa": "LABEL D OR INDUSTRIA E COMERCIO DE COSMETICOS LTDA",
+    "nu_processo": "25351421879202294",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "creamy-vitamina-c",
+   "nome": "Creamy Vitamina C 10%",
+   "marca": "Creamy",
+   "plataforma": "shopee",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "SÉRUM FACIAL VITAMINA C CREAMY SKINCARE",
+    "empresa": "NATUPHITUS INDÚSTRIA E COMÉRCIO DE COSMÉTICOS LTDA",
+    "nu_processo": "25351831976202020",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "lrp-retinol-b3",
+   "nome": "La Roche-Posay Retinol B3",
+   "marca": "La Roche-Posay",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "LA ROCHE-POSAY RETINOL B3 SÉRUM",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351685593201930",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "loreal-revitalift-noturno",
+   "nome": "L'Oréal Revitalift Sérum Noturno Antissinais",
+   "marca": "L'Oréal Paris",
+   "plataforma": "mercadolivre",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "provavel",
+    "similaridade": 0.75,
+    "nome_anvisa": "L'ORÉAL PARIS REVITALIFT CREME NOTURNO",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351395384201619",
+    "situacao": "N",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "mantecorp-ivy-c-ferulic",
+   "nome": "Mantecorp Ivy C Ferulic Sérum",
+   "marca": "Mantecorp Skincare",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.95,
+    "nome_anvisa": "IVY C FERULIC",
+    "empresa": "COSMED INDUSTRIA DE COSMETICOS E MEDICAMENTOS S.A.",
+    "nu_processo": "25351209228202147",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "cerave-pm-locao",
+   "nome": "CeraVe PM Loção Facial",
+   "marca": "CeraVe",
+   "plataforma": "amazon",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": true,
+    "confianca": "forte",
+    "similaridade": 0.99,
+    "nome_anvisa": "CERAVE LOÇÃO FACIAL HIDRATANTE",
+    "empresa": "PROCOSA PRODUTOS DE BELEZA LTDA",
+    "nu_processo": "25351683821201735",
+    "situacao": "S",
+    "tipo_peticao": "ISENTO DE REGISTRO",
+    "nu_registro": "",
+    "atualizado_em": "18/11/2026 00:00:00"
+   }
+  },
+  {
+   "id": "ordinary-azelaic",
+   "nome": "The Ordinary Azelaic Acid 10%",
+   "marca": "The Ordinary",
+   "plataforma": "mercadolivre",
+   "conferido_em": "2026-11-20",
+   "registro": {
+    "encontrado": false,
+    "similaridade": 0.0
+   }
+  }
+ ]
+}

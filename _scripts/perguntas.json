@@ -2787,5 +2787,35 @@
    "Como usar DHA e eritrulose?",
    "Noite, em concentração de até 10% (limite da UE para a DHA). Costuma ser bem tolerado: pode entrar na rotina todos os dias desde o começo."
   ]
+ ],
+ "/ferramentas/despensa/": [
+  [
+   "O que é o modo despensa do skincare?",
+   "É a ferramenta que monta a rotina com os produtos que você já tem na prateleira, mostra o que não comprar agora e anota as compras que você deixou de fora. Tudo fica no seu aparelho."
+  ],
+  [
+   "Como funciona o contador de economia do modo despensa?",
+   "Ele soma só os valores que você digitar ao anotar uma compra que deixou de fazer. Sem preço, o pulo conta como 1. O contador coletivo está em zero: nada foi coletado de ninguém ainda."
+  ]
+ ],
+ "/ferramentas/extrato-cosmetico/": [
+  [
+   "O que é o extrato do cosmético?",
+   "É o histórico datado de preço, volume e fórmula (INCI) de cada produto do catálogo. Serve para detectar reformulação silenciosa e frasco menor pelo mesmo preço. O registro começou em 20/11/2026."
+  ],
+  [
+   "Como o extrato do cosmético calcula o preço por ml?",
+   "Só quando o volume é conhecido e tem fonte, que é a embalagem ou a ficha da loja. Sem fonte, o volume fica vazio e o preço por ml não é calculado: volume nunca é estimado."
+  ]
+ ],
+ "/ferramentas/promessa/": [
+  [
+   "Como conferir se um cosmético está na base da ANVISA?",
+   "Escolha um produto do catálogo: a ferramenta cruza nome e marca com os dados abertos da ANVISA de cosméticos regularizados ou notificados e mostra o nome exato registrado. Não encontrado não prova irregularidade."
+  ],
+  [
+   "O que o raio-X de promessa faz?",
+   "Você cola o texto de marketing da embalagem ou do anúncio e cada promessa conhecida recebe um veredito com a fonte: conferível, não verificável, não sustentado, exagero ou depende do ativo."
+  ]
  ]
 }

@@ -11,3 +11,6 @@ package-lock.json
 
 # Arquivos locais do "wrangler dev"
 .wrangler/
+
+# Base bruta da ANVISA (230 MB): baixada pelo script, nunca versionada
+_scripts/anvisa/
