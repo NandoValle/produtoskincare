@@ -9,6 +9,7 @@
 - [Rotinas por condição e faixa de preço](https://produtoskincare.com.br/rotinas/): acne, anti-age, melasma e rosácea.
 - [Produtos](https://produtoskincare.com.br/produtos/): catálogo com preço datado, ativos e link de loja.
 - [Sobre e critérios de escolha](https://produtoskincare.com.br/sobre/)
+- [Correções](https://produtoskincare.com.br/correcoes/): registro público do que o site errou e corrigiu, com data.
 
 ## Guias por tipo de pele
 

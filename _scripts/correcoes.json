@@ -1,0 +1,5 @@
+{
+ "_leia": "Registro público de correções, publicado em /correcoes/ por _scripts/gerar_correcoes.py. Uma entrada por correção de informação que mudava o sentido da página (preço, concentração, dose, afirmação sobre ativo, link que levava ao produto errado). Erro de digitação não entra. Campos: data (AAAA-MM-DD), pagina (caminho, ex.: /produtos/), estava (o que a página dizia), ficou (o que diz agora), origem ('aviso de leitor' ou 'conferência interna'). Depois de acrescentar: python -I _scripts/gerar_correcoes.py, seo.py e prontidao.py.",
+ "inicio": "2026-11-24",
+ "correcoes": []
+}

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Provador Virtual — Descubra seu tipo de pele | Produto Skincare</title>
 <meta name="description" content="Responda ao quiz sobre sua pele e receba um perfil estimado e sugestões de rotina com produtos reais. Gratuito, sem cadastro.">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://produtoskincare.com.br/provador/">
 <!-- Open Graph -->
 <!-- Twitter -->
@@ -1802,11 +1802,21 @@ function urlDoResultado(opcoes) {
   }
   return `${location.origin}${location.pathname}#${params}`;
 }
-function lembretesDoResultado() {
-  const amanha8 = new Date(); amanha8.setDate(amanha8.getDate() + 1); amanha8.setHours(8, 0, 0, 0);
+// Lembretes diários da rotina, de manhã e de noite, nos horários que a pessoa escolher (padrão 7h e 22h).
+// A descrição leva só os passos (limpeza, hidratação…), sem tipo de pele nem produto: agenda costuma ser compartilhada.
+function lembretesDoResultado(horas) {
+  horas = horas || {};
+  const NOME_PASSO = { limpeza:"Limpeza", tratamento:"Tratamento", hidratacao:"Hidratação", protetor:"Protetor solar" };
+  const amanha = (h, padraoH) => {
+    const d = new Date(); d.setDate(d.getDate() + 1);
+    d.setHours(h ? h.h : padraoH, h ? h.m : 0, 0, 0);
+    return d;
+  };
+  const passos = per => passosDaRotina(per).map((p, i) => `${i + 1}. ${NOME_PASSO[p] || p}`).join("\n");
   const refazer = new Date(); refazer.setDate(refazer.getDate() + 56); refazer.setHours(10, 0, 0, 0);
   return [
-    { titulo: "☀️ Protetor solar", descricao: "Aplique o protetor solar antes de sair e reaplique ao longo do dia.", inicio: amanha8, diario: true },
+    { titulo: "☀️ Rotina da manhã", descricao: passos("manha") + "\n\nReaplique o protetor ao longo do dia.", inicio: amanha(horas.manha, 7), diario: true },
+    { titulo: "🌙 Rotina da noite", descricao: passos("noite"), inicio: amanha(horas.noite, 22), diario: true },
     { titulo: "Refazer o teste de pele", descricao: "Já se passaram 8 semanas. Refaça o provador e compare: " + location.origin + "/provador/", inicio: refazer, diario: false }
   ];
 }
@@ -1818,8 +1828,9 @@ if (window.PSEnviar && $("areaEnviar")) {
   }), {
     titulo: "📩 Receber minha rotina no WhatsApp ou e-mail",
     lembretes: lembretesDoResultado,
-    arquivoICS: "lembretes-skincare.ics",
-    notaLembretes: "Os lembretes (protetor todo dia às 8h e refazer o teste em 8 semanas) ficam na sua agenda: Google Agenda, Calendário do iPhone ou Outlook."
+    arquivoICS: "rotina-skincare.ics",
+    horarios: [{ id: "manha", rotulo: "Lembrete da manhã", padrao: "07:00" }, { id: "noite", rotulo: "Lembrete da noite", padrao: "22:00" }],
+    notaLembretes: "O arquivo cria um lembrete diário da rotina da manhã, outro da noite (nos horários acima) e um aviso para refazer o teste em 8 semanas. No celular, toque no arquivo baixado e confirme \"Adicionar\": abre no Calendário do iPhone, no Google Agenda e no Outlook. Os lembretes ficam só na sua agenda; para parar, apague o evento nela."
   });
 }
 
