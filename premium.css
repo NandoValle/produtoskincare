@@ -837,3 +837,19 @@ body{overflow-wrap:anywhere}
 .ig-caixa{padding:12px}
 .ig ul,.ig ol{padding-left:1em}
 }
+/* Ouvir este guia (ouvir.js) */
+.ps-ouvir{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:14px 0}
+.ps-ouvir-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 18px;border:1.5px solid var(--tinta);border-radius:999px;background:var(--tinta);color:var(--fundo,#faf7f2);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
+.ps-ouvir-btn.ps-ouvir-sec{background:transparent;color:var(--tinta);border-color:var(--linha-2,var(--linha))}
+.ps-ouvir-vel{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;color:var(--suave)}
+.ps-ouvir-vel select{font:inherit;min-height:44px;padding:4px 10px;border:1.5px solid var(--linha-2,var(--linha));border-radius:10px;background:var(--papel,#fff);color:var(--tinta)}
+.ps-ouvir-nota{flex-basis:100%;margin:0;font-size:.88rem;color:var(--suave)}
+.ps-ouvir-nota:empty{display:none}
+.ps-ouvindo{background:var(--rosa-claro,#fdf2f4);box-shadow:0 0 0 6px var(--rosa-claro,#fdf2f4);border-radius:4px}
+/* Convite para instalar o site (premium.js) */
+.ps-instalar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;max-width:560px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:14px 16px;border:1px solid var(--linha-2,var(--linha,rgba(26,22,20,.12)));border-radius:14px;background:var(--papel,#fff);color:var(--tinta,#1a1614);box-shadow:0 10px 30px rgba(0,0,0,.14)}
+.ps-instalar p{flex:1 1 240px;margin:0;font-size:.92rem;line-height:1.45}
+.ps-instalar button{font:inherit;font-size:.92rem;font-weight:600;min-height:44px;padding:6px 18px;border-radius:999px;cursor:pointer}
+.ps-instalar-sim{border:0;background:var(--tinta,#1a1614);color:var(--fundo,#faf7f2)}
+.ps-instalar-nao{border:1.5px solid var(--linha-2,var(--linha,rgba(26,22,20,.12)));background:transparent;color:var(--tinta,#1a1614)}
+@media print{.ps-ouvir,.ps-instalar{display:none}}

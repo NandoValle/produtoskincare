@@ -47,7 +47,7 @@ def pagina(titulo, descricao, caminho, trilha, corpo, css_extra="", scripts="", 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(titulo)} | Produto Skincare</title>
 <meta name="description" content="{esc(descricao)}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{SITE}{esc(caminho)}">
 <link rel="stylesheet" href="/premium.css">
 <style>{css}{css_extra}

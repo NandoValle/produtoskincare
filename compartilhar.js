@@ -6,6 +6,8 @@
  *   PSEnviar.montar(elemento, () => ({ assunto, texto, url }), { lembretes: [...] })
  * `texto` é o resultado em texto simples; `url` é o link para reabrir o resultado.
  * `lembretes` (opcional) gera um arquivo .ics para a agenda: [{ titulo, descricao, inicio: Date, diario: bool }]
+ * `horarios` (opcional) mostra campos de hora editáveis: [{ id, rotulo, padrao: "07:00" }]. Os valores escolhidos
+ *   chegam em `lembretes(horas)` como { id: { h, m } } e ficam guardados só neste aparelho.
  */
 (function () {
   "use strict";
@@ -20,6 +22,8 @@
     ".pse-wa{background:#1f7a4d;color:#fff}.pse-mail{background:var(--rosa,#755728);color:#fff}" +
     ".pse-sec{background:transparent;color:var(--tinta,#17120E);border:1px solid var(--linha-2,#D3C7B6)}" +
     ".pse-btn:hover{filter:brightness(.93)}" +
+    ".pse-horas{display:flex;flex-wrap:wrap;gap:10px 18px}.pse .pse-horas label{display:flex;flex-direction:column;gap:6px;margin:0}" +
+    ".pse-horas input{min-height:46px;padding:0 12px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E);font:inherit}" +
     ".pse label{font-weight:600;font-size:.92rem;display:block;margin-bottom:6px}" +
     ".pse-ok{font-size:.86rem;color:var(--verde,#375d4e);min-height:1.2em}";
 
@@ -132,6 +136,32 @@
       extras.appendChild(btIcs);
     }
     caixa.appendChild(extras);
+    var camposHora = {};
+    if (btIcs && opcoes.horarios && opcoes.horarios.length) {
+      var guardadas = {};
+      try { guardadas = JSON.parse(localStorage.getItem("ps-horarios") || "{}") || {}; } catch (e) {}
+      var horas = el("div", { "class": "pse-horas" });
+      opcoes.horarios.forEach(function (h) {
+        var rot = el("label", {}, h.rotulo);
+        var valor = /^\d\d:\d\d$/.test(guardadas[h.id]) ? guardadas[h.id] : h.padrao;
+        var campo = el("input", { type: "time", value: valor, id: id + "-h-" + h.id });
+        rot.setAttribute("for", campo.id);
+        rot.appendChild(campo);
+        horas.appendChild(rot);
+        camposHora[h.id] = { campo: campo, padrao: h.padrao };
+      });
+      caixa.insertBefore(horas, extras); // horários logo acima do botão da agenda
+    }
+    function horasEscolhidas() {
+      var saida = {}, guardar = {};
+      Object.keys(camposHora).forEach(function (k) {
+        var v = /^\d\d:\d\d$/.test(camposHora[k].campo.value) ? camposHora[k].campo.value : camposHora[k].padrao;
+        guardar[k] = v;
+        saida[k] = { h: parseInt(v.slice(0, 2), 10), m: parseInt(v.slice(3), 10) };
+      });
+      try { if (Object.keys(guardar).length) localStorage.setItem("ps-horarios", JSON.stringify(guardar)); } catch (e) {}
+      return saida;
+    }
     var ok = el("p", { "class": "pse-ok", role: "status" });
     caixa.appendChild(ok);
     if (btIcs) caixa.appendChild(el("p", { "class": "pse-nota" }, opcoes.notaLembretes ||
@@ -163,7 +193,7 @@
       contar("enviar/copiar");
     });
     if (btIcs) btIcs.addEventListener("click", function () {
-      var l = typeof opcoes.lembretes === "function" ? opcoes.lembretes() : opcoes.lembretes;
+      var l = typeof opcoes.lembretes === "function" ? opcoes.lembretes(horasEscolhidas()) : opcoes.lembretes;
       baixarICS(l, opcoes.arquivoICS);
       ok.textContent = "Arquivo de lembretes baixado. Abra-o para adicionar à sua agenda.";
       contar("enviar/agenda");

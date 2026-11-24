@@ -70,7 +70,7 @@ pagina = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Skincare Mais Vendidos na Amazon ({data_br[3:]}) | Produto Skincare</title>
 <meta name="description" content="Os produtos de skincare mais vendidos na Amazon Brasil em {data_br}: hidratantes, protetores, séruns e limpeza, com preço datado e avaliações.">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://produtoskincare.com.br/mais-vendidos/">
 <link rel="stylesheet" href="/premium.css">
 <style>

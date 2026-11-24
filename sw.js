@@ -1,8 +1,9 @@
-const CACHE = "provador-premium-20261124-leitura";
+const CACHE = "provador-premium-20261124-ouvir";
 const ASSETS = [
   "/premium.css",
   "/premium.js",
   "/compartilhar.js",
+  "/ouvir.js",
   "/rodape.js",
   "/regras-ativos.js",
   "/fonts/cormorant-500.woff2",
@@ -27,7 +28,12 @@ const ASSETS = [
   "/pele/oleosa/",
   "/pele/seca/",
   "/pele/mista/",
-  "/pele/normal/"
+  "/pele/normal/",
+  "/comece-aqui/",
+  "/rotina-de-skincare/",
+  "/rotinas/",
+  "/blog/rotina-de-skincare-para-iniciantes/",
+  "/blog/ordem-dos-produtos-skincare/"
 ];
 
 self.addEventListener("install", e => {
