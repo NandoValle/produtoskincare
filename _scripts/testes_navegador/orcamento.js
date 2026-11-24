@@ -52,7 +52,7 @@ async function lerRotina(page) {
     checar(`[${f}] nenhum produto acima do teto`, comProduto.every(x => x.preco !== null && x.preco <= TETO[f]));
     checar(`[${f}] todo item mostra o papel na rotina`, r.every(x => x.papel.length > 10));
     checar(`[${f}] todo item com preço mostra a faixa do item`, comProduto.every(x => x.faixaItem));
-    checar(`[${f}] endereço atualizado com a faixa`, new URL(p.url()).searchParams.get("preco") === f);
+    checar(`[${f}] endereço atualizado com a faixa`, new URLSearchParams(new URL(p.url()).hash.slice(1)).get("preco") === f);
     for (const x of comProduto) {
       const u = new URL(x.href);
       const amazonAfiliado = /amazon\.com\.br$/.test(u.hostname) && u.searchParams.has("tag");

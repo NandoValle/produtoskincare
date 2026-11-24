@@ -26,7 +26,11 @@
 #                               navegador antigo.
 #     base-uri 'self'        -> ninguém troca o endereço-base dos links com uma tag <base> injetada.
 #     object-src 'none'      -> nada de <object>/<embed> (plugins). O site não usa.
-#     form-action 'self'     -> formulários só enviam para o próprio site. Todos já fazem isso.
+#     form-action 'self' https://buttondown.com
+#                            -> formulários só enviam para o próprio site e para o Buttondown, que
+#                               recebe a inscrição da newsletter (/newsletter/ e a caixa do canais.js).
+#                               Só com 'self' o navegador bloqueava a inscrição (corrigido em 24/11/2026).
+#                               Se trocar de serviço de e-mail, trocar o endereço aqui também.
 #   Ainda de fora: script-src, connect-src e style-src. O site usa muito script e estilo inline, então
 #   essas regras precisariam de 'unsafe-inline' e protegeriam pouco. Além disso, exigem teste com o
 #   Pergunte à IA (Supabase), o MediaPipe, o Tesseract (jsDelivr), o Open-Meteo, o GoatCounter e o
@@ -35,7 +39,7 @@
   Strict-Transport-Security: max-age=15552000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'
+  Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://buttondown.com
   X-Frame-Options: SAMEORIGIN
   Origin-Agent-Cluster: ?1
   Permissions-Policy: tools=(self), camera=(self), clipboard-write=(self), web-share=(self), microphone=(), geolocation=(), payment=(), usb=()
