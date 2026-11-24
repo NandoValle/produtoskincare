@@ -1,0 +1,103 @@
+/* Glamour Intense na home: camada sobre premium-home.css e lumiere-home.css.
+   Tema Marfim (o principal). Valores do design system "Produto Skincare — Glamour Intense". */
+:root {
+  --gi-veludo: #1B1410;
+  --gi-veludo-2: #241B15;
+  --gi-sobre-veludo: #F7F2EC;
+  --gi-sobre-veludo-suave: #B9AD9F;
+  --gi-linha-veludo: rgba(247,242,236,.16);
+  --gi-ouro-vivo: #D9BE8E;
+  --gi-sobre-ouro: #1B1410;
+  --gi-brilho-1: #A8834A;
+  --gi-brilho-2: #F1DFB8;
+  --gi-brilho-3: #C9A565;
+  --gi-rubi: #8A1C34;
+  --gi-sobre-rubi: #FBEEE9;
+  --gi-folha: linear-gradient(115deg, var(--gi-brilho-1), var(--gi-brilho-2) 46%, var(--gi-brilho-3));
+  --gi-sombra-pouso: 0 24px 50px -18px rgba(27,20,16,.28);
+  --gi-sombra-flutua: 0 46px 80px -46px rgba(84,60,32,.42), 0 0 0 1px rgba(176,141,87,.5);
+  --gi-sombra-joia: 0 50px 110px -40px rgba(84,60,32,.42);
+}
+
+/* Marca: monograma com anel duplo */
+.ps-monogram { width: 44px; height: 44px; font-size: 18px; box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--lm-ouro); }
+
+/* Cabeçalho: fio de ouro sob o item ativo e sob o hover */
+.ps-topo { border-bottom-color: var(--lm-areia-funda); }
+.ps-nav > a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 1px; background: var(--lm-ouro); transform: scaleX(0); transform-origin: left; transition: transform .55s var(--ease); }
+.ps-nav > a:hover::after, .ps-nav > a:focus-visible::after { transform: scaleX(1); }
+.ps-mais-panel { border-radius: 2px; box-shadow: var(--gi-sombra-pouso); }
+
+/* Botão principal: folha de ouro. O botão fio e o claro seguem como estão. */
+.lm .ps-button, .lm-btn, .lm-btn-ouro { background: var(--gi-folha); border-color: var(--gi-brilho-3); color: var(--gi-sobre-ouro); font-weight: 600; }
+.lm .ps-button::before, .lm-btn::before, .lm-btn-ouro::before { background: var(--gi-brilho-2); }
+.lm .ps-button:hover, .lm-btn:hover, .lm-btn-ouro:hover { background: var(--gi-folha); border-color: var(--gi-brilho-2); color: var(--gi-sobre-ouro); }
+.lm-btn-fio { background: transparent; border-color: #8F7A5E; color: var(--ink); font-weight: 500; }
+.lm-btn-fio:hover { background: transparent; border-color: var(--gold); color: var(--gold); }
+.lm-btn-claro { background: transparent; border-color: rgba(247,242,236,.4); color: var(--paper); font-weight: 500; }
+.lm-btn-claro:hover { background: transparent; border-color: var(--gi-ouro-vivo); color: var(--gi-ouro-vivo); }
+
+/* Faixa corrida */
+.lm-faixa { background: var(--gi-veludo); border-bottom: 1px solid var(--gi-brilho-1); }
+.lm-faixa-trilho i { color: var(--gi-ouro-vivo); }
+
+/* Herói: a joia da página */
+.lm-hero { background: radial-gradient(110% 90% at 90% 8%, rgba(217,190,142,.5) 0%, rgba(247,242,236,0) 56%), radial-gradient(90% 70% at 0% 100%, rgba(223,207,185,.6) 0%, rgba(247,242,236,0) 62%), var(--paper); }
+.lm-hero h1 { letter-spacing: -.035em; }
+.lm-hero-numeros b { font-size: 56px; }
+.lm-halo-fundo { box-shadow: var(--gi-sombra-joia); }
+.lm-halo-foto { box-shadow: 0 34px 60px -24px rgba(84,60,32,.5), 0 0 0 1px var(--lm-ouro), 0 0 0 9px rgba(253,251,248,.7), 0 0 0 10px rgba(176,141,87,.5); }
+.lm-orb { background: var(--gi-rubi); color: var(--gi-sobre-rubi); box-shadow: var(--gi-sombra-pouso), inset 0 0 0 5px var(--gi-rubi), inset 0 0 0 6px rgba(251,238,233,.45); }
+.lm-orb small { color: var(--gi-sobre-rubi); }
+.lm-selo { border-radius: 2px; box-shadow: var(--gi-sombra-pouso); }
+
+/* Faixa de confiança */
+.lm-confianca { border-block-color: var(--lm-areia-funda); }
+.lm-confianca strong { font-size: 26px; }
+
+/* Carta */
+.lm-carta-folha { border-radius: 2px; box-shadow: 0 70px 120px -80px rgba(84,60,32,.6), 0 0 0 1px rgba(176,141,87,.28); }
+.lm-carta-escolha { background: var(--gi-veludo); border-radius: 0 0 2px 2px; }
+.lm-carta-escolha .lm-carta-naosei a { background: var(--gi-folha); border-color: var(--gi-brilho-3); color: var(--gi-sobre-ouro); }
+.lm-carta-escolha .lm-carta-naosei a:hover { background: var(--gi-brilho-2); border-color: var(--gi-brilho-2); }
+
+/* Cartões */
+.lm-cartao, .lm-ferramenta { border-radius: 2px; }
+.lm-cartao:hover { box-shadow: var(--gi-sombra-flutua); border-color: var(--lm-ouro); }
+.lm-etiqueta { border-radius: 2px; background: var(--gi-veludo); color: var(--gi-ouro-vivo); }
+.lm-ferramenta:hover { box-shadow: var(--gi-sombra-flutua); border-color: var(--lm-ouro); }
+
+/* Seções escuras: veludo com luz de ouro */
+.lm-escura { background: radial-gradient(80% 60% at 100% 0%, rgba(217,190,142,.14) 0%, rgba(27,20,16,0) 60%), var(--gi-veludo); border-block: 1px solid var(--gi-brilho-1); }
+.lm-convite { background: radial-gradient(70% 80% at 50% 0%, rgba(217,190,142,.16) 0%, rgba(36,27,21,0) 62%), var(--gi-veludo-2); border-bottom: 0; }
+.lm-escura .lm-ouro { color: transparent; background: var(--gi-folha); -webkit-background-clip: text; background-clip: text; }
+.lm-passo-num { -webkit-text-stroke-color: var(--lm-ouro); }
+.lm-passo:hover .lm-passo-num { color: var(--gi-ouro-vivo); }
+
+/* Rodapé em veludo: as variáveis locais repintam tudo o que está dentro */
+.ps-rodape { --ink: var(--gi-sobre-veludo); --muted: var(--gi-sobre-veludo-suave); --gold: var(--gi-ouro-vivo); --line: var(--gi-linha-veludo); --paper: var(--gi-veludo); background: var(--gi-veludo); color: var(--gi-sobre-veludo); border-top: 1px solid var(--gi-brilho-1); }
+.ps-rodape .ps-brand { color: var(--gi-sobre-veludo); }
+.ps-rodape .ps-monogram { color: var(--gi-ouro-vivo); box-shadow: inset 0 0 0 3px var(--gi-veludo), inset 0 0 0 4px var(--lm-ouro); }
+.ps-rodape-titulo { color: var(--gi-ouro-vivo); letter-spacing: .2em; }
+.ps-rodape-numeros strong { color: transparent; background: var(--gi-folha); -webkit-background-clip: text; background-clip: text; }
+.ps-rodape-base { border-top-color: var(--gi-linha-veludo); }
+.ps-rodape a { color: inherit; }
+.ps-rodape a:hover { color: var(--gi-ouro-vivo); }
+.ps-rodape :focus-visible { outline-color: var(--gi-ouro-vivo); }
+.ps-rodape-toggle { color: var(--gi-sobre-veludo); }
+
+/* Newsletter (injetada por /canais.js; o seletor com body vence a folha injetada) */
+body .psc-news { margin-bottom: 72px; padding: 34px; border-radius: 2px; border-color: var(--line); background: var(--white); box-shadow: 0 0 0 1px rgba(176,141,87,.28), var(--gi-sombra-pouso); }
+body .psc-news h2 { font-size: 34px; }
+body .psc-news form { gap: 0; }
+body .psc-news input[type=email] { min-height: 56px; border-radius: 2px; border-color: #8F7A5E; }
+body .psc-news .psc-btn { min-height: 56px; padding: 0 34px; border: 1px solid var(--gi-brilho-3); border-radius: 2px; background: var(--gi-folha); color: var(--gi-sobre-ouro); font: 600 12px/1.5 var(--sans); letter-spacing: .2em; text-transform: uppercase; }
+body .psc-news .psc-btn:hover { background: var(--gi-brilho-2); }
+
+@media (max-width: 700px) {
+  .ps-monogram { width: 38px; height: 38px; font-size: 16px; }
+  .lm-hero-numeros b { font-size: 34px; }
+  .lm-confianca strong { font-size: 23px; }
+}
+@media (hover: none) { .lm-ferramenta:hover { box-shadow: none; } }
+@media print { .ps-rodape { background: none; color: inherit; --ink: #17120E; --muted: #5A4C41; --gold: #755728; } .lm-escura .lm-ouro, .ps-rodape-numeros strong { color: inherit; background: none; } }
