@@ -64,12 +64,17 @@
 
   var CSS = ".psc-redes{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:20px;padding:0;list-style:none}" +
     ".psc-redes a{font-size:14px}" +
-    ".psc-news{max-width:720px;margin:48px auto 0;padding:24px;border:1px solid var(--linha,#E4DBCE);border-radius:var(--raio,16px);background:var(--papel,#fff);display:flex;flex-direction:column;gap:12px}" +
+    ".psc-news{max-width:720px;margin:48px auto 0;padding:32px;border:1px solid var(--linha,#E4DBCE);border-radius:2px;background:var(--papel,#FDFBF7);display:flex;flex-direction:column;gap:12px}" +
     ".psc-news h2{font-size:1.6rem;margin:0}.psc-news p{margin:0}" +
-    ".psc-news form{display:flex;flex-wrap:wrap;gap:8px}" +
-    ".psc-news input[type=email]{flex:1 1 220px;min-width:0;max-width:100%;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E)}" +
-    ".psc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--rosa,#755728);color:#fff;font-weight:600;text-decoration:none;cursor:pointer}" +
-    "@media(prefers-color-scheme:dark){.psc-btn{color:#28131b}}html[data-tema=claro] .psc-btn{color:#fff}html[data-tema=escuro] .psc-btn{color:#28131b}" +
+    ".psc-news form{display:flex;flex-wrap:wrap;gap:8px 0}" +
+    ".psc-news form label{flex:1 1 100%;font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}" +
+    ".psc-news input[type=email]{flex:1 1 220px;min-width:0;max-width:100%;min-height:56px;padding:0 18px;border-radius:2px;border:1px solid var(--linha-2,#8F7A5E);background:var(--papel,#FDFBF7);color:var(--tinta,#17120E)}" +
+    ".psc-news input[type=email]:hover{border-color:var(--ouro,#755728)}" +
+    // Folha de ouro: a única ação de ouro da tela (design system Glamour Intense).
+    ".psc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:12px 34px;border-radius:2px;border:1px solid #C9A565;background:linear-gradient(#F1DFB8,#F1DFB8) 50% 100%/100% 0 no-repeat,linear-gradient(115deg,#A8834A,#F1DFB8 46%,#C9A565);color:#1B1410;font-size:.75rem;font-weight:600;line-height:1.5;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .55s cubic-bezier(.22,.61,.36,1),background-size .55s cubic-bezier(.22,.61,.36,1),border-color .45s}" +
+    ".psc-btn:hover{background-size:100% 100%,100% 100%;border-color:#F1DFB8;transform:translateY(-3px)}" +
+    "@media(max-width:520px){.psc-news{padding:24px}.psc-btn{flex:1 1 100%;letter-spacing:.16em}}" +
+    "@media(prefers-reduced-motion:reduce){.psc-btn{transition:none}.psc-btn:hover{transform:none}}" +
     "#psc-wa{position:fixed;left:16px;bottom:16px;z-index:90;display:flex;flex-direction:column;gap:2px;padding:10px 18px;border-radius:999px;background:#1f7a4d;color:#fff;text-decoration:none;line-height:1.25;box-shadow:0 8px 24px #17120e33}" +
     "#psc-wa strong{font-size:14px;font-weight:600}#psc-wa span{font-size:11px;opacity:.92}" +
     "#psc-wa:hover{background:#18643f}#psc-wa:focus-visible{outline:2px solid var(--tinta,#17120E);outline-offset:2px}" +

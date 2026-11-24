@@ -22,8 +22,7 @@ html, body { overflow-x: clip; }
 ::selection { background: var(--lm-ouro); color: var(--white); }
 .ps-topo { background: rgba(247,242,236,.94); -webkit-backdrop-filter: blur(18px) saturate(1.3); backdrop-filter: blur(18px) saturate(1.3); }
 .ps-monogram { border-color: var(--lm-ouro); }
-.ps-rodape { background: var(--champagne); margin-top: 0; }
-.ps-rodape-base { border-top-color: #CDBFA9; }
+.ps-rodape { margin-top: 0; }
 
 .lm { display: block; }
 .lm-wrap { width: min(100% - 112px, 1328px); margin-inline: auto; position: relative; z-index: 1; }
@@ -49,6 +48,10 @@ html, body { overflow-x: clip; }
 .lm .ps-button:hover, .lm-btn:hover { transform: translateY(-3px); background: var(--ink); border-color: var(--gold); box-shadow: none; }
 .lm .ps-button:hover::before, .lm-btn:hover::before { transform: translateY(0); }
 .lm .ps-button span, .lm-btn span { font-size: 1rem; line-height: 1; letter-spacing: 0; }
+/* Folha de ouro (design system Glamour Intense): a única ação de ouro da tela. Na home, o botão do hero. */
+.lm-btn-folha { border-color: #C9A565; background: linear-gradient(115deg, #A8834A, #F1DFB8 46%, #C9A565); color: var(--lm-cafe); font-weight: 600; }
+.lm-btn-folha::before { background: #F1DFB8; }
+.lm-btn-folha:hover { background: linear-gradient(115deg, #A8834A, #F1DFB8 46%, #C9A565); border-color: #F1DFB8; color: var(--lm-cafe); }
 .lm-btn-fio { background: transparent; color: var(--ink); border-color: #BDB0A0; }
 .lm-btn-fio::before { display: none; }
 .lm-btn-fio:hover { background: transparent; border-color: var(--gold); color: var(--gold); }

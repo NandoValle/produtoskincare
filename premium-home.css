@@ -332,3 +332,20 @@ summary::-webkit-details-marker { display: none; }
   .ps-mobile-menu { margin-left: 0; max-width: 100%; }
   .ps-mobile-panel { max-width: 100%; overflow-wrap: anywhere; }
 }
+
+/* Rodapé em veludo (design system Glamour Intense): sempre escuro, fio de ouro no topo,
+   números em folha de ouro. Mesmo desenho do rodapé das páginas internas (premium.css). */
+.ps-rodape { background: #1B1410; border-top: 1px solid #A8834A; color: #B9AD9F; }
+.ps-rodape .ps-brand { color: #F7F2EC; }
+.ps-rodape .ps-brand b, .ps-rodape .ps-monogram { color: #D9BE8E; }
+.ps-rodape .ps-monogram { border-color: #B08D57; }
+.ps-rodape-marca > p, .ps-rodape nav li, .ps-rodape-numeros, .ps-rodape-base, .ps-rodape a { color: #B9AD9F; }
+.ps-rodape-titulo, .ps-rodape .ps-rodape-toggle { color: #D9BE8E; font-size: 0.6875rem; font-weight: 500; letter-spacing: .2em; }
+.ps-rodape a { transition: color .45s; }
+.ps-rodape a:hover, .ps-rodape nav a:hover { color: #D9BE8E; }
+.ps-rodape a:focus-visible, .ps-rodape button:focus-visible { outline: 2px solid #D9BE8E; outline-offset: 3px; }
+.ps-rodape-numeros strong { color: #D9BE8E; background: linear-gradient(115deg, #A8834A, #F1DFB8 46%, #C9A565); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.ps-rodape-base { border-top-color: #8F7A5E; }
+.ps-rodape-grid > nav { border-color: rgba(247,242,236,.16); }
+@media (forced-colors: active) { .ps-rodape-numeros strong { background: none; -webkit-text-fill-color: currentColor; } }
+@media print { .ps-rodape { background: none; border-top-color: #000; } .ps-rodape, .ps-rodape * { color: #000 !important; -webkit-text-fill-color: currentColor; } .ps-rodape-numeros strong { background: none; } }
