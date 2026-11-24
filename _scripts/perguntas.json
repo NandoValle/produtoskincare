@@ -1199,11 +1199,11 @@
   ],
   [
    "O que significa “em construção”?",
-   "Que ainda não há histórico suficiente para comparar o preço de hoje. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
+   "Que ainda não há histórico suficiente para comparar o último preço registrado. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
   ],
   [
-   "Posso ser avisado quando o preço cair?",
-   "Sim, nas páginas de produto: o alerta fica guardado só no seu aparelho, sem cadastro. Quando você voltar ao site, se o preço tiver atingido o valor que você escolheu, o aviso aparece."
+   "O preço mostrado é o de hoje?",
+   "Não. Cada valor é o último preço registrado, na data que aparece ao lado, e pode ter mudado na loja. Produto marcado como “sem oferta verificada” tem link para a busca da loja, não para um anúncio conferido, então o valor é só uma referência."
   ]
  ],
  "/ferramentas/protocolo-n1/": [
