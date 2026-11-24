@@ -13,6 +13,10 @@
   var CANAIS = {
     email: "contato@produtoskincare.com.br",
     whatsapp: "",         // número com DDD, só dígitos, ex.: "31912345678"
+    // Botão flutuante "Dúvida? WhatsApp" em todas as páginas. Só aparece com o número acima preenchido.
+    whatsapp_botao: true,
+    // true = quem responde nesse número é uma IA. O botão e a mensagem inicial avisam isso.
+    whatsapp_ia: true,
     instagram: "",        // usuário, sem @
     tiktok: "",           // usuário, sem @
     youtube: "",          // handle, sem @
@@ -66,6 +70,10 @@
     ".psc-news input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E)}" +
     ".psc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--rosa,#755728);color:#fff;font-weight:600;text-decoration:none;cursor:pointer}" +
     "@media(prefers-color-scheme:dark){.psc-btn{color:#28131b}}html[data-tema=claro] .psc-btn{color:#fff}html[data-tema=escuro] .psc-btn{color:#28131b}" +
+    "#psc-wa{position:fixed;left:16px;bottom:16px;z-index:90;display:flex;flex-direction:column;gap:2px;padding:10px 18px;border-radius:999px;background:#1f7a4d;color:#fff;text-decoration:none;line-height:1.25;box-shadow:0 8px 24px #17120e33}" +
+    "#psc-wa strong{font-size:14px;font-weight:600}#psc-wa span{font-size:11px;opacity:.92}" +
+    "#psc-wa:hover{background:#18643f}#psc-wa:focus-visible{outline:2px solid var(--tinta,#17120E);outline-offset:2px}" +
+    "@media print{#psc-wa{display:none}}" +
     ".psc-nota{font-size:.84rem;color:var(--suave,#596360)}" +
     ".psc-canais{list-style:none;padding:0;margin:0;display:grid;gap:10px}" +
     ".psc-canais a{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--linha,#E4DBCE);border-radius:12px;text-decoration:none;color:var(--tinta,#17120E);background:var(--papel,#fff)}" +
@@ -88,6 +96,21 @@
 
   function contar(nome) {
     try { if (window.PSAnalytics) window.PSAnalytics.evento(nome); } catch (e) {}
+  }
+
+  // Botão flutuante do WhatsApp (canto inferior esquerdo; o direito é do "Som do sonho").
+  function botaoWhatsApp() {
+    if (vazio(CANAIS.whatsapp) || !CANAIS.whatsapp_botao) return;
+    if (document.body.hasAttribute("data-sem-whatsapp") || document.getElementById("psc-wa")) return;
+    var titulo = (document.querySelector("h1") || {}).textContent || document.title || "";
+    titulo = titulo.replace(/\s+/g, " ").trim().slice(0, 90);
+    var texto = "Olá! Vim pelo site Produto Skincare" + (titulo ? " (página: " + titulo + ")" : "") + ". Minha dúvida: ";
+    var a = el("a", { id: "psc-wa", href: linkWa(texto), target: "_blank", rel: "noopener",
+      "aria-label": CANAIS.whatsapp_ia ? "Tirar dúvida no WhatsApp, com resposta por inteligência artificial" : "Tirar dúvida no WhatsApp" });
+    a.appendChild(el("strong", null, "Dúvida? WhatsApp"));
+    if (CANAIS.whatsapp_ia) a.appendChild(el("span", null, "Resposta por IA · não é consulta"));
+    a.addEventListener("click", function () { contar("contato/whatsapp-botao"); });
+    document.body.appendChild(a);
   }
 
   function rodape() {
@@ -206,6 +229,7 @@
     if (!temContato && !temNews) return;
     estilo();
     rodape();
+    botaoWhatsApp();
     newsletter();
     paginaContato();
   }
