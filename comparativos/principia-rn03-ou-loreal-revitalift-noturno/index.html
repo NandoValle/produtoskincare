@@ -79,6 +79,8 @@
 .cp-tabela thead th{font-family:var(--fonte-display);font-size:1.05rem;font-weight:500}
 .cp-tabela tbody th{font-weight:600;color:var(--suave);width:28%}
 .cp-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cp-antes{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.cp-antes h3{margin:0;font-size:1.05rem}.cp-antes p{margin:0;font-size:.92rem;line-height:1.5}.cp-antes .cp-btn{margin-top:auto}
 .cp-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 16px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
 @media(prefers-color-scheme:dark){.cp-btn{color:#28131b}}
 html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#28131b}
@@ -101,12 +103,11 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
-
+<meta name="author" content="Equipe Produto Skincare">
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
 <script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
-<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -142,9 +143,10 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <p class="ig-rotulo">O que muda entre os dois</p>
 <ul><li>Na conferência de preços, o Principia RN-0,3 Retinol custava R$ 7,00 a menos que o L&#x27;Oréal Revitalift Sérum Noturno Antissinais. Compare também o tamanho da embalagem no anúncio, que muda o preço por ml.</li><li>Ativos em comum, segundo os anúncios: retinol.</li><li>No catálogo, só o L&#x27;Oréal Revitalift Sérum Noturno Antissinais aparece para pele seca.</li></ul>
 </div>
-<div class="cp-tabela-rolagem"><table class="cp-tabela"><caption class="ig-rotulo">Lado a lado</caption><thead><tr><td></td><th scope="col"><a href="/produtos/principia-rn03/">Principia RN-0,3 Retinol</a></th><th scope="col"><a href="/produtos/loreal-revitalift-noturno/">L&#x27;Oréal Revitalift Sérum Noturno Antissinais</a></th></tr></thead><tbody><tr><th scope="row">Preço conferido</th><td>R$ 52,90 em 02/11/2026</td><td>R$ 59,90 em 02/11/2026</td></tr><tr><th scope="row">Loja</th><td>Shopee</td><td>Mercado Livre</td></tr><tr><th scope="row">Passo da rotina</th><td>Tratamento (sérum)</td><td>Tratamento (sérum)</td></tr><tr><th scope="row">Quando usar</th><td>Noite</td><td>Noite</td></tr><tr><th scope="row">Textura</th><td>sérum</td><td>sérum</td></tr><tr><th scope="row">Tipos de pele no catálogo</th><td>Pele normal, Pele oleosa, Pele mista</td><td>Pele normal, Pele oleosa, Pele mista, Pele seca</td></tr><tr><th scope="row">Talvez não seja para</th><td>Pele sensível, Pele seca</td><td>Pele sensível</td></tr><tr><th scope="row">Ativos em destaque</th><td>retinol 0,3%</td><td>retinol</td></tr><tr><th scope="row">Marca e origem</th><td>Principia · Brasil</td><td>L&#x27;Oréal Paris · França</td></tr><tr><th scope="row">Nota de quem comprou</th><td>4,7 de 5 (7.800 avaliações na Shopee)</td><td>4,6 de 5 (15.000 avaliações na Mercado Livre)</td></tr></tbody></table></div>
+<div class="cp-tabela-rolagem"><table class="cp-tabela"><caption class="ig-rotulo">Lado a lado</caption><thead><tr><td></td><th scope="col"><a href="/produtos/principia-rn03/">Principia RN-0,3 Retinol</a></th><th scope="col"><a href="/produtos/loreal-revitalift-noturno/">L&#x27;Oréal Revitalift Sérum Noturno Antissinais</a></th></tr></thead><tbody><tr><th scope="row">Preço</th><td>R$ 52,90 em 02/11/2026 (referência: sem anúncio conferido)</td><td>R$ 59,90 em 02/11/2026 (conferido no anúncio)</td></tr><tr><th scope="row">Tamanho conferido</th><td>30 ml</td><td>30 ml</td></tr><tr><th scope="row">Loja</th><td>Shopee</td><td>Mercado Livre</td></tr><tr><th scope="row">Passo da rotina</th><td>Tratamento (sérum)</td><td>Tratamento (sérum)</td></tr><tr><th scope="row">Quando usar</th><td>Noite</td><td>Noite</td></tr><tr><th scope="row">Textura</th><td>sérum</td><td>sérum</td></tr><tr><th scope="row">Tipos de pele no catálogo</th><td>Pele normal, Pele oleosa, Pele mista</td><td>Pele normal, Pele oleosa, Pele mista, Pele seca</td></tr><tr><th scope="row">Talvez não seja para</th><td>Pele sensível, Pele seca</td><td>Pele sensível</td></tr><tr><th scope="row">Ativos em destaque</th><td>retinol 0,3%</td><td>retinol</td></tr><tr><th scope="row">Marca e origem</th><td>Principia · Brasil</td><td>L&#x27;Oréal Paris · França</td></tr><tr><th scope="row">Nota de quem comprou</th><td>4,7 de 5 (7.800 avaliações na Shopee)</td><td>4,6 de 5 (15.000 avaliações na Mercado Livre)</td></tr></tbody></table></div>
 <p class="ig-nota">"Ativos em destaque" são os que o anúncio destaca, não a fórmula completa. A lista de ingredientes (INCI) está na embalagem e no anúncio; cole as duas no <a href="/ferramentas/ingredientes/">verificador de ingredientes</a> para checar combinações com a sua rotina.</p>
-<div class="cp-btns"><a class="cp-btn" href="https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dprincipia%2520retinol%2520rn-0%252C3&affiliate_id=18376781218&sub_id=site" target="_blank" rel="sponsored noopener" data-produto="Principia RN-0,3 Retinol">Buscar na Shopee: Principia ↗</a><a class="cp-btn" href="https://www.mercadolivre.com.br/serum-retinol-noturno-antirrugas-loreal-paris-revitalift-30ml/p/MLB21972528?matt_tool=34139169&amp;matt_word=fv20260718035618040" target="_blank" rel="sponsored noopener" data-produto="L&#x27;Oréal Revitalift Sérum Noturno Antissinais">Ver na Mercado Livre: L&#x27;Oréal Paris ↗</a></div>
+<section aria-labelledby="antes"><h2 id="antes">Antes de comprar</h2>
+<div class="cp-btns"><div class="cp-antes"><h3>Principia RN-0,3 Retinol</h3><p><b>Por que está aqui:</b> entrou como tratamento (sérum) para pele normal, pele oleosa e pele mista com foco em sinais de idade, manchas e tom irregular e poros aparentes.</p><p><b>Talvez não valha a pena:</b> se você tem pele sensível ou pele seca; na gestação ou amamentação; se limpeza, hidratante e protetor ainda não viraram hábito.</p><p class="ig-nota"><b>Sem oferta verificada.</b> O site ainda não tem um anúncio conferido deste produto; o preço da tabela é só referência. <a href="https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dprincipia%2520retinol%2520rn-0%252C3&amp;affiliate_id=18376781218&amp;sub_id=site" target="_blank" rel="sponsored noopener" data-produto="Principia RN-0,3 Retinol">Procurar na Shopee ↗</a> (abre a busca da loja).</p></div><div class="cp-antes"><h3>L&#x27;Oréal Revitalift Sérum Noturno Antissinais</h3><p><b>Por que está aqui:</b> entrou como tratamento (sérum) para pele normal, pele oleosa, pele mista e pele seca com foco em sinais de idade.</p><p><b>Talvez não valha a pena:</b> se você tem pele sensível; na gestação ou amamentação; se limpeza, hidratante e protetor ainda não viraram hábito.</p><a class="cp-btn" href="https://www.mercadolivre.com.br/serum-retinol-noturno-antirrugas-loreal-paris-revitalift-30ml/p/MLB21972528?matt_tool=34139169&amp;matt_word=fv20260718035618040" target="_blank" rel="sponsored noopener" data-produto="L&#x27;Oréal Revitalift Sérum Noturno Antissinais">Ver na Mercado Livre: L&#x27;Oréal Paris ↗</a></div></div></section>
 <p class="ig-nota">Links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. O preço muda: vale o mostrado na loja na hora da compra.</p>
 <section aria-labelledby="relacionados">
 <h2 id="relacionados">Leia também</h2>
@@ -160,7 +162,8 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <footer class="ig-foot">
 <p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
-<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
 <!-- perguntas:inicio -->
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Perguntas frequentes</h2>
@@ -171,7 +174,8 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual a diferença entre o Principia RN-0,3 Retinol e o L'Oréal Revitalift Sérum Noturno Antissinais?", "acceptedAnswer": {"@type": "Answer", "text": "Os dois são séruns noturnos com retinol, e o Principia destaca retinol 0,3%. No catálogo, o L'Oréal aparece também para pele seca, e o Principia traz pele sensível e pele seca em talvez não seja para."}}, {"@type": "Question", "name": "Os séruns de retinol Principia RN-0,3 e L'Oréal Revitalift são indicados para pele sensível?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A página marca pele sensível em talvez não seja para nos dois séruns, e o Principia marca também pele seca. O retinol é o ativo em destaque nos dois anúncios, para uso à noite."}}]}</script>
 </section>
 <!-- perguntas:fim -->
-<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
