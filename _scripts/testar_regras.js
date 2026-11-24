@@ -97,6 +97,22 @@ caso("geral: regra explícita pesa mais que par sem regra", R.avaliar([A("retino
 caso("todo resultado possível tem rótulo", ["ok", "sem_regra", "horarios", "nao"].every(k => R.ROTULOS[k]), true);
 caso("motivo curto (até 280 caracteres) em toda combinação", R.COMBINACOES.filter(c => c.motivo.length > 280 || (c.sensivelMotivo || "").length > 280).map(c => c.id), []);
 
+/* ===== Ativos reconhecidos desde a 1.2.0 ===== */
+console.log("\nAtivos do guia (1.2.0)");
+caso("filtros pelo nome INCI", ids("Aqua, Homosalate, Ethylhexyl Salicylate, Butyl Methoxydibenzoylmethane, Octocrylene, Zinc Oxide"), ["oxido-zinco", "avobenzona", "octocrileno", "homosalato", "octisalato"]);
+caso("octisalato (salicylate) não é BHA", R.detectar("Ethylhexyl Salicylate").map(a => a.classe), ["filtro"]);
+caso("óxido de zinco não é zinco PCA", ids("óxido de zinco"), ["oxido-zinco"]);
+caso("conservantes com urea não são ureia", ids("Aqua, Imidazolidinyl Urea, Diazolidinyl Urea"), []);
+caso("hidroxietilureia não é ureia", ids("Hydroxyethyl Urea"), ["hidroxietilureia"]);
+caso("idebenona não é coenzima Q10", ids("Hydroxydecyl Ubiquinone"), ["idebenona"]);
+caso("peptídeos pelo nome INCI", ids("Palmitoyl Pentapeptide-4, Acetyl Hexapeptide-8"), ["peptideos"]);
+caso("sulfato não é enxofre", ids("Sodium Lauryl Sulfate"), []);
+caso("sérum com adenosina e alantoína", ids("Aqua, Niacinamide, Sodium Hyaluronate, Adenosine, Allantoin"), ["niacinamida", "hialuronico", "alantoina", "adenosina"]);
+caso("classe outro: par com retinoide sai sem regra", R.avaliarPar(A("hidroquinona"), A("retinol")).resultado, "sem_regra");
+caso("classe outro: par com hidratante sai ok (neutra)", R.avaliarPar(A("cafeina"), A("hialuronico")).resultado, "ok");
+caso("ácido pirúvico segue as regras de AHA", R.avaliarPar(A("piruvico"), A("retinol")).resultado, "horarios");
+caso("betaína salicilato segue as regras de BHA", R.avaliarPar(A("betaina-salicilato"), A("retinol")).resultado, "horarios");
+
 /* ===== Integridade da lista ===== */
 console.log("\nIntegridade");
 const classes = new Set([...R.ATIVOS.map(a => a.classe), ...Object.values(R.ESTADOS).map(e => e.classe)]);
