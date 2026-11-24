@@ -1041,6 +1041,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/dados-abertos/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/en/</loc>
     <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
@@ -1348,6 +1353,11 @@
   <url>
     <loc>https://produtoskincare.com.br/fortskin/</loc>
     <lastmod>2026-11-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/independencia/</loc>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

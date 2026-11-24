@@ -1,0 +1,272 @@
+{
+ "dataset": "Produto Skincare — dados abertos",
+ "arquivo": "precos",
+ "versao": "0.1.0",
+ "dados_ate": "2026-11-02",
+ "licenca": "CC BY 4.0",
+ "licenca_url": "https://creativecommons.org/licenses/by/4.0/deed.pt-br",
+ "fonte": "https://produtoskincare.com.br/dados-abertos/",
+ "linhas": 26,
+ "itens": [
+  {
+   "produto_id": "cerave-gel-limpeza",
+   "conferido_em": "2026-11-02",
+   "preco": 96.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC"
+  },
+  {
+   "produto_id": "cerave-pm-locao",
+   "conferido_em": "2026-11-02",
+   "preco": 62.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/dp/B096XPFVLL"
+  },
+  {
+   "produto_id": "cetaphil-creme-hidratante",
+   "conferido_em": "2026-11-02",
+   "preco": 85.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79"
+  },
+  {
+   "produto_id": "creamy-calming-cream",
+   "conferido_em": "2026-11-02",
+   "preco": 55.9,
+   "moeda": "BRL",
+   "loja": "shopee",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://shopee.com.br/search?keyword=creamy+calming+cream"
+  },
+  {
+   "produto_id": "creamy-vitamina-c",
+   "conferido_em": "2026-11-02",
+   "preco": 69.9,
+   "moeda": "BRL",
+   "loja": "shopee",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://shopee.com.br/search?keyword=creamy+vitamina+c"
+  },
+  {
+   "produto_id": "eucerin-anti-pigment",
+   "conferido_em": "2026-11-02",
+   "preco": 226.99,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7"
+  },
+  {
+   "produto_id": "garnier-uniform-matte",
+   "conferido_em": "2026-11-02",
+   "preco": 26.61,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS"
+  },
+  {
+   "produto_id": "hada-labo-oil-cleansing",
+   "conferido_em": "2026-11-02",
+   "preco": 64.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK"
+  },
+  {
+   "produto_id": "isdin-fusion-water",
+   "conferido_em": "2026-11-02",
+   "preco": 89.0,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD"
+  },
+  {
+   "produto_id": "isdin-fusion-water-sem-cor",
+   "conferido_em": "2026-11-02",
+   "preco": 57.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN"
+  },
+  {
+   "produto_id": "loreal-revitalift-noturno",
+   "conferido_em": "2026-11-02",
+   "preco": 59.9,
+   "moeda": "BRL",
+   "loja": "mercadolivre",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno"
+  },
+  {
+   "produto_id": "lrp-cicaplast-baume",
+   "conferido_em": "2026-11-02",
+   "preco": 71.52,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2"
+  },
+  {
+   "produto_id": "lrp-effaclar-gel",
+   "conferido_em": "2026-11-02",
+   "preco": 73.57,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5"
+  },
+  {
+   "produto_id": "lrp-retinol-b3",
+   "conferido_em": "2026-11-02",
+   "preco": 149.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3"
+  },
+  {
+   "produto_id": "lrp-ultra-cover",
+   "conferido_em": "2026-11-02",
+   "preco": 78.89,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5"
+  },
+  {
+   "produto_id": "mantecorp-epidrat-calm",
+   "conferido_em": "2026-11-02",
+   "preco": 83.92,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB"
+  },
+  {
+   "produto_id": "mantecorp-ivy-c-ferulic",
+   "conferido_em": "2026-11-02",
+   "preco": 89.9,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic"
+  },
+  {
+   "produto_id": "neutrogena-hydro-boost",
+   "conferido_em": "2026-11-02",
+   "preco": 55.16,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL"
+  },
+  {
+   "produto_id": "neutrogena-sun-fresh-fps70",
+   "conferido_em": "2026-11-02",
+   "preco": 47.7,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ"
+  },
+  {
+   "produto_id": "ordinary-azelaic",
+   "conferido_em": "2026-11-02",
+   "preco": 45.9,
+   "moeda": "BRL",
+   "loja": "mercadolivre",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid"
+  },
+  {
+   "produto_id": "ordinary-niacinamide",
+   "conferido_em": "2026-11-02",
+   "preco": 39.9,
+   "moeda": "BRL",
+   "loja": "mercadolivre",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://lista.mercadolivre.com.br/the-ordinary-niacinamide"
+  },
+  {
+   "produto_id": "principia-ah2",
+   "conferido_em": "2026-11-02",
+   "preco": 42.9,
+   "moeda": "BRL",
+   "loja": "shopee",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://shopee.com.br/search?keyword=principia+ah-2"
+  },
+  {
+   "produto_id": "principia-niacinamida",
+   "conferido_em": "2026-11-02",
+   "preco": 45.9,
+   "moeda": "BRL",
+   "loja": "shopee",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://shopee.com.br/search?keyword=principia+niacinamida+nc-10"
+  },
+  {
+   "produto_id": "principia-rn03",
+   "conferido_em": "2026-11-02",
+   "preco": 52.9,
+   "moeda": "BRL",
+   "loja": "shopee",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://shopee.com.br/search?keyword=principia+retinol+rn-0%2C3"
+  },
+  {
+   "produto_id": "principia-vc10",
+   "conferido_em": "2026-11-02",
+   "preco": 49.9,
+   "moeda": "BRL",
+   "loja": "shopee",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://shopee.com.br/search?keyword=principia+vc-10"
+  },
+  {
+   "produto_id": "skin-aqua-moisture-milk",
+   "conferido_em": "2026-11-02",
+   "preco": 50.26,
+   "moeda": "BRL",
+   "loja": "amazon",
+   "promocao": false,
+   "origem": "team",
+   "url": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8"
+  }
+ ]
+}
