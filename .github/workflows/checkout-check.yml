@@ -1,0 +1,25 @@
+# checkout-check.yml — impede que o marcador de checkout vá para o ar.
+#
+# Os botões de compra de /programa-12-semanas/ apontam para o checkout da
+# plataforma de pagamento. Enquanto um deles tiver o marcador CHECKOUT-PENDENTE
+# (ou um destino que não seja https), esta checagem falha.
+
+name: checkout-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    name: Botões de compra do Programa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Links de checkout preenchidos
+        run: python -I _scripts/checar_checkout.py
