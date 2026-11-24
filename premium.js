@@ -47,6 +47,30 @@
       }
     });
   }
+  // Modo leitura: botão nas páginas de texto (.ig). A escolha fica só neste aparelho.
+  const topoTexto = document.querySelector('main.ig > .ig-top');
+  if (topoTexto) {
+    const CHAVE = 'ps-leitura';
+    const raiz = document.documentElement;
+    let ligado = false;
+    try { ligado = localStorage.getItem(CHAVE) === '1'; } catch (e) {}
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'ps-leitura-btn';
+    botao.textContent = 'Modo leitura';
+    const aplicar = () => {
+      if (ligado) raiz.setAttribute('data-leitura', '1'); else raiz.removeAttribute('data-leitura');
+      botao.setAttribute('aria-pressed', String(ligado));
+      botao.title = ligado ? 'Voltar ao tamanho normal' : 'Letra maior, mais espaço entre as linhas e coluna estreita';
+    };
+    botao.addEventListener('click', () => {
+      ligado = !ligado;
+      try { localStorage.setItem(CHAVE, ligado ? '1' : '0'); } catch (e) {}
+      aplicar();
+    });
+    aplicar();
+    topoTexto.appendChild(botao);
+  }
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   if (!motion.matches && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {

@@ -72,6 +72,29 @@
 @media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
 .capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
 
+.pd-conf{margin:0;display:flex;flex-direction:column;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pd-conf>div{padding:12px 16px;border-top:1px solid var(--linha)}
+.pd-conf>div:first-child{border-top:0}
+.pd-conf dt{font-weight:700}
+.pd-conf dd{margin:2px 0 0}
+.pd-quando{display:block;font-size:.9rem;color:var(--suave)}
+.pd-bate{margin-top:14px}
+.pd-bate summary{cursor:pointer;display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:1.5px solid var(--linha-2);border-radius:999px;font-weight:600;list-style:none}
+.pd-bate summary::-webkit-details-marker{display:none}
+.pd-bate summary::after{content:"+";margin-left:10px;font-weight:400}
+.pd-bate[open] summary::after{content:"\2212"}
+.pd-bate summary:hover{border-color:var(--rosa)}
+.pd-bate form[hidden]{display:none}
+.pd-bate form{display:flex;flex-direction:column;gap:12px;margin:14px 0 10px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pd-bate fieldset{border:0;padding:0;margin:0;min-width:0}
+.pd-bate legend,.pd-bate form>label{padding:0;font-weight:700}
+.pd-bate fieldset label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:9px 0;cursor:pointer;line-height:1.45}
+.pd-bate input[type=radio]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.pd-bate textarea{font:inherit;width:100%;padding:12px 14px;border:1.5px solid var(--linha-2);border-radius:12px;background:var(--fundo);color:var(--tinta);resize:vertical}
+.pd-bate .pd-btn{border:0;cursor:pointer;font:inherit;font-weight:600;align-self:flex-start}
+.pd-bate form>.ig-nota{margin:0}
+.pd-bate form>.ig-nota:empty{display:none}
+
 .pd-faq{border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);margin:8px 0;padding:0 16px}
 .pd-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
 .pd-faq p{margin:0 0 14px}
@@ -109,7 +132,7 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="CeraVe PM Loção Facial">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#pagina", "url": "https://produtoskincare.com.br/produtos/cerave-pm-locao/", "name": "CeraVe PM Loção Facial", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "CeraVe PM Loção Facial. Hidratante noturno oil-free com ceramidas, ácido hialurônico e niacinamida. Preço em 02/11/2026: R$ 62,90.", "dateModified": "2026-11-02", "breadcrumb": {"@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#produto"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Produtos", "item": "https://produtoskincare.com.br/produtos/"}, {"@type": "ListItem", "position": 3, "name": "CeraVe PM Loção Facial", "item": "https://produtoskincare.com.br/produtos/cerave-pm-locao/"}]}, {"@type": "Product", "@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#produto", "name": "CeraVe PM Loção Facial", "url": "https://produtoskincare.com.br/produtos/cerave-pm-locao/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#pagina"}, "description": "Hidratante noturno oil-free com ceramidas, ácido hialurônico e niacinamida. Repara a barreira durante o sono.", "brand": {"@type": "Brand", "name": "CeraVe"}, "offers": {"@type": "Offer", "price": "62.90", "priceCurrency": "BRL", "description": "Na Amazon, conferido em 02/11/2026. Variante conferida: 52 ml. Preço muda: vale o mostrado na loja na hora da compra. Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.", "url": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#pagina", "url": "https://produtoskincare.com.br/produtos/cerave-pm-locao/", "name": "CeraVe PM Loção Facial", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "CeraVe PM Loção Facial. Hidratante noturno oil-free com ceramidas, ácido hialurônico e niacinamida. Preço em 02/11/2026: R$ 62,90.", "dateModified": "2026-11-02", "breadcrumb": {"@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#produto"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Produtos", "item": "https://produtoskincare.com.br/produtos/"}, {"@type": "ListItem", "position": 3, "name": "CeraVe PM Loção Facial", "item": "https://produtoskincare.com.br/produtos/cerave-pm-locao/"}]}, {"@type": "Product", "@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#produto", "name": "CeraVe PM Loção Facial", "url": "https://produtoskincare.com.br/produtos/cerave-pm-locao/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/produtos/cerave-pm-locao/#pagina"}, "description": "Hidratante noturno oil-free com ceramidas, ácido hialurônico e niacinamida. Repara a barreira durante o sono.", "brand": {"@type": "Brand", "name": "CeraVe"}, "offers": {"@type": "Offer", "price": "62.90", "priceCurrency": "BRL", "description": "Na Amazon, conferido em 02/11/2026. Variante conferida: 52 ml. Preço muda: vale o mostrado na loja na hora da compra. O que foi conferido nesta ficha. Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.", "url": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20"}}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -154,7 +177,7 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <p class="ig-rotulo">Preço conferido</p>
 <p class="pd-criterio"><b>Por que está aqui:</b> entrou como hidratante para pele normal e pele seca com foco em desidratação.</p><p class="pd-criterio"><b>Talvez não valha a pena:</b> se o hidratante que você já usa funciona bem na sua pele.</p>
 <p class="pd-preco">R$ 62,90</p>
-<p class="ig-nota">Na Amazon, conferido em 02/11/2026. Variante conferida: 52 ml. Preço muda: vale o mostrado na loja na hora da compra.</p>
+<p class="ig-nota">Na Amazon, conferido em 02/11/2026. Variante conferida: 52 ml. Preço muda: vale o mostrado na loja na hora da compra. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
 <div class="pd-btns">
 <a class="pd-btn" href="https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener" data-produto="CeraVe PM Loção Facial">Ver na Amazon ↗</a>
 <a class="pd-btn sec" href="/ferramentas/reposicao/?produto=CeraVe%20PM%20Lo%C3%A7%C3%A3o%20Facial">Lembrete de reposição</a>
@@ -189,6 +212,29 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <h2 id="historico">Histórico de preço</h2>
 <p>Primeiro preço registrado: R$ 62,90 em 02/11/2026. O histórico aparece aqui conforme o preço é conferido de novo.</p>
 <p class="ig-nota">Nota 4,8 de 5 em 18.000 avaliações na Amazon, conferida em 02/11/2026. A nota é de quem comprou na loja, não uma avaliação do site.</p>
+</section>
+<section aria-labelledby="conferido">
+<h2 id="conferido">O que foi conferido nesta ficha</h2>
+<dl class="pd-conf"><div><dt>Preço</dt><dd>R$ 62,90 na Amazon. <span class="pd-quando">Conferido em 02/11/2026.</span></dd></div><div><dt>Nota na loja</dt><dd>4,8 de 5, em 18.000 avaliações de quem comprou. <span class="pd-quando">Conferida em 02/11/2026.</span></dd></div><div><dt>Embalagem</dt><dd>52 ml, conforme o anúncio. <span class="pd-quando">Registrada em 20/11/2026.</span></dd></div><div><dt>Fórmula</dt><dd>Só os ativos em destaque no anúncio. A lista completa (INCI) não foi registrada aqui: vale a da embalagem. <span class="pd-quando">Ativos registrados em 20/11/2026.</span></dd></div><div><dt>Link</dt><dd>Leva ao anúncio na Amazon de onde saiu o preço acima. <span class="pd-quando">Sem data própria: vale a da conferência do preço, 02/11/2026.</span></dd></div></dl>
+<p class="ig-nota">São conferências de preço, embalagem e link, feitas na loja. Não são revisão científica nem avaliação médica do produto. A data no alto da página é a da última conferência de preço.</p>
+<details class="pd-bate" id="algo-nao-bate">
+<summary>Algo não bate?</summary>
+<form data-pd-bate data-produto="CeraVe PM Loção Facial" data-ficha="R$ 62,90 na Amazon, conferido em 02/11/2026" hidden>
+<fieldset>
+<legend>O que parece errado?</legend>
+<label><input type="radio" name="bate" value="Fórmula ou ingredientes" checked> Fórmula ou ingredientes</label>
+<label><input type="radio" name="bate" value="Embalagem ou tamanho"> Embalagem ou tamanho</label>
+<label><input type="radio" name="bate" value="Preço"> Preço</label>
+<label><input type="radio" name="bate" value="Link"> Link que abre outro produto ou não abre</label>
+<label><input type="radio" name="bate" value="Outra coisa"> Outra coisa</label>
+</fieldset>
+<label for="pd-bate-msg">O que você viu (opcional)</label>
+<textarea id="pd-bate-msg" rows="3"></textarea>
+<button type="submit" class="pd-btn">Avisar por e-mail</button>
+<p class="ig-nota" role="status" data-pd-bate-aviso></p>
+</form>
+<p class="ig-nota">O aviso sai do seu aplicativo de e-mail, com a mensagem já montada, e só é enviado se você confirmar. O site não guarda o que você escreve. Se o aplicativo não abrir, escreva para <a href="mailto:contato@produtoskincare.com.br?subject=Algo%20n%C3%A3o%20bate%3A%20CeraVe%20PM%20Lo%C3%A7%C3%A3o%20Facial">contato@produtoskincare.com.br</a>. Não mande dados de saúde nem fotos de lesões.</p>
+</details>
 </section>
 <section aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2><div class="pd-faq"><h3 class="pq">Para que tipo de pele é o CeraVe PM Loção Facial?</h3><p>No nosso catálogo, ele aparece para pele normal e pele seca. Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir.</p></div><div class="pd-faq"><h3 class="pq">Uso o CeraVe PM Loção Facial de manhã ou à noite?</h3><p>Ele entra na rotina no passo “hidratante”, à noite.</p></div><div class="pd-faq"><h3 class="pq">Quais são os ativos em destaque do CeraVe PM Loção Facial?</h3><p>Os ativos destacados no anúncio são ceramidas, ácido hialurônico e niacinamida. A lista completa de ingredientes (INCI) está na embalagem e no anúncio, e pode mudar entre lotes e versões.</p></div><div class="pd-faq"><h3 class="pq">Quanto custa o CeraVe PM Loção Facial?</h3><p>Na última conferência, em 02/11/2026, custava R$ 62,90 na Amazon. O preço muda com frequência: vale o mostrado na loja na hora da compra.</p></div><div class="pd-faq"><h3 class="pq">Posso usar junto com os outros produtos da minha rotina?</h3><p>Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site para checar combinações. Em caso de irritação persistente, procure um dermatologista.</p></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Para que tipo de pele é o CeraVe PM Loção Facial?", "acceptedAnswer": {"@type": "Answer", "text": "No nosso catálogo, ele aparece para pele normal e pele seca. Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir."}}, {"@type": "Question", "name": "Uso o CeraVe PM Loção Facial de manhã ou à noite?", "acceptedAnswer": {"@type": "Answer", "text": "Ele entra na rotina no passo “hidratante”, à noite."}}, {"@type": "Question", "name": "Quais são os ativos em destaque do CeraVe PM Loção Facial?", "acceptedAnswer": {"@type": "Answer", "text": "Os ativos destacados no anúncio são ceramidas, ácido hialurônico e niacinamida. A lista completa de ingredientes (INCI) está na embalagem e no anúncio, e pode mudar entre lotes e versões."}}, {"@type": "Question", "name": "Quanto custa o CeraVe PM Loção Facial?", "acceptedAnswer": {"@type": "Answer", "text": "Na última conferência, em 02/11/2026, custava R$ 62,90 na Amazon. O preço muda com frequência: vale o mostrado na loja na hora da compra."}}, {"@type": "Question", "name": "Posso usar junto com os outros produtos da minha rotina?", "acceptedAnswer": {"@type": "Answer", "text": "Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site para checar combinações. Em caso de irritação persistente, procure um dermatologista."}}]}</script></section>
 <section aria-labelledby="alternativas"><h2 id="alternativas">Alternativas do catálogo</h2><ul><li><a href="/produtos/garnier-uniform-matte/">Garnier Uniform &amp; Matte Toque Seco</a> <span class="ig-nota">R$ 26,61 em 02/11/2026</span></li><li><a href="/produtos/neutrogena-hydro-boost/">Neutrogena Hydro Boost Water Gel</a> <span class="ig-nota">R$ 55,16 em 02/11/2026</span></li><li><a href="/produtos/creamy-calming-cream/">Creamy Calming Cream</a> <span class="ig-nota">R$ 55,90 em 02/11/2026</span></li><li><a href="/produtos/lrp-cicaplast-baume/">La Roche-Posay Cicaplast Baume B5+</a> <span class="ig-nota">R$ 71,52 em 02/11/2026</span></li></ul></section>
@@ -225,6 +271,21 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 </footer>
-
+<script>
+(function () {
+  var f = document.querySelector("[data-pd-bate]");
+  if (!f) return;
+  f.hidden = false;
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var tipo = f.querySelector('input[name="bate"]:checked').value, nome = f.getAttribute("data-produto");
+    var corpo = ["Produto: " + nome, "Página: " + location.origin + location.pathname, "O que parece errado: " + tipo,
+      "Na ficha: " + f.getAttribute("data-ficha"), "", "O que eu vi: " + document.getElementById("pd-bate-msg").value.trim()].join("\n");
+    location.href = "mailto:contato@produtoskincare.com.br?subject=" + encodeURIComponent("Algo não bate: " + nome + " (" + tipo + ")") + "&body=" + encodeURIComponent(corpo);
+    f.querySelector("[data-pd-bate-aviso]").textContent = "Mensagem montada. Confira e envie pelo seu aplicativo de e-mail.";
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/algo-nao-bate"); } catch (e) {}
+  });
+})();
+</script>
 </body>
 </html>
