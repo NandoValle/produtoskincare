@@ -109,12 +109,14 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <button class="chip" type="button" data-ex="0">Protetor "sem álcool" que traz álcool</button>
 <button class="chip" type="button" data-ex="1">Hidratante simples, promessas limpas</button>
 <button class="chip" type="button" data-ex="2">Sabonete com "sem sulfatos" na embalagem</button>
+<button class="chip" type="button" data-ex="3">Sérum "com niacinamida" depois do conservante</button>
 </div>
 
 <h2>Como o raio-x lê a lista</h2>
 <ul class="regras">
 <li><strong>Função primeiro.</strong> Cada ingrediente vai para um grupo — ativo, emoliente, humectante, filtro UV, conservante, surfactante, fragrância, corante e outros — para você ver do que o produto é feito, não só nomes difíceis.</li>
 <li><strong>Ordem importa, com ressalva.</strong> Por regra da ANVISA, os ingredientes vêm em ordem decrescente de quantidade até os 1% mais baixos; depois a ordem é livre. Um ingrediente lá no fim pode ter pouco — mas a lista não diz quanto.</li>
+<li><strong>A linha do 1%.</strong> Fenoxietanol, parabenos e clorfenesina são conservantes com teto de 1% ou menos na lista de conservantes permitidos. Como acima de 1% a ordem é obrigatória, o que aparece depois do primeiro deles está em 1% ou menos. O raio-x compara isso com a concentração usual da ficha do ativo: niacinamida depois do conservante fica abaixo da faixa usual; retinol ou ácido hialurônico, não. Vale para rótulo que segue a regra de ordem — é estimativa de teto, não medida.</li>
 <li><strong>Sinal, não sentença.</strong> Fragrância, álcool volátil e alguns conservantes são causas conhecidas de sensibilidade em parte das pessoas — por isso aparecem como "vale notar", nunca como "tóxico". O que irrita uma pele pode ser ótimo em outra.</li>
 <li><strong>Promessas: só o que a lista sustenta.</strong> "Sem álcool" é conferível; "hipoalergênico" e "não comedogênico" não têm padrão de teste e são marcados como não verificáveis. Dizer isso em voz alta é parte do serviço.</li>
 <li><strong>Não é diagnóstico médico.</strong> Em caso de irritação, pare o uso e consulte um dermatologista.</li>
@@ -125,6 +127,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <div id="areaEnviar"></div>
 <script src="/ocr-rotulo.js"></script>
 <script src="/regras-ativos.js"></script>
+<script src="/ativos/atlas-dados.js" defer></script>
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -278,13 +281,56 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
       naoVerificavel: "'Natural' e 'orgânico' não têm definição regulatória única no Brasil. A lista mostra fórmula, não origem: para afirmar origem, procure certificação (Ecocert, IBD…) e confirme com o fabricante." }
   ];
 
+  // Conservantes com teto de 1% ou menos como conservante: servem de marco da "linha do 1%".
+  const TETO1 = { "phenoxyethanol": 1, "methylparaben": 1, "ethylparaben": 1, "propylparaben": 1, "butylparaben": 1, "isobutylparaben": 1, "chlorphenesin": 1 };
+
+  function esc(t) { return String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+  // Ficha do ativo no guia (/ativos/), pelo nome INCI. Dá a concentração usual escrita na ficha.
+  function fichaDe(chave) {
+    const lista = (window.ATLAS && window.ATLAS.ativos) || [];
+    for (const a of lista) if ((a.inci || "").split("·").some((n) => norm(n) === chave)) return a;
+    return null;
+  }
+
+  // Piso da faixa usual, só quando a ficha começa com número ("2% a 10%", "Cerca de 0,5%").
+  // "Até X%" é limite legal, não piso; "Variável" não dá base: nesses casos, sem veredito.
+  function pisoUsual(ficha) {
+    const m = ficha && /^(?:cerca de\s+)?(\d+(?:,\d+)?)\s*%/i.exec(ficha.conc || "");
+    return m ? parseFloat(m[1].replace(",", ".")) : null;
+  }
+
+  // Ativos da lista com a posição em relação ao primeiro conservante de teto 1%.
+  function linhaDoUm(incis) {
+    const marco = incis.findIndex((i) => TETO1[i.chave]);
+    const ativos = [];
+    incis.forEach((ing, pos) => {
+      const ids = window.PSRegras ? PSRegras.detectar(ing.nome).map((a) => a.id) : [];
+      const ficha = fichaDe(ing.chave);
+      if (!ids.length && !ficha) return;
+      if (ids.length === 1 && ids[0] === "filtro") return;
+      const piso = pisoUsual(ficha);
+      const depois = marco >= 0 && pos > marco;
+      ativos.push({ nome: ing.nome, ids: ids, ficha: ficha, piso: piso, depois: depois,
+        estado: !depois ? "antes" : piso === null ? "sem-faixa" : piso > 1 ? "abaixo" : "dentro" });
+    });
+    return { marco: marco >= 0 ? incis[marco].nome : null, ativos: ativos };
+  }
+
+  function fraseFaixa(a) {
+    if (!a.ficha) return "";
+    return ' A <a href="' + a.ficha.url + '" style="color:var(--rosa)">ficha</a> dá como concentração usual: ' + esc(a.ficha.conc.charAt(0).toLowerCase() + a.ficha.conc.slice(1)) + ".";
+  }
+
   const EXEMPLOS = [
     { inci: "Aqua, Alcohol Denat., Glycerin, Ethylhexyl Salicylate, Butyl Methoxydibenzoylmethane, Octocrylene, Dimethicone, Tocopherol, Carbomer, Parfum, Limonene, Sodium Hydroxide",
       claims: "sem álcool · oil-free · hipoalergênico" },
     { inci: "Aqua, Glycerin, Cetearyl Alcohol, Squalane, Sodium Hyaluronate, Ceramide NP, Niacinamide, Carbomer, Phenoxyethanol, Ethylhexylglycerin",
       claims: "vegano · sem fragrância" },
     { inci: "Aqua, Sodium Laureth Sulfate, Cocamidopropyl Betaine, Sodium Chloride, Parfum, Methylisothiazolinone, Methylchloroisothiazolinone, CI 42090",
-      claims: "sem sulfatos" }
+      claims: "sem sulfatos" },
+    { inci: "Aqua, Glycerin, Propanediol, Dimethicone, Carbomer, Phenoxyethanol, Niacinamide, Sodium Hyaluronate, Ethylhexylglycerin, Sodium Hydroxide",
+      claims: "com niacinamida · com ácido hialurônico" }
   ];
 
   function norm(s) {
@@ -366,11 +412,37 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
       }
     }
 
+    const linha = linhaDoUm(incis);
+    const abaixoDoMarco = linha.ativos.filter((a) => a.depois);
+    if (linha.marco && abaixoDoMarco.length) {
+      html += "<h2>A linha do 1%</h2>";
+      html += '<p class="sub">' + esc(linha.marco) + " é conservante com teto de 1% ou menos. Como acima de 1% a ordem da lista é obrigatória, o que vem depois dele está em 1% ou menos.</p>";
+      abaixoDoMarco.forEach((a) => {
+        if (a.estado === "abaixo") html += '<div class="sinal"><span class="veredito">' + esc(a.nome) + " — até 1%, abaixo da concentração usual.</span>" + fraseFaixa(a) + " Se o produto destaca este ativo, o destaque é questionável.</div>";
+        else if (a.estado === "dentro") html += '<div class="ok"><span class="veredito">' + esc(a.nome) + " — até 1%, e isso é esperado.</span>" + fraseFaixa(a) + " Aparecer depois do conservante não é sinal contra.</div>";
+        else html += '<div class="neutro"><span class="veredito">' + esc(a.nome) + " — até 1%.</span> " + (a.ficha ? "A ficha não traz uma faixa mínima de concentração (" + esc(a.ficha.conc.toLowerCase()) + ")" : "Não temos ficha com a concentração usual deste ativo") + ": não dá para dizer se é pouco.</div>";
+      });
+    }
+
     if (promessas.length) {
       html += "<h2>Auditoria das promessas</h2>";
       promessas.forEach((p) => {
         const pn = norm(p);
         const regra = REGRAS.find((r) => r.promessas.some((x) => pn === norm(x) || pn.indexOf(norm(x)) >= 0));
+        const destacados = !regra && window.PSRegras ? PSRegras.detectar(p).filter((a) => a.id !== "filtro") : [];
+        if (destacados.length) {
+          destacados.forEach((d) => {
+            const naLista = linha.ativos.filter((a) => a.ids.indexOf(d.id) >= 0);
+            const rot = '<span class="veredito">“' + esc(p) + "” — " + esc(d.nome) + ": ";
+            if (!naLista.length) { html += '<div class="sinal">' + rot + "não encontramos na lista.</span> A promessa cita o ativo, mas ele não está entre os ingredientes reconhecidos. Confira se a lista está completa e se ele aparece com outro nome.</div>"; return; }
+            const melhor = naLista.find((a) => !a.depois) || naLista.find((a) => a.estado === "dentro") || naLista.find((a) => a.estado === "sem-faixa") || naLista[0];
+            if (melhor.estado === "abaixo") html += '<div class="sinal">' + rot + "destaque questionável.</span> " + esc(melhor.nome) + " aparece depois de " + esc(linha.marco) + ", conservante com teto de 1%: está em 1% ou menos." + fraseFaixa(melhor) + "</div>";
+            else if (melhor.estado === "dentro") html += '<div class="ok">' + rot + "compatível com a lista.</span> " + esc(melhor.nome) + " aparece depois do conservante (até 1%), o que é compatível com a concentração usual." + fraseFaixa(melhor) + "</div>";
+            else if (melhor.estado === "sem-faixa") html += '<div class="neutro">' + rot + "presente, em até 1%.</span> " + esc(melhor.nome) + " aparece depois de " + esc(linha.marco) + ". Sem faixa mínima na ficha, não dá para dizer se é pouco.</div>";
+            else html += '<div class="ok">' + rot + "presente na lista.</span> " + esc(melhor.nome) + (linha.marco ? " aparece antes de " + esc(linha.marco) + ": a posição não limita a concentração a 1%." : " está na lista, que não traz um conservante de teto 1% para servir de marco.") + " A lista não diz quanto há; se a embalagem declara a porcentagem, vale o que está declarado.</div>";
+          });
+          return;
+        }
         if (!regra) {
           html += '<div class="vazio"><strong>“' + p + '”</strong> — promessa fora da nossa lista de regras. Não a confirmamos nem negamos; confira com o fabricante.</div>';
           return;
@@ -431,7 +503,9 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <p>O Raio-X do rótulo é uma ferramenta em que você cola a lista de ingredientes (INCI) e, se quiser, as promessas da embalagem. Ela agrupa os ingredientes por função, aponta o que merece atenção e confere se as promessas se sustentam na lista.</p>
 <h3>A ordem dos ingredientes no rótulo mostra a quantidade de cada um?</h3>
 <p>Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis.</p>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Raio-X do rótulo de skincare?", "acceptedAnswer": {"@type": "Answer", "text": "O Raio-X do rótulo é uma ferramenta em que você cola a lista de ingredientes (INCI) e, se quiser, as promessas da embalagem. Ela agrupa os ingredientes por função, aponta o que merece atenção e confere se as promessas se sustentam na lista."}}, {"@type": "Question", "name": "A ordem dos ingredientes no rótulo mostra a quantidade de cada um?", "acceptedAnswer": {"@type": "Answer", "text": "Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis."}}]}</script>
+<h3>O que é a linha do 1% na lista de ingredientes?</h3>
+<p>É o ponto da lista marcado pelo primeiro conservante com teto de 1% ou menos, como o fenoxietanol. O que aparece depois dele está em 1% ou menos. O Raio-X compara isso com a concentração usual da ficha do ativo; é estimativa de teto, não medida.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Raio-X do rótulo de skincare?", "acceptedAnswer": {"@type": "Answer", "text": "O Raio-X do rótulo é uma ferramenta em que você cola a lista de ingredientes (INCI) e, se quiser, as promessas da embalagem. Ela agrupa os ingredientes por função, aponta o que merece atenção e confere se as promessas se sustentam na lista."}}, {"@type": "Question", "name": "A ordem dos ingredientes no rótulo mostra a quantidade de cada um?", "acceptedAnswer": {"@type": "Answer", "text": "Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis."}}, {"@type": "Question", "name": "O que é a linha do 1% na lista de ingredientes?", "acceptedAnswer": {"@type": "Answer", "text": "É o ponto da lista marcado pelo primeiro conservante com teto de 1% ou menos, como o fenoxietanol. O que aparece depois dele está em 1% ou menos. O Raio-X compara isso com a concentração usual da ficha do ativo; é estimativa de teto, não medida."}}]}</script>
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
