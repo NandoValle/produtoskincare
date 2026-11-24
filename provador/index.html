@@ -256,7 +256,8 @@ html[data-tema="claro"]{
 .selo-cuidado{display:block;width:fit-content;margin-top:6px;font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff4dd;color:#7a5200;border:1px solid #ecd9a8}
 @media (prefers-color-scheme:dark){html:not([data-tema=claro]) .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
 html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}
-@media print{#areaEnviar{display:none}}
+@media print{#areaEnviar,#areaCartao{display:none}}
+#areaCartao .psc{margin:16px 0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .so-impressao{display:none}
 .link-botao{background:none;border:0;padding:0;font:inherit;color:var(--rosa);text-decoration:underline;cursor:pointer}
 @media print{
@@ -574,6 +575,7 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <p class="sub so-impressao" id="rodapeImpressao"></p>
 
 <div id="areaEnviar"></div>
+<div id="areaCartao"></div>
 
 <div class="card" id="cardSalvar">
 <strong>💾 Guarde seu resultado, sem cadastro</strong>
@@ -607,6 +609,7 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 
 <script src="/compartilhar.js"></script>
+<script src="/cartao-story.js"></script>
 <script src="/regras-ativos.js"></script>
 <script>
 (function() {
@@ -1788,6 +1791,31 @@ if (window.PSEnviar && $("areaEnviar")) {
     arquivoICS: "lembretes-skincare.ics",
     notaLembretes: "Os lembretes (protetor todo dia às 8h e refazer o teste em 8 semanas) ficam na sua agenda: Google Agenda, Calendário do iPhone ou Outlook."
   });
+}
+
+// Cartão em imagem (1080x1920) com o tipo de pele e os passos da rotina, para Stories e WhatsApp.
+// Não leva nome de produto nem foto: só o que a pessoa escolheria mostrar.
+if (window.PSCartao && $("areaCartao")) {
+  PSCartao.montar($("areaCartao"), () => {
+    const r = ULTIMO_RESULTADO, perfil = ULTIMO_PERFIL;
+    if (!r || !perfil) return null;
+    const NOME_PASSO = { limpeza:"limpeza", tratamento:"tratamento", hidratacao:"hidratação", protetor:"protetor solar" };
+    const passos = per => passosDaRotina(per).map(p => NOME_PASSO[p] || p).join(", ");
+    const linhas = [];
+    if (perfil.preocupacoes.length) linhas.push("Foco: " + perfil.preocupacoes.map(c => NOMES_CONC[c] || c).join(", ").toLowerCase());
+    linhas.push("Manhã: " + passos("manha"), "Noite: " + passos("noite"));
+    return {
+      rotulo: "Meu resultado no provador",
+      titulo: "Minha pele é " + r.tipo + (r.sensivel ? " e sensível" : ""),
+      linhas,
+      caminho: "/provador",
+      rodape: "Estimativa cosmética, não é diagnóstico. Faça o seu teste: é grátis e sem cadastro.",
+      arquivo: "meu-tipo-de-pele"
+    };
+  }, { evento: "provador/cartao" });
+  const b = $("areaCartao").querySelector(".psc-btn"), n = $("areaCartao").querySelector(".psc-nota");
+  if (b) b.className = "btn sec psc-btn";
+  if (n) n.className = "sub psc-nota";
 }
 
 async function mostrarHistorico() {
