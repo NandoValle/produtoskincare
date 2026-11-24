@@ -88,12 +88,10 @@ TITULOS = {
     "/ferramentas/prateleira/": "Minha prateleira: o que combina entre os produtos que você tem",
     "/blog/mito-x-regra-ardencia-nao-e-eficacia/": "Mito x regra: ardência não é sinal de que o produto funciona",
     "/blog/mito-x-regra-sunblock-100/": "Mito x regra: “sunblock” e “100% de proteção” não existem",
-    "/comparativos/cerave-gel-limpeza-ou-lrp-effaclar-gel/": "CeraVe Gel de Limpeza ou La Roche-Posay Effaclar Gel?",
-    "/comparativos/isdin-fusion-water-sem-cor-ou-skin-aqua-moisture-milk/": "ISDIN Fusion Water Sem Cor ou Skin Aqua Super Moisture Milk?",
-    "/comparativos/neutrogena-hydro-boost-ou-garnier-uniform-matte/": "Neutrogena Hydro Boost ou Garnier Uniform & Matte Toque Seco?",
-    "/comparativos/neutrogena-sun-fresh-fps70-ou-isdin-fusion-water-sem-cor/": "Neutrogena Sun Fresh FPS 70 ou ISDIN Fusion Water Sem Cor?",
-    "/comparativos/principia-niacinamida-ou-ordinary-niacinamide/": "Principia Niacinamida NC-10 ou The Ordinary Niacinamide 10%?",
-    "/comparativos/principia-rn03-ou-loreal-revitalift-noturno/": "Principia RN-0,3 Retinol ou L'Oréal Revitalift Sérum Noturno?",
+    # Os comparativos saíam daqui porque "A ou B?" com os nomes completos passava de 65.
+    # Agora quem resolve isso é o titulo_par() do gerar_comparativos.py, com os nomes
+    # curtos: nenhum dos 16 pares passa de 65, então nenhuma entrada de /comparativos/
+    # chegava a ser usada. Mantê-las aqui duplicaria a regra do título em dois arquivos.
 }
 
 

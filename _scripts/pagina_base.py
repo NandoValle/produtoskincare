@@ -30,7 +30,12 @@ def esc(t):
 
 
 def pagina(titulo, descricao, caminho, trilha, corpo, css_extra="", scripts="", larga=False,
-           aviso="Conteúdo informativo, não substitui consulta com dermatologista.", body_attrs=""):
+           aviso="Conteúdo informativo, não substitui consulta com dermatologista.", body_attrs="",
+           sufixo_marca=True):
+    """sufixo_marca=False deixa o <title> exatamente como foi passado, sem o
+    " | Produto Skincare" no fim. Usado nas páginas de produto e de comparativo, onde
+    esses 19 caracteres valem mais gastos no termo que a pessoa digita (o nome do
+    produto, "preço", "qual é melhor") do que na marca, que ainda não é buscada."""
     css, rodape = _pecas()
     rodape = rodape.replace(f'<a href="{caminho}">', f'<a href="{caminho}" aria-current="page">', 1)
     itens = []
@@ -45,7 +50,7 @@ def pagina(titulo, descricao, caminho, trilha, corpo, css_extra="", scripts="", 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(titulo)} | Produto Skincare</title>
+<title>{esc(titulo)}{" | Produto Skincare" if sufixo_marca else ""}</title>
 <meta name="description" content="{esc(descricao)}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{SITE}{esc(caminho)}">

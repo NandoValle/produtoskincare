@@ -97,8 +97,56 @@ def resumo(a, b):
     return linhas
 
 
+# Nome curto só para o <title> do comparativo. O título precisa caber em 65 caracteres
+# com dois nomes de produto e a pergunta, e os nomes completos do catálogo chegam a 44.
+# O que se corta é o descritivo que ninguém digita ("Protetor Solar", "Derm Care",
+# "Alta Tolerância", "5 Stars"); o que fica é a marca e o identificador da linha, que é
+# por onde a pessoa busca. O H1 e o corpo da página seguem com o nome completo.
+NOMES_CURTOS = {
+    "cerave-gel-limpeza": "CeraVe Gel de Limpeza",
+    "cerave-pm-locao": "CeraVe PM Loção",
+    "lrp-effaclar-gel": "La Roche-Posay Effaclar",
+    "hada-labo-oil-cleansing": "Hada Labo Oil Cleansing",
+    "neutrogena-hydro-boost": "Neutrogena Hydro Boost",
+    "lrp-cicaplast-baume": "La Roche-Posay Cicaplast",
+    "garnier-uniform-matte": "Garnier Uniform & Matte",
+    "isdin-fusion-water": "ISDIN Fusion Water",
+    "isdin-fusion-water-sem-cor": "ISDIN Fusion Water Sem Cor",
+    "neutrogena-sun-fresh-fps70": "Neutrogena Sun Fresh",
+    "skin-aqua-moisture-milk": "Skin Aqua Moisture Milk",
+    "lrp-ultra-cover": "La Roche-Posay Ultra Cover",
+    "eucerin-anti-pigment": "Eucerin Anti-Pigment",
+    "principia-vc10": "Principia VC-10",
+    "principia-niacinamida": "Principia Niacinamida",
+    "principia-ah2": "Principia AH-2",
+    "principia-rn03": "Principia Retinol",
+    "ordinary-niacinamide": "The Ordinary Niacinamide",
+    "ordinary-azelaic": "The Ordinary Azelaic Acid",
+    "loreal-revitalift-noturno": "L'Oréal Revitalift Noturno",
+    "mantecorp-ivy-c-ferulic": "Mantecorp Ivy C Ferulic",
+}
+
+
+def titulo_par(a, b):
+    """<title> do comparativo: "A ou B: qual é melhor?", sem o sufixo da marca do site.
+
+    "qual é melhor" é como a comparação é digitada; "A ou B?" sozinho não casa com essa
+    busca. Com os nomes curtos a pergunta cabe nos 65 caracteres da regra 7 do
+    prontidao.py. Se um par ainda estourar, o título volta para "A ou B?" em vez de ser
+    cortado no meio — e o prontidao.py acusa no relatório de tamanho."""
+    na = NOMES_CURTOS.get(a["id"], a["nome"])
+    nb = NOMES_CURTOS.get(b["id"], b["nome"])
+    base = f"{na} ou {nb}"
+    completo = f"{base}: qual é melhor?"
+    return completo if len(completo) <= 65 else f"{base}?"
+
+
 def pagina_par(a, b):
-    titulo = f"{a['nome']} ou {b['nome']}?"
+    titulo = titulo_par(a, b)
+    # O H1 é lido na página, não na busca: leva os nomes completos (o "RN-0,3" e o
+    # "FPS 60" identificam o frasco para quem está comparando) e não tem o limite de
+    # 65 caracteres do <title>, que é o que obriga o nome curto lá.
+    h1 = f"{a['nome']} ou {b['nome']}: qual é melhor?"
     linhas = [
         ("Preço conferido", lambda p: f"{reais(p['preco'])} em {data_curta(p['preco_em'])}"),
         ("Loja", lambda p: LOJAS.get(p.get("plataforma"), "—")),
@@ -122,7 +170,7 @@ def pagina_par(a, b):
     datas = sorted({a["preco_em"], b["preco_em"]})
     corpo = f"""<article>
 <div class="ig-cab">
-<h1>{esc(titulo)}</h1>
+<h1>{esc(h1)}</h1>
 <p class="ig-meta">Comparativo com dados do catálogo · Preços conferidos em <time datetime="{datas[-1]}">{data_curta(datas[-1])}</time></p>
 <p class="ig-lede">Os dois são opções de {esc(PASSOS.get(a['passo'], a['passo']).lower())} no nosso catálogo. Esta página põe lado a lado o que sabemos de cada um, sem eleger um vencedor: a escolha depende da sua pele e do seu orçamento.</p>
 </div>
@@ -149,7 +197,7 @@ def pagina_par(a, b):
     descricao = f"{a['nome']} ou {b['nome']}: preço, ativos, textura e tipos de pele lado a lado."
     return pagina(titulo, descricao, f"/comparativos/{slug(a['id'], b['id'])}/",
                   [("/", "Início"), ("/comparativos/", "Comparativos"), (None, f"{a['marca']} ou {b['marca']}")],
-                  corpo, css_extra=CSS)
+                  corpo, css_extra=CSS, sufixo_marca=False)
 
 
 def pagina_indice(itens):

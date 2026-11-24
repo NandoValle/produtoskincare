@@ -340,6 +340,21 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 """
 
 
+def titulo_produto(p):
+    """<title> da ficha do produto, sem o sufixo da marca do site.
+
+    Quem busca um produto do catálogo digita o nome e, em seguida, o que quer saber:
+    preço, composição, se vale. O nome sozinho não casa com nada disso. Os 19 caracteres
+    que o sufixo " | Produto Skincare" ocupava passam a carregar "preço e ativos" — que
+    é o que a ficha realmente entrega (preço conferido com data e ativos com nível de
+    evidência) e o diferencial do catálogo frente ao marketplace.
+
+    Com os nomes atuais (20 a 44 caracteres) o título fica entre 36 e 60 caracteres,
+    dentro do que o Google mostra sem cortar. Se um nome crescer e estourar, o
+    prontidao.py acusa no relatório de tamanho."""
+    return f"{p['nome']}: preço e ativos"
+
+
 def descricao_produto(p, limite=160):
     """Descrição curta para o Google (até ~160 caracteres): nome, a frase principal do
     "porque" (sem a nota da loja) e o preço com a data em que foi conferido."""
@@ -457,8 +472,9 @@ def pagina_produto(p, fichas, hist, todos):
 </section>
 </article>"""
     descricao = descricao_produto(p)
-    return pagina(p["nome"], descricao, f"/produtos/{p['id']}/",
-                  [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS, scripts=JS_BATE)
+    return pagina(titulo_produto(p), descricao, f"/produtos/{p['id']}/",
+                  [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS, scripts=JS_BATE,
+                  sufixo_marca=False)
 
 
 # Filtro do índice: mesmas faixas de preço do provador (teto por produto).
