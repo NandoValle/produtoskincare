@@ -34,6 +34,28 @@
   function brl(cents) { return "R$ " + (cents / 100).toFixed(2).replace(".", ","); }
   function dataBR(iso) { return iso ? iso.split("-").reverse().join("/") : "—"; }
 
+  // Quantos dias faz que o preço foi conferido. Acima de FRESCO_DIAS ele deixa de ser
+  // apresentado como preço de agora e passa a ser "último preço registrado": o site confere
+  // em lote, e um número de semanas atrás em negrito se lê como oferta do dia.
+  var FRESCO_DIAS = 7;
+  function diasDesde(iso) {
+    if (!iso) return null;
+    var t = Date.parse(iso + "T00:00:00Z");
+    if (isNaN(t)) return null;
+    return Math.floor((Date.now() - t) / 86400000);
+  }
+  // URL de BUSCA (lista de resultados) em vez da página de uma oferta. Nesses casos o
+  // visitante não tem como conferir o preço que o site registrou: o link cai numa busca,
+  // onde o valor e a variante mudam. Então o rótulo diz "procurar" e o preço vem com a
+  // ressalva. Em 24/11/2026 eram 8 dos 26 produtos do precos.json (6 Shopee, 2 Amazon).
+  var RE_BUSCA = /[/?](?:search\?keyword|s\?k=)|[?&]keyword=|\/busca/i;
+  function ehBusca(url) { return !!url && RE_BUSCA.test(url); }
+
+  function fresco(p) {
+    var d = p.current ? diasDesde(p.current.checked_at) : null;
+    return d !== null && d <= FRESCO_DIAS;
+  }
+
   function sparkline(series, alt) {
     if (!series || series.length < 2) return "";
     var w = 160, h = 40, pad = 4;
@@ -53,18 +75,37 @@
     partes.push('<p class="ps-precos-linha"><span class="ps-selo ps-selo-' + p.badge + '" title="' + esc(p.badge_motivo) + '">' +
       ROTULO[p.badge] + "</span></p>");
     if (p.current) {
-      partes.push('<p class="ps-precos-linha"><strong>' + brl(p.current.price_cents) + "</strong>" +
-        (p.current.promo ? " <em>(promoção)</em>" : "") +
-        " · conferido em " + dataBR(p.current.checked_at) +
-        " · " + p.n_observations + " observaç" + (p.n_observations === 1 ? "ão" : "ões") +
-        (p.current.url ? ' · <a href="' + esc(p.current.url) + '" rel="nofollow sponsored">ver na loja</a>' : "") + "</p>");
+      var dias = diasDesde(p.current.checked_at);
+      var busca = ehBusca(p.current.url);
+      var naLoja = p.current.url
+        ? ' · <a href="' + esc(p.current.url) + '" rel="nofollow sponsored">' +
+          (busca ? "procurar na loja" : "ver na loja") + "</a>"
+        : "";
+      var obs = p.n_observations + " observaç" + (p.n_observations === 1 ? "ão" : "ões");
+      if (fresco(p)) {
+        partes.push('<p class="ps-precos-linha"><strong>' + brl(p.current.price_cents) + "</strong>" +
+          (p.current.promo ? " <em>(promoção)</em>" : "") +
+          " · conferido em " + dataBR(p.current.checked_at) + " · " + obs + naLoja + "</p>");
+      } else {
+        // Preço antigo: não vai em negrito nem sozinho, para não passar por oferta de agora.
+        partes.push('<p class="ps-precos-linha">Último preço registrado: ' + brl(p.current.price_cents) +
+          (p.current.promo ? " (em promoção na ocasião)" : "") +
+          ", em " + dataBR(p.current.checked_at) +
+          (dias === null ? "" : " — " + (dias === 1 ? "há 1 dia" : "há " + dias + " dias")) +
+          " · " + obs + naLoja + "</p>");
+        partes.push('<p class="ps-precos-linha ig-nota">Não é o preço de hoje: confira na loja antes de comprar.</p>');
+      }
+      if (busca) {
+        partes.push('<p class="ps-precos-linha ig-nota">O link abre uma busca na loja, não uma oferta fixa: confirme a marca, o tamanho e o preço no anúncio que escolher.</p>');
+      }
     }
     if (p.custo) {
       partes.push('<p class="ps-precos-linha">≈ <strong>' + brl(p.custo.custo_dia_cents) + "/dia</strong>" +
         " · rende ~" + p.custo.rendimento_dias + " dias" +
         ' <span class="ig-nota">(estimativa com ' + p.custo.dose_ml_dia + " ml/dia)</span></p>");
     }
-    var alt = "Preço nos últimos 90 dias: de " + brl(p.min_cents) + " a " + brl(p.max_cents);
+    var janela = p.window_days || 90;
+    var alt = "Preço nos últimos " + janela + " dias: de " + brl(p.min_cents) + " a " + brl(p.max_cents);
     var svg = sparkline(p.series, alt);
     if (svg) partes.push('<p class="ps-precos-linha">' + svg + "</p>");
 
@@ -72,9 +113,18 @@
     var chave = "ps-alerta-preco:" + p.product_id;
     var salvo = null;
     try { salvo = JSON.parse(localStorage.getItem(chave) || "null"); } catch (e) {}
-    if (salvo && p.current && p.current.price_cents <= salvo.cents) {
-      partes.push('<div class="ps-precos-aviso" role="status">🔔 Seu alerta: o preço atual (' +
-        brl(p.current.price_cents) + ") está abaixo do alvo que você escolheu (" + brl(salvo.cents) + ")." +
+    // O aviso só sai com conferência recente. Com um preço de semanas atrás, dizer "o preço
+    // atual está abaixo do seu alvo" é mandar a pessoa comprar com base num número que o site
+    // não conferiu — o alerta ficava disparando sozinho em todo produto sem conferência nova.
+    if (salvo && p.current && p.current.price_cents <= salvo.cents && fresco(p)) {
+      partes.push('<div class="ps-precos-aviso" role="status">🔔 Seu alerta: o preço conferido em ' +
+        dataBR(p.current.checked_at) + " (" + brl(p.current.price_cents) +
+        ") está abaixo do alvo que você escolheu (" + brl(salvo.cents) + ")." +
+        ' <button type="button" data-alerta-remover>remover alerta</button></div>');
+    } else if (salvo && p.current && p.current.price_cents <= salvo.cents) {
+      partes.push('<div class="ps-precos-aviso" role="status">🔔 Seu alerta está guardado (' +
+        brl(salvo.cents) + "). O último preço registrado, de " + dataBR(p.current.checked_at) +
+        ", já estava abaixo dele, mas é antigo: o aviso volta quando houver conferência nova." +
         ' <button type="button" data-alerta-remover>remover alerta</button></div>');
     }
     partes.push('<div class="ps-precos-alerta"><form data-alerta-form>' +

@@ -88,25 +88,22 @@
 <p>O essencial, bem feito: a rotina de manhã e à noite para pele oleosa, seca, mista e normal — com os erros mais comuns e os ingredientes que realmente têm evidência.</p>
 <p>Sem rotinas de dez passos. Sem promessas milagrosas. 11 páginas que você lê em uma sentada e usa todo dia.</p>
 
-<!-- FORMULÁRIO DE CAPTURA
-     Envia para o mesmo serviço da caixa de newsletter do site (Buttondown; o endereço é o de
-     newsletter_form em /canais.js). Se trocar de serviço, mude o action e os nomes dos campos aqui também.
-     Depois de enviar, a página mostra o link do PDF. -->
-<form class="ps-form-captura" id="form-ebook" action="https://buttondown.com/api/emails/embed-subscribe/produtoskincare" method="post" target="_blank">
-<input type="hidden" name="embed" value="1">
-<label>Seu nome (opcional)<input type="text" name="metadata__nome" autocomplete="given-name" placeholder="Como podemos te chamar"></label>
-<label>Seu melhor e-mail<input type="email" name="email" autocomplete="email" required placeholder="voce@email.com"></label>
-<label class="ps-check"><input type="checkbox" required> Quero receber o e-book e a newsletter do Produto Skincare (1x por semana, conteúdo de verdade, descadastro em 1 clique).</label>
-<button class="ps-button" type="submit">Baixar o e-book grátis <span aria-hidden="true">↗</span></button>
-<p class="ps-form-nota">Ao se inscrever, você concorda em receber e-mails do Produto Skincare. O e-mail vai direto para o Buttondown, o serviço de envio. LGPD: descadastro em 1 clique em todo e-mail.</p>
-<p class="ps-form-nota" id="ebook-pronto" hidden>Inscrição enviada (a confirmação abriu em outra aba). <a href="/newsletter/rotina-basica-por-tipo-de-pele.pdf" download>Baixar o e-book (PDF)</a></p>
-</form>
-<script>
-(function () {
-  var f = document.getElementById("form-ebook"), pronto = document.getElementById("ebook-pronto");
-  if (f && pronto) f.addEventListener("submit", function () { pronto.hidden = false; });
-})();
-</script>
+<!-- DUAS AÇÕES SEPARADAS (24/11/2026)
+     Antes havia aqui um formulário que enviava o e-mail para
+     buttondown.com/api/emails/embed-subscribe/produtoskincare. Ele NUNCA funcionou no ar: o
+     site manda "Content-Security-Policy: … form-action 'self'" (ver /_headers), então o
+     navegador bloqueia o envio para fora do domínio. A página mostrava "Inscrição enviada"
+     de qualquer jeito — ela nem tinha como saber, porque um POST cross-origin com
+     target="_blank" não devolve resposta. E o PDF só aparecia depois desse envio que não
+     acontecia, então quem vinha pelo e-book saía sem o e-book.
+     Agora: o PDF baixa direto, sem e-mail, e a inscrição é feita na página do próprio
+     Buttondown, que é quem pode confirmá-la. Para voltar a usar formulário nesta página,
+     antes é preciso liberar o domínio do serviço no form-action em /_headers. -->
+<div class="ps-form-captura">
+<a class="ps-button" href="/newsletter/rotina-basica-por-tipo-de-pele.pdf" download>Baixar o e-book (PDF, 11 páginas)</a>
+<p class="ps-form-nota">Baixa direto, sem e-mail e sem cadastro.</p>
+<p class="ps-form-nota"><a href="https://buttondown.com/produtoskincare" target="_blank" rel="noopener">Receber os achados da semana por e-mail <span aria-hidden="true">↗</span></a> — um e-mail por semana com produtos que baixaram de preço e um guia curto. A inscrição é feita na página do Buttondown, o serviço de envio: é lá que você digita o e-mail, e é de lá que sai o descadastro em 1 clique. <a href="/privacidade/">Privacidade</a>.</p>
+</div>
 </div>
 
 <figure class="ps-capa" aria-label="Capa do e-book Rotina básica por tipo de pele">
@@ -143,7 +140,7 @@
 <section class="ps-section" aria-labelledby="faq-title">
 <div class="ps-section-head"><h2 id="faq-title">Perguntas rápidas.</h2><p>Antes de baixar, o que costuma aparecer.</p></div>
 <div class="ps-faq">
-<div class="ps-faq"><h3 class="pq">É realmente grátis?</h3><p>Sim. O e-book é gratuito em troca do seu e-mail — você passa a receber a newsletter do Produto Skincare (uma vez por semana) e pode se descadastrar em 1 clique a qualquer momento.</p></div>
+<div class="ps-faq"><h3 class="pq">É realmente grátis?</h3><p>Sim, e sem pedir nada em troca: o PDF baixa direto, sem e-mail e sem cadastro. A newsletter é uma escolha separada — se você quiser, se inscreve na página do Buttondown e recebe um e-mail por semana, com descadastro em 1 clique a qualquer momento.</p></div>
 <div class="ps-faq"><h3 class="pq">Que formato é o e-book?</h3><p>PDF, 11 páginas, pronto para ler no celular, no computador ou imprimir o checklist.</p></div>
 <div class="ps-faq"><h3 class="pq">Substitui o quiz do site?</h3><p>Não — se complementam. O e-book ensina a rotina básica; o <a href="/provador/">provador gratuito</a> monta uma rotina personalizada para o seu tipo de pele, com produtos reais e preço datado.</p></div>
 <div class="ps-faq"><h3 class="pq">É orientação médica?</h3><p>Não. O material é uma referência cosmética, com base em estudos publicados. Se tem acne intensa, lesões ou irritação persistente, procure um dermatologista.</p></div>

@@ -25,6 +25,12 @@
 
   if (ativo) {
     window.goatcounter = window.goatcounter || {};
+    // O caminho enviado é SÓ o da página, nunca a query string. Links antigos do Provador
+    // (v=2) ainda chegam com respostas no endereço — gestação, isotretinoína, faixa etária —
+    // e nada disso pode virar pageview. Vale para o site todo, não só para o Provador.
+    if (typeof window.goatcounter.path === "undefined") {
+      window.goatcounter.path = function () { return location.pathname; };
+    }
     var s = document.createElement("script");
     s.async = true;
     s.src = "https://gc.zgo.at/count.js";

@@ -249,6 +249,25 @@
   var $ = function (id) { return document.getElementById(id); };
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function brl(n) { return "R$ " + Number(n).toFixed(2).replace(".", ","); }
+  function dataBR(iso) { return String(iso || "").split("-").reverse().join("/"); }
+
+  // Idade da conferência. Acima de FRESCO_DIAS o número deixa de ser apresentado como preço
+  // de hoje: o site confere em lote, e um valor de semanas atrás se lê como oferta do dia.
+  var FRESCO_DIAS = 7;
+  function diasDesde(iso) {
+    var t = Date.parse(String(iso || "") + "T00:00:00Z");
+    return isNaN(t) ? null : Math.floor((Date.now() - t) / 86400000);
+  }
+  function idadeTexto(iso) {
+    var d = diasDesde(iso);
+    if (d === null) return "";
+    if (d <= FRESCO_DIAS) return "";
+    return d === 1 ? " · há 1 dia" : " · há " + d + " dias";
+  }
+  // Link que cai numa BUSCA, não na página de uma oferta: ali o preço e a variante mudam,
+  // então o rótulo não pode ser "ver na loja" (em 24/11/2026, 8 dos 26 produtos).
+  var RE_BUSCA = /[/?](?:search\?keyword|s\?k=)|[?&]keyword=|\/busca/i;
+  function ehBusca(u) { return !!u && RE_BUSCA.test(u); }
 
   function locais() {
     try { return JSON.parse(localStorage.getItem(CHAVE) || "{}") || {}; } catch (e) { return {}; }
@@ -315,10 +334,17 @@
         return '<li class="tp-item">' +
           '<div class="tp-topo"><p class="tp-nome"><a href="/produtos/' + esc(id) + '/">' + esc(p.nome) + '</a>' +
           '<small>' + esc(p.marca || "") + (p.plataforma ? " · " + esc(p.plataforma) : "") + '</small></p>' +
-          '<p class="tp-preco">' + esc(brl(atual.preco)) + '<small>conferido em ' + esc(atual.em) + (atual.origem === "local" ? " · seu aparelho" : "") + '</small></p></div>' +
+          '<p class="tp-preco">' + esc(brl(atual.preco)) + '<small>' +
+            (diasDesde(atual.em) !== null && diasDesde(atual.em) > FRESCO_DIAS ? "último preço registrado em " : "conferido em ") +
+            esc(dataBR(atual.em)) + esc(idadeTexto(atual.em)) +
+            (atual.origem === "local" ? " · seu aparelho" : "") + '</small></p></div>' +
           desenharBarra(pontos) +
           '<p class="tp-veredito ' + v.classe + '">' + esc(v.texto) + '</p>' +
-          '<div class="tp-acoes">' + (p.link ? '<a class="tp-btn tp-sec" href="' + esc(p.link) + '" rel="sponsored noopener" target="_blank">Ver na loja</a>' : "") +
+          (diasDesde(atual.em) !== null && diasDesde(atual.em) > FRESCO_DIAS
+            ? '<p class="ig-nota">Não é o preço de hoje: confira na loja antes de comprar.</p>' : "") +
+          (ehBusca(p.link)
+            ? '<p class="ig-nota">O link abre uma busca na loja, não uma oferta fixa: confirme a marca, o tamanho e o preço no anúncio que escolher.</p>' : "") +
+          '<div class="tp-acoes">' + (p.link ? '<a class="tp-btn tp-sec" href="' + esc(p.link) + '" rel="sponsored noopener" target="_blank">' + (ehBusca(p.link) ? "Procurar na loja" : "Ver na loja") + '</a>' : "") +
           '<a class="tp-btn tp-sec" href="/produtos/' + esc(id) + '">Página do produto</a></div>' +
           '</li>';
       }).join("");

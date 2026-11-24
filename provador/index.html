@@ -405,8 +405,8 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <div class="card">
 <fieldset>
 <legend style="font-size:1.05rem">Quantos passos na rotina?</legend>
-<label class="opcao"><input type="radio" name="rotina" value="3"><span><span class="rotulo">3 passos (essencial)</span><div class="desc">Limpeza, hidratação e protetor solar.</div></span></label>
-<label class="opcao"><input type="radio" name="rotina" value="5" checked><span><span class="rotulo">5 passos (completa)</span><div class="desc">Limpeza, tratamento, hidratação, protetor — manhã e noite.</div></span></label>
+<label class="opcao"><input type="radio" name="rotina" value="3" checked><span><span class="rotulo">3 passos (essencial)</span><div class="desc">Limpeza, hidratação e protetor solar. É por aqui que a gente recomenda começar.</div></span></label>
+<label class="opcao"><input type="radio" name="rotina" value="5"><span><span class="rotulo">5 passos (completa)</span><div class="desc">Limpeza, tratamento, hidratação, protetor — manhã e noite. Para quem já tem o básico firme.</div></span></label>
 </fieldset>
 </div>
 
@@ -735,7 +735,8 @@ const ESTADO = {
   sensivelJaSei: false,
   preocupacoes: [],  // ["acne","manchas"]
   faixaPreco: "qualquer",
-  rotina: 5,
+  rotina: 3,   // o site defende três passos; a rotina de 5 é uma escolha, não o padrão
+
   gestante: false,
   amamentando: false,
   idade: "nd", sol: "nd", clima: "nd", exp: "nd", isotretinoina: false,
@@ -2071,7 +2072,7 @@ function lerLink(params) {
   };
   ESTADO.preocupacoes = [...new Set((params.get("conc") || "").split(","))].filter(c => NOMES_CONC[c]).slice(0, 2);
   ESTADO.faixaPreco = normalizarFaixa(params.get("preco"));
-  ESTADO.rotina = params.get("rotina") === "3" ? 3 : 5;
+  ESTADO.rotina = params.get("rotina") === "5" ? 5 : 3; // sem o parâmetro, vale o padrão de 3
   Object.keys(VALORES_LINK).forEach(k => { ESTADO[k] = VALORES_LINK[k].includes(params.get(k)) ? params.get(k) : "nd"; });
   ESTADO.isotretinoina = params.get("iso") === "1";
   ESTADO.gestante = ESTADO.amamentando = params.get("gest") === "1";
@@ -2093,6 +2094,16 @@ function lerLink(params) {
 }
 (async function restaurar() {
   await catalogoPronto;
+  // Link ANTIGO, de antes de o resultado passar para o fragmento: vinha com as respostas na
+  // query string (?gest=1&iso=1&idade=…). Esses links continuam no WhatsApp e na agenda das
+  // pessoas. Hoje não restauram nada — e, pior, ficariam na barra de endereço, no histórico
+  // do navegador e no pageview. Aproveita o que dá e limpa o endereço na hora.
+  const antigo = new URLSearchParams(location.search);
+  if (antigo.get("tipo") && !location.hash) {
+    const restaurou = lerLink(antigo);
+    try { history.replaceState(null, "", location.pathname); } catch (e) {}
+    if (restaurou) { calcularEMostrar({ salvar: false }); return; }
+  }
   if (lerLink(new URLSearchParams(location.hash.slice(1)))) calcularEMostrar({ salvar: false });
 })();
 // Outro link de resultado colado na mesma aba só troca o fragmento, e a página não recarrega sozinha.

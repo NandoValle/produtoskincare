@@ -25,12 +25,24 @@
     // 1) newsletter_form: endereço "action" do formulário de inscrição do seu serviço
     //    (Buttondown, Brevo, Mailchimp, MailerLite…). O e-mail vai direto para o serviço.
     //    Buttondown: "https://buttondown.com/api/emails/embed-subscribe/SEU-USUARIO"
-    newsletter_form: "https://buttondown.com/api/emails/embed-subscribe/produtoskincare",
+    //
+    //    ⚠️ VAZIO DE PROPÓSITO (24/11/2026). O site manda
+    //    "Content-Security-Policy: … form-action 'self'" (ver _headers), então o navegador
+    //    BLOQUEIA qualquer formulário que envie para fora do domínio — inclusive este. O
+    //    formulário aparecia, a pessoa digitava o e-mail, nada chegava ao Buttondown e a
+    //    página ainda dizia que a inscrição tinha ido. Além disso, um POST cross-origin com
+    //    target="_blank" não devolve resposta nenhuma: a página nunca teria como saber se
+    //    deu certo. Por isso a inscrição passou para newsletter_link, na página do próprio
+    //    Buttondown. Para voltar a usar formulário aqui, antes é preciso acrescentar o
+    //    domínio do serviço ao form-action em _headers.
+    newsletter_form: "",
     newsletter_campo: "email",  // nome do campo de e-mail que o serviço espera
     // Campos ocultos que o serviço pede junto com o e-mail. O Buttondown pede { embed: "1" }.
     newsletter_ocultos: { embed: "1" },
     // 2) newsletter_link: link de inscrição (Substack, canal do WhatsApp, canal do Telegram).
-    newsletter_link: "",
+    //    Página de inscrição hospedada pelo próprio Buttondown: funciona com form-action 'self'
+    //    porque daqui sai só um link, e é lá que a pessoa digita o e-mail.
+    newsletter_link: "https://buttondown.com/produtoskincare",
     newsletter_servico: "Buttondown", // nome do serviço, para o aviso de privacidade. Ex.: "Buttondown"
     newsletter_nome: "Achados da semana",
     newsletter_descricao: "Um e-mail curto com produtos que baixaram de preço, achados novos e um guia da semana. Sem spam."
