@@ -5,7 +5,7 @@
 # fluxo do provador, combinações de ingredientes, mobile).
 #
 # A suíte sobe o site num servidor local e roda: regras (node) + link,
-# link_extra, sensivel, orcamento, verificador, confianca, mobile, novas.
+# link_extra, sensivel, orcamento, verificador, confianca, mobile, novas, leitura.
 
 name: qa-navegador
 
@@ -16,7 +16,7 @@ on:
 
 jobs:
   suite:
-    name: Suíte de navegador (regras + 8 testes)
+    name: Suíte de navegador (regras + 9 testes)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
