@@ -426,7 +426,7 @@ def corpo(cfg, ativos, combinacoes, classes):
         '<header class="at-hero">'
         '<p class="at-olho">Fichas de ativos</p>'
         '<h1>Fichas de princípios ativos de skincare</h1>'
-        '<p class="ig-meta">Por Equipe Produto Skincare · Atualizado em <time datetime="%s">%s</time></p>'
+        '<p class="ig-meta">Por Equipe Produto Skincare, <a href="/sobre/#quem-escreve">texto escrito com IA</a> · Atualizado em <time datetime="%s">%s</time></p>'
         '<p class="ig-lede">%d ativos em %d categorias, cada um com uma página curta: o que é, para que serve, para quem, como usar, cuidados, combinações e gestação. '
         'Busque por um objetivo ou pelo nome do ativo. Os %d que já têm <a href="/ingredientes/">ficha com estudos e fontes</a> mostram o nível de evidência; '
         'nos outros %d o cartão diz “%s”, sem inventar uma nota.</p>'
