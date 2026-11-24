@@ -28,7 +28,8 @@ async function nomesDosProdutos(page) {
   const enderecoBarra = p.url();
   await p.click("#btnCopiarLink"); await p.waitForTimeout(100);
   const copiado = await p.evaluate(() => navigator.clipboard.readText());
-  checar("endereço da página já é o link do resultado", enderecoBarra === copiado, enderecoBarra);
+  checar("endereço da página guarda o resultado no fragmento, sem query", new URL(enderecoBarra).search === "" && new URL(enderecoBarra).hash.includes("tipo=seca"), enderecoBarra);
+  checar("link copiado é só da rotina, no fragmento", new URL(copiado).search === "" && new URLSearchParams(new URL(copiado).hash.slice(1)).get("so") === "rotina", copiado);
   const nomesOriginais = await nomesDosProdutos(p);
 
   // 1) Catálogo muda depois: o link deve manter os mesmos produtos (preço pode mudar).
@@ -49,6 +50,7 @@ async function nomesDosProdutos(page) {
     await b.goto(BASE + "/provador/?tipo=seca&conc=manchas");
     await b.waitForSelector("#telaResultado:not([hidden])");
     const nomesV1 = await nomesDosProdutos(b);
+    checar("link antigo (?tipo=...) abre e sai da query para o fragmento", new URL(b.url()).search === "" && new URL(b.url()).hash.includes("tipo=seca"), b.url());
     checar("(controle) sem itens fixados a escolha muda com o catálogo", JSON.stringify(nomesV1) !== JSON.stringify(nomesOriginais));
     await c.close();
   }
@@ -69,7 +71,7 @@ async function nomesDosProdutos(page) {
     checar("aviso de resultado salvo aparece", await b.isVisible("#avisoLink"));
     // Refazer limpa o endereço
     await b.click("#btnRefazer");
-    checar("refazer volta o endereço para /provador/", new URL(b.url()).search === "", b.url());
+    checar("refazer volta o endereço para /provador/", new URL(b.url()).search === "" && new URL(b.url()).hash === "", b.url());
     await c.close();
   }
 

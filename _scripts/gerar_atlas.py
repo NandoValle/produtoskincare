@@ -445,7 +445,7 @@ def corpo(cfg, ativos, combinacoes, classes):
         '<section class="at-painel" id="at-painel" aria-label="Filtros e ordem" hidden>'
         '<div class="at-filtros" role="group" aria-labelledby="at-filtros-t">'
         '<p class="at-filtros-rotulo" id="at-filtros-t">Filtros</p>'
-        '<button type="button" class="at-chip" data-filtro="gest" aria-pressed="false">Seguro na gestação</button>'
+        '<button type="button" class="at-chip" data-filtro="gest" aria-pressed="false">Costuma ser compatível na gestação</button>'
         '<button type="button" class="at-chip" data-filtro="semrx" aria-pressed="false">Sem receita</button>'
         '<button type="button" class="at-chip" data-filtro="sensivel" aria-pressed="false">Pele sensível</button>'
         '<button type="button" class="at-chip" data-filtro="evid" aria-pressed="false">Com ficha e fontes</button>'
@@ -460,7 +460,7 @@ def corpo(cfg, ativos, combinacoes, classes):
         '<option value="irrita">Menor irritação</option><option value="az">Nome (A a Z)</option></select>'
         '<button type="button" class="at-link" id="at-limpar" hidden>Limpar tudo</button></p>'
         '<p class="at-contagem" id="at-contagem" role="status" aria-live="polite"></p>'
-        '<p class="ig-nota at-aviso-gest" id="at-aviso-gest" hidden>“Seguro na gestação” reúne só quem a ficha diz que costuma ser considerado compatível. Confirme com seu médico. Quem a ficha manda evitar, ou só consultar, fica de fora.</p>'
+        '<p class="ig-nota at-aviso-gest" id="at-aviso-gest" hidden>Este filtro reúne só os ativos que a ficha diz que costumam ser considerados compatíveis com a gestação. Isso não é garantia de segurança: confirme com seu médico antes de usar. Quem a ficha manda evitar, ou só consultar, fica de fora; abra a ficha de cada ativo para ver as cautelas.</p>'
         '</section>' % chips_cat)
     partes.append(
         '<div class="at-extra">'
