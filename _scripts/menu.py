@@ -20,7 +20,7 @@ IGNORAR_PASTAS = {"_arquivo", "_scripts", "_servidor", "_roteiros", ".git", "fot
 IGNORAR_PAGINAS = {"index.html", "mercado-skincare-brasil/index.html"}
 
 # (link, texto, seções que marcam o item como atual)
-# Cinco entradas no topo: Provador, Guias (abre a lista), Ferramentas, Produtos e Blog.
+# Seis entradas no topo: Provador, Guias (abre a lista), Ferramentas, Produtos, Skincare Premium e Blog.
 # ANTES/DEPOIS ficam em volta do botão "Guias"; GUIAS é o que abre dentro dele.
 ANTES = [
     ("/provador/", "Provador", ("provador",)),
@@ -34,7 +34,8 @@ GUIAS = [
 ]
 DEPOIS = [
     ("/ferramentas/", "Ferramentas", ("ferramentas", "combina", "pergunte")),
-    ("/achados/", "Produtos", ("achados", "mais-vendidos", "skincare-premium", "produtos", "queridinhos-do-skincare", "comparativos")),
+    ("/achados/", "Produtos", ("achados", "mais-vendidos", "produtos", "queridinhos-do-skincare", "comparativos")),
+    ("/skincare-premium/", "Skincare Premium", ("skincare-premium",)),
     ("/blog/", "Blog", ("blog",)),
 ]
 

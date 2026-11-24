@@ -51,9 +51,7 @@ def nome_curto(p):
 
 _modelo = (RAIZ / "blog" / "protetor-solar-pele-oleosa" / "index.html").read_text(encoding="utf-8")
 rodape = re.search(r'(<footer class="ps-rodape">.*?</footer>)', _modelo, re.S).group(1)
-rodape = rodape.replace('<li><a href="/mais-vendidos/">Mais vendidos</a></li>',
-                        '<li><a href="/mais-vendidos/">Mais vendidos</a></li>'
-                        f'<li><a href="{CAMINHO}" aria-current="page">Skincare Premium</a></li>', 1)
+rodape = rodape.replace(f'<a href="{CAMINHO}">', f'<a href="{CAMINHO}" aria-current="page">', 1)
 
 diretos = sum(1 for p in produtos if p.get("asin"))
 cards = []
