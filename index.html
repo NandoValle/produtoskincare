@@ -17,6 +17,7 @@
 <link rel="preload" href="/fonts/cormorant-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/premium-home.css?v=20261124-leitura">
 <link rel="stylesheet" href="/lumiere-home.css?v=20261124-confira">
+<link rel="stylesheet" href="/previsao-pele.css?v=20261124">
 <script src="/premium.js" defer></script>
 <script src="/premium-home.js?v=20261109-gold" defer></script>
 <script src="/lumiere-home.js?v=20261116-carta" defer></script>
@@ -41,7 +42,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Sua pele não precisa de mais produtos. Precisa dos cuidados certos.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/#pagina", "url": "https://produtoskincare.com.br/", "name": "Sua pele não precisa de mais produtos. Precisa dos cuidados certos.", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Descubra seu tipo de pele e receba uma rotina de skincare personalizada com produtos reais. Quiz gratuito, guias por tipo e curadoria de produtos.", "dateModified": "2026-11-16", "author": {"@id": "https://produtoskincare.com.br/#equipe"}}, {"@type": "Organization", "@id": "https://produtoskincare.com.br/#equipe", "name": "Equipe Produto Skincare", "url": "https://produtoskincare.com.br/sobre/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/#pagina", "url": "https://produtoskincare.com.br/", "name": "Sua pele não precisa de mais produtos. Precisa dos cuidados certos.", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Descubra seu tipo de pele e receba uma rotina de skincare personalizada com produtos reais. Quiz gratuito, guias por tipo e curadoria de produtos.", "dateModified": "2026-11-24", "author": {"@id": "https://produtoskincare.com.br/#equipe"}}, {"@type": "Organization", "@id": "https://produtoskincare.com.br/#equipe", "name": "Equipe Produto Skincare", "url": "https://produtoskincare.com.br/sobre/"}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -355,6 +356,7 @@
 <li><strong>Preço datado</strong><span>Conferido nas lojas</span></li>
 <li><strong>Estimativa cosmética</strong><span>Não é diagnóstico médico</span></li>
 </ul></div>
+<div class="lm-hoje-faixa" id="hoje-faixa" data-padrao="Como está o tempo aí? Veja o que a sua pele pode pedir hoje."><div class="lm-wrap"><a href="#hoje"><b>Hoje</b><span data-faixa-texto>Como está o tempo aí? Veja o que a sua pele pode pedir hoje.</span><span aria-hidden="true">↓</span></a></div></div>
 
 <section class="lm-sec lm-carta" id="carta" aria-labelledby="carta-titulo"><div class="lm-wrap">
 <article class="lm-carta-folha">
@@ -487,6 +489,14 @@
 <li class="lm-passo lm-revela" data-d="2"><span class="lm-passo-num" aria-hidden="true">03</span><div><h3>Encontre seu ritual</h3><p>Explore sugestões de cuidados e produtos para manhã e noite.</p></div></li>
 </ol>
 </div></section>
+
+<section class="lm-sec lm-hoje" id="hoje" aria-labelledby="hoje-titulo"><div class="lm-wrap">
+<div class="lm-cabeca"><div><p class="lm-olho">Hoje</p><h2 class="lm-titulo" id="hoje-titulo">O que a sua pele<br><span class="lm-ouro">pode pedir hoje.</span></h2></div>
+<p class="lm-lead">O índice UV e a umidade do ar mudam de um dia para o outro, e a rotina pode acompanhar. Diga como está o dia e veja os passos ajustados, primeiro com o que você já tem.</p></div>
+<div data-previsao-pele data-faixa="hoje-faixa"></div>
+<noscript><p class="lm-lead">Sem JavaScript, a leitura do dia não roda. A escala do UV e as dicas para ar seco e úmido estão na página de <a href="/ferramentas/clima/">índice UV e clima</a>.</p></noscript>
+</div></section>
+<script src="/previsao-pele.js?v=20261124" defer></script>
 
 <style>
 .ps-evo-bloco{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;background:var(--champagne);padding:66px;margin:60px 0}
@@ -626,7 +636,7 @@ window.addEventListener("DOMContentLoaded", function () {
 </div></section>
 
 <div class="lm-nota"><div class="lm-wrap">
-<aside class="ps-note"><p class="ps-byline">Por <a href="/sobre/" rel="author">Equipe Produto Skincare</a> · Atualizado em <time datetime="2026-11-16">16 de novembro de 2026</time></p><strong>Não é diagnóstico médico.</strong> O provador é uma estimativa cosmética para escolher produtos de skincare. Se tem acne intensa, lesões, dor ou irritação persistente, procure um dermatologista (<a href="https://www.sbd.org.br/encontre-um-dermatologista/" target="_blank" rel="noopener">busca da Sociedade Brasileira de Dermatologia</a>). Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</aside>
+<aside class="ps-note"><p class="ps-byline">Por <a href="/sobre/" rel="author">Equipe Produto Skincare</a> · Atualizado em <time datetime="2026-11-24">24 de novembro de 2026</time></p><strong>Não é diagnóstico médico.</strong> O provador é uma estimativa cosmética para escolher produtos de skincare. Se tem acne intensa, lesões, dor ou irritação persistente, procure um dermatologista (<a href="https://www.sbd.org.br/encontre-um-dermatologista/" target="_blank" rel="noopener">busca da Sociedade Brasileira de Dermatologia</a>). Contém links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra.</aside>
 </div></div>
 </main>
 <footer class="ps-rodape">

@@ -84,11 +84,14 @@
           id: existente.id, data: hoje, criadoEm: existente.criadoEm, atualizadoEm: Date.now(),
           nota: rec.nota !== undefined ? rec.nota : existente.nota,
           foto: rec.foto !== undefined ? rec.foto : existente.foto,
-          scores: rec.scores ? Object.assign({}, existente.scores || {}, rec.scores) : (existente.scores || null)
+          scores: rec.scores ? Object.assign({}, existente.scores || {}, rec.scores) : (existente.scores || null),
+          // foto tirada com a máscara de enquadramento; trocar a foto por uma comum desfaz a marca
+          padrao: rec.foto !== undefined ? !!rec.padrao : !!existente.padrao,
+          contexto: rec.contexto ? Object.assign({}, existente.contexto || {}, rec.contexto) : (existente.contexto || null)
         };
         return operar(true, function (s) { return s.put(mesclado); }).then(function () { return mesclado; });
       }
-      var novo = { data: hoje, nota: rec.nota || "", foto: rec.foto || null, scores: rec.scores || null, criadoEm: Date.now() };
+      var novo = { data: hoje, nota: rec.nota || "", foto: rec.foto || null, scores: rec.scores || null, padrao: !!(rec.foto && rec.padrao), contexto: rec.contexto || null, criadoEm: Date.now() };
       return operar(true, function (s) { return s.add(novo); }).then(function (id) { novo.id = id; return novo; });
     });
   }

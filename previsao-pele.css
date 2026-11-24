@@ -1,0 +1,74 @@
+/* Previsão da pele (/previsao-pele.js). Serve à home (tokens --ink, --gold…) e às páginas
+   de ferramenta (tokens --tinta, --rosa… do premium.css, claro e escuro). */
+.pp {
+  --pp-tinta: var(--ink, var(--tinta, #1a1614));
+  --pp-suave: var(--muted, var(--suave, #5a4c41));
+  --pp-linha: var(--line, var(--linha-2, #dbd3c8));
+  --pp-papel: var(--white, var(--papel, #fff));
+  --pp-destaque: var(--gold, var(--rosa, #755728));
+  --pp-titulo: var(--serif, var(--fonte-display, Georgia, serif));
+  display: grid; gap: 28px; color: var(--pp-tinta); text-align: left;
+}
+.pp-entrada { display: grid; gap: 18px; }
+.pp-grupo { border: 0; padding: 0; margin: 0; min-width: 0; }
+.pp-grupo legend { padding: 0; margin: 0 0 8px; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--pp-suave); }
+.pp-chips, .pp-opcoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.pp-chips button, .pp-opcoes button { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 16px; border: 1px solid var(--pp-linha); border-radius: 999px; background: var(--pp-papel); color: var(--pp-tinta); font: inherit; font-size: .9rem; cursor: pointer; }
+.pp-chips button small { color: var(--pp-suave); font-size: .78rem; }
+.pp-chips button:hover, .pp-opcoes button:hover { border-color: var(--pp-destaque); }
+.pp-chips button[aria-pressed=true] { background: var(--pp-tinta); border-color: var(--pp-tinta); color: var(--pp-papel); }
+.pp-chips button[aria-pressed=true] small { color: inherit; opacity: .8; }
+.pp i[style] { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.pp-check { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: .92rem; cursor: pointer; }
+.pp-check input { width: 20px; height: 20px; accent-color: var(--pp-destaque); }
+.pp-fina { margin: 8px 0 0; font-size: .84rem; line-height: 1.6; color: var(--pp-suave); }
+.pp-fina a, .pp-loja { color: var(--pp-destaque); }
+.pp-cidade { display: grid; gap: 8px; }
+.pp-cidade > label:first-child { font-weight: 600; }
+.pp-linha { display: flex; flex-wrap: wrap; gap: 8px; }
+.pp-linha input { flex: 1 1 200px; min-height: 48px; padding: 0 14px; border: 1px solid var(--pp-linha); border-radius: 12px; background: var(--pp-papel); color: var(--pp-tinta); font: inherit; }
+.pp-btn { min-height: 48px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--pp-tinta); color: var(--pp-papel); font: inherit; font-weight: 600; cursor: pointer; }
+.pp-manual { display: grid; gap: 18px; }
+.pp-manual-det summary, .pp-todos summary, .pp-porque summary { cursor: pointer; color: var(--pp-destaque); }
+.pp-manual-det summary, .pp-todos summary { min-height: 44px; display: flex; align-items: center; }
+.pp-manual-det[open] summary { margin-bottom: 12px; }
+
+.pp-saida { display: grid; gap: 14px; padding: clamp(20px, 3vw, 34px); border: 1px solid var(--pp-linha); background: var(--pp-papel); border-radius: var(--raio, 2px); min-width: 0; }
+.pp-saida > * { margin: 0; }
+.pp-vazio { color: var(--pp-suave); }
+.pp-aviso { padding: 10px 14px; border-left: 3px solid var(--pp-destaque); font-size: .92rem; }
+.pp-onde { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--pp-suave); }
+.pp-frase { font-family: var(--pp-titulo); font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.2; text-wrap: balance; }
+.pp-numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.pp-numeros div { padding: 12px 14px; border: 1px solid var(--pp-linha); }
+.pp-numeros strong { display: block; font-family: var(--pp-titulo); font-size: 1.9rem; line-height: 1.1; }
+.pp-numeros span { font-size: .82rem; color: var(--pp-suave); }
+.pp-rotina { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px; padding-top: 14px; border-top: 1px solid var(--pp-linha); }
+.pp h3 { margin: 0 0 8px; font-family: var(--pp-titulo); font-size: 1.35rem; font-weight: 500; line-height: 1.2; }
+.pp-rotina ol, .pp-rotina ul { margin: 0; padding-left: 20px; font-size: .94rem; line-height: 1.6; }
+.pp-rotina li { margin: 6px 0; }
+.pp-rotina li b { display: block; font-weight: 600; }
+.pp-catalogo { padding-top: 18px; border-top: 1px solid var(--pp-linha); }
+.pp-produtos { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.pp-produto { display: flex; flex-direction: column; gap: 6px; padding: 16px; border: 1px solid var(--pp-linha); min-width: 0; }
+.pp-produto p { margin: 0; }
+.pp-passo { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--pp-suave); }
+.pp-nome { font-weight: 600; line-height: 1.35; }
+.pp-nota strong { font-family: var(--pp-titulo); font-size: 1.7rem; line-height: 1; }
+.pp-nota span { font-size: .82rem; color: var(--pp-suave); }
+.pp-porque { font-size: .84rem; }
+.pp-porque ul { margin: 6px 0 0; padding: 0; list-style: none; color: var(--pp-suave); line-height: 1.5; }
+.pp-porque b { display: inline-block; min-width: 2.4em; color: var(--pp-tinta); font-variant-numeric: tabular-nums; }
+.pp-compra { margin-top: auto !important; padding-top: 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: .88rem; }
+.pp-preco, .pp-sem { color: var(--pp-suave); }
+.pp-loja { font-weight: 600; min-height: 32px; display: inline-flex; align-items: center; }
+.pp-lista { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.pp :focus-visible { outline: 3px solid var(--pp-destaque); outline-offset: 2px; }
+
+/* Faixa e seção da home */
+.lm-hoje-faixa { border-bottom: 1px solid var(--line); background: var(--white); }
+.lm-hoje-faixa a { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 16px; padding: 16px 0; color: var(--ink); text-decoration: none; font-size: .9rem; line-height: 1.6; text-align: center; }
+.lm-hoje-faixa b { font-size: .72rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+.lm-hoje-faixa a:hover [data-faixa-texto] { text-decoration: underline; }
+.lm-hoje .lm-cabeca { margin-bottom: clamp(32px, 4vw, 56px); }
+@media (max-width: 700px) { .pp-chips button { padding: 0 13px; } .pp-saida { padding: 18px 16px; } }

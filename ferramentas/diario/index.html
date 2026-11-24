@@ -79,6 +79,33 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
 .dg-so-nota{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:linear-gradient(160deg,var(--papel-2,#f3ede6),var(--rosa-claro))}
 .dg-so-nota .num{font-family:var(--fonte-display);font-size:2.1rem;font-weight:300;line-height:1}
 
+/* contexto do dia */
+.dg-contexto{margin:12px 0}
+.dg-contexto summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.dg-ctx-linha{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;margin:8px 0}
+.dg-ctx-linha .rot{font-size:.86rem;font-weight:600;margin:0}
+.dg-ctx-op{display:flex;flex-wrap:wrap;gap:6px}
+.dg-ctx-op button{min-height:40px;padding:0 14px;border:1px solid var(--linha);border-radius:999px;background:var(--papel);color:var(--suave);font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
+.dg-ctx-op button[aria-pressed=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.dg-padroes{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px}
+.dg-padroes ul{margin:0;padding-left:20px}
+.dg-padroes li{margin:6px 0}
+
+/* foto guiada */
+.dg-cam{width:min(440px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta)}
+.dg-cam::backdrop{background:rgba(20,14,10,.72)}
+.dg-cam h2{margin:0 0 6px}
+.dg-cam-quadro{position:relative;aspect-ratio:3/4;max-height:56dvh;margin:10px auto;border-radius:12px;overflow:hidden;background:#000}
+.dg-cam-quadro video,.dg-cam-quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.dg-cam-quadro #dg-cam-fantasma{opacity:.35;pointer-events:none}
+.dg-cam-quadro svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.dg-cam-luz{min-height:1.5em;font-weight:600}
+.dg-cam ul{margin:8px 0;padding-left:20px;font-size:.88rem;color:var(--suave)}
+.dg-cam-check{display:flex;align-items:center;gap:10px;min-height:44px;font-size:.9rem;cursor:pointer}
+.dg-cam-check input{width:20px;height:20px;accent-color:var(--rosa)}
+.dg-selo-padrao{font-size:.72rem;font-weight:600;border-radius:999px;padding:2px 9px;background:var(--verde-claro);color:var(--verde);justify-self:start}
+.dg-apagar{background:none;border:0;padding:0;min-height:44px;color:var(--suave);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer}
+
 </style>
 <!-- seo:inicio -->
 <link rel="canonical" href="https://produtoskincare.com.br/ferramentas/diario/">
@@ -126,7 +153,7 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <p class="ig-meta">Ferramenta · Diário da pele</p>
 <h1>Diário da pele: a sua evolução, visível</h1>
 <p class="ig-lede">Registre como a pele está se sentindo, some fotos quando quiser — e veja a curva da sua evolução ao longo do tempo. Cada registro fica só neste aparelho (armazenamento local do navegador); nada é enviado ao site.</p>
-<p class="ig-nota">A pele muda em ciclos, não em dias: a renovação da epiderme leva em torno de 28 dias, e ativos como retinol costumam mostrar diferença visível depois de 8 a 12 semanas. Fotografe sempre igual (mesma hora, luz de janela difusa, mesmo ângulo, rosto limpo). Registro pessoal — não é medição clínica.</p>
+<p class="ig-nota">A pele muda em ciclos, não em dias: a renovação da epiderme leva em torno de 28 dias, e ativos como retinol costumam mostrar diferença visível depois de 8 a 12 semanas. Fotografe sempre igual (mesma hora, luz de janela difusa, mesmo ângulo, rosto limpo). A foto guiada mostra um contorno para o rosto e, se você quiser, a foto anterior por cima, para repetir o enquadramento. Registro pessoal — não é medição clínica.</p>
 
 <section class="card" aria-labelledby="dg-hoje">
 <p class="ig-rotulo">Registro de hoje</p>
@@ -136,9 +163,15 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <div class="dg-form-nota">
 <input type="text" id="dg-nota" aria-label="Observação do dia (opcional)" maxlength="140" placeholder="Observação (opcional): pele mais calma, usei o sérum…">
 </div>
+<details class="dg-contexto">
+<summary>Contexto do dia (opcional)</summary>
+<p class="ig-nota">Sono, água, sol e ciclo ajudam a ler a curva depois. Marque só o que quiser; fica neste aparelho, como o resto.</p>
+<div id="dg-ctx"></div>
+</details>
 <div class="dg-acoes">
 <button class="btn" type="button" id="dg-salvar">Salvar registro de hoje</button>
-<label class="btn btn-claro" for="dg-arquivo" style="cursor:pointer">Adicionar foto (opcional)</label>
+<button class="btn btn-claro" type="button" id="dg-guiada">Foto guiada (com contorno)</button>
+<label class="btn btn-claro" for="dg-arquivo" style="cursor:pointer">Enviar uma foto</label>
 <input type="file" id="dg-arquivo" accept="image/*" capture="environment" hidden>
 </div>
 <p class="ig-nota" id="dg-recado" role="status" style="min-height:1.4em"></p>
@@ -162,6 +195,11 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <p class="ig-rotulo">Ciclos de 28 dias</p>
 <div class="dg-marcos" id="dg-evo-marcos"></div>
 </div>
+<div id="dg-padroes-bloco" hidden>
+<p class="ig-rotulo">Padrões nos seus registros</p>
+<div class="dg-padroes"><ul id="dg-padroes"></ul>
+<p class="dg-evo-nota">Média da autopercepção em cada grupo de dias. É uma observação dos seus registros, não prova de causa; aparece com pelo menos 4 registros de cada lado.</p></div>
+</div>
 <div>
 <p class="ig-rotulo">Constância da rotina</p>
 <div class="dg-grafico" id="dg-evo-barras"></div>
@@ -173,8 +211,28 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
 <p class="ig-rotulo">Registros</p>
 <h2 id="dg-linha-titulo">Sua linha do tempo</h2>
 <div id="dg-lista"></div>
+<p><button class="dg-apagar" type="button" id="dg-apagar-tudo" hidden>Apagar todos os registros e fotos deste aparelho</button></p>
 </section>
 </div>
+<dialog class="dg-cam" id="dg-cam" aria-labelledby="dg-cam-titulo">
+<p class="ig-rotulo">Foto guiada</p>
+<h2 id="dg-cam-titulo">Encaixe o rosto no contorno</h2>
+<p class="ig-nota">A foto comparável é a que se repete: mesma hora, luz de janela difusa, mesmo ângulo, rosto limpo e expressão neutra. A imagem não sai do aparelho.</p>
+<div class="dg-cam-quadro">
+<video id="dg-cam-video" playsinline muted autoplay></video>
+<img id="dg-cam-fantasma" alt="" hidden>
+<img id="dg-cam-previa" alt="Prévia da foto tirada" hidden>
+<svg viewBox="0 0 300 400" aria-hidden="true" focusable="false"><path fill="rgba(0,0,0,.45)" fill-rule="evenodd" d="M0 0H300V400H0Z M150 60a92 124 0 1 0 0 248a92 124 0 1 0 0-248Z"/><ellipse cx="150" cy="184" rx="92" ry="124" fill="none" stroke="#fff" stroke-width="2"/><path d="M78 160H222" stroke="#fff" stroke-width="1" stroke-dasharray="4 6" opacity=".8"/><text x="150" y="153" text-anchor="middle" fill="#fff" font-size="10" opacity=".9">olhos nesta linha</text></svg>
+</div>
+<p class="ig-nota dg-cam-luz" id="dg-cam-luz" role="status"></p>
+<label class="dg-cam-check" id="dg-cam-fantasma-rot" hidden><input type="checkbox" id="dg-cam-fantasma-liga" checked> Mostrar a foto anterior por cima, para alinhar</label>
+<div class="dg-acoes">
+<button class="btn" type="button" id="dg-cam-tirar">Tirar a foto</button>
+<button class="btn" type="button" id="dg-cam-usar" hidden>Usar esta foto</button>
+<button class="btn btn-claro" type="button" id="dg-cam-outra" hidden>Tirar outra</button>
+<button class="btn btn-claro" type="button" id="dg-cam-fechar">Fechar</button>
+</div>
+</dialog>
 <!-- perguntas:inicio -->
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Perguntas frequentes</h2>
@@ -228,21 +286,52 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
     return tem ? s : null;
   }
 
+  /* ===== contexto do dia (opcional) ===== */
+  const CTX = [
+    { id: "sono", rotulo: "Sono", op: [["pouco", "Pouco"], ["ok", "Normal"], ["bom", "Bom"]] },
+    { id: "agua", rotulo: "Água", op: [["pouca", "Pouca"], ["ok", "Normal"]] },
+    { id: "sol", rotulo: "Sol", op: [["pouco", "Pouco"], ["muito", "Muito"]] },
+    { id: "ciclo", rotulo: "Ciclo", op: [["menstruacao", "Menstruação"]] }
+  ];
+  const CTX_TXT = { sono: { pouco: "pouco sono", ok: "sono normal", bom: "sono bom" }, agua: { pouca: "pouca água", ok: "água normal" }, sol: { pouco: "pouco sol", muito: "muito sol" }, ciclo: { menstruacao: "menstruação" } };
+  const contexto = {};
+  function montarContexto(){
+    const raiz = document.getElementById("dg-ctx");
+    raiz.innerHTML = CTX.map(c => `
+      <div class="dg-ctx-linha">
+        <p class="rot" id="ctx-${c.id}">${c.rotulo}</p>
+        <div class="dg-ctx-op" role="group" aria-labelledby="ctx-${c.id}" data-ctx="${c.id}">
+          ${c.op.map(o => `<button type="button" aria-pressed="false" data-v="${o[0]}">${o[1]}</button>`).join("")}
+        </div>
+      </div>`).join("");
+    raiz.querySelectorAll(".dg-ctx-op").forEach(grupo => {
+      const id = grupo.dataset.ctx;
+      grupo.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+        if (contexto[id] === b.dataset.v) delete contexto[id]; else contexto[id] = b.dataset.v;
+        grupo.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.v === contexto[id])));
+      }));
+    });
+  }
+  function contextoEscolhido(){ return Object.keys(contexto).length ? Object.assign({}, contexto) : null; }
+
   function limparEscalas(){
     E.DIMS.forEach(d => delete escolhas[d.id]);
+    Object.keys(contexto).forEach(k => delete contexto[k]);
+    document.querySelectorAll(".dg-ctx-op button").forEach(b => b.setAttribute("aria-pressed","false"));
     document.querySelectorAll(".dg-escala button").forEach(b => b.setAttribute("aria-checked","false"));
     document.getElementById("dg-nota").value = "";
   }
 
   /* ===== salvar ===== */
-  async function salvarCom(foto){
+  async function salvarCom(foto, padrao){
     const nota = (document.getElementById("dg-nota") || {}).value || "";
     const scores = scoresEscolhidos();
-    if (!foto && !scores && !nota.trim()){
-      document.getElementById("dg-recado").textContent = "Escolha pelo menos uma nota, escreva uma observação ou anexe uma foto.";
+    const ctx = contextoEscolhido();
+    if (!foto && !scores && !nota.trim() && !ctx){
+      document.getElementById("dg-recado").textContent = "Escolha pelo menos uma nota, escreva uma observação, marque o contexto ou anexe uma foto.";
       return null;
     }
-    const rec = await E.salvarHoje({ nota: nota.trim(), scores, foto: foto || undefined });
+    const rec = await E.salvarHoje({ nota: nota.trim(), scores, foto: foto || undefined, padrao: !!(foto && padrao), contexto: ctx || undefined });
     document.getElementById("dg-recado").textContent = "Registro de hoje salvo. A curva agradece.";
     if (!foto) limparEscalas();
     return rec;
@@ -282,6 +371,102 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
       await render();
     } catch (e) { document.getElementById("dg-recado").textContent = "Não foi possível adicionar a foto: " + e.message; }
     ev.target.value = "";
+  });
+
+  /* ===== foto guiada: câmera com contorno e foto anterior por cima ===== */
+  const cam = { dlg: document.getElementById("dg-cam"), video: document.getElementById("dg-cam-video"), fluxo: null, foto: null, relogio: null };
+  const camEl = id => document.getElementById("dg-cam-" + id);
+  function camEstado(tirada){
+    camEl("previa").hidden = !tirada; camEl("usar").hidden = !tirada; camEl("outra").hidden = !tirada; camEl("tirar").hidden = tirada;
+  }
+  function camParar(){
+    clearInterval(cam.relogio); cam.relogio = null;
+    if (cam.fluxo) cam.fluxo.getTracks().forEach(t => t.stop());
+    cam.fluxo = null; cam.video.srcObject = null;
+  }
+  /* luz do quadro: média de brilho numa amostra pequena, só para avisar de escuro ou estourado */
+  function camLuz(){
+    const v = cam.video; if (!v.videoWidth) return;
+    const c = document.createElement("canvas"); c.width = 32; c.height = 32;
+    const x = c.getContext("2d"); x.drawImage(v, 0, 0, 32, 32);
+    const d = x.getImageData(0, 0, 32, 32).data; let soma = 0;
+    for (let i = 0; i < d.length; i += 4) soma += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+    const media = soma / (d.length / 4);
+    camEl("luz").textContent = media < 60 ? "Luz baixa: chegue perto de uma janela." : media > 215 ? "Luz forte demais: saia do sol direto." : "Luz boa.";
+  }
+  async function camAbrir(){
+    if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || typeof cam.dlg.showModal !== "function"){
+      document.getElementById("dg-recado").textContent = "Este navegador não abre a câmera aqui. Use “Enviar uma foto”.";
+      return;
+    }
+    const lista = (await E.registros()).filter(f => f.foto);
+    const anterior = lista.length ? lista[lista.length - 1] : null;
+    const fantasma = camEl("fantasma"), liga = camEl("fantasma-liga");
+    camEl("fantasma-rot").hidden = !anterior;
+    if (anterior) fantasma.src = anterior.foto;
+    fantasma.hidden = !(anterior && liga.checked);
+    cam.foto = null; camEstado(false); camEl("luz").textContent = "";
+    try {
+      cam.fluxo = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false });
+    } catch (e) {
+      document.getElementById("dg-recado").textContent = "Não foi possível abrir a câmera (permissão negada ou câmera em uso). Use “Enviar uma foto”.";
+      return;
+    }
+    cam.video.srcObject = cam.fluxo;
+    cam.dlg.showModal();
+    cam.relogio = setInterval(camLuz, 1200);
+  }
+  function camTirar(){
+    const v = cam.video; if (!v.videoWidth) return;
+    /* recorte central 3:4, o mesmo enquadramento do contorno */
+    let lw = v.videoWidth, lh = v.videoHeight, rw = lw, rh = lw * 4 / 3;
+    if (rh > lh) { rh = lh; rw = lh * 3 / 4; }
+    const c = document.createElement("canvas"); c.width = 720; c.height = 960;
+    c.getContext("2d").drawImage(v, (lw - rw) / 2, (lh - rh) / 2, rw, rh, 0, 0, 720, 960);
+    cam.foto = c.toDataURL("image/jpeg", 0.72);
+    camEl("previa").src = cam.foto;
+    camEstado(true);
+  }
+  document.getElementById("dg-guiada").addEventListener("click", camAbrir);
+  camEl("tirar").addEventListener("click", camTirar);
+  camEl("outra").addEventListener("click", () => { cam.foto = null; camEstado(false); });
+  camEl("fechar").addEventListener("click", () => cam.dlg.close());
+  camEl("fantasma-liga").addEventListener("change", ev => { camEl("fantasma").hidden = !ev.target.checked; });
+  cam.dlg.addEventListener("close", camParar);
+  camEl("usar").addEventListener("click", async () => {
+    const foto = cam.foto; cam.dlg.close();
+    if (!foto) return;
+    try { await salvarCom(foto, true); await render(); }
+    catch (e) { document.getElementById("dg-recado").textContent = "Não foi possível salvar a foto: " + e.message; }
+  });
+
+  /* ===== padrões: média da autopercepção por contexto ===== */
+  function renderPadroes(lista){
+    const comNota = lista.filter(r => r.contexto && E.mediaScores(r.scores) !== null);
+    const media = g => g.reduce((s, r) => s + E.mediaScores(r.scores), 0) / g.length;
+    const num = v => v.toFixed(1).replace(".", ",");
+    const linhas = [];
+    [["sono", "pouco", "com pouco sono"], ["agua", "pouca", "com pouca água"], ["sol", "muito", "com muito sol"], ["ciclo", "menstruacao", "de menstruação"]].forEach(([id, valor, rotulo]) => {
+      const a = comNota.filter(r => r.contexto[id] === valor);
+      /* o outro lado: dias em que o mesmo item foi marcado com outro valor; no ciclo, os demais dias com contexto */
+      const b = comNota.filter(r => id === "ciclo" ? !r.contexto[id] : (r.contexto[id] && r.contexto[id] !== valor));
+      if (a.length >= 4 && b.length >= 4) linhas.push(`<li>Nos ${a.length} dias ${rotulo}, a média foi <b>${num(media(a))}</b>; nos outros ${b.length}, <b>${num(media(b))}</b>.</li>`);
+    });
+    document.getElementById("dg-padroes").innerHTML = linhas.join("");
+    document.getElementById("dg-padroes-bloco").hidden = !linhas.length;
+  }
+  function chipsContexto(c){
+    if (!c) return "";
+    const partes = Object.keys(c).filter(k => CTX_TXT[k] && CTX_TXT[k][c[k]]).map(k => `<span>${CTX_TXT[k][c[k]]}</span>`);
+    return partes.length ? `<div class="dg-chips-nota">${partes.join("")}</div>` : "";
+  }
+
+  document.getElementById("dg-apagar-tudo").addEventListener("click", async () => {
+    const lista = await E.registros();
+    if (!lista.length || !confirm("Apagar os " + lista.length + " registros do diário, com as fotos? Não dá para desfazer.")) return;
+    for (const r of lista) await E.remover(r.id);
+    document.getElementById("dg-recado").textContent = "Diário apagado deste aparelho.";
+    render();
   });
 
   /* ===== chips de nota nos cartões ===== */
@@ -352,6 +537,8 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
     const lista = await E.registros();
     const a = E.analisar(lista, JSON.parse(localStorage.getItem("rotina_tracker") || "{}"));
     renderEvolucao(a);
+    renderPadroes(lista);
+    document.getElementById("dg-apagar-tudo").hidden = lista.length === 0;
 
     const raiz = document.getElementById("dg-lista");
     const vazio = lista.length === 0 ? '<div class="dg-vazio"><p class="ig-rotulo">Comece agora</p><h2>Sua linha do tempo está vazia</h2><p class="ig-nota">Um registro por semana já conta uma história — foto, nota ou só a percepção do dia.</p></div>' : "";
@@ -366,7 +553,9 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
         ${fotoHTML}
         <div class="dg-foto-info">
           <small>${fmt(f.data)}</small>
+          ${f.foto && f.padrao ? '<span class="dg-selo-padrao">foto guiada</span>' : ""}
           ${chipsScores(f.scores)}
+          ${chipsContexto(f.contexto)}
           ${notaHTML}
           <button class="rt-nota" type="button" data-remover="${f.id}" style="background:none;border:none;cursor:pointer;text-decoration:underline;justify-self:start">Remover</button>
         </div>
@@ -377,9 +566,10 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
       <section class="dg-comp">
         <p class="ig-rotulo">Comparar</p>
         <h2>Dois registros, um puxador</h2>
+        <p class="ig-nota">Abre com a primeira foto e a mais recente. Fotos guiadas têm o mesmo enquadramento e comparam melhor.</p>
         <div class="dg-comp-controles">
-          <label>Registro da esquerda<select id="dg-a">${soFotos.map(f => `<option value="${f.id}">${fmt(f.data)}</option>`).join("")}</select></label>
-          <label>Registro da direita<select id="dg-b">${soFotos.map((f,i) => `<option value="${f.id}" ${i===0?"selected":""}>${fmt(f.data)}</option>`).join("")}</select></label>
+          <label>Registro da esquerda<select id="dg-a">${soFotos.map(f => `<option value="${f.id}">${fmt(f.data)}${f.padrao ? " · guiada" : ""}</option>`).join("")}</select></label>
+          <label>Registro da direita<select id="dg-b">${soFotos.map((f,i) => `<option value="${f.id}" ${i===soFotos.length-1?"selected":""}>${fmt(f.data)}${f.padrao ? " · guiada" : ""}</option>`).join("")}</select></label>
         </div>
         <div class="dg-comp-quadro"><img id="dg-img-a" alt="Registro da esquerda"><img id="dg-img-b" alt="Registro da direita"><div class="corte" id="dg-corte"></div></div>
         <input type="range" id="dg-puxador" min="0" max="100" value="50" aria-label="Posição da comparação">
@@ -411,6 +601,7 @@ select,input[type=text]{font:inherit;min-height:44px;padding:8px 12px;border:1px
   }
 
   montarEscalas();
+  montarContexto();
   render();
 })();
 </script>
