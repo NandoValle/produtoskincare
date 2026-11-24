@@ -34,7 +34,8 @@
         "ceramidas",
         "ácido hialurônico",
         "niacinamida"
-      ]
+      ],
+      "tamanho": "454 g"
     },
     {
       "id": "lrp-effaclar-gel",
@@ -68,7 +69,8 @@
       "porque": "Gel para pele oleosa e sensível. Reduz oleosidade com PCA de zinco. 4.8★ com 12mil avaliações.",
       "ativos": [
         "PCA de zinco"
-      ]
+      ],
+      "tamanho": "refil de 240 g"
     },
     {
       "id": "hada-labo-oil-cleansing",
@@ -97,7 +99,8 @@
       "porque": "Óleo de limpeza com ácido hialurônico. Primeiro passo da dupla limpeza. 4.7★ com 24mil avaliações.",
       "ativos": [
         "ácido hialurônico"
-      ]
+      ],
+      "tamanho": "200 ml"
     },
     {
       "id": "neutrogena-hydro-boost",
@@ -129,7 +132,8 @@
       "porque": "Hidratante facial em gel, textura ultraleve com ácido hialurônico. 4.8★ com 78mil avaliações na Amazon.",
       "ativos": [
         "ácido hialurônico"
-      ]
+      ],
+      "tamanho": "50 g"
     },
     {
       "id": "lrp-cicaplast-baume",
@@ -162,7 +166,8 @@
       "ativos": [
         "pantenol",
         "madecassoside"
-      ]
+      ],
+      "tamanho": "40 ml"
     },
     {
       "id": "cetaphil-creme-hidratante",
@@ -195,7 +200,8 @@
       "porque": "Creme hidratante clássico para pele seca. Sem fragrância. 4.8★ com 32mil avaliações.",
       "ativos": [
         "glicerina"
-      ]
+      ],
+      "tamanho": "453 g"
     },
     {
       "id": "mantecorp-epidrat-calm",
@@ -227,7 +233,8 @@
       "porque": "Hidratante com D-pantenol que acalma e hidrata. Conforto imediato para peles sensíveis. 4.8★.",
       "ativos": [
         "pantenol"
-      ]
+      ],
+      "tamanho": "50 ml"
     },
     {
       "id": "garnier-uniform-matte",
@@ -261,7 +268,8 @@
       "ativos": [
         "vitamina C",
         "ácido hialurônico"
-      ]
+      ],
+      "tamanho": "85 g"
     },
     {
       "id": "isdin-fusion-water",
@@ -296,7 +304,8 @@
       "ativos": [
         "filtros UVA/UVB"
       ],
-      "ficha": "protetor-solar"
+      "ficha": "protetor-solar",
+      "tamanho": "50 ml"
     },
     {
       "id": "isdin-fusion-water-sem-cor",
@@ -326,7 +335,8 @@
       "ativos": [
         "filtros UVA/UVB"
       ],
-      "ficha": "protetor-solar"
+      "ficha": "protetor-solar",
+      "tamanho": "30 ml"
     },
     {
       "id": "neutrogena-sun-fresh-fps70",
@@ -360,7 +370,8 @@
       "ativos": [
         "filtros UVA/UVB"
       ],
-      "ficha": "protetor-solar"
+      "ficha": "protetor-solar",
+      "tamanho": "40 g"
     },
     {
       "id": "skin-aqua-moisture-milk",
@@ -393,7 +404,8 @@
         "filtros UVA/UVB",
         "ácido hialurônico"
       ],
-      "ficha": "protetor-solar"
+      "ficha": "protetor-solar",
+      "tamanho": "40 g"
     },
     {
       "id": "lrp-ultra-cover",
@@ -425,7 +437,8 @@
         "filtros UVA/UVB",
         "pigmentos (cor)"
       ],
-      "ficha": "protetor-solar"
+      "ficha": "protetor-solar",
+      "tamanho": "30 g"
     },
     {
       "id": "eucerin-anti-pigment",
@@ -456,7 +469,8 @@
       "ativos": [
         "thiamidol",
         "ácido hialurônico"
-      ]
+      ],
+      "tamanho": "30 ml"
     },
     {
       "id": "principia-vc10",
@@ -487,7 +501,8 @@
       "ativos": [
         "vitamina C 10%"
       ],
-      "ficha": "vitamina-c"
+      "ficha": "vitamina-c",
+      "tamanho": "30 ml"
     },
     {
       "id": "principia-niacinamida",
@@ -523,7 +538,8 @@
         "niacinamida 10%",
         "zinco 1%"
       ],
-      "ficha": "niacinamida"
+      "ficha": "niacinamida",
+      "tamanho": "30 ml"
     },
     {
       "id": "principia-ah2",
@@ -554,7 +570,8 @@
       "ativos": [
         "ácido hialurônico 2%"
       ],
-      "ficha": "acido-hialuronico"
+      "ficha": "acido-hialuronico",
+      "tamanho": "30 ml"
     },
     {
       "id": "principia-rn03",
@@ -592,7 +609,8 @@
         "retinol 0,3%"
       ],
       "ficha": "retinol",
-      "evidencia": "moderada"
+      "evidencia": "moderada",
+      "tamanho": "30 ml"
     },
     {
       "id": "ordinary-niacinamide",
@@ -630,7 +648,8 @@
         "niacinamida 10%",
         "zinco 1%"
       ],
-      "ficha": "niacinamida"
+      "ficha": "niacinamida",
+      "tamanho": "30 ml"
     },
     {
       "id": "creamy-calming-cream",
@@ -665,7 +684,8 @@
         "Hypskin®",
         "vitamina E",
         "alfa-bisabolol"
-      ]
+      ],
+      "tamanho": "40 g"
     },
     {
       "id": "creamy-vitamina-c",
@@ -696,7 +716,8 @@
       "ativos": [
         "vitamina C 10%"
       ],
-      "ficha": "vitamina-c"
+      "ficha": "vitamina-c",
+      "tamanho": "30 ml"
     },
     {
       "id": "lrp-retinol-b3",
@@ -734,7 +755,8 @@
         "niacinamida"
       ],
       "ficha": "retinol",
-      "evidencia": "moderada"
+      "evidencia": "moderada",
+      "tamanho": "30 ml"
     },
     {
       "id": "loreal-revitalift-noturno",
@@ -770,7 +792,8 @@
         "retinol"
       ],
       "ficha": "retinol",
-      "evidencia": "moderada"
+      "evidencia": "moderada",
+      "tamanho": "30 ml"
     },
     {
       "id": "mantecorp-ivy-c-ferulic",
@@ -802,7 +825,8 @@
         "vitamina C",
         "ácido ferúlico"
       ],
-      "ficha": "vitamina-c"
+      "ficha": "vitamina-c",
+      "tamanho": "30 ml"
     },
     {
       "id": "cerave-pm-locao",
@@ -834,7 +858,8 @@
         "ceramidas",
         "ácido hialurônico",
         "niacinamida"
-      ]
+      ],
+      "tamanho": "52 ml"
     },
     {
       "id": "ordinary-azelaic",
@@ -867,7 +892,8 @@
       "ativos": [
         "ácido azelaico 10%"
       ],
-      "ficha": "acido-azelaico"
+      "ficha": "acido-azelaico",
+      "tamanho": "30 ml"
     }
   ]
 }

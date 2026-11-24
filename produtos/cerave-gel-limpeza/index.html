@@ -80,6 +80,8 @@
 .pd-tag.refil{background:var(--verde-claro);color:var(--verde)}
 .pd-compra{display:flex;flex-direction:column;gap:10px}
 .pd-preco{font-family:var(--fonte-display);font-size:2.2rem;line-height:1;margin:0}
+.pd-criterio{font-size:.95rem;line-height:1.5;margin:0 0 8px;padding-left:12px;border-left:2px solid var(--linha-2)}
+.pd-criterio+.pd-preco{margin-top:16px}
 .pd-btns{display:flex;flex-wrap:wrap;gap:8px}
 .pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
 .pd-btn.sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
@@ -107,16 +109,15 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="CeraVe Gel de Limpeza Facial">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#pagina", "url": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/", "name": "CeraVe Gel de Limpeza Facial", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "CeraVe Gel de Limpeza Facial. Gel com ceramidas, ácido hialurônico e niacinamida. Limpa sem comprometer a barreira. Preço em 02/11/2026: R$ 96,90.", "dateModified": "2026-11-02", "breadcrumb": {"@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#produto"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Produtos", "item": "https://produtoskincare.com.br/produtos/"}, {"@type": "ListItem", "position": 3, "name": "CeraVe Gel de Limpeza Facial", "item": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/"}]}, {"@type": "Product", "@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#produto", "name": "CeraVe Gel de Limpeza Facial", "url": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#pagina"}, "description": "Gel com ceramidas, ácido hialurônico e niacinamida. Limpa sem comprometer a barreira.", "brand": {"@type": "Brand", "name": "CeraVe"}, "offers": {"@type": "Offer", "price": "96.90", "priceCurrency": "BRL", "description": "Na Amazon, em 02/11/2026. Preço muda: vale o mostrado na loja na hora da compra. Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.", "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare0f-20"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#pagina", "url": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/", "name": "CeraVe Gel de Limpeza Facial", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "CeraVe Gel de Limpeza Facial. Gel com ceramidas, ácido hialurônico e niacinamida. Limpa sem comprometer a barreira. Preço em 02/11/2026: R$ 96,90.", "dateModified": "2026-11-02", "breadcrumb": {"@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#produto"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Produtos", "item": "https://produtoskincare.com.br/produtos/"}, {"@type": "ListItem", "position": 3, "name": "CeraVe Gel de Limpeza Facial", "item": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/"}]}, {"@type": "Product", "@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#produto", "name": "CeraVe Gel de Limpeza Facial", "url": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/produtos/cerave-gel-limpeza/#pagina"}, "description": "Gel com ceramidas, ácido hialurônico e niacinamida. Limpa sem comprometer a barreira.", "brand": {"@type": "Brand", "name": "CeraVe"}, "offers": {"@type": "Offer", "price": "96.90", "priceCurrency": "BRL", "description": "Na Amazon, conferido em 02/11/2026. Variante conferida: 454 g. Preço muda: vale o mostrado na loja na hora da compra. Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.", "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare0f-20"}}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
-
+<meta name="author" content="Equipe Produto Skincare">
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
 <script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
-<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -151,8 +152,9 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 </div>
 <div class="ig-caixa pd-compra">
 <p class="ig-rotulo">Preço conferido</p>
+<p class="pd-criterio"><b>Por que está aqui:</b> entrou como limpeza para pele oleosa, pele mista e pele normal.</p><p class="pd-criterio"><b>Talvez não valha a pena:</b> se o sabonete ou gel de limpeza que você já usa funciona bem na sua pele.</p>
 <p class="pd-preco">R$ 96,90</p>
-<p class="ig-nota">Na Amazon, em 02/11/2026. Preço muda: vale o mostrado na loja na hora da compra.</p>
+<p class="ig-nota">Na Amazon, conferido em 02/11/2026. Variante conferida: 454 g. Preço muda: vale o mostrado na loja na hora da compra.</p>
 <div class="pd-btns">
 <a class="pd-btn" href="https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener" data-produto="CeraVe Gel de Limpeza Facial">Ver na Amazon ↗</a>
 <a class="pd-btn sec" href="/ferramentas/reposicao/?produto=CeraVe%20Gel%20de%20Limpeza%20Facial">Lembrete de reposição</a>
@@ -202,20 +204,13 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <footer class="ig-foot">
 <p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
-<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
 <!-- nota-pagina:inicio -->
 <p class="ps-nota-pagina">Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
-<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
-<div class="ps-precos" data-precos-id="cerave-gel-limpeza">
-  <p class="ps-precos-linha">
-    <span class="ps-selo ps-selo-sem-historico">➖ histórico em construção</span>
-  </p>
-  <p class="ps-precos-linha">
-    <strong>R$ 96,90</strong> · conferido em 02/11/2026 · <a href="/ferramentas/precos/">histórico de preços</a>
-  </p>
-</div>
-<script src="/precos-widget.js" defer></script>
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
