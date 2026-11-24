@@ -61,4 +61,13 @@
     var produto = a.getAttribute("data-produto") || a.textContent;
     enviar("clique/" + l + "/" + pagina + "/" + slug(produto), "Clique " + l + ": " + String(produto).trim().slice(0, 80));
   }, true);
+
+  // Clique num botão de compra do Programa vira o evento "checkout/<produto>".
+  // Os links de checkout não são de loja (LOJAS), então sem isto o clique não era contado.
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a#cta-checkout[href], a#cta-caderno[href]");
+    if (!a) return;
+    var produto = a.getAttribute("data-produto") || a.id;
+    enviar("checkout/" + slug(produto), "Checkout: " + produto);
+  }, true);
 })();
