@@ -34,7 +34,7 @@ GUIAS = [
 ]
 DEPOIS = [
     ("/ferramentas/", "Ferramentas", ("ferramentas", "combina", "pergunte")),
-    ("/achados/", "Produtos", ("achados", "mais-vendidos", "produtos", "queridinhos-do-skincare", "comparativos")),
+    ("/achados/", "Produtos", ("achados", "mais-vendidos", "skincare-premium", "produtos", "queridinhos-do-skincare", "comparativos")),
     ("/blog/", "Blog", ("blog",)),
 ]
 
