@@ -89,28 +89,22 @@
 <p>Sem rotinas de dez passos. Sem promessas milagrosas. 11 páginas que você lê em uma sentada e usa todo dia.</p>
 
 <!-- FORMULÁRIO DE CAPTURA
-     Para ligar a lista de e-mails: cole o endereço do formulário (Brevo: Formulários → Integrar → HTML,
-     o valor de <form action="...">) em ACTION_EMAIL, no script logo abaixo do formulário.
-     Os nomes dos campos devem bater com os da ferramenta (ex.: EMAIL, FNAME).
-     Enquanto ACTION_EMAIL estiver vazio, a página entrega o PDF direto, sem pedir e-mail. -->
-<form class="ps-form-captura" id="form-ebook" action="" method="post" target="_blank">
-<label>Seu nome (opcional)<input type="text" name="FNAME" autocomplete="given-name" placeholder="Como podemos te chamar"></label>
-<label>Seu melhor e-mail<input type="email" name="EMAIL" autocomplete="email" required placeholder="voce@email.com"></label>
-<label class="ps-check"><input type="checkbox" name="CONSENT" value="sim" required> Quero receber o e-book e a newsletter do Produto Skincare (1x por semana, conteúdo de verdade, descadastro em 1 clique).</label>
+     Envia para o mesmo serviço da caixa de newsletter do site (Buttondown; o endereço é o de
+     newsletter_form em /canais.js). Se trocar de serviço, mude o action e os nomes dos campos aqui também.
+     Depois de enviar, a página mostra o link do PDF. -->
+<form class="ps-form-captura" id="form-ebook" action="https://buttondown.com/api/emails/embed-subscribe/produtoskincare" method="post" target="_blank">
+<input type="hidden" name="embed" value="1">
+<label>Seu nome (opcional)<input type="text" name="metadata__nome" autocomplete="given-name" placeholder="Como podemos te chamar"></label>
+<label>Seu melhor e-mail<input type="email" name="email" autocomplete="email" required placeholder="voce@email.com"></label>
+<label class="ps-check"><input type="checkbox" required> Quero receber o e-book e a newsletter do Produto Skincare (1x por semana, conteúdo de verdade, descadastro em 1 clique).</label>
 <button class="ps-button" type="submit">Baixar o e-book grátis <span aria-hidden="true">↗</span></button>
-<p class="ps-form-nota">Ao se inscrever, você concorda em receber e-mails do Produto Skincare. Seus dados ficam com a gente — nada de lista compartilhada. LGPD: descadastro em 1 clique em todo e-mail.</p>
+<p class="ps-form-nota">Ao se inscrever, você concorda em receber e-mails do Produto Skincare. O e-mail vai direto para o Buttondown, o serviço de envio. LGPD: descadastro em 1 clique em todo e-mail.</p>
+<p class="ps-form-nota" id="ebook-pronto" hidden>Inscrição enviada (a confirmação abriu em outra aba). <a href="/newsletter/rotina-basica-por-tipo-de-pele.pdf" download>Baixar o e-book (PDF)</a></p>
 </form>
-<noscript><p><a class="ps-button" href="/newsletter/rotina-basica-por-tipo-de-pele.pdf" download>Baixar o e-book (PDF)</a></p></noscript>
 <script>
 (function () {
-  var ACTION_EMAIL = ""; // cole aqui o endereço do formulário do Brevo (começa com https://)
-  var f = document.getElementById("form-ebook");
-  if (!f) return;
-  if (/^https:\/\//.test(ACTION_EMAIL)) { f.action = ACTION_EMAIL; return; }
-  // Lista de e-mails ainda não ligada: entrega o PDF direto em vez de enviar para um endereço que não existe.
-  f.innerHTML = '<a class="ps-button" href="/newsletter/rotina-basica-por-tipo-de-pele.pdf" download>Baixar o e-book grátis <span aria-hidden="true">↓</span></a>' +
-    '<p class="ps-form-nota">PDF, 11 páginas. Download direto, sem cadastro.</p>';
-  f.addEventListener("submit", function (e) { e.preventDefault(); });
+  var f = document.getElementById("form-ebook"), pronto = document.getElementById("ebook-pronto");
+  if (f && pronto) f.addEventListener("submit", function () { pronto.hidden = false; });
 })();
 </script>
 </div>
