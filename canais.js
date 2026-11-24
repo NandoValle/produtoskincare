@@ -63,7 +63,7 @@
     ".psc-news{max-width:720px;margin:48px auto 0;padding:24px;border:1px solid var(--linha,#E4DBCE);border-radius:var(--raio,16px);background:var(--papel,#fff);display:flex;flex-direction:column;gap:12px}" +
     ".psc-news h2{font-size:1.6rem;margin:0}.psc-news p{margin:0}" +
     ".psc-news form{display:flex;flex-wrap:wrap;gap:8px}" +
-    ".psc-news input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E)}" +
+    ".psc-news input[type=email]{flex:1 1 220px;min-width:0;max-width:100%;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E)}" +
     ".psc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--rosa,#755728);color:#fff;font-weight:600;text-decoration:none;cursor:pointer}" +
     "@media(prefers-color-scheme:dark){.psc-btn{color:#28131b}}html[data-tema=claro] .psc-btn{color:#fff}html[data-tema=escuro] .psc-btn{color:#28131b}" +
     ".psc-nota{font-size:.84rem;color:var(--suave,#596360)}" +
