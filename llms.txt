@@ -109,6 +109,7 @@
 - [Índice UV de hoje](https://produtoskincare.com.br/ferramentas/clima/): como ajustar a rotina ao clima.
 - [Diário da pele](https://produtoskincare.com.br/ferramentas/diario/): evolução visível, no próprio aparelho.
 - [Relatório para a consulta](https://produtoskincare.com.br/ferramentas/relatorio/): resumo para levar ao dermatologista.
+- [Passaporte da Pele](https://produtoskincare.com.br/ferramentas/passaporte/): o resumo do acompanhamento em um QR Code, lido no celular do dermatologista sem passar por servidor.
 - [Backup dos seus dados](https://produtoskincare.com.br/ferramentas/backup/): exportar e restaurar o que está no aparelho.
 - [Experimento Coletivo #01](https://produtoskincare.com.br/ferramentas/experimento/): o protocolo 7+28 do FPS que não deixa branco, com registros guardados no próprio aparelho.
 - [Protocolo N=1](https://produtoskincare.com.br/ferramentas/protocolo-n1/): o experimento solo — uma mudança na rotina, 7 dias de linha de base, 28 de intervenção e um veredito lido nos seus números.

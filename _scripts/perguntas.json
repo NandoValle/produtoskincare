@@ -2839,5 +2839,15 @@
    "Senti desconforto com um produto de skincare: o que o site orienta?",
    "Parar o produto suspeito, voltar ao básico que já era usado sem problema, não testar outro produto novo e guardar a embalagem. A página não faz diagnóstico: com inchaço, falta de ar, bolhas ou dor forte, o caminho é atendimento médico imediato; sem melhora em poucos dias, um dermatologista."
   ]
+ ],
+ "/ferramentas/passaporte/": [
+  [
+   "O que é o Passaporte da Pele?",
+   "O Passaporte da Pele é o resumo do acompanhamento que a própria pessoa fez, levado à consulta dentro de um QR Code. O dermatologista aponta a câmera do celular e lê, sem aplicativo e sem cadastro. Não é prontuário, diagnóstico nem medição: são notas e anotações da própria pessoa."
+  ],
+  [
+   "Os dados do Passaporte da Pele vão para o servidor do site?",
+   "Não. O resumo vai escrito dentro do próprio QR Code, no trecho do endereço depois do sinal #, que não é enviado ao site: o celular de quem lê monta a página ali mesmo. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu. As fotos não entram."
+  ]
  ]
 }

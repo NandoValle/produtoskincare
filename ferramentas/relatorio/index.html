@@ -44,8 +44,13 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
 .rel-fotos img{width:100%;border-radius:10px;border:1px solid var(--linha)}
 .rel-branco{border:1px dashed var(--linha-2);border-radius:12px;min-height:110px;padding:12px}
 .rel-acoes{display:flex;flex-wrap:wrap;gap:10px}
+.pp-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:22px 24px;display:flex;flex-direction:column;gap:12px}
+.pp-caixa h2{font-size:1.35rem;margin:0}
+.pp-qr{display:flex;flex-direction:column;align-items:center;gap:10px}
+.pp-qr svg{width:100%;max-width:340px;height:auto;background:#fff;border-radius:10px}
+.pp-qr[hidden]{display:none}
 @media print{
-  .topo,.ps-rodape,.ps-header,.rel-acoes,.rel-aviso{display:none!important}
+  .topo,.ps-rodape,.ps-header,.rel-acoes,.rel-aviso,.pp-caixa,.ps-perguntas{display:none!important}
   body{background:#fff}
   .rel-folha{border:0;padding:0}
 }
@@ -99,6 +104,17 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
 <p class="ig-lede">O resumo do seu acompanhamento — evolução da pele, rotina, constância e fotos recentes — pronto para o dermatologista ler em poucos minutos. O relatório é montado aqui mesmo, só com os dados deste aparelho.</p>
 <div class="rel-acoes"><button class="btn" type="button" id="rel-imprimir">Salvar como PDF / Imprimir</button><a class="btn" href="/ferramentas/rotina/" style="background:var(--papel-2);color:var(--tinta)">Voltar ao tracker</a></div>
 <div class="rel-folha" id="rel-folha"></div>
+<section class="pp-caixa" aria-labelledby="pp-titulo">
+<h2 id="pp-titulo">Passaporte da Pele: o resumo em um QR Code</h2>
+<p>Na consulta, mostre o QR Code na tela. O dermatologista aponta a câmera do próprio celular e vê o resumo: as notas que você deu à pele ao longo do tempo, a constância, os produtos da sua <a href="/ferramentas/prateleira/">prateleira</a> e as suas observações. Não precisa de aplicativo nem de cadastro.</p>
+<p class="ig-nota">O resumo vai escrito dentro do próprio QR Code. Ele não é enviado ao site nem fica guardado em servidor. As fotos não entram. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu: mostre só a quem você quer.</p>
+<div class="rel-acoes"><button class="btn" type="button" id="pp-gerar">Gerar QR Code para a consulta</button></div>
+<p class="ig-nota" id="pp-status" role="status" aria-live="polite"></p>
+<div class="pp-qr" id="pp-qr" hidden>
+<div id="pp-imagem"></div>
+<div class="rel-acoes"><button class="btn" type="button" id="pp-copiar" style="background:var(--papel-2);color:var(--tinta)">Copiar o link (teleconsulta)</button><a class="btn" id="pp-abrir" href="/ferramentas/passaporte/" style="background:var(--papel-2);color:var(--tinta)">Ver como o médico vai ver</a></div>
+</div>
+</section>
 <p class="ig-nota rel-aviso"><strong>Não é diagnóstico médico.</strong> Este documento é informativo, montado por você a partir do próprio acompanhamento. Espaço reservado para o profissional complementar em consulta.</p>
 </div>
 <!-- perguntas:inicio -->
@@ -116,6 +132,8 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <script src="/evolucao.js"></script>
+<script src="/qrcode-generator.js"></script>
+<script src="/passaporte.js"></script>
 <script>
 (function(){
   const E = window.PSEvolucao;
@@ -204,6 +222,42 @@ th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sua
   }
 
   document.getElementById("rel-imprimir").addEventListener("click", () => window.print());
+
+  /* Passaporte da Pele: o resumo vai dentro do QR Code (ver /passaporte.js). Nada é enviado. */
+  const P = window.PSPassaporte;
+  const ppStatus = document.getElementById("pp-status");
+  let ppUrl = "";
+  function lerJSON(chave, padrao){ try { return JSON.parse(localStorage.getItem(chave) || "") || padrao; } catch(e){ return padrao; } }
+  async function gerarPassaporte(){
+    ppStatus.textContent = "Montando o resumo…";
+    let pele = ""; try { pele = localStorage.getItem("rt_pele") || ""; } catch(e) {}
+    const resumo = P.montar({ hoje: dataHoje(), pele: pele, tracker: lerJSON("rotina_tracker", {}), registros: await todosRegistros(),
+      notas: lerJSON("rotina_notas", []), prateleira: lerJSON("ps-prateleira-v1", {}) });
+    if (!P.temDados(resumo)) {
+      document.getElementById("pp-qr").hidden = true;
+      ppStatus.innerHTML = 'Ainda não há o que resumir neste aparelho. Registre a pele no <a href="/ferramentas/diario/">diário</a>, marque a rotina no <a href="/ferramentas/rotina/">tracker</a> ou monte a sua <a href="/ferramentas/prateleira/">prateleira</a>, e volte aqui.';
+      return;
+    }
+    const saida = await P.link(location.origin + "/ferramentas/passaporte/", resumo);
+    if (saida.url.length > P.LIMITE) { ppStatus.textContent = "Não foi possível encaixar o resumo em um QR Code. Use o relatório impresso."; return; }
+    const qr = qrcode(0, "L");
+    qr.addData(saida.url, "Byte");
+    qr.make();
+    document.getElementById("pp-imagem").innerHTML = qr.createSvgTag({ cellSize: 4, margin: 16, scalable: true, alt: "QR Code do Passaporte da Pele", title: "QR Code do Passaporte da Pele" });
+    ppUrl = saida.url;
+    document.getElementById("pp-abrir").href = saida.url;
+    document.getElementById("pp-qr").hidden = false;
+    const c = saida.cortes, fora = [];
+    if (c.notas) fora.push(c.notas + (c.notas === 1 ? " observação mais antiga" : " observações mais antigas"));
+    if (c.pontos) fora.push(c.pontos + (c.pontos === 1 ? " ponto intermediário da curva" : " pontos intermediários da curva"));
+    if (c.produtos) fora.push(c.produtos + (c.produtos === 1 ? " produto" : " produtos"));
+    ppStatus.textContent = "QR Code gerado com os dados de hoje (" + fmt(dataHoje()) + ")." + (fora.length ? " Para caber, ficou de fora: " + fora.join(", ") + ". O relatório impresso traz tudo." : "") + " Aumente o brilho da tela na hora de mostrar.";
+  }
+  document.getElementById("pp-gerar").addEventListener("click", () => { gerarPassaporte().catch(() => { ppStatus.textContent = "Não foi possível gerar o QR Code neste navegador. Use o relatório impresso."; }); });
+  document.getElementById("pp-copiar").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(ppUrl); ppStatus.textContent = "Link copiado. Quem abrir o link vê o resumo."; }
+    catch(e) { ppStatus.textContent = "Não deu para copiar automaticamente. Toque em “Ver como o médico vai ver” e copie o endereço da página."; }
+  });
   render();
 })();
 </script>

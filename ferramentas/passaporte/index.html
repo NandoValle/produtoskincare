@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Passaporte da Pele: resumo para a consulta | Produto Skincare</title>
+<meta name="description" content="O Passaporte da Pele mostra, por um QR Code, o resumo do acompanhamento que a pessoa fez: notas da pele no tempo, constância, produtos e observações. Nada vai ao servidor.">
+<meta name="referrer" content="no-referrer">
+
+<style>
+:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
+main{max-width:600px;margin:0 auto;padding:28px 0 60px}
+h1{font-family:var(--fonte-display);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:300;margin:.3em 0}
+h2{font-family:var(--fonte-display);font-size:1.2rem;margin:1.5em 0 .5em}
+.marca{font-family:var(--fonte-display);font-weight:500;font-size:.95rem}.marca span{color:var(--rosa)}
+.sub{color:var(--suave)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border-radius:10px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.item:last-child{border-bottom:0}
+.item input{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.item label{cursor:pointer;flex:1;font-size:1rem}
+.item.feito label{text-decoration:line-through;color:var(--suave)}
+.streak{background:linear-gradient(135deg,var(--tinta),#2d2825);color:var(--fundo);border-radius:var(--raio);padding:20px;text-align:center;margin:16px 0}
+.streak .num{font-family:var(--fonte-display);font-size:3rem;font-weight:300;line-height:1}
+.streak .label{font-size:.9rem;opacity:.7;margin-top:4px}
+.progresso-bar{background:var(--linha);border-radius:999px;height:8px;margin:12px 0;overflow:hidden}
+.progresso-fill{background:var(--verde);height:100%;border-radius:999px;transition:width 0.3s}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/premium.css">
+<style>
+
+.rel-caixa{max-width:720px;margin:0 auto;padding:24px 16px 60px;display:flex;flex-direction:column;gap:24px}
+.rel-folha{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:26px 24px;display:flex;flex-direction:column;gap:20px}
+.rel-folha h2{font-size:1.45rem;margin:0 0 6px;padding-top:14px;border-top:1px dotted var(--linha)}
+.rel-folha h2:first-of-type{border-top:0;padding-top:0}
+table{border-collapse:collapse;width:100%}
+th,td{padding:8px 10px;border-bottom:1px solid var(--linha);text-align:left;font-size:.95rem}
+th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.rel-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rel-fotos img{width:100%;border-radius:10px;border:1px solid var(--linha)}
+.rel-branco{border:1px dashed var(--linha-2);border-radius:12px;min-height:110px;padding:12px}
+.rel-acoes{display:flex;flex-wrap:wrap;gap:10px}
+.pp-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:22px 24px;display:flex;flex-direction:column;gap:12px}
+.pp-caixa h2{font-size:1.35rem;margin:0}
+.pp-qr{display:flex;flex-direction:column;align-items:center;gap:10px}
+.pp-qr svg{width:100%;max-width:340px;height:auto;background:#fff;border-radius:10px}
+.pp-qr[hidden]{display:none}
+@media print{
+  .topo,.ps-rodape,.ps-header,.rel-acoes,.rel-aviso,.ps-perguntas,.ps-nota-pagina{display:none!important}
+  body{background:#fff}
+  .rel-folha{border:0;padding:0}
+}
+
+</style>
+<!-- seo:inicio -->
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/passaporte/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passaporte da Pele: resumo para a consulta">
+<meta property="og:description" content="O Passaporte da Pele mostra, por um QR Code, o resumo do acompanhamento que a pessoa fez: notas da pele no tempo, constância, produtos e observações. Nada vai ao servidor.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/passaporte/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-passaporte.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Passaporte da Pele">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/passaporte/#pagina", "url": "https://produtoskincare.com.br/ferramentas/passaporte/", "name": "Passaporte da Pele", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "O Passaporte da Pele mostra, por um QR Code, o resumo do acompanhamento que a pessoa fez: notas da pele no tempo, constância, produtos e observações. Nada vai ao servidor.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/passaporte/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/passaporte/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Passaporte da Pele", "item": "https://produtoskincare.com.br/ferramentas/passaporte/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo ps-topo-recuo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a data-secao="atual" href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/blog/">Blog</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main id="conteudo">
+<div class="rel-caixa">
+<p class="ig-meta">Ferramenta · Passaporte da Pele</p>
+<h1>Passaporte da Pele</h1>
+<div id="pp-vazio">
+<p class="ig-lede">O Passaporte da Pele é o resumo do acompanhamento que a própria pessoa fez, levado à consulta dentro de um QR Code. O dermatologista aponta a câmera do celular e lê, sem aplicativo e sem cadastro.</p>
+<div class="rel-folha">
+<h2>Como funciona</h2>
+<p>A pessoa registra a pele no <a href="/ferramentas/diario/">diário</a>, marca a rotina no <a href="/ferramentas/rotina/">tracker</a> e lista os produtos na <a href="/ferramentas/prateleira/">prateleira</a>. Tudo fica guardado no aparelho dela. No <a href="/ferramentas/relatorio/">relatório para a consulta</a>, um botão gera o QR Code.</p>
+<h2>O que o resumo mostra</h2>
+<ul>
+<li>As notas de 1 a 5 que a pessoa deu à própria pele ao longo do tempo, em viço, conforto, equilíbrio e uniformidade.</li>
+<li>A constância da rotina nos últimos 30 dias.</li>
+<li>Os produtos em uso, de manhã e à noite.</li>
+<li>As observações que ela escreveu, com data.</li>
+</ul>
+<h2>O que ele não é</h2>
+<p>Não é prontuário, não é diagnóstico e não é medição: são notas e anotações da própria pessoa. As fotos não entram.</p>
+<h2>Privacidade</h2>
+<p>O resumo vai escrito dentro do próprio QR Code, no trecho do endereço que vem depois do sinal #. Esse trecho não é enviado ao site: o celular de quem lê monta a página ali mesmo. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu.</p>
+<p id="pp-erro" class="ig-nota" role="status"></p>
+<div class="rel-acoes"><a class="btn" href="/ferramentas/relatorio/">Gerar o meu QR Code</a></div>
+</div>
+</div>
+<div id="pp-cheio" hidden>
+<p class="ig-lede">Resumo trazido pelo paciente, feito por ele a partir do próprio acompanhamento.</p>
+<div class="rel-acoes"><button class="btn" type="button" id="rel-imprimir">Salvar como PDF / Imprimir</button></div>
+<div class="rel-folha" id="rel-folha"></div>
+<p class="ig-nota rel-aviso"><strong>Não é diagnóstico médico nem medição.</strong> As notas e as observações são da própria pessoa. Este resumo foi lido do QR Code neste aparelho e não foi enviado ao site.</p>
+</div>
+</div>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é o Passaporte da Pele?</h3>
+<p>O Passaporte da Pele é o resumo do acompanhamento que a própria pessoa fez, levado à consulta dentro de um QR Code. O dermatologista aponta a câmera do celular e lê, sem aplicativo e sem cadastro. Não é prontuário, diagnóstico nem medição: são notas e anotações da própria pessoa.</p>
+<h3>Os dados do Passaporte da Pele vão para o servidor do site?</h3>
+<p>Não. O resumo vai escrito dentro do próprio QR Code, no trecho do endereço depois do sinal #, que não é enviado ao site: o celular de quem lê monta a página ali mesmo. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu. As fotos não entram.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Passaporte da Pele?", "acceptedAnswer": {"@type": "Answer", "text": "O Passaporte da Pele é o resumo do acompanhamento que a própria pessoa fez, levado à consulta dentro de um QR Code. O dermatologista aponta a câmera do celular e lê, sem aplicativo e sem cadastro. Não é prontuário, diagnóstico nem medição: são notas e anotações da própria pessoa."}}, {"@type": "Question", "name": "Os dados do Passaporte da Pele vão para o servidor do site?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O resumo vai escrito dentro do próprio QR Code, no trecho do endereço depois do sinal #, que não é enviado ao site: o celular de quem lê monta a página ali mesmo. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu. As fotos não entram."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-24">24 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<script src="/evolucao.js"></script>
+<script src="/passaporte.js"></script>
+<script>
+(function(){
+  const E = window.PSEvolucao, P = window.PSPassaporte;
+  const PELE = { oleosa:"Oleosa", seca:"Seca", mista:"Mista", normal:"Normal", sensivel:"Sensível" };
+  const PASSO = ["Limpeza","Tratamento","Hidratante","Protetor solar","Outro"];
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function fmt(iso){ return new Date(iso+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric"}); }
+
+  function evolucao(r){
+    const regs = P.registros(r);
+    if (!regs.length) return '<h2>Evolução no período</h2><p class="ig-nota">Sem notas da pele registradas.</p>';
+    const a = E.analisar(regs, {});
+    const prim = regs[0], ult = regs[regs.length-1];
+    const linhas = E.DIMS.map(d => {
+      const p = prim.scores[d.id], u = ult.scores[d.id];
+      if (typeof p !== "number" || typeof u !== "number") return "";
+      const v = u - p;
+      return "<tr><th>"+esc(d.rotulo)+"</th><td>"+p+" de 5</td><td>"+u+" de 5</td><td>"+(v > 0 ? "+"+v : v)+"</td></tr>";
+    }).join("");
+    return '<h2>Evolução no período</h2>'
+      + '<p class="ig-nota">Notas da própria pessoa (1 = pior dia, 5 = melhor dia). Primeiro registro: '+fmt(prim.data)+' · último: '+fmt(ult.data)+' · '+regs.length+(regs.length === 1 ? ' registro' : ' registros')+' neste resumo.</p>'
+      + (linhas ? '<table><thead><tr><th>Dimensão</th><th>Início</th><th>Último</th><th>Δ</th></tr></thead><tbody>'+linhas+'</tbody></table>' : '')
+      + (regs.length > 1 ? E.graficoSVG(a, { ativas: { media: true } }) : '');
+  }
+
+  function produtos(r){
+    if (!r.p || !r.p.length) return '<h2>Produtos em uso</h2><p class="ig-nota">Nenhum produto listado.</p>';
+    const linha = l => "<tr><td>"+esc(l[0])+"</td><td>"+PASSO[l[2]]+"</td><td>"+(l[1] === 1 ? "Manhã" : l[1] === 2 ? "Noite" : "Manhã e noite")+"</td></tr>";
+    return '<h2>Produtos em uso</h2><p class="ig-nota">Listados pela pessoa na prateleira do site.</p><table><thead><tr><th>Produto</th><th>Passo</th><th>Quando</th></tr></thead><tbody>'+r.p.map(linha).join("")+'</tbody></table>';
+  }
+
+  function mostrar(r){
+    const c = r.c || [0,0,0];
+    const obs = (r.n || []).length ? '<h2>Observações da pessoa</h2><ul>'+r.n.map(l => '<li><strong>'+fmt(l[0])+'</strong> — '+esc(l[1])+'</li>').join("")+'</ul>' : '';
+    document.getElementById("rel-folha").innerHTML =
+      '<div><p class="ig-rotulo">Produto Skincare · Passaporte da Pele</p><h2 style="border-top:0;padding-top:0">Perfil</h2><table><tbody>'
+      + '<tr><th>Resumo gerado em</th><td>'+fmt(r.g)+'</td></tr>'
+      + (r.t ? '<tr><th>Tipo de pele informado</th><td>'+esc(PELE[r.t] || r.t)+'</td></tr>' : '')
+      + '<tr><th>Constância (30 dias)</th><td>'+c[0]+' manhãs e '+c[1]+' noites com rotina completa · '+c[2]+' dias com registro</td></tr>'
+      + '</tbody></table></div>'
+      + '<div>'+evolucao(r)+'</div>'
+      + '<div>'+produtos(r)+'</div>'
+      + '<div>'+obs+'<h2>Observações do profissional</h2><div class="rel-branco"></div><p class="ig-nota" style="margin-top:8px">Espaço em branco para anotações em consulta (aparece na impressão).</p></div>';
+    document.getElementById("pp-vazio").hidden = true;
+    document.getElementById("pp-cheio").hidden = false;
+  }
+
+  document.getElementById("rel-imprimir").addEventListener("click", () => window.print());
+  function ler(){
+    const h = location.hash.replace(/^#/, "");
+    if (!/^1[dj]\./.test(h)) return;      // sem resumo no endereço (ou âncora comum): fica a explicação
+    P.decodificar(h).then(mostrar).catch(() => {
+      document.getElementById("pp-erro").textContent = "Este link de Passaporte não pôde ser lido: ele veio incompleto ou foi alterado. Peça à pessoa para gerar o QR Code de novo.";
+    });
+  }
+  window.addEventListener("hashchange", () => location.reload());
+  ler();
+})();
+</script>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/" aria-current="page">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<script src="/rodape.js" defer></script>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+</body>
+</html>
