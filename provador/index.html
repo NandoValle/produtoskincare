@@ -35,7 +35,7 @@
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body {
   background: var(--fundo-grad); background-attachment: fixed;
-  color: var(--tinta); font-family: var(--fonte-corpo); font-size: 16px;
+  color: var(--tinta); font-family: var(--fonte-corpo); font-size:1rem;
   line-height: 1.65; font-weight: 400; min-height: 100vh; padding: 0 18px;
 }
 main { max-width: 680px; margin: 0 auto; padding: 28px 0 80px; }
@@ -95,6 +95,8 @@ legend{font-family:var(--fonte-display);font-size:1.35rem;font-weight:400;letter
 }
 .chip:hover{border-color:var(--rosa);transform:translateY(-2px);box-shadow:var(--sombra-2)}
 .chip.on{background:var(--tinta);color:var(--fundo);border-color:var(--tinta);box-shadow:var(--sombra-2)}
+/* Escolha marcada também por um sinal, não só pela cor. */
+.chip.on::before{content:"\2713";margin-right:8px;font-weight:700}
 /* resultado */
 .pill{
   display:inline-block;background:var(--rosa-claro);color:var(--rosa);border-radius:var(--raio-full);
@@ -227,6 +229,29 @@ html[data-tema="claro"]{
 @media (prefers-color-scheme:dark){.selo-evidencia.selo-moderada{background:#24324a;color:#cfdcf0}.selo-evidencia.selo-emergente{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
 .outras-lojas a{color:var(--rosa)}
 .papel{font-size:.82rem;color:var(--suave);margin:2px 0 4px}
+/* Use o que você já tem */
+#cardTenho h3{font-size:1.25rem;margin:0 0 6px}
+.tenho-resumo{font-family:var(--fonte-display);font-size:1.2rem;line-height:1.35;margin:18px 0 0}
+.tenho-blocos{display:grid;gap:10px;margin-top:14px}
+.tenho-bloco{border:1px solid var(--linha-2);border-radius:var(--raio-md);padding:14px 16px}
+.tenho-bloco h4{font-family:var(--fonte-corpo);font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px}
+.tenho-bloco ul{margin:0;padding-left:18px;font-size:.92rem}
+.tenho-bloco li+li{margin-top:4px}
+.tenho-bloco p{margin:0;font-size:.92rem;color:var(--suave)}
+.tenho-bloco.ja{background:var(--verde-claro);border-color:transparent}
+.tenho-bloco.ja h4{color:var(--verde)}
+.tenho-bloco.completar h4{color:var(--rosa)}
+.tenho-bloco.esperar{border-style:dashed}
+.tenho-bloco.esperar h4{color:var(--suave)}
+.passo-tenho .nome{color:var(--verde)}
+.passo-espera .nome{color:var(--suave)}
+.passo-espera details{margin-top:8px;font-size:.9rem}
+.passo-espera summary{cursor:pointer;color:var(--rosa);font-weight:600;min-height:44px;display:flex;align-items:center}
+.criterio{font-size:.86rem;line-height:1.5;margin-top:8px;padding-left:10px;border-left:2px solid var(--linha-2)}
+.criterio b{font-weight:600}
+.criterio+.criterio{margin-top:4px}
+.variante{font-size:.82rem;color:var(--suave)}
+.link-produto.busca{font-weight:500}
 .tipo-link{font-size:.78rem}
 .selo-cuidado{display:block;width:fit-content;margin-top:6px;font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff4dd;color:#7a5200;border:1px solid #ecd9a8}
 @media (prefers-color-scheme:dark){html:not([data-tema=claro]) .selo-cuidado{background:#3a2e14;color:#f3dca6;border-color:#5c4a22}}
@@ -306,10 +331,10 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <h2>Qual é o seu tipo de pele?</h2>
 <p class="sub">Escolha o que mais se aproxima. Depois você conta suas preocupações.</p>
 <div class="chips" id="chipsTipoJaSei">
-<button class="chip" data-tipo="oleosa">Oleosa</button>
-<button class="chip" data-tipo="seca">Seca</button>
-<button class="chip" data-tipo="mista">Mista</button>
-<button class="chip" data-tipo="normal">Normal</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="oleosa">Oleosa</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="seca">Seca</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="mista">Mista</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="normal">Normal</button>
 </div>
 <label class="opcao" style="margin-top:12px"><input type="checkbox" id="chkSensivelJaSei"><span><span class="rotulo">Tenho pele sensível</span><div class="desc">Arde, fica vermelha com facilidade ou reage a muitos produtos.</div></span></label>
 <div class="botoes">
@@ -334,11 +359,11 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <h2>Quais são suas maiores preocupações?</h2>
 <p class="sub">Escolha <strong>até 2</strong> — isso ajuda a montar sua rotina certinho.</p>
 <div class="chips" id="chipsPreocupacoes">
-<button class="chip" data-conc="acne">Acne / espinhas</button>
-<button class="chip" data-conc="manchas">Manchas / tom irregular</button>
-<button class="chip" data-conc="poros">Poros dilatados</button>
-<button class="chip" data-conc="idade">Sinais de idade</button>
-<button class="chip" data-conc="desidratacao">Desidratação</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="acne">Acne / espinhas</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="manchas">Manchas / tom irregular</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="poros">Poros dilatados</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="idade">Sinais de idade</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="desidratacao">Desidratação</button>
 </div>
 <p class="sub" id="avisoMaxPreocupacoes" style="font-size:.85rem"></p>
 <div class="botoes">
@@ -505,6 +530,13 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <div class="card" role="region" aria-label="Resumo do tipo de pele">
 <div id="resumoTipo" aria-live="polite"></div>
 <div id="notasExtras"></div>
+</div>
+
+<div class="card" id="cardTenho" style="margin-top:16px">
+<h3>Use o que você já tem</h3>
+<p class="sub" style="font-size:.92rem;margin:0 0 12px">Marque o que já está no seu banheiro. O que você já tem não precisa ser comprado de novo: a rotina passa a mostrar oferta só onde falta alguma coisa.</p>
+<div class="chips" id="chipsTenho" role="group" aria-label="O que você já tem em casa"></div>
+<div id="blocosTenho" aria-live="polite"></div>
 </div>
 
 <div class="card" id="cardHistorico" hidden>
@@ -982,8 +1014,9 @@ $("btnAvancar").onclick = () => {
 // ===== MODO "JÁ SEI" =====
 document.querySelectorAll("#chipsTipoJaSei .chip").forEach(c => {
   c.onclick = () => {
-    document.querySelectorAll("#chipsTipoJaSei .chip").forEach(x => x.classList.remove("on"));
+    document.querySelectorAll("#chipsTipoJaSei .chip").forEach(x => { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); });
     c.classList.add("on");
+    c.setAttribute("aria-pressed", "true");
     ESTADO.tipoJaSei = c.dataset.tipo;
     $("btnJaSeiContinuar").disabled = false;
   };
@@ -1002,6 +1035,7 @@ document.querySelectorAll("#chipsPreocupacoes .chip").forEach(c => {
     if (idx >= 0) {
       ESTADO.preocupacoes.splice(idx, 1);
       c.classList.remove("on");
+      c.setAttribute("aria-pressed", "false");
     } else {
       if (ESTADO.preocupacoes.length >= 2) {
         $("avisoMaxPreocupacoes").textContent = "Máximo de 2 preocupações. Desmarque uma para escolher outra.";
@@ -1010,6 +1044,7 @@ document.querySelectorAll("#chipsPreocupacoes .chip").forEach(c => {
       }
       ESTADO.preocupacoes.push(conc);
       c.classList.add("on");
+      c.setAttribute("aria-pressed", "true");
     }
     $("avisoMaxPreocupacoes").textContent = "";
     $("btnPreocupacoesContinuar").disabled = false;
@@ -1117,7 +1152,8 @@ function faixaDoItem(preco) {
 // Tipo de link, para dizer com honestidade o que a pessoa vai abrir. Só a tag de afiliado
 // da Amazon é reconhecida; as buscas da Shopee e do Mercado Livre do catálogo não têm.
 function tipoDeLink(link) {
-  const u = String(link || "");
+  let u = String(link || "");
+  try { u = decodeURIComponent(u); } catch (e) {} // a Shopee embrulha a busca num redirecionador
   const afiliado = /amazon\.com\.br\/.*[?&]tag=/.test(u);
   const busca = /amazon\.com\.br\/s[?/]|shopee\.com\.br\/search|lista\.mercadolivre\.com\.br/.test(u);
   return { afiliado, busca };
@@ -1129,6 +1165,108 @@ const PAPEL_DO_PASSO = {
   hidratacao: "Repõe água e ajuda a manter a barreira da pele, inclusive na pele oleosa.",
   protetor: "Protege dos raios UVA e UVB. Indispensável de manhã, com qualquer rotina."
 };
+
+// ===== USE O QUE VOCÊ JÁ TEM =====
+// ESTADO.tenho: null enquanto a pessoa não respondeu (a rotina aparece inteira, como antes);
+// lista de passos que ela já tem em casa depois de responder ([] = "ainda não tenho nada").
+// Cada passo vira: "tenho" (sem oferta), "completar" (lacuna real, com oferta) ou
+// "esperar" (tratamento antes de a base estar completa, ou sem preocupação marcada: sem oferta).
+ESTADO.tenho = null;
+const PASSOS_TENHO = {
+  limpeza: { nome: "Limpeza", chip: "Sabonete ou gel de rosto", seu: "o sabonete ou gel de limpeza" },
+  tratamento: { nome: "Tratamento", chip: "Sérum ou ácido de tratamento", seu: "o tratamento" },
+  hidratacao: { nome: "Hidratação", chip: "Hidratante", seu: "o hidratante" },
+  protetor: { nome: "Protetor solar", chip: "Protetor solar", seu: "o protetor solar" }
+};
+const BASE_DA_ROTINA = ["limpeza", "hidratacao", "protetor"];
+function baseQueFalta() { return BASE_DA_ROTINA.filter(b => !(ESTADO.tenho || []).includes(b)); }
+function statusDoPasso(passo, perfil) {
+  const t = ESTADO.tenho;
+  if (!t) return "aberto";
+  if (t.includes(passo)) return "tenho";
+  if (passo !== "tratamento") return "completar";
+  if (baseQueFalta().length) return "esperar";
+  return (perfil.preocupacoes || []).length ? "completar" : "esperar";
+}
+function passoEhLacuna(passo, perfil) { const st = statusDoPasso(passo, perfil); return st === "aberto" || st === "completar"; }
+function motivoDeEsperar() {
+  const faltam = baseQueFalta().map(b => PASSOS_TENHO[b].nome.toLowerCase());
+  return faltam.length
+    ? `Primeiro a base: falta ${faltam.join(", ").replace(/, ([^,]*)$/, " e $1")}. O tratamento entra depois, quando limpar, hidratar e proteger já forem hábito.`
+    : "Você não marcou nenhuma preocupação. Sem um motivo, tratamento é opcional: a base já faz o trabalho.";
+}
+// O que costuma servir em cada passo, por preocupação ou tipo de pele (texto, sem produto).
+const O_QUE_PROCURAR = {
+  limpeza: { oleosa:"gel de limpeza suave com pH baixo", seca:"loção ou creme de limpeza sem sulfatos", mista:"gel de limpeza equilibrado", normal:"gel de limpeza suave", sensivel:"água micelar ou limpeza sem fragrância" },
+  tratamento: { acne:"sérum com niacinamida 10% ou ácido salicílico 2%", manchas:"sérum de vitamina C 10% ou ácido tranexâmico", poros:"sérum de niacinamida 10% + zinco", idade:"retinol 0,3% (comece devagar)", desidratacao:"sérum de ácido hialurônico" },
+  hidratacao: { oleosa:"gel hidratante oil-free", seca:"creme com ceramidas e ácido hialurônico", mista:"hidratante em gel ou fluido", normal:"hidratante leve", sensivel:"creme calmante sem fragrância" },
+  protetor: { oleosa:"protetor toque seco FPS 50+", seca:"protetor hidratante FPS 50+", mista:"protetor fluido FPS 50+", normal:"protetor solar FPS 50+", sensivel:"protetor mineral ou sem fragrância" }
+};
+function dicaDoPasso(passo, perfil) {
+  const o = O_QUE_PROCURAR[passo] || {};
+  return o[perfil.preocupacoes[0]] || o[perfil.tipo] || o[perfil.sensivel ? "sensivel" : perfil.tipo] || "produto para seu tipo de pele";
+}
+function montarTenho(perfil) {
+  const t = ESTADO.tenho;
+  const passos = Object.keys(PASSOS_TENHO).filter(k => ["manha", "noite"].some(per => passosDaRotina(per).includes(k)));
+  $("chipsTenho").innerHTML = passos.map(k => {
+    const on = !!t && t.includes(k);
+    return `<button type="button" class="chip${on ? " on" : ""}" aria-pressed="${on}" data-tenho="${k}">${PASSOS_TENHO[k].chip}</button>`;
+  }).join("") + `<button type="button" class="chip${t && !t.length ? " on" : ""}" aria-pressed="${!!t && !t.length}" data-tenho="nada">Ainda não tenho nada</button>`;
+  if (!t) { $("blocosTenho").innerHTML = ""; return; }
+  const por = { tenho: [], completar: [], esperar: [] };
+  passos.forEach(k => por[statusDoPasso(k, perfil)].push(k));
+  const sugestao = k => {
+    const per = passosDaRotina("manha").includes(k) ? "manha" : "noite";
+    const e = escolherProduto(k, perfil, per).principal;
+    return e ? `sugestão na rotina abaixo: ${escHTML(e.p.nome)}` : `procure por ${dicaDoPasso(k, perfil)}`;
+  };
+  const ja = por.tenho.map(k => `<li><strong>${PASSOS_TENHO[k].nome}:</strong> continue com o seu. Não precisa comprar outro.</li>`);
+  const completar = por.completar.map(k => `<li><strong>${PASSOS_TENHO[k].nome}:</strong> ${sugestao(k)}.</li>`);
+  const esperar = por.esperar.map(k => `<li><strong>${PASSOS_TENHO[k].nome}:</strong> ${motivoDeEsperar()}</li>`);
+  if (ESTADO.rotina === 3 && !ESTADO.isotretinoina) esperar.push(`<li><strong>Tratamento:</strong> você escolheu a rotina essencial, de 3 passos. Sérum e ácido ficam para depois, se houver um motivo.</li>`);
+  const n = completar.length;
+  const resumo = !n ? "Você já tem o que precisa. Não há nada para comprar agora."
+    : !t.length ? `Comece pela base: ${n} ${n === 1 ? "item" : "itens"}. O resto pode esperar.`
+    : `Falta${n === 1 ? "" : "m"} ${n} ${n === 1 ? "item" : "itens"}. O resto você já tem ou pode esperar.`;
+  const bloco = (cls, titulo, itens, vazio) => `<section class="tenho-bloco ${cls}"><h4>${titulo}</h4>${itens.length ? `<ul>${itens.join("")}</ul>` : `<p>${vazio}</p>`}</section>`;
+  $("blocosTenho").innerHTML = `<p class="tenho-resumo">${resumo}</p><div class="tenho-blocos">` +
+    bloco("ja", "Já tenho", ja, "Nada marcado.") +
+    bloco("completar", "Vale completar", completar, "Nada. O que você tem já cobre a rotina.") +
+    bloco("esperar", "Pode esperar", esperar, "Nada na fila.") + `</div>`;
+}
+$("chipsTenho").addEventListener("click", e => {
+  const b = e.target.closest("[data-tenho]");
+  if (!b) return;
+  const k = b.dataset.tenho, t = ESTADO.tenho;
+  if (k === "nada") ESTADO.tenho = (t && !t.length) ? null : [];
+  else ESTADO.tenho = (t || []).includes(k) ? t.filter(x => x !== k) : [...(t || []), k];
+  track("tenho", { passos: (ESTADO.tenho || []).join(","), respondeu: !!ESTADO.tenho });
+  calcularEMostrar({ salvar: false, trocarTela: false });
+  const novo = document.querySelector(`#chipsTenho [data-tenho="${k}"]`);
+  if (novo) novo.focus();
+});
+
+// ===== POR QUE O PRODUTO ESTÁ ALI =====
+// Critério da indicação: os mesmos pontos que pesam em pontuarProduto, ditos por extenso.
+function criterioDoProduto(p, perfil) {
+  const c = [p.tipos.includes(perfil.tipo) ? `indicado para pele ${perfil.tipo}` : "serve para todos os tipos de pele"];
+  if (perfil.sensivel && p.tipos.includes("sensivel")) c.push("indicado para pele sensível");
+  const foco = (perfil.preocupacoes || []).filter(k => p.conc && p.conc.includes(k)).map(k => (NOMES_CONC[k] || k).toLowerCase());
+  if (foco.length) c.push(`cobre o seu foco em ${foco.join(" e ")}`);
+  if (tetoDaFaixa(perfil.faixaPreco) !== Infinity) c.push(`custa ${FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase}`);
+  return c.join(", ") + ".";
+}
+// Para quem talvez não valha a pena: o que o catálogo marca como "evitar" e a pergunta de sempre:
+// você já tem um que funciona?
+function quandoNaoVale(p, passo) {
+  const NOME = { oleosa: "pele oleosa", seca: "pele seca", mista: "pele mista", normal: "pele normal", sensivel: "pele sensível" };
+  const m = [];
+  if (p.evitar && p.evitar.length) m.push(`se você tem ${p.evitar.map(e => NOME[e] || e).join(" ou ")}`);
+  if (SEGURANCA.gestacao_proibido.test(p.nome + " " + p.porque + " " + (p.ativos || []).join(" "))) m.push("na gestação ou amamentação");
+  m.push(passo === "tratamento" ? "se limpeza, hidratante e protetor ainda não viraram hábito" : `se ${PASSOS_TENHO[passo].seu} que você já usa funciona bem na sua pele`);
+  return m.join("; ") + ".";
+}
 
 // ===== REGRAS DE SEGURANÇA (spec) =====
 const SEGURANCA = {
@@ -1361,6 +1499,7 @@ function calcularEMostrar(opcoes = {}) {
   $("avisoSensivel").hidden = !resultado.sensivel;
 
   // montar rotinas
+  montarTenho(perfil);
   montarRotina(perfil, "manha", $("painelManha"));
   montarRotina(perfil, "noite", $("painelNoite"));
 
@@ -1372,6 +1511,7 @@ function calcularEMostrar(opcoes = {}) {
   // (só os passos que aparecem na tela: rotina de 3 passos e isotretinoína não têm tratamento)
   const produtosEscolhidos = [];
   ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+    if (!passoEhLacuna(passo, perfil)) return; // o que a pessoa já tem (ou pode esperar) não é sugerido
     const { principal } = escolherProduto(passo, perfil, per);
     if (principal) produtosEscolhidos.push({ ...principal.p, _periodo: per });
   }));
@@ -1418,7 +1558,7 @@ function montarOrcamento(perfil) {
   $("chipsOrcamento").innerHTML = Object.entries(FAIXAS_PRECO).map(([k, f]) =>
     `<button type="button" class="chip${k === atual ? " on" : ""}" role="radio" aria-checked="${k === atual}" data-faixa="${k}">${f.nome}</button>`).join("");
   const lista = produtosDaRotina(perfil, false), chaves = chavesDosPassos();
-  const vazios = chaves.filter(ch => { const [per, passo] = ch.split(":"); return !escolherProduto(passo, perfil, per).principal; }).length;
+  const vazios = chaves.filter(ch => { const [per, passo] = ch.split(":"); return passoEhLacuna(passo, perfil) && !escolherProduto(passo, perfil, per).principal; }).length;
   const datas = [...new Set(lista.map(p => p.preco_em).filter(Boolean))].sort().map(dataBR);
   $("notaOrcamento").textContent = (atual === "qualquer" ? "Sem limite de preço. " : `Cada produto custa ${FAIXAS_PRECO[atual].frase}. `) +
     (vazios ? `${vazios} de ${chaves.length} passos ficaram sem produto nesta faixa. ` : "") +
@@ -1511,6 +1651,7 @@ function passosDaRotina(periodo) {
 function produtosDaRotina(perfil, economica) {
   const lista = [];
   ["manha","noite"].forEach(per => passosDaRotina(per).forEach(passo => {
+    if (!passoEhLacuna(passo, perfil)) return; // já tem ou pode esperar: não entra na conta nem no carrinho
     const r = escolherProduto(passo, perfil, per);
     let escolhido = r.principal && r.principal.p;
     if (economica) {
@@ -1529,14 +1670,20 @@ function somaPrecos(lista) {
 function custoRotinaHTML(perfil) {
   const rec = somaPrecos(produtosDaRotina(perfil, false));
   const eco = somaPrecos(produtosDaRotina(perfil, true));
+  const respondeu = !!ESTADO.tenho;
+  const haLacuna = chavesDosPassos().some(ch => passoEhLacuna(ch.split(":")[1], perfil));
+  if (respondeu && !haLacuna) return `<div class="card" style="margin:12px 0;font-size:.92rem">
+    <strong>💰 Nada para comprar agora</strong>
+    <p class="sub" style="font-size:.88rem;margin:6px 0 0">Pelo que você marcou, a rotina está coberta com o que já tem em casa. Use até acabar. Para saber quando cada frasco termina, veja o <a href="/ferramentas/reposicao/">lembrete de reposição</a>.</p>
+  </div>`;
   if (!rec.n) return "";
   const quando = rec.datas.length ? ` Preços vistos em ${rec.datas.map(dataBR).join(", ")}; podem ter mudado.` : "";
   const economia = eco.total < rec.total - 0.5
     ? `<li><strong>Versão econômica:</strong> ${brl(eco.total)} trocando cada passo pela opção compatível mais barata do catálogo.</li>` : "";
   return `<div class="card" style="margin:12px 0;font-size:.92rem">
-    <strong>💰 Quanto custa esta rotina</strong>
+    <strong>💰 ${respondeu ? "Quanto custa completar a rotina" : "Quanto custa esta rotina"}</strong>
     <ul style="margin:6px 0 0;padding-left:20px">
-      <li><strong>Rotina sugerida:</strong> ${brl(rec.total)} (${rec.n} ${rec.n === 1 ? "produto" : "produtos"}${rec.faltam ? `, ${rec.faltam} sem preço conferido` : ""}).</li>
+      <li><strong>${respondeu ? "O que falta" : "Rotina sugerida"}:</strong> ${brl(rec.total)} (${rec.n} ${rec.n === 1 ? "produto" : "produtos"}${rec.faltam ? `, ${rec.faltam} sem preço conferido` : ""}).</li>
       ${economia}
     </ul>
     <p class="sub" style="font-size:.82rem;margin:6px 0 0">Soma de um frasco de cada produto; a maioria dura de 1 a 3 meses.${quando}</p>
@@ -1573,6 +1720,9 @@ function textoDoResultado() {
   [["manha","MANHÃ"],["noite","NOITE"]].forEach(([per, rotulo]) => {
     linhas.push("", rotulo);
     passosDaRotina(per).forEach((passo, i) => {
+      const st = statusDoPasso(passo, perfil);
+      if (st === "tenho") { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: usar o que já tenho`); return; }
+      if (st === "esperar") { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: pode esperar`); return; }
       const { principal } = escolherProduto(passo, perfil, per);
       if (!principal) { linhas.push(`${i + 1}. ${NOME_PASSO[passo]}: ${tetoDaFaixa(perfil.faixaPreco) === Infinity ? "ainda sem produto na vitrine" : "nenhum produto do catálogo na faixa " + FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase}`); return; }
       const p = principal.p;
@@ -1581,7 +1731,8 @@ function textoDoResultado() {
     });
   });
   const soma = somaPrecos(lista);
-  if (soma.n) linhas.push("", `Custo estimado: ${brl(soma.total)} (preços podem ter mudado).`);
+  if (soma.n) linhas.push("", `${ESTADO.tenho ? "Custo do que falta" : "Custo estimado"}: ${brl(soma.total)} (preços podem ter mudado).`);
+  else if (ESTADO.tenho) linhas.push("", "Nada para comprar agora: a rotina está coberta com o que já tenho.");
   linhas.push("", "Contém links de afiliado. Estimativa cosmética, não é diagnóstico: em caso de acne intensa, lesões ou irritação persistente, procure um dermatologista.");
   return linhas.join("\n");
 }
@@ -1608,6 +1759,7 @@ function urlDoResultado() {
   if (ESTADO.isotretinoina) params.set("iso", "1");
   if (r.pontos) params.set("pts", ORDEM_TIPOS.map(t => r.pontos[t] || 0).join("_"));
   if (ESTADO.doresSelfie.length) params.set("selfie", ESTADO.doresSelfie.join(","));
+  if (ESTADO.tenho) params.set("tenho", ESTADO.tenho.length ? ESTADO.tenho.join(",") : "nada");
   if (ULTIMO_PERFIL) {
     params.set("itens", chavesDosPassos().map(ch => {
       const [per, passo] = ch.split(":");
@@ -1669,21 +1821,38 @@ function montarRotina(perfil, periodo, container) {
     ? passos.filter(p => p.key !== "tratamento")
     : passos;
 
-  // TEXTOS "O QUE PROCURAR" (lacunas da spec)
-  const O_QUE_PROCURAR = {
-    limpeza: { oleosa:"gel de limpeza suave com pH baixo", seca:"loção ou creme de limpeza sem sulfatos", mista:"gel de limpeza equilibrado", normal:"gel de limpeza suave", sensivel:"água micelar ou limpeza sem fragrância" },
-    tratamento: { acne:"sérum com niacinamida 10% ou ácido salicílico 2%", manchas:"sérum de vitamina C 10% ou ácido tranexâmico", poros:"sérum de niacinamida 10% + zinco", idade:"retinol 0,3% (comece devagar)", desidratacao:"sérum de ácido hialurônico" },
-    hidratacao: { oleosa:"gel hidratante oil-free", seca:"creme com ceramidas e ácido hialurônico", mista:"hidratante em gel ou fluido", normal:"hidratante leve", sensivel:"creme calmante sem fragrância" },
-    protetor: { oleosa:"protetor toque seco FPS 50+", seca:"protetor hidratante FPS 50+", mista:"protetor fluido FPS 50+", normal:"protetor solar FPS 50+", sensivel:"protetor mineral ou sem fragrância" }
-  };
-
   const html = passosFiltrados.map(passo => {
     const { principal, alternativa, outrasLojas, foraDaFaixa } = escolherProduto(passo.key, perfil, periodo);
+    const st = statusDoPasso(passo.key, perfil);
+
+    // JÁ TENHO: sem oferta. Só o papel do passo e o que costuma servir para o perfil.
+    if (st === "tenho") return `
+        <div class="passo passo-tenho">
+          <div class="cat">${passo.nome} · já tenho</div>
+          <div class="nome">✓ Use o que você já tem</div>
+          <div class="papel">${PAPEL_DO_PASSO[passo.key] || ""}</div>
+          <div class="porque">Não precisa comprar outro. Para o seu perfil costuma servir: ${dicaDoPasso(passo.key, perfil)}. Se o seu é diferente e a pele vai bem, continue com ele.</div>
+        </div>
+      `;
+
+    // PODE ESPERAR: sem preço e sem link. A indicação fica guardada, fechada.
+    if (st === "esperar") return `
+        <div class="passo passo-espera">
+          <div class="cat">${passo.nome} · pode esperar</div>
+          <div class="nome">Ainda não é hora de comprar</div>
+          <div class="papel">${PAPEL_DO_PASSO[passo.key] || ""}</div>
+          <div class="porque">${motivoDeEsperar()}</div>
+          ${principal ? `<details><summary>Ver a indicação para quando chegar a hora</summary>
+            <p style="margin:6px 0 0"><strong>${escHTML(principal.p.nome)}</strong></p>
+            <p class="sub" style="margin:4px 0 0">${principal.p.porque}</p>
+            <p class="sub" style="margin:6px 0 0;font-size:.82rem">Sem preço e sem link de propósito: quando a base estiver no lugar, marque acima o que já tem e a oferta aparece.</p>
+          </details>` : ""}
+        </div>
+      `;
 
     // CARD "O QUE PROCURAR" quando não tem produto (no catálogo ou dentro da faixa de preço)
     if (!principal) {
-      const conc0 = perfil.preocupacoes[0];
-      const dica = (O_QUE_PROCURAR[passo.key] && (O_QUE_PROCURAR[passo.key][conc0] || O_QUE_PROCURAR[passo.key][perfil.tipo] || O_QUE_PROCURAR[passo.key][perfil.sensivel ? "sensivel" : perfil.tipo])) || "produto para seu tipo de pele";
+      const dica = dicaDoPasso(passo.key, perfil);
       const f = foraDaFaixa && foraDaFaixa.p;
       const semNaFaixa = f ? `
             <div class="sub" style="font-size:.85rem;margin-top:6px">Nenhum produto de ${passo.nome.toLowerCase()} compatível com o seu perfil custa ${FAIXAS_PRECO[normalizarFaixa(perfil.faixaPreco)].frase} no nosso catálogo. O mais barato que encontramos: <strong>${escHTML(f.nome)}</strong>, ${brl(f.preco)} em ${dataBR(f.preco_em)} (${NOME_LOJA[f.plataforma] || "loja"})${f.link ? ` · <a href="${escHTML(f.link)}" target="_blank" rel="noopener${tipoDeLink(f.link).afiliado ? " sponsored" : ""}" data-produto="${escHTML(f.nome)}" style="color:var(--rosa)">ver</a>` : ""}. Você pode mudar o orçamento acima.</div>` : `
@@ -1737,8 +1906,13 @@ function montarRotina(perfil, periodo, container) {
           ${seloHTML(p)}
           ${cuidadoHTML(p, perfil)}
           ${estrelas ? `<div style="font-size:.85rem;color:var(--dourado,#c9a96e);margin-top:4px">${estrelas}</div>` : ''}
+          <div class="criterio"><b>Por que está aqui:</b> ${criterioDoProduto(p, perfil)}</div>
+          <div class="criterio"><b>Talvez não valha a pena:</b> ${quandoNaoVale(p, passo.key)}</div>
           <div class="preco">${preco}</div>
-          ${p.link ? `<a class="link-produto" href="${escHTML(p.link)}" target="_blank" rel="noopener${tl.afiliado ? " sponsored" : ""}" data-produto="${escHTML(p.nome)}">${tl.busca ? "Buscar" : "Ver"} na ${plataforma||"loja"} →</a>${notaLink ? ` <small class="sub tipo-link">${notaLink}</small>` : ""}` : '<span class="falta">link em breve</span>'}
+          ${p.preco && p.tamanho ? `<div class="variante">Variante conferida: ${escHTML(p.tamanho)}. Outro tamanho ou cor tem outro preço.</div>` : ""}
+          ${!p.link ? '<span class="falta">sem oferta verificada</span>'
+            : tl.busca ? `<span class="falta">sem oferta verificada</span> <a class="link-produto busca" href="${escHTML(p.link)}" target="_blank" rel="noopener${tl.afiliado ? " sponsored" : ""}" data-produto="${escHTML(p.nome)}">Procurar na ${plataforma||"loja"} →</a> <small class="sub tipo-link">${notaLink}: não é um anúncio conferido, o preço acima é só referência</small>`
+            : `<a class="link-produto" href="${escHTML(p.link)}" target="_blank" rel="noopener${tl.afiliado ? " sponsored" : ""}" data-produto="${escHTML(p.nome)}">Ver na ${plataforma||"loja"} →</a>${notaLink ? ` <small class="sub tipo-link">${notaLink}</small>` : ""}`}
           ${alt}
           ${outras}
         </div>
@@ -1781,7 +1955,7 @@ $("btnRefazer").onclick = () => {
   ESTADO.doresSelfie = [];
   $("avisoLink").hidden = true;
   try { history.replaceState(null, "", location.pathname); } catch (e) {}
-  document.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+  document.querySelectorAll(".chip").forEach(c => { c.classList.remove("on"); if (c.hasAttribute("aria-pressed")) c.setAttribute("aria-pressed", "false"); });
   mostrarTela("inicio");
 };
 
@@ -1843,6 +2017,9 @@ function lerLink(params) {
   ESTADO.isotretinoina = params.get("iso") === "1";
   ESTADO.gestante = ESTADO.amamentando = params.get("gest") === "1";
   ESTADO.doresSelfie = [...new Set((params.get("selfie") || "").split(","))].filter(d => DORES_ROTINA[d]);
+  // O que a pessoa marcou que já tem: "nada" ou a lista de passos.
+  const tenho = params.get("tenho");
+  ESTADO.tenho = tenho === null ? null : [...new Set(tenho.split(","))].filter(k => PASSOS_TENHO[k]);
   // Produtos gravados: um id por passo, na ordem de chavesDosPassos(). Se a contagem não bater
   // (ex.: o número de passos mudou), a rotina é recalculada.
   const ids = (params.get("itens") || "").split(".");
