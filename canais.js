@@ -60,16 +60,16 @@
 
   var CSS = ".psc-redes{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:20px;padding:0;list-style:none}" +
     ".psc-redes a{font-size:14px}" +
-    ".psc-news{max-width:720px;margin:48px auto 0;padding:24px;border:1px solid var(--linha,#dce1de);border-radius:var(--raio,16px);background:var(--papel,#fff);display:flex;flex-direction:column;gap:12px}" +
+    ".psc-news{max-width:720px;margin:48px auto 0;padding:24px;border:1px solid var(--linha,#E4DBCE);border-radius:var(--raio,16px);background:var(--papel,#fff);display:flex;flex-direction:column;gap:12px}" +
     ".psc-news h2{font-size:1.6rem;margin:0}.psc-news p{margin:0}" +
     ".psc-news form{display:flex;flex-wrap:wrap;gap:8px}" +
-    ".psc-news input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#c8d0cb);background:var(--papel,#fff);color:var(--tinta,#252b2a)}" +
-    ".psc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--rosa,#9b405b);color:#fff;font-weight:600;text-decoration:none;cursor:pointer}" +
+    ".psc-news input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E)}" +
+    ".psc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--rosa,#755728);color:#fff;font-weight:600;text-decoration:none;cursor:pointer}" +
     "@media(prefers-color-scheme:dark){.psc-btn{color:#28131b}}html[data-tema=claro] .psc-btn{color:#fff}html[data-tema=escuro] .psc-btn{color:#28131b}" +
     ".psc-nota{font-size:.84rem;color:var(--suave,#596360)}" +
     ".psc-canais{list-style:none;padding:0;margin:0;display:grid;gap:10px}" +
-    ".psc-canais a{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--linha,#dce1de);border-radius:12px;text-decoration:none;color:var(--tinta,#252b2a);background:var(--papel,#fff)}" +
-    ".psc-canais a:hover{border-color:var(--rosa,#9b405b)}.psc-canais span{color:var(--suave,#596360);overflow-wrap:anywhere}";
+    ".psc-canais a{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--linha,#E4DBCE);border-radius:12px;text-decoration:none;color:var(--tinta,#17120E);background:var(--papel,#fff)}" +
+    ".psc-canais a:hover{border-color:var(--rosa,#755728)}.psc-canais span{color:var(--suave,#596360);overflow-wrap:anywhere}";
 
   function estilo() {
     if (document.getElementById("psc-css")) return;

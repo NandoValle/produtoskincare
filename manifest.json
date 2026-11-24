@@ -4,8 +4,8 @@
   "description": "Descubra seu tipo de pele e receba uma rotina personalizada",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f7f8f7",
-  "theme_color": "#9b405b",
+  "background_color": "#F7F2EC",
+  "theme_color": "#755728",
   "orientation": "portrait",
   "lang": "pt-BR",
   "icons": [

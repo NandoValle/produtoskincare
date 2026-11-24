@@ -11,14 +11,14 @@
   "use strict";
   var LIMITE_EMAIL = 1800; // alguns apps de e-mail cortam links mailto muito longos
 
-  var CSS = ".pse{background:var(--papel,#fff);border:1px solid var(--linha,#dce1de);border-radius:var(--raio,16px);padding:18px;margin:20px 0;display:flex;flex-direction:column;gap:14px}" +
+  var CSS = ".pse{background:var(--papel,#fff);border:1px solid var(--linha,#E4DBCE);border-radius:var(--raio,16px);padding:18px;margin:20px 0;display:flex;flex-direction:column;gap:14px}" +
     ".pse h3{margin:0;font-size:1.3rem}.pse p{margin:0}" +
     ".pse-nota{font-size:.84rem;color:var(--suave,#596360)}" +
     ".pse-linha{display:flex;flex-wrap:wrap;gap:8px;align-items:center}" +
-    ".pse-linha input{flex:1 1 200px;min-height:46px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#c8d0cb);background:var(--papel,#fff);color:var(--tinta,#252b2a);font:inherit}" +
+    ".pse-linha input{flex:1 1 200px;min-height:46px;padding:0 14px;border-radius:12px;border:1px solid var(--linha-2,#D3C7B6);background:var(--papel,#fff);color:var(--tinta,#17120E);font:inherit}" +
     ".pse-btn{min-height:46px;padding:0 18px;border-radius:999px;border:0;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}" +
-    ".pse-wa{background:#1f7a4d;color:#fff}.pse-mail{background:var(--rosa,#9b405b);color:#fff}" +
-    ".pse-sec{background:transparent;color:var(--tinta,#252b2a);border:1px solid var(--linha-2,#c8d0cb)}" +
+    ".pse-wa{background:#1f7a4d;color:#fff}.pse-mail{background:var(--rosa,#755728);color:#fff}" +
+    ".pse-sec{background:transparent;color:var(--tinta,#17120E);border:1px solid var(--linha-2,#D3C7B6)}" +
     ".pse-btn:hover{filter:brightness(.93)}" +
     ".pse label{font-weight:600;font-size:.92rem;display:block;margin-bottom:6px}" +
     ".pse-ok{font-size:.86rem;color:var(--verde,#375d4e);min-height:1.2em}";

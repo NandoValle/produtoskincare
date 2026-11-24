@@ -546,13 +546,13 @@ def gerar_stories(ativos):
         return linhas
 
     for a in ativos:
-        im = Image.new("RGB", (1080, 1920), "#f7f8f7")
+        im = Image.new("RGB", (1080, 1920), "#F7F2EC")
         d = ImageDraw.Draw(im)
-        d.rectangle((0, 0, 1080, 28), fill="#9b405b")
-        d.text((80, 120), "PRODUTO SKINCARE", font=fonte_marca, fill="#9b405b")
+        d.rectangle((0, 0, 1080, 28), fill="#755728")
+        d.text((80, 120), "PRODUTO SKINCARE", font=fonte_marca, fill="#755728")
         y = 280
         for linha in quebra(d, a["nome"], fonte_nome, 920)[:4]:
-            d.text((80, y), linha, font=fonte_nome, fill="#252b2a")
+            d.text((80, y), linha, font=fonte_nome, fill="#17120E")
             y += 100
         y += 40
         if a["ev"]:
@@ -560,17 +560,17 @@ def gerar_stories(ativos):
             cor, tinta = "#e7efea", "#375d4e"
         else:
             selo = "Sem ficha com fontes ainda"
-            cor, tinta = "#eef0ef", "#39413f"
+            cor, tinta = "#F0E9DF", "#3A3028"
         caixa = d.textbbox((0, 0), selo, font=fonte_selo)
         larg = caixa[2] - caixa[0] + 48
         d.rounded_rectangle((80, y, 80 + larg, y + 72), radius=36, fill=cor)
         d.text((104, y + 16), selo, font=fonte_selo, fill=tinta)
         y += 120
         for linha in quebra(d, a["resumo"], fonte_corpo, 920)[:8]:
-            d.text((80, y), linha, font=fonte_corpo, fill="#39413f")
+            d.text((80, y), linha, font=fonte_corpo, fill="#3A3028")
             y += 56
-        d.text((80, 1760), "produtoskincare.com.br/ativos/", font=fonte_corpo, fill="#65716d")
-        d.rectangle((0, 1892, 1080, 1920), fill="#9b405b")
+        d.text((80, 1760), "produtoskincare.com.br/ativos/", font=fonte_corpo, fill="#5A4C41")
+        d.rectangle((0, 1892, 1080, 1920), fill="#755728")
         im.save(pasta / (a["id"] + ".png"), "PNG", optimize=True)
 
 
