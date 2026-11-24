@@ -35,7 +35,7 @@
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body {
   background: var(--fundo-grad); background-attachment: fixed;
-  color: var(--tinta); font-family: var(--fonte-corpo); font-size: 16px;
+  color: var(--tinta); font-family: var(--fonte-corpo); font-size:1rem;
   line-height: 1.65; font-weight: 400; min-height: 100vh; padding: 0 18px;
 }
 main { max-width: 680px; margin: 0 auto; padding: 28px 0 80px; }
@@ -95,6 +95,8 @@ legend{font-family:var(--fonte-display);font-size:1.35rem;font-weight:400;letter
 }
 .chip:hover{border-color:var(--rosa);transform:translateY(-2px);box-shadow:var(--sombra-2)}
 .chip.on{background:var(--tinta);color:var(--fundo);border-color:var(--tinta);box-shadow:var(--sombra-2)}
+/* Escolha marcada também por um sinal, não só pela cor. */
+.chip.on::before{content:"\2713";margin-right:8px;font-weight:700}
 /* resultado */
 .pill{
   display:inline-block;background:var(--rosa-claro);color:var(--rosa);border-radius:var(--raio-full);
@@ -306,10 +308,10 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <h2>Qual é o seu tipo de pele?</h2>
 <p class="sub">Escolha o que mais se aproxima. Depois você conta suas preocupações.</p>
 <div class="chips" id="chipsTipoJaSei">
-<button class="chip" data-tipo="oleosa">Oleosa</button>
-<button class="chip" data-tipo="seca">Seca</button>
-<button class="chip" data-tipo="mista">Mista</button>
-<button class="chip" data-tipo="normal">Normal</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="oleosa">Oleosa</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="seca">Seca</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="mista">Mista</button>
+<button class="chip" type="button" aria-pressed="false" data-tipo="normal">Normal</button>
 </div>
 <label class="opcao" style="margin-top:12px"><input type="checkbox" id="chkSensivelJaSei"><span><span class="rotulo">Tenho pele sensível</span><div class="desc">Arde, fica vermelha com facilidade ou reage a muitos produtos.</div></span></label>
 <div class="botoes">
@@ -334,11 +336,11 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <h2>Quais são suas maiores preocupações?</h2>
 <p class="sub">Escolha <strong>até 2</strong> — isso ajuda a montar sua rotina certinho.</p>
 <div class="chips" id="chipsPreocupacoes">
-<button class="chip" data-conc="acne">Acne / espinhas</button>
-<button class="chip" data-conc="manchas">Manchas / tom irregular</button>
-<button class="chip" data-conc="poros">Poros dilatados</button>
-<button class="chip" data-conc="idade">Sinais de idade</button>
-<button class="chip" data-conc="desidratacao">Desidratação</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="acne">Acne / espinhas</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="manchas">Manchas / tom irregular</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="poros">Poros dilatados</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="idade">Sinais de idade</button>
+<button class="chip" type="button" aria-pressed="false" data-conc="desidratacao">Desidratação</button>
 </div>
 <p class="sub" id="avisoMaxPreocupacoes" style="font-size:.85rem"></p>
 <div class="botoes">
@@ -982,8 +984,9 @@ $("btnAvancar").onclick = () => {
 // ===== MODO "JÁ SEI" =====
 document.querySelectorAll("#chipsTipoJaSei .chip").forEach(c => {
   c.onclick = () => {
-    document.querySelectorAll("#chipsTipoJaSei .chip").forEach(x => x.classList.remove("on"));
+    document.querySelectorAll("#chipsTipoJaSei .chip").forEach(x => { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); });
     c.classList.add("on");
+    c.setAttribute("aria-pressed", "true");
     ESTADO.tipoJaSei = c.dataset.tipo;
     $("btnJaSeiContinuar").disabled = false;
   };
@@ -1002,6 +1005,7 @@ document.querySelectorAll("#chipsPreocupacoes .chip").forEach(c => {
     if (idx >= 0) {
       ESTADO.preocupacoes.splice(idx, 1);
       c.classList.remove("on");
+      c.setAttribute("aria-pressed", "false");
     } else {
       if (ESTADO.preocupacoes.length >= 2) {
         $("avisoMaxPreocupacoes").textContent = "Máximo de 2 preocupações. Desmarque uma para escolher outra.";
@@ -1010,6 +1014,7 @@ document.querySelectorAll("#chipsPreocupacoes .chip").forEach(c => {
       }
       ESTADO.preocupacoes.push(conc);
       c.classList.add("on");
+      c.setAttribute("aria-pressed", "true");
     }
     $("avisoMaxPreocupacoes").textContent = "";
     $("btnPreocupacoesContinuar").disabled = false;
@@ -1781,7 +1786,7 @@ $("btnRefazer").onclick = () => {
   ESTADO.doresSelfie = [];
   $("avisoLink").hidden = true;
   try { history.replaceState(null, "", location.pathname); } catch (e) {}
-  document.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+  document.querySelectorAll(".chip").forEach(c => { c.classList.remove("on"); if (c.hasAttribute("aria-pressed")) c.setAttribute("aria-pressed", "false"); });
   mostrarTela("inicio");
 };
 
@@ -3676,7 +3681,7 @@ if (new URLSearchParams(location.search).get("modo") === "selfie") {
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
 <nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/" aria-current="page">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 <noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
 </body>
