@@ -98,6 +98,7 @@
 - [Extrato mensal](https://produtoskincare.com.br/ferramentas/extrato/): o total gasto com skincare no mês e quanto custa manter a rotina por dia.
 - [Extrato do cosmético](https://produtoskincare.com.br/ferramentas/extrato-cosmetico/): o histórico datado de preço, volume e fórmula (INCI) de cada produto, que detecta reformulação silenciosa e shrinkflation (mesmo preço, menos ml); registro iniciado em 20/11/2026.
 - [Selo ANVISA e raio-X de promessa](https://produtoskincare.com.br/ferramentas/promessa/): o registro do produto na base aberta da ANVISA e a conferência promessa por promessa do texto de marketing contra a lista de ingredientes e o hub científico, cada veredito com sua fonte.
+- [Rever minha rotina](https://produtoskincare.com.br/ferramentas/rever-rotina/): para quem já tem rotina e ela ficou cara, tem passos demais ou um produto causou desconforto; mostra o que tirar e o que manter, sem indicar compra, e quando procurar um dermatologista. Não faz diagnóstico.
 - [Modo despensa (anti-carrinho)](https://produtoskincare.com.br/ferramentas/despensa/): a rotina montada com o que você já tem em casa, o que não comprar agora, a regra um-entra-um-sai e o contador do que economizou ao não comprar — com a metodologia publicada.
 - [Guia de ativos](https://produtoskincare.com.br/ferramentas/ativos/): o que cada princípio ativo faz e o que combina.
 - [Modo 12 semanas](https://produtoskincare.com.br/ferramentas/12-semanas/): plano para começar um ativo, com diário de fotos que fica no aparelho.

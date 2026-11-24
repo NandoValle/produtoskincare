@@ -35,7 +35,7 @@
     const ctx = garantirCtx();
     if (!ctx || ambiente) return;
     const agora = ctx.currentTime;
-    const vol = pref.vol * 0.22; // bem baixinho
+    const vol = pref.vol * 0.55; // discreto, mas audivel em alto-falante de celular
 
     const saida = ctx.createGain();
     saida.gain.setValueAtTime(0, agora);
@@ -59,7 +59,7 @@
     ruido.buffer = buf; ruido.loop = true;
 
     const lp = ctx.createBiquadFilter();
-    lp.type = "lowpass"; lp.frequency.value = 420; lp.Q.value = 0.6;
+    lp.type = "lowpass"; lp.frequency.value = 1600; lp.Q.value = 0.6;
     const hp = ctx.createBiquadFilter();
     hp.type = "highpass"; hp.frequency.value = 60;
 
@@ -69,7 +69,7 @@
     ruido.start(agora);
 
     // --- pad: 3 senos lentos que respiram ---
-    const freqs = [110, 165, 220]; // Lá2, Mi3, Lá3 — acorde aberto
+    const freqs = [220, 330, 440]; // Lá3, Mi4, Lá4 — acorde aberto, uma oitava acima
     const oscs = [];
     freqs.forEach((f, i) => {
       const o = ctx.createOscillator();
@@ -199,7 +199,7 @@
       pref.vol = Math.min(1, Math.max(0, v));
       salvarPreferencia(pref);
       if (ambiente && ctxHolder.ctx) {
-        ambiente.saida.gain.setTargetAtTime(pref.vol * 0.22, ctxHolder.ctx.currentTime, 0.1);
+        ambiente.saida.gain.setTargetAtTime(pref.vol * 0.55, ctxHolder.ctx.currentTime, 0.1);
       }
     },
     passo: somPasso,
