@@ -17,7 +17,7 @@ import re
 import shutil
 import unicodedata
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 from pagina_base import RAIZ, esc, pagina
 
@@ -69,10 +69,74 @@ def milhar(n):
     return f"{n:,}".replace(",", ".")
 
 
+def eh_busca(link):
+    """Link que abre a busca da loja, e não um anúncio: não conta como oferta verificada."""
+    return bool(re.search(r"amazon\.com\.br/s[?/]|shopee\.com\.br/search|lista\.mercadolivre\.com\.br", unquote(link or "")))
+
+
 def link_loja(p):
     loja = LOJAS.get(p.get("plataforma"), "loja")
-    busca = "/search?" in p["link"] or "/s?" in p["link"]
-    return ("Buscar na " if busca else "Ver na ") + loja
+    return ("Procurar na " if eh_busca(p.get("link")) else "Ver na ") + loja
+
+
+SEU = {"limpeza": "o sabonete ou gel de limpeza", "tratamento": "o tratamento", "hidratacao": "o hidratante", "protetor": "o protetor solar"}
+GESTACAO = re.compile(r"retinol|retinal|tretinoína|adapaleno|isotretinoína|\bbha\b|ácido salicílico|hidroquinona", re.I)
+
+
+def criterio(p):
+    """Por que o produto está no catálogo: passo, peles e preocupações registrados em produtos.json."""
+    tipos = [TIPOS.get(t, (t, None))[0].lower() for t in p.get("tipos", []) if t != "todos"]
+    conc = [CONC.get(c, (c, None))[0].lower() for c in p.get("conc", [])]
+    partes = [f"entrou como {PASSOS.get(p['passo'], p['passo']).lower()}"]
+    partes.append("para " + juntar(tipos) if tipos else "para todos os tipos de pele")
+    if conc:
+        partes.append("com foco em " + juntar(conc))
+    return " ".join(partes) + "."
+
+
+def nao_vale(p):
+    """Para quem talvez não valha a pena, só com o que o catálogo registra."""
+    m = []
+    evitar = [TIPOS.get(t, (t, None))[0].lower() for t in p.get("evitar", [])]
+    if evitar:
+        m.append("se você tem " + " ou ".join(evitar))
+    if GESTACAO.search(" ".join([p["nome"], p.get("porque", "")] + p.get("ativos", []))):
+        m.append("na gestação ou amamentação")
+    m.append("se limpeza, hidratante e protetor ainda não viraram hábito" if p["passo"] == "tratamento"
+             else f"se {SEU.get(p['passo'], 'o produto')} que você já usa funciona bem na sua pele")
+    return "; ".join(m) + "."
+
+
+def caixa_compra(p, loja):
+    """Critério e ressalva antes do botão. Sem anúncio conferido, não há botão de compra."""
+    porque = (f'<p class="pd-criterio"><b>Por que está aqui:</b> {esc(criterio(p))}</p>'
+              f'<p class="pd-criterio"><b>Talvez não valha a pena:</b> {esc(nao_vale(p))}</p>')
+    variante = f"Variante conferida: {esc(p['tamanho'])}. " if p.get("tamanho") else ""
+    secundarios = (f'<a class="pd-btn sec" href="/ferramentas/reposicao/?produto={esc(quote(p["nome"]))}">Lembrete de reposição</a>\n'
+                   '<a class="pd-btn sec" href="/ferramentas/comparar/">Comparar</a>')
+    if eh_busca(p.get("link")):
+        return f"""<div class="ig-caixa pd-compra">
+<p class="ig-rotulo">Sem oferta verificada</p>
+{porque}
+<p class="pd-preco">{reais(p['preco'])}</p>
+<p class="ig-nota">Preço de referência, visto na {esc(loja)} em {data_curta(p['preco_em'])}. {variante}O site ainda não tem um anúncio conferido deste produto, então não indica onde comprar: o link abaixo só abre a busca da loja. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
+<div class="pd-btns">
+<a class="pd-btn sec" href="{esc(p['link'])}" target="_blank" rel="sponsored noopener" data-produto="{esc(p['nome'])}">{esc(link_loja(p))} ↗</a>
+{secundarios}
+</div>
+<p class="ig-nota">Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Na busca, confira se é o mesmo produto, o vendedor e o tamanho.</p>
+</div>"""
+    return f"""<div class="ig-caixa pd-compra">
+<p class="ig-rotulo">Preço conferido</p>
+{porque}
+<p class="pd-preco">{reais(p['preco'])}</p>
+<p class="ig-nota">Na {esc(loja)}, conferido em {data_curta(p['preco_em'])}. {variante}Preço muda: vale o mostrado na loja na hora da compra. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
+<div class="pd-btns">
+<a class="pd-btn" href="{esc(p['link'])}" target="_blank" rel="sponsored noopener" data-produto="{esc(p['nome'])}">{esc(link_loja(p))} ↗</a>
+{secundarios}
+</div>
+<p class="ig-nota">Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.</p>
+</div>"""
 
 
 def ficha_do_ativo(ativo, fichas):
@@ -175,7 +239,7 @@ def bloco_conferido(p, loja):
                       f"Ativos registrados em {data_curta(snap.get('em') or p['preco_em'])}."))
     else:
         itens.append(("Fórmula", "A lista completa (INCI) não foi registrada aqui: vale a da embalagem.", "Sem data."))
-    busca = "/search?" in p["link"] or "/s?" in p["link"]
+    busca = eh_busca(p["link"])
     itens.append(("Link", f"Leva a uma busca na {esc(loja)}, não a um anúncio específico." if busca
                   else f"Leva ao anúncio na {esc(loja)} de onde saiu o preço acima.",
                   f"Sem data própria: vale a da conferência do preço, {data_curta(p['preco_em'])}."))
@@ -258,6 +322,8 @@ CSS = CSS_CONFERIDO + """
 .pd-tag.refil{background:var(--verde-claro);color:var(--verde)}
 .pd-compra{display:flex;flex-direction:column;gap:10px}
 .pd-preco{font-family:var(--fonte-display);font-size:2.2rem;line-height:1;margin:0}
+.pd-criterio{font-size:.95rem;line-height:1.5;margin:0 0 8px;padding-left:12px;border-left:2px solid var(--linha-2)}
+.pd-criterio+.pd-preco{margin-top:16px}
 .pd-btns{display:flex;flex-wrap:wrap;gap:8px}
 .pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
 .pd-btn.sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
@@ -349,17 +415,7 @@ def pagina_produto(p, fichas, hist, todos):
 <p class="ig-meta">{esc(meta)} · Atualizado em <time datetime="{p['preco_em']}">{data_br(p['preco_em'])}</time></p>
 <p class="ig-lede">{esc(p.get('porque', ''))}</p>
 </div>
-<div class="ig-caixa pd-compra">
-<p class="ig-rotulo">Preço conferido</p>
-<p class="pd-preco">{reais(p['preco'])}</p>
-<p class="ig-nota">Na {esc(loja)}, em {data_curta(p['preco_em'])}. Preço muda: vale o mostrado na loja na hora da compra. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
-<div class="pd-btns">
-<a class="pd-btn" href="{esc(p['link'])}" target="_blank" rel="sponsored noopener" data-produto="{esc(p['nome'])}">{esc(link_loja(p))} ↗</a>
-<a class="pd-btn sec" href="/ferramentas/reposicao/?produto={esc(quote(p['nome']))}">Lembrete de reposição</a>
-<a class="pd-btn sec" href="/ferramentas/comparar/">Comparar</a>
-</div>
-<p class="ig-nota">Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.</p>
-</div>
+{caixa_compra(p, loja)}
 <div class="ig-caixa ig-resumo">
 <p class="ig-rotulo">Em poucas palavras</p>
 <ul>
