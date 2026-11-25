@@ -241,7 +241,7 @@
       #ps-som-sonho{position:fixed;right:16px;bottom:16px;z-index:90;font-family:var(--fonte-corpo,'Inter',sans-serif)}
       #ps-som-botao{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--linha-2,rgba(26,22,20,.14));background:var(--papel,#fff);color:var(--tinta,#1a1614);cursor:pointer;font:inherit;font-size:.85rem;box-shadow:0 4px 18px rgba(26,22,20,.1);transition:all .25s}
       #ps-som-botao:hover{border-color:var(--rosa,#b4546a);transform:translateY(-2px)}
-      #ps-som-botao[aria-pressed=true]{background:var(--rosa,#b4546a);color:#fff;border-color:var(--rosa,#b4546a)}
+      #ps-som-botao[aria-pressed=true]{background:var(--rosa,#b4546a);color:var(--sobre-rosa,#fff);border-color:var(--rosa,#b4546a)}
       #ps-som-botao[aria-pressed=true] .ps-som-onda{opacity:1}
       .ps-som-onda{opacity:.35}
       #ps-som-botao[aria-pressed=false] .ps-som-onda2{display:none}

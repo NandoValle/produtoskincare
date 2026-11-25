@@ -27,7 +27,7 @@ CSS = """
 .cp-tabela thead th{font-family:var(--fonte-display);font-size:1.05rem;font-weight:500}
 .cp-tabela tbody th{font-weight:600;color:var(--suave);width:28%}
 .cp-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
-.cp-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 16px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.cp-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 16px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 @media(prefers-color-scheme:dark){.cp-btn{color:#28131b}}
 html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#28131b}
 @media(max-width:560px){.cp-btns{grid-template-columns:1fr}.cp-tabela{font-size:.84rem}.cp-tabela th,.cp-tabela td{padding:8px 6px}.cp-tabela tbody th{width:30%}}
