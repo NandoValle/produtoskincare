@@ -11,6 +11,13 @@ Homepage photos are original generated images, stored locally. They replace the 
 - `img/tipo-normal.jpg` (1152×864) — Normal card: thin even lotion on porcelain.
 
 No third-party image request is made by visitors. Illustrative only: no testimonial, diagnosis, or endorsement is implied.
+
+## Skincare Premium — fotos dos anúncios, 2026-11-25
+
+- Files: `img/skincare-premium/<ASIN>.jpg` (about 640px on the long side).
+- Source: the main image of each Amazon.com.br listing linked from `/skincare-premium/`, saved locally so the page does not request Amazon on every visit.
+- One item has no ASIN and therefore no photo: La Roche-Posay Anthelios anti-idade, sem cor, FPS 50, 50g. Its button still opens an Amazon search.
+- These are the sellers' listing photos, not pictures made by this site. They do not imply a test, endorsement, or that the product suits a given skin.
 - Cormorant Garamond 500: https://fonts.google.com/specimen/Cormorant+Garamond. Author and SIL OFL 1.1 license included in `fonts/Cormorant-OFL.txt`; source https://github.com/google/fonts/tree/main/ofl/cormorantgaramond.
 - Manrope 400 and 600: https://fonts.google.com/specimen/Manrope. Author and SIL OFL 1.1 license included in `fonts/Manrope-OFL.txt`; source https://github.com/google/fonts/tree/main/ofl/manrope.
 - Font files downloaded from Google Fonts CSS API and stored locally. No third-party font request is made by visitors.

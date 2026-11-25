@@ -54,23 +54,34 @@ rodape = re.search(r'(<footer class="ps-rodape">.*?</footer>)', _modelo, re.S).g
 rodape = rodape.replace(f'<a href="{CAMINHO}">', f'<a href="{CAMINHO}" aria-current="page">', 1)
 
 diretos = sum(1 for p in produtos if p.get("asin"))
+FOTOS = RAIZ / "img" / "skincare-premium"
 cards = []
 for p in produtos:
     nota = (f" · ⭐ {str(p['avaliacao']).replace('.', ',')} ({e(p['reviews'])} avaliações)" if p.get("avaliacao")
             else " · sem avaliações")
     botao = "Ver na Amazon ↗" if p.get("asin") else "Buscar na Amazon ↗"
+    foto = ""
+    if p.get("asin") and (FOTOS / f"{p['asin']}.jpg").is_file():
+        foto = (f'<img class="mv-foto" src="/img/skincare-premium/{e(p["asin"])}.jpg" '
+                f'alt="{e(nome_curto(p))}" width="640" height="640" loading="lazy" decoding="async">')
     cards.append(f"""<li class="mv-item" data-cat="{e(p['categoria'])}" data-marca="{e(p['marca'])}">
-<span class="mv-cat">{e(p['categoria'])}</span>
+{foto}<span class="mv-cat">{e(p['categoria'])}</span>
 <h2 class="mv-nome">{e(nome_curto(p))}</h2>
 <p class="mv-meta">{e(p['marca'])}{nota}</p>
 <p class="mv-preco"><strong>{brl(p['preco'])}</strong> <small>em {data_br}</small></p>
 <a class="mv-btn" href="{e(link(p))}" target="_blank" rel="sponsored nofollow noopener" data-produto="{e(nome_curto(p))}">{botao}</a>
 </li>""")
 
+def item_ld(i, p):
+    item = {"@type": "ListItem", "position": i, "name": nome_curto(p)}
+    if p.get("asin"):
+        item["image"] = f"https://produtoskincare.com.br/img/skincare-premium/{p['asin']}.jpg"
+    return item
+
+
 ld = json.dumps({"@context": "https://schema.org", "@type": "ItemList",
                  "name": "Skincare Premium na Amazon Brasil", "numberOfItems": len(produtos),
-                 "itemListElement": [{"@type": "ListItem", "position": i, "name": nome_curto(p)}
-                                     for i, p in enumerate(produtos, 1)]}, ensure_ascii=False)
+                 "itemListElement": [item_ld(i, p) for i, p in enumerate(produtos, 1)]}, ensure_ascii=False)
 
 chips = "".join(f'<button type="button" class="rt-chip" data-cat="{e(c)}" aria-pressed="false">{e(c)}</button>'
                 for c in categorias)
@@ -112,8 +123,9 @@ pagina = f"""<!doctype html>
 .sp-filtros input,.sp-filtros select{{font:inherit;font-size:1rem;color:var(--tinta);background:var(--papel);border:1px solid var(--linha-2);border-radius:10px;padding:9px 12px;min-height:44px;width:100%}}
 .sp-conta{{font-size:.88rem;color:var(--suave)}}
 .mv-lista{{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}}
-.mv-item{{display:flex;flex-direction:column;gap:6px;min-width:0;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px;margin:0}}
+.mv-item{{display:flex;flex-direction:column;gap:6px;min-width:0;background:var(--papel);border:1px solid var(--linha);border-radius:8px;padding:16px;margin:0}}
 .mv-item[hidden]{{display:none}}
+.mv-foto{{width:100%;aspect-ratio:1;object-fit:contain;background:var(--papel-2);border-radius:8px;margin:0 0 6px}}
 .mv-cat{{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--verde)}}
 .mv-nome{{font-size:1.05rem;margin:0;line-height:1.3;overflow-wrap:anywhere}}
 .mv-meta{{font-size:.86rem;color:var(--suave)}}
@@ -146,7 +158,7 @@ pagina = f"""<!doctype html>
 {chr(10).join(cards)}
 </ul>
 <footer class="mv-foot">
-<p>Fonte: {e(dados['fonte'])}, consultada em {data_br}. Nome, nota e número de avaliações são os do anúncio; promessas que aparecem no nome são do vendedor e não foram verificadas por nós. A categoria de cada item foi deduzida do nome; em "Outros" ficam os itens que a Amazon lista aqui mas não são de cuidado facial, ou cujo nome não diz o tipo.</p>
+<p>Fonte: {e(dados['fonte'])}, consultada em {data_br}. Nome, nota, número de avaliações e a foto de cada card são os do anúncio na Amazon; promessas que aparecem no nome são do vendedor e não foram verificadas por nós. A categoria de cada item foi deduzida do nome; em "Outros" ficam os itens que a Amazon lista aqui mas não são de cuidado facial, ou cujo nome não diz o tipo.</p>
 <p>Veja também: <a href="/mais-vendidos/">mais vendidos na Amazon</a> · <a href="/produtos/">produtos com ficha no site</a></p>
 <p>Conteúdo informativo, não substitui consulta com dermatologista. <a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o site</a></p>
 </footer>
