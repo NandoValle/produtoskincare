@@ -6,7 +6,8 @@ Beleza Premium › Skincare Premium da Amazon Brasil (Ctrl+A, Ctrl+C na página 
 O texto copiado NÃO vai para o repositório: ele traz nome e CEP de quem estava logado.
 O texto não traz o código do produto (ASIN). Para ter link direto ao anúncio, preencha
 "asin" no JSON; sem ele o botão leva a uma busca pelo nome, e a página diz isso.
-Rodar de novo preserva os ASINs já preenchidos (casados por nome + preço cheio).
+"imagem" é o código da foto do anúncio (o trecho depois de /images/I/ no endereço da imagem na Amazon).
+Rodar de novo preserva ASIN e imagem já preenchidos (casados por nome + preço cheio).
 """
 import json
 import re
@@ -112,10 +113,10 @@ def main():
     produtos, total = ler(sys.argv[1])
     data = sys.argv[2] if len(sys.argv) > 2 else date.today().isoformat()
     if SAIDA.exists():
-        antigos = {(p["nome"], p.get("preco_de")): p.get("asin")
+        antigos = {(p["nome"], p.get("preco_de")): (p.get("asin"), p.get("imagem"))
                    for p in json.loads(SAIDA.read_text(encoding="utf-8"))["produtos"]}
         for p in produtos:
-            p["asin"] = antigos.get((p["nome"], p.get("preco_de")))
+            p["asin"], p["imagem"] = antigos.get((p["nome"], p.get("preco_de")), (None, None))
     dados = {"atualizado_em": data, "tag_afiliado": TAG, "node": NODE,
              "fonte": "Amazon.com.br — Beleza Premium › Skincare Premium, ordem \"Em destaque\"",
              "total_na_amazon": total, "total": len(produtos), "produtos": produtos}
