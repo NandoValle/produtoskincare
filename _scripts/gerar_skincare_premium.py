@@ -44,6 +44,16 @@ def link(p):
     return f"https://www.amazon.com.br/s?k={quote_plus(p['nome'][:180])}&tag={TAG}"
 
 
+def foto(p):
+    # A foto é servida pela própria Amazon; aqui só fica o código dela.
+    if not p.get("imagem"):
+        return '<span class="mv-foto mv-foto-vazia" aria-hidden="true"></span>'
+    src = f"https://m.media-amazon.com/images/I/{p['imagem']}._AC_UL320_.jpg"
+    return (f'<a class="mv-foto" href="{e(link(p))}" target="_blank" rel="sponsored nofollow noopener" tabindex="-1" aria-hidden="true">'
+            f'<img src="{e(src)}" alt="" width="160" height="160" loading="lazy" decoding="async" referrerpolicy="no-referrer" '
+            f'onerror="this.parentNode.classList.add(\'mv-foto-vazia\');this.remove()"></a>')
+
+
 def nome_curto(p):
     # O que vem depois de " | " no anúncio é texto de venda do vendedor.
     return p["nome"].split(" | ")[0].strip()
@@ -60,6 +70,7 @@ for p in produtos:
             else " · sem avaliações")
     botao = "Ver na Amazon ↗" if p.get("asin") else "Buscar na Amazon ↗"
     cards.append(f"""<li class="mv-item" data-cat="{e(p['categoria'])}" data-marca="{e(p['marca'])}">
+{foto(p)}
 <span class="mv-cat">{e(p['categoria'])}</span>
 <h2 class="mv-nome">{e(nome_curto(p))}</h2>
 <p class="mv-meta">{e(p['marca'])}{nota}</p>
@@ -114,6 +125,9 @@ pagina = f"""<!doctype html>
 .mv-lista{{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}}
 .mv-item{{display:flex;flex-direction:column;gap:6px;min-width:0;background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px;margin:0}}
 .mv-item[hidden]{{display:none}}
+.mv-foto{{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:#fff;border:1px solid var(--linha);border-radius:12px;padding:10px;margin-bottom:6px;overflow:hidden}}
+.mv-foto img{{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}}
+.mv-foto-vazia{{background:var(--linha)}}
 .mv-cat{{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--verde)}}
 .mv-nome{{font-size:1.05rem;margin:0;line-height:1.3;overflow-wrap:anywhere}}
 .mv-meta{{font-size:.86rem;color:var(--suave)}}
@@ -146,7 +160,7 @@ pagina = f"""<!doctype html>
 {chr(10).join(cards)}
 </ul>
 <footer class="mv-foot">
-<p>Fonte: {e(dados['fonte'])}, consultada em {data_br}. Nome, nota e número de avaliações são os do anúncio; promessas que aparecem no nome são do vendedor e não foram verificadas por nós. A categoria de cada item foi deduzida do nome; em "Outros" ficam os itens que a Amazon lista aqui mas não são de cuidado facial, ou cujo nome não diz o tipo.</p>
+<p>Fonte: {e(dados['fonte'])}, consultada em {data_br}. Nome, foto, nota e número de avaliações são os do anúncio, e a foto é carregada direto da Amazon; promessas que aparecem no nome são do vendedor e não foram verificadas por nós. A categoria de cada item foi deduzida do nome; em "Outros" ficam os itens que a Amazon lista aqui mas não são de cuidado facial, ou cujo nome não diz o tipo.</p>
 <p>Veja também: <a href="/mais-vendidos/">mais vendidos na Amazon</a> · <a href="/produtos/">produtos com ficha no site</a></p>
 <p>Conteúdo informativo, não substitui consulta com dermatologista. <a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o site</a></p>
 </footer>
