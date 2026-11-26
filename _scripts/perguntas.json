@@ -1199,11 +1199,11 @@
   ],
   [
    "O que significa “em construção”?",
-   "Que ainda não há histórico suficiente para comparar o preço de hoje. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
+   "Que ainda não há histórico suficiente para comparar o último preço registrado. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
   ],
   [
-   "Posso ser avisado quando o preço cair?",
-   "Sim, nas páginas de produto: o alerta fica guardado só no seu aparelho, sem cadastro. Quando você voltar ao site, se o preço tiver atingido o valor que você escolheu, o aviso aparece."
+   "O preço mostrado é o de hoje?",
+   "Não. Cada valor é o último preço registrado, na data que aparece ao lado, e pode ter mudado na loja. Produto marcado como “sem oferta verificada” tem link para a busca da loja, não para um anúncio conferido, então o valor é só uma referência."
   ]
  ],
  "/ferramentas/protocolo-n1/": [
@@ -2838,6 +2838,16 @@
   [
    "Senti desconforto com um produto de skincare: o que o site orienta?",
    "Parar o produto suspeito, voltar ao básico que já era usado sem problema, não testar outro produto novo e guardar a embalagem. A página não faz diagnóstico: com inchaço, falta de ar, bolhas ou dor forte, o caminho é atendimento médico imediato; sem melhora em poucos dias, um dermatologista."
+  ]
+ ],
+ "/skincare-premium/": [
+  [
+   "O que é a lista Skincare Premium do Produto Skincare?",
+   "É a lista dos produtos que a Amazon Brasil mostrava na categoria Beleza Premium › Skincare Premium na data indicada na página, na ordem \"Em destaque\" da loja. A página avisa que é a vitrine da Amazon, não uma seleção do site, e que estar na lista não quer dizer que o produto serve para a sua pele."
+  ],
+  [
+   "Os preços da lista Skincare Premium valem na hora da compra?",
+   "Não necessariamente. Os preços têm a data em que foram anotados, e a página avisa que parte deles é promocional ou à vista no Pix e pode mudar a qualquer momento. Vale o preço mostrado na Amazon na hora da compra."
   ]
  ]
 }
