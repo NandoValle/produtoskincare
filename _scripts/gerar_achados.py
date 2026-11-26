@@ -81,6 +81,27 @@ def preco_velho(iso, agora):
     return idade > PRECO_VELHO_DIAS
 
 
+SEU = {"Séruns": "o sérum", "Limpeza": "o sabonete ou gel de limpeza", "Hidratação": "o hidratante",
+       "Protetor solar": "o protetor solar", "Cabelo": "o produto de cabelo", "Perfumes": "o perfume"}
+NIVEL = {"forte": "forte", "moderada": "moderada", "emergente": "emergente"}
+
+
+def criterio(produto):
+    """Por que o produto está em Achados: escolha do site, por categoria. Mesmo texto do script da página."""
+    cat = str(produto.get("categoria") or "").lower()
+    texto = "escolha do site" + (f" em {cat}" if cat else "") + " no TikTok Shop."
+    nivel = NIVEL.get(produto.get("evidencia"))
+    if nivel:
+        texto += f" O ativo principal tem evidência {nivel}; a fórmula deste produto não foi avaliada."
+    return texto
+
+
+def nao_vale(produto):
+    seu = SEU.get(produto.get("categoria"))
+    return (f"se {seu} que você já usa funciona bem para você." if seu
+            else "se o que você já tem em casa cumpre a mesma função.")
+
+
 def card(produto, agora):
     linhas = ['    <article class="card">']
     if produto.get("foto"):
@@ -101,6 +122,8 @@ def card(produto, agora):
             '      <span class="selo" title="O selo avalia o ativo principal, não a fórmula deste produto.">'
             f'<a href="/ingredientes/peptideo-de-cobre/">{esc(selo)}</a></span>'
         )
+    linhas.append(f'      <p class="criterio"><b>Por que está aqui:</b> {esc(criterio(produto))}</p>')
+    linhas.append(f'      <p class="criterio"><b>Talvez não valha a pena:</b> {esc(nao_vale(produto))}</p>')
     linhas.append('      <div class="preco">')
     if isinstance(produto.get("preco"), (int, float)) and not isinstance(produto.get("preco"), bool):
         linhas.append(f"        <strong>{esc(brl(produto['preco']))}</strong>")
@@ -120,7 +143,7 @@ def card(produto, agora):
             f'rel="sponsored nofollow noopener" data-produto="{esc(produto["nome"])}">Ver no TikTok Shop</a>'
         )
     else:
-        linhas.append('      <a class="botao" aria-disabled="true">Link indisponível</a>')
+        linhas.append('      <a class="botao" aria-disabled="true">Sem oferta verificada</a>')
     outras = [o for o in produto.get("ofertas") or [] if link_valido(o, agora)]
     if outras:
         linhas.append('      <details class="ofertas">')

@@ -1,0 +1,63 @@
+SÉRIE MITO X REGRA — formato, rotina semanal e pauta
+====================================================
+
+Página da série: /mito-x-regra/  (gerada por _scripts/gerar_serie_mito.py)
+Ritmo: 1 episódio por semana, sempre no mesmo dia.
+
+FORMATO FIXO DO EPISÓDIO
+------------------------
+Slug:    mito-x-regra-<assunto>
+Título:  Mito x regra: <a regra em uma frase>
+Linha de dados: "Série Mito x regra · Publicado em <data> · Leitura de N minutos"
+Blocos, nesta ordem (copiar a estrutura de um episódio publicado):
+  1. Selo da série (<p class="mr-selo-serie">) — o script põe o número.
+  2. Par mito/regra (<div class="mr-duas">): a frase do mito entre aspas e a regra em uma frase.
+  3. "Resposta direta" em um parágrafo.
+  4. Seção "O mito": de onde vem a frase, sem caricatura.
+  5. Seção "A regra": a norma da Anvisa (número da RDC e artigo) ou o estudo (autor, ano, revista).
+  6. Seção prática: o que fazer, em passos curtos.
+  7. Fontes, com link.
+Regra da casa: só entra o que a fonte diz. Sem fonte conferida, o episódio não sai.
+
+ROTINA DE PUBLICAÇÃO (na ordem)
+-------------------------------
+  1. Escrever blog/<slug>/index.html e o cartão em blog/index.html (tag "… · Mito x regra").
+  2. Capa: _roteiros/capas.txt e  python -I _scripts/capa_post.py --slug <slug> --img <arquivo> --alt "..."
+  3. Pin: python -I _scripts/pin_post.py --slug <slug>
+  4. Acrescentar o slug no FIM de EPISODIOS em _scripts/gerar_serie_mito.py e rodar
+       python -I _scripts/gerar_serie_mito.py
+  5. Duas perguntas do episódio em _scripts/perguntas.json.
+  6. python -I _scripts/seo.py ; python -I _scripts/prontidao.py ; python -I _scripts/gerar_feed.py
+
+EPISÓDIOS PUBLICADOS
+--------------------
+  nº 01  mito-x-regra-ardencia-nao-e-eficacia   Ardência não é sinal de que o produto está funcionando
+  nº 02  mito-x-regra-sunblock-100              "Sunblock" e "100% de proteção" não existem no rótulo brasileiro
+  nº 03  mito-x-regra-resistente-agua           "Resistente à água" não dispensa a reaplicação
+
+PAUTA — MITOS A CONFERIR (ainda sem fonte verificada)
+-----------------------------------------------------
+Cada linha é uma frase que circula e ONDE procurar a resposta. Nenhuma delas está confirmada
+aqui: o episódio só é escrito depois de ler a fonte. Se a fonte não sustentar uma regra clara,
+o tema sai da pauta.
+
+  - "Hipoalergênico quer dizer que não dá alergia."
+      Procurar: regras da Anvisa para alegações em rótulo de cosméticos.
+  - "Dermatologicamente testado é garantia de que funciona."
+      Procurar: o que a Anvisa exige para essa alegação.
+  - "Natural é sempre mais seguro."
+      Procurar: alertas e cosmetovigilância da Anvisa; revisões sobre dermatite de contato por extratos vegetais.
+  - "FPS 60 protege o dobro do FPS 30."
+      Procurar: definição de FPS na RDC de protetores solares; literatura sobre absorção de UVB por FPS.
+  - "Em dia nublado ou dentro de casa não precisa de protetor."
+      Procurar: orientações da SBD; estudos sobre UVA através de nuvens e vidro.
+  - "Pele oleosa não precisa de hidratante."
+      Procurar: revisões sobre barreira cutânea e acne.
+  - "Quanto mais alta a concentração do ativo, melhor o resultado."
+      Procurar: estudos de dose-resposta de retinol, vitamina C e niacinamida.
+  - "Cosmético 'anti-idade' tem que provar que tira ruga."
+      Procurar: classificação de cosméticos (grau 1 e 2) e exigência de comprovação na Anvisa.
+  - "Produto importado comprado online segue as mesmas regras."
+      Procurar: regularização de cosméticos importados na Anvisa.
+  - "Protetor solar com cor substitui a base e o protetor."
+      Procurar: RDC de protetores solares (quantidade aplicada e FPS declarado).
