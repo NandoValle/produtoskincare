@@ -47,10 +47,10 @@
           "rotina": {
             "type": "string",
             "enum": [
-              "5",
-              "3"
+              "3",
+              "5"
             ],
-            "description": "Número de passos: 5 (completa, com tratamento) ou 3 (essencial: limpeza, hidratação e protetor solar)."
+            "description": "Número de passos: 3 (essencial: limpeza, hidratação e protetor solar; é o padrão) ou 5 (completa, com tratamento)."
           },
           "sensivel": {
             "type": "boolean",
@@ -104,10 +104,10 @@
           "name": "rotina",
           "type": "select-one",
           "required": false,
-          "description": "Número de passos: 5 (completa, com tratamento) ou 3 (essencial: limpeza, hidratação e protetor solar).",
+          "description": "Número de passos: 3 (essencial: limpeza, hidratação e protetor solar; é o padrão) ou 5 (completa, com tratamento).",
           "options": [
-            "5",
-            "3"
+            "3",
+            "5"
           ]
         },
         {
