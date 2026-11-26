@@ -1,0 +1,15 @@
+{
+ "_leia": "Versão e changelog do dataset aberto (/dados-abertos/). Ao mudar o formato dos arquivos de /dados/ (campo novo, campo renomeado, arquivo novo), suba a versão e acrescente uma entrada aqui, no topo. Depois rode: python3 -I _scripts/gerar_dados_abertos.py",
+ "versao": "0.1.0",
+ "changelog": [
+  {
+   "versao": "0.1.0",
+   "em": "2026-11-24",
+   "mudancas": [
+    "Primeira publicação: produtos, preços datados, fórmulas (INCI) e mudanças detectadas, em CSV e JSON.",
+    "Links de loja publicados sem identificador de afiliado.",
+    "Licença CC BY 4.0."
+   ]
+  }
+ ]
+}

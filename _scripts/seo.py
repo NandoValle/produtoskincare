@@ -31,9 +31,10 @@ HOJE = date.today().isoformat()
 IGNORAR = {"_arquivo", "_scripts", "_servidor", ".git", "fotos", "fonts", "img", "icones"}
 ROTULOS = {"blog": "Blog", "ingredientes": "Ingredientes", "condicoes": "Condições", "pele": "Tipos de pele",
            "ferramentas": "Ferramentas", "achados": "Achados", "provador": "Provador", "sobre": "Sobre",
-           "privacidade": "Privacidade", "termos": "Termos de uso", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos",
+           "privacidade": "Privacidade", "termos": "Termos de uso", "pergunte": "Pergunte à IA", "mais-vendidos": "Mais vendidos", "skincare-premium": "Skincare Premium",
            "rotina-de-skincare": "Rotina de skincare", "fortskin": "FortSkin", "en": "English", "es": "Español",
-           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?", "ativos": "Ativos"}
+           "contato": "Contato", "produtos": "Produtos", "comparativos": "Comparativos", "combina": "Posso usar junto?", "ativos": "Ativos",
+           "dados-abertos": "Dados abertos", "independencia": "Carta aberta"}
 # Páginas com versão em outro idioma (hreflang). Os guias traduzidos ficam em _scripts/traducoes.json.
 TRADUCOES = [{"pt-BR": "/", "en": "/en/", "es": "/es/"}] + [
     g for g in json.loads((RAIZ / "_scripts" / "traducoes.json").read_text(encoding="utf-8"))["grupos"]]
