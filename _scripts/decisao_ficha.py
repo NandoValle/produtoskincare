@@ -9,6 +9,9 @@ As quatro respostas ficam logo depois do título, antes de "Em poucas palavras":
   3. Em que etapa entra?
   4. O que sabemos sobre o benefício? (o ingrediente e a fórmula final, em linhas separadas)
 
+Depois da etapa entra um quinto item, "Você já tem este ativo em casa?", que sai oculto do HTML:
+o /ritual.js o preenche no navegador com a Minha prateleira de quem visita (salva só no aparelho).
+
 O script NÃO escreve conteúdo novo sobre o ativo: cada resposta é montada com o que a própria
 ficha já diz (resumo, selos, nível, categoria, caixa de evidência). O que a ficha não diz fica
 de fora. Referências, detalhes e combinações continuam logo abaixo, como estavam.
@@ -129,7 +132,18 @@ def respostas(pagina):
     return considerar, pular, etapa, ingrediente, formula
 
 
-def bloco(r):
+RITUAL = object()
+
+
+def nome_do_ativo(pagina):
+    """Nome do título e nome INCI da ficha: é o que o /ritual.js procura na prateleira de quem visita."""
+    h1 = re.search(r"<h1>([^<]*)</h1>", pagina)
+    inci = re.search(r"aparece como <i>([^<]*)</i>", pagina)
+    partes = [html.unescape(h1.group(1)).split(":")[0].strip() if h1 else "", html.unescape(inci.group(1)).strip() if inci else ""]
+    return ", ".join(x for x in partes if x)
+
+
+def bloco(r, nome_ativo=""):
     considerar, pular, etapa, ingrediente, formula = r
     itens = []
     if considerar:
@@ -137,11 +151,17 @@ def bloco(r):
     itens.append(("Quando faz sentido pular?", "<ul>" + "".join(f"<li>{x}</li>" for x in pular) + "</ul>"))
     if etapa:
         itens.append(("Em que etapa entra?", f"<p>{html.escape(etapa, quote=False)}</p>"))
+    itens.append(RITUAL)
     itens.append(("O que sabemos sobre o benefício?",
                   f'<p><span class="ig-d-rotulo">Sobre o ingrediente:</span> {ingrediente}</p>'
                   f'<p><span class="ig-d-rotulo">Sobre a fórmula final:</span> {formula}</p>'))
-    corpo = "".join(f'<div class="ig-d"><dt>{t}</dt><dd>{d}</dd></div>' for t, d in itens)
-    return f'{INI}\n{CSS}\n<section class="ig-decisao" aria-label="Para decidir"><dl>{corpo}</dl></section>\n{FIM}\n'
+    # "Você já tem este ativo em casa?": fica oculto no HTML e só aparece quando o /ritual.js
+    # lê a Minha prateleira, salva no aparelho de quem visita. Não é texto sobre o ativo.
+    corpo = "".join(
+        f'<div class="ig-d" data-ritual="{html.escape(nome_ativo)}" hidden><dt>Você já tem este ativo em casa?</dt><dd></dd></div>'
+        if item is RITUAL else f'<div class="ig-d"><dt>{item[0]}</dt><dd>{item[1]}</dd></div>' for item in itens)
+    return (f'{INI}\n{CSS}\n<section class="ig-decisao" aria-label="Para decidir"><dl>{corpo}</dl></section>\n'
+            f'<script src="/ritual.js" defer></script>\n{FIM}\n')
 
 
 BUSCA = re.compile(r'<p><a href="https://www\.amazon\.com\.br/s\?[^"]*"[^>]*>Ver opções com [^<]*</a></p>\n?')
@@ -174,7 +194,7 @@ def main():
                 puladas += 1
                 print("sem bloco:", arq.relative_to(RAIZ))
             else:
-                pagina = pagina[:ancora.start()] + bloco(r) + pagina[ancora.start():]
+                pagina = pagina[:ancora.start()] + bloco(r, nome_do_ativo(pagina)) + pagina[ancora.start():]
                 feitas += 1
             pagina = tirar_busca(pagina)
             if pagina != original:

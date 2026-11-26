@@ -647,7 +647,26 @@
 
   medirTopo();
   raiz.classList.add("atlas-js");
-  [el.busca, el.rotulo, el.painel, el.prontas, $(".at-temas")].forEach(function (x) { if (x) x.hidden = false; });
+  [el.busca, el.rotulo, el.painel, el.prontas, $(".at-temas"), $("#at-tarefas")].forEach(function (x) { if (x) x.hidden = false; });
+
+  // As três tarefas do topo: cada uma leva ao que já existe e põe o foco no lugar certo.
+  var tarefas = $("#at-tarefas");
+  if (tarefas) tarefas.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-tarefa]");
+    if (!a) return;
+    var suave = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    if (a.getAttribute("data-tarefa") === "objetivo") {
+      e.preventDefault();
+      el.q.focus({ preventScroll: true });
+      el.busca.scrollIntoView({ behavior: suave, block: "center" });
+    } else if (a.getAttribute("data-tarefa") === "rotulo") {
+      e.preventDefault();
+      el.rotulo.open = true;
+      el.rotulo.scrollIntoView({ behavior: suave, block: "start" });
+      var campo = $("#at-inci");
+      if (campo) campo.focus({ preventScroll: true });
+    }
+  });
   escolherTema("barreira");
   ligarGrafo();
   render();
