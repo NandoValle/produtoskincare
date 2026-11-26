@@ -31,3 +31,36 @@ Confira os preços atuais em https://www.anthropic.com/pricing.
 
 Privacidade: a função não grava perguntas nem respostas. Elas passam pela
 Anthropic para gerar a resposta, sob a política de dados da Anthropic.
+
+
+Relato "este frasco está diferente?" — como ligar
+=================================================
+
+As fichas de produto (/produtos/<id>/) têm o botão "Este frasco está diferente
+do anterior?". Ele envia para a função "relato" o id do produto, o que mudou
+(cheiro, textura, cor, ardência) e mais nada. A função grava uma linha na
+tabela relatos_frasco: produto, o que mudou e o dia. Não grava IP nem texto.
+
+Enquanto a função não estiver publicada, o botão responde "Não foi possível
+registrar agora" e aponta o e-mail de contato. Nada quebra.
+
+1. Crie a tabela: Painel do Supabase > SQL Editor > cole e rode o arquivo
+   _servidor/supabase/migrations/20261126_relatos_frasco.sql
+   (ou, pela CLI, "supabase db push" dentro de _servidor).
+2. Publique a função:
+     cd _servidor
+     supabase link --project-ref zzjeaeauggbflxdahtkk
+     supabase functions deploy relato --no-verify-jwt
+   Ela usa SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY, que o Supabase já fornece.
+3. O endereço já está em RELATO_ENDPOINT, no _scripts/gerar_produtos.py. Se o
+   projeto mudar, troque lá e rode o gerador, o seo.py e o prontidao.py.
+
+Como ler os relatos: Painel do Supabase > SQL Editor >
+     select * from public.relatos_frasco_30d;
+Mostra, por produto, quantos relatos chegaram nos últimos 30 dias e de que tipo.
+
+Regra editorial: relato não é prova e não vira selo sozinho. Ele indica qual
+produto conferir de novo na loja. Se a fórmula ou o volume mudou, registre em
+_scripts/precos/dados/incis.json ou tamanhos.json e rode o snapshot_catalogo.py:
+a mudança entra em produtos/mudancas.json e a ficha passa a mostrar o aviso
+"Mudança registrada neste produto", com a data.

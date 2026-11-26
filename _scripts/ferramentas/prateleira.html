@@ -209,6 +209,25 @@
     return periodos.length === 2 ? "de manhã e à noite" : periodos[0] === "manha" ? "de manhã" : "à noite";
   }
 
+  // ===== Repetição em reais: só preço do catálogo (/produtos.json), sempre com a data em que foi registrado =====
+  function dataBR(iso) { return String(iso).split("-").reverse().join("/"); }
+  function precoRegistrado(it) {
+    if (!it.id) return null;
+    var p = catalogo.filter(function (x) { return x.id === it.id; })[0];
+    if (!p || typeof p.preco !== "number" || !(p.preco > 0) || !/^\d{4}-\d{2}-\d{2}$/.test(p.preco_em || "")) return null;
+    return { id: p.id, nome: it.nome, preco: p.preco, em: p.preco_em };
+  }
+  /* O que a pessoa deixa de gastar se não repuser um dos repetidos: o mais barato entre os que têm preço registrado. */
+  function economia(r) {
+    var comPreco = r.itens.map(precoRegistrado).filter(Boolean).sort(function (a, b) { return a.preco - b.preco; });
+    if (!comPreco.length) return null;
+    var e = comPreco[0];
+    e.obs = comPreco.length === r.itens.length ? (r.itens.length === 2 ? " É o mais barato dos dois." : " É o mais barato entre eles.")
+      : comPreco.length > 1 ? " É o mais barato entre os que têm preço registrado no catálogo."
+      : (r.itens.length === 2 ? " O outro não tem preço registrado no catálogo." : " Os outros não têm preço registrado no catálogo.");
+    return e;
+  }
+
   function desenhar() {
     var d = P.ler();
     $("pr-sensivel").checked = d.sensivel;
@@ -228,10 +247,22 @@
         (c.porSensibilidade ? '<span class="ft-sub">Resultado mais rígido porque você marcou pele sensível.</span>' : "") +
         (c.resultado === "horarios" ? '<span class="ft-sub">Dica: desmarque ' + esc(quando(c.periodos).replace(/^de |^à /, "")) + ' em um dos dois, na lista acima.</span>' : "") + '</div>');
     });
+    var somados = {}, total = 0, parcelas = 0;
     a.repetidos.forEach(function (r) {
+      var e = economia(r), valor = "";
+      if (e) {
+        valor = '<span class="ft-sub pr-economia">Se você não repuser ' + esc(e.nome) + ', deixa de gastar ' + reais(e.preco) + ' (preço registrado em ' + esc(dataBR(e.em)) + ').' + e.obs + '</span>';
+        if (!somados[e.id]) { somados[e.id] = true; total += e.preco; parcelas++; }
+      } else if (catalogo.length) {
+        valor = '<span class="ft-sub pr-economia">Sem preço registrado no catálogo para estes produtos, então não mostramos valor.</span>';
+      }
       h.push('<div class="ft-info"><strong>🔁 Repetido: ' + esc(r.nomeClasse) + '</strong>' + esc(r.itens.map(function (i) { return i.nome; }).join(" e ")) +
-        ' trazem ' + esc(r.nomeClasse) + ' ' + quando(r.periodos) + '. Talvez um baste: dois do mesmo grupo somam mais chance de irritação e mais gasto.</div>');
+        ' trazem ' + esc(r.nomeClasse) + ' ' + quando(r.periodos) + '. Talvez um baste: dois do mesmo grupo somam mais chance de irritação e mais gasto.' + valor + '</div>');
     });
+    if (parcelas > 1) {
+      h.push('<div class="ft-info" id="pr-economia-total"><strong>Soma das repetições: ' + reais(total) + '</strong>É a soma dos ' + parcelas +
+        ' preços registrados acima, cada um na data indicada. Preço muda: confira antes de decidir.</div>');
+    }
     a.faltando.forEach(function (passo) {
       var texto = passo === "protetor"
         ? "Não há protetor solar na sua prateleira." + (a.fotossensivel ? " Com ácidos ou retinoides, ele é indispensável todos os dias." : " Ele é o passo que mais protege a pele no dia a dia.")

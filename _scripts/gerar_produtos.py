@@ -216,6 +216,50 @@ def ultimo_snapshot(pid):
     return pontos[-1] if pontos else {}
 
 
+RELATO_ENDPOINT = "https://zzjeaeauggbflxdahtkk.supabase.co/functions/v1/relato"
+
+
+def mudancas_confirmadas(pid):
+    """Mudanças de fórmula ou de volume do produto já registradas no Extrato (produtos/mudancas.json)."""
+    arq = DESTINO / "mudancas.json"
+    if not arq.exists():
+        return []
+    itens = json.loads(arq.read_text(encoding="utf-8")).get("itens", [])
+    return [i for i in itens if i.get("produto_id") == pid and i.get("tipo") in ("formula", "volume")]
+
+
+def selo_mudanca(pid):
+    """Aviso de mudança na ficha. Só aparece com registro datado no Extrato: relato de leitor não gera aviso."""
+    itens = sorted(mudancas_confirmadas(pid), key=lambda i: i.get("em", ""), reverse=True)
+    if not itens:
+        return ""
+    linhas = "".join(f"<li>{data_curta(i['em'])}: {esc(i['leitura'])}.</li>" for i in itens[:3])
+    return ('<div class="pd-mudou"><p><strong>Mudança registrada neste produto</strong></p>'
+            f'<ul>{linhas}</ul><p class="ig-nota">Registro datado do <a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a>, '
+            'feito pela comparação do anúncio e da embalagem entre duas datas.</p></div>\n')
+
+
+def bloco_relato(p):
+    """Relato "este frasco está diferente?": vai para o servidor só com o produto, o que mudou e o dia."""
+    assunto = quote(f"Frasco diferente: {p['nome']}")
+    return f"""<details class="pd-bate" id="frasco-diferente">
+<summary>Este frasco está diferente do anterior?</summary>
+<form data-pd-relato data-id="{esc(p['id'])}" data-produto="{esc(p['nome'])}" hidden>
+<fieldset>
+<legend>O que mudou em relação ao frasco anterior?</legend>
+<label><input type="checkbox" name="mudou" value="cheiro"> Cheiro</label>
+<label><input type="checkbox" name="mudou" value="textura"> Textura</label>
+<label><input type="checkbox" name="mudou" value="cor"> Cor</label>
+<label><input type="checkbox" name="mudou" value="ardencia"> Arde ou irrita, e antes não</label>
+</fieldset>
+<button type="submit" class="pd-btn">Registrar</button>
+<p class="ig-nota" role="status" data-pd-relato-aviso></p>
+</form>
+<p class="ig-nota">O registro leva só o produto, o que você marcou e o dia. Não leva nome, e-mail nem texto, e não aparece no site. Um relato não prova que a fórmula mudou: ele nos diz qual produto conferir de novo na loja. Mudança confirmada entra no <a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a>, com data. Detalhes na <a href="/privacidade/">política de privacidade</a>. Se preferir, escreva para <a href="mailto:{EMAIL}?subject={assunto}">{EMAIL}</a>.</p>
+<p class="ig-nota">Ardência forte, inchaço ou reação que não passa: pare de usar e procure um dermatologista.</p>
+</details>"""
+
+
 def bloco_conferido(p, loja):
     """O que foi conferido nesta ficha, item por item, com a data de cada conferência.
 
@@ -247,7 +291,7 @@ def bloco_conferido(p, loja):
     assunto = quote(f"Algo não bate: {p['nome']}")
     return f"""<section aria-labelledby="conferido">
 <h2 id="conferido">O que foi conferido nesta ficha</h2>
-<dl class="pd-conf">{linhas}</dl>
+{selo_mudanca(p["id"])}<dl class="pd-conf">{linhas}</dl>
 <p class="ig-nota">São conferências de preço, embalagem e link, feitas na loja. Não são revisão científica nem avaliação médica do produto. A data no alto da página é a da última conferência de preço.</p>
 <details class="pd-bate" id="algo-nao-bate">
 <summary>Algo não bate?</summary>
@@ -267,6 +311,7 @@ def bloco_conferido(p, loja):
 </form>
 <p class="ig-nota">O aviso sai do seu aplicativo de e-mail, com a mensagem já montada, e só é enviado se você confirmar. O site não guarda o que você escreve. Se o aplicativo não abrir, escreva para <a href="mailto:{EMAIL}?subject={assunto}">{EMAIL}</a>. Não mande dados de saúde nem fotos de lesões.</p>
 </details>
+{bloco_relato(p)}
 </section>"""
 
 
@@ -285,7 +330,37 @@ JS_BATE = """<script>
     try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/algo-nao-bate"); } catch (e) {}
   });
 })();
+</script>
+<script>
+(function () {
+  var f = document.querySelector("[data-pd-relato]");
+  if (!f || !window.fetch) return;
+  var ENDPOINT = "__RELATO__", id = f.getAttribute("data-id"), aviso = f.querySelector("[data-pd-relato-aviso]");
+  var botao = f.querySelector("button"), CHAVE = "ps_relato_" + id, MES = 30 * 24 * 60 * 60 * 1000;
+  function ja() { try { return Date.now() - Number(localStorage.getItem(CHAVE) || 0) < MES; } catch (e) { return false; } }
+  function fechar(texto) { aviso.textContent = texto; botao.disabled = true; f.querySelectorAll("input").forEach(function (i) { i.disabled = true; }); }
+  f.hidden = false;
+  if (ja()) { fechar("Você já registrou um relato deste produto neste aparelho nos últimos 30 dias."); return; }
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var mudou = [].map.call(f.querySelectorAll('input[name="mudou"]:checked'), function (i) { return i.value; });
+    if (!mudou.length) { aviso.textContent = "Marque pelo menos um item."; return; }
+    botao.disabled = true; aviso.textContent = "Registrando…";
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ produto: id, mudou: mudou }) })
+      .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+      .then(function () {
+        try { localStorage.setItem(CHAVE, String(Date.now())); } catch (e) {}
+        fechar("Registrado. Obrigado: vamos usar para decidir o que conferir de novo.");
+        try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/frasco-diferente"); } catch (e) {}
+      })
+      .catch(function () {
+        botao.disabled = false;
+        aviso.textContent = "Não foi possível registrar agora. Tente mais tarde ou escreva para o e-mail abaixo.";
+      });
+  });
+})();
 </script>""" % EMAIL
+JS_BATE = JS_BATE.replace("__RELATO__", RELATO_ENDPOINT)
 
 
 CSS_CONFERIDO = """
@@ -306,11 +381,14 @@ CSS_CONFERIDO = """
 .pd-bate fieldset{border:0;padding:0;margin:0;min-width:0}
 .pd-bate legend,.pd-bate form>label{padding:0;font-weight:700}
 .pd-bate fieldset label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:9px 0;cursor:pointer;line-height:1.45}
-.pd-bate input[type=radio]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.pd-bate input[type=radio],.pd-bate input[type=checkbox]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
 .pd-bate textarea{font:inherit;width:100%;padding:12px 14px;border:1.5px solid var(--linha-2);border-radius:12px;background:var(--fundo);color:var(--tinta);resize:vertical}
 .pd-bate .pd-btn{border:0;cursor:pointer;font:inherit;font-weight:600;align-self:flex-start}
 .pd-bate form>.ig-nota{margin:0}
 .pd-bate form>.ig-nota:empty{display:none}
+.pd-bate button:disabled{opacity:.5;cursor:default}
+.pd-mudou{margin:0 0 14px;padding:14px 16px;border-left:4px solid #b7791f;border-radius:0 12px 12px 0;background:#fff4dd;color:#5c3d00}
+.pd-mudou p{margin:0}.pd-mudou ul{margin:6px 0}.pd-mudou a{color:inherit}
 """
 
 CSS = CSS_CONFERIDO + """

@@ -1224,6 +1224,10 @@
   [
    "A ordem dos ingredientes no rótulo mostra a quantidade de cada um?",
    "Em parte. Pela regra da ANVISA citada na página, a ordem é decrescente de quantidade até os 1% mais baixos, e depois é livre. A lista mostra composição, não concentração, e termos como hipoalergênico são marcados como não verificáveis."
+  ],
+  [
+   "O que é a linha do 1% na lista de ingredientes?",
+   "É o ponto da lista marcado pelo primeiro conservante com teto de 1% ou menos, como o fenoxietanol. O que aparece depois dele está em 1% ou menos. O Raio-X compara isso com a concentração usual da ficha do ativo; é estimativa de teto, não medida."
   ]
  ],
  "/ferramentas/relatorio/": [

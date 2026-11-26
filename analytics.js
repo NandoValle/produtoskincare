@@ -61,4 +61,16 @@
     var produto = a.getAttribute("data-produto") || a.textContent;
     enviar("clique/" + l + "/" + pagina + "/" + slug(produto), "Clique " + l + ": " + String(produto).trim().slice(0, 80));
   }, true);
+
+  // Aviso de clima no topo (/clima-aviso.js). Fica aqui porque este é o script que todas as páginas carregam.
+  // Só baixa o arquivo para quem já guardou uma cidade em /ferramentas/clima/; sem cidade, nada é pedido
+  // nem consultado. Não tem relação com a contagem de visitas: nada do clima vai para o GoatCounter.
+  try {
+    if (localStorage.getItem("ps_clima_cidade") && !window.PSClima) {
+      var clima = document.createElement("script");
+      clima.src = "/clima-aviso.js";
+      clima.async = true;
+      document.head.appendChild(clima);
+    }
+  } catch (e) {}
 })();

@@ -143,17 +143,19 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
 </div>
 
 <section aria-labelledby="hoje" id="cl-ao-vivo" hidden>
-<h2 id="hoje">UV de hoje na sua cidade</h2>
+<h2 id="hoje">UV e qualidade do ar de hoje na sua cidade</h2>
 <form id="cl-form" class="ig-caixa cl-form" autocomplete="off">
 <label for="cl-cidade">Cidade</label>
 <div class="cl-linha">
 <input id="cl-cidade" required minlength="2" placeholder="Ex.: Belo Horizonte">
-<button type="submit" class="cl-btn">Ver o UV</button>
+<button type="submit" class="cl-btn">Ver o UV e o ar</button>
+<button type="button" class="cl-btn cl-sec" id="cl-esquecer" hidden>Esquecer a cidade</button>
 </div>
 <div id="cl-opcoes" class="cl-opcoes"></div>
-<p class="ig-nota">O nome da cidade é enviado ao serviço de previsão do tempo para buscar os dados. A localização exata do seu aparelho não é usada.</p>
+<p class="ig-nota">O nome da cidade é enviado ao serviço de previsão do tempo (Open-Meteo) para achar as coordenadas dela. Depois, só essas coordenadas vão para a previsão do tempo e para a previsão de qualidade do ar do mesmo serviço. A localização do seu aparelho não é usada.</p>
+<p class="ig-nota">A cidade fica guardada só neste aparelho. Enquanto ela estiver guardada, as outras páginas do site consultam o serviço no máximo uma vez por dia para mostrar um aviso no topo quando o UV chega a 8 ou o ar está ruim. "Esquecer a cidade" apaga a cidade e desliga o aviso.</p>
 </form>
-<div id="cl-resultado" role="status" aria-live="polite"></div>
+<div id="cl-resultado" role="status" aria-live="polite"><div id="cl-uv"></div><div id="cl-ar"></div></div>
 </section>
 
 <section aria-labelledby="escala">
@@ -169,6 +171,23 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
 </tbody>
 </table>
 <p class="ig-nota">Faixas da escala internacional do índice UV. A partir de 3, os serviços de previsão europeus já indicam proteção.</p>
+</section>
+
+<section aria-labelledby="ar">
+<h2 id="ar">Qualidade do ar: o que cada faixa quer dizer</h2>
+<table class="ig-tabela cl-tabela">
+<thead><tr><th>Índice</th><th>Faixa</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td><span class="cl-cor" style="--c:#50ccaa"></span>0 a 20</td><td>Bom</td><td>Nada a mudar na rotina.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#9bd34f"></span>20 a 40</td><td>Razoável</td><td>Nada a mudar na rotina.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#d4b300"></span>40 a 60</td><td>Moderado</td><td>Rotina de sempre. A limpeza habitual à noite basta.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#e07b00"></span>60 a 80</td><td>Ruim</td><td>À noite, limpe bem o rosto para tirar a sujeira, o suor e o protetor acumulados no dia.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#c8102e"></span>80 a 100</td><td>Muito ruim</td><td>À noite, limpe bem o rosto. Para a saúde, vale a orientação das autoridades locais.</td></tr>
+<tr><td><span class="cl-cor" style="--c:#7b2c8e"></span>Acima de 100</td><td>Extremamente ruim</td><td>À noite, limpe bem o rosto. Para a saúde, vale a orientação das autoridades locais.</td></tr>
+</tbody>
+</table>
+<p>Não há consenso de que algum cosmético proteja a pele da poluição. Por isso a única recomendação aqui é a limpeza de sempre, bem feita, com o limpador que você já usa.</p>
+<p class="ig-nota">Faixas do índice europeu de qualidade do ar (European AQI), do jeito que a Open-Meteo publica. O índice foi criado para a Europa; aqui ele é aplicado à previsão de um modelo global (CAMS), não à medição de uma estação da sua cidade. Um valor exatamente no limite conta na faixa pior.</p>
 </section>
 
 <section aria-labelledby="umidade">
@@ -195,6 +214,7 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
 <h2 id="fontes">Fontes</h2>
 <ol>
 <li>European Climate and Health Observatory (EEA). <cite>CAMS UV index forecast</cite>. <a href="https://climate-adapt.eea.europa.eu/en/observatory/publications-data/analysis-data/cams-uv-index-forecast">climate-adapt.eea.europa.eu</a></li>
+<li>Open-Meteo. <cite>Air Quality API</cite> (índice europeu de qualidade do ar e suas faixas; dados do CAMS). <a href="https://open-meteo.com/en/docs/air-quality-api">open-meteo.com</a></li>
 <li>Hughes MC, et al. <cite>Sunscreen and prevention of skin aging: a randomized trial</cite>. Ann Intern Med, 2013. <a href="https://pubmed.ncbi.nlm.nih.gov/23732711/">PubMed 23732711</a> · <a href="https://doi.org/10.7326/0003-4819-158-11-201306040-00002">DOI</a></li>
 </ol>
 <p class="ig-nota">Fontes consultadas em novembro de 2026.</p>
@@ -231,28 +251,21 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
 <div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 </footer>
+<script src="/clima-aviso.js"></script>
 <script>
 (function () {
   "use strict";
-  // Consulta ao vivo do UV. DESLIGADA até você confirmar a licença do serviço:
-  // a Open-Meteo é gratuita para uso não comercial; um site com links de afiliado pode precisar
-  // do plano comercial (com chave). Para ligar: ativo: true. Com plano pago, preencha chave e
-  // troque as URLs pelas do plano (confira na documentação da Open-Meteo).
-  var CONFIG = {
-    ativo: false,
-    geocodificacao: "https://geocoding-api.open-meteo.com/v1/search",
-    previsao: "https://api.open-meteo.com/v1/forecast",
-    chave: ""
-  };
-  if (!CONFIG.ativo) return;
+  // Consulta ao vivo do UV e da qualidade do ar. A configuração do provedor (ligado/desligado, URLs da
+  // Open-Meteo e chave) fica em /clima-aviso.js, num objeto só, com a observação sobre a licença.
+  // Aquele arquivo também traz as faixas de qualidade do ar e o aviso do topo das outras páginas.
+  var C = window.PSClima;
+  var CONFIG = C && C.CONFIG;
+  if (!CONFIG || !CONFIG.ativo) return;
   var $ = function (id) { return document.getElementById(id); };
   $("cl-ao-vivo").hidden = false;
-  var CHAVE_LOCAL = "ps_clima_cidade";
+  var CHAVE_LOCAL = C.CHAVE_CIDADE;
+  var url = C.url;
 
-  function url(base, params) {
-    if (CONFIG.chave) params.apikey = CONFIG.chave;
-    return base + "?" + new URLSearchParams(params).toString();
-  }
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function nivel(uv) {
     if (uv < 3) return ["Baixo", "#4c9a2a"];
@@ -261,12 +274,31 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
     if (uv < 11) return ["Muito alto", "#c8102e"];
     return ["Extremo", "#7b2c8e"];
   }
-  function mostrarErro(msg) { $("cl-resultado").innerHTML = '<p class="ig-caixa">' + esc(msg) + "</p>"; }
+  function mostrarErro(msg) { $("cl-uv").innerHTML = '<p class="ig-caixa">' + esc(msg) + "</p>"; }
+
+  function mostrarAr(ar) {
+    var f = C.faixaAr(ar.aqi);
+    $("cl-ar").innerHTML =
+      '<div class="ig-caixa" style="margin-top:12px"><p class="ig-rotulo">Qualidade do ar hoje</p>' +
+      '<div class="cl-painel">' +
+      '<div class="cl-num"><strong>' + esc(Math.round(ar.aqi)) + '</strong><span>índice europeu, pior hora de hoje <span class="cl-cor" style="--c:' + f.cor + '"></span>' + esc(f.nome) + "</span></div>" +
+      '<div class="cl-num"><strong>' + (ar.agora != null ? esc(Math.round(ar.agora)) : "–") + "</strong><span>índice agora</span></div>" +
+      '<div class="cl-num"><strong>' + (ar.pm25 != null ? esc(Math.round(ar.pm25)) : "–") + "</strong><span>PM2,5 agora (µg/m³)</span></div>" +
+      '</div><ul class="cl-dicas"><li>' + esc(f.nome + ": " + f.texto) + "</li></ul>" +
+      '<p class="ig-nota">Índice europeu de qualidade do ar: 0 a 20 bom, 20 a 40 razoável, 40 a 60 moderado, 60 a 80 ruim, 80 a 100 muito ruim, acima de 100 extremamente ruim. Previsão de modelo (CAMS, via <a href="https://open-meteo.com/">Open-Meteo</a>), não medição de estação na sua cidade.</p></div>';
+  }
+  function arFalhou() {
+    $("cl-ar").innerHTML = '<p class="ig-caixa" style="margin-top:12px">Não consegui buscar a qualidade do ar agora. O UV acima segue valendo.</p>';
+  }
 
   function previsao(lugar) {
     try { localStorage.setItem(CHAVE_LOCAL, JSON.stringify(lugar)); } catch (e) {}
-    $("cl-resultado").innerHTML = '<p class="ig-nota">Buscando a previsão…</p>';
-    fetch(url(CONFIG.previsao, {
+    $("cl-esquecer").hidden = false;
+    $("cl-uv").innerHTML = '<p class="ig-nota">Buscando a previsão…</p>';
+    $("cl-ar").innerHTML = "";
+    // A qualidade do ar é uma consulta à parte: se ela falhar, o UV continua aparecendo.
+    var pedidoAr = C.buscarAr(lugar).catch(function () { return null; });
+    var pedidoUv = fetch(url(CONFIG.previsao, {
       latitude: lugar.latitude, longitude: lugar.longitude, timezone: "auto", forecast_days: 1,
       current: "temperature_2m,relative_humidity_2m", hourly: "uv_index", daily: "uv_index_max"
     })).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
@@ -278,15 +310,17 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
       var acima = horas.filter(function (h, k) { return uvs[k] >= 3; }).map(function (h) { return +h.slice(11, 13); });
       var janela = acima.length ? acima[0] + "h e " + (acima[acima.length - 1] + 1) + "h" : "";
       var umid = d.current ? d.current.relative_humidity_2m : null, temp = d.current ? d.current.temperature_2m : null;
-      var nMax = uvMax != null ? nivel(uvMax) : null;
+      // O nível sai do número arredondado, o mesmo que aparece na tela e no aviso do topo.
+      var uvCheio = uvMax != null ? Math.round(uvMax) : null;
+      var nMax = uvCheio != null ? nivel(uvCheio) : null;
       var dicas = [];
       if (uvMax != null && uvMax >= 3) dicas.push("Hoje o UV passa de 3" + (janela ? " entre " + janela : "") + ". Protetor de manhã e reaplicação se ficar ao ar livre.");
       else dicas.push("UV baixo hoje. Mesmo assim, quem tem manchas ou melasma se beneficia do protetor diário.");
-      if (uvMax != null && uvMax >= 8) dicas.push("Nível muito alto: evite o sol direto perto do meio-dia e use chapéu.");
+      if (uvCheio != null && uvCheio >= 8) dicas.push("Nível muito alto: evite o sol direto perto do meio-dia e use chapéu.");
       if (umid != null && umid < 40) dicas.push("Ar seco agora: reforce o hidratante e prefira uma textura mais encorpada à noite.");
       if (umid != null && umid > 75) dicas.push("Ar bem úmido: texturas em gel e protetor toque seco costumam ser mais confortáveis.");
       var local = [lugar.name, lugar.admin1, lugar.country].filter(Boolean).join(", ");
-      $("cl-resultado").innerHTML =
+      $("cl-uv").innerHTML =
         '<div class="ig-caixa"><p class="ig-rotulo">' + esc(local) + "</p>" +
         '<div class="cl-painel">' +
         '<div class="cl-num"><strong>' + (uvAgora != null ? esc(Math.round(uvAgora)) : "–") + "</strong><span>UV agora</span></div>" +
@@ -294,10 +328,26 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
         '<div class="cl-num"><strong>' + (umid != null ? esc(Math.round(umid)) + "%" : "–") + "</strong><span>umidade do ar</span></div>" +
         '<div class="cl-num"><strong>' + (temp != null ? esc(Math.round(temp)) + "°" : "–") + "</strong><span>temperatura</span></div>" +
         "</div><ul class=\"cl-dicas\">" + dicas.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
-        '<p class="ig-nota">Previsão de modelo meteorológico, não medição no local. Nuvens, altitude, areia e água mudam a exposição real.</p></div>';
+        '<p class="ig-nota">Previsão de modelo meteorológico (<a href="https://open-meteo.com/">Open-Meteo</a>), não medição no local. Nuvens, altitude, areia e água mudam a exposição real.</p></div>';
       try { if (window.PSAnalytics) window.PSAnalytics.evento("clima/consulta"); } catch (e) {}
-    }).catch(function () { mostrarErro("Não consegui buscar a previsão agora. Tente de novo em alguns minutos."); });
+      return uvMax;
+    }).catch(function () { mostrarErro("Não consegui buscar a previsão agora. Tente de novo em alguns minutos."); return null; });
+
+    Promise.all([pedidoUv, pedidoAr]).then(function (r) {
+      if (r[1]) mostrarAr(r[1]); else arFalhou();
+      // Guarda o resultado do dia: as outras páginas usam isto para o aviso do topo, sem nova consulta.
+      if (r[0] != null || r[1]) C.guardarDia(lugar, r[0], r[1]);
+    });
   }
+
+  $("cl-esquecer").addEventListener("click", function () {
+    C.esquecer();
+    $("cl-cidade").value = "";
+    $("cl-opcoes").innerHTML = "";
+    $("cl-uv").innerHTML = '<p class="ig-caixa">Cidade apagada deste aparelho. O aviso no topo das outras páginas também foi desligado.</p>';
+    $("cl-ar").innerHTML = "";
+    $("cl-esquecer").hidden = true;
+  });
 
   $("cl-form").addEventListener("submit", function (ev) {
     ev.preventDefault();
@@ -319,10 +369,8 @@ html[data-tema=claro] .cl-btn:not(.cl-sec){color:#fff}html[data-tema=escuro] .cl
       }).catch(function () { mostrarErro("Não consegui buscar a cidade agora. Tente de novo em alguns minutos."); });
   });
 
-  try {
-    var salvo = JSON.parse(localStorage.getItem(CHAVE_LOCAL) || "null");
-    if (salvo && salvo.latitude != null) { $("cl-cidade").value = salvo.name || ""; previsao(salvo); }
-  } catch (e) {}
+  var salvo = C.lerCidade();
+  if (salvo) { $("cl-cidade").value = salvo.name || ""; previsao(salvo); }
 })();
 </script>
 </body>

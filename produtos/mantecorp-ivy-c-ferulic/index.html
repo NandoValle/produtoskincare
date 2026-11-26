@@ -70,7 +70,8 @@
 .ig-foot p{margin:0}
 @media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
-.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.pin-salvar{margin:-14px 0 24px;font-size:.88rem}.pin-salvar a{color:var(--suave)}.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.video-wrap{margin:28px 0}.video-wrap h2{margin-top:0}.video-wrap video{display:block;margin:0 auto;width:auto;max-width:100%;max-height:70vh;height:auto;aspect-ratio:9/16;border-radius:var(--raio);background:#faf7f2;border:1px solid var(--linha)}.video-wrap details{margin-top:14px}.video-wrap summary{cursor:pointer;color:var(--rosa);font-weight:600}.video-wrap details p{margin:.6em 0}
 
 .pd-conf{margin:0;display:flex;flex-direction:column;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
 .pd-conf>div{padding:12px 16px;border-top:1px solid var(--linha)}
@@ -89,11 +90,14 @@
 .pd-bate fieldset{border:0;padding:0;margin:0;min-width:0}
 .pd-bate legend,.pd-bate form>label{padding:0;font-weight:700}
 .pd-bate fieldset label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:9px 0;cursor:pointer;line-height:1.45}
-.pd-bate input[type=radio]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.pd-bate input[type=radio],.pd-bate input[type=checkbox]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
 .pd-bate textarea{font:inherit;width:100%;padding:12px 14px;border:1.5px solid var(--linha-2);border-radius:12px;background:var(--fundo);color:var(--tinta);resize:vertical}
 .pd-bate .pd-btn{border:0;cursor:pointer;font:inherit;font-weight:600;align-self:flex-start}
 .pd-bate form>.ig-nota{margin:0}
 .pd-bate form>.ig-nota:empty{display:none}
+.pd-bate button:disabled{opacity:.5;cursor:default}
+.pd-mudou{margin:0 0 14px;padding:14px 16px;border-left:4px solid #b7791f;border-radius:0 12px 12px 0;background:#fff4dd;color:#5c3d00}
+.pd-mudou p{margin:0}.pd-mudou ul{margin:6px 0}.pd-mudou a{color:inherit}
 
 .pd-faq{border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);margin:8px 0;padding:0 16px}
 .pd-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
@@ -235,6 +239,22 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 </form>
 <p class="ig-nota">O aviso sai do seu aplicativo de e-mail, com a mensagem já montada, e só é enviado se você confirmar. O site não guarda o que você escreve. Se o aplicativo não abrir, escreva para <a href="mailto:contato@produtoskincare.com.br?subject=Algo%20n%C3%A3o%20bate%3A%20Mantecorp%20Ivy%20C%20Ferulic%20S%C3%A9rum">contato@produtoskincare.com.br</a>. Não mande dados de saúde nem fotos de lesões.</p>
 </details>
+<details class="pd-bate" id="frasco-diferente">
+<summary>Este frasco está diferente do anterior?</summary>
+<form data-pd-relato data-id="mantecorp-ivy-c-ferulic" data-produto="Mantecorp Ivy C Ferulic Sérum" hidden>
+<fieldset>
+<legend>O que mudou em relação ao frasco anterior?</legend>
+<label><input type="checkbox" name="mudou" value="cheiro"> Cheiro</label>
+<label><input type="checkbox" name="mudou" value="textura"> Textura</label>
+<label><input type="checkbox" name="mudou" value="cor"> Cor</label>
+<label><input type="checkbox" name="mudou" value="ardencia"> Arde ou irrita, e antes não</label>
+</fieldset>
+<button type="submit" class="pd-btn">Registrar</button>
+<p class="ig-nota" role="status" data-pd-relato-aviso></p>
+</form>
+<p class="ig-nota">O registro leva só o produto, o que você marcou e o dia. Não leva nome, e-mail nem texto, e não aparece no site. Um relato não prova que a fórmula mudou: ele nos diz qual produto conferir de novo na loja. Mudança confirmada entra no <a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a>, com data. Detalhes na <a href="/privacidade/">política de privacidade</a>. Se preferir, escreva para <a href="mailto:contato@produtoskincare.com.br?subject=Frasco%20diferente%3A%20Mantecorp%20Ivy%20C%20Ferulic%20S%C3%A9rum">contato@produtoskincare.com.br</a>.</p>
+<p class="ig-nota">Ardência forte, inchaço ou reação que não passa: pare de usar e procure um dermatologista.</p>
+</details>
 </section>
 <section aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2><div class="pd-faq"><h3 class="pq">Para que tipo de pele é o Mantecorp Ivy C Ferulic Sérum?</h3><p>No nosso catálogo, ele aparece para todos os tipos de pele. Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir.</p></div><div class="pd-faq"><h3 class="pq">Uso o Mantecorp Ivy C Ferulic Sérum de manhã ou à noite?</h3><p>Ele entra na rotina no passo “tratamento (sérum)”, de manhã.</p></div><div class="pd-faq"><h3 class="pq">Quais são os ativos em destaque do Mantecorp Ivy C Ferulic Sérum?</h3><p>Os ativos destacados no anúncio são vitamina C e ácido ferúlico. A lista completa de ingredientes (INCI) está na embalagem e no anúncio, e pode mudar entre lotes e versões.</p></div><div class="pd-faq"><h3 class="pq">Quanto custa o Mantecorp Ivy C Ferulic Sérum?</h3><p>Na última conferência, em 02/11/2026, custava R$ 89,90 na Amazon. O preço muda com frequência: vale o mostrado na loja na hora da compra.</p></div><div class="pd-faq"><h3 class="pq">Posso usar junto com os outros produtos da minha rotina?</h3><p>Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site para checar combinações. Em caso de irritação persistente, procure um dermatologista.</p></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Para que tipo de pele é o Mantecorp Ivy C Ferulic Sérum?", "acceptedAnswer": {"@type": "Answer", "text": "No nosso catálogo, ele aparece para todos os tipos de pele. Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir."}}, {"@type": "Question", "name": "Uso o Mantecorp Ivy C Ferulic Sérum de manhã ou à noite?", "acceptedAnswer": {"@type": "Answer", "text": "Ele entra na rotina no passo “tratamento (sérum)”, de manhã."}}, {"@type": "Question", "name": "Quais são os ativos em destaque do Mantecorp Ivy C Ferulic Sérum?", "acceptedAnswer": {"@type": "Answer", "text": "Os ativos destacados no anúncio são vitamina C e ácido ferúlico. A lista completa de ingredientes (INCI) está na embalagem e no anúncio, e pode mudar entre lotes e versões."}}, {"@type": "Question", "name": "Quanto custa o Mantecorp Ivy C Ferulic Sérum?", "acceptedAnswer": {"@type": "Answer", "text": "Na última conferência, em 02/11/2026, custava R$ 89,90 na Amazon. O preço muda com frequência: vale o mostrado na loja na hora da compra."}}, {"@type": "Question", "name": "Posso usar junto com os outros produtos da minha rotina?", "acceptedAnswer": {"@type": "Answer", "text": "Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site para checar combinações. Em caso de irritação persistente, procure um dermatologista."}}]}</script></section>
 <section aria-labelledby="alternativas"><h2 id="alternativas">Alternativas do catálogo</h2><ul><li><a href="/produtos/principia-vc10/">Principia VC-10 Vitamina C 10%</a> <span class="ig-nota">R$ 49,90 em 02/11/2026</span></li><li><a href="/produtos/creamy-vitamina-c/">Creamy Vitamina C 10%</a> <span class="ig-nota">R$ 69,90 em 02/11/2026</span></li><li><a href="/produtos/eucerin-anti-pigment/">Eucerin Anti-Pigment Dual Sérum</a> <span class="ig-nota">R$ 226,99 em 02/11/2026</span></li></ul></section>
@@ -284,6 +304,35 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
     location.href = "mailto:contato@produtoskincare.com.br?subject=" + encodeURIComponent("Algo não bate: " + nome + " (" + tipo + ")") + "&body=" + encodeURIComponent(corpo);
     f.querySelector("[data-pd-bate-aviso]").textContent = "Mensagem montada. Confira e envie pelo seu aplicativo de e-mail.";
     try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/algo-nao-bate"); } catch (e) {}
+  });
+})();
+</script>
+<script>
+(function () {
+  var f = document.querySelector("[data-pd-relato]");
+  if (!f || !window.fetch) return;
+  var ENDPOINT = "https://zzjeaeauggbflxdahtkk.supabase.co/functions/v1/relato", id = f.getAttribute("data-id"), aviso = f.querySelector("[data-pd-relato-aviso]");
+  var botao = f.querySelector("button"), CHAVE = "ps_relato_" + id, MES = 30 * 24 * 60 * 60 * 1000;
+  function ja() { try { return Date.now() - Number(localStorage.getItem(CHAVE) || 0) < MES; } catch (e) { return false; } }
+  function fechar(texto) { aviso.textContent = texto; botao.disabled = true; f.querySelectorAll("input").forEach(function (i) { i.disabled = true; }); }
+  f.hidden = false;
+  if (ja()) { fechar("Você já registrou um relato deste produto neste aparelho nos últimos 30 dias."); return; }
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var mudou = [].map.call(f.querySelectorAll('input[name="mudou"]:checked'), function (i) { return i.value; });
+    if (!mudou.length) { aviso.textContent = "Marque pelo menos um item."; return; }
+    botao.disabled = true; aviso.textContent = "Registrando…";
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ produto: id, mudou: mudou }) })
+      .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+      .then(function () {
+        try { localStorage.setItem(CHAVE, String(Date.now())); } catch (e) {}
+        fechar("Registrado. Obrigado: vamos usar para decidir o que conferir de novo.");
+        try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/frasco-diferente"); } catch (e) {}
+      })
+      .catch(function () {
+        botao.disabled = false;
+        aviso.textContent = "Não foi possível registrar agora. Tente mais tarde ou escreva para o e-mail abaixo.";
+      });
   });
 })();
 </script>
