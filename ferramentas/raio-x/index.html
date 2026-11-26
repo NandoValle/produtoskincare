@@ -116,7 +116,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 <ul class="regras">
 <li><strong>Função primeiro.</strong> Cada ingrediente vai para um grupo — ativo, emoliente, humectante, filtro UV, conservante, surfactante, fragrância, corante e outros — para você ver do que o produto é feito, não só nomes difíceis.</li>
 <li><strong>Ordem importa, com ressalva.</strong> Por regra da ANVISA, os ingredientes vêm em ordem decrescente de quantidade até os 1% mais baixos; depois a ordem é livre. Um ingrediente lá no fim pode ter pouco — mas a lista não diz quanto.</li>
-<li><strong>A linha do 1%.</strong> Fenoxietanol, parabenos e clorfenesina são conservantes com teto de 1% ou menos na lista de conservantes permitidos. Como acima de 1% a ordem é obrigatória, o que aparece depois do primeiro deles está em 1% ou menos. O raio-x compara isso com a concentração usual da ficha do ativo: niacinamida depois do conservante fica abaixo da faixa usual; retinol ou ácido hialurônico, não. Vale para rótulo que segue a regra de ordem — é estimativa de teto, não medida.</li>
+<li><strong>A linha do 1%.</strong> Fenoxietanol (até 1,0%), parabenos (até 0,8% na soma) e clorfenesina (até 0,3%) são conservantes com teto de 1% ou menos na lista de conservantes permitidos da ANVISA (RDC nº 528/2021). Como acima de 1% a ordem é obrigatória, o que aparece depois do primeiro deles está em 1% ou menos. O raio-x compara isso com a concentração usual da ficha do ativo: niacinamida depois do conservante fica abaixo da faixa usual; retinol ou ácido hialurônico, não. Vale para rótulo que segue a regra de ordem — é estimativa de teto, não medida.</li>
 <li><strong>Sinal, não sentença.</strong> Fragrância, álcool volátil e alguns conservantes são causas conhecidas de sensibilidade em parte das pessoas — por isso aparecem como "vale notar", nunca como "tóxico". O que irrita uma pele pode ser ótimo em outra.</li>
 <li><strong>Promessas: só o que a lista sustenta.</strong> "Sem álcool" é conferível; "hipoalergênico" e "não comedogênico" não têm padrão de teste e são marcados como não verificáveis. Dizer isso em voz alta é parte do serviço.</li>
 <li><strong>Não é diagnóstico médico.</strong> Em caso de irritação, pare o uso e consulte um dermatologista.</li>
@@ -282,7 +282,8 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
   ];
 
   // Conservantes com teto de 1% ou menos como conservante: servem de marco da "linha do 1%".
-  const TETO1 = { "phenoxyethanol": 1, "methylparaben": 1, "ethylparaben": 1, "propylparaben": 1, "butylparaben": 1, "isobutylparaben": 1, "chlorphenesin": 1 };
+  // Fonte: anexo da RDC ANVISA nº 528/2021, itens 26 (2-fenoxietanol, 1,0%), 11 e 11-A (parabenos, 0,8% na soma) e 50 (clorfenesina, 0,3%).
+  const TETO1 = { "phenoxyethanol": 1, "methylparaben": 1, "ethylparaben": 1, "propylparaben": 1, "butylparaben": 1, "chlorphenesin": 1 };
 
   function esc(t) { return String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 
@@ -509,7 +510,7 @@ textarea:focus{outline:3px solid var(--rosa);outline-offset:2px;border-color:var
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-24">24 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-26">26 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
