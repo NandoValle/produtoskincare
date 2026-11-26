@@ -2849,5 +2849,15 @@
    "Os dados do Passaporte da Pele vão para o servidor do site?",
    "Não. O resumo vai escrito dentro do próprio QR Code, no trecho do endereço depois do sinal #, que não é enviado ao site: o celular de quem lê monta a página ali mesmo. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu. As fotos não entram."
   ]
+ ],
+ "/skincare-premium/": [
+  [
+   "O que é a lista Skincare Premium do Produto Skincare?",
+   "É a lista dos produtos que a Amazon Brasil mostrava na categoria Beleza Premium › Skincare Premium na data indicada na página, na ordem \"Em destaque\" da loja. A página avisa que é a vitrine da Amazon, não uma seleção do site, e que estar na lista não quer dizer que o produto serve para a sua pele."
+  ],
+  [
+   "Os preços da lista Skincare Premium valem na hora da compra?",
+   "Não necessariamente. Os preços têm a data em que foram anotados, e a página avisa que parte deles é promocional ou à vista no Pix e pode mudar a qualquer momento. Vale o preço mostrado na Amazon na hora da compra."
+  ]
  ]
 }
