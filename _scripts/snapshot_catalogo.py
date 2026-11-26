@@ -18,10 +18,6 @@ Saídas (publicadas no site):
     produtos/snapshots.json    histórico completo, por produto, datado
     produtos/mudancas.json     mudanças detectadas (preço / volume / fórmula)
 
-O que conta como mudança de fórmula: só duas listas INCI registradas, com fonte e data,
-que diferem em pelo menos um ingrediente. A primeira lista de um produto é o ponto de
-partida, e mudar o campo "ativos" do catálogo é edição do site (tipo "catalogo").
-
 Para registrar o INCI de um produto (uma vez por versão da fórmula), crie ou
 atualize _scripts/precos/dados/incis.json:
 
@@ -94,25 +90,29 @@ def preco_por_ml(e):
 
 
 def ingredientes(texto):
-    """Lista INCI -> nomes normalizados, na ordem do rótulo (vírgula dentro de nome, como 1,2-HEXANEDIOL, não separa)."""
-    t = re.sub(r"(\d),(\d)", "\\1\x01\\2", str(texto or "").replace("\n", " "))
-    nomes = []
-    for parte in re.split(r"[,;]", t):
-        nome = re.sub(r"\s+", " ", parte.replace("\x01", ",")).strip(" .*").upper()
-        if len(nome) >= 2 and nome not in nomes:
-            nomes.append(nome)
-    return nomes
+    """Lista INCI em itens, na ordem da embalagem. Separa em ', ' (vírgula seguida de espaço),
+    para não partir nomes como 1,2-HEXANEDIOL."""
+    if not texto:
+        return []
+    bruto = re.split(r",\s+|;\s*|\s[•·]\s", str(texto).replace("\n", " "))
+    return [re.sub(r"\s+", " ", i).strip(" .") for i in bruto if i.strip(" .")]
 
 
-def chave_inci(nome):
-    return re.sub(r"[^A-Z0-9]", "", nome)
-
-
-def diferenca_inci(antes, depois):
-    """(saiu, entrou): ingredientes que estão só em uma das duas listas. Ordem e pontuação não contam."""
+def diff_inci(antes, depois):
+    """Compara duas listas INCI ingrediente a ingrediente, sem diferenciar maiúsculas e espaços.
+    Sem lista anterior não há mudança: é o primeiro registro."""
+    vazio = {"mudou": False, "entraram": [], "sairam": [], "reordenou": False}
+    if not antes:
+        return vazio
     a, b = ingredientes(antes), ingredientes(depois)
-    ka, kb = {chave_inci(n) for n in a}, {chave_inci(n) for n in b}
-    return [n for n in a if chave_inci(n) not in kb], [n for n in b if chave_inci(n) not in ka]
+    ka, kb = [i.upper() for i in a], [i.upper() for i in b]
+    if ka == kb:
+        return vazio
+    entraram = [i for i, k in zip(b, kb) if k not in ka]
+    sairam = [i for i, k in zip(a, ka) if k not in kb]
+    comuns_a = [k for k in ka if k in kb]
+    comuns_b = [k for k in kb if k in ka]
+    return {"mudou": True, "entraram": entraram, "sairam": sairam, "reordenou": comuns_a != comuns_b}
 
 
 def mudancas_de(velho, novo, hoje):
@@ -142,32 +142,31 @@ def mudancas_de(velho, novo, hoje):
             "em": hoje, "produto_id": pid, "produto": nome, "tipo": "volume",
             "de": vol_v, "para": vol_n, "leitura": leitura,
         })
-    # Ativos são a curadoria do site (campo "ativos" de produtos.json). Mudar esse campo é edição
-    # do catálogo, não mudança do produto: nunca vira "reformulação".
-    if sorted(e.get("ativos") or []) != sorted(novo.get("ativos") or []):
-        itens.append({
-            "em": hoje, "produto_id": pid, "produto": nome, "tipo": "catalogo",
-            "de": e.get("ativos"), "para": novo.get("ativos"),
-            "leitura": "ativos destacados no catálogo atualizados (edição do site, não mudança do produto)",
-        })
-    # Fórmula: só há mudança quando existem DUAS listas INCI registradas e elas diferem.
-    # A primeira lista registrada de um produto é o ponto de partida, não uma alteração.
-    if e.get("inci") and novo.get("inci") and e.get("inci") != novo.get("inci"):
-        saiu, entrou = diferenca_inci(e["inci"], novo["inci"])
-        if saiu or entrou:
-            partes = []
-            if saiu:
-                partes.append("só na lista anterior: " + ", ".join(saiu))
-            if entrou:
-                partes.append("só na lista nova: " + ", ".join(entrou))
-            itens.append({
-                "em": hoje, "produto_id": pid, "produto": nome, "tipo": "formula",
-                "de": e.get("inci"), "para": novo.get("inci"),
-                "saiu": saiu, "entrou": entrou,
-                "de_fonte": e.get("inci_fonte"), "de_em": e.get("inci_em"),
-                "para_fonte": novo.get("inci_fonte"), "para_em": novo.get("inci_em"),
-                "leitura": "lista de ingredientes diferente entre dois registros — " + "; ".join(partes),
-            })
+    ativos_mudaram = sorted(e.get("ativos") or []) != sorted(novo.get("ativos") or [])
+    d = diff_inci(e.get("inci"), novo.get("inci"))
+    # Primeiro registro da lista (não havia versão anterior) não é reformulação: não há com o que comparar.
+    if ativos_mudaram or d["mudou"]:
+        detalhe = []
+        if ativos_mudaram:
+            detalhe.append(f"ativos: {e.get('ativos')} → {novo.get('ativos')}")
+        if d["entraram"]:
+            detalhe.append("entraram: " + ", ".join(d["entraram"]))
+        if d["sairam"]:
+            detalhe.append("saíram: " + ", ".join(d["sairam"]))
+        if d["mudou"] and d["reordenou"]:
+            detalhe.append("a ordem dos ingredientes mudou" if (d["entraram"] or d["sairam"])
+                           else "mesmos ingredientes, em outra ordem")
+        if d["mudou"] and novo.get("inci") is None:
+            detalhe.append("a lista registrada foi retirada")
+        item = {
+            "em": hoje, "produto_id": pid, "produto": nome, "tipo": "formula",
+            "de": e.get("inci") or e.get("ativos"), "para": novo.get("inci") or novo.get("ativos"),
+            "leitura": "fórmula mudou — " + "; ".join(detalhe),
+        }
+        if d["mudou"]:
+            item.update({"entraram": d["entraram"], "sairam": d["sairam"], "reordenou": d["reordenou"],
+                         "fonte_de": e.get("inci_fonte"), "fonte_para": novo.get("inci_fonte")})
+        itens.append(item)
     return itens
 
 
@@ -184,8 +183,7 @@ def main():
     mudancas = carregar_json(ARQ_MUDANCAS, {
         "gerado_em": hoje, "_sobre": "Mudanças detectadas entre snapshots de "
         "produtos/snapshots.json. Tipos: preco, volume (shrinkflation quando o preço "
-        "não muda e o volume cai), formula (duas listas INCI registradas e diferentes), "
-        "catalogo (o site mudou os ativos que destaca; não é mudança do produto).", "itens": [],
+        "não muda e o volume cai), formula (ativos ou INCI; com os ingredientes que entraram e saíram).", "itens": [],
     })
 
     novos_itens = []

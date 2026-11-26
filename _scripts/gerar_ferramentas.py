@@ -20,6 +20,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
 .ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
 .ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn[hidden],.ex-form[hidden]{display:none}
 .ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
 .ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}

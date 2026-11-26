@@ -1,5 +1,5 @@
 {
  "gerado_em": "2026-11-20",
- "_sobre": "Mudanças detectadas entre snapshots de produtos/snapshots.json. Tipos: preco, volume (shrinkflation quando o preço não muda e o volume cai), formula (duas listas INCI registradas e diferentes), catalogo (o site mudou os ativos que destaca; não é mudança do produto).",
+ "_sobre": "Mudanças detectadas entre snapshots de produtos/snapshots.json. Tipos: preco, volume (shrinkflation quando o preço não muda e o volume cai), formula (ativos ou INCI).",
  "itens": []
 }
