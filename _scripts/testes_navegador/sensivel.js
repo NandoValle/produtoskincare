@@ -13,6 +13,8 @@ async function jaSei(page, { tipo, sensivel, conc, marcarNaPreferencia }) {
   for (const c of conc) await page.click(`#chipsPreocupacoes .chip[data-conc="${c}"]`);
   await page.click("#btnPreocupacoesContinuar");
   if (marcarNaPreferencia !== undefined) await page.setChecked("#chkSensivel", marcarNaPreferencia);
+  // O padrão é a rotina de 3 passos; estes testes olham o passo de tratamento, que só existe na de 5.
+  await page.check('input[name=rotina][value="5"]');
   await page.click("#btnVerResultado");
   await page.click("#btnPularSelfie");
   await page.waitForSelector("#telaResultado:not([hidden])");
