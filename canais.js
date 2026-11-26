@@ -7,6 +7,7 @@
  * - Rodapé de todas as páginas: link "Contato" e links das redes sociais.
  * - Antes do rodapé: caixa de newsletter (se newsletter_form ou newsletter_link estiver preenchido).
  * - Página /contato/: lista dos canais e o formulário "Sugira um produto".
+ * - Qualquer <form data-ps-enviar="Assunto">: envia a resposta pelo e-mail ou WhatsApp de quem escreve.
  */
 (function () {
   "use strict";
@@ -225,6 +226,47 @@
     }
   }
 
+  // Formulários "data-ps-enviar": a resposta sai do aplicativo de e-mail ou do WhatsApp de quem
+  // escreve. O site não recebe nem guarda nada. O valor do atributo é o assunto da mensagem;
+  // cada campo com "name" entra no texto, com o rótulo de "data-rotulo".
+  function formularios() {
+    var podeWa = !vazio(CANAIS.whatsapp), podeMail = !vazio(CANAIS.email);
+    Array.prototype.forEach.call(document.querySelectorAll("form[data-ps-enviar]"), function (form) {
+      if (!podeWa && !podeMail) return;
+      form.hidden = false;
+      var assunto = form.getAttribute("data-ps-enviar") + " — Produto Skincare";
+      var evento = form.getAttribute("data-evento") || "formulario";
+      var texto = function () {
+        var linhas = [], vistos = {};
+        Array.prototype.forEach.call(form.elements, function (el) {
+          if (!el.name || vistos[el.name]) return;
+          var valor;
+          if (el.type === "radio" || el.type === "checkbox") {
+            var marcados = form.querySelectorAll('[name="' + el.name + '"]:checked');
+            valor = Array.prototype.map.call(marcados, function (m) { return m.value; }).join(", ");
+          } else valor = String(el.value || "").trim();
+          vistos[el.name] = true;
+          if (!valor) return;
+          linhas.push((el.getAttribute("data-rotulo") || el.name) + ":\n" + valor);
+        });
+        return assunto + "\n\n" + linhas.join("\n\n");
+      };
+      form.addEventListener("submit", function (ev) { ev.preventDefault(); });
+      Array.prototype.forEach.call(form.querySelectorAll("[data-via]"), function (b) {
+        var via = b.getAttribute("data-via");
+        b.hidden = via === "whatsapp" ? !podeWa : !podeMail;
+        b.addEventListener("click", function () {
+          if (!form.reportValidity()) return;
+          if (via === "whatsapp") window.open(linkWa(texto()), "_blank", "noopener");
+          else location.href = linkMail(assunto, texto());
+          contar(evento + "-" + via);
+          var ok = form.querySelector("[data-ps-enviado]");
+          if (ok) ok.hidden = false;
+        });
+      });
+    });
+  }
+
   function iniciar() {
     if (!temContato && !temNews) return;
     estilo();
@@ -232,6 +274,7 @@
     botaoWhatsApp();
     newsletter();
     paginaContato();
+    formularios();
   }
 
   window.PSCanais = { ativo: temContato || temNews, temContato: temContato, temNewsletter: temNews, linkWhatsApp: linkWa };

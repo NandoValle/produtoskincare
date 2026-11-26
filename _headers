@@ -43,3 +43,8 @@
   X-Frame-Options: SAMEORIGIN
   Origin-Agent-Cluster: ?1
   Permissions-Policy: tools=(self), camera=(self), clipboard-write=(self), web-share=(self), microphone=(), geolocation=(), payment=(), usb=()
+
+# Dados abertos (/dados-abertos/): arquivos só de leitura, sem cookie e sem dado pessoal.
+# CORS aberto para dar para ler de planilha, notebook ou outro site.
+/dados/*
+  Access-Control-Allow-Origin: *
