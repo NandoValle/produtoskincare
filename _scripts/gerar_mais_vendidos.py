@@ -37,6 +37,18 @@ def eh_refil(p):
     return "refil" in p["nome"].lower()
 
 
+# "Talvez não valha a pena": a pergunta de sempre, com o nome do que a pessoa já tem em casa.
+SEU = {"Hidratante": "o hidratante", "Hidratante reparador": "o hidratante", "Hidratante corporal": "o hidratante corporal",
+       "Protetor solar": "o protetor solar", "Limpeza": "o sabonete ou gel de limpeza", "Labial": "o hidratante labial",
+       "Sérum": "o sérum", "Máscara": "a máscara", "BB Cream": "o BB cream", "Capilar": "o produto de cabelo"}
+
+
+def nao_vale(p):
+    seu = SEU.get(p["categoria"])
+    return (f"se {seu} que você já usa funciona bem para você." if seu
+            else "se o que você já tem em casa cumpre a mesma função.")
+
+
 tem_refil = any(eh_refil(p) for p in produtos)
 cards = []
 for p in produtos:
@@ -47,7 +59,9 @@ for p in produtos:
 <span class="mv-cat">{e(p['categoria'])}</span>{selo_refil}
 <h2 class="mv-nome">{e(p['nome'])}</h2>
 <p class="mv-meta">{e(p['marca'])} · ⭐ {str(p['avaliacao']).replace('.', ',')} ({f"{p['reviews']:,}".replace(",", ".")} avaliações)</p>
-<p class="mv-preco"><strong>{brl(p['preco'])}</strong> <small>em {data_br}</small></p>
+<p class="mv-porque"><b>Por que está aqui:</b> {p['rank']}º na nossa compilação dos mais vendidos da Amazon em {data_br}. É critério de venda, não de indicação para a sua pele.</p>
+<p class="mv-porque"><b>Talvez não valha a pena:</b> {e(nao_vale(p))}</p>
+<p class="mv-preco"><strong>{brl(p['preco'])}</strong> <small>visto em {data_br}, no anúncio do link</small></p>
 <a class="mv-btn" href="{e(p['link'])}" target="_blank" rel="sponsored nofollow noopener" data-produto="{e(p['nome'])}">Ver na Amazon ↗</a>
 </div>
 </li>""")
@@ -96,6 +110,7 @@ pagina = f"""<!doctype html>
 .mv-nome{{font-size:1.15rem;margin:0;line-height:1.25}}
 .mv-meta{{font-size:.86rem;color:var(--suave)}}
 .mv-preco small{{color:var(--suave);font-size:.8rem}}
+.mv-porque{{font-size:.84rem;line-height:1.45;padding-left:10px;border-left:2px solid var(--linha-2)}}
 .mv-btn{{align-self:flex-start;margin-top:4px;text-decoration:none;font-weight:600;font-size:.9rem;color:var(--papel);background:var(--rosa);padding:9px 16px;border-radius:999px}}
 .mv-btn:hover{{background:var(--rosa-2)}}
 .mv-foot{{display:flex;flex-direction:column;gap:10px;font-size:.86rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:20px}}

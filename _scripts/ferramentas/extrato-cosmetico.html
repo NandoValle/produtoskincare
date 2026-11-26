@@ -30,7 +30,33 @@
 <li><strong>Volume:</strong> só entra com fonte (embalagem ou ficha da loja). Sem fonte, fica vazio e o preço/ml não é calculado.</li>
 <li><strong>Fórmula (INCI):</strong> a lista de ingredientes entra quando alguém registra a da embalagem ou de fonte oficial, com a fonte anotada. Enquanto não há lista registrada, o campo fica vazio — a coluna existe para começar a acumular, não para fingir que já temos tudo.</li>
 <li><strong>O que vira "mudança":</strong> preço diferente; volume diferente (shrinkflation quando o preço não muda e o volume cai); INCI ou ativos diferentes entre registros.</li>
+<li><strong>Mudança de fórmula:</strong> as duas listas são comparadas ingrediente a ingrediente. O extrato mostra o que entrou, o que saiu e se a ordem mudou. O primeiro registro de uma lista não conta como mudança: não há versão anterior para comparar.</li>
 </ul>
+</section>
+
+<section class="ig-caixa" aria-labelledby="ex-contribuir-titulo" id="ex-contribuir">
+<h2 id="ex-contribuir-titulo">Tem o frasco em casa? Registre a fórmula</h2>
+<p>A lista de ingredientes impressa na embalagem é o que permite ver, meses depois, se a fórmula mudou. Copie a lista do frasco que você tem (ou do site da marca) e envie. Depois de conferida, ela entra neste extrato e nos <a href="/dados-abertos/">dados abertos</a>, com a fonte e a data.</p>
+<form class="ex-form" data-ps-enviar="Fórmula para o extrato" data-evento="extrato/formula" hidden>
+<label class="ft-rotulo" for="ex-f-produto">Produto</label>
+<select class="ft-campo" id="ex-f-produto" name="produto" data-rotulo="Produto" required><option value="">Escolha um produto do catálogo</option></select>
+<label class="ft-rotulo" for="ex-f-inci">Lista de ingredientes, como está na fonte</label>
+<textarea class="ft-campo" id="ex-f-inci" name="inci" data-rotulo="Lista de ingredientes" rows="6" required minlength="20" placeholder="AQUA, GLYCERIN, NIACINAMIDE, ..."></textarea>
+<fieldset class="ft-periodo">
+<legend class="ft-rotulo">De onde você copiou</legend>
+<label><input type="radio" name="fonte" data-rotulo="Fonte" value="Embalagem que tenho em casa" checked> Embalagem que tenho em casa</label>
+<label><input type="radio" name="fonte" data-rotulo="Fonte" value="Site oficial da marca"> Site oficial da marca</label>
+</fieldset>
+<label class="ft-rotulo" for="ex-f-quando">Quando comprou, ou o endereço da página da marca (opcional)</label>
+<input class="ft-campo" id="ex-f-quando" name="quando" data-rotulo="Compra ou endereço da fonte" placeholder="Ex.: comprei em outubro de 2026, lote 12345">
+<div class="ft-cards-acoes">
+<button type="button" class="ft-btn" data-via="email">Enviar por e-mail</button>
+<button type="button" class="ft-btn ft-sec" data-via="whatsapp">Enviar pelo WhatsApp</button>
+</div>
+<p class="ig-nota" data-ps-enviado hidden>Abrimos o seu aplicativo com a mensagem pronta. Ela só chega até nós depois que você enviar por lá.</p>
+<p class="ig-nota">A mensagem sai do seu próprio aplicativo: o site não guarda o que você escreve. Ao enviar, você concorda que a lista seja publicada aqui e nos dados abertos (licença CC BY 4.0). Seu nome e seu contato não são publicados. Foto do rótulo ajuda na conferência: anexe na mensagem, se quiser.</p>
+</form>
+<noscript><p class="ig-nota">Sem JavaScript, envie a lista para contato@produtoskincare.com.br com o nome do produto e de onde copiou.</p></noscript>
 </section>
 
 <section aria-labelledby="ex-leia-titulo">
@@ -40,6 +66,7 @@
 <li><a href="/ferramentas/equivalente/">Equivalente mais barato</a></li>
 <li><a href="/ferramentas/termometro/">Termômetro de preço</a></li>
 <li><a href="/ferramentas/extrato/">Extrato mensal</a></li>
+<li><a href="/dados-abertos/">Dados abertos (CSV e JSON)</a></li>
 </ul>
 </section>
 
@@ -93,8 +120,12 @@
       return '<li class="ft-item"><div>' +
         '<span class="pr-passo">' + esc(tipoRotulo[it.tipo] || it.tipo) + ' · ' + esc(it.em) + '</span>' +
         '<strong>' + esc(it.produto) + '</strong>' +
-        '<span class="ig-nota">' + esc(it.leitura) + '</span></div>' +
-        '<div class="ft-item-acoes"><a class="ft-mini" href="/produtos/' + esc(it.produto_id) + '/">Ver produto</a></div></li>';
+        '<span class="ig-nota">' + esc(it.leitura) + '</span>' +
+        (it.entraram && it.entraram.length ? '<span class="ig-nota"><strong>Entraram:</strong> ' + esc(it.entraram.join(", ")) + '</span>' : '') +
+        (it.sairam && it.sairam.length ? '<span class="ig-nota"><strong>Saíram:</strong> ' + esc(it.sairam.join(", ")) + '</span>' : '') +
+        '</div>' +
+        '<div class="ft-item-acoes"><a class="ft-mini" href="#' + esc(it.produto_id) + '">Ver registros</a>' +
+        '<a class="ft-mini" href="/produtos/' + esc(it.produto_id) + '/">Ver produto</a></div></li>';
     }).join("") + "</ul>";
   }
 
@@ -120,6 +151,27 @@
         '<tr class="ex-detalhe" data-detalhe="' + esc(id) + '" hidden><td colspan="6" id="ex-det-' + esc(id) + '"></td></tr>';
     }).join("");
 
+    var sel = $("ex-f-produto");
+    if (sel) ids.slice().sort(function (a, b) { return nomes[a].localeCompare(nomes[b], "pt-BR"); }).forEach(function (id) {
+      var o = document.createElement("option");
+      o.value = nomes[id] + " (" + id + ")";
+      o.textContent = nomes[id] + (produtos[id][produtos[id].length - 1].inci ? " (já tem lista registrada)" : "");
+      sel.appendChild(o);
+    });
+
+    // Link direto: /ferramentas/extrato-cosmetico/#id-do-produto abre os registros dele.
+    function abrirDoEndereco() {
+      var id = decodeURIComponent(location.hash.slice(1));
+      if (!id || !produtos[id]) return;
+      var btn = corpo.querySelector('button[data-produto="' + id + '"]');
+      if (!btn) return;
+      if (btn.getAttribute("aria-expanded") !== "true") btn.click();
+      btn.scrollIntoView({ block: "center" });
+      btn.focus({ preventScroll: true });
+    }
+    setTimeout(abrirDoEndereco, 0);
+    window.addEventListener("hashchange", abrirDoEndereco);
+
     corpo.addEventListener("click", function (ev) {
       var btn = ev.target.closest("button[data-produto]");
       if (!btn) return;
@@ -135,7 +187,8 @@
         registros.map(function (e) {
           return "<tr><td>" + esc(e.em) + "</td><td>" + fmt(e.preco) + "</td><td>" + esc(fmtVol(e)) +
             "</td><td>" + esc(fmtMl(precoMl(e), e)) + "</td><td>" +
-            (e.inci ? esc(String(e.inci).slice(0, 90)) + "…" : "—") + "</td></tr>";
+            (e.inci ? '<details><summary>ver a lista</summary><p class="ig-nota">' + esc(e.inci) + '</p><p class="ig-nota">Fonte: ' +
+              esc(e.inci_fonte || "não anotada") + (e.inci_em ? " · lida em " + esc(e.inci_em) : "") + "</p></details>" : "—") + "</td></tr>";
         }).join("") + "</tbody></table>";
       linha.hidden = false;
     });

@@ -1,0 +1,277 @@
+{
+ "dataset": "Produto Skincare — dados abertos",
+ "versao": "0.1.0",
+ "dados_ate": "2026-11-02",
+ "licenca": "CC BY 4.0",
+ "licenca_url": "https://creativecommons.org/licenses/by/4.0/deed.pt-br",
+ "pagina": "https://produtoskincare.com.br/dados-abertos/",
+ "como_citar": "Produto Skincare. Dados abertos do catálogo de skincare no Brasil, versão 0.1.0. https://produtoskincare.com.br/dados-abertos/. Licença CC BY 4.0.",
+ "arquivos": [
+  {
+   "nome": "produtos",
+   "titulo": "Produtos",
+   "descricao": "Uma linha por produto do catálogo.",
+   "linhas": 26,
+   "csv": "https://produtoskincare.com.br/dados/produtos.csv",
+   "json": "https://produtoskincare.com.br/dados/produtos.json",
+   "campos": [
+    {
+     "campo": "id",
+     "tipo": "texto",
+     "descricao": "Identificador do produto no site. Estável: não muda entre versões."
+    },
+    {
+     "campo": "nome",
+     "tipo": "texto",
+     "descricao": "Nome comercial do produto."
+    },
+    {
+     "campo": "marca",
+     "tipo": "texto",
+     "descricao": "Marca."
+    },
+    {
+     "campo": "origem",
+     "tipo": "texto",
+     "descricao": "País de origem da marca."
+    },
+    {
+     "campo": "passo",
+     "tipo": "texto",
+     "descricao": "Passo da rotina em que o produto entra (limpeza, hidratante, protetor, tratamento…)."
+    },
+    {
+     "campo": "periodo",
+     "tipo": "lista",
+     "descricao": "Quando usar: manha, noite ou os dois."
+    },
+    {
+     "campo": "grupo",
+     "tipo": "texto",
+     "descricao": "Grupo de produtos equivalentes usado pelo site para comparar opções."
+    },
+    {
+     "campo": "tipos_pele",
+     "tipo": "lista",
+     "descricao": "Tipos de pele para os quais o site indica o produto."
+    },
+    {
+     "campo": "condicoes",
+     "tipo": "lista",
+     "descricao": "Queixas para as quais o site indica o produto (acne, manchas…)."
+    },
+    {
+     "campo": "evitar",
+     "tipo": "lista",
+     "descricao": "Situações em que o site não indica o produto."
+    },
+    {
+     "campo": "textura",
+     "tipo": "texto",
+     "descricao": "Textura declarada (gel, creme, loção, sérum…)."
+    },
+    {
+     "campo": "ativos",
+     "tipo": "lista",
+     "descricao": "Ativos de destaque do produto, como o site os registra. Não é a lista INCI."
+    },
+    {
+     "campo": "tamanho",
+     "tipo": "texto",
+     "descricao": "Tamanho do frasco como aparece no site (ex.: 454 g)."
+    },
+    {
+     "campo": "volume_ml",
+     "tipo": "número",
+     "descricao": "Volume conferido, em ml. Vazio quando não foi conferido."
+    },
+    {
+     "campo": "volume_g",
+     "tipo": "número",
+     "descricao": "Peso conferido, em g. Vazio quando não foi conferido."
+    },
+    {
+     "campo": "volume_fonte",
+     "tipo": "texto",
+     "descricao": "De onde veio o volume (endereço da ficha da loja ou embalagem)."
+    },
+    {
+     "campo": "preco",
+     "tipo": "número",
+     "descricao": "Último preço registrado, em reais."
+    },
+    {
+     "campo": "preco_em",
+     "tipo": "data",
+     "descricao": "Data em que esse preço foi conferido (AAAA-MM-DD)."
+    },
+    {
+     "campo": "loja",
+     "tipo": "texto",
+     "descricao": "Loja em que o preço foi conferido."
+    },
+    {
+     "campo": "link_tipo",
+     "tipo": "texto",
+     "descricao": "oferta = link direto para o anúncio conferido; busca = link de busca na loja, sem oferta verificada."
+    },
+    {
+     "campo": "url",
+     "tipo": "texto",
+     "descricao": "Endereço na loja, sem identificador de afiliado."
+    },
+    {
+     "campo": "pagina",
+     "tipo": "texto",
+     "descricao": "Página do produto no site."
+    }
+   ]
+  },
+  {
+   "nome": "precos",
+   "titulo": "Preços datados",
+   "descricao": "Uma linha por observação de preço. É o histórico: nunca é sobrescrito.",
+   "linhas": 26,
+   "csv": "https://produtoskincare.com.br/dados/precos.csv",
+   "json": "https://produtoskincare.com.br/dados/precos.json",
+   "campos": [
+    {
+     "campo": "produto_id",
+     "tipo": "texto",
+     "descricao": "Identificador do produto (campo id de produtos)."
+    },
+    {
+     "campo": "conferido_em",
+     "tipo": "data",
+     "descricao": "Data da observação (AAAA-MM-DD). Não existe linha sem data."
+    },
+    {
+     "campo": "preco",
+     "tipo": "número",
+     "descricao": "Preço observado."
+    },
+    {
+     "campo": "moeda",
+     "tipo": "texto",
+     "descricao": "Moeda (BRL)."
+    },
+    {
+     "campo": "loja",
+     "tipo": "texto",
+     "descricao": "Loja da observação."
+    },
+    {
+     "campo": "promocao",
+     "tipo": "booleano",
+     "descricao": "true quando o preço estava marcado como promoção na loja."
+    },
+    {
+     "campo": "origem",
+     "tipo": "texto",
+     "descricao": "Como a observação entrou: team = conferência manual da equipe; feed = feed oficial da loja."
+    },
+    {
+     "campo": "url",
+     "tipo": "texto",
+     "descricao": "Endereço conferido, sem identificador de afiliado."
+    }
+   ]
+  },
+  {
+   "nome": "inci",
+   "titulo": "Fórmulas (INCI)",
+   "descricao": "Uma linha por versão registrada da lista de ingredientes de um produto.",
+   "linhas": 0,
+   "csv": "https://produtoskincare.com.br/dados/inci.csv",
+   "json": "https://produtoskincare.com.br/dados/inci.json",
+   "campos": [
+    {
+     "campo": "produto_id",
+     "tipo": "texto",
+     "descricao": "Identificador do produto (campo id de produtos)."
+    },
+    {
+     "campo": "registrado_em",
+     "tipo": "data",
+     "descricao": "Data em que a lista foi registrada no site."
+    },
+    {
+     "campo": "lido_em",
+     "tipo": "data",
+     "descricao": "Data da leitura da embalagem ou da fonte, quando informada."
+    },
+    {
+     "campo": "fonte",
+     "tipo": "texto",
+     "descricao": "De onde veio a lista: embalagem, site da marca ou outro, sempre anotado."
+    },
+    {
+     "campo": "inci",
+     "tipo": "texto",
+     "descricao": "Lista de ingredientes como está na fonte, na ordem da fonte."
+    }
+   ]
+  },
+  {
+   "nome": "mudancas",
+   "titulo": "Mudanças detectadas",
+   "descricao": "Uma linha por mudança de preço, volume ou fórmula entre dois registros.",
+   "linhas": 0,
+   "csv": "https://produtoskincare.com.br/dados/mudancas.csv",
+   "json": "https://produtoskincare.com.br/dados/mudancas.json",
+   "campos": [
+    {
+     "campo": "produto_id",
+     "tipo": "texto",
+     "descricao": "Identificador do produto (campo id de produtos)."
+    },
+    {
+     "campo": "em",
+     "tipo": "data",
+     "descricao": "Data em que a mudança foi detectada."
+    },
+    {
+     "campo": "tipo",
+     "tipo": "texto",
+     "descricao": "preco, volume ou formula."
+    },
+    {
+     "campo": "de",
+     "tipo": "texto",
+     "descricao": "Valor no registro anterior."
+    },
+    {
+     "campo": "para",
+     "tipo": "texto",
+     "descricao": "Valor no registro novo."
+    },
+    {
+     "campo": "entraram",
+     "tipo": "lista",
+     "descricao": "Só em formula: ingredientes que não estavam na lista anterior."
+    },
+    {
+     "campo": "sairam",
+     "tipo": "lista",
+     "descricao": "Só em formula: ingredientes que estavam na lista anterior e não estão mais."
+    },
+    {
+     "campo": "leitura",
+     "tipo": "texto",
+     "descricao": "A mudança em uma frase."
+    }
+   ]
+  }
+ ],
+ "changelog": [
+  {
+   "versao": "0.1.0",
+   "em": "2026-11-24",
+   "mudancas": [
+    "Primeira publicação: produtos, preços datados, fórmulas (INCI) e mudanças detectadas, em CSV e JSON.",
+    "Links de loja publicados sem identificador de afiliado.",
+    "Licença CC BY 4.0."
+   ]
+  }
+ ]
+}
