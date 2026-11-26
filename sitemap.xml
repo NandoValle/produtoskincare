@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ativos/acido-glicolico/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -77,7 +77,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ativos/adenosina/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -137,7 +137,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ativos/bakuchiol/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1042,7 +1042,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/dados-abertos/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -1207,12 +1207,12 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/12-semanas/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1247,7 +1247,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/despensa/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1257,7 +1257,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/equivalente/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1272,7 +1272,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/extrato-cosmetico/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1282,7 +1282,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/farmacia/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1297,7 +1297,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/prateleira/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1307,12 +1307,12 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/promessa/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/protocolo-n1/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1332,7 +1332,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/ferramentas/rever-rotina/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1357,7 +1357,7 @@
   </url>
   <url>
     <loc>https://produtoskincare.com.br/independencia/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -1656,8 +1656,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://produtoskincare.com.br/sobre/</loc>
+    <loc>https://produtoskincare.com.br/skincare-premium/</loc>
     <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/sobre/</loc>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
