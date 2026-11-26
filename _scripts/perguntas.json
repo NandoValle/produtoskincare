@@ -2840,6 +2840,16 @@
    "Parar o produto suspeito, voltar ao básico que já era usado sem problema, não testar outro produto novo e guardar a embalagem. A página não faz diagnóstico: com inchaço, falta de ar, bolhas ou dor forte, o caminho é atendimento médico imediato; sem melhora em poucos dias, um dermatologista."
   ]
  ],
+ "/ferramentas/passaporte/": [
+  [
+   "O que é o Passaporte da Pele?",
+   "O Passaporte da Pele é o resumo do acompanhamento que a própria pessoa fez, levado à consulta dentro de um QR Code. O dermatologista aponta a câmera do celular e lê, sem aplicativo e sem cadastro. Não é prontuário, diagnóstico nem medição: são notas e anotações da própria pessoa."
+  ],
+  [
+   "Os dados do Passaporte da Pele vão para o servidor do site?",
+   "Não. O resumo vai escrito dentro do próprio QR Code, no trecho do endereço depois do sinal #, que não é enviado ao site: o celular de quem lê monta a página ali mesmo. Quem ler o QR Code ou receber o link vê o resumo, e o link fica no histórico do navegador de quem abriu. As fotos não entram."
+  ]
+ ],
  "/dados-abertos/": [
   [
    "O que tem nos dados abertos do Produto Skincare?",
@@ -2886,6 +2896,26 @@
   [
    "Como acompanhar os episódios novos de Mito x regra?",
    "Os episódios novos entram no blog e no feed RSS do site. A página da série lista todos os episódios publicados, do mais novo para o mais antigo, e quem quiser sugerir um mito pode usar a página de contato."
+  ]
+ ],
+ "/ferramentas/reformulacao/": [
+  [
+   "Como saber se a fórmula do meu produto de skincare mudou?",
+   "Guarde a lista de ingredientes do frasco que você usa hoje, com a data e o lote. Quando comprar de novo, fotografe o rótulo novo: a ferramenta Meu rótulo mudou? mostra, ingrediente por ingrediente, o que entrou, o que saiu e o que mudou de posição. A foto é lida no aparelho e os rótulos ficam guardados só no seu navegador."
+  ],
+  [
+   "Lista de ingredientes diferente quer dizer que o produto está com defeito?",
+   "Não. Marcas mudam fórmulas por vários motivos, e a mudança costuma ser regular. A página compara texto com texto: mostra que as duas listas não são iguais, mas não sabe por que mudou nem se isso explica algo que você sentiu na pele. Leitura por foto troca letras, então nomes quase iguais aparecem como \"a conferir\" no frasco."
+  ]
+ ],
+ "/skinflation/": [
+  [
+   "O que é o Índice Skinflation?",
+   "É a variação mensal do preço por ml (ou g) dos produtos de skincare do catálogo do Produto Skincare, com base 100 em novembro de 2026. Ele acompanha o preço por ml, e não o preço da etiqueta, porque um frasco que encolhe com o mesmo preço ficou mais caro."
+  ],
+  [
+   "O Índice Skinflation mede a inflação dos cosméticos no Brasil?",
+   "Não. A cesta é pequena, escolhida pela curadoria do site, com um anúncio de uma loja por produto e todos os produtos pesando igual. A página diz que não é estatística do mercado, não é o menor preço e não explica a causa da variação. A série, a cesta e o método ficam em /skinflation/indice.json, sob licença CC BY 4.0."
   ]
  ]
 }

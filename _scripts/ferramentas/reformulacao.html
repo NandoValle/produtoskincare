@@ -1,0 +1,215 @@
+<article>
+<div class="ig-cab">
+<h1>Meu rótulo mudou?</h1>
+<p class="ig-lede">Guarde a lista de ingredientes do frasco que você usa hoje, com a data e o lote. Quando comprar de novo, fotografe o rótulo novo e veja, ingrediente por ingrediente, o que entrou, o que saiu e o que mudou de posição.</p>
+<p class="ig-meta">A foto é lida neste aparelho e não é enviada. Os rótulos ficam guardados só aqui, no seu navegador. O registro público do catálogo fica no <a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a>.</p>
+</div>
+
+<section class="ig-caixa" aria-labelledby="rf-novo-titulo">
+<h2 id="rf-novo-titulo">Guardar o rótulo de um frasco</h2>
+<label class="ft-rotulo" for="rf-produto">Produto</label>
+<input class="ft-campo" id="rf-produto" type="text" list="rf-catalogo" autocomplete="off" placeholder="Ex.: Gel de limpeza da marca X, 200 ml">
+<datalist id="rf-catalogo"></datalist>
+<p class="ig-nota">Use sempre o mesmo nome para o mesmo produto: é por ele que a página encontra o rótulo anterior.</p>
+<label class="ft-rotulo" for="rf-data">Data da compra</label>
+<input class="ft-campo" id="rf-data" type="date">
+<label class="ft-rotulo" for="rf-lote">Lote (opcional)</label>
+<input class="ft-campo" id="rf-lote" type="text" autocomplete="off" placeholder="Costuma vir gravado no fundo ou na dobra do tubo">
+<div class="ft-ocr">
+<label class="ft-btn ft-sec">📷 Ler o rótulo por foto<input type="file" id="rf-foto" accept="image/*" capture="environment" class="ft-arquivo"></label>
+<p class="ig-nota" id="rf-ocr" role="status" aria-live="polite">Foto de perto, reta, com boa luz e sem reflexo. Na primeira vez, o leitor baixa cerca de 7 MB.</p>
+</div>
+<label class="ft-rotulo" for="rf-texto">Lista de ingredientes (confira com o frasco e corrija se precisar)</label>
+<textarea class="ft-campo" id="rf-texto" rows="6" placeholder="AQUA, GLYCERIN, NIACINAMIDE, …"></textarea>
+<button class="ft-btn" type="button" id="rf-guardar">Guardar e comparar com o anterior</button>
+<p class="ig-nota" id="rf-status" role="status" aria-live="polite"></p>
+</section>
+
+<section aria-live="polite" id="rf-resultado"></section>
+
+<section class="ig-caixa" aria-labelledby="rf-lista-titulo">
+<h2 id="rf-lista-titulo">Rótulos guardados neste aparelho</h2>
+<div id="rf-lista"></div>
+<div id="rf-par" hidden>
+<label class="ft-rotulo" for="rf-a">Comparar o rótulo de</label>
+<select class="ft-campo" id="rf-a"></select>
+<label class="ft-rotulo" for="rf-b">com o de</label>
+<select class="ft-campo" id="rf-b"></select>
+<button class="ft-btn ft-sec" type="button" id="rf-comparar">Comparar estes dois</button>
+</div>
+</section>
+
+<section class="ig-caixa" aria-labelledby="rf-ler-titulo">
+<h2 id="rf-ler-titulo">Como ler o resultado</h2>
+<ul class="ft-regras">
+<li><strong>Lista diferente não é defeito.</strong> Marcas mudam fórmulas por vários motivos, e a mudança costuma ser regular. O que esta página mostra é o fato: as duas listas não são iguais nestes pontos.</li>
+<li><strong>A página compara texto com texto.</strong> Ela não sabe por que a lista mudou, nem se a mudança explica algo que você sentiu na pele.</li>
+<li><strong>Leitura por foto troca letras.</strong> Nomes quase iguais aparecem em "a conferir". Olhe os dois frascos antes de concluir: pode ser erro de leitura ou pode ser outro ingrediente de nome parecido.</li>
+<li><strong>A ordem conta pouco no fim da lista.</strong> Os ingredientes vêm em ordem decrescente de quantidade, mas os que ficam abaixo de 1% podem aparecer em qualquer ordem. Mudança de posição entre os últimos da lista diz pouco.</li>
+<li><strong>O mesmo produto pode ter mais de uma versão à venda</strong> (tamanhos, países de fabricação, estoque antigo). Duas listas diferentes podem ser duas versões que convivem na prateleira.</li>
+<li><strong>Reação na pele:</strong> pare de usar e procure um dermatologista. Guarde o frasco e o lote.</li>
+</ul>
+</section>
+
+<section aria-labelledby="rf-leia-titulo">
+<h2 id="rf-leia-titulo">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a></li>
+<li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li>
+<li><a href="/ferramentas/prateleira/">Minha prateleira</a></li>
+<li><a href="/ferramentas/promessa/">Selo ANVISA e promessa</a></li>
+</ul>
+</section>
+
+<p class="ig-foot"><span>Ferramenta informativa, não substitui consulta com dermatologista.</span></p>
+</article>
+<script src="/rotulos.js"></script>
+<script src="/ocr-rotulo.js"></script>
+<script>
+(function () {
+  "use strict";
+  var T = window.PSRotulos;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  function evento(n) { try { if (window.PSAnalytics) window.PSAnalytics.evento(n); } catch (e) {} }
+  function hoje() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function fmt(iso) { return /^\d{4}-\d{2}-\d{2}$/.test(iso || "") ? iso.slice(8) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : "sem data"; }
+  function rotuloDe(r) { return fmt(r.data) + (r.lote ? ", lote " + r.lote : ""); }
+  function plural(n, um, varios) { return n + " " + (n === 1 ? um : varios); }
+
+  $("rf-data").value = hoje();
+  $("rf-data").max = hoje();
+
+  // Nomes do catálogo como sugestão (só o nome; nada do que a pessoa digita sai do aparelho).
+  fetch("/produtos.json").then(function (r) { return r.json(); }).then(function (d) {
+    $("rf-catalogo").innerHTML = (d.produtos || []).map(function (p) { return '<option value="' + esc(p.nome) + '">'; }).join("");
+  }).catch(function () {});
+
+  if (window.PSOcr) PSOcr.ligar($("rf-foto"), $("rf-ocr"), function (texto) {
+    $("rf-texto").value = texto;
+    $("rf-texto").focus();
+    evento("reformulacao/ocr");
+  });
+
+  function itens(lista, fn) { return "<ul>" + lista.map(function (x) { return "<li>" + fn(x) + "</li>"; }).join("") + "</ul>"; }
+
+  function mensagem(a, b, c) {
+    var linhas = [
+      "Olá. Uso o produto " + (b.produto || a.produto) + " e comparei a lista de ingredientes de duas embalagens.",
+      "",
+      "Embalagem 1: comprada em " + rotuloDe(a) + ".",
+      "Embalagem 2: comprada em " + rotuloDe(b) + ".",
+      ""
+    ];
+    if (c.saiu.length) linhas.push("Constam na embalagem 1 e não na 2: " + c.saiu.map(function (x) { return x.nome; }).join(", ") + ".");
+    if (c.entrou.length) linhas.push("Constam na embalagem 2 e não na 1: " + c.entrou.map(function (x) { return x.nome; }).join(", ") + ".");
+    linhas.push("", "Gostaria de saber se a fórmula do produto foi alterada, a partir de quando, e se as duas versões continuam à venda.", "", "Obrigado(a).");
+    return linhas.join("\n");
+  }
+
+  function mostrar(a, b) {
+    var alvo = $("rf-resultado");
+    var c = T.comparar(a.texto, b.texto);
+    var outro = T.chaveProduto(a.produto) !== T.chaveProduto(b.produto);
+    var cab = outro
+      ? "<h2>" + esc(a.produto) + " (" + esc(rotuloDe(a)) + ") e " + esc(b.produto) + " (" + esc(rotuloDe(b)) + ")</h2>" +
+        '<p class="ig-nota">Os dois rótulos foram guardados com nomes de produto diferentes. A comparação abaixo é entre dois produtos, não entre duas compras do mesmo.</p>'
+      : "<h2>" + esc(b.produto) + ": " + esc(rotuloDe(a)) + " e " + esc(rotuloDe(b)) + "</h2>";
+    if (!c.comparavel) {
+      alvo.innerHTML = '<div class="ig-caixa">' + cab + '<div class="ft-sem"><strong>Não deu para comparar.</strong>Uma das listas tem menos de 3 ingredientes reconhecidos (' + c.totalA + " e " + c.totalB + "). Confira o texto guardado: os ingredientes precisam estar separados por vírgula.</div></div>";
+      return;
+    }
+    var conferir = c.parecidos.length ? '<div class="ft-sem"><strong>A conferir no frasco: ' + plural(c.parecidos.length, "nome quase igual", "nomes quase iguais") + "</strong>" +
+      "Pode ser erro de leitura da foto ou pode ser outro ingrediente de nome parecido. Olhe as duas embalagens." +
+      itens(c.parecidos, function (x) { return esc(x.antes) + " → " + esc(x.agora); }) + "</div>" : "";
+    var moveu = c.moveu.length ? '<div class="ft-info"><strong>Mudaram de posição: ' + c.moveu.length + "</strong>" +
+      itens(c.moveu, function (x) { return esc(x.nome) + ": era o " + x.de + "º, agora é o " + x.para + "º"; }) +
+      '<span class="ft-sub">A ordem é decrescente de quantidade só até 1%. Entre os últimos da lista, a posição diz pouco.</span></div>' : "";
+    var veredito, extra = "";
+    if (c.mesmaLista) {
+      veredito = '<div class="ft-ok"><strong>Mesma lista de ingredientes.</strong>As duas embalagens trazem os mesmos ' + c.totalB + " ingredientes." +
+        (c.moveu.length ? "" : " A ordem também é a mesma.") + "</div>";
+    } else if (c.soConferir) {
+      veredito = '<div class="ft-info"><strong>Nenhum ingrediente entrou ou saiu com certeza.</strong>As listas batem, a não ser por ' + plural(c.parecidos.length, "nome quase igual", "nomes quase iguais") + ", abaixo.</div>";
+    } else {
+      veredito = '<div class="ft-horarios"><strong>As listas não são iguais.</strong>' +
+        plural(c.saiu.length, "ingrediente só na embalagem anterior", "ingredientes só na embalagem anterior") + " e " +
+        plural(c.entrou.length, "só na nova", "só na nova") + ". " + plural(c.iguais.length, "ingrediente em comum", "ingredientes em comum") + ".</div>" +
+        (c.saiu.length ? '<div class="ft-info"><strong>Só na embalagem de ' + esc(rotuloDe(a)) + "</strong>" + itens(c.saiu, function (x) { return esc(x.nome) + ' <span class="ft-sub">' + x.de + "º da lista</span>"; }) + "</div>" : "") +
+        (c.entrou.length ? '<div class="ft-info"><strong>Só na embalagem de ' + esc(rotuloDe(b)) + "</strong>" + itens(c.entrou, function (x) { return esc(x.nome) + ' <span class="ft-sub">' + x.para + "º da lista</span>"; }) + "</div>" : "");
+      if (!outro) extra = '<h3>Quer perguntar à marca?</h3><p class="ig-nota">Antes, confira os nomes acima nas duas embalagens. A mensagem abaixo só relata o que está escrito nos rótulos e pede informação. O contato do atendimento (SAC) vem impresso na embalagem.</p>' +
+        '<textarea class="ft-campo" id="rf-msg" rows="9" readonly>' + esc(mensagem(a, b, c)) + "</textarea>" +
+        '<button class="ft-btn ft-sec" type="button" id="rf-copiar">Copiar a mensagem</button> <span class="ig-nota" id="rf-copiado" role="status"></span>';
+    }
+    alvo.innerHTML = '<div class="ig-caixa">' + cab + veredito + conferir + moveu + extra + "</div>";
+    var bt = $("rf-copiar");
+    if (bt) bt.addEventListener("click", function () {
+      var txt = $("rf-msg").value;
+      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
+        $("rf-copiado").textContent = "Mensagem copiada.";
+      }, function () { $("rf-msg").focus(); $("rf-msg").select(); $("rf-copiado").textContent = "Selecione o texto e copie."; });
+      evento("reformulacao/copiar");
+    });
+    alvo.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+
+  function desenhar() {
+    var l = T.ler().slice().sort(function (a, b) { return a.produto.localeCompare(b.produto, "pt-BR") || (a.data < b.data ? 1 : -1); });
+    if (!l.length) {
+      $("rf-lista").innerHTML = '<p class="ig-nota">Nenhum rótulo guardado ainda. O primeiro que você guardar vira a referência para a próxima compra.</p>';
+      $("rf-par").hidden = true;
+      return;
+    }
+    $("rf-lista").innerHTML = '<ul class="ft-itens">' + l.map(function (r) {
+      return '<li class="ft-item"><div><strong>' + esc(r.produto) + '</strong><span class="ig-nota">' + esc(rotuloDe(r)) + " · " +
+        plural(T.listar(r.texto).length, "ingrediente", "ingredientes") + '</span></div><div class="ft-item-acoes">' +
+        '<button class="ft-mini" type="button" data-excluir="' + esc(r.id) + '">Excluir</button></div></li>';
+    }).join("") + "</ul>";
+    var opcoes = l.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.produto + " (" + rotuloDe(r) + ")") + "</option>"; }).join("");
+    $("rf-a").innerHTML = opcoes; $("rf-b").innerHTML = opcoes;
+    if (l.length > 1) $("rf-b").selectedIndex = 1;
+    $("rf-par").hidden = l.length < 2;
+  }
+
+  $("rf-lista").addEventListener("click", function (ev) {
+    var bt = ev.target.closest("button[data-excluir]");
+    if (!bt) return;
+    if (!confirm("Excluir este rótulo guardado? Não dá para desfazer.")) return;
+    T.remover(bt.getAttribute("data-excluir"));
+    desenhar();
+  });
+
+  $("rf-comparar").addEventListener("click", function () {
+    var l = T.ler(), a, b;
+    l.forEach(function (r) { if (r.id === $("rf-a").value) a = r; if (r.id === $("rf-b").value) b = r; });
+    if (!a || !b || a.id === b.id) { $("rf-resultado").innerHTML = '<p class="ig-nota">Escolha dois rótulos diferentes.</p>'; return; }
+    if (a.data > b.data) { var t = a; a = b; b = t; }      // o mais antigo vai primeiro
+    mostrar(a, b);
+    evento("reformulacao/comparar");
+  });
+
+  $("rf-guardar").addEventListener("click", function () {
+    var st = $("rf-status");
+    var produto = $("rf-produto").value.trim(), texto = $("rf-texto").value.trim(), data = $("rf-data").value || hoje();
+    if (!produto) { st.textContent = "Diga qual é o produto."; $("rf-produto").focus(); return; }
+    var n = T.listar(texto).length;
+    if (n < 3) { st.textContent = "A lista precisa de pelo menos 3 ingredientes separados por vírgula. Reconheci " + n + "."; $("rf-texto").focus(); return; }
+    var novo = T.guardar({ produto: produto, data: data, lote: $("rf-lote").value, texto: texto });
+    if (!novo) { st.textContent = "Não consegui guardar neste navegador (o armazenamento pode estar cheio ou bloqueado)."; return; }
+    evento("reformulacao/guardar");
+    $("rf-texto").value = ""; $("rf-lote").value = "";
+    desenhar();
+    var anterior = T.anteriorDe(novo);
+    if (anterior) {
+      st.textContent = "Rótulo guardado com " + plural(n, "ingrediente", "ingredientes") + ". Comparação com o de " + rotuloDe(anterior) + " abaixo.";
+      if (anterior.data > novo.data) mostrar(novo, anterior); else mostrar(anterior, novo);
+    } else {
+      st.textContent = "Rótulo guardado com " + plural(n, "ingrediente", "ingredientes") + ". É o primeiro deste produto: na próxima compra, guarde o novo com o mesmo nome para comparar.";
+      $("rf-resultado").innerHTML = "";
+    }
+  });
+
+  desenhar();
+})();
+</script>

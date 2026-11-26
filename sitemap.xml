@@ -1296,6 +1296,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/ferramentas/passaporte/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/ferramentas/prateleira/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
@@ -1321,8 +1326,13 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://produtoskincare.com.br/ferramentas/reformulacao/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://produtoskincare.com.br/ferramentas/relatorio/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1663,6 +1673,11 @@
   <url>
     <loc>https://produtoskincare.com.br/skincare-premium/</loc>
     <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://produtoskincare.com.br/skinflation/</loc>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

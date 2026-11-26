@@ -17,6 +17,7 @@ sleep 1
 BASE="http://127.0.0.1:$PORTA"
 falhou=0
 node _scripts/testar_regras.js >/dev/null && echo "ok    regras (node _scripts/testar_regras.js)" || { echo "FALHA regras"; falhou=1; }
+node _scripts/testar_rotulos.js >/dev/null && echo "ok    rotulos (node _scripts/testar_rotulos.js)" || { echo "FALHA rotulos"; falhou=1; }
 for t in link link_extra sensivel orcamento tenho verificador confianca mobile novas leitura; do
   if saida=$(node "_scripts/testes_navegador/$t.js" "$BASE" 2>&1); then
     echo "ok    $t"
