@@ -17,9 +17,6 @@ Com --nome e --descricao, também põe o vídeo na página (como no post do Ozem
 VideoObject e a seção "Assista: a notícia em 1 minuto" logo depois do card de resumo, com a narração em texto.
 Rodar de novo atualiza esses três blocos em vez de duplicar.
 
-Em post que não é notícia (guia, mito x regra), passar --formato "o guia em 1 minuto": troca a faixa do alto
-do vídeo e o título da seção na página.
-
 Uso: python3 _scripts/video_noticia_frases.py <slug> --audio narracao.mp3 --etiqueta "Mercado · Notícia" \\
          --nome "Título: a notícia em 1 minuto" --descricao "Resumo narrado de ..."
 """
@@ -84,14 +81,14 @@ def quebrar(d, texto, f, largura):
     return linhas
 
 
-def base_comum(base, etiqueta, formato="a notícia em 1 minuto"):
+def base_comum(base, etiqueta):
     """Tudo o que não muda entre as telas: marca, etiqueta, traço, rodapé e o trilho da barra."""
     img = base.copy()
     d = ImageDraw.Draw(img, "RGBA")
     f_marca = fonte(SERIFA, 46)
     d.text((M, 135), "Produto ", font=f_marca, fill=TINTA, anchor="ls")
     d.text((M + d.textlength("Produto ", font=f_marca), 135), "Skincare", font=f_marca, fill=ROSA, anchor="ls")
-    d.text((M, 175), "BLOG  ·  " + formato.upper(), font=fonte(SANS, 28), fill=SUAVE, anchor="ls")
+    d.text((M, 175), "BLOG  ·  A NOTÍCIA EM 1 MINUTO", font=fonte(SANS, 28), fill=SUAVE, anchor="ls")
     f_tag = fonte(SANS_FORTE, 28)
     w = d.textlength(etiqueta, font=f_tag)
     d.rounded_rectangle((M, 212, M + w + 50, 270), radius=29, fill=ROSA_CLARO + (120,))
@@ -198,7 +195,7 @@ CSS_VIDEO = (".video-wrap{margin:28px 0}.video-wrap h2{margin-top:0}.video-wrap 
              ".video-wrap summary{cursor:pointer;color:var(--rosa);font-weight:600}.video-wrap details p{margin:.6em 0}")
 
 
-def atualizar_pagina(slug, nome, descricao, segundos, formato="a notícia em 1 minuto"):
+def atualizar_pagina(slug, nome, descricao, segundos):
     """Põe (ou atualiza) o CSS, o JSON-LD VideoObject e a seção do vídeo na página do post."""
     pagina = RAIZ / "blog" / slug / "index.html"
     h = pagina.read_text(encoding="utf-8")
@@ -219,7 +216,7 @@ def atualizar_pagina(slug, nome, descricao, segundos, formato="a notícia em 1 m
                   (RAIZ / "_roteiros" / f"{slug}.txt").read_text(encoding="utf-8").split("\n", 2)[2].split("\n\n")]
     narracao = "".join(f"<p>{html.escape(p, quote=False)}</p>" for p in paragrafos if p)
     secao = ('<section class="video-wrap" aria-labelledby="assista">\n'
-             f'<h2 id="assista">Assista: {formato}</h2>\n'
+             '<h2 id="assista">Assista: a notícia em 1 minuto</h2>\n'
              '<video controls preload="metadata" playsinline poster="poster.jpg" width="1080" height="1920">\n'
              '<source src="video.mp4" type="video/mp4">\n'
              '<track kind="captions" src="legendas.vtt" srclang="pt-BR" label="Português" default>\n'
@@ -231,8 +228,7 @@ def atualizar_pagina(slug, nome, descricao, segundos, formato="a notícia em 1 m
     if secao_antiga.search(h):
         h = secao_antiga.sub(lambda _: secao, h, count=1)
     else:
-        resumo = (re.search(r'<div class="card aviso">\s*<strong>Resumo:</strong>.*?</div>\n', h, re.S)
-                  or re.search(r'<div class="ig-caixa ig-resumo">.*?</div>\n', h, re.S))
+        resumo = re.search(r'<div class="card aviso">\s*<strong>Resumo:</strong>.*?</div>\n', h, re.S)
         if not resumo:
             raise SystemExit(f"não achei o card de resumo em blog/{slug}/index.html para pôr o vídeo depois dele")
         h = h[:resumo.end()] + "\n" + secao + "\n" + h[resumo.end():]
@@ -250,8 +246,6 @@ def main():
     ap.add_argument("slug")
     ap.add_argument("--audio", required=True)
     ap.add_argument("--etiqueta", default="Notícia")
-    ap.add_argument("--formato", default="a notícia em 1 minuto",
-                    help='nome do formato, no alto do vídeo e no título da seção (em guia: "o guia em 1 minuto")')
     ap.add_argument("--saida", help="pasta de saída (padrão: blog/<slug>/); com ela, a página não é alterada")
     ap.add_argument("--nome", help="nome do vídeo no JSON-LD (com --descricao, põe o vídeo na página)")
     ap.add_argument("--descricao", help="descrição do vídeo no JSON-LD")
@@ -270,7 +264,7 @@ def main():
     duracoes = [b - a for a, b in zip(trocas, trocas[1:] + [fim_video])]
 
     base = fundo()
-    comum = base_comum(base, args.etiqueta, args.formato)
+    comum = base_comum(base, args.etiqueta)
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         lista = []
@@ -308,7 +302,7 @@ def main():
     print(f"{destino / 'video.mp4'}  {total:.1f} s  {mb:.2f} MB  ({len(frases)} frases)")
     print(f"duração para o VideoObject: PT{round(total)}S")
     if args.nome and args.descricao and not args.saida:
-        atualizar_pagina(args.slug, args.nome, args.descricao, total, args.formato)
+        atualizar_pagina(args.slug, args.nome, args.descricao, total)
         print(f"blog/{args.slug}/index.html: CSS, VideoObject e seção do vídeo em dia")
 
 
