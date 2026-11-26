@@ -20,7 +20,7 @@
 <tbody id="ex-corpo"><tr><td colspan="6">Carregando…</td></tr></tbody>
 </table>
 </div>
-<p class="ig-nota">Clique no nome de um produto para ver todos os registros datados dele.</p>
+<p class="ig-nota">Clique no nome de um produto para ver todos os registros datados dele. Para comparar o rótulo do seu próprio frasco com o da próxima compra, use <a href="/ferramentas/reformulacao/">Meu rótulo mudou?</a>.</p>
 </section>
 
 <section class="ig-caixa" aria-labelledby="ex-metodo-titulo">
@@ -29,13 +29,16 @@
 <li><strong>Preço:</strong> preço conferido do catálogo, com a data da coleta e a loja. O preço muda: vale o da loja na hora da compra.</li>
 <li><strong>Volume:</strong> só entra com fonte (embalagem ou ficha da loja). Sem fonte, fica vazio e o preço/ml não é calculado.</li>
 <li><strong>Fórmula (INCI):</strong> a lista de ingredientes entra quando alguém registra a da embalagem ou de fonte oficial, com a fonte anotada. Enquanto não há lista registrada, o campo fica vazio — a coluna existe para começar a acumular, não para fingir que já temos tudo.</li>
-<li><strong>O que vira "mudança":</strong> preço diferente; volume diferente (shrinkflation quando o preço não muda e o volume cai); INCI ou ativos diferentes entre registros.</li>
+<li><strong>O que vira "mudança":</strong> preço diferente; volume diferente (shrinkflation quando o preço não muda e o volume cai); e fórmula, só quando há duas listas INCI registradas, com fonte e data, que diferem em pelo menos um ingrediente. A mudança mostra quais ingredientes estão só em uma das listas.</li>
+<li><strong>O que não vira mudança de fórmula:</strong> a primeira lista registrada de um produto (é o ponto de partida) e a troca dos ativos que o site destaca (aparece como "Catálogo": é edição nossa, não do produto).</li>
+<li><strong>Lista diferente não é defeito:</strong> o registro mostra que duas listas não são iguais e de onde veio cada uma. Não diz por que a marca mudou.</li>
 </ul>
 </section>
 
 <section aria-labelledby="ex-leia-titulo">
 <h2 id="ex-leia-titulo">Leia também</h2>
 <ul class="ig-rel">
+<li><a href="/ferramentas/reformulacao/">Meu rótulo mudou? Compare dois frascos</a></li>
 <li><a href="/ferramentas/matematica/">A matemática do frasco</a></li>
 <li><a href="/ferramentas/equivalente/">Equivalente mais barato</a></li>
 <li><a href="/ferramentas/termometro/">Termômetro de preço</a></li>
@@ -78,7 +81,7 @@
     var unidade = e.volume_ml ? "/ml" : "/g";
     return "R$ " + v.toFixed(2).replace(".", ",") + " " + unidade;
   };
-  var tipoRotulo = { preco: "Preço", volume: "Volume", formula: "Fórmula" };
+  var tipoRotulo = { preco: "Preço", volume: "Volume", formula: "Fórmula", catalogo: "Catálogo" };
 
   function renderMudancas(dados) {
     var alvo = $("ex-mudancas");

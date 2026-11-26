@@ -1,5 +1,5 @@
 """Gera as ferramentas que usam a casca dos artigos (pagina_base): prateleira, modo farmácia,
-equivalente mais barato, modo 12 semanas e o índice /ferramentas/.
+equivalente mais barato, modo 12 semanas, comparação de rótulos e o índice /ferramentas/.
 
 O conteúdo de cada página (HTML e JavaScript) fica em _scripts/ferramentas/<nome>.html.
 Rode depois de mudar um desses arquivos:
@@ -135,6 +135,9 @@ PAGINAS = [
     {"fonte": "extrato-cosmetico.html", "caminho": "/ferramentas/extrato-cosmetico/", "trilha": "Extrato do cosmético",
      "titulo": "Extrato do cosmético: preço, volume e fórmula, datados",
      "descricao": "O histórico datado de preço, volume e INCI de cada produto — detecta reformulação silenciosa e shrinkflation (mesmo preço, menos ml). Registro iniciado em 20/11/2026."},
+    {"fonte": "reformulacao.html", "caminho": "/ferramentas/reformulacao/", "trilha": "Meu rótulo mudou?",
+     "titulo": "Meu rótulo mudou? Compare a fórmula de dois frascos",
+     "descricao": "Guarde a lista de ingredientes do seu frasco, com data e lote, e compare com a da próxima compra: o que entrou, o que saiu e o que mudou de posição. Só no seu aparelho."},
     {"fonte": "promessa.html", "caminho": "/ferramentas/promessa/", "trilha": "Selo ANVISA e promessa",
      "titulo": "Selo ANVISA e raio-X de promessa de skincare",
      "descricao": "Confira o registro do produto na base aberta da ANVISA e teste promessa por promessa do texto de marketing contra a lista de ingredientes e o hub científico, com a fonte de cada veredito."},

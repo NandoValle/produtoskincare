@@ -2869,5 +2869,15 @@
    "Como acompanhar os episódios novos de Mito x regra?",
    "Os episódios novos entram no blog e no feed RSS do site. A página da série lista todos os episódios publicados, do mais novo para o mais antigo, e quem quiser sugerir um mito pode usar a página de contato."
   ]
+ ],
+ "/ferramentas/reformulacao/": [
+  [
+   "Como saber se a fórmula do meu produto de skincare mudou?",
+   "Guarde a lista de ingredientes do frasco que você usa hoje, com a data e o lote. Quando comprar de novo, fotografe o rótulo novo: a ferramenta Meu rótulo mudou? mostra, ingrediente por ingrediente, o que entrou, o que saiu e o que mudou de posição. A foto é lida no aparelho e os rótulos ficam guardados só no seu navegador."
+  ],
+  [
+   "Lista de ingredientes diferente quer dizer que o produto está com defeito?",
+   "Não. Marcas mudam fórmulas por vários motivos, e a mudança costuma ser regular. A página compara texto com texto: mostra que as duas listas não são iguais, mas não sabe por que mudou nem se isso explica algo que você sentiu na pele. Leitura por foto troca letras, então nomes quase iguais aparecem como \"a conferir\" no frasco."
+  ]
  ]
 }
