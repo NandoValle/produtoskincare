@@ -27,6 +27,11 @@ h2{font-family:var(--fonte-display);font-size:clamp(1.5rem,4vw,2rem);margin:2em 
 .hero-badge .dot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.tenho-lista{list-style:none;margin:16px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tenho-lista li{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px}
+.tenho-lista b{display:block;font-family:var(--fonte-display);font-size:1.2rem;font-weight:400;margin-bottom:6px}
+.tenho-lista p{margin:0;color:var(--suave);font-size:.95rem}
+.hero-link{display:inline-flex;align-items:center;min-height:44px;color:var(--suave);font-size:.95rem}
 .card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:24px}
 .tipo-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;text-align:center;text-decoration:none;color:var(--tinta);transition:all .3s}
 .tipo-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(26,22,20,0.1)}
@@ -55,9 +60,9 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <meta property="og:image" content="https://produtoskincare.com.br/img/og/es.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Descubre tu tipo de piel y la rutina ideal">
+<meta property="og:image:alt" content="Tu piel no necesita más productos. Necesita los cuidados correctos.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/#pagina", "url": "https://produtoskincare.com.br/es/", "name": "Descubre tu tipo de piel y la rutina ideal", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Descubre tu tipo de piel y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubre tu tipo de piel y la rutina ideal", "item": "https://produtoskincare.com.br/es/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/#pagina", "url": "https://produtoskincare.com.br/es/", "name": "Tu piel no necesita más productos. Necesita los cuidados correctos.", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Descubre tu tipo de piel y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Tu piel no necesita más productos. Necesita los cuidados correctos.", "item": "https://produtoskincare.com.br/es/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -80,13 +85,24 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 </div>
 
 <section class="hero">
-<div class="hero-badge"><div class="dot"></div>Cuestionario gratis · 10 preguntas</div>
-<h1>Descubre tu tipo de piel<br>y la <em>rutina ideal</em></h1>
-<p class="lead">Responde 5 preguntas rápidas y recibe una rutina de skincare personalizada — con productos reales, enlaces directos y sin relleno.</p>
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<a href="/provador/" class="btn">Comenzar el quiz →</a>
-<a href="#tipos" class="btn sec">Explorar por tipo</a>
+<div class="hero-badge"><div class="dot"></div>Antes de comprar</div>
+<h1>Tu piel no necesita más productos.<br><em>Necesita los cuidados correctos.</em></h1>
+<p class="lead">Cuéntale al quiz lo que ya tienes en casa. Arma tu rutina de mañana y de noche con eso y solo muestra una oferta donde falta algo.</p>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+<a href="/provador/" class="btn">Armar mi rutina →</a>
+<a href="#tipos" class="hero-link">O explorar por tipo de piel</a>
 </div>
+<p class="sub" style="margin-top:14px;font-size:.85rem">El quiz y sus resultados están en portugués.</p>
+</section>
+
+<section id="usa-lo-que-tienes">
+<h2>Usa lo que ya tienes</h2>
+<p class="lead" style="margin-left:0">En el resultado del quiz marcas lo que ya está en tu baño. La rutina se divide en tres partes, y solo una tiene enlace a la tienda.</p>
+<ol class="tenho-lista">
+<li><b>Ya lo tengo</b><p>Sigue usándolo hasta que se acabe. Aquí el sitio no muestra producto ni precio.</p></li>
+<li><b>Vale la pena completar</b><p>El paso que falta en la base: limpiar, hidratar o proteger del sol. Solo aquí aparece una oferta, con el motivo de la elección y para quién quizá no valga la pena.</p></li>
+<li><b>Puede esperar</b><p>Sérums y ácidos entran cuando la base ya es un hábito, y solo si hay un motivo.</p></li>
+</ol>
 </section>
 
 <section id="tipos">
@@ -162,14 +178,14 @@ window.addEventListener("DOMContentLoaded", function () {
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Preguntas frecuentes</h2>
 <h3>¿Cómo descubro mi tipo de piel y mi rutina de skincare ideal?</h3>
-<p>Responde 5 preguntas rápidas en el cuestionario gratuito y recibe una rutina de skincare personalizada, con productos reales y enlaces directos.</p>
+<p>Cuéntale al quiz lo que ya tienes en casa. Arma tu rutina de mañana y de noche con eso y solo muestra una oferta donde falta algo. El quiz y sus resultados están en portugués.</p>
 <h3>¿Cómo puedo seguir la evolución de mi piel con el tiempo?</h3>
 <p>Registra cómo está tu piel, con o sin foto, y mira tu propia curva con marcos de 28 días. Acompañamiento personal significa que los registros se quedan solo en este dispositivo y no son una medición clínica.</p>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo descubro mi tipo de piel y mi rutina de skincare ideal?", "acceptedAnswer": {"@type": "Answer", "text": "Responde 5 preguntas rápidas en el cuestionario gratuito y recibe una rutina de skincare personalizada, con productos reales y enlaces directos."}}, {"@type": "Question", "name": "¿Cómo puedo seguir la evolución de mi piel con el tiempo?", "acceptedAnswer": {"@type": "Answer", "text": "Registra cómo está tu piel, con o sin foto, y mira tu propia curva con marcos de 28 días. Acompañamiento personal significa que los registros se quedan solo en este dispositivo y no son una medición clínica."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo descubro mi tipo de piel y mi rutina de skincare ideal?", "acceptedAnswer": {"@type": "Answer", "text": "Cuéntale al quiz lo que ya tienes en casa. Arma tu rutina de mañana y de noche con eso y solo muestra una oferta donde falta algo. El quiz y sus resultados están en portugués."}}, {"@type": "Question", "name": "¿Cómo puedo seguir la evolución de mi piel con el tiempo?", "acceptedAnswer": {"@type": "Answer", "text": "Registra cómo está tu piel, con o sin foto, y mira tu propia curva con marcos de 28 días. Acompañamiento personal significa que los registros se quedan solo en este dispositivo y no son una medición clínica."}}]}</script>
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-24">24 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
+<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-26">26 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertas como HTML común.</p></noscript></main>
 <footer class="ps-rodape">

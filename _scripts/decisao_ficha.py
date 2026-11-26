@@ -129,19 +129,86 @@ def respostas(pagina):
     return considerar, pular, etapa, ingrediente, formula
 
 
-def bloco(r):
+# Rótulos e frases fixas por idioma. As respostas em si saem do texto da própria ficha.
+TEXTOS = {
+    "pt": {
+        "rotulo": "Para decidir", "considerar": "Por que considerar?", "pular": "Quando faz sentido pular?",
+        "etapa": "Em que etapa entra?", "beneficio": "O que sabemos sobre o benefício?",
+        "ingrediente": "Sobre o ingrediente:", "formula": "Sobre a fórmula final:",
+        "universal": UNIVERSAL,
+        "gestacao": 'Na gestação ou amamentação: leia antes a seção <a href="#gestacao">gestação e amamentação</a>.',
+        "sem_produto": ("nenhum produto foi avaliado nesta ficha. Concentração, veículo e estabilidade mudam de uma marca "
+                        "para outra, então a evidência do ingrediente não garante o resultado de um produto, e um bom "
+                        "resultado de um produto não vale para todos os que levam o mesmo ingrediente."),
+    },
+    "en": {
+        "rotulo": "To decide", "considerar": "Why consider it?", "pular": "When does it make sense to skip it?",
+        "etapa": "Which step does it go in?", "beneficio": "What do we know about the benefit?",
+        "ingrediente": "About the ingredient:", "formula": "About the finished formula:",
+        "universal": "If what you already use covers the same goal and your skin is doing well.",
+        "gestacao": 'If you are pregnant or breastfeeding: read the <a href="#gestacao">pregnancy and breastfeeding</a> section first.',
+        "sem_produto": ("no product was assessed on this page. Concentration, vehicle and stability change from one brand "
+                        "to another, so evidence for the ingredient does not guarantee the result of a product, and a good "
+                        "result from one product does not carry over to every product with the same ingredient."),
+    },
+    "es": {
+        "rotulo": "Para decidir", "considerar": "¿Por qué considerarlo?", "pular": "¿Cuándo tiene sentido saltárselo?",
+        "etapa": "¿En qué paso entra?", "beneficio": "¿Qué sabemos sobre el beneficio?",
+        "ingrediente": "Sobre el ingrediente:", "formula": "Sobre la fórmula final:",
+        "universal": "Si lo que ya usas cubre el mismo objetivo y tu piel va bien.",
+        "gestacao": 'En el embarazo o la lactancia: lee antes la sección <a href="#gestacao">embarazo y lactancia</a>.',
+        "sem_produto": ("ningún producto fue evaluado en esta ficha. La concentración, el vehículo y la estabilidad cambian de "
+                        "una marca a otra, así que la evidencia del ingrediente no garantiza el resultado de un producto, y un "
+                        "buen resultado de un producto no vale para todos los que llevan el mismo ingrediente."),
+    },
+}
+
+
+def idioma_de(arq):
+    partes = arq.relative_to(RAIZ).parts
+    return partes[0] if partes[0] in ("en", "es") else "pt"
+
+
+def itens_de(pagina, secao):
+    m = re.search(r'<section id="%s"><h2>.*?</h2>(.*?)</section>' % secao, pagina, re.S)
+    return [x.strip() for x in re.findall(r"<li>(.*?)</li>", m.group(1), re.S)] if m else []
+
+
+def respostas_guia(pagina, t):
+    """Fichas no formato "Resposta direta" (ácido ferúlico e mandélico, nos três idiomas).
+
+    "Para quem" traz as indicações e, por último, para quem não é; "Como usar" abre com o período e
+    a posição na rotina; a caixa de evidência dá o nível e o motivo.
+    """
+    quem, usar = itens_de(pagina, "para-quem"), itens_de(pagina, "como-usar")
+    evid = re.search(r'<section class="ig-caixa ig-evid[^"]*">\s*<p class="ig-selo [a-z]+">([^<]+)</p>\s*<p class="ig-nota">(.*?)</p>', pagina, re.S)
+    if len(quem) < 2 or len(usar) < 2 or not evid:
+        return None
+    considerar = "<ul>" + "".join(f"<li>{x}</li>" for x in quem[:-1]) + "</ul>"
+    pular = [quem[-1]]
+    if 'id="gestacao"' in pagina:
+        pular.append(t["gestacao"])
+    pular.append(t["universal"])
+    etapa = " ".join(usar[:2])
+    selo = evid.group(1).strip()
+    ingrediente = f"{selo[0].lower() + selo[1:]}. {evid.group(2).strip()}"
+    return considerar, pular, etapa, ingrediente, t["sem_produto"]
+
+
+def bloco(r, t=None, etapa_html=False):
+    t = t or TEXTOS["pt"]
     considerar, pular, etapa, ingrediente, formula = r
     itens = []
     if considerar:
-        itens.append(("Por que considerar?", f"<p>{considerar}</p>"))
-    itens.append(("Quando faz sentido pular?", "<ul>" + "".join(f"<li>{x}</li>" for x in pular) + "</ul>"))
+        itens.append((t["considerar"], considerar if considerar.startswith("<ul>") else f"<p>{considerar}</p>"))
+    itens.append((t["pular"], "<ul>" + "".join(f"<li>{x}</li>" for x in pular) + "</ul>"))
     if etapa:
-        itens.append(("Em que etapa entra?", f"<p>{html.escape(etapa, quote=False)}</p>"))
-    itens.append(("O que sabemos sobre o benefício?",
-                  f'<p><span class="ig-d-rotulo">Sobre o ingrediente:</span> {ingrediente}</p>'
-                  f'<p><span class="ig-d-rotulo">Sobre a fórmula final:</span> {formula}</p>'))
-    corpo = "".join(f'<div class="ig-d"><dt>{t}</dt><dd>{d}</dd></div>' for t, d in itens)
-    return f'{INI}\n{CSS}\n<section class="ig-decisao" aria-label="Para decidir"><dl>{corpo}</dl></section>\n{FIM}\n'
+        itens.append((t["etapa"], f"<p>{etapa if etapa_html else html.escape(etapa, quote=False)}</p>"))
+    itens.append((t["beneficio"],
+                  f'<p><span class="ig-d-rotulo">{t["ingrediente"]}</span> {ingrediente}</p>'
+                  f'<p><span class="ig-d-rotulo">{t["formula"]}</span> {formula}</p>'))
+    corpo = "".join(f'<div class="ig-d"><dt>{q}</dt><dd>{d}</dd></div>' for q, d in itens)
+    return f'{INI}\n{CSS}\n<section class="ig-decisao" aria-label="{t["rotulo"]}"><dl>{corpo}</dl></section>\n{FIM}\n'
 
 
 BUSCA = re.compile(r'<p><a href="https://www\.amazon\.com\.br/s\?[^"]*"[^>]*>Ver opções com [^<]*</a></p>\n?')
@@ -164,17 +231,23 @@ def tirar_busca(pagina):
 
 def main():
     feitas = puladas = 0
-    for pasta in ("ativos", "ingredientes"):
+    for pasta in ("ativos", "ingredientes", "en/ingredients", "es/ingredientes"):
         for arq in sorted((RAIZ / pasta).glob("*/index.html")):
+            t = TEXTOS[idioma_de(arq)]
             pagina = original = arq.read_text(encoding="utf-8")
             pagina = re.sub(re.escape(INI) + r".*?" + re.escape(FIM) + r"\n?", "", pagina, flags=re.S)
             r = respostas(pagina)
             ancora = re.search(r'<div class="ig-caixa ig-resumo">', pagina)
+            guia = False
+            if not r:  # formato "Resposta direta"
+                r = respostas_guia(pagina, t)
+                ancora = re.search(r'<section class="ig-caixa ig-resumo">', pagina)
+                guia = True
             if not r or not ancora:
                 puladas += 1
                 print("sem bloco:", arq.relative_to(RAIZ))
             else:
-                pagina = pagina[:ancora.start()] + bloco(r) + pagina[ancora.start():]
+                pagina = pagina[:ancora.start()] + bloco(r, t, etapa_html=guia) + pagina[ancora.start():]
                 feitas += 1
             pagina = tirar_busca(pagina)
             if pagina != original:
