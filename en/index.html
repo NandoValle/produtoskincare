@@ -28,6 +28,11 @@ h2{font-family:var(--fonte-display);font-size:clamp(1.5rem,4vw,2rem);margin:2em 
 .hero-badge .dot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.tenho-lista{list-style:none;margin:16px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tenho-lista li{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px}
+.tenho-lista b{display:block;font-family:var(--fonte-display);font-size:1.2rem;font-weight:400;margin-bottom:6px}
+.tenho-lista p{margin:0;color:var(--suave);font-size:.95rem}
+.hero-link{display:inline-flex;align-items:center;min-height:44px;color:var(--suave);font-size:.95rem}
 .card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:24px}
 .tipo-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;text-align:center;text-decoration:none;color:var(--tinta);transition:all .3s}
 .tipo-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(26,22,20,0.1)}
@@ -56,9 +61,9 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <meta property="og:image" content="https://produtoskincare.com.br/img/og/en.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Discover your skin type and the ideal routine">
+<meta property="og:image:alt" content="Your skin doesn&#x27;t need more products. It needs the right care.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/en/#pagina", "url": "https://produtoskincare.com.br/en/", "name": "Discover your skin type and the ideal routine", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "en", "description": "Discover your skin type and get a personalized skincare routine with real products. Free quiz, no signup.", "breadcrumb": {"@id": "https://produtoskincare.com.br/en/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/en/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Discover your skin type and the ideal routine", "item": "https://produtoskincare.com.br/en/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/en/#pagina", "url": "https://produtoskincare.com.br/en/", "name": "Your skin doesn't need more products. It needs the right care.", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "en", "description": "Discover your skin type and get a personalized skincare routine with real products. Free quiz, no signup.", "breadcrumb": {"@id": "https://produtoskincare.com.br/en/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/en/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Your skin doesn't need more products. It needs the right care.", "item": "https://produtoskincare.com.br/en/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -81,13 +86,24 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 </div>
 
 <section class="hero">
-<div class="hero-badge"><div class="dot"></div>Free quiz · 10 questions</div>
-<h1>Discover your skin type<br>and the <em>ideal routine</em></h1>
-<p class="lead">Answer 5 quick questions and get a personalized skincare routine — with real products, direct links, and no fluff.</p>
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<a href="/provador/" class="btn">Start the quiz →</a>
-<a href="#types" class="btn sec">Browse by skin type</a>
+<div class="hero-badge"><div class="dot"></div>Before you buy</div>
+<h1>Your skin doesn't need more products.<br><em>It needs the right care.</em></h1>
+<p class="lead">Tell the quiz what you already have at home. It builds your morning and night routine around that and only shows an offer where something is missing.</p>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+<a href="/provador/" class="btn">Build my routine →</a>
+<a href="#types" class="hero-link">Or browse by skin type</a>
 </div>
+<p class="sub" style="margin-top:14px;font-size:.85rem">The quiz and its results are in Portuguese.</p>
+</section>
+
+<section id="use-what-you-have">
+<h2>Use what you already have</h2>
+<p class="lead" style="margin-left:0">On the quiz result you tick what is already in your bathroom. The routine splits into three parts, and only one of them has a store link.</p>
+<ol class="tenho-lista">
+<li><b>I already have it</b><p>Keep using it until it runs out. Here the site shows no product and no price.</p></li>
+<li><b>Worth completing</b><p>The step missing from the basics: cleanse, moisturize or protect from the sun. Only here an offer appears, with why it was picked and who it may not be worth it for.</p></li>
+<li><b>It can wait</b><p>Serums and acids come after the basics are a habit, and only if there is a reason.</p></li>
+</ol>
 </section>
 
 <section id="types">
@@ -163,14 +179,14 @@ window.addEventListener("DOMContentLoaded", function () {
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Frequently asked questions</h2>
 <h3>How do I find my skin type and ideal skincare routine?</h3>
-<p>Answer 5 quick questions in the free quiz and get a personalized skincare routine with real products and direct links. The page says there is no signup.</p>
+<p>Tell the quiz what you already have at home. It builds your morning and night routine around that and only shows an offer where something is missing. The quiz and its results are in Portuguese.</p>
 <h3>How can I track my skin progress over time?</h3>
 <p>Log how your skin feels, with or without a photo, and see your own curve over time with 28-day marks. Personal tracking here means records stay only on this device and are not a clinical measurement.</p>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I find my skin type and ideal skincare routine?", "acceptedAnswer": {"@type": "Answer", "text": "Answer 5 quick questions in the free quiz and get a personalized skincare routine with real products and direct links. The page says there is no signup."}}, {"@type": "Question", "name": "How can I track my skin progress over time?", "acceptedAnswer": {"@type": "Answer", "text": "Log how your skin feels, with or without a photo, and see your own curve over time with 28-day marks. Personal tracking here means records stay only on this device and are not a clinical measurement."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I find my skin type and ideal skincare routine?", "acceptedAnswer": {"@type": "Answer", "text": "Tell the quiz what you already have at home. It builds your morning and night routine around that and only shows an offer where something is missing. The quiz and its results are in Portuguese."}}, {"@type": "Question", "name": "How can I track my skin progress over time?", "acceptedAnswer": {"@type": "Answer", "text": "Log how your skin feels, with or without a photo, and see your own curve over time with 28-day marks. Personal tracking here means records stay only on this device and are not a clinical measurement."}}]}</script>
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-24">24 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
+<p class="ps-nota-pagina">Page updated on <time datetime="2026-11-26">26 November 2026</time>. For information only, not a diagnosis. Cosmetics rules in Brazil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. For diagnosis and treatment: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">find a dermatologist through the Brazilian Society of Dermatology</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Without JavaScript the assistant tools don’t run and nothing is lost: the guides, the product catalog and the routines stay open as plain HTML.</p></noscript></main>
 <footer class="ps-rodape">
