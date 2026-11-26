@@ -22,10 +22,12 @@ async function nomesDosProdutos(page) {
   await p.click("#btnJaSeiContinuar");
   await p.click('#chipsPreocupacoes .chip[data-conc="manchas"]');
   await p.click("#btnPreocupacoesContinuar");
+  checar("rotina de 3 passos vem marcada por padrão", await p.isChecked('input[name=rotina][value="3"]'));
   await p.click("#btnVerResultado");
   await p.click("#btnPularSelfie");
   await p.waitForSelector("#telaResultado:not([hidden])");
   const enderecoBarra = p.url();
+  checar("sem escolher nada, o resultado sai com 3 passos", new URLSearchParams(new URL(enderecoBarra).hash.slice(1)).get("rotina") === "3", enderecoBarra);
   await p.click("#btnCopiarLink"); await p.waitForTimeout(100);
   const copiado = await p.evaluate(() => navigator.clipboard.readText());
   checar("endereço da página guarda o resultado no fragmento, sem query", new URL(enderecoBarra).search === "" && new URL(enderecoBarra).hash.includes("tipo=seca"), enderecoBarra);

@@ -405,8 +405,8 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 <div class="card">
 <fieldset>
 <legend style="font-size:1.05rem">Quantos passos na rotina?</legend>
-<label class="opcao"><input type="radio" name="rotina" value="3"><span><span class="rotulo">3 passos (essencial)</span><div class="desc">Limpeza, hidratação e protetor solar.</div></span></label>
-<label class="opcao"><input type="radio" name="rotina" value="5" checked><span><span class="rotulo">5 passos (completa)</span><div class="desc">Limpeza, tratamento, hidratação, protetor — manhã e noite.</div></span></label>
+<label class="opcao"><input type="radio" name="rotina" value="3" checked><span><span class="rotulo">3 passos (essencial)</span><div class="desc">Limpeza, hidratação e protetor solar. O suficiente para começar.</div></span></label>
+<label class="opcao"><input type="radio" name="rotina" value="5"><span><span class="rotulo">5 passos (completa)</span><div class="desc">Acrescenta o tratamento (sérum ou ácido), de manhã e de noite. Para quando os três passos já viraram hábito.</div></span></label>
 </fieldset>
 </div>
 
@@ -618,7 +618,7 @@ html[data-tema=escuro] .selo-cuidado{background:#3a2e14;color:#f3dca6;border-col
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-24">24 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-26">26 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 
@@ -735,7 +735,7 @@ const ESTADO = {
   sensivelJaSei: false,
   preocupacoes: [],  // ["acne","manchas"]
   faixaPreco: "qualquer",
-  rotina: 5,
+  rotina: 3, // padrão: a rotina essencial, a mesma que a home defende
   gestante: false,
   amamentando: false,
   idade: "nd", sol: "nd", clima: "nd", exp: "nd", isotretinoina: false,

@@ -11,6 +11,23 @@
 .at-hero h1{font-size:clamp(2.1rem,7vw,3.4rem);line-height:1.04;max-width:14em}
 .at-hero .ig-lede{max-width:64ch;margin:0}
 .at-extra{display:flex;flex-direction:column;gap:8px}
+/* As três tarefas da página */
+.at-tarefas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:4px}
+.at-tarefa{display:flex;flex-direction:column;gap:6px;padding:16px 18px;border:1px solid var(--linha-2);border-radius:var(--raio-md);background:var(--papel);color:var(--tinta);text-decoration:none}
+.at-tarefa b{font-family:var(--fonte-display);font-size:1.25rem;font-weight:500;line-height:1.2}
+.at-tarefa b::after{content:" →";color:var(--rosa)}
+.at-tarefa span{font-size:.9rem;line-height:1.45;color:var(--suave)}
+.at-tarefa:hover{border-color:var(--rosa)}
+.at-tarefa:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+@media (max-width:760px){.at-tarefas{grid-template-columns:1fr}}
+/* Fichas com estudos e fontes */
+.at-fontes{display:flex;flex-direction:column;gap:10px}
+.at-fontes h2,.at-fontes .ig-nota{margin:0}
+.atlas .at-fontes-lista{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.at-fontes-lista a{display:inline-flex;align-items:baseline;gap:8px;min-height:44px;box-sizing:border-box;padding:10px 16px;border:1px solid var(--linha-2);border-radius:999px;background:var(--papel);color:var(--tinta);text-decoration:none;font-weight:600;font-size:.95rem}
+.at-fontes-lista a small{font-weight:400;font-size:.8rem;color:var(--suave)}
+.at-fontes-lista a:hover{border-color:var(--rosa)}
+.at-fontes-lista a:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
 .at-hero .ig-meta,.at-hero .ig-nota{margin:0}
 .at-busca{display:flex;flex-direction:column;gap:10px;margin-top:8px}
 .at-busca label,.at-rotulo label{font-family:var(--fonte-display);font-size:clamp(1.3rem,4vw,1.65rem);font-weight:500;color:var(--tinta)}

@@ -427,9 +427,18 @@ def corpo(cfg, ativos, combinacoes, classes):
         '<p class="at-olho">Fichas de ativos</p>'
         '<h1>Fichas de princípios ativos de skincare</h1>'
         '<p class="ig-meta">Por Equipe Produto Skincare, <a href="/sobre/#quem-escreve">texto escrito com IA</a> · Atualizado em <time datetime="%s">%s</time></p>'
-        '<p class="ig-lede">%d ativos em %d categorias, cada um com uma página curta: o que é, para que serve, para quem, como usar, cuidados, combinações e gestação. '
-        'Busque por um objetivo ou pelo nome do ativo. Os %d que já têm <a href="/ingredientes/">ficha com estudos e fontes</a> mostram o nível de evidência; '
-        'nos outros %d o cartão diz “%s”, sem inventar uma nota.</p>'
+        '<p class="ig-lede">%d ativos em %d categorias, cada um com uma página curta. Comece pelo que você quer fazer:</p>'
+        # As três tarefas da página. São âncoras para o que já existe (busca, leitor de rótulo e mapa
+        # de combinações); o atlas.js só leva o foco ao campo certo. Sem JavaScript ficam ocultas,
+        # como a busca e o leitor, que dependem dele.
+        '<nav class="at-tarefas" id="at-tarefas" aria-label="O que você quer fazer" hidden>'
+        '<a class="at-tarefa" href="#at-busca" data-tarefa="objetivo"><b>Escolher por objetivo</b>'
+        '<span>Manchas, acne, poros, pele sensível: veja quais ativos costumam ser indicados.</span></a>'
+        '<a class="at-tarefa" href="#at-rotulo" data-tarefa="rotulo"><b>Entender meu rótulo</b>'
+        '<span>Cole a lista de ingredientes e veja quais ativos o site reconhece.</span></a>'
+        '<a class="at-tarefa" href="#mapa-combina" data-tarefa="junto"><b>Ver se posso usar junto</b>'
+        '<span>O que combina, o que pede horários diferentes e o que não misturar.</span></a>'
+        '</nav>'
         '<form class="at-busca" id="at-busca" role="search" hidden>'
         '<label for="at-q">Qual preocupação ou ativo você quer ver?</label>'
         '<div class="at-busca-linha"><input id="at-q" name="q" type="search" autocomplete="off" enterkeyhint="search" '
@@ -437,7 +446,18 @@ def corpo(cfg, ativos, combinacoes, classes):
         '<button type="submit" class="at-bt cheio">Buscar</button></div>'
         '<p class="at-sugestoes"><span>Experimente:</span> %s</p>'
         '</form>'
-        '</header>' % (hoje, data_longa(hoje), n, len(cfg["categorias"]), n_ev, n - n_ev, SEM_FICHA, sug))
+        '</header>' % (hoje, data_longa(hoje), n, len(cfg["categorias"]), sug))
+    # As fichas com estudos e fontes, em destaque: são as únicas com nível de evidência.
+    com_fontes = sorted((a for a in ativos if a["ev"]), key=lambda a: unicodedata.normalize("NFD", a["nome"]).lower())
+    partes.append(
+        '<section class="at-fontes" aria-labelledby="at-fontes-t">'
+        '<h2 id="at-fontes-t">%d fichas com estudos e fontes</h2>'
+        '<p class="ig-nota">Só estas mostram o nível de evidência (forte, moderada ou emergente) e citam os estudos. '
+        'Nas outras %d o cartão diz “%s”, sem inventar uma nota.</p>'
+        '<ul class="at-fontes-lista">%s</ul>'
+        '</section>' % (n_ev, n - n_ev, SEM_FICHA, "".join(
+            '<li><a href="%s">%s <small>evidência %s</small></a></li>' % (a["url"], esc(a["nome"]), esc(a["ev"]))
+            for a in com_fontes)))
     chips_cat = "".join(
         '<button type="button" class="at-chip" data-cat="%s" aria-pressed="false">%s</button>' % (c["id"], esc(c["titulo"]))
         for c in cfg["categorias"])
