@@ -1,0 +1,371 @@
+{
+ "nome": "Índice Skinflation",
+ "editor": "Produto Skincare",
+ "url": "https://produtoskincare.com.br/skinflation/",
+ "licenca": "CC BY 4.0",
+ "dados_ate": "2026-11-02",
+ "base": {
+  "mes": "2026-11",
+  "valor": 100
+ },
+ "metodo": {
+  "leitura": "mediana do preço por ml (ou g) das observações do mês, sem promoções",
+  "agregacao": "média geométrica das razões entre meses, só com produtos presentes nos dois (pares casados), encadeada",
+  "minimo_de_pares": 10,
+  "minimo_de_pares_por_passo": 5,
+  "etiqueta": "a mesma conta com o preço do frasco, sem dividir pelo volume"
+ },
+ "limites": "Cesta pequena e escolhida pela curadoria do site, um anúncio por produto. Não é estatística do mercado brasileiro de cosméticos.",
+ "serie": [
+  {
+   "mes": "2026-11",
+   "produtos": 26,
+   "pares": null,
+   "indice": 100.0,
+   "variacao_pct": null,
+   "indice_etiqueta": 100.0,
+   "ipca_acumulado_pct": null
+  }
+ ],
+ "por_passo": {
+  "tratamento": [
+   {
+    "mes": "2026-11",
+    "produtos": 11,
+    "pares": null,
+    "indice": 100.0
+   }
+  ],
+  "hidratacao": [
+   {
+    "mes": "2026-11",
+    "produtos": 7,
+    "pares": null,
+    "indice": 100.0
+   }
+  ],
+  "protetor": [
+   {
+    "mes": "2026-11",
+    "produtos": 5,
+    "pares": null,
+    "indice": 100.0
+   }
+  ]
+ },
+ "cesta": [
+  {
+   "id": "cerave-gel-limpeza",
+   "nome": "CeraVe Gel de Limpeza Facial",
+   "passo": "limpeza",
+   "mes": "2026-11",
+   "preco": 96.9,
+   "volume": 454,
+   "unidade": "g",
+   "preco_por_unidade": 0.2134,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "cerave-pm-locao",
+   "nome": "CeraVe PM Loção Facial",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 62.9,
+   "volume": 52,
+   "unidade": "ml",
+   "preco_por_unidade": 1.2096,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "cetaphil-creme-hidratante",
+   "nome": "Cetaphil Creme Hidratante",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 85.9,
+   "volume": 453,
+   "unidade": "g",
+   "preco_por_unidade": 0.1896,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "creamy-calming-cream",
+   "nome": "Creamy Calming Cream",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 55.9,
+   "volume": 40,
+   "unidade": "g",
+   "preco_por_unidade": 1.3975,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "creamy-vitamina-c",
+   "nome": "Creamy Vitamina C 10%",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 69.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 2.33,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "eucerin-anti-pigment",
+   "nome": "Eucerin Anti-Pigment Dual Sérum",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 226.99,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 7.5663,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "garnier-uniform-matte",
+   "nome": "Garnier Uniform & Matte Toque Seco",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 26.61,
+   "volume": 85,
+   "unidade": "g",
+   "preco_por_unidade": 0.3131,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "hada-labo-oil-cleansing",
+   "nome": "Hada Labo Gokujyun Oil Cleansing",
+   "passo": "limpeza",
+   "mes": "2026-11",
+   "preco": 64.9,
+   "volume": 200,
+   "unidade": "ml",
+   "preco_por_unidade": 0.3245,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "isdin-fusion-water",
+   "nome": "ISDIN Protetor Solar Fusion Water FPS 60",
+   "passo": "protetor",
+   "mes": "2026-11",
+   "preco": 89.0,
+   "volume": 50,
+   "unidade": "ml",
+   "preco_por_unidade": 1.78,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "isdin-fusion-water-sem-cor",
+   "nome": "ISDIN Fusion Water 5 Stars Sem Cor FPS 60",
+   "passo": "protetor",
+   "mes": "2026-11",
+   "preco": 57.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.93,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "loreal-revitalift-noturno",
+   "nome": "L'Oréal Revitalift Sérum Noturno Antissinais",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 59.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.9967,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "lrp-cicaplast-baume",
+   "nome": "La Roche-Posay Cicaplast Baume B5+",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 71.52,
+   "volume": 40,
+   "unidade": "ml",
+   "preco_por_unidade": 1.788,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "lrp-effaclar-gel",
+   "nome": "La Roche-Posay Effaclar Gel Alta Tolerância",
+   "passo": "limpeza",
+   "mes": "2026-11",
+   "preco": 73.57,
+   "volume": 240,
+   "unidade": "g",
+   "preco_por_unidade": 0.3065,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "lrp-retinol-b3",
+   "nome": "La Roche-Posay Retinol B3",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 149.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 4.9967,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "lrp-ultra-cover",
+   "nome": "La Roche-Posay Ultra Cover FPS 60",
+   "passo": "protetor",
+   "mes": "2026-11",
+   "preco": 78.89,
+   "volume": 30,
+   "unidade": "g",
+   "preco_por_unidade": 2.6297,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "mantecorp-epidrat-calm",
+   "nome": "Mantecorp Epidrat Calm B5",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 83.92,
+   "volume": 50,
+   "unidade": "ml",
+   "preco_por_unidade": 1.6784,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "mantecorp-ivy-c-ferulic",
+   "nome": "Mantecorp Ivy C Ferulic Sérum",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 89.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 2.9967,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "neutrogena-hydro-boost",
+   "nome": "Neutrogena Hydro Boost Water Gel",
+   "passo": "hidratacao",
+   "mes": "2026-11",
+   "preco": 55.16,
+   "volume": 50,
+   "unidade": "g",
+   "preco_por_unidade": 1.1032,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "neutrogena-sun-fresh-fps70",
+   "nome": "Neutrogena Sun Fresh Derm Care FPS 70",
+   "passo": "protetor",
+   "mes": "2026-11",
+   "preco": 47.7,
+   "volume": 40,
+   "unidade": "g",
+   "preco_por_unidade": 1.1925,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "ordinary-azelaic",
+   "nome": "The Ordinary Azelaic Acid 10%",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 45.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.53,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "ordinary-niacinamide",
+   "nome": "The Ordinary Niacinamide 10% + Zinc 1%",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 39.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.33,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "principia-ah2",
+   "nome": "Principia AH-2 Ácido Hialurônico",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 42.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.43,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "principia-niacinamida",
+   "nome": "Principia Niacinamida NC-10",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 45.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.53,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "principia-rn03",
+   "nome": "Principia RN-0,3 Retinol",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 52.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.7633,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "principia-vc10",
+   "nome": "Principia VC-10 Vitamina C 10%",
+   "passo": "tratamento",
+   "mes": "2026-11",
+   "preco": 49.9,
+   "volume": 30,
+   "unidade": "ml",
+   "preco_por_unidade": 1.6633,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  },
+  {
+   "id": "skin-aqua-moisture-milk",
+   "nome": "Skin Aqua Super Moisture Milk FPS 50",
+   "passo": "protetor",
+   "mes": "2026-11",
+   "preco": 50.26,
+   "volume": 40,
+   "unidade": "g",
+   "preco_por_unidade": 1.2565,
+   "observacoes_no_mes": 1,
+   "conferido_em": "2026-11-02"
+  }
+ ],
+ "mudancas_de_tamanho": []
+}

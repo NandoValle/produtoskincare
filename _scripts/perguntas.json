@@ -2907,5 +2907,15 @@
    "Lista de ingredientes diferente quer dizer que o produto está com defeito?",
    "Não. Marcas mudam fórmulas por vários motivos, e a mudança costuma ser regular. A página compara texto com texto: mostra que as duas listas não são iguais, mas não sabe por que mudou nem se isso explica algo que você sentiu na pele. Leitura por foto troca letras, então nomes quase iguais aparecem como \"a conferir\" no frasco."
   ]
+ ],
+ "/skinflation/": [
+  [
+   "O que é o Índice Skinflation?",
+   "É a variação mensal do preço por ml (ou g) dos produtos de skincare do catálogo do Produto Skincare, com base 100 em novembro de 2026. Ele acompanha o preço por ml, e não o preço da etiqueta, porque um frasco que encolhe com o mesmo preço ficou mais caro."
+  ],
+  [
+   "O Índice Skinflation mede a inflação dos cosméticos no Brasil?",
+   "Não. A cesta é pequena, escolhida pela curadoria do site, com um anúncio de uma loja por produto e todos os produtos pesando igual. A página diz que não é estatística do mercado, não é o menor preço e não explica a causa da variação. A série, a cesta e o método ficam em /skinflation/indice.json, sob licença CC BY 4.0."
+  ]
  ]
 }
