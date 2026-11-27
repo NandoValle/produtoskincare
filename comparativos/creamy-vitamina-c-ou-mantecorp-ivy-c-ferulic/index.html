@@ -70,7 +70,8 @@
 .ig-foot p{margin:0}
 @media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
-.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.pin-salvar{margin:-14px 0 24px;font-size:.88rem}.pin-salvar a{color:var(--suave)}.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.video-wrap{margin:28px 0}.video-wrap h2{margin-top:0}.video-wrap video{display:block;margin:0 auto;width:auto;max-width:100%;max-height:70vh;height:auto;aspect-ratio:9/16;border-radius:var(--raio);background:#faf7f2;border:1px solid var(--linha)}.video-wrap details{margin-top:14px}.video-wrap summary{cursor:pointer;color:var(--rosa);font-weight:600}.video-wrap details p{margin:.6em 0}
 
 .cp-tabela-rolagem{overflow-x:auto;margin:16px 0}
 .cp-tabela{width:100%;border-collapse:collapse;font-size:.94rem;table-layout:fixed}
@@ -79,6 +80,8 @@
 .cp-tabela thead th{font-family:var(--fonte-display);font-size:1.05rem;font-weight:500}
 .cp-tabela tbody th{font-weight:600;color:var(--suave);width:28%}
 .cp-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cp-antes{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.cp-antes h3{margin:0;font-size:1.05rem}.cp-antes p{margin:0;font-size:.92rem;line-height:1.5}.cp-antes .cp-btn{margin-top:auto}
 .cp-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 16px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 @media(prefers-color-scheme:dark){.cp-btn{color:#28131b}}
 html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#28131b}
@@ -101,12 +104,11 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
-
+<meta name="author" content="Equipe Produto Skincare">
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
 <script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
-<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -142,9 +144,10 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <p class="ig-rotulo">O que muda entre os dois</p>
 <ul><li>Na conferência de preços, o Creamy Vitamina C 10% custava R$ 20,00 a menos que o Mantecorp Ivy C Ferulic Sérum. Compare também o tamanho da embalagem no anúncio, que muda o preço por ml.</li><li>Ativos em comum, segundo os anúncios: vitamina C.</li><li>Só o Mantecorp Ivy C Ferulic Sérum destaca ácido ferúlico.</li></ul>
 </div>
-<div class="cp-tabela-rolagem"><table class="cp-tabela"><caption class="ig-rotulo">Lado a lado</caption><thead><tr><td></td><th scope="col"><a href="/produtos/creamy-vitamina-c/">Creamy Vitamina C 10%</a></th><th scope="col"><a href="/produtos/mantecorp-ivy-c-ferulic/">Mantecorp Ivy C Ferulic Sérum</a></th></tr></thead><tbody><tr><th scope="row">Preço conferido</th><td>R$ 69,90 em 02/11/2026</td><td>R$ 89,90 em 02/11/2026</td></tr><tr><th scope="row">Loja</th><td>Shopee</td><td>Amazon</td></tr><tr><th scope="row">Passo da rotina</th><td>Tratamento (sérum)</td><td>Tratamento (sérum)</td></tr><tr><th scope="row">Quando usar</th><td>Manhã</td><td>Manhã</td></tr><tr><th scope="row">Textura</th><td>sérum</td><td>sérum</td></tr><tr><th scope="row">Tipos de pele no catálogo</th><td>Todos os tipos</td><td>Todos os tipos</td></tr><tr><th scope="row">Talvez não seja para</th><td>—</td><td>—</td></tr><tr><th scope="row">Ativos em destaque</th><td>vitamina C 10%</td><td>vitamina C, ácido ferúlico</td></tr><tr><th scope="row">Marca e origem</th><td>Creamy · Brasil</td><td>Mantecorp Skincare · Brasil</td></tr><tr><th scope="row">Nota de quem comprou</th><td>4,7 de 5 (5.800 avaliações na Shopee)</td><td>4,7 de 5 (4.200 avaliações na Amazon)</td></tr></tbody></table></div>
+<div class="cp-tabela-rolagem"><table class="cp-tabela"><caption class="ig-rotulo">Lado a lado</caption><thead><tr><td></td><th scope="col"><a href="/produtos/creamy-vitamina-c/">Creamy Vitamina C 10%</a></th><th scope="col"><a href="/produtos/mantecorp-ivy-c-ferulic/">Mantecorp Ivy C Ferulic Sérum</a></th></tr></thead><tbody><tr><th scope="row">Preço</th><td>R$ 69,90 em 02/11/2026 (referência: sem anúncio conferido)</td><td>R$ 89,90 em 02/11/2026 (referência: sem anúncio conferido)</td></tr><tr><th scope="row">Tamanho conferido</th><td>30 ml</td><td>30 ml</td></tr><tr><th scope="row">Loja</th><td>Shopee</td><td>Amazon</td></tr><tr><th scope="row">Passo da rotina</th><td>Tratamento (sérum)</td><td>Tratamento (sérum)</td></tr><tr><th scope="row">Quando usar</th><td>Manhã</td><td>Manhã</td></tr><tr><th scope="row">Textura</th><td>sérum</td><td>sérum</td></tr><tr><th scope="row">Tipos de pele no catálogo</th><td>Todos os tipos</td><td>Todos os tipos</td></tr><tr><th scope="row">Talvez não seja para</th><td>—</td><td>—</td></tr><tr><th scope="row">Ativos em destaque</th><td>vitamina C 10%</td><td>vitamina C, ácido ferúlico</td></tr><tr><th scope="row">Marca e origem</th><td>Creamy · Brasil</td><td>Mantecorp Skincare · Brasil</td></tr><tr><th scope="row">Nota de quem comprou</th><td>4,7 de 5 (5.800 avaliações na Shopee)</td><td>4,7 de 5 (4.200 avaliações na Amazon)</td></tr></tbody></table></div>
 <p class="ig-nota">"Ativos em destaque" são os que o anúncio destaca, não a fórmula completa. A lista de ingredientes (INCI) está na embalagem e no anúncio; cole as duas no <a href="/ferramentas/ingredientes/">verificador de ingredientes</a> para checar combinações com a sua rotina.</p>
-<div class="cp-btns"><a class="cp-btn" href="https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dcreamy%2520vitamina%2520c&affiliate_id=18376781218&sub_id=site" target="_blank" rel="sponsored noopener" data-produto="Creamy Vitamina C 10%">Buscar na Shopee: Creamy ↗</a><a class="cp-btn" href="https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener" data-produto="Mantecorp Ivy C Ferulic Sérum">Buscar na Amazon: Mantecorp Skincare ↗</a></div>
+<section aria-labelledby="antes"><h2 id="antes">Antes de comprar</h2>
+<div class="cp-btns"><div class="cp-antes"><h3>Creamy Vitamina C 10%</h3><p><b>Por que está aqui:</b> entrou como tratamento (sérum) para todos os tipos de pele com foco em manchas e tom irregular e sinais de idade.</p><p><b>Talvez não valha a pena:</b> se limpeza, hidratante e protetor ainda não viraram hábito.</p><p class="ig-nota"><b>Sem oferta verificada.</b> O site ainda não tem um anúncio conferido deste produto; o preço da tabela é só referência. <a href="https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dcreamy%2520vitamina%2520c&amp;affiliate_id=18376781218&amp;sub_id=site" target="_blank" rel="sponsored noopener" data-produto="Creamy Vitamina C 10%">Procurar na Shopee ↗</a> (abre a busca da loja).</p></div><div class="cp-antes"><h3>Mantecorp Ivy C Ferulic Sérum</h3><p><b>Por que está aqui:</b> entrou como tratamento (sérum) para todos os tipos de pele com foco em manchas e tom irregular e sinais de idade.</p><p><b>Talvez não valha a pena:</b> se limpeza, hidratante e protetor ainda não viraram hábito.</p><p class="ig-nota"><b>Sem oferta verificada.</b> O site ainda não tem um anúncio conferido deste produto; o preço da tabela é só referência. <a href="https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&amp;tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener" data-produto="Mantecorp Ivy C Ferulic Sérum">Procurar na Amazon ↗</a> (abre a busca da loja).</p></div></div></section>
 <p class="ig-nota">Links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. O preço muda: vale o mostrado na loja na hora da compra.</p>
 <section aria-labelledby="relacionados">
 <h2 id="relacionados">Leia também</h2>
@@ -160,7 +163,8 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <footer class="ig-foot">
 <p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
-<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
 <!-- perguntas:inicio -->
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Perguntas frequentes</h2>
@@ -171,7 +175,8 @@ html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#2
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual a diferença entre o Creamy Vitamina C 10% e o Mantecorp Ivy C Ferulic Sérum?", "acceptedAnswer": {"@type": "Answer", "text": "Os dois são séruns de vitamina C para usar de manhã. O Creamy destaca vitamina C 10%, enquanto o Mantecorp Ivy C destaca vitamina C e ácido ferúlico. Os dois aparecem no catálogo para todos os tipos de pele."}}, {"@type": "Question", "name": "O que é o Mantecorp Ivy C Ferulic Sérum?", "acceptedAnswer": {"@type": "Answer", "text": "É um sérum de tratamento da Mantecorp Skincare, marca brasileira, para uso de manhã e indicado no catálogo para todos os tipos de pele. Os ativos em destaque no anúncio são vitamina C e ácido ferúlico, não a fórmula completa."}}]}</script>
 </section>
 <!-- perguntas:fim -->
-<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">

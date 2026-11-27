@@ -9,6 +9,8 @@
 - [Rotinas por condição e faixa de preço](https://produtoskincare.com.br/rotinas/): acne, anti-age, melasma e rosácea.
 - [Produtos](https://produtoskincare.com.br/produtos/): catálogo com preço datado, ativos e link de loja.
 - [Sobre e critérios de escolha](https://produtoskincare.com.br/sobre/)
+- [Dados abertos](https://produtoskincare.com.br/dados-abertos/): catálogo em CSV e JSON, com preços datados, fórmulas (INCI) e mudanças detectadas. Licença CC BY 4.0, sem link de afiliado. Manifesto em https://produtoskincare.com.br/dados/index.json
+- [Carta aberta sobre links de afiliado](https://produtoskincare.com.br/independencia/): como o site ganha com afiliado, por que isso incomoda e o modelo pago pelo leitor que quer testar. Ainda sem plano, preço ou data.
 
 ## Guias por tipo de pele
 

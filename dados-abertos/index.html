@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dados abertos de skincare: produtos, preços datados e fórmulas</title>
+<meta name="description" content="Baixe o catálogo do Produto Skincare em CSV e JSON: produtos, preços com a data da conferência, fórmulas (INCI) e mudanças detectadas. Licença CC BY 4.0, sem cadastro.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/dados-abertos/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+.pin-salvar{margin:-14px 0 24px;font-size:.88rem}.pin-salvar a{color:var(--suave)}.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.video-wrap{margin:28px 0}.video-wrap h2{margin-top:0}.video-wrap video{display:block;margin:0 auto;width:auto;max-width:100%;max-height:70vh;height:auto;aspect-ratio:9/16;border-radius:var(--raio);background:#faf7f2;border:1px solid var(--linha)}.video-wrap details{margin-top:14px}.video-wrap summary{cursor:pointer;color:var(--rosa);font-weight:600}.video-wrap details p{margin:.6em 0}
+
+.ft-rolagem{overflow-x:auto}
+.ft-regras{margin:8px 0 0;padding-left:1.1em}
+.ft-regras li{margin:.45em 0}
+.da-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.da-tabela th,.da-tabela td{padding:9px 10px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.da-tabela code,.ig code{font-size:.9em;overflow-wrap:anywhere}
+.da-versoes{padding-left:1.1em}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dados abertos de skincare: produtos, preços datados e fórmulas">
+<meta property="og:description" content="Baixe o catálogo do Produto Skincare em CSV e JSON: produtos, preços com a data da conferência, fórmulas (INCI) e mudanças detectadas. Licença CC BY 4.0, sem cadastro.">
+<meta property="og:url" content="https://produtoskincare.com.br/dados-abertos/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/dados-abertos.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dados abertos">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/dados-abertos/#pagina", "url": "https://produtoskincare.com.br/dados-abertos/", "name": "Dados abertos", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Baixe o catálogo do Produto Skincare em CSV e JSON: produtos, preços com a data da conferência, fórmulas (INCI) e mudanças detectadas. Licença CC BY 4.0, sem cadastro.", "breadcrumb": {"@id": "https://produtoskincare.com.br/dados-abertos/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/dados-abertos/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Dados abertos", "item": "https://produtoskincare.com.br/dados-abertos/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<meta name="author" content="Equipe Produto Skincare">
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig ig-larga" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li aria-current="page">Dados abertos</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Dados abertos</h1>
+<p class="ig-lede">O catálogo do site em arquivos que qualquer pessoa pode baixar, conferir e reutilizar: produtos, preços com a data em que foram conferidos, fórmulas e as mudanças detectadas entre um registro e outro. De graça, sem cadastro e sem chave de acesso.</p>
+<p class="ig-meta">Versão 0.1.0 · dados até 02/11/2026 · licença <a href="https://creativecommons.org/licenses/by/4.0/deed.pt-br" rel="noopener license">CC BY 4.0</a></p>
+</div>
+
+<section aria-labelledby="da-arquivos">
+<h2 id="da-arquivos">Os arquivos</h2>
+<div class="ft-rolagem">
+<table class="da-tabela">
+<thead><tr><th scope="col">Arquivo</th><th scope="col">O que tem</th><th scope="col">Linhas</th><th scope="col">Baixar</th></tr></thead>
+<tbody>
+<tr><th scope="row">Produtos</th><td>Uma linha por produto do catálogo.</td><td>26</td><td><a href="/dados/produtos.csv" download>CSV</a> · <a href="/dados/produtos.json">JSON</a></td></tr>
+<tr><th scope="row">Preços datados</th><td>Uma linha por observação de preço. É o histórico: nunca é sobrescrito.</td><td>26</td><td><a href="/dados/precos.csv" download>CSV</a> · <a href="/dados/precos.json">JSON</a></td></tr>
+<tr><th scope="row">Fórmulas (INCI)</th><td>Uma linha por versão registrada da lista de ingredientes de um produto.</td><td>0</td><td><a href="/dados/inci.csv" download>CSV</a> · <a href="/dados/inci.json">JSON</a></td></tr>
+<tr><th scope="row">Mudanças detectadas</th><td>Uma linha por mudança de preço, volume ou fórmula entre dois registros.</td><td>0</td><td><a href="/dados/mudancas.csv" download>CSV</a> · <a href="/dados/mudancas.json">JSON</a></td></tr>
+</tbody>
+</table>
+</div>
+<p class="ig-nota">CSV em UTF-8, separado por vírgula, com a primeira linha de cabeçalho. Campos com mais de um valor (ativos, tipos de pele) usam <code>|</code> entre os itens. No JSON, esses campos são listas. O <a href="/dados/index.json">manifesto</a> traz a versão, a contagem de linhas e o dicionário de campos em formato de máquina.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="da-limites">
+<h2 id="da-limites">O tamanho real do dataset hoje</h2>
+<ul class="ft-regras">
+<li><strong>26 produtos</strong>, os do catálogo do site. Não é um retrato do mercado brasileiro.</li>
+<li><strong>26 observações de preço.</strong> Os preços são conferidos à mão pela equipe, na loja e na data que aparecem em cada linha. O histórico começou em novembro de 2026 e cresce a cada conferência.</li>
+<li><strong>Fórmulas:</strong> Nenhum produto tem lista de ingredientes registrada ainda. O arquivo de fórmulas já existe, com as colunas definitivas, e está vazio de propósito: lista INCI só entra com a fonte anotada.</li>
+<li><strong>0 mudanças detectadas.</strong> Só há mudança quando existem dois registros diferentes do mesmo produto, e o registro é recente.</li>
+</ul>
+<p>Tem o frasco em casa? <a href="/ferramentas/extrato-cosmetico/#ex-contribuir-titulo">Registre a lista de ingredientes</a> e ela entra no arquivo de fórmulas, com a fonte.</p>
+</section>
+
+<section aria-labelledby="da-regras">
+<h2 id="da-regras">Regras do dataset</h2>
+<ul class="ft-regras">
+<li><strong>Nenhum dado pessoal.</strong> Os arquivos falam de produtos, nunca de pessoas. O que você faz no provador e nas ferramentas fica no seu aparelho e não entra aqui.</li>
+<li><strong>Nenhum preço sem data.</strong> Cada valor sai com o dia em que foi conferido e a loja. Preço sem data não é publicado.</li>
+<li><strong>Nenhum link de afiliado.</strong> Os endereços de loja saem limpos, sem identificador de comissão. Quando o link é de busca, e não de um anúncio conferido, o campo <code>link_tipo</code> diz <code>busca</code>.</li>
+<li><strong>Volume e fórmula só com fonte.</strong> Volume não conferido fica vazio. Lista INCI só entra com a origem anotada.</li>
+<li><strong>Não é vendido.</strong> O dataset não tem versão paga nem acesso reservado.</li>
+<li><strong>Sem nota de loja.</strong> Estrelas e número de avaliações pertencem às lojas e ficam de fora.</li>
+</ul>
+</section>
+
+<section aria-labelledby="da-licenca">
+<h2 id="da-licenca">Licença e como citar</h2>
+<p>Os dados estão sob a licença <a href="https://creativecommons.org/licenses/by/4.0/deed.pt-br" rel="noopener license">Creative Commons Atribuição 4.0 (CC BY 4.0)</a>: você pode copiar, adaptar e usar, inclusive comercialmente, desde que cite a origem.</p>
+<p class="ig-caixa">Produto Skincare. Dados abertos do catálogo de skincare no Brasil, versão 0.1.0. https://produtoskincare.com.br/dados-abertos/. Licença CC BY 4.0.</p>
+<p class="ig-nota">Nomes de produtos e marcas pertencem aos fabricantes e aparecem só para identificar o produto. O dataset ainda não está em repositório com DOI.</p>
+</section>
+
+<section aria-labelledby="da-enderecos">
+<h2 id="da-enderecos">Endereços para ler por programa</h2>
+<p>Os arquivos são estáticos e ficam em endereços fixos, só de leitura. Aceitam pedido de qualquer origem (CORS aberto), então dá para ler direto de uma planilha, de um notebook ou do navegador.</p>
+<ul>
+<li><code>GET https://produtoskincare.com.br/dados/index.json</code>: versão, contagens e dicionário</li>
+<li><code>GET https://produtoskincare.com.br/dados/produtos.json</code></li>
+<li><code>GET https://produtoskincare.com.br/dados/precos.json</code></li>
+<li><code>GET https://produtoskincare.com.br/dados/inci.json</code></li>
+<li><code>GET https://produtoskincare.com.br/dados/mudancas.json</code></li>
+</ul>
+<p class="ig-nota">Não há filtro nem paginação: cada endereço devolve o arquivo inteiro. Os arquivos são refeitos quando o catálogo muda. Mudança de formato sobe a versão e entra no histórico abaixo.</p>
+</section>
+
+<section aria-labelledby="da-campos">
+<h2 id="da-campos">Dicionário de campos</h2>
+<p>Datas no formato AAAA-MM-DD. Preços em reais, com ponto decimal.</p>
+<h3 id="campos-produtos">Produtos <span class="ig-nota">(produtos.csv, produtos.json)</span></h3>
+<div class="ft-rolagem"><table class="da-tabela"><thead><tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">O que é</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td>texto</td><td>Identificador do produto no site. Estável: não muda entre versões.</td></tr>
+<tr><td><code>nome</code></td><td>texto</td><td>Nome comercial do produto.</td></tr>
+<tr><td><code>marca</code></td><td>texto</td><td>Marca.</td></tr>
+<tr><td><code>origem</code></td><td>texto</td><td>País de origem da marca.</td></tr>
+<tr><td><code>passo</code></td><td>texto</td><td>Passo da rotina em que o produto entra (limpeza, hidratante, protetor, tratamento…).</td></tr>
+<tr><td><code>periodo</code></td><td>lista</td><td>Quando usar: manha, noite ou os dois.</td></tr>
+<tr><td><code>grupo</code></td><td>texto</td><td>Grupo de produtos equivalentes usado pelo site para comparar opções.</td></tr>
+<tr><td><code>tipos_pele</code></td><td>lista</td><td>Tipos de pele para os quais o site indica o produto.</td></tr>
+<tr><td><code>condicoes</code></td><td>lista</td><td>Queixas para as quais o site indica o produto (acne, manchas…).</td></tr>
+<tr><td><code>evitar</code></td><td>lista</td><td>Situações em que o site não indica o produto.</td></tr>
+<tr><td><code>textura</code></td><td>texto</td><td>Textura declarada (gel, creme, loção, sérum…).</td></tr>
+<tr><td><code>ativos</code></td><td>lista</td><td>Ativos de destaque do produto, como o site os registra. Não é a lista INCI.</td></tr>
+<tr><td><code>tamanho</code></td><td>texto</td><td>Tamanho do frasco como aparece no site (ex.: 454 g).</td></tr>
+<tr><td><code>volume_ml</code></td><td>número</td><td>Volume conferido, em ml. Vazio quando não foi conferido.</td></tr>
+<tr><td><code>volume_g</code></td><td>número</td><td>Peso conferido, em g. Vazio quando não foi conferido.</td></tr>
+<tr><td><code>volume_fonte</code></td><td>texto</td><td>De onde veio o volume (endereço da ficha da loja ou embalagem).</td></tr>
+<tr><td><code>preco</code></td><td>número</td><td>Último preço registrado, em reais.</td></tr>
+<tr><td><code>preco_em</code></td><td>data</td><td>Data em que esse preço foi conferido (AAAA-MM-DD).</td></tr>
+<tr><td><code>loja</code></td><td>texto</td><td>Loja em que o preço foi conferido.</td></tr>
+<tr><td><code>link_tipo</code></td><td>texto</td><td>oferta = link direto para o anúncio conferido; busca = link de busca na loja, sem oferta verificada.</td></tr>
+<tr><td><code>url</code></td><td>texto</td><td>Endereço na loja, sem identificador de afiliado.</td></tr>
+<tr><td><code>pagina</code></td><td>texto</td><td>Página do produto no site.</td></tr>
+</tbody></table></div>
+<h3 id="campos-precos">Preços datados <span class="ig-nota">(precos.csv, precos.json)</span></h3>
+<div class="ft-rolagem"><table class="da-tabela"><thead><tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">O que é</th></tr></thead><tbody>
+<tr><td><code>produto_id</code></td><td>texto</td><td>Identificador do produto (campo id de produtos).</td></tr>
+<tr><td><code>conferido_em</code></td><td>data</td><td>Data da observação (AAAA-MM-DD). Não existe linha sem data.</td></tr>
+<tr><td><code>preco</code></td><td>número</td><td>Preço observado.</td></tr>
+<tr><td><code>moeda</code></td><td>texto</td><td>Moeda (BRL).</td></tr>
+<tr><td><code>loja</code></td><td>texto</td><td>Loja da observação.</td></tr>
+<tr><td><code>promocao</code></td><td>booleano</td><td>true quando o preço estava marcado como promoção na loja.</td></tr>
+<tr><td><code>origem</code></td><td>texto</td><td>Como a observação entrou: team = conferência manual da equipe; feed = feed oficial da loja.</td></tr>
+<tr><td><code>url</code></td><td>texto</td><td>Endereço conferido, sem identificador de afiliado.</td></tr>
+</tbody></table></div>
+<h3 id="campos-inci">Fórmulas (INCI) <span class="ig-nota">(inci.csv, inci.json)</span></h3>
+<div class="ft-rolagem"><table class="da-tabela"><thead><tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">O que é</th></tr></thead><tbody>
+<tr><td><code>produto_id</code></td><td>texto</td><td>Identificador do produto (campo id de produtos).</td></tr>
+<tr><td><code>registrado_em</code></td><td>data</td><td>Data em que a lista foi registrada no site.</td></tr>
+<tr><td><code>lido_em</code></td><td>data</td><td>Data da leitura da embalagem ou da fonte, quando informada.</td></tr>
+<tr><td><code>fonte</code></td><td>texto</td><td>De onde veio a lista: embalagem, site da marca ou outro, sempre anotado.</td></tr>
+<tr><td><code>inci</code></td><td>texto</td><td>Lista de ingredientes como está na fonte, na ordem da fonte.</td></tr>
+</tbody></table></div>
+<h3 id="campos-mudancas">Mudanças detectadas <span class="ig-nota">(mudancas.csv, mudancas.json)</span></h3>
+<div class="ft-rolagem"><table class="da-tabela"><thead><tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">O que é</th></tr></thead><tbody>
+<tr><td><code>produto_id</code></td><td>texto</td><td>Identificador do produto (campo id de produtos).</td></tr>
+<tr><td><code>em</code></td><td>data</td><td>Data em que a mudança foi detectada.</td></tr>
+<tr><td><code>tipo</code></td><td>texto</td><td>preco, volume ou formula.</td></tr>
+<tr><td><code>de</code></td><td>texto</td><td>Valor no registro anterior.</td></tr>
+<tr><td><code>para</code></td><td>texto</td><td>Valor no registro novo.</td></tr>
+<tr><td><code>entraram</code></td><td>lista</td><td>Só em formula: ingredientes que não estavam na lista anterior.</td></tr>
+<tr><td><code>sairam</code></td><td>lista</td><td>Só em formula: ingredientes que estavam na lista anterior e não estão mais.</td></tr>
+<tr><td><code>leitura</code></td><td>texto</td><td>A mudança em uma frase.</td></tr>
+</tbody></table></div>
+</section>
+
+<section aria-labelledby="da-historico">
+<h2 id="da-historico">Histórico de versões</h2>
+<ul class="da-versoes">
+<li><strong>v0.1.0</strong> · 24/11/2026<ul><li>Primeira publicação: produtos, preços datados, fórmulas (INCI) e mudanças detectadas, em CSV e JSON.</li><li>Links de loja publicados sem identificador de afiliado.</li><li>Licença CC BY 4.0.</li></ul></li>
+</ul>
+</section>
+
+<section aria-labelledby="da-leia">
+<h2 id="da-leia">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a></li>
+<li><a href="/ferramentas/precos/">Termômetro de preços</a></li>
+<li><a href="/produtos/">Catálogo de produtos</a></li>
+<li><a href="/sobre/">Sobre e critérios de escolha</a></li>
+</ul>
+<p class="ig-nota">Achou um erro num arquivo? <a href="/contato/">Avise</a>: a correção entra na próxima geração dos dados.</p>
+</section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Catálogo de skincare no Brasil: produtos, preços datados e fórmulas", "description": "Produtos de skincare vendidos no Brasil com ativos, tipo de pele indicado, volume conferido, preços com a data da conferência e histórico de fórmula (INCI). Sem dado pessoal e sem link de afiliado.", "url": "https://produtoskincare.com.br/dados-abertos/", "version": "0.1.0", "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true, "inLanguage": "pt-BR", "dateModified": "2026-11-02", "creator": {"@type": "Organization", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://produtoskincare.com.br/dados/produtos.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://produtoskincare.com.br/dados/produtos.json"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://produtoskincare.com.br/dados/precos.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://produtoskincare.com.br/dados/precos.json"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://produtoskincare.com.br/dados/inci.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://produtoskincare.com.br/dados/inci.json"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://produtoskincare.com.br/dados/mudancas.csv"}, {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://produtoskincare.com.br/dados/mudancas.json"}]}</script>
+<footer class="ig-foot">
+<p>Dados informativos sobre produtos. Não substituem consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que tem nos dados abertos do Produto Skincare?</h3>
+<p>Quatro arquivos, em CSV e JSON: os produtos do catálogo, os preços com a data em que foram conferidos, as fórmulas (INCI) registradas e as mudanças detectadas entre um registro e outro. Não há dado pessoal, preço sem data nem link de afiliado.</p>
+<h3>Posso usar os dados abertos de skincare em um trabalho ou produto comercial?</h3>
+<p>Sim. A licença é a Creative Commons Atribuição 4.0 (CC BY 4.0): dá para copiar, adaptar e usar, inclusive comercialmente, desde que a origem seja citada. A página traz o texto de citação.</p>
+<h3>Precisa de cadastro ou chave para baixar os dados?</h3>
+<p>Não. Os arquivos ficam em endereços fixos, só de leitura, sem cadastro e sem chave de acesso, e aceitam pedido de qualquer origem.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que tem nos dados abertos do Produto Skincare?", "acceptedAnswer": {"@type": "Answer", "text": "Quatro arquivos, em CSV e JSON: os produtos do catálogo, os preços com a data em que foram conferidos, as fórmulas (INCI) registradas e as mudanças detectadas entre um registro e outro. Não há dado pessoal, preço sem data nem link de afiliado."}}, {"@type": "Question", "name": "Posso usar os dados abertos de skincare em um trabalho ou produto comercial?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A licença é a Creative Commons Atribuição 4.0 (CC BY 4.0): dá para copiar, adaptar e usar, inclusive comercialmente, desde que a origem seja citada. A página traz o texto de citação."}}, {"@type": "Question", "name": "Precisa de cadastro ou chave para baixar os dados?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Os arquivos ficam em endereços fixos, só de leitura, sem cadastro e sem chave de acesso, e aceitam pedido de qualquer origem."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-26">26 de novembro de 2026</time>.</p>
+<!-- nota-pagina:fim -->
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+
+</body>
+</html>
