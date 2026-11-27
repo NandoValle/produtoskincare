@@ -34,6 +34,9 @@
   .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding-block:0 48px}
   .card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;display:flex;flex-direction:column;gap:10px}
   .foto{aspect-ratio:1/1;max-width:100%;border-radius:10px;background:var(--rosa-claro);object-fit:cover;width:100%;height:auto}
+/* Fotos de loja sobre o mesmo fundo areia: o branco da foto se funde ao fundo (multiply). */
+.foto-moldura{display:block;aspect-ratio:1/1;background:#EFE6D9;padding:9%;border-radius:2px;overflow:hidden}
+.foto-moldura .foto{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:contain;background:none;border-radius:0;mix-blend-mode:multiply}
   .cat{font-size:.78rem;font-weight:600;color:var(--rosa);text-transform:uppercase;letter-spacing:.06em}
   .card h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.25rem;line-height:1.2;margin:0}
   .marca-prod{font-size:.9rem;color:var(--suave);margin:0}
@@ -135,7 +138,7 @@
   <main class="grade" id="grade" aria-live="polite">
 <!-- grade-estatica:inicio -->
     <article class="card">
-      <img class="foto" src="/fotos/1736472132962059961.jpg" alt="Sérum Puraskin GHK – Peptídeo do Cobre" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736472132962059961.jpg" alt="Sérum Puraskin GHK – Peptídeo do Cobre" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>Sérum Puraskin GHK – Peptídeo do Cobre</h2>
       <p class="marca-prod">Puraskin</p>
@@ -150,7 +153,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASkCjFGSeN-imnBO/" target="_blank" rel="sponsored nofollow noopener" data-produto="Sérum Puraskin GHK – Peptídeo do Cobre">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1736038528723617152.jpg" alt="Sérum Repair GHK-Cu FortSkin 30ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736038528723617152.jpg" alt="Sérum Repair GHK-Cu FortSkin 30ml" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>Sérum Repair GHK-Cu FortSkin 30ml</h2>
       <p class="marca-prod">Fortlife</p>
@@ -180,7 +183,7 @@
       </details>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1735782975746639835.jpg" alt="GHK Zencial Envy Skin – Sérum com Peptídeos de Cobre 30ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1735782975746639835.jpg" alt="GHK Zencial Envy Skin – Sérum com Peptídeos de Cobre 30ml" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>GHK Zencial Envy Skin – Sérum com Peptídeos de Cobre 30ml</h2>
       <p class="marca-prod">Zencial</p>
@@ -201,7 +204,7 @@
       </details>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1735619257262704014.jpg" alt="Kit 4 un. FortSkin GHK-CU 10% Sérum Repair 30ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1735619257262704014.jpg" alt="Kit 4 un. FortSkin GHK-CU 10% Sérum Repair 30ml" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>Kit 4 un. FortSkin GHK-CU 10% Sérum Repair 30ml</h2>
       <p class="marca-prod">Fortlife</p>
@@ -216,7 +219,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASM4txEHj6-2v2Ij/" target="_blank" rel="sponsored nofollow noopener" data-produto="Kit 4 un. FortSkin GHK-CU 10% Sérum Repair 30ml">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1737453383591560821.jpg" alt="Sérum Facial GHK-CU Minimal Skincare – Complexo Blue Copper 30ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1737453383591560821.jpg" alt="Sérum Facial GHK-CU Minimal Skincare – Complexo Blue Copper 30ml" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>Sérum Facial GHK-CU Minimal Skincare – Complexo Blue Copper 30ml</h2>
       <p class="marca-prod">Minimal Skincare</p>
@@ -231,7 +234,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASMhML1yJd-m2KQf/" target="_blank" rel="sponsored nofollow noopener" data-produto="Sérum Facial GHK-CU Minimal Skincare – Complexo Blue Copper 30ml">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1737306356253361661.jpg" alt="BioPerfect GHK-Cu Sérum" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1737306356253361661.jpg" alt="BioPerfect GHK-Cu Sérum" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>BioPerfect GHK-Cu Sérum</h2>
       <p class="marca-prod">BioPerfect</p>
@@ -246,7 +249,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASMxhgnVuH-AJsDQ/" target="_blank" rel="sponsored nofollow noopener" data-produto="BioPerfect GHK-Cu Sérum">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1736932622246446146.jpg" alt="Desinblue Skin GHK-CU + Peptídeos Sérum 30ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736932622246446146.jpg" alt="Desinblue Skin GHK-CU + Peptídeos Sérum 30ml" loading="lazy" decoding="async"></span>
       <span class="cat">Séruns</span>
       <h2>Desinblue Skin GHK-CU + Peptídeos Sérum 30ml</h2>
       <p class="marca-prod">Desinblue</p>
@@ -261,7 +264,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASMnQoo2Uf-je8NH/" target="_blank" rel="sponsored nofollow noopener" data-produto="Desinblue Skin GHK-CU + Peptídeos Sérum 30ml">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1734264463944025994.jpg" alt="Gel de Limpeza Facial Suave Simple 350g" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1734264463944025994.jpg" alt="Gel de Limpeza Facial Suave Simple 350g" loading="lazy" decoding="async"></span>
       <span class="cat">Limpeza</span>
       <h2>Gel de Limpeza Facial Suave Simple 350g</h2>
       <p class="marca-prod">Simple Organic</p>
@@ -275,7 +278,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9S7WboParJk-ZjXVO/" target="_blank" rel="sponsored nofollow noopener" data-produto="Gel de Limpeza Facial Suave Simple 350g">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1736098213715936968.jpg" alt="Bastão de Argila Vulcânica" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736098213715936968.jpg" alt="Bastão de Argila Vulcânica" loading="lazy" decoding="async"></span>
       <span class="cat">Limpeza</span>
       <h2>Bastão de Argila Vulcânica</h2>
       <p class="porque">Bastão de limpeza facial à base de argila vulcânica.</p>
@@ -288,7 +291,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9S77fdDSRw8-HLCwY/" target="_blank" rel="sponsored nofollow noopener" data-produto="Bastão de Argila Vulcânica">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1731536306082907991.jpg" alt="Hidratante Facial em Gel Nivea 100g" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1731536306082907991.jpg" alt="Hidratante Facial em Gel Nivea 100g" loading="lazy" decoding="async"></span>
       <span class="cat">Hidratação</span>
       <h2>Hidratante Facial em Gel Nivea 100g</h2>
       <p class="marca-prod">Nivea</p>
@@ -302,7 +305,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9S77KfYmYxx-3UTpy/" target="_blank" rel="sponsored nofollow noopener" data-produto="Hidratante Facial em Gel Nivea 100g">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1732102568666039956.jpg" alt="Kit Dupla Diária Principia: Hidratante + Protetor FPS 60" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1732102568666039956.jpg" alt="Kit Dupla Diária Principia: Hidratante + Protetor FPS 60" loading="lazy" decoding="async"></span>
       <span class="cat">Hidratação</span>
       <h2>Kit Dupla Diária Principia: Hidratante + Protetor FPS 60</h2>
       <p class="marca-prod">Principia</p>
@@ -316,7 +319,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9S7vU4GQ6kH-yNfEs/" target="_blank" rel="sponsored nofollow noopener" data-produto="Kit Dupla Diária Principia: Hidratante + Protetor FPS 60">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1733625573832951307.jpg" alt="Stick Multifuncional FPS 70 UVA/UVB" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1733625573832951307.jpg" alt="Stick Multifuncional FPS 70 UVA/UVB" loading="lazy" decoding="async"></span>
       <span class="cat">Protetor solar</span>
       <h2>Stick Multifuncional FPS 70 UVA/UVB</h2>
       <p class="porque">Protetor solar em bastão, com FPS 70, prático para levar na bolsa.</p>
@@ -329,7 +332,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9S7cHU9vM8g-bInVy/" target="_blank" rel="sponsored nofollow noopener" data-produto="Stick Multifuncional FPS 70 UVA/UVB">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1734483675525777114.jpg" alt="Acidificante S.O.S pH 2,5 para Cabelo 250ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1734483675525777114.jpg" alt="Acidificante S.O.S pH 2,5 para Cabelo 250ml" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Acidificante S.O.S pH 2,5 para Cabelo 250ml</h2>
       <p class="porque">Acidificante capilar de pH 2,5, em frasco de 250 ml.</p>
@@ -342,7 +345,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASBbAxCkKj-r5Cmh/" target="_blank" rel="sponsored nofollow noopener" data-produto="Acidificante S.O.S pH 2,5 para Cabelo 250ml">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1736933553301719003.jpg" alt="Envy Hair Sérum Capilar GHK-Cu 2,5% com PDRN" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736933553301719003.jpg" alt="Envy Hair Sérum Capilar GHK-Cu 2,5% com PDRN" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Envy Hair Sérum Capilar GHK-Cu 2,5% com PDRN</h2>
       <p class="marca-prod">Zencial</p>
@@ -356,7 +359,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASd943kFR7-0bYmm/" target="_blank" rel="sponsored nofollow noopener" data-produto="Envy Hair Sérum Capilar GHK-Cu 2,5% com PDRN">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1736940535773693237.jpg" alt="Óleo Capilar Nutritivo com Óleo de Argan 90ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736940535773693237.jpg" alt="Óleo Capilar Nutritivo com Óleo de Argan 90ml" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Óleo Capilar Nutritivo com Óleo de Argan 90ml</h2>
       <p class="porque">Óleo capilar com vitaminas e óleo de argan, em frasco de 90 ml.</p>
@@ -369,7 +372,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASF5M3sA5W-GQLHP/" target="_blank" rel="sponsored nofollow noopener" data-produto="Óleo Capilar Nutritivo com Óleo de Argan 90ml">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1732448005318936539.jpg" alt="Tônico Capilar Envy Hair" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1732448005318936539.jpg" alt="Tônico Capilar Envy Hair" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Tônico Capilar Envy Hair</h2>
       <p class="marca-prod">Zencial</p>
@@ -383,7 +386,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASFtUThd3F-AaXjY/" target="_blank" rel="sponsored nofollow noopener" data-produto="Tônico Capilar Envy Hair">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1732839816741357003.jpg" alt="Kit S.O.S Crescimento Lizz" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1732839816741357003.jpg" alt="Kit S.O.S Crescimento Lizz" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Kit S.O.S Crescimento Lizz</h2>
       <p class="marca-prod">Lizz</p>
@@ -397,7 +400,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASYJsRgv2X-biRXX/" target="_blank" rel="sponsored nofollow noopener" data-produto="Kit S.O.S Crescimento Lizz">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1736618307498378749.jpg" alt="Shampoo GHK-Cu Peptídeo de Cobre Rapuzel" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1736618307498378749.jpg" alt="Shampoo GHK-Cu Peptídeo de Cobre Rapuzel" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Shampoo GHK-Cu Peptídeo de Cobre Rapuzel</h2>
       <p class="porque">Shampoo com peptídeo de cobre.</p>
@@ -410,7 +413,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9AS2aV9TUNC-kV2oR/" target="_blank" rel="sponsored nofollow noopener" data-produto="Shampoo GHK-Cu Peptídeo de Cobre Rapuzel">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1731689276300887216.jpg" alt="Fórmula X – Tônico para Cabelo e Barba" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1731689276300887216.jpg" alt="Fórmula X – Tônico para Cabelo e Barba" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>Fórmula X – Tônico para Cabelo e Barba</h2>
       <p class="marca-prod">MEYS</p>
@@ -424,7 +427,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASMKxrAQAj-TZ9jf/" target="_blank" rel="sponsored nofollow noopener" data-produto="Fórmula X – Tônico para Cabelo e Barba">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1733516449670268757.jpg" alt="MEIDU 3 em 1 Shampoo Tintura Castanho Escuro" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1733516449670268757.jpg" alt="MEIDU 3 em 1 Shampoo Tintura Castanho Escuro" loading="lazy" decoding="async"></span>
       <span class="cat">Cabelo</span>
       <h2>MEIDU 3 em 1 Shampoo Tintura Castanho Escuro</h2>
       <p class="marca-prod">MEIDU</p>
@@ -438,7 +441,7 @@
       <a class="botao" href="https://vt.tiktok.com/ZS9ASrvEV694V-j9KT0/" target="_blank" rel="sponsored nofollow noopener" data-produto="MEIDU 3 em 1 Shampoo Tintura Castanho Escuro">Ver no TikTok Shop</a>
     </article>
     <article class="card">
-      <img class="foto" src="/fotos/1734796388956800245.jpg" alt="Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml" loading="lazy" decoding="async">
+      <span class="foto-moldura"><img class="foto" src="/fotos/1734796388956800245.jpg" alt="Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml" loading="lazy" decoding="async"></span>
       <span class="cat">Perfumes</span>
       <h2>Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml</h2>
       <p class="marca-prod">Primacial</p>
@@ -464,7 +467,7 @@
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-26">26 de novembro de 2026</time>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-27">27 de novembro de 2026</time>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: a grade de achados acima segue visível como HTML comum, e o catálogo, os guias e as rotinas continuam abertos. Esse é o caminho manual.</p></noscript>
 
@@ -556,7 +559,7 @@ function desenharGrade(){
   }
   $grade.replaceChildren(...lista.map(p => {
     const c = el('article', {class:'card'});
-    if(p.foto) c.append(el('img', {class:'foto', src:"/"+p.foto.replace(/^\//,""), alt:p.nome, loading:'lazy', decoding:'async'}));
+    if(p.foto){ const moldura=el('span', {class:'foto-moldura'}); moldura.append(el('img', {class:'foto', src:"/"+p.foto.replace(/^\//,""), alt:p.nome, loading:'lazy', decoding:'async'})); c.append(moldura); }
     if(p.categoria) c.append(el('span', {class:'cat'}, p.categoria));
     c.append(el('h2', {}, p.nome));
     if(p.marca) c.append(el('p', {class:'marca-prod'}, p.marca));

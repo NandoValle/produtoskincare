@@ -86,7 +86,7 @@
   function montar(alvo, obter, opcoes) {
     if (!alvo) return;
     opcoes = opcoes || {};
-    alvo.innerHTML = '<div class="psc"><button type="button" class="ft-btn ft-sec psc-btn">📸 Cartão para os Stories</button>' +
+    alvo.innerHTML = '<div class="psc"><button type="button" class="ft-btn ft-sec psc-btn">Cartão para os Stories</button>' +
       '<p class="ig-nota psc-nota">Gera uma imagem no seu aparelho para postar nos Stories ou mandar no WhatsApp. Nada é enviado ao site.</p></div>';
     var btn = alvo.querySelector(".psc-btn"), nota = alvo.querySelector(".psc-nota");
     btn.addEventListener("click", function () {
