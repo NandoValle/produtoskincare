@@ -219,6 +219,8 @@ const cortes = p => p.evaluate(() => {
     }));
     checar("ficha: preço, embalagem, fórmula e link com data", f.itens === "Preço,Nota na loja,Embalagem,Fórmula,Link" && f.datas === 5, JSON.stringify(f));
     checar("ficha: conferência não é apresentada como revisão científica", f.ressalva && !f.revisado);
+    const selo = await p.evaluate(() => { const b = document.querySelector('.ps-precos[data-precos-id="cerave-gel-limpeza"]'); return b ? { dentro: !!b.closest("main article"), texto: b.textContent } : null; });
+    checar("ficha: selo de preço presente, dentro do conteúdo e com o widget carregado", !!selo && selo.dentro && /R\$ 96,90/.test(selo.texto) && /Avise-me se cair/.test(selo.texto), JSON.stringify(selo).slice(0, 120));
     await p.focus("#algo-nao-bate summary");
     await p.keyboard.press("Enter");
     checar("ficha: 'Algo não bate?' abre pelo teclado", await p.isVisible("#algo-nao-bate form"));
@@ -238,6 +240,7 @@ const cortes = p => p.evaluate(() => {
     await semJs.goto(`${BASE}/produtos/cerave-gel-limpeza/`);
     await semJs.click("#algo-nao-bate summary");
     const mail = await semJs.getAttribute('#algo-nao-bate a[href^="mailto:"]', "href");
+    checar("ficha sem JavaScript: selo de preço estático com preço e data", /histórico em construção[\s\S]*R\$ 96,90[\s\S]*conferido em \d{2}\/\d{2}\/\d{4}/.test(await semJs.textContent(".ps-precos")));
     checar("ficha sem JavaScript: resta o e-mail com assunto pronto, sem formulário quebrado", /subject=Algo/.test(mail) && !(await semJs.isVisible("#algo-nao-bate form")), mail);
     await semJs.close();
   }

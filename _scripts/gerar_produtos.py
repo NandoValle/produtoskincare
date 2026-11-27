@@ -32,6 +32,10 @@ FICHAS = RAIZ / "ingredientes" / "ingredientes.json"
 DESTINO = RAIZ / "produtos"
 HISTORICO = DESTINO / "historico-precos.json"
 SNAPSHOTS = DESTINO / "snapshots.json"
+PRECOS = RAIZ / "precos.json"  # gerado por _scripts/precos/gerar-precos.mjs
+# Mesmos rótulos de /precos-widget.js, que troca este bloco pelo selo completo quando há JavaScript.
+SELOS_PRECO = {"otimo": "🟢 ótimo preço", "bom": "🔵 bom preço", "justo": "⚪ preço justo", "alto": "🔴 caro agora",
+               "sem-historico": "➖ histórico em construção", "desatualizado": "⏸ preço não conferido recentemente"}
 EMAIL = "contato@produtoskincare.com.br"  # o mesmo de /canais.js
 
 LOJAS = {"amazon": "Amazon", "shopee": "Shopee", "mercadolivre": "Mercado Livre", "tiktok": "TikTok Shop"}
@@ -206,6 +210,28 @@ def bloco_faq(faq):
     ld_txt = json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
     return (f'<section aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2>{itens}'
             f'<script type="application/ld+json">{ld_txt}</script></section>')
+
+
+def selo_preco(p):
+    """Selo de preço da ficha (classe ps-precos): versão estática, que /precos-widget.js completa
+    com custo por dia, mini-gráfico e alerta. Vem de /precos.json; sem o produto lá, não há selo.
+
+    O bloco faz parte da página gerada. Antes era colado à mão nas fichas e sumia a cada geração.
+    """
+    if not PRECOS.exists():
+        return ""
+    d = json.loads(PRECOS.read_text(encoding="utf-8")).get("produtos", {}).get(p["id"])
+    if not d or not d.get("current"):
+        return ""
+    selo = d.get("badge", "sem-historico")
+    atual = d["current"]
+    return f"""<div class="ps-precos" data-precos-id="{esc(p['id'])}">
+<p class="ps-precos-linha"><span class="ps-selo ps-selo-{esc(selo)}">{SELOS_PRECO.get(selo, SELOS_PRECO['sem-historico'])}</span></p>
+<p class="ps-precos-linha"><strong>{reais(atual['price_cents'] / 100)}</strong> · conferido em {data_curta(atual['checked_at'])} · <a href="/ferramentas/precos/">histórico de preços</a></p>
+</div>"""
+
+
+JS_PRECOS = '<script src="/precos-widget.js" defer></script>'
 
 
 def ultimo_snapshot(pid):
@@ -442,6 +468,7 @@ def pagina_produto(p, fichas, hist, todos):
 <section aria-labelledby="historico">
 <h2 id="historico">Histórico de preço</h2>
 {historico}
+{selo_preco(p)}
 {avaliacao}
 </section>
 {bloco_conferido(p, loja)}
@@ -458,7 +485,7 @@ def pagina_produto(p, fichas, hist, todos):
 </article>"""
     descricao = descricao_produto(p)
     return pagina(p["nome"], descricao, f"/produtos/{p['id']}/",
-                  [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS, scripts=JS_BATE)
+                  [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS, scripts=JS_PRECOS + "\n" + JS_BATE)
 
 
 # Filtro do índice: mesmas faixas de preço do provador (teto por produto).
