@@ -837,3 +837,12 @@ body{overflow-wrap:anywhere}
 .ig-caixa{padding:12px}
 .ig ul,.ig ol{padding-left:1em}
 }
+/* Coluna de leitura padrão para páginas .ig que não trazem a própria regra (Histórico de preços, Raio-X do rótulo).
+   :where() tem especificidade zero: a regra .ig de cada página continua valendo. */
+:where(main.ig){max-width:720px;margin-inline:auto;padding:24px 16px 64px}
+/* Texto sobre preenchimento --rosa. No tema escuro o destaque clareia para #D9B98A e o branco fixo
+   caía para 1,9:1; as regras das páginas agora usam color:var(--sobre-rosa,#fff). */
+:root{--sobre-rosa:#fff}
+@media (prefers-color-scheme:dark){:root{--sobre-rosa:#17120E}}
+html[data-tema=claro]{--sobre-rosa:#fff}
+html[data-tema=escuro]{--sobre-rosa:#17120E}

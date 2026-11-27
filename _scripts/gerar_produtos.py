@@ -325,7 +325,7 @@ CSS = CSS_CONFERIDO + """
 .pd-criterio{font-size:.95rem;line-height:1.5;margin:0 0 8px;padding-left:12px;border-left:2px solid var(--linha-2)}
 .pd-criterio+.pd-preco{margin-top:16px}
 .pd-btns{display:flex;flex-wrap:wrap;gap:8px}
-.pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 .pd-btn.sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
 @media(prefers-color-scheme:dark){.pd-btn:not(.sec){color:#28131b}}
 html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-btn:not(.sec){color:#28131b}
