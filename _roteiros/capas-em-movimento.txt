@@ -1,0 +1,89 @@
+# Capas em movimento
+
+A capa de cada post, animada: um clipe curto, sem som, em repetição, feito a partir da própria foto da capa (imagem para vídeo). A foto continua sendo a capa; o clipe é um extra que entra por cima dela no topo do artigo. Pedido do Fernando, 26/11/2026.
+
+Situação: só os prompts estão prontos. Nenhum clipe foi gerado e nenhuma página mudou. O encaixe no site (script e HTML) fica para quando o primeiro clipe chegar e for aprovado.
+
+## Como fazer
+
+1. **Imagem de partida.** Usar o mestre da capa (o PNG do backup) ou, na falta dele, `img/blog/<slug>-3840.webp`. Nunca gerar a cena de novo a partir de texto: o clipe tem de começar exatamente na foto que já está no post.
+2. **Prompt.** O prompt é o **movimento** da capa (tabela abaixo) + o **estilo fixo de movimento**.
+3. **Gerar.** No BOSS Hub (conta do Fernando): BOSS Studio ou Flow · Veo 3, modo imagem para vídeo, 16:9, sem áudio, na menor duração que o modelo oferecer (5 a 8 s). Se o modelo aceitar quadro inicial e final, pôr a mesma foto nos dois: o clipe fecha em repetição sem emenda.
+4. **Baixar na hora.** As gerações do BOSS Studio ficam salvas só por 48 horas.
+5. **Conferir, quadro a quadro.** Ver a lista "O que reprova um clipe". Se reprovar, gerar de novo; não tentar consertar na edição.
+6. **Entregar.** Um arquivo por capa, com o nome `<slug>.mp4`, sem cortar nem reenquadrar.
+
+## Estilo fixo de movimento
+
+```
+Animate this exact photograph. Keep the composition, framing, objects, colors and lighting identical to the source image from the first frame to the last. Locked-off camera on a tripod: no zoom, no pan, no camera shake. Only the subtle motion described above happens; everything else stays perfectly still. Slow, calm, real-time speed, no slow-motion effect, no time-lapse. Nothing new enters the frame, nothing leaves it, nothing changes shape. The last frame matches the first frame so the clip loops seamlessly. No text, no letters, no numbers, no logos, no labels appearing anywhere. No people entering the frame, no hands appearing, no faces. Photorealistic, same film grain and depth of field as the source. Silent.
+```
+
+## Regras do movimento
+
+- **Pouco movimento.** Uma coisa se mexe, no máximo duas: luz, sombra de folha, gota, reflexo. A capa em movimento é um respiro, não uma cena.
+- **Nada de aplicar produto.** Sem mão passando creme, sem produto saindo do frasco, sem pele em close. O clipe não demonstra resultado nem modo de uso.
+- **Quem já está na foto fica parado.** Nas capas com mão de luva, silhueta ou pessoa de costas, o movimento é só de luz ou de fundo. Gente em movimento é onde o gerador mais erra (dedos, rosto que aparece).
+- **Câmera parada.** Zoom e travelling mudam o enquadramento e quebram a repetição.
+- **Valem as regras da capa** (`_roteiros/capas.txt`): sem marca, sem rosto reconhecível, sem símbolo oficial, sem texto.
+
+## O que reprova um clipe
+
+- Apareceu letra, número, rótulo ou logotipo em qualquer quadro (embalagem, papel, tela, etiqueta).
+- Apareceu rosto, ou a silhueta desfocada ganhou feições.
+- Mão ou dedo deformado, a mais ou a menos.
+- Um objeto mudou de forma, de cor ou de lugar, derreteu ou sumiu.
+- A câmera se mexeu ou o enquadramento final não bate com o inicial (a repetição dá um tranco).
+- Líquido ou creme se movendo de um jeito impossível.
+- O primeiro quadro não é a foto da capa.
+
+## Movimento de cada capa
+
+O texto em inglês é o que vai no prompt, antes do estilo fixo.
+
+### Só luz e sombra (as mais seguras; começar por estas)
+
+| Slug | Movimento |
+|---|---|
+| mito-x-regra-sunblock-100 | The leaf shadows on the left sway very gently, as if a light breeze moves a branch outside the frame. A soft highlight slides slowly across the glass dish. |
+| protetor-solar-importancia | The palm-leaf shadows across the sandstone sway slowly in a light breeze, and the green palm tips at the top left move slightly with them. |
+| como-saber-tipo-de-pele | The soft shadows of leaves on the stone surface drift gently. The olive sprig at the top trembles slightly. The liquid in the lower bowl keeps a calm, barely visible shimmer. |
+| ordem-dos-produtos-skincare | The band of window light on the wall brightens and softens slowly, as if a thin cloud passes. The leaves at the top left and bottom left move very slightly. |
+| rotina-de-skincare-barata | The leaf shadows on the wall sway gently and the small branches in the vase move slightly. Warm window light breathes a little brighter, then back. |
+| skincare-para-adolescentes | Soft daylight from the window on the left brightens and dims very slowly. The leaves of the potted plant move slightly. |
+| skincare-pele-negra | The shadows of dried flowers on the terracotta wall sway slowly. The warm light on the amber bottle glints softly. |
+| experimento-coletivo-01 | The dried flowers on the left sway very slightly, and their soft shadows move over the linen cloth. Sunlight on the fabric breathes gently. |
+| protetor-solar-com-cor | A soft band of daylight travels very slowly across the stone surface from left to right, making the wet sheen of the color swatches glisten, then returns. |
+| mito-x-regra-ardencia-nao-e-eficacia | A soft highlight glides slowly along the ridges of the cream swatch and across the clear gel drop, as if the light source moves slightly, then returns. |
+
+### Luz com gota, líquido ou reflexo
+
+| Slug | Movimento |
+|---|---|
+| vitamina-c-skincare | The golden caustic light cast through the serum bottle onto the marble shimmers gently. The leaf shadows on the right sway slightly. |
+| revisao-antioxidantes-topicos-fotoenvelhecimento-2026 | The sunbeam from the top left pulses softly, with fine dust drifting in it. The amber light refracted through the bottle shimmers on the marble. The magazines and the glasses stay still. |
+| retinol-como-comecar | The warm lamp glow on the left flickers almost imperceptibly, like a dimmed bulb. The small amber drop at the tip of the pipette catches the light and glints. Nothing drips. |
+| mito-x-regra-resistente-agua | A thin film of water ripples very gently over the stone around the bottle. One droplet on the amber glass slides down slowly. Sun reflections on the wet stone sparkle. |
+| protetor-solar-pele-oleosa | The leaf shadows on the white counter sway softly. The water droplets on the green tile catch small moving highlights. The mint leaves tremble slightly. |
+| skincare-masculino | Cool daylight from the window at the top left shifts very slowly across the dark stone. The dried flowers in the vase move slightly. The whipped cream in the bowl stays still. |
+| skincare-brasileiro-biodiversidade-identidade-2026 | Light rays through the forest canopy shift slowly, with a faint mist drifting in the background. Leaves sway gently. A single water drop falls from a leaf at the left edge. The oil in the glass bowl shimmers. |
+| ozempic-face-gigantes-da-beleza | Soft window light moves slowly across the marble. The hydrangea petals tremble very slightly. The blurred reflection in the mirror stays completely still and out of focus. The injection pen does not move. |
+
+### Capas com pessoa ou mão (as mais arriscadas; deixar por último)
+
+Nestas, a pessoa e a mão ficam imóveis. Se o gerador insistir em mexê-las, a capa fica sem movimento.
+
+| Slug | Movimento |
+|---|---|
+| anvisa-cosmetovigilancia-notificacoes-130-2026 | The gloved hand, the jar and the person stay perfectly still, like a held pose. Only the daylight from the windows shifts softly across the white bench, and the pink liquid in the glass flask at the bottom left moves with a faint, slow shimmer. |
+| esteroides-nao-declarados-cremes-jama | The gloved hand and the spatula stay perfectly still. Only the reddish light in the background pulses very softly, and reflections glide slowly over the glass vials in the rack. |
+| pele-tem-sexo-estudo-nature | The hand on the microscope stays perfectly still. Only the fluorescent cells on the monitor glow and pulse very faintly, without moving or changing pattern, and the pink light under the microscope objective flickers softly. |
+| unilever-foco-beleza-economia-1-bilhao | The person in the background stays still and out of focus. Only the city lights beyond the window twinkle softly as dusk deepens very slightly, and reflections on the polished table shimmer. |
+
+`rotina-de-skincare-para-iniciantes` ainda não tem capa (está como pendente em `capas.txt`). O movimento dela só é escrito depois que a foto existir.
+
+## Clipes feitos
+
+| Data | Slug | Modelo | Status |
+|---|---|---|---|
+| | | | nenhum ainda |
