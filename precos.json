@@ -18,7 +18,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -54,7 +55,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -90,7 +92,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -126,7 +129,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -162,7 +166,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -198,7 +203,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -234,7 +240,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -270,7 +277,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -306,7 +314,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -342,7 +351,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -378,7 +388,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -414,7 +425,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -450,7 +462,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -486,7 +499,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -522,7 +536,8 @@
     "checked_at": "2026-11-02",
     "retailer": "shopee",
     "promo": false,
-    "url": "https://shopee.com.br/search?keyword=principia%20vc-10"
+    "url": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2FVC-10-S%25C3%25A9rum-Vitamina-C-Principia-i.724996606.16987152091&affiliate_id=18376781218&sub_id=site",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -558,7 +573,8 @@
     "checked_at": "2026-11-02",
     "retailer": "shopee",
     "promo": false,
-    "url": "https://shopee.com.br/search?keyword=principia%20niacinamida%20nc-10"
+    "url": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dprincipia%2520niacinamida%2520nc-10&affiliate_id=18376781218&sub_id=site",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -594,7 +610,8 @@
     "checked_at": "2026-11-02",
     "retailer": "shopee",
     "promo": false,
-    "url": "https://shopee.com.br/search?keyword=principia%20ah-2"
+    "url": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2FS%25C3%25A9rum-Hidratante-Principia-2-%25C3%2581cidos-Hialur%25C3%25B4nicos-B5-AH-2-i.298372876.22800957258&affiliate_id=18376781218&sub_id=site",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -630,7 +647,8 @@
     "checked_at": "2026-11-02",
     "retailer": "shopee",
     "promo": false,
-    "url": "https://shopee.com.br/search?keyword=principia%20retinol%20rn-0%2C3"
+    "url": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dprincipia%2520retinol%2520rn-0%252C3&affiliate_id=18376781218&sub_id=site",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -666,7 +684,8 @@
     "checked_at": "2026-11-02",
     "retailer": "mercadolivre",
     "promo": false,
-    "url": "https://lista.mercadolivre.com.br/the-ordinary-niacinamide"
+    "url": "https://lista.mercadolivre.com.br/the-ordinary-niacinamide?matt_tool=34139169&matt_word=fv20260718035618040",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -702,7 +721,8 @@
     "checked_at": "2026-11-02",
     "retailer": "shopee",
     "promo": false,
-    "url": "https://shopee.com.br/search?keyword=creamy%20calming%20cream"
+    "url": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dcreamy%2520calming%2520cream&affiliate_id=18376781218&sub_id=site",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -738,7 +758,8 @@
     "checked_at": "2026-11-02",
     "retailer": "shopee",
     "promo": false,
-    "url": "https://shopee.com.br/search?keyword=creamy%20vitamina%20c"
+    "url": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dcreamy%2520vitamina%2520c&affiliate_id=18376781218&sub_id=site",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -774,7 +795,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3&tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/s?k=la+roche+posay+retinol+b3&tag=produtoskincare0f-20",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -810,7 +832,8 @@
     "checked_at": "2026-11-02",
     "retailer": "mercadolivre",
     "promo": false,
-    "url": "https://lista.mercadolivre.com.br/loreal-revitalift-serum-noturno"
+    "url": "https://www.mercadolivre.com.br/serum-retinol-noturno-antirrugas-loreal-paris-revitalift-30ml/p/MLB21972528?matt_tool=34139169&matt_word=fv20260718035618040",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -846,7 +869,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/s?k=mantecorp+ivy+c+ferulic&tag=produtoskincare0f-20",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -882,7 +906,8 @@
     "checked_at": "2026-11-02",
     "retailer": "amazon",
     "promo": false,
-    "url": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20"
+    "url": "https://www.amazon.com.br/dp/B096XPFVLL?tag=produtoskincare0f-20",
+    "link_tipo": "oferta"
    },
    "window_days": 90,
    "n_observations": 1,
@@ -918,7 +943,8 @@
     "checked_at": "2026-11-02",
     "retailer": "mercadolivre",
     "promo": false,
-    "url": "https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid"
+    "url": "https://lista.mercadolivre.com.br/the-ordinary-azelaic-acid?matt_tool=34139169&matt_word=fv20260718035618040",
+    "link_tipo": "busca"
    },
    "window_days": 90,
    "n_observations": 1,

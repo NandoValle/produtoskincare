@@ -22,7 +22,7 @@ h2{font-size:1.25rem;margin:2em 0 .5em}
 .aviso{border-left:4px solid var(--verde)}
 ul{padding-left:20px} li{margin:8px 0}
 a{color:var(--rosa)}
-.btn{font:inherit;font-weight:600;min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--rosa);color:#fff;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
 :focus-visible{outline:3px solid var(--verde);outline-offset:2px}
 </style>
 <link rel="stylesheet" href="/premium.css">
@@ -56,7 +56,7 @@ a{color:var(--rosa)}
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/blog/">Blog</a></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
@@ -79,10 +79,13 @@ a{color:var(--rosa)}
 <li><strong>Preferências</strong>, como o tema claro ou escuro e o tipo de pele escolhido na página de rotina;</li>
 <li><strong>Tracker de rotina</strong>, com as marcações dos últimos 30 dias;</li>
 <li><strong>Lembrete de reposição</strong>, com os produtos que você adicionou e quantos dias cada um durou;</li>
-<li><strong>Índice UV</strong>, com a última cidade consultada;</li>
+<li><strong>Índice UV e leitura do dia</strong>, com a última cidade consultada, o que você informou sobre o dia (nível do UV, ar seco ou úmido), guardado até o fim do dia, e o tipo de pele escolhido;</li>
+<li><strong>Diário da pele</strong>, com as notas, as fotos e, se você marcar, o contexto do dia (sono, água, sol e ciclo). Dá para apagar um registro ou todos na própria página;</li>
+<li><strong>Convite da newsletter</strong>, para lembrar que ele já apareceu neste aparelho e não mostrar de novo;</li>
 <li><strong>Conversa com a IA</strong>, guardada só enquanto a aba estiver aberta.</li>
 </ul>
 <p>Para apagar tudo, limpe os dados deste site nas configurações do navegador.</p>
+<p><strong>Link do resultado do Provador.</strong> Depois do teste, o endereço da página guarda o resultado completo no trecho depois do <code>#</code>, que o navegador não envia a servidor nenhum: nem a nós, nem aos contadores de visitas. Os botões "Copiar link" e "Compartilhar", o envio por WhatsApp ou e-mail e o PDF levam um link só da rotina: tipo de pele, preocupações, orçamento, passos e produtos. Idade, gestação ou amamentação, uso de isotretinoína, sol, clima e o que a selfie viu não entram nesse link. Se você copiar o endereço direto da barra do navegador, aí sim ele leva o resultado completo.</p>
 
 <h2>2. Fotos de selfie</h2>
 <ul>
@@ -96,13 +99,14 @@ a{color:var(--rosa)}
 <p>No <a href="/ferramentas/ingredientes/">verificador de ingredientes</a>, a foto do rótulo é lida <strong>no seu navegador</strong>, com a tecnologia Tesseract.js. Na primeira vez, o navegador baixa o leitor e o arquivo de idioma do jsDelivr, que recebe o pedido de download, mas não a foto. A foto não é guardada.</p>
 
 <h2>4. Índice UV e clima</h2>
-<p>Quando a consulta ao vivo estiver ligada na página de <a href="/ferramentas/clima/">índice UV</a>, o nome da cidade que você digitar e, depois, as coordenadas dela são enviados ao serviço de previsão do tempo <strong>Open-Meteo</strong>, que devolve os dados. O site não usa a localização do seu aparelho. O serviço recebe também dados técnicos do acesso, como o endereço IP, conforme a política dele.</p>
+<p>Na página inicial e na de <a href="/ferramentas/clima/">índice UV</a>, você pode dizer como está o dia, e isso fica só no aparelho. Quando a consulta ao vivo estiver ligada nessas páginas, o nome da cidade que você digitar e, depois, as coordenadas dela são enviados ao serviço de previsão do tempo <strong>Open-Meteo</strong>, que devolve os dados. O site não usa a localização do seu aparelho. O serviço recebe também dados técnicos do acesso, como o endereço IP, conforme a política dele.</p>
 
 <h2>5. Receber resultados por WhatsApp ou e-mail</h2>
 <p>Os botões "Enviar no WhatsApp" e "Enviar por e-mail" abrem o <strong>seu</strong> WhatsApp ou o <strong>seu</strong> aplicativo de e-mail com o texto pronto. O envio é feito por você. O site não recebe nem guarda seu número, seu endereço ou o conteúdo enviado. Os arquivos de lembrete (.ics) são gerados no navegador e vão só para a sua agenda.</p>
 
 <h2>6. Contato e sugestões</h2>
 <p>Na página de <a href="/contato/">contato</a>, a mensagem também sai do seu WhatsApp ou do seu e-mail, mas desta vez vai para o Produto Skincare. Nesse caso recebemos o que você escreveu, junto com o seu número ou endereço, e usamos só para responder. Não mande fotos de lesões nem dados de saúde.</p>
+<p>O botão "Dúvida? WhatsApp", quando aparece nas páginas, funciona do mesmo jeito: abre uma conversa no seu WhatsApp com o Produto Skincare. Se o botão disser "Resposta por IA", quem responde é uma inteligência artificial, e a sua mensagem é processada por um serviço de IA para gerar a resposta. Ela fala só de skincare, não faz diagnóstico e pode errar.</p>
 
 <h2>7. Newsletter</h2>
 <p>Quando a newsletter estiver ligada, o formulário envia o seu e-mail <strong>direto para o serviço de envio</strong> indicado na caixa de inscrição. O e-mail é usado só para mandar a newsletter, e todo envio tem um link para cancelar. O serviço trata os dados conforme a política dele.</p>
@@ -157,7 +161,7 @@ a{color:var(--rosa)}
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-24">24 de novembro de 2026</time>.</p>
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-26">26 de novembro de 2026</time>.</p>
 <!-- nota-pagina:fim -->
 <noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
@@ -169,9 +173,9 @@ a{color:var(--rosa)}
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/" aria-current="page">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/" aria-current="page">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 <noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
 </body>

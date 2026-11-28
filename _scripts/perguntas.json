@@ -168,6 +168,10 @@
   [
    "Como o hub classifica o nível de evidência: alta, moderada ou limitada?",
    "O selo é um julgamento editorial inspirado no GRADE, não uma avaliação GRADE formal. Alta: ensaios de fase 3 ou metanálises consistentes; moderada: ensaios menores; limitada: um único ensaio pequeno ou evidência in vitro."
+  ],
+  [
+   "Quem escreve as fichas do hub científico e elas são revisadas por um médico?",
+   "As fichas são escritas com inteligência artificial (o Claude, da Anthropic). Não há revisão de dermatologista nem de farmacêutico, e nenhuma ficha é parecer clínico: a checagem é feita pelas referências, com título, autores, revista, ano, DOI e PMID."
   ]
  ],
  "/ciencia/niacinamida-pigmentacao/": [
@@ -1195,11 +1199,11 @@
   ],
   [
    "O que significa “em construção”?",
-   "Que ainda não há histórico suficiente para comparar o preço de hoje. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
+   "Que ainda não há histórico suficiente para comparar o último preço registrado. Conforme as observações se acumulam (8+ em 30+ dias), o selo aparece sozinho."
   ],
   [
-   "Posso ser avisado quando o preço cair?",
-   "Sim, nas páginas de produto: o alerta fica guardado só no seu aparelho, sem cadastro. Quando você voltar ao site, se o preço tiver atingido o valor que você escolheu, o aviso aparece."
+   "O preço mostrado é o de hoje?",
+   "Não. Cada valor é o último preço registrado, na data que aparece ao lado, e pode ter mudado na loja. Produto marcado como “sem oferta verificada” tem link para a busca da loja, não para um anúncio conferido, então o valor é só uma referência."
   ]
  ],
  "/ferramentas/protocolo-n1/": [
@@ -1596,6 +1600,14 @@
   [
    "O que é o selo de evidência dos produtos de skincare?",
    "O selo de evidência é uma classificação do ativo principal do produto, não da fórmula de cada marca. Há três níveis, evidência forte, moderada e emergente, conforme a quantidade e o tipo de estudos que sustentam o ativo."
+  ],
+  [
+   "Quem responde pelo Produto Skincare e como conferir o CNPJ?",
+   "Quem responde pelo site é o titular do CNPJ 35.878.957/0001-10, de microempreendedor individual. A situação cadastral pode ser consultada na consulta de situação cadastral da Receita Federal, e o contato é contato@produtoskincare.com.br."
+  ],
+  [
+   "Uma marca pode pagar para entrar no catálogo do Produto Skincare?",
+   "Não. A página diz que nenhuma marca paga para entrar no catálogo nem para subir de posição, que não há texto patrocinado nem produto analisado em troca de envio gratuito, e que a comissão de afiliado não mexe no selo de evidência. Quando o produto que faz mais sentido não tem programa de afiliado, ele entra sem link."
   ]
  ],
  "/termos/": [
@@ -2816,6 +2828,64 @@
   [
    "O que o raio-X de promessa faz?",
    "Você cola o texto de marketing da embalagem ou do anúncio e cada promessa conhecida recebe um veredito com a fonte: conferível, não verificável, não sustentado, exagero ou depende do ativo."
+  ]
+ ],
+ "/ferramentas/rever-rotina/": [
+  [
+   "O que fazer quando a rotina de skincare tem passos demais ou ficou cara?",
+   "A página Rever minha rotina orienta a manter todo dia limpeza, hidratante e protetor solar, guardar os extras por duas semanas e ficar com no máximo um tratamento. Para gastar menos, o primeiro corte são os extras, sem reduzir a quantidade de protetor solar nem o que foi receitado."
+  ],
+  [
+   "Senti desconforto com um produto de skincare: o que o site orienta?",
+   "Parar o produto suspeito, voltar ao básico que já era usado sem problema, não testar outro produto novo e guardar a embalagem. A página não faz diagnóstico: com inchaço, falta de ar, bolhas ou dor forte, o caminho é atendimento médico imediato; sem melhora em poucos dias, um dermatologista."
+  ]
+ ],
+ "/dados-abertos/": [
+  [
+   "O que tem nos dados abertos do Produto Skincare?",
+   "Quatro arquivos, em CSV e JSON: os produtos do catálogo, os preços com a data em que foram conferidos, as fórmulas (INCI) registradas e as mudanças detectadas entre um registro e outro. Não há dado pessoal, preço sem data nem link de afiliado."
+  ],
+  [
+   "Posso usar os dados abertos de skincare em um trabalho ou produto comercial?",
+   "Sim. A licença é a Creative Commons Atribuição 4.0 (CC BY 4.0): dá para copiar, adaptar e usar, inclusive comercialmente, desde que a origem seja citada. A página traz o texto de citação."
+  ],
+  [
+   "Precisa de cadastro ou chave para baixar os dados?",
+   "Não. Os arquivos ficam em endereços fixos, só de leitura, sem cadastro e sem chave de acesso, e aceitam pedido de qualquer origem."
+  ]
+ ],
+ "/independencia/": [
+  [
+   "Por que o Produto Skincare vê problema nos links de afiliado?",
+   "Porque a comissão só existe quando alguém compra. Um site pago assim ganha mais quando o leitor compra mais vezes ou escolhe o produto mais caro, e não ganha nada quando a resposta honesta é não comprar. A carta diz que as regras atuais são promessas e que o incentivo continua existindo."
+  ],
+  [
+   "O provador do Produto Skincare vai passar a ser pago?",
+   "Não. A carta diz que o provador, as rotinas, os guias, o blog e as ferramentas continuam gratuitos e sem cadastro, e que a estimativa do tipo de pele não vai para trás de pagamento."
+  ],
+  [
+   "Já existe plano ou preço de assinatura no Produto Skincare?",
+   "Não. A carta diz que ainda não há plano, preço nem data, e que antes de desenhar qualquer coisa o site quer ouvir quem o usa. Os links de afiliado continuam por enquanto, avisados como hoje."
+  ]
+ ],
+ "/skincare-premium/": [
+  [
+   "O que é a lista Skincare Premium do Produto Skincare?",
+   "É a lista dos produtos que a Amazon Brasil mostrava na categoria Beleza Premium › Skincare Premium na data indicada na página, na ordem \"Em destaque\" da loja. A página avisa que é a vitrine da Amazon, não uma seleção do site, e que estar na lista não quer dizer que o produto serve para a sua pele."
+  ],
+  [
+   "Os preços da lista Skincare Premium valem na hora da compra?",
+   "Não necessariamente. Os preços têm a data em que foram anotados, e a página avisa que parte deles é promocional ou à vista no Pix e pode mudar a qualquer momento. Vale o preço mostrado na Amazon na hora da compra."
+  ]
+ ],
+ "/mito-x-regra/": [
+  [
+   "O que é a série Mito x regra do Produto Skincare?",
+   "Mito x regra é uma série semanal do blog que coloca uma frase comum sobre skincare ao lado do que a regra da Anvisa e os estudos dizem de fato. Cada episódio segue o mesmo formato: o mito, a regra e o que muda na prática."
+  ],
+  [
+   "Como acompanhar os episódios novos de Mito x regra?",
+   "Os episódios novos entram no blog e no feed RSS do site. A página da série lista todos os episódios publicados, do mais novo para o mais antigo, e quem quiser sugerir um mito pode usar a página de contato."
   ]
  ]
 }

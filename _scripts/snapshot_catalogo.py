@@ -28,6 +28,7 @@ Rode este script depois de cada atualização de produtos.json. É idempotente:
 sem mudança desde o último snapshot, nada é acrescentado.
 """
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -88,6 +89,32 @@ def preco_por_ml(e):
     return None
 
 
+def ingredientes(texto):
+    """Lista INCI em itens, na ordem da embalagem. Separa em ', ' (vírgula seguida de espaço),
+    para não partir nomes como 1,2-HEXANEDIOL."""
+    if not texto:
+        return []
+    bruto = re.split(r",\s+|;\s*|\s[•·]\s", str(texto).replace("\n", " "))
+    return [re.sub(r"\s+", " ", i).strip(" .") for i in bruto if i.strip(" .")]
+
+
+def diff_inci(antes, depois):
+    """Compara duas listas INCI ingrediente a ingrediente, sem diferenciar maiúsculas e espaços.
+    Sem lista anterior não há mudança: é o primeiro registro."""
+    vazio = {"mudou": False, "entraram": [], "sairam": [], "reordenou": False}
+    if not antes:
+        return vazio
+    a, b = ingredientes(antes), ingredientes(depois)
+    ka, kb = [i.upper() for i in a], [i.upper() for i in b]
+    if ka == kb:
+        return vazio
+    entraram = [i for i, k in zip(b, kb) if k not in ka]
+    sairam = [i for i, k in zip(a, ka) if k not in kb]
+    comuns_a = [k for k in ka if k in kb]
+    comuns_b = [k for k in kb if k in ka]
+    return {"mudou": True, "entraram": entraram, "sairam": sairam, "reordenou": comuns_a != comuns_b}
+
+
 def mudancas_de(velho, novo, hoje):
     """Compara o último snapshot com o estado atual; devolve itens de mudanca."""
     itens = []
@@ -115,18 +142,31 @@ def mudancas_de(velho, novo, hoje):
             "em": hoje, "produto_id": pid, "produto": nome, "tipo": "volume",
             "de": vol_v, "para": vol_n, "leitura": leitura,
         })
-    if not mesma_leitura(e, novo, ["ativos", "inci"]):
+    ativos_mudaram = sorted(e.get("ativos") or []) != sorted(novo.get("ativos") or [])
+    d = diff_inci(e.get("inci"), novo.get("inci"))
+    # Primeiro registro da lista (não havia versão anterior) não é reformulação: não há com o que comparar.
+    if ativos_mudaram or d["mudou"]:
         detalhe = []
-        if sorted(e.get("ativos") or []) != sorted(novo.get("ativos") or []):
+        if ativos_mudaram:
             detalhe.append(f"ativos: {e.get('ativos')} → {novo.get('ativos')}")
-        if e.get("inci") != novo.get("inci"):
-            detalhe.append("lista INCI alterada"
-                           + (" (versão anterior registrada)" if e.get("inci") else " (primeiro registro)"))
-        itens.append({
+        if d["entraram"]:
+            detalhe.append("entraram: " + ", ".join(d["entraram"]))
+        if d["sairam"]:
+            detalhe.append("saíram: " + ", ".join(d["sairam"]))
+        if d["mudou"] and d["reordenou"]:
+            detalhe.append("a ordem dos ingredientes mudou" if (d["entraram"] or d["sairam"])
+                           else "mesmos ingredientes, em outra ordem")
+        if d["mudou"] and novo.get("inci") is None:
+            detalhe.append("a lista registrada foi retirada")
+        item = {
             "em": hoje, "produto_id": pid, "produto": nome, "tipo": "formula",
             "de": e.get("inci") or e.get("ativos"), "para": novo.get("inci") or novo.get("ativos"),
-            "leitura": "reformulação — " + "; ".join(detalhe),
-        })
+            "leitura": "fórmula mudou — " + "; ".join(detalhe),
+        }
+        if d["mudou"]:
+            item.update({"entraram": d["entraram"], "sairam": d["sairam"], "reordenou": d["reordenou"],
+                         "fonte_de": e.get("inci_fonte"), "fonte_para": novo.get("inci_fonte")})
+        itens.append(item)
     return itens
 
 
@@ -143,7 +183,7 @@ def main():
     mudancas = carregar_json(ARQ_MUDANCAS, {
         "gerado_em": hoje, "_sobre": "Mudanças detectadas entre snapshots de "
         "produtos/snapshots.json. Tipos: preco, volume (shrinkflation quando o preço "
-        "não muda e o volume cai), formula (ativos ou INCI).", "itens": [],
+        "não muda e o volume cai), formula (ativos ou INCI; com os ingredientes que entraram e saíram).", "itens": [],
     })
 
     novos_itens = []

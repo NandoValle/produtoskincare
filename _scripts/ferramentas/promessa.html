@@ -96,7 +96,7 @@
         '<span class="ft-sub">Base ANVISA atualizada em ' + esc(r.atualizado_em || "—") + ' · conferido em ' + esc(p.conferido_em) + '</span></div>';
     } else {
       var mercado = /shopee|mercadolivre|tiktok/i.test(p.plataforma || "");
-      alvo.innerHTML = '<div class="ft-nao"><strong>✘ Não encontrado nesta base</strong>' +
+      alvo.innerHTML = '<div class="ft-nao"><strong>Não encontrado nesta base</strong>' +
         '<span class="ft-sub">Melhor similaridade encontrada: ' + esc(String(r.similaridade)) + ' — abaixo do que aceitamos como correspondência.' +
         (mercado ? ' Atenção: este produto é vendido em marketplace; vale conferir a embalagem e o portal da ANVISA antes de comprar.' : '') +
         '</span><span class="ft-sub">Não é prova de irregularidade — confira em ' +

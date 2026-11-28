@@ -61,7 +61,7 @@ CSS = """
 .cb-nao{background:#fdf2f4;border-color:#b4546a;color:#5a1d2b}
 .cb-sem{background:#f4f4f4;border-color:#6b6b6b;color:#333}
 .cb-btns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
-.cb-btn{display:inline-flex;align-items:center;min-height:48px;padding:8px 20px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.cb-btn{display:inline-flex;align-items:center;min-height:48px;padding:8px 20px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 .cb-btn.cb-sec{background:transparent;color:inherit;border:1.5px solid currentColor}
 .cb-lista{columns:2;gap:24px}@media(max-width:560px){.cb-lista{columns:1}}
 .cb-tabela{width:100%;border-collapse:collapse;font-size:.95rem;margin:12px 0}
@@ -246,7 +246,7 @@ def pagina_indice(itens, versao):
 </div>
 <p>Não achou a sua? Monte qualquer combinação no <a href="/ferramentas/ingredientes/">verificador de ingredientes</a> ou cadastre os produtos que você já tem na <a href="/ferramentas/prateleira/">minha prateleira</a>.</p>
 {"".join(grupos)}
-<h2>⛔ Com a pele irritada</h2><ul class="cb-lista">{irr}</ul>
+<h2>Com a pele irritada</h2><ul class="cb-lista">{irr}</ul>
 <p class="ig-nota">Respostas das regras versão {esc(versao)}: orientações de uso comuns em dermatologia cosmética, sem citação de estudo específico e ainda sem revisão de dermatologista. Pares sem regra cadastrada não aparecem aqui, porque não sabemos a resposta. Não é diagnóstico.</p>
 </article>"""
     return pagina("Posso usar junto? Combinações de ativos de skincare",

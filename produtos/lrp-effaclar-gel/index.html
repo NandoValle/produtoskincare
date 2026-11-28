@@ -72,6 +72,29 @@
 @media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
 .capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
 
+.pd-conf{margin:0;display:flex;flex-direction:column;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pd-conf>div{padding:12px 16px;border-top:1px solid var(--linha)}
+.pd-conf>div:first-child{border-top:0}
+.pd-conf dt{font-weight:700}
+.pd-conf dd{margin:2px 0 0}
+.pd-quando{display:block;font-size:.9rem;color:var(--suave)}
+.pd-bate{margin-top:14px}
+.pd-bate summary{cursor:pointer;display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:1.5px solid var(--linha-2);border-radius:999px;font-weight:600;list-style:none}
+.pd-bate summary::-webkit-details-marker{display:none}
+.pd-bate summary::after{content:"+";margin-left:10px;font-weight:400}
+.pd-bate[open] summary::after{content:"\2212"}
+.pd-bate summary:hover{border-color:var(--rosa)}
+.pd-bate form[hidden]{display:none}
+.pd-bate form{display:flex;flex-direction:column;gap:12px;margin:14px 0 10px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pd-bate fieldset{border:0;padding:0;margin:0;min-width:0}
+.pd-bate legend,.pd-bate form>label{padding:0;font-weight:700}
+.pd-bate fieldset label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:9px 0;cursor:pointer;line-height:1.45}
+.pd-bate input[type=radio]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.pd-bate textarea{font:inherit;width:100%;padding:12px 14px;border:1.5px solid var(--linha-2);border-radius:12px;background:var(--fundo);color:var(--tinta);resize:vertical}
+.pd-bate .pd-btn{border:0;cursor:pointer;font:inherit;font-weight:600;align-self:flex-start}
+.pd-bate form>.ig-nota{margin:0}
+.pd-bate form>.ig-nota:empty{display:none}
+
 .pd-faq{border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);margin:8px 0;padding:0 16px}
 .pd-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
 .pd-faq p{margin:0 0 14px}
@@ -80,8 +103,10 @@
 .pd-tag.refil{background:var(--verde-claro);color:var(--verde)}
 .pd-compra{display:flex;flex-direction:column;gap:10px}
 .pd-preco{font-family:var(--fonte-display);font-size:2.2rem;line-height:1;margin:0}
+.pd-criterio{font-size:.95rem;line-height:1.5;margin:0 0 8px;padding-left:12px;border-left:2px solid var(--linha-2)}
+.pd-criterio+.pd-preco{margin-top:16px}
 .pd-btns{display:flex;flex-wrap:wrap;gap:8px}
-.pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 .pd-btn.sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
 @media(prefers-color-scheme:dark){.pd-btn:not(.sec){color:#28131b}}
 html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-btn:not(.sec){color:#28131b}
@@ -107,16 +132,15 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="La Roche-Posay Effaclar Gel Alta Tolerância">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#pagina", "url": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/", "name": "La Roche-Posay Effaclar Gel Alta Tolerância", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "La Roche-Posay Effaclar Gel Alta Tolerância. Gel para pele oleosa e sensível. Reduz oleosidade com PCA de zinco. Preço em 02/11/2026: R$ 73,57.", "dateModified": "2026-11-02", "breadcrumb": {"@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#produto"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Produtos", "item": "https://produtoskincare.com.br/produtos/"}, {"@type": "ListItem", "position": 3, "name": "La Roche-Posay Effaclar Gel Alta Tolerância", "item": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/"}]}, {"@type": "Product", "@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#produto", "name": "La Roche-Posay Effaclar Gel Alta Tolerância", "url": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#pagina"}, "description": "Gel para pele oleosa e sensível. Reduz oleosidade com PCA de zinco.", "brand": {"@type": "Brand", "name": "La Roche-Posay"}, "offers": {"@type": "Offer", "price": "73.57", "priceCurrency": "BRL", "description": "Na Amazon, em 02/11/2026. Preço muda: vale o mostrado na loja na hora da compra. Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.", "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare0f-20"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#pagina", "url": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/", "name": "La Roche-Posay Effaclar Gel Alta Tolerância", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "La Roche-Posay Effaclar Gel Alta Tolerância. Gel para pele oleosa e sensível. Reduz oleosidade com PCA de zinco. Preço em 02/11/2026: R$ 73,57.", "dateModified": "2026-11-02", "breadcrumb": {"@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#produto"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Produtos", "item": "https://produtoskincare.com.br/produtos/"}, {"@type": "ListItem", "position": 3, "name": "La Roche-Posay Effaclar Gel Alta Tolerância", "item": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/"}]}, {"@type": "Product", "@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#produto", "name": "La Roche-Posay Effaclar Gel Alta Tolerância", "url": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/produtos/lrp-effaclar-gel/#pagina"}, "description": "Gel para pele oleosa e sensível. Reduz oleosidade com PCA de zinco.", "brand": {"@type": "Brand", "name": "La Roche-Posay"}, "offers": {"@type": "Offer", "price": "73.57", "priceCurrency": "BRL", "description": "Na Amazon, conferido em 02/11/2026. Variante conferida: refil de 240 g. Preço muda: vale o mostrado na loja na hora da compra. O que foi conferido nesta ficha. Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.", "url": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare0f-20"}}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
-
+<meta name="author" content="Equipe Produto Skincare">
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
 <script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
-<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -125,7 +149,7 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a data-secao="atual" href="/achados/">Produtos</a><a href="/blog/">Blog</a></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a data-secao="atual" href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
@@ -151,8 +175,9 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 </div>
 <div class="ig-caixa pd-compra">
 <p class="ig-rotulo">Preço conferido</p>
+<p class="pd-criterio"><b>Por que está aqui:</b> entrou como limpeza para pele oleosa e pele mista com foco em acne e poros aparentes.</p><p class="pd-criterio"><b>Talvez não valha a pena:</b> se você tem pele seca; se o sabonete ou gel de limpeza que você já usa funciona bem na sua pele.</p>
 <p class="pd-preco">R$ 73,57</p>
-<p class="ig-nota">Na Amazon, em 02/11/2026. Preço muda: vale o mostrado na loja na hora da compra.</p>
+<p class="ig-nota">Na Amazon, conferido em 02/11/2026. Variante conferida: refil de 240 g. Preço muda: vale o mostrado na loja na hora da compra. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
 <div class="pd-btns">
 <a class="pd-btn" href="https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5?tag=produtoskincare0f-20" target="_blank" rel="sponsored noopener" data-produto="La Roche-Posay Effaclar Gel Alta Tolerância">Ver na Amazon ↗</a>
 <a class="pd-btn sec" href="/ferramentas/reposicao/?produto=La%20Roche-Posay%20Effaclar%20Gel%20Alta%20Toler%C3%A2ncia">Lembrete de reposição</a>
@@ -188,6 +213,29 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <p>Primeiro preço registrado: R$ 73,57 em 02/11/2026. O histórico aparece aqui conforme o preço é conferido de novo.</p>
 <p class="ig-nota">Nota 4,8 de 5 em 12.128 avaliações na Amazon, conferida em 02/11/2026. A nota é de quem comprou na loja, não uma avaliação do site.</p>
 </section>
+<section aria-labelledby="conferido">
+<h2 id="conferido">O que foi conferido nesta ficha</h2>
+<dl class="pd-conf"><div><dt>Preço</dt><dd>R$ 73,57 na Amazon. <span class="pd-quando">Conferido em 02/11/2026.</span></dd></div><div><dt>Nota na loja</dt><dd>4,8 de 5, em 12.128 avaliações de quem comprou. <span class="pd-quando">Conferida em 02/11/2026.</span></dd></div><div><dt>Embalagem</dt><dd>240 g, conforme o anúncio. <span class="pd-quando">Registrada em 20/11/2026.</span></dd></div><div><dt>Fórmula</dt><dd>Só os ativos em destaque no anúncio. A lista completa (INCI) não foi registrada aqui: vale a da embalagem. <span class="pd-quando">Ativos registrados em 20/11/2026.</span></dd></div><div><dt>Link</dt><dd>Leva ao anúncio na Amazon de onde saiu o preço acima. <span class="pd-quando">Sem data própria: vale a da conferência do preço, 02/11/2026.</span></dd></div></dl>
+<p class="ig-nota">São conferências de preço, embalagem e link, feitas na loja. Não são revisão científica nem avaliação médica do produto. A data no alto da página é a da última conferência de preço.</p>
+<details class="pd-bate" id="algo-nao-bate">
+<summary>Algo não bate?</summary>
+<form data-pd-bate data-produto="La Roche-Posay Effaclar Gel Alta Tolerância" data-ficha="R$ 73,57 na Amazon, conferido em 02/11/2026" hidden>
+<fieldset>
+<legend>O que parece errado?</legend>
+<label><input type="radio" name="bate" value="Fórmula ou ingredientes" checked> Fórmula ou ingredientes</label>
+<label><input type="radio" name="bate" value="Embalagem ou tamanho"> Embalagem ou tamanho</label>
+<label><input type="radio" name="bate" value="Preço"> Preço</label>
+<label><input type="radio" name="bate" value="Link"> Link que abre outro produto ou não abre</label>
+<label><input type="radio" name="bate" value="Outra coisa"> Outra coisa</label>
+</fieldset>
+<label for="pd-bate-msg">O que você viu (opcional)</label>
+<textarea id="pd-bate-msg" rows="3"></textarea>
+<button type="submit" class="pd-btn">Avisar por e-mail</button>
+<p class="ig-nota" role="status" data-pd-bate-aviso></p>
+</form>
+<p class="ig-nota">O aviso sai do seu aplicativo de e-mail, com a mensagem já montada, e só é enviado se você confirmar. O site não guarda o que você escreve. Se o aplicativo não abrir, escreva para <a href="mailto:contato@produtoskincare.com.br?subject=Algo%20n%C3%A3o%20bate%3A%20La%20Roche-Posay%20Effaclar%20Gel%20Alta%20Toler%C3%A2ncia">contato@produtoskincare.com.br</a>. Não mande dados de saúde nem fotos de lesões.</p>
+</details>
+</section>
 <section aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2><div class="pd-faq"><h3 class="pq">Para que tipo de pele é o La Roche-Posay Effaclar Gel Alta Tolerância?</h3><p>No nosso catálogo, ele aparece para pele oleosa e pele mista. Talvez não seja a melhor escolha para pele seca. Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir.</p></div><div class="pd-faq"><h3 class="pq">Uso o La Roche-Posay Effaclar Gel Alta Tolerância de manhã ou à noite?</h3><p>Ele entra na rotina no passo “limpeza”, de manhã e à noite.</p></div><div class="pd-faq"><h3 class="pq">Quais são os ativos em destaque do La Roche-Posay Effaclar Gel Alta Tolerância?</h3><p>Os ativos destacados no anúncio são PCA de zinco. A lista completa de ingredientes (INCI) está na embalagem e no anúncio, e pode mudar entre lotes e versões.</p></div><div class="pd-faq"><h3 class="pq">Quanto custa o La Roche-Posay Effaclar Gel Alta Tolerância?</h3><p>Na última conferência, em 02/11/2026, custava R$ 73,57 na Amazon. O preço muda com frequência: vale o mostrado na loja na hora da compra.</p></div><div class="pd-faq"><h3 class="pq">Posso usar junto com os outros produtos da minha rotina?</h3><p>Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site para checar combinações. Em caso de irritação persistente, procure um dermatologista.</p></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Para que tipo de pele é o La Roche-Posay Effaclar Gel Alta Tolerância?", "acceptedAnswer": {"@type": "Answer", "text": "No nosso catálogo, ele aparece para pele oleosa e pele mista. Talvez não seja a melhor escolha para pele seca. Se não sabe seu tipo de pele, o quiz do provador ajuda a descobrir."}}, {"@type": "Question", "name": "Uso o La Roche-Posay Effaclar Gel Alta Tolerância de manhã ou à noite?", "acceptedAnswer": {"@type": "Answer", "text": "Ele entra na rotina no passo “limpeza”, de manhã e à noite."}}, {"@type": "Question", "name": "Quais são os ativos em destaque do La Roche-Posay Effaclar Gel Alta Tolerância?", "acceptedAnswer": {"@type": "Answer", "text": "Os ativos destacados no anúncio são PCA de zinco. A lista completa de ingredientes (INCI) está na embalagem e no anúncio, e pode mudar entre lotes e versões."}}, {"@type": "Question", "name": "Quanto custa o La Roche-Posay Effaclar Gel Alta Tolerância?", "acceptedAnswer": {"@type": "Answer", "text": "Na última conferência, em 02/11/2026, custava R$ 73,57 na Amazon. O preço muda com frequência: vale o mostrado na loja na hora da compra."}}, {"@type": "Question", "name": "Posso usar junto com os outros produtos da minha rotina?", "acceptedAnswer": {"@type": "Answer", "text": "Depende dos ativos de cada produto. Cole a lista de ingredientes no verificador de ingredientes do site para checar combinações. Em caso de irritação persistente, procure um dermatologista."}}]}</script></section>
 <section aria-labelledby="alternativas"><h2 id="alternativas">Alternativas do catálogo</h2><ul><li><a href="/produtos/cerave-gel-limpeza/">CeraVe Gel de Limpeza Facial</a> <span class="ig-nota">R$ 96,90 em 02/11/2026</span></li></ul></section>
 <section aria-labelledby="relacionados">
@@ -202,20 +250,13 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 <footer class="ig-foot">
 <p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
-<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
 <!-- nota-pagina:inicio -->
 <p class="ps-nota-pagina">Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
 <!-- nota-pagina:fim -->
-<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
-<div class="ps-precos" data-precos-id="lrp-effaclar-gel">
-  <p class="ps-precos-linha">
-    <span class="ps-selo ps-selo-sem-historico">➖ histórico em construção</span>
-  </p>
-  <p class="ps-precos-linha">
-    <strong>R$ 73,57</strong> · conferido em 02/11/2026 · <a href="/ferramentas/precos/">histórico de preços</a>
-  </p>
-</div>
-<script src="/precos-widget.js" defer></script>
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -225,11 +266,26 @@ html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-bt
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 </footer>
-
+<script>
+(function () {
+  var f = document.querySelector("[data-pd-bate]");
+  if (!f) return;
+  f.hidden = false;
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var tipo = f.querySelector('input[name="bate"]:checked').value, nome = f.getAttribute("data-produto");
+    var corpo = ["Produto: " + nome, "Página: " + location.origin + location.pathname, "O que parece errado: " + tipo,
+      "Na ficha: " + f.getAttribute("data-ficha"), "", "O que eu vi: " + document.getElementById("pd-bate-msg").value.trim()].join("\n");
+    location.href = "mailto:contato@produtoskincare.com.br?subject=" + encodeURIComponent("Algo não bate: " + nome + " (" + tipo + ")") + "&body=" + encodeURIComponent(corpo);
+    f.querySelector("[data-pd-bate-aviso]").textContent = "Mensagem montada. Confira e envie pelo seu aplicativo de e-mail.";
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/algo-nao-bate"); } catch (e) {}
+  });
+})();
+</script>
 </body>
 </html>

@@ -40,7 +40,7 @@
   var PARADAS = " a o as os e de da do das dos para pra com sem em no na nos nas um uma que eu tenho minha meu pele quero como muito muita estou sou tratar melhorar ativo ativos qual quais melhor melhores tem ter tipo sobre ";
   var FILTROS = {
     evid: { rotulo: "com ficha e fontes", f: function (a) { return !!a.ev; } },
-    gest: { rotulo: "seguro na gestação", f: function (a) { return a.gest === "compativel"; } },
+    gest: { rotulo: "costuma ser compatível na gestação", f: function (a) { return a.gest === "compativel"; } },
     semrx: { rotulo: "sem receita", f: function (a) { return !a.rx; } },
     sensivel: { rotulo: "pele sensível", f: function (a) { return a.irrita === 0; } },
     iniciante: { rotulo: "para iniciantes", f: function (a) { return a.nivel === 1; } },

@@ -16,7 +16,11 @@
  *   - selo só com n>=8 observações E produto com 30+ dias de histórico;
  *   - preço não conferido há >14 dias → badge "desatualizado" (selo apagado);
  *   - sem size_ml → sem custo por dia (nunca estimar volume escondido);
- *   - toda exibição carrega n de observações e data da conferência.
+ *   - toda exibição carrega n de observações e data da conferência;
+ *   - o preço é sempre "último preço registrado em <data>", nunca "preço de hoje": quem lê
+ *     a página pode estar a semanas do registro;
+ *   - o link de loja vem do catálogo (produtos.json), que tem o link de afiliado conferido,
+ *     e sai marcado como "oferta" (anúncio exato) ou "busca" (resultado de pesquisa na loja).
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -48,6 +52,19 @@ async function carregarCatalogo() {
     ? await (await fetch(url)).json()
     : JSON.parse(readFileSync(join(RAIZ, "produtos.json"), "utf8"));
   return new Map(bruto.produtos.map((p) => [p.id, p]));
+}
+
+// Link de loja do último preço. A observação (imutável) guarda o endereço de quando foi
+// registrada; se o catálogo aponta para a mesma loja, vale o link do catálogo, que é o
+// mantido (afiliado e, quando existe, anúncio exato).
+function linkDeLoja(obs, cat) {
+  const url = cat.link && cat.plataforma === obs.retailer ? cat.link : obs.url || null;
+  if (!url) return { url: null, tipo: null };
+  // Mesmo critério de eh_busca() em _scripts/gerar_produtos.py: busca não é oferta verificada.
+  let alvo = url;
+  try { alvo = decodeURIComponent(url); } catch {}
+  const busca = /amazon\.com\.br\/s[?\/]|shopee\.com\.br\/search|lista\.mercadolivre\.com\.br/.test(alvo);
+  return { url, tipo: busca ? "busca" : "oferta" };
 }
 
 const DOSE_POR_PASSO = { limpeza: "limpeza", tratamento: "tratamento", hidratacao: "hidratante", protetor: "protetor" };
@@ -105,8 +122,9 @@ function calcular(produtoId, catalogo) {
     else { badge = "alto"; motivo = "Acima de 75% dos preços dos últimos 90 dias — este produto costuma sair mais barato."; }
   }
 
-  // custo por dia: só com tamanho real informado
   const cat = catalogo.get(produtoId) || {};
+  const loja = atual ? linkDeLoja(atual, cat) : null;
+  // custo por dia: só com tamanho real informado
   const tam = tamanhos[produtoId] || {};
   const size = tam.size_ml ?? tam.size_g ?? null;
   let custo = null;
@@ -127,7 +145,7 @@ function calcular(produtoId, catalogo) {
     nome: cat.nome || produtoId,
     marca: cat.marca || null,
     current: atual
-      ? { price_cents: atual.price_cents, checked_at: atual.checked_at.slice(0, 10), retailer: atual.retailer, promo: !!atual.promo, url: atual.url || null }
+      ? { price_cents: atual.price_cents, checked_at: atual.checked_at.slice(0, 10), retailer: atual.retailer, promo: !!atual.promo, url: loja.url, link_tipo: loja.tipo }
       : null,
     window_days: JANELA_DIAS,
     n_observations: n,
@@ -165,8 +183,8 @@ writeFileSync(join(RAIZ, "precos.json"), JSON.stringify(saida, null, 1) + "\n");
 // Atualiza a tabela da página ferramentas/precos/index.html entre os marcadores.
 // Assim a página é estática (funciona sem JS) e sempre atual no build.
 const ROTULO_BADGE = {
-  "otimo": "🟢 ótimo", "bom": "🔵 bom", "justo": "⚪ justo", "alto": "🔴 alto",
-  "sem-historico": "➖ em construção", "desatualizado": "⏸ desatualizado",
+  "otimo": "ótimo", "bom": "bom", "justo": "justo", "alto": "alto",
+  "sem-historico": "em construção", "desatualizado": "desatualizado",
 };
 function brl(cents) {
   return cents == null ? "—" : "R$ " + (cents / 100).toFixed(2).replace(".", ",");
@@ -202,7 +220,7 @@ try {
       .map(([id, cat]) => {
         const p = saida.produtos[id];
         const custo = p.custo ? "≈ " + brl(p.custo.custo_dia_cents) + "/dia" : "—";
-        return `      <tr>\n        <td><a href="/produtos/${id}/">${cat.nome}</a>${cat.marca ? ` <span class="ig-nota">${cat.marca}</span>` : ""}</td>\n        <td>${brl(p.current && p.current.price_cents)}</td>\n        <td>${dataBR(p.current && p.current.checked_at)}</td>\n        <td>${p.n_observations}</td>\n        <td class="ps-spark-cel">${sparkline(p.series)}</td>\n        <td><span class="ps-selo ps-selo-${p.badge}" title="${p.badge_motivo}">${ROTULO_BADGE[p.badge]}</span></td>\n        <td>${custo}</td>\n      </tr>`;
+        return `      <tr>\n        <td><a href="/produtos/${id}/">${cat.nome}</a>${cat.marca ? ` <span class="ig-nota">${cat.marca}</span>` : ""}${p.current && p.current.link_tipo === "busca" ? ' <span class="ig-nota">· sem oferta verificada</span>' : ""}</td>\n        <td>${brl(p.current && p.current.price_cents)}</td>\n        <td>${dataBR(p.current && p.current.checked_at)}</td>\n        <td>${p.n_observations}</td>\n        <td class="ps-spark-cel">${sparkline(p.series)}</td>\n        <td><span class="ps-selo ps-selo-${p.badge}" title="${p.badge_motivo}">${ROTULO_BADGE[p.badge]}</span></td>\n        <td>${custo}</td>\n      </tr>`;
       })
       .join("\n");
     writeFileSync(paginaTabela, html.slice(0, a + ini.length) + "\n" + linhas + "\n    " + html.slice(b));

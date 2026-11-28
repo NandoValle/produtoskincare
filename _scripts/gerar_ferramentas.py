@@ -17,9 +17,10 @@ CSS = """
 .ft-campo{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
 textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-campo:focus{outline:3px solid var(--rosa);outline-offset:2px}
-.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
+.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
 .ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
 .ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn[hidden],.ex-form[hidden]{display:none}
 .ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
 .ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
@@ -88,9 +89,35 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-escala button{flex:1;min-height:40px;border:1px solid var(--linha);border-radius:9px;background:var(--papel);color:var(--suave);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
 .ft-escala button[aria-checked=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
 .ft-escala button:hover{border-color:var(--rosa)}
+.rr-escolha ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.rr-escolha li{margin:0}
+.rr-escolha a{display:flex;flex-direction:column;gap:2px;padding:14px 16px;min-height:48px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--fundo);color:var(--tinta);text-decoration:none}
+.rr-escolha a:hover{border-color:var(--rosa)}
+.rr-escolha a strong{text-decoration:underline;text-underline-offset:3px}
+.rr-escolha a span{font-size:.92rem;color:var(--suave)}
+.ig section[id]:focus{outline:none}
+.rr-form{display:flex;flex-direction:column;gap:18px}
+.rr-form fieldset{border:0;padding:0;margin:0;min-width:0}
+.rr-form legend{padding:0;font-weight:700;margin-bottom:4px}
+.rr-form .ft-check{align-items:flex-start;padding:10px 0;line-height:1.45}
+.rr-form .ft-check input{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.rr-form .ft-btn{align-self:flex-start;margin:0}
+.rr-saida:empty{display:none}
+.rr-saida{display:flex;flex-direction:column;gap:4px}
+.rr-saida:focus{outline:3px solid var(--rosa);outline-offset:4px;border-radius:12px}
+.rr-saida h3{margin:0 0 6px}
+.rr-saida ul,.rr-lista{margin:6px 0 0;padding-left:1.2em}
+.rr-saida li,.rr-lista li{margin:.5em 0}
+.rr-conta{font-weight:700}
+.rr-saida li strong,.rr-saida p strong{display:inline;margin:0}
+.rr-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rr-acoes .ft-btn{margin:0}
 """
 
 PAGINAS = [
+    {"fonte": "rever-rotina.html", "caminho": "/ferramentas/rever-rotina/", "trilha": "Rever minha rotina",
+     "titulo": "Rever minha rotina: menos passos, menos gasto",
+     "descricao": "Sua rotina de skincare ficou cara, tem passos demais ou um produto incomodou a pele? Veja o que tirar, o que manter e quando procurar um dermatologista."},
     {"fonte": "prateleira.html", "caminho": "/ferramentas/prateleira/", "trilha": "Minha prateleira",
      "titulo": "Minha prateleira: o que combina entre os produtos que você já tem",
      "descricao": "Cadastre os produtos de skincare que você já tem e veja o que não combina, o que se repete, que passo falta e quando cada um acaba. Salvo só no seu aparelho."},

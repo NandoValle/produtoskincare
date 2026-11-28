@@ -230,7 +230,7 @@
         { "nome": "Protetor com cor (óxido de ferro)", "evidencia": "Forte", "texto": "Além do UV, o óxido de ferro bloqueia parte da luz visível, que também escurece o melasma. Reaplique ao longo do dia." },
         { "nome": "Hidroquinona", "evidencia": "Forte", "texto": "Clareador de referência, mas só com receita e por tempo limitado." },
         { "nome": "Thiamidol", "evidencia": "Moderada", "texto": "Inibidor de tirosinase da Eucerin, com estudos clínicos, a maioria financiada pela própria marca." },
-        { "nome": "Ácido azelaico", "evidencia": "Moderada", "texto": "Clareia e é seguro na gestação." },
+        { "nome": "Ácido azelaico", "evidencia": "Moderada", "texto": "Clareia e costuma ser considerado compatível com a gestação; confirme com seu médico." },
         { "nome": "Ácido tranexâmico tópico", "evidencia": "Moderada", "texto": "Estudos promissores. A versão oral funciona melhor, mas exige receita." },
         { "nome": "Vitamina C e niacinamida", "evidencia": "Moderada", "texto": "Coadjuvantes antioxidantes que ajudam a uniformizar o tom." }
       ],
