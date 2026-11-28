@@ -19,7 +19,7 @@
 <label class="ft-rotulo" for="pr-texto">Ingredientes ou ativos (da embalagem ou do anúncio)</label>
 <textarea class="ft-campo" id="pr-texto" rows="4" placeholder="Cole a lista de ingredientes ou escreva os ativos, ex.: retinol 0,3%, niacinamida"></textarea>
 <div class="ft-ocr">
-<label class="ft-btn ft-sec">📷 Ler o rótulo por foto<input type="file" id="pr-foto" accept="image/*" capture="environment" class="ft-arquivo"></label>
+<label class="ft-btn ft-sec">Ler o rótulo por foto<input type="file" id="pr-foto" accept="image/*" capture="environment" class="ft-arquivo"></label>
 <p class="ig-nota" id="pr-ocr" role="status" aria-live="polite">A leitura acontece neste aparelho: a foto não é enviada. Na primeira vez, o leitor baixa cerca de 7 MB.</p>
 </div>
 <label class="ft-rotulo" for="pr-passo">Passo da rotina</label>
@@ -218,7 +218,7 @@
     ultima = { itens: d.itens, a: a, sensivel: d.sensivel };
     var h = [];
     if (!a.conflitos.length) {
-      h.push('<div class="ft-ok"><strong>✅ Nenhum conflito encontrado</strong> entre os ativos que reconhecemos' + (d.itens.length < 2 ? " (com um produto só, ainda não há o que comparar)" : "") + '.</div>');
+      h.push('<div class="ft-ok"><strong>Nenhum conflito encontrado</strong> entre os ativos que reconhecemos' + (d.itens.length < 2 ? " (com um produto só, ainda não há o que comparar)" : "") + '.</div>');
     }
     a.conflitos.forEach(function (c) {
       var onde = c.resultado === "nao" ? "" : " quando os dois entram " + quando(c.periodos);
@@ -229,17 +229,17 @@
         (c.resultado === "horarios" ? '<span class="ft-sub">Dica: desmarque ' + esc(quando(c.periodos).replace(/^de |^à /, "")) + ' em um dos dois, na lista acima.</span>' : "") + '</div>');
     });
     a.repetidos.forEach(function (r) {
-      h.push('<div class="ft-info"><strong>🔁 Repetido: ' + esc(r.nomeClasse) + '</strong>' + esc(r.itens.map(function (i) { return i.nome; }).join(" e ")) +
+      h.push('<div class="ft-info"><strong>Repetido: ' + esc(r.nomeClasse) + '</strong>' + esc(r.itens.map(function (i) { return i.nome; }).join(" e ")) +
         ' trazem ' + esc(r.nomeClasse) + ' ' + quando(r.periodos) + '. Talvez um baste: dois do mesmo grupo somam mais chance de irritação e mais gasto.</div>');
     });
     a.faltando.forEach(function (passo) {
       var texto = passo === "protetor"
         ? "Não há protetor solar na sua prateleira." + (a.fotossensivel ? " Com ácidos ou retinoides, ele é indispensável todos os dias." : " Ele é o passo que mais protege a pele no dia a dia.")
         : passo === "limpeza" ? "Não há um produto de limpeza na sua prateleira." : "Não há hidratante na sua prateleira.";
-      h.push('<div class="' + (passo === "protetor" ? "ft-nao" : "ft-info") + '"><strong>➕ Falta: ' + esc(P.PASSOS[passo]) + '</strong>' + esc(texto) +
+      h.push('<div class="' + (passo === "protetor" ? "ft-nao" : "ft-info") + '"><strong>Falta: ' + esc(P.PASSOS[passo]) + '</strong>' + esc(texto) +
         '<span class="ft-sub">Opções do catálogo, das mais em conta:</span><ul>' + sugestoes(passo) + '</ul></div>');
     });
-    if (!a.faltando.length) h.push('<div class="ft-ok"><strong>✅ Rotina básica completa</strong>Você tem limpeza, hidratante e protetor solar.</div>');
+    if (!a.faltando.length) h.push('<div class="ft-ok"><strong>Rotina básica completa</strong>Você tem limpeza, hidratante e protetor solar.</div>');
     $("pr-analise").innerHTML = h.join("");
     $("pr-enviar").hidden = false;
     $("pr-cartao").hidden = false;

@@ -107,7 +107,7 @@ def card(produto, agora):
     if produto.get("foto"):
         src = "/" + str(produto["foto"]).lstrip("/")
         linhas.append(
-            f'      <img class="foto" src="{esc(src)}" alt="{esc(produto["nome"])}" loading="lazy" decoding="async">'
+            f'      <span class="foto-moldura"><img class="foto" src="{esc(src)}" alt="{esc(produto["nome"])}" loading="lazy" decoding="async"></span>'
         )
     if produto.get("categoria"):
         linhas.append(f'      <span class="cat">{esc(produto["categoria"])}</span>')

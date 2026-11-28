@@ -246,7 +246,7 @@ def pagina_indice(itens, versao):
 </div>
 <p>Não achou a sua? Monte qualquer combinação no <a href="/ferramentas/ingredientes/">verificador de ingredientes</a> ou cadastre os produtos que você já tem na <a href="/ferramentas/prateleira/">minha prateleira</a>.</p>
 {"".join(grupos)}
-<h2>⛔ Com a pele irritada</h2><ul class="cb-lista">{irr}</ul>
+<h2>Com a pele irritada</h2><ul class="cb-lista">{irr}</ul>
 <p class="ig-nota">Respostas das regras versão {esc(versao)}: orientações de uso comuns em dermatologia cosmética, sem citação de estudo específico e ainda sem revisão de dermatologista. Pares sem regra cadastrada não aparecem aqui, porque não sabemos a resposta. Não é diagnóstico.</p>
 </article>"""
     return pagina("Posso usar junto? Combinações de ativos de skincare",

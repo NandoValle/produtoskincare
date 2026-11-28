@@ -332,3 +332,7 @@ summary::-webkit-details-marker { display: none; }
   .ps-mobile-menu { margin-left: 0; max-width: 100%; }
   .ps-mobile-panel { max-width: 100%; overflow-wrap: anywhere; }
 }
+/* Itálico verdadeiro do Cormorant (antes o navegador inclinava o romano) e monograma desenhado. */
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: swap; src: url('/fonts/cormorant-500-italico.woff2') format('woff2'); }
+.ps-monogram { width: 42px; height: 42px; border: 0; border-radius: 0; background: url('/img/marca/monograma.svg') center / contain no-repeat; color: transparent; font-size: 0; letter-spacing: 0; }
+@media (max-width: 700px) { .ps-monogram { width: 36px; height: 36px; } }
