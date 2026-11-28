@@ -18,8 +18,9 @@
 (function (raiz) {
   "use strict";
 
-  var VERSAO = "1.1.0";
+  var VERSAO = "1.2.0";
   var HISTORICO = [
+    { versao: "1.2.0", data: "2026-11-23", nota: "O verificador passa a reconhecer os 127 ativos do guia de ativos (antes, 58), incluindo os filtros solares pelo nome INCI. Os novos entram nas classes que já existiam; os que não se encaixam com segurança (hidroquinona, cisteamina, clindamicina, CBD, enxofre, melaleuca, argilas, PHAs, enzimas, cafeína, vitamina K, autobronzeadores) ficam na classe \"outro\", sem regra própria. Termos com exceção: \"zinco\" não pega óxido de zinco; \"urea\" não pega conservantes (imidazolidinyl/diazolidinyl urea) nem hidroxietilureia; \"ubiquinone\" não pega idebenona. Peptídeos passam a ser reconhecidos pelo nome INCI (pentapeptide, tripeptide etc.). Nenhuma regra de combinação nova." },
     { versao: "1.1.0", data: "2026-11-06", nota: "Par sem regra cadastrada deixa de sair como \"pode usar junto\" e passa a sair como \"sem regra cadastrada\" (não sabemos). Nenhuma regra nova." },
     { versao: "1.0.0", data: "2026-11-05", nota: "Primeira versão: ativos reconhecidos, combinações (retinoide × AHA/BHA, × vitamina C, × peróxido de benzoíla, ácidos × pele irritada e outras) e contraindicações por perfil." }
   ];
@@ -29,6 +30,9 @@
    * Termo terminado em "*" casa como prefixo (ex.: "adapalen*" pega adapaleno e adapalene);
    * os outros só casam como palavra inteira.
    * Ácido cítrico fica de fora de propósito: nas listas INCI ele costuma ser só ajuste de pH.
+   * exceto: expressões que não contam para este ativo (ex.: "zinco" não pega "óxido de zinco").
+   * classe "outro": reconhecido, mas sem regra de combinação própria (o par sai "sem regra",
+   * salvo com classes neutras como hidratante, antioxidante, filtro e clareador).
    */
   var ATIVOS = [
     { id: "retinol", nome: "Retinol", classe: "retinoide", termos: ["retinol"] },
@@ -62,12 +66,103 @@
     { id: "centella", nome: "Centella asiática", classe: "hidratante", termos: ["centella", "madecassos*", "cica"] },
     { id: "aveia", nome: "Aveia coloidal", classe: "hidratante", termos: ["aveia coloidal", "colloidal oat*", "avena sativa"] },
     { id: "glicerina", nome: "Glicerina", classe: "hidratante", termos: ["glycerin", "glicerina"] },
-    { id: "zinco", nome: "Zinco (PCA de zinco)", classe: "hidratante", termos: ["zinc pca", "pca de zinco", "zinco"] },
+    { id: "zinco", nome: "Zinco (PCA de zinco)", classe: "hidratante", termos: ["zinc pca", "pca de zinco", "zinco"], exceto: ["oxido de zinco"] },
     { id: "ferulico", nome: "Ácido ferúlico", classe: "antioxidante", termos: ["ferulic*", "acido ferulico", "ferulico"] },
     { id: "vitamina-e", nome: "Vitamina E", classe: "antioxidante", termos: ["tocopher*", "vitamina e"] },
-    { id: "peptideos", nome: "Peptídeos", classe: "antioxidante", termos: ["peptid*", "peptide*", "matrixyl", "argireline"] },
+    { id: "peptideos", nome: "Peptídeos", classe: "antioxidante", termos: ["peptid*", "peptide*", "matrixyl", "argireline", "dipeptide*", "tripeptide*", "tetrapeptide*", "pentapeptide*", "hexapeptide*", "octapeptide*", "oligopeptide*", "polypeptide*", "snap 8", "eyeseryl"] },
     { id: "bakuchiol", nome: "Bakuchiol", classe: "antioxidante", termos: ["bakuchiol"] },
-    { id: "filtro", nome: "Filtro solar", classe: "filtro", termos: ["filtro*", "fps", "spf", "protetor solar", "sunscreen"] }
+    { id: "filtro", nome: "Filtro solar", classe: "filtro", termos: ["filtro*", "fps", "spf", "protetor solar", "sunscreen"] },
+    /* ---- 1.2.0: demais ativos do guia de ativos (/ferramentas/ativos/) ---- */
+    { id: "piruvico", nome: "Ácido pirúvico", classe: "aha", termos: ["pyruvic acid", "acido piruvico"] },
+    { id: "betaina-salicilato", nome: "Betaína salicilato", classe: "bha", termos: ["betaine salicylate", "betaina salicilato", "salicilato de betaina"] },
+    { id: "gluconolactona", nome: "Gluconolactona (PHA)", classe: "outro", termos: ["gluconolacton*"] },
+    { id: "lactobionico", nome: "Ácido lactobiônico (PHA)", classe: "outro", termos: ["lactobionic acid", "acido lactobionico"] },
+    { id: "enzimas", nome: "Enzimas (papaína, bromelina)", classe: "outro", termos: ["papain*", "bromelain*", "bromelina"] },
+
+    { id: "ureia", nome: "Ureia", classe: "hidratante", termos: ["urea", "ureia"], exceto: ["hydroxyethyl urea", "imidazolidinyl urea", "diazolidinyl urea", "hidroxietil ureia"] },
+    { id: "hidroxietilureia", nome: "Hidroxietilureia", classe: "hidratante", termos: ["hydroxyethyl urea", "hidroxietilureia", "hidroxietil ureia"] },
+    { id: "betaglucana", nome: "Beta-glucana", classe: "hidratante", termos: ["beta glucan*", "betaglucan*"] },
+    { id: "poliglutamato", nome: "Poliglutamato de sódio", classe: "hidratante", termos: ["polyglutamate", "poliglutamato"] },
+    { id: "pca", nome: "PCA de sódio", classe: "hidratante", termos: ["sodium pca", "pca de sodio"] },
+    { id: "colageno", nome: "Colágeno", classe: "hidratante", termos: ["collagen", "colageno"] },
+    { id: "trealose", nome: "Trealose", classe: "hidratante", termos: ["trehalose", "trealose"] },
+    { id: "sacarideo-isomerato", nome: "Sacarídeo isomerato", classe: "hidratante", termos: ["saccharide isomerate", "sacarideo isomerato", "pentavitin"] },
+    { id: "aloe", nome: "Aloe vera (babosa)", classe: "hidratante", termos: ["aloe barbadensis", "aloe vera", "babosa"] },
+    { id: "ectoina", nome: "Ectoína", classe: "hidratante", termos: ["ectoin*"] },
+    { id: "alantoina", nome: "Alantoína", classe: "hidratante", termos: ["allantoin", "alantoina"] },
+    { id: "bisabolol", nome: "Bisabolol", classe: "hidratante", termos: ["bisabolol"] },
+    { id: "posbioticos", nome: "Probióticos e pós-bióticos", classe: "hidratante", termos: ["lactobacillus ferment*", "bifida ferment*", "probiotic*", "posbiotic*", "pos biotico*"] },
+    { id: "glicirrizinato", nome: "Dipotássio glicirrizinato", classe: "hidratante", termos: ["glycyrrhizate", "glicirrizinato"] },
+    { id: "calendula", nome: "Calêndula", classe: "hidratante", termos: ["calendula"] },
+    { id: "pea", nome: "Palmitoiletanolamida (PEA)", classe: "hidratante", termos: ["palmitamide mea", "palmitoylethanolamide", "palmitoiletanolamida"] },
+    { id: "mucina-caracol", nome: "Mucina de caracol", classe: "hidratante", termos: ["snail secretion filtrate", "snail mucin", "mucina de caracol"] },
+    { id: "lipidios", nome: "Colesterol e fitoesfingosina", classe: "hidratante", termos: ["cholesterol", "colesterol", "phytosphingosine", "fitoesfingosina"] },
+    { id: "esqualano", nome: "Esqualano", classe: "hidratante", termos: ["squalane", "esqualano"] },
+    { id: "karite", nome: "Manteiga de karité", classe: "hidratante", termos: ["butyrospermum parkii", "shea butter", "karite"] },
+    { id: "rosa-mosqueta", nome: "Óleo de rosa mosqueta", classe: "hidratante", termos: ["rosa canina", "rosa rubiginosa", "rosa mosqueta", "rosehip"] },
+    { id: "petrolato", nome: "Petrolato (vaselina)", classe: "hidratante", termos: ["petrolatum", "petrolato", "vaselina"] },
+    { id: "dimeticona", nome: "Dimeticona", classe: "hidratante", termos: ["dimethicone", "dimeticona"] },
+    { id: "jojoba", nome: "Óleo de jojoba", classe: "hidratante", termos: ["jojoba", "simmondsia chinensis"] },
+
+    { id: "kojico", nome: "Ácido kójico", classe: "clareador", termos: ["kojic*", "acido kojico", "kojico"] },
+    { id: "tiamidol", nome: "Tiamidol", classe: "clareador", termos: ["thiamidol", "tiamidol", "isobutylamido thiazolyl resorcinol"] },
+    { id: "butilresorcinol", nome: "4-Butilresorcinol", classe: "clareador", termos: ["butylresorcinol", "butilresorcinol", "rucinol"] },
+    { id: "fenetil-resorcinol", nome: "Fenetil resorcinol", classe: "clareador", termos: ["phenylethyl resorcinol", "fenetil resorcinol", "symwhite"] },
+    { id: "hexilresorcinol", nome: "Hexilresorcinol", classe: "clareador", termos: ["hexylresorcinol", "hexilresorcinol"] },
+    { id: "melasyl", nome: "Melasyl", classe: "clareador", termos: ["melasyl", "mercaptonicotinoyl glycine"] },
+    { id: "alcacuz", nome: "Extrato de alcaçuz", classe: "clareador", termos: ["glycyrrhiza glabra", "alcacuz", "licorice", "glabridin*"] },
+    { id: "fitico", nome: "Ácido fítico", classe: "clareador", termos: ["phytic acid", "acido fitico"] },
+    { id: "acido-elagico", nome: "Ácido elágico", classe: "clareador", termos: ["ellagic acid", "acido elagico"] },
+    { id: "nag", nome: "N-acetilglucosamina", classe: "clareador", termos: ["acetyl glucosamine", "acetilglucosamina"] },
+    { id: "sepiwhite", nome: "Sepiwhite (undecilenoil fenilalanina)", classe: "clareador", termos: ["undecylenoyl phenylalanine", "sepiwhite"] },
+    { id: "cisteamina", nome: "Cisteamina", classe: "outro", termos: ["cysteamine*", "cisteamina"] },
+    { id: "hidroquinona", nome: "Hidroquinona", classe: "outro", termos: ["hydroquinone", "hidroquinona"] },
+
+    { id: "resveratrol", nome: "Resveratrol", classe: "antioxidante", termos: ["resveratrol"] },
+    { id: "q10", nome: "Coenzima Q10", classe: "antioxidante", termos: ["ubiquinone", "coenzima q10", "coenzyme q10", "q10"], exceto: ["hydroxydecyl ubiquinone"] },
+    { id: "idebenona", nome: "Idebenona", classe: "antioxidante", termos: ["hydroxydecyl ubiquinone", "idebenon*"] },
+    { id: "cha-verde", nome: "Chá verde (EGCG)", classe: "antioxidante", termos: ["camellia sinensis", "cha verde", "green tea", "egcg"] },
+    { id: "astaxantina", nome: "Astaxantina", classe: "antioxidante", termos: ["astaxanthin", "astaxantina"] },
+    { id: "acido-lipoico", nome: "Ácido lipoico", classe: "antioxidante", termos: ["thioctic acid", "lipoic acid", "acido lipoico", "acido tioctico"] },
+    { id: "glutationa", nome: "Glutationa", classe: "antioxidante", termos: ["glutathione", "glutationa"] },
+    { id: "ergotioneina", nome: "Ergotioneína", classe: "antioxidante", termos: ["ergothioneine", "ergotioneina"] },
+    { id: "silimarina", nome: "Silimarina", classe: "antioxidante", termos: ["silybum marianum", "silymarin", "silimarina"] },
+    { id: "pycnogenol", nome: "Pycnogenol", classe: "antioxidante", termos: ["pinus pinaster", "pycnogenol"] },
+    { id: "carnosina", nome: "Carnosina", classe: "antioxidante", termos: ["carnosine", "carnosina"] },
+    { id: "adenosina", nome: "Adenosina", classe: "antioxidante", termos: ["adenosine", "adenosina"] },
+    { id: "pro-xylane", nome: "Pro-Xylane", classe: "antioxidante", termos: ["hydroxypropyl tetrahydropyrantriol", "pro xylane", "proxylane"] },
+    { id: "pdrn", nome: "PDRN (polinucleotídeos)", classe: "antioxidante", termos: ["sodium dna", "pdrn", "polynucleotide*", "polinucleotideo*"] },
+
+    { id: "cafeina", nome: "Cafeína", classe: "outro", termos: ["caffeine", "cafeina"] },
+    { id: "vitamina-k", nome: "Vitamina K", classe: "outro", termos: ["phytonadione", "fitonadiona", "vitamina k", "vitamin k"] },
+    { id: "canabidiol", nome: "Canabidiol (CBD)", classe: "outro", termos: ["cannabidiol", "canabidiol", "cbd"] },
+    { id: "enxofre", nome: "Enxofre", classe: "outro", termos: ["sulfur", "sulphur", "enxofre"] },
+    { id: "melaleuca", nome: "Óleo de melaleuca (tea tree)", classe: "outro", termos: ["melaleuca", "tea tree"] },
+    { id: "argilas", nome: "Argilas (caulim, bentonita)", classe: "outro", termos: ["kaolin", "bentonite", "caulim", "bentonita", "argila*"] },
+    { id: "succinico", nome: "Ácido succínico", classe: "outro", termos: ["succinic acid", "acido succinico"] },
+    { id: "clindamicina", nome: "Clindamicina", classe: "outro", termos: ["clindamycin*", "clindamicina"] },
+    { id: "dha", nome: "Autobronzeador (DHA, eritrulose)", classe: "outro", termos: ["dihydroxyacetone", "diidroxiacetona", "di hidroxiacetona", "erythrulose", "eritrulose"] },
+
+    { id: "oxido-zinco", nome: "Óxido de zinco (filtro)", classe: "filtro", termos: ["zinc oxide", "oxido de zinco"] },
+    { id: "dioxido-titanio", nome: "Dióxido de titânio (filtro)", classe: "filtro", termos: ["titanium dioxide", "dioxido de titanio"] },
+    { id: "tinosorb-s", nome: "Bemotrizinol (Tinosorb S)", classe: "filtro", termos: ["bis ethylhexyloxyphenol methoxyphenyl triazine", "bemotrizinol", "tinosorb s"] },
+    { id: "tinosorb-m", nome: "Bisoctrizol (Tinosorb M)", classe: "filtro", termos: ["methylene bis benzotriazolyl tetramethylbutylphenol", "bisoctrizol*", "tinosorb m"] },
+    { id: "avobenzona", nome: "Avobenzona", classe: "filtro", termos: ["butyl methoxydibenzoylmethane", "avobenzon*"] },
+    { id: "octocrileno", nome: "Octocrileno", classe: "filtro", termos: ["octocrylene", "octocrileno"] },
+    { id: "mexoryl-sx", nome: "Ecamsule (Mexoryl SX)", classe: "filtro", termos: ["terephthalylidene dicamphor sulfonic acid", "ecamsul*", "mexoryl sx"] },
+    { id: "mexoryl-xl", nome: "Drometrizol trisiloxano (Mexoryl XL)", classe: "filtro", termos: ["drometrizole trisiloxane", "mexoryl xl"] },
+    { id: "mexoryl-400", nome: "Mexoryl 400", classe: "filtro", termos: ["methoxypropylamino cyclohexenylidene ethoxyethylcyanoacetate", "mexoryl 400"] },
+    { id: "uvinul-a", nome: "DHHB (Uvinul A Plus)", classe: "filtro", termos: ["diethylamino hydroxybenzoyl hexyl benzoate", "dhhb", "uvinul a"] },
+    { id: "uvinul-t", nome: "Etilhexil triazona (Uvinul T 150)", classe: "filtro", termos: ["ethylhexyl triazone", "etilhexil triazona", "uvinul t"] },
+    { id: "iscotrizinol", nome: "Iscotrizinol (Uvasorb HEB)", classe: "filtro", termos: ["diethylhexyl butamido triazone", "iscotrizinol", "uvasorb heb"] },
+    { id: "tinosorb-a2b", nome: "Tris-bifenil triazina (Tinosorb A2B)", classe: "filtro", termos: ["tris biphenyl triazine", "tinosorb a2b"] },
+    { id: "homosalato", nome: "Homosalato", classe: "filtro", termos: ["homosalate", "homosalato"] },
+    { id: "octisalato", nome: "Octisalato", classe: "filtro", termos: ["ethylhexyl salicylate", "octyl salicylate", "octisalat*"] },
+    { id: "octinoxato", nome: "Octinoxato", classe: "filtro", termos: ["ethylhexyl methoxycinnamate", "octyl methoxycinnamate", "octinoxat*"] },
+    { id: "oxibenzona", nome: "Oxibenzona (benzofenona-3)", classe: "filtro", termos: ["benzophenone 3", "oxybenzone", "oxibenzona", "benzofenona 3"] },
+    { id: "ensulizol", nome: "Ensulizol", classe: "filtro", termos: ["phenylbenzimidazole sulfonic acid", "ensulizol*"] },
+    { id: "parsol-slx", nome: "Polissilicone-15 (Parsol SLX)", classe: "filtro", termos: ["polysilicone 15", "polissilicone 15", "parsol slx"] },
+    { id: "neo-heliopan-ap", nome: "Bisdisulizol dissódico (Neo Heliopan AP)", classe: "filtro", termos: ["disodium phenyl dibenzimidazole tetrasulfonate", "bisdisulizol*", "neo heliopan ap"] }
   ];
 
   /* Estado da pele (não é ativo, mas entra no verificador como item). */
@@ -78,7 +173,8 @@
   var CLASSES = {
     retinoide: "retinoide", aha: "ácido esfoliante (AHA)", bha: "ácido salicílico (BHA)", vitc: "vitamina C",
     bpo: "peróxido de benzoíla", niacinamida: "niacinamida", azelaico: "ácido azelaico", clareador: "clareador",
-    hidratante: "hidratante ou calmante", antioxidante: "antioxidante", filtro: "filtro solar", irritada: "pele irritada"
+    hidratante: "hidratante ou calmante", antioxidante: "antioxidante", filtro: "filtro solar", irritada: "pele irritada",
+    outro: "outro ativo (sem regra própria)"
   };
 
   /* Classes que combinam com as outras: regra geral cadastrada, o par sai "ok" com este motivo.
@@ -199,9 +295,14 @@
   }
 
   /* Ativos encontrados num texto (lista de ingredientes, nomes separados por vírgula etc.). */
+  /* Texto sem as expressões que não contam para o ativo (campo exceto). */
+  function semExcecoes(a, t) {
+    return (a.exceto || []).reduce(function (s, e) { return s.replace(new RegExp("\\b" + fonteDoTermo(e).base + "\\b", "g"), " "); }, t);
+  }
+
   function detectar(texto) {
     var t = normalizar(texto);
-    return ATIVOS.filter(function (a) { return a.termos.some(function (termo) { return reTermo(termo).test(t); }); });
+    return ATIVOS.filter(function (a) { var ta = semExcecoes(a, t); return a.termos.some(function (termo) { return reTermo(termo).test(ta); }); });
   }
 
   /* Maior concentração (%) escrita logo depois de um ativo da classe, ex.: "retinol 0,3%". */
@@ -209,12 +310,13 @@
     var t = normalizar(texto), maior = null;
     ATIVOS.forEach(function (a) {
       if (a.classe !== classe) return;
+      var ta = semExcecoes(a, t);
       a.termos.forEach(function (termo) {
         var f = fonteDoTermo(termo);
         // aceita a palavra "acid"/"ácido" entre o nome e o número (INCI: "Glycolic Acid 7.5%")
         var re = new RegExp("\\b" + f.base + (f.prefixo ? "[a-z]*" : "") + "(?:\\s+acid[a-z]*)?\\s*(\\d+(?:[.,]\\d+)?)\\s*%", "g");
         var m;
-        while ((m = re.exec(t))) {
+        while ((m = re.exec(ta))) {
           var n = parseFloat(m[1].replace(",", "."));
           if (isFinite(n) && (maior === null || n > maior)) maior = n;
         }

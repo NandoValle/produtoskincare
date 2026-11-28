@@ -6,7 +6,7 @@ a cada execução. Rode depois de criar ou mudar páginas:
 
     python3 _scripts/menu.py
 
-Para mudar os itens do menu, edite PRINCIPAL e MAIS abaixo e rode de novo.
+Para mudar os itens do menu, edite ANTES, GUIAS e DEPOIS abaixo e rode de novo.
 A página inicial e /mercado-skincare-brasil/ já têm o menu escrito à mão e ficam de fora,
 assim como /en/ e /es/ (outro idioma) e /fortskin/ (página de outra marca).
 """
@@ -20,22 +20,23 @@ IGNORAR_PASTAS = {"_arquivo", "_scripts", "_servidor", "_roteiros", ".git", "fot
 IGNORAR_PAGINAS = {"index.html", "mercado-skincare-brasil/index.html"}
 
 # (link, texto, seções que marcam o item como atual)
-PRINCIPAL = [
+# Seis entradas no topo: Provador, Guias (abre a lista), Ferramentas, Produtos, Skincare Premium e Blog.
+# ANTES/DEPOIS ficam em volta do botão "Guias"; GUIAS é o que abre dentro dele.
+ANTES = [
     ("/provador/", "Provador", ("provador",)),
-    ("/#tipos", "Tipos", ("pele",)),
-    ("/rotina-de-skincare/", "Rotina", ("rotina-de-skincare", "rotinas")),
-    ("/blog/", "Blog", ("blog",)),
-    ("/achados/", "Achados", ("achados", "mais-vendidos", "produtos")),
 ]
-MAIS = [
+GUIAS = [
+    ("/#tipos", "Tipos de pele", ("pele",)),
+    ("/rotina-de-skincare/", "Rotina", ("rotina-de-skincare", "rotinas")),
     ("/condicoes/", "Condições", ("condicoes",)),
-    ("/ingredientes/", "Ingredientes", ("ingredientes",)),
+    ("/ingredientes/", "Ingredientes", ("ingredientes", "ativos")),
     ("/ciencia/", "Ciência", ("ciencia",)),
-    ("/ferramentas/ativos/", "Guia de ativos", ()),
-    ("/ferramentas/", "Ferramentas", ("ferramentas",)),
-    ("/combina/", "Posso usar junto?", ("combina",)),
-    ("/queridinhos-do-skincare/", "Queridinhos", ("queridinhos-do-skincare",)),
-    ("/pergunte/", "Pergunte à IA", ("pergunte",)),
+]
+DEPOIS = [
+    ("/ferramentas/", "Ferramentas", ("ferramentas", "combina", "pergunte")),
+    ("/achados/", "Produtos", ("achados", "mais-vendidos", "produtos", "queridinhos-do-skincare", "comparativos")),
+    ("/skincare-premium/", "Skincare Premium", ("skincare-premium",)),
+    ("/blog/", "Blog", ("blog",)),
 ]
 
 INICIO, FIM = "<!-- menu:inicio -->", "<!-- menu:fim -->"
@@ -59,10 +60,11 @@ def bloco(caminho, recuo=False):
             a = a.replace("<a ", '<a data-secao="atual" ', 1)
         return a
 
-    principal = "".join(item(*i) for i in PRINCIPAL)
-    mais_aberto = any(secao in s for _, _, s in MAIS)
-    mais = "".join(f"<li>{item(*i)}</li>" for i in MAIS)
-    classe_mais = ' data-secao="atual"' if mais_aberto else ""
+    antes = "".join(item(*i) for i in ANTES)
+    depois = "".join(item(*i) for i in DEPOIS)
+    guias_aberto = any(secao in s for _, _, s in GUIAS)
+    guias = "".join(f"<li>{item(*i)}</li>" for i in GUIAS)
+    classe_guias = ' data-secao="atual"' if guias_aberto else ""
     return (
         f"{INICIO}\n"
         f'<div class="ps-shell ps-topo{" ps-topo-recuo" if recuo else ""}">\n'
@@ -72,8 +74,8 @@ def bloco(caminho, recuo=False):
         '<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden>'
         '<span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>\n'
         '<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal">'
-        f'{principal}<details class="ps-mais"><summary class="ps-mais-btn"{classe_mais}>Mais</summary>'
-        f'<ul class="ps-mais-panel" id="menu-mais">{mais}</ul></details></nav>\n'
+        f'{antes}<details class="ps-mais"><summary class="ps-mais-btn"{classe_guias}>Guias</summary>'
+        f'<ul class="ps-mais-panel" id="menu-mais">{guias}</ul></details>{depois}</nav>\n'
         '<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" '
         'aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a>'
         '<a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>\n'
@@ -87,7 +89,7 @@ def bloco(caminho, recuo=False):
 def paginas():
     for p in sorted(RAIZ.rglob("index.html")):
         rel = p.relative_to(RAIZ)
-        if rel.parts[0] in IGNORAR_PASTAS or str(rel) in IGNORAR_PAGINAS:
+        if rel.parts[0] in IGNORAR_PASTAS or rel.as_posix() in IGNORAR_PAGINAS:
             continue
         yield p, "/" + str(rel.parent).replace("\\", "/").strip(".") + "/"
     # Página de erro: não é index.html, mas também leva o menu (caminho fictício, nada fica marcado).

@@ -2,6 +2,7 @@
 <div class="ig-cab">
 <h1>Modo 12 semanas</h1>
 <p class="ig-lede">Para começar um ativo novo devagar: um plano semana a semana, lembretes na sua agenda e um diário de fotos para comparar a pele com a mesma luz e o mesmo enquadramento.</p>
+<p class="ig-nota" style="background:var(--rosa-claro);border:1px solid var(--linha);border-radius:12px;padding:12px 16px">Este plano continua gratuito. Para o acompanhamento completo das 12 semanas — guia fase a fase, caderno de evolução imprimível, kit de transição de ativos e roteiro para a consulta — conheça o <a href="/programa-12-semanas/" style="color:var(--rosa);font-weight:600">Programa 12 Semanas</a>.</p>
 <p class="ig-meta">O plano e as fotos ficam só neste aparelho. Nada é enviado ao site.</p>
 </div>
 
@@ -27,7 +28,8 @@
 <p id="sm-agora"></p>
 <p id="sm-antes"></p>
 <div class="ft-rolagem"><table class="ft-tabela"><thead><tr><th scope="col">Semanas</th><th scope="col">Datas</th><th scope="col">Quantas vezes</th></tr></thead><tbody id="sm-tabela"></tbody></table></div>
-<button class="ft-btn ft-sec" type="button" id="sm-ics">📅 Lembretes semanais na agenda (.ics)</button>
+<button class="ft-btn ft-sec" type="button" id="sm-ics">Lembretes semanais na agenda (.ics)</button>
+<div id="sm-cartao"></div>
 <p class="ig-nota">O arquivo cria 12 lembretes, um por semana, com a frequência daquela semana e o aviso para tirar a foto do diário. Abre no Google Agenda, no Calendário do iPhone e no Outlook.</p>
 </section>
 
@@ -40,9 +42,9 @@
 <div class="ft-oval" aria-hidden="true"></div>
 </div>
 <div class="ft-cards-acoes">
-<button class="ft-btn" type="button" id="sm-abrir">📷 Abrir a câmera</button>
+<button class="ft-btn" type="button" id="sm-abrir">Abrir a câmera</button>
 <button class="ft-btn" type="button" id="sm-tirar" hidden>Tirar a foto</button>
-<label class="ft-btn ft-sec">🖼️ Escolher uma foto<input type="file" id="sm-arquivo" accept="image/*" capture="user" class="ft-arquivo"></label>
+<label class="ft-btn ft-sec">Escolher uma foto<input type="file" id="sm-arquivo" accept="image/*" capture="user" class="ft-arquivo"></label>
 </div>
 <label class="ft-rotulo" for="sm-reacao">Como a pele reagiu nesta semana?</label>
 <select class="ft-campo" id="sm-reacao">
@@ -65,6 +67,7 @@
 </article>
 <script src="/plano-ativos.js"></script>
 <script src="/compartilhar.js"></script>
+<script src="/cartao-story.js"></script>
 <script>
 (function () {
   "use strict";
@@ -110,6 +113,18 @@
         fmt(addDias(inicio, (e.de - 1) * 7)) + " a " + fmt(addDias(inicio, e.ate * 7 - 1)) + "</td><td>" + esc(c.sensivel ? e.sensivel : e.normal) + "</td></tr>";
     }).join("");
   }
+
+  if (window.PSCartao) PSCartao.montar($("sm-cartao"), function () {
+    var c = ler();
+    if (!c || !PL.PLANOS[c.plano]) return null;
+    var p = PL.PLANOS[c.plano], sem = semanaAtual(c), nome = p.nome.replace(/\s*\(.*\)/, "").toLowerCase();
+    var titulo = sem === 0 ? "Vou começar " + nome + " do jeito certo"
+      : sem > 12 ? "Terminei doze semanas de " + nome
+      : "Semana " + PSCartao.extenso(sem) + " de doze com " + nome;
+    var linhas = ["Começo devagar e aumento aos poucos, semana a semana.", "Uma foto por semana, com a mesma luz, para comparar.", "Protetor solar todos os dias."];
+    return { rotulo: "Modo 12 semanas", titulo: titulo, linhas: linhas, caminho: "/ferramentas/12-semanas",
+      rodape: "Monte o seu plano grátis. Fica só no seu aparelho.", arquivo: "12-semanas" };
+  }, { evento: "12semanas/cartao" });
 
   $("sm-inicio").value = hojeISO();
   $("sm-salvar").addEventListener("click", function () {

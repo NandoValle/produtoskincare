@@ -1,0 +1,8 @@
+Cormorant Garamond (SIL Open Font License 1.1, ver Cormorant-OFL.txt).
+
+cormorant-500.woff2 / .ttf: peso 500 com os acentos agudo, grave e circunflexo das
+minusculas rebaixados e menos altos (contorno do acento a 66% da altura, 22 unidades
+mais baixo). O desenho original deixava o acento solto, longe da letra, em titulos grandes.
+cormorant-500-italico.woff2: italico 500 (subconjunto latin do Fontsource 5.3.0), com o
+mesmo ajuste. Nome interno das versoes ajustadas: "Cormorant Garamond PS".
+O ajuste e feito por _scripts/ajustar_acentos_fonte.py.

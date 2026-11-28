@@ -14,6 +14,37 @@
 #
 # Quando houver token do WebMCP Origin Trial (Chrome Origin Trials), ele pode entrar aqui
 # como "Origin-Trial: <token>" ou como <meta http-equiv="origin-trial"> na página.
+# Segurança (11/11/2026):
+#   Strict-Transport-Security -> o navegador só volta por HTTPS durante 6 meses. Sem includeSubDomains
+#                                e sem preload, de propósito: vale só para este endereço e dá para recuar.
+#   X-Content-Type-Options    -> o navegador respeita o tipo de arquivo declarado.
+#   Referrer-Policy           -> para outros sites vai só a origem (https://produtoskincare.com.br/),
+#                                nunca o caminho da página.
+#   Content-Security-Policy (16/11/2026), só as regras que não limitam scripts, estilos nem conexões:
+#     frame-ancestors 'self' -> outro site não pode abrir estas páginas dentro de um iframe
+#                               (proteção contra clickjacking). X-Frame-Options faz o mesmo em
+#                               navegador antigo.
+#     base-uri 'self'        -> ninguém troca o endereço-base dos links com uma tag <base> injetada.
+#     object-src 'none'      -> nada de <object>/<embed> (plugins). O site não usa.
+#     form-action 'self' https://buttondown.com
+#                            -> formulários só enviam para o próprio site e para o Buttondown, que
+#                               recebe a inscrição da newsletter (/newsletter/ e a caixa do canais.js).
+#                               Só com 'self' o navegador bloqueava a inscrição (corrigido em 24/11/2026).
+#                               Se trocar de serviço de e-mail, trocar o endereço aqui também.
+#   Ainda de fora: script-src, connect-src e style-src. O site usa muito script e estilo inline, então
+#   essas regras precisariam de 'unsafe-inline' e protegeriam pouco. Além disso, exigem teste com o
+#   Pergunte à IA (Supabase), o MediaPipe, o Tesseract (jsDelivr), o Open-Meteo, o GoatCounter e o
+#   Cloudflare Web Analytics antes de ligar.
 /*
+  Strict-Transport-Security: max-age=15552000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://buttondown.com
+  X-Frame-Options: SAMEORIGIN
   Origin-Agent-Cluster: ?1
   Permissions-Policy: tools=(self), camera=(self), clipboard-write=(self), web-share=(self), microphone=(), geolocation=(), payment=(), usb=()
+
+# Dados abertos (/dados-abertos/): arquivos só de leitura, sem cookie e sem dado pessoal.
+# CORS aberto para dar para ler de planilha, notebook ou outro site.
+/dados/*
+  Access-Control-Allow-Origin: *

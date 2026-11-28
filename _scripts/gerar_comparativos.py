@@ -12,9 +12,9 @@ Rode depois de mudar os pares ou o catálogo:
 import json
 import shutil
 
-from gerar_produtos import (CATALOGO, LOJAS, PASSOS, PERIODO, TEXTURA, TIPOS, data_curta, esc, juntar, link_loja,
+from gerar_produtos import (CATALOGO, LOJAS, PASSOS, PERIODO, TEXTURA, TIPOS, criterio, data_curta, eh_busca, esc, juntar, link_loja, nao_vale,
                             milhar, reais, sem_acento)
-from pagina_base import RAIZ, pagina
+from pagina_base import RAIZ, SITE, pagina
 
 PARES = RAIZ / "_scripts" / "comparativos.json"
 DESTINO = RAIZ / "comparativos"
@@ -27,7 +27,9 @@ CSS = """
 .cp-tabela thead th{font-family:var(--fonte-display);font-size:1.05rem;font-weight:500}
 .cp-tabela tbody th{font-weight:600;color:var(--suave);width:28%}
 .cp-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
-.cp-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 16px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.cp-antes{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.cp-antes h3{margin:0;font-size:1.05rem}.cp-antes p{margin:0;font-size:.92rem;line-height:1.5}.cp-antes .cp-btn{margin-top:auto}
+.cp-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 16px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 @media(prefers-color-scheme:dark){.cp-btn{color:#28131b}}
 html[data-tema=claro] .cp-btn{color:#fff}html[data-tema=escuro] .cp-btn{color:#28131b}
 @media(max-width:560px){.cp-btns{grid-template-columns:1fr}.cp-tabela{font-size:.84rem}.cp-tabela th,.cp-tabela td{padding:8px 6px}.cp-tabela tbody th{width:30%}}
@@ -97,10 +99,20 @@ def resumo(a, b):
     return linhas
 
 
+def lista_ld(nome, itens):
+    """ItemList (schema.org) só com o que a página mostra: nome e link interno, na ordem em que aparecem.
+    Sem preço nem nota: a nota é de quem comprou na loja, não uma avaliação do site."""
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": nome, "numberOfItems": len(itens),
+          "itemListElement": [{"@type": "ListItem", "position": i, "name": n, "url": SITE + caminho}
+                              for i, (n, caminho) in enumerate(itens, 1)]}
+    return '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
 def pagina_par(a, b):
     titulo = f"{a['nome']} ou {b['nome']}?"
     linhas = [
-        ("Preço conferido", lambda p: f"{reais(p['preco'])} em {data_curta(p['preco_em'])}"),
+        ("Preço", lambda p: f"{reais(p['preco'])} em {data_curta(p['preco_em'])}" + (" (referência: sem anúncio conferido)" if eh_busca(p.get("link")) else " (conferido no anúncio)")),
+        ("Tamanho conferido", lambda p: p.get("tamanho") or "—"),
         ("Loja", lambda p: LOJAS.get(p.get("plataforma"), "—")),
         ("Passo da rotina", lambda p: PASSOS.get(p["passo"], p["passo"])),
         ("Quando usar", quando),
@@ -117,8 +129,20 @@ def pagina_par(a, b):
               f'<th scope="col"><a href="/produtos/{esc(b["id"])}/">{esc(b["nome"])}</a></th></tr></thead>'
               f"<tbody>{corpo_tabela}</tbody></table></div>")
     resumo_html = "".join(f"<li>{esc(x)}</li>" for x in resumo(a, b))
-    btns = "".join(f'<a class="cp-btn" href="{esc(p["link"])}" target="_blank" rel="sponsored noopener" '
-                   f'data-produto="{esc(p["nome"])}">{esc(link_loja(p))}: {esc(p["marca"])} ↗</a>' for p in (a, b))
+    # Antes do link: por que cada um está no catálogo e para quem talvez não valha a pena.
+    # Botão de compra só com anúncio conferido; link de busca fica como link discreto.
+    def antes_de_comprar(p):
+        if eh_busca(p.get("link")):
+            acao = (f'<p class="ig-nota"><b>Sem oferta verificada.</b> O site ainda não tem um anúncio conferido deste produto; '
+                    f'o preço da tabela é só referência. <a href="{esc(p["link"])}" target="_blank" rel="sponsored noopener" '
+                    f'data-produto="{esc(p["nome"])}">{esc(link_loja(p))} ↗</a> (abre a busca da loja).</p>')
+        else:
+            acao = (f'<a class="cp-btn" href="{esc(p["link"])}" target="_blank" rel="sponsored noopener" '
+                    f'data-produto="{esc(p["nome"])}">{esc(link_loja(p))}: {esc(p["marca"])} ↗</a>')
+        return (f'<div class="cp-antes"><h3>{esc(p["nome"])}</h3>'
+                f'<p><b>Por que está aqui:</b> {esc(criterio(p))}</p>'
+                f'<p><b>Talvez não valha a pena:</b> {esc(nao_vale(p))}</p>{acao}</div>')
+    btns = "".join(antes_de_comprar(p) for p in (a, b))
     datas = sorted({a["preco_em"], b["preco_em"]})
     corpo = f"""<article>
 <div class="ig-cab">
@@ -132,8 +156,10 @@ def pagina_par(a, b):
 </div>
 {tabela}
 <p class="ig-nota">"Ativos em destaque" são os que o anúncio destaca, não a fórmula completa. A lista de ingredientes (INCI) está na embalagem e no anúncio; cole as duas no <a href="/ferramentas/ingredientes/">verificador de ingredientes</a> para checar combinações com a sua rotina.</p>
-<div class="cp-btns">{btns}</div>
+<section aria-labelledby="antes"><h2 id="antes">Antes de comprar</h2>
+<div class="cp-btns">{btns}</div></section>
 <p class="ig-nota">Links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. O preço muda: vale o mostrado na loja na hora da compra.</p>
+<div data-ps-ebook></div>
 <section aria-labelledby="relacionados">
 <h2 id="relacionados">Leia também</h2>
 <ul class="ig-rel">
@@ -144,9 +170,10 @@ def pagina_par(a, b):
 <li><a href="/provador/">Quiz do tipo de pele</a></li>
 </ul>
 </section>
+{lista_ld(titulo, [(a["nome"], f"/produtos/{a['id']}/"), (b["nome"], f"/produtos/{b['id']}/")])}
 </article>"""
-    descricao = (f"{a['nome']} ou {b['nome']}: preço conferido, ativos em destaque, textura e tipos de pele lado a lado, "
-                 "com dados do catálogo.")[:300]
+    # Até ~140 caracteres com os nomes mais longos do catálogo; o Google costuma cortar perto de 160.
+    descricao = f"{a['nome']} ou {b['nome']}: preço, ativos, textura e tipos de pele lado a lado."
     return pagina(titulo, descricao, f"/comparativos/{slug(a['id'], b['id'])}/",
                   [("/", "Início"), ("/comparativos/", "Comparativos"), (None, f"{a['marca']} ou {b['marca']}")],
                   corpo, css_extra=CSS)
@@ -162,6 +189,7 @@ def pagina_indice(itens):
 </div>
 <ul class="ig-grade">{cards}</ul>
 <p class="ig-nota">Contém links de afiliado. Veja <a href="/sobre/">como escolhemos os produtos</a>.</p>
+{lista_ld("Comparativos de produtos de skincare", [(f"{a['nome']} ou {b['nome']}", f"/comparativos/{slug(a['id'], b['id'])}/") for a, b in itens])}
 </article>"""
     return pagina("Comparativos de produtos de skincare: qual dos dois?",
                   "Produtos de skincare parecidos lado a lado: preço conferido, ativos em destaque, textura e tipos de pele, com dados do catálogo.",

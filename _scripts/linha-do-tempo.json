@@ -1,0 +1,46 @@
+{
+  "nota": "Faixas usuais de quando a pele costuma dar sinal, em orientações de dermatologia cosmética (acne em algumas semanas, mancha e ruga em meses). Não é promessa e não substitui a bula nem a receita. Edite aqui.",
+  "ativos": {
+    "niacinamida": [
+      {"objetivo": "oleosidade", "de": "2 semanas", "ate": "4 semanas", "texto": "O controle de oleosidade costuma começar a aparecer nesse intervalo, com uso diário."},
+      {"objetivo": "manchas", "de": "8 semanas", "ate": "12 semanas", "texto": "Mancha pede uso contínuo por cerca de 2 a 3 meses. O efeito não fica se parar."}
+    ],
+    "salicilico": [
+      {"objetivo": "acne", "de": "2 semanas", "ate": "6 semanas", "texto": "Cravos e acne leve costumam pedir algumas semanas de uso regular, não um dia só."}
+    ],
+    "azelaico": [
+      {"objetivo": "acne", "de": "4 semanas", "ate": "8 semanas", "texto": "Na acne, as bulas dos medicamentos de ácido azelaico falam em melhora a partir de cerca de 4 semanas."},
+      {"objetivo": "manchas", "de": "8 semanas", "ate": "12 semanas", "texto": "Mancha e melasma pedem um ciclo mais longo, em geral até 12 semanas, sempre com protetor solar."}
+    ],
+    "retinol": [
+      {"objetivo": "acne", "de": "8 semanas", "ate": "12 semanas", "texto": "Retinoide em acne costuma ser julgado depois de 2 a 3 meses, não na primeira descamação."},
+      {"objetivo": "rugas", "de": "12 semanas", "ate": "6 meses", "texto": "Linha e textura pedem meses de uso noturno e protetor solar de dia."}
+    ],
+    "tretinoina": [
+      {"objetivo": "acne", "de": "8 semanas", "ate": "12 semanas", "texto": "A tretinoína de receita, na acne, costuma ser reavaliada em 8 a 12 semanas."},
+      {"objetivo": "rugas", "de": "3 meses", "ate": "6 meses", "texto": "Fotoenvelhecimento pede meses. Irritação no começo não é sinal de que já funcionou."}
+    ],
+    "vitc-pura": [
+      {"objetivo": "textura", "de": "4 semanas", "ate": "8 semanas", "texto": "Viço e uniformidade leve costumam ser o primeiro sinal, antes da mancha."},
+      {"objetivo": "manchas", "de": "8 semanas", "ate": "12 semanas", "texto": "Mancha com vitamina C pede uso de manhã, fórmula estável e protetor solar, por cerca de 2 a 3 meses."}
+    ],
+    "tranexamico": [
+      {"objetivo": "manchas", "de": "8 semanas", "ate": "12 semanas", "texto": "No melasma, os ensaios tópicos costumam medir o resultado em 8 a 12 semanas. A via oral é outro tratamento, de receita."}
+    ],
+    "hialuronico": [
+      {"objetivo": "hidratacao", "de": "no mesmo dia", "ate": "1 semana", "texto": "É umectante: o viço de hidratação aparece rápido e some se a pele continuar sem água e sem selar o hidratante."}
+    ],
+    "peroxido-benzoila": [
+      {"objetivo": "acne", "de": "alguns dias", "ate": "4 semanas", "texto": "Espinha inflamada costuma responder mais cedo do que cravo. É medicamento no Brasil."}
+    ],
+    "glicolico": [
+      {"objetivo": "textura", "de": "4 semanas", "ate": "8 semanas", "texto": "Textura e viço costumam mudar em algumas semanas de uso noturno, com protetor de dia."}
+    ],
+    "ceramidas": [
+      {"objetivo": "barreira", "de": "2 semanas", "ate": "4 semanas", "texto": "Conforto e menos repuxamento da barreira costumam aparecer em semanas, não em meses."}
+    ],
+    "cafeina": [
+      {"objetivo": "olheiras", "de": "minutos", "ate": "algumas horas", "texto": "A ficha diz que o efeito no inchaço é temporário. Não trata olheira pigmentar."}
+    ]
+  }
+}

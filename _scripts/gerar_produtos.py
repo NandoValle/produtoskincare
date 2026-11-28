@@ -17,7 +17,7 @@ import re
 import shutil
 import unicodedata
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 from pagina_base import RAIZ, esc, pagina
 
@@ -31,6 +31,8 @@ CATALOGO = RAIZ / "produtos.json"
 FICHAS = RAIZ / "ingredientes" / "ingredientes.json"
 DESTINO = RAIZ / "produtos"
 HISTORICO = DESTINO / "historico-precos.json"
+SNAPSHOTS = DESTINO / "snapshots.json"
+EMAIL = "contato@produtoskincare.com.br"  # o mesmo de /canais.js
 
 LOJAS = {"amazon": "Amazon", "shopee": "Shopee", "mercadolivre": "Mercado Livre", "tiktok": "TikTok Shop"}
 PASSOS = {"limpeza": "Limpeza", "tratamento": "Tratamento (sérum)", "hidratacao": "Hidratante", "protetor": "Protetor solar"}
@@ -67,10 +69,74 @@ def milhar(n):
     return f"{n:,}".replace(",", ".")
 
 
+def eh_busca(link):
+    """Link que abre a busca da loja, e não um anúncio: não conta como oferta verificada."""
+    return bool(re.search(r"amazon\.com\.br/s[?/]|shopee\.com\.br/search|lista\.mercadolivre\.com\.br", unquote(link or "")))
+
+
 def link_loja(p):
     loja = LOJAS.get(p.get("plataforma"), "loja")
-    busca = "/search?" in p["link"] or "/s?" in p["link"]
-    return ("Buscar na " if busca else "Ver na ") + loja
+    return ("Procurar na " if eh_busca(p.get("link")) else "Ver na ") + loja
+
+
+SEU = {"limpeza": "o sabonete ou gel de limpeza", "tratamento": "o tratamento", "hidratacao": "o hidratante", "protetor": "o protetor solar"}
+GESTACAO = re.compile(r"retinol|retinal|tretinoína|adapaleno|isotretinoína|\bbha\b|ácido salicílico|hidroquinona", re.I)
+
+
+def criterio(p):
+    """Por que o produto está no catálogo: passo, peles e preocupações registrados em produtos.json."""
+    tipos = [TIPOS.get(t, (t, None))[0].lower() for t in p.get("tipos", []) if t != "todos"]
+    conc = [CONC.get(c, (c, None))[0].lower() for c in p.get("conc", [])]
+    partes = [f"entrou como {PASSOS.get(p['passo'], p['passo']).lower()}"]
+    partes.append("para " + juntar(tipos) if tipos else "para todos os tipos de pele")
+    if conc:
+        partes.append("com foco em " + juntar(conc))
+    return " ".join(partes) + "."
+
+
+def nao_vale(p):
+    """Para quem talvez não valha a pena, só com o que o catálogo registra."""
+    m = []
+    evitar = [TIPOS.get(t, (t, None))[0].lower() for t in p.get("evitar", [])]
+    if evitar:
+        m.append("se você tem " + " ou ".join(evitar))
+    if GESTACAO.search(" ".join([p["nome"], p.get("porque", "")] + p.get("ativos", []))):
+        m.append("na gestação ou amamentação")
+    m.append("se limpeza, hidratante e protetor ainda não viraram hábito" if p["passo"] == "tratamento"
+             else f"se {SEU.get(p['passo'], 'o produto')} que você já usa funciona bem na sua pele")
+    return "; ".join(m) + "."
+
+
+def caixa_compra(p, loja):
+    """Critério e ressalva antes do botão. Sem anúncio conferido, não há botão de compra."""
+    porque = (f'<p class="pd-criterio"><b>Por que está aqui:</b> {esc(criterio(p))}</p>'
+              f'<p class="pd-criterio"><b>Talvez não valha a pena:</b> {esc(nao_vale(p))}</p>')
+    variante = f"Variante conferida: {esc(p['tamanho'])}. " if p.get("tamanho") else ""
+    secundarios = (f'<a class="pd-btn sec" href="/ferramentas/reposicao/?produto={esc(quote(p["nome"]))}">Lembrete de reposição</a>\n'
+                   '<a class="pd-btn sec" href="/ferramentas/comparar/">Comparar</a>')
+    if eh_busca(p.get("link")):
+        return f"""<div class="ig-caixa pd-compra">
+<p class="ig-rotulo">Sem oferta verificada</p>
+{porque}
+<p class="pd-preco">{reais(p['preco'])}</p>
+<p class="ig-nota">Preço de referência, visto na {esc(loja)} em {data_curta(p['preco_em'])}. {variante}O site ainda não tem um anúncio conferido deste produto, então não indica onde comprar: o link abaixo só abre a busca da loja. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
+<div class="pd-btns">
+<a class="pd-btn sec" href="{esc(p['link'])}" target="_blank" rel="sponsored noopener" data-produto="{esc(p['nome'])}">{esc(link_loja(p))} ↗</a>
+{secundarios}
+</div>
+<p class="ig-nota">Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Na busca, confira se é o mesmo produto, o vendedor e o tamanho.</p>
+</div>"""
+    return f"""<div class="ig-caixa pd-compra">
+<p class="ig-rotulo">Preço conferido</p>
+{porque}
+<p class="pd-preco">{reais(p['preco'])}</p>
+<p class="ig-nota">Na {esc(loja)}, conferido em {data_curta(p['preco_em'])}. {variante}Preço muda: vale o mostrado na loja na hora da compra. <a href="#conferido">O que foi conferido nesta ficha</a>.</p>
+<div class="pd-btns">
+<a class="pd-btn" href="{esc(p['link'])}" target="_blank" rel="sponsored noopener" data-produto="{esc(p['nome'])}">{esc(link_loja(p))} ↗</a>
+{secundarios}
+</div>
+<p class="ig-nota">Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.</p>
+</div>"""
 
 
 def ficha_do_ativo(ativo, fichas):
@@ -142,7 +208,112 @@ def bloco_faq(faq):
             f'<script type="application/ld+json">{ld_txt}</script></section>')
 
 
-CSS = """
+def ultimo_snapshot(pid):
+    """Último registro datado do produto em produtos/snapshots.json (tamanho da embalagem e INCI)."""
+    if not SNAPSHOTS.exists():
+        return {}
+    pontos = json.loads(SNAPSHOTS.read_text(encoding="utf-8")).get("produtos", {}).get(pid, [])
+    return pontos[-1] if pontos else {}
+
+
+def bloco_conferido(p, loja):
+    """O que foi conferido nesta ficha, item por item, com a data de cada conferência.
+
+    Só entra o que tem data registrada no catálogo ou no snapshot. São conferências de dados de
+    loja e embalagem: o texto diz isso com todas as letras, para não passar por revisão científica.
+    """
+    snap = ultimo_snapshot(p["id"])
+    itens = [("Preço", f"{reais(p['preco'])} na {esc(loja)}.", f"Conferido em {data_curta(p['preco_em'])}.")]
+    if p.get("avaliacao") and p.get("num_avaliacoes"):
+        itens.append(("Nota na loja", f"{str(p['avaliacao']).replace('.', ',')} de 5, em {milhar(p['num_avaliacoes'])} avaliações de quem comprou.",
+                      f"Conferida em {data_curta(p['preco_em'])}."))
+    tamanho = (f"{snap['volume_ml']:g} ml" if snap.get("volume_ml") else f"{snap['volume_g']:g} g" if snap.get("volume_g") else "")
+    if tamanho:
+        itens.append(("Embalagem", f"{tamanho.replace('.', ',')}, conforme o anúncio.", f"Registrada em {data_curta(snap['em'])}."))
+    else:
+        itens.append(("Embalagem", "Tamanho ainda não registrado.", "Sem data."))
+    if snap.get("inci") and snap.get("inci_em"):
+        itens.append(("Fórmula", "Lista completa de ingredientes (INCI) registrada.", f"Registrada em {data_curta(snap['inci_em'])}."))
+    elif p.get("ativos"):
+        itens.append(("Fórmula", "Só os ativos em destaque no anúncio. A lista completa (INCI) não foi registrada aqui: vale a da embalagem.",
+                      f"Ativos registrados em {data_curta(snap.get('em') or p['preco_em'])}."))
+    else:
+        itens.append(("Fórmula", "A lista completa (INCI) não foi registrada aqui: vale a da embalagem.", "Sem data."))
+    busca = eh_busca(p["link"])
+    itens.append(("Link", f"Leva a uma busca na {esc(loja)}, não a um anúncio específico." if busca
+                  else f"Leva ao anúncio na {esc(loja)} de onde saiu o preço acima.",
+                  f"Sem data própria: vale a da conferência do preço, {data_curta(p['preco_em'])}."))
+    linhas = "".join(f"<div><dt>{t}</dt><dd>{v} <span class=\"pd-quando\">{q}</span></dd></div>" for t, v, q in itens)
+    assunto = quote(f"Algo não bate: {p['nome']}")
+    return f"""<section aria-labelledby="conferido">
+<h2 id="conferido">O que foi conferido nesta ficha</h2>
+<dl class="pd-conf">{linhas}</dl>
+<p class="ig-nota">São conferências de preço, embalagem e link, feitas na loja. Não são revisão científica nem avaliação médica do produto. A data no alto da página é a da última conferência de preço.</p>
+<details class="pd-bate" id="algo-nao-bate">
+<summary>Algo não bate?</summary>
+<form data-pd-bate data-produto="{esc(p['nome'])}" data-ficha="{esc(reais(p['preco']))} na {esc(loja)}, conferido em {data_curta(p['preco_em'])}" hidden>
+<fieldset>
+<legend>O que parece errado?</legend>
+<label><input type="radio" name="bate" value="Fórmula ou ingredientes" checked> Fórmula ou ingredientes</label>
+<label><input type="radio" name="bate" value="Embalagem ou tamanho"> Embalagem ou tamanho</label>
+<label><input type="radio" name="bate" value="Preço"> Preço</label>
+<label><input type="radio" name="bate" value="Link"> Link que abre outro produto ou não abre</label>
+<label><input type="radio" name="bate" value="Outra coisa"> Outra coisa</label>
+</fieldset>
+<label for="pd-bate-msg">O que você viu (opcional)</label>
+<textarea id="pd-bate-msg" rows="3"></textarea>
+<button type="submit" class="pd-btn">Avisar por e-mail</button>
+<p class="ig-nota" role="status" data-pd-bate-aviso></p>
+</form>
+<p class="ig-nota">O aviso sai do seu aplicativo de e-mail, com a mensagem já montada, e só é enviado se você confirmar. O site não guarda o que você escreve. Se o aplicativo não abrir, escreva para <a href="mailto:{EMAIL}?subject={assunto}">{EMAIL}</a>. Não mande dados de saúde nem fotos de lesões.</p>
+</details>
+</section>"""
+
+
+JS_BATE = """<script>
+(function () {
+  var f = document.querySelector("[data-pd-bate]");
+  if (!f) return;
+  f.hidden = false;
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var tipo = f.querySelector('input[name="bate"]:checked').value, nome = f.getAttribute("data-produto");
+    var corpo = ["Produto: " + nome, "Página: " + location.origin + location.pathname, "O que parece errado: " + tipo,
+      "Na ficha: " + f.getAttribute("data-ficha"), "", "O que eu vi: " + document.getElementById("pd-bate-msg").value.trim()].join("\\n");
+    location.href = "mailto:%s?subject=" + encodeURIComponent("Algo não bate: " + nome + " (" + tipo + ")") + "&body=" + encodeURIComponent(corpo);
+    f.querySelector("[data-pd-bate-aviso]").textContent = "Mensagem montada. Confira e envie pelo seu aplicativo de e-mail.";
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ficha/algo-nao-bate"); } catch (e) {}
+  });
+})();
+</script>""" % EMAIL
+
+
+CSS_CONFERIDO = """
+.pd-conf{margin:0;display:flex;flex-direction:column;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pd-conf>div{padding:12px 16px;border-top:1px solid var(--linha)}
+.pd-conf>div:first-child{border-top:0}
+.pd-conf dt{font-weight:700}
+.pd-conf dd{margin:2px 0 0}
+.pd-quando{display:block;font-size:.9rem;color:var(--suave)}
+.pd-bate{margin-top:14px}
+.pd-bate summary{cursor:pointer;display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:1.5px solid var(--linha-2);border-radius:999px;font-weight:600;list-style:none}
+.pd-bate summary::-webkit-details-marker{display:none}
+.pd-bate summary::after{content:"+";margin-left:10px;font-weight:400}
+.pd-bate[open] summary::after{content:"\\2212"}
+.pd-bate summary:hover{border-color:var(--rosa)}
+.pd-bate form[hidden]{display:none}
+.pd-bate form{display:flex;flex-direction:column;gap:12px;margin:14px 0 10px;padding:16px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pd-bate fieldset{border:0;padding:0;margin:0;min-width:0}
+.pd-bate legend,.pd-bate form>label{padding:0;font-weight:700}
+.pd-bate fieldset label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:9px 0;cursor:pointer;line-height:1.45}
+.pd-bate input[type=radio]{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.pd-bate textarea{font:inherit;width:100%;padding:12px 14px;border:1.5px solid var(--linha-2);border-radius:12px;background:var(--fundo);color:var(--tinta);resize:vertical}
+.pd-bate .pd-btn{border:0;cursor:pointer;font:inherit;font-weight:600;align-self:flex-start}
+.pd-bate form>.ig-nota{margin:0}
+.pd-bate form>.ig-nota:empty{display:none}
+"""
+
+CSS = CSS_CONFERIDO + """
 .pd-faq{border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel);margin:8px 0;padding:0 16px}
 .pd-faq summary{cursor:pointer;font-weight:600;min-height:48px;display:flex;align-items:center;padding:10px 0}
 .pd-faq p{margin:0 0 14px}
@@ -151,8 +322,10 @@ CSS = """
 .pd-tag.refil{background:var(--verde-claro);color:var(--verde)}
 .pd-compra{display:flex;flex-direction:column;gap:10px}
 .pd-preco{font-family:var(--fonte-display);font-size:2.2rem;line-height:1;margin:0}
+.pd-criterio{font-size:.95rem;line-height:1.5;margin:0 0 8px;padding-left:12px;border-left:2px solid var(--linha-2)}
+.pd-criterio+.pd-preco{margin-top:16px}
 .pd-btns{display:flex;flex-wrap:wrap;gap:8px}
-.pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.pd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 .pd-btn.sec{background:transparent;color:var(--tinta);border:1px solid var(--linha-2)}
 @media(prefers-color-scheme:dark){.pd-btn:not(.sec){color:#28131b}}
 html[data-tema=claro] .pd-btn:not(.sec){color:#fff}html[data-tema=escuro] .pd-btn:not(.sec){color:#28131b}
@@ -242,17 +415,7 @@ def pagina_produto(p, fichas, hist, todos):
 <p class="ig-meta">{esc(meta)} · Atualizado em <time datetime="{p['preco_em']}">{data_br(p['preco_em'])}</time></p>
 <p class="ig-lede">{esc(p.get('porque', ''))}</p>
 </div>
-<div class="ig-caixa pd-compra">
-<p class="ig-rotulo">Preço conferido</p>
-<p class="pd-preco">{reais(p['preco'])}</p>
-<p class="ig-nota">Na {esc(loja)}, em {data_curta(p['preco_em'])}. Preço muda: vale o mostrado na loja na hora da compra.</p>
-<div class="pd-btns">
-<a class="pd-btn" href="{esc(p['link'])}" target="_blank" rel="sponsored noopener" data-produto="{esc(p['nome'])}">{esc(link_loja(p))} ↗</a>
-<a class="pd-btn sec" href="/ferramentas/reposicao/?produto={esc(quote(p['nome']))}">Lembrete de reposição</a>
-<a class="pd-btn sec" href="/ferramentas/comparar/">Comparar</a>
-</div>
-<p class="ig-nota">Link de afiliado: se você comprar por ele, posso receber comissão, sem custo extra. Confira vendedor, tamanho e condições no anúncio.</p>
-</div>
+{caixa_compra(p, loja)}
 <div class="ig-caixa ig-resumo">
 <p class="ig-rotulo">Em poucas palavras</p>
 <ul>
@@ -281,6 +444,7 @@ def pagina_produto(p, fichas, hist, todos):
 {historico}
 {avaliacao}
 </section>
+{bloco_conferido(p, loja)}
 {bloco_faq(perguntas_produto(p))}
 {('<section aria-labelledby="alternativas"><h2 id="alternativas">Alternativas do catálogo</h2><ul>' + alt + '</ul></section>') if alt else ''}
 <section aria-labelledby="relacionados">
@@ -294,7 +458,7 @@ def pagina_produto(p, fichas, hist, todos):
 </article>"""
     descricao = descricao_produto(p)
     return pagina(p["nome"], descricao, f"/produtos/{p['id']}/",
-                  [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS)
+                  [("/", "Início"), ("/produtos/", "Produtos"), (None, p["nome"])], corpo, css_extra=CSS, scripts=JS_BATE)
 
 
 # Filtro do índice: mesmas faixas de preço do provador (teto por produto).

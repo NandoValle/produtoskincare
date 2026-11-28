@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extrato mensal do skincare | Produto Skincare</title>
+<meta name="description" content="Quanto foi o mês de skincare? Anote as compras do mês e veja o total, o custo por dia, o comparativo com o mês anterior e a divisão por categoria — tudo guardado só no seu…">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/extrato/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}}
+
+/* Extrato mensal */
+.ex-topo{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.ex-campo{display:flex;flex-direction:column;gap:4px;font-size:.88rem;flex:1 1 150px}
+.ex-campo input,.ex-campo select{font:inherit;padding:11px 12px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta);min-height:44px}
+.ex-campo input:focus,.ex-campo select:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.ex-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;text-decoration:none}
+.ex-btn.ex-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.ex-btn:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+.ex-resumo{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+.ex-num{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:14px 16px}
+.ex-num b{display:block;font-size:1.55rem;font-weight:600;line-height:1.2}
+.ex-num span{font-size:.85rem;color:var(--suave)}
+.ex-num i{font-style:normal;font-size:.85rem;font-weight:600}
+.ex-num i.mais{color:var(--rosa)}
+.ex-num i.menos{color:var(--verde)}
+.ex-lista{list-style:none;padding:0;margin:10px 0;display:flex;flex-direction:column;gap:8px}
+.ex-item{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 14px;align-items:center;padding:10px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel)}
+.ex-item>span:first-child{flex:1 1 220px}
+.ex-item small{display:block;color:var(--suave);font-size:.82rem}
+.ex-rm{font:inherit;font-size:.82rem;background:none;border:1px solid var(--linha-2);border-radius:999px;padding:4px 12px;min-height:36px;cursor:pointer;color:var(--tinta)}
+.ex-acoes{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.ex-status{min-height:1.4em;font-size:.88rem;color:var(--verde);margin:6px 0 0}
+@media(min-width:560px){.ex-resumo{grid-template-columns:repeat(3,1fr)}}
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Extrato mensal do skincare — quanto foi o mês?">
+<meta property="og:description" content="Anote as compras de skincare do mês e veja o total, o custo por dia, o comparativo com o mês anterior e a divisão por categoria. Só no seu aparelho.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/extrato/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-extrato.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="O extrato do seu mês">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/extrato/#pagina", "url": "https://produtoskincare.com.br/ferramentas/extrato/", "name": "O extrato do seu mês", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Quanto foi o mês de skincare? Anote as compras do mês e veja o total, o custo por dia, o comparativo com o mês anterior e a divisão por categoria — tudo guardado só no seu…", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/extrato/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/extrato/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Extrato mensal do skincare", "item": "https://produtoskincare.com.br/ferramentas/extrato/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a data-secao="atual" href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Extrato mensal do skincare</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>O extrato do seu mês</h1>
+<p class="ig-lede">Skincare some do orçamento aos poucos: um frasco aqui, uma reposição ali, uma promoção que "valia a pena". O extrato junta as compras do mês em um número só — o total — e devolve a pergunta que ele responde: quanto custa manter a rotina, por dia, neste mês?</p>
+</div>
+
+<section aria-labelledby="ex-como">
+<h2 id="ex-como">Como funciona</h2>
+<div class="ig-caixa ig-resumo">
+<ul>
+<li><strong>Uma linha por compra.</strong> Data, nome, categoria e valor. O extrato calcula o total do mês, o custo por dia e a comparação com o mês anterior.</li>
+<li><strong>Meses guardados.</strong> O histórico de meses fica no seu aparelho — dá para voltar em qualquer mês e ver o que foi anotado.</li>
+<li><strong>Só no seu aparelho.</strong> As anotações ficam no navegador (localStorage). Nada é enviado para o site. O <a href="/ferramentas/backup/">Backup</a> serve para guardar cópia.</li>
+</ul>
+</div>
+</section>
+
+<section aria-labelledby="ex-lancar">
+<h2 id="ex-lancar">Anotar uma compra</h2>
+<div class="ex-topo">
+<p class="ex-campo"><label for="ex-mes">Mês</label>
+<input id="ex-mes" type="month"></p>
+<p class="ex-campo"><label for="ex-data">Data da compra</label>
+<input id="ex-data" type="date"></p>
+<p class="ex-campo"><label for="ex-nome">O que você comprou</label>
+<input id="ex-nome" type="text" maxlength="80" placeholder="Ex.: Protetor Sun Fresh FPS 70"></p>
+<p class="ex-campo"><label for="ex-cat">Categoria</label>
+<select id="ex-cat">
+<option value="limpeza">Limpeza</option>
+<option value="tratamento">Tratamento (ativos)</option>
+<option value="hidratante">Hidratante</option>
+<option value="protetor">Protetor solar</option>
+<option value="outros" selected>Outros (máscara, tônico, olhos…)</option>
+</select></p>
+<p class="ex-campo"><label for="ex-valor">Valor (R$)</label>
+<input id="ex-valor" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="47,70"></p>
+<button class="ex-btn" type="button" id="ex-add">Anotar</button>
+</div>
+<p class="ex-status" id="ex-status" role="status"></p>
+</section>
+
+<section aria-labelledby="ex-resumo-t">
+<h2 id="ex-resumo-t">O mês em números</h2>
+<div class="ex-resumo">
+<div class="ex-num"><b id="ex-total">R$ 0,00</b><span>total do mês</span></div>
+<div class="ex-num"><b id="ex-dia">R$ 0,00</b><span>por dia do mês</span></div>
+<div class="ex-num"><b id="ex-delta">—</b><span>vs. mês anterior</span><i id="ex-delta-nota"></i></div>
+</div>
+<h3>Compras do mês</h3>
+<ul class="ex-lista" id="ex-lista"></ul>
+<div class="ex-acoes">
+<button class="ex-btn" type="button" id="ex-copiar">Copiar resumo</button>
+<button class="ex-btn ex-sec" type="button" id="ex-limpar">Apagar este mês</button>
+</div>
+<h3>Por categoria</h3>
+<div class="ig-rolagem"><table class="ig-tabela" id="ex-cats">
+<caption>Divisão do total do mês por categoria</caption>
+<thead><tr><th scope="col">Categoria</th><th scope="col">Compras</th><th scope="col">Total</th></tr></thead>
+<tbody></tbody>
+</table></div>
+<h3>Meses guardados</h3>
+<div class="ig-rolagem"><table class="ig-tabela" id="ex-meses">
+<caption>Histórico de meses neste aparelho</caption>
+<thead><tr><th scope="col">Mês</th><th scope="col">Compras</th><th scope="col">Total</th></tr></thead>
+<tbody></tbody>
+</table></div>
+</section>
+
+<section aria-labelledby="ex-rel">
+<h2 id="ex-rel">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/matematica/">A matemática do frasco</a></li>
+<li><a href="/ferramentas/termometro/">Termômetro de preço</a></li>
+<li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li>
+<li><a href="/ferramentas/backup/">Backup das suas ferramentas</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="ex-fontes">
+<h2 id="ex-fontes">Fontes e limites</h2>
+<ol>
+<li>Os valores são os que você digita: o extrato não lê nota fiscal, extrato bancário nem recibo. A precisão do resumo é a da sua anotação. Este conteúdo é informativo e não substitui consulta com dermatologista.</li>
+<li>O custo por dia divide o total do mês pelos dias do mês (28 a 31) — é o custo de manter a rotina neste mês, não o preço de uso diário de cada frasco (isso é a <a href="/ferramentas/matematica/">matemática do frasco</a>).</li>
+<li>Comparativo com o mês anterior só aparece quando existe mês anterior anotado. Anotações ficam neste navegador: limpar os dados do navegador apaga o histórico.</li>
+</ol>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-24">24 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. O caminho manual do extrato é a sua planilha ou caderneta de anotações — as regras de cálculo desta página seguem legíveis como texto.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var CHAVE = "ps-extrato";
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function brl(n) { return "R$ " + Number(n).toFixed(2).replace(".", ","); }
+  function diasNoMes(anoMes) {
+    var p = anoMes.split("-");
+    return new Date(Number(p[0]), Number(p[1]), 0).getDate();
+  }
+  function mesAnterior(anoMes) {
+    var p = anoMes.split("-"), a = Number(p[0]), m = Number(p[1]) - 1;
+    if (m === 0) { m = 12; a -= 1; }
+    return a + "-" + (m < 10 ? "0" : "") + m;
+  }
+
+  function todos() {
+    try { return JSON.parse(localStorage.getItem(CHAVE) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function salvar(obj) {
+    try { localStorage.setItem(CHAVE, JSON.stringify(obj)); } catch (e) {}
+  }
+  function mesAtual() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+  }
+
+  var NOMES_CAT = { limpeza: "Limpeza", tratamento: "Tratamento (ativos)", hidratante: "Hidratante", protetor: "Protetor solar", outros: "Outros" };
+
+  function desenhar() {
+    var t = todos();
+    var mes = $("ex-mes").value || mesAtual();
+    var lanc = t[mes] || [];
+    var total = lanc.reduce(function (s, x) { return s + x.valor; }, 0);
+    $("ex-total").textContent = brl(total);
+    $("ex-dia").textContent = brl(total / diasNoMes(mes));
+    var ant = t[mesAnterior(mes)] || [];
+    var totalAnt = ant.reduce(function (s, x) { return s + x.valor; }, 0);
+    if (ant.length) {
+      var delta = totalAnt === 0 ? 0 : ((total - totalAnt) / totalAnt) * 100;
+      $("ex-delta").textContent = (delta > 0 ? "+" : "") + delta.toFixed(0) + "%";
+      $("ex-delta-nota").textContent = "mês anterior: " + brl(totalAnt);
+      $("ex-delta-nota").className = delta > 0 ? "mais" : delta < 0 ? "menos" : "";
+    } else {
+      $("ex-delta").textContent = "—";
+      $("ex-delta-nota").textContent = "sem mês anterior anotado";
+      $("ex-delta-nota").className = "";
+    }
+
+    $("ex-lista").innerHTML = lanc.length ? lanc.map(function (x, i) {
+      return '<li class="ex-item"><span>' + esc(x.nome) + '<small>' + esc(x.data) + " · " + esc(NOMES_CAT[x.cat] || x.cat) + '</small></span>' +
+        '<span>' + esc(brl(x.valor)) + '</span>' +
+        '<button class="ex-rm" type="button" data-i="' + i + '">Remover</button></li>';
+    }).join("") : '<li class="ex-item"><span class="ig-nota">Nada anotado para ' + esc(mes) + ' ainda.</span></li>';
+    Array.prototype.forEach.call($("ex-lista").querySelectorAll(".ex-rm"), function (btn) {
+      btn.addEventListener("click", function () {
+        var tt = todos(), i = parseInt(btn.getAttribute("data-i"), 10);
+        if (tt[mes]) { tt[mes].splice(i, 1); if (!tt[mes].length) delete tt[mes]; salvar(tt); desenhar(); }
+      });
+    });
+
+    var porCat = {};
+    lanc.forEach(function (x) { porCat[x.cat] = porCat[x.cat] || { n: 0, s: 0 }; porCat[x.cat].n += 1; porCat[x.cat].s += x.valor; });
+    var corpo = Object.keys(NOMES_CAT).filter(function (c) { return porCat[c]; }).map(function (c) {
+      return "<tr><td>" + esc(NOMES_CAT[c]) + "</td><td>" + porCat[c].n + "</td><td>" + esc(brl(porCat[c].s)) + "</td></tr>";
+    }).join("");
+    $("ex-cats").querySelector("tbody").innerHTML = corpo || '<tr><td colspan="3">Sem compras neste mês.</td></tr>';
+
+    var meses = Object.keys(t).sort().reverse();
+    $("ex-meses").querySelector("tbody").innerHTML = meses.length ? meses.map(function (m) {
+      var l = t[m] || [], s = l.reduce(function (acc, x) { return acc + x.valor; }, 0);
+      return "<tr><td>" + esc(m) + "</td><td>" + l.length + "</td><td>" + esc(brl(s)) + "</td></tr>";
+    }).join("") : '<tr><td colspan="3">Nenhum mês guardado ainda.</td></tr>';
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("extrato-desenhar"); } catch (e) {}
+  }
+
+  function iniciar() {
+    var mes = $("ex-mes"), data = $("ex-data");
+    if (mes && !mes.value) mes.value = mesAtual();
+    if (data && !data.value) data.value = new Date().toISOString().slice(0, 10);
+    if (mes) mes.addEventListener("change", desenhar);
+    var add = $("ex-add");
+    if (add) add.addEventListener("click", function () {
+      var nome = $("ex-nome").value.trim();
+      var valor = parseFloat(String($("ex-valor").value).replace(",", "."));
+      var dataV = $("ex-data").value;
+      var cat = $("ex-cat").value;
+      var mesV = $("ex-mes").value || mesAtual();
+      if (!nome || !(valor > 0) || !dataV) {
+        $("ex-status").textContent = "Preencha o que você comprou, a data e o valor.";
+        return;
+      }
+      var t = todos();
+      if (!t[mesV]) t[mesV] = [];
+      t[mesV].push({ data: dataV, nome: nome, cat: cat, valor: Math.round(valor * 100) / 100 });
+      t[mesV].sort(function (a, b) { return a.data < b.data ? -1 : a.data > b.data ? 1 : 0; });
+      salvar(t);
+      $("ex-nome").value = ""; $("ex-valor").value = "";
+      $("ex-status").textContent = "Compra anotada em " + mesV + ".";
+      desenhar();
+    });
+    var copiar = $("ex-copiar");
+    if (copiar) copiar.addEventListener("click", function () {
+      var t = todos(), mesV = $("ex-mes").value || mesAtual(), lanc = t[mesV] || [];
+      var total = lanc.reduce(function (s, x) { return s + x.valor; }, 0);
+      var texto = "Extrato skincare " + mesV + " — " + lanc.length + " compras, total " + brl(total) +
+        ", " + brl(total / diasNoMes(mesV)) + " por dia.\n" +
+        lanc.map(function (x) { return "• " + x.data + " " + x.nome + " (" + (NOMES_CAT[x.cat] || x.cat) + ") " + brl(x.valor); }).join("\n") +
+        "\n(anotado no meu aparelho — produtoskincare.com.br/ferramentas/extrato/)";
+      function ok() { $("ex-status").textContent = "Resumo copiado."; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(ok, function () { $("ex-status").textContent = "Não foi possível copiar automaticamente."; });
+      } else { $("ex-status").textContent = "Cópia automática não disponível neste navegador."; }
+    });
+    var limpar = $("ex-limpar");
+    if (limpar) limpar.addEventListener("click", function () {
+      var mesV = $("ex-mes").value || mesAtual();
+      if (!window.confirm("Apagar todas as compras anotadas de " + mesV + " neste aparelho?")) return;
+      var t = todos(); delete t[mesV]; salvar(t);
+      $("ex-status").textContent = "Mês " + mesV + " apagado.";
+      desenhar();
+    });
+    desenhar();
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ferramentas-extrato"); } catch (e) {}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>

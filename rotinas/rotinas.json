@@ -19,7 +19,7 @@
       "nome": "The Ordinary Salicylic Acid 2% Solution",
       "marca": "The Ordinary",
       "plataforma": "mercadolivre",
-      "link": "https://lista.mercadolivre.com.br/the-ordinary-salicylic-acid-2",
+      "link": "https://lista.mercadolivre.com.br/the-ordinary-salicylic-acid-2?matt_tool=34139169&matt_word=fv20260718035618040",
       "porque": "Ácido salicílico 2%, que penetra no óleo do poro e ajuda a desobstruir cravos."
     },
     "lrp-effaclar-duo": {
@@ -68,21 +68,21 @@
       "nome": "COSRX Low pH Good Morning Gel Cleanser",
       "marca": "COSRX",
       "plataforma": "shopee",
-      "link": "https://shopee.com.br/search?keyword=cosrx%20low%20ph%20good%20morning",
+      "link": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dcosrx%2520low%2520ph%2520good%2520morning&affiliate_id=18376781218&sub_id=site",
       "porque": "Gel de pH baixo com tea tree e BHA suave. Queridinho do TikTok para pele oleosa."
     },
     "skin1004-centella-ampoule": {
       "nome": "Skin1004 Madagascar Centella Ampoule",
       "marca": "Skin1004",
       "plataforma": "shopee",
-      "link": "https://shopee.com.br/search?keyword=skin1004%20centella%20ampoule",
+      "link": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dskin1004%2520centella%2520ampoule&affiliate_id=18376781218&sub_id=site",
       "porque": "Ampola de centella asiática, calmante. Muito viral entre quem tem pele sensível."
     },
     "anua-niacinamide-txa": {
       "nome": "Anua Niacinamide 10% + TXA 4% Serum",
       "marca": "Anua",
       "plataforma": "shopee",
-      "link": "https://shopee.com.br/search?keyword=anua%20niacinamide%20txa",
+      "link": "https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Danua%2520niacinamide%2520txa&affiliate_id=18376781218&sub_id=site",
       "porque": "Niacinamida com ácido tranexâmico, dupla com estudos para manchas. Viral no TikTok."
     },
     "ghk-cu-serum": {
@@ -230,7 +230,7 @@
         { "nome": "Protetor com cor (óxido de ferro)", "evidencia": "Forte", "texto": "Além do UV, o óxido de ferro bloqueia parte da luz visível, que também escurece o melasma. Reaplique ao longo do dia." },
         { "nome": "Hidroquinona", "evidencia": "Forte", "texto": "Clareador de referência, mas só com receita e por tempo limitado." },
         { "nome": "Thiamidol", "evidencia": "Moderada", "texto": "Inibidor de tirosinase da Eucerin, com estudos clínicos, a maioria financiada pela própria marca." },
-        { "nome": "Ácido azelaico", "evidencia": "Moderada", "texto": "Clareia e é seguro na gestação." },
+        { "nome": "Ácido azelaico", "evidencia": "Moderada", "texto": "Clareia e costuma ser considerado compatível com a gestação; confirme com seu médico." },
         { "nome": "Ácido tranexâmico tópico", "evidencia": "Moderada", "texto": "Estudos promissores. A versão oral funciona melhor, mas exige receita." },
         { "nome": "Vitamina C e niacinamida", "evidencia": "Moderada", "texto": "Coadjuvantes antioxidantes que ajudam a uniformizar o tom." }
       ],

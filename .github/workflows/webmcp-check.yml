@@ -1,0 +1,60 @@
+# webmcp-check.yml — trava a nota 100/100 no pipeline.
+#
+# Dois jobs:
+#   paridade → em push/PR: o manifesto publicado não pode divergir das fontes
+#               (webmcp.js + form da home), nem do manifesto em produção.
+#   canario  → agendado (todo dia 06h BRT) + manual: invariantes do relatório
+#               WebMCP/SEO/GEO/AEO contra produção.
+#
+# Fontes do manifesto: _scripts/webmcp/gerar-manifesto.mjs (nunca editar
+# webmcp-tools.json à mão — ele é gerado a partir do código real).
+
+name: webmcp-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 9 * * *"   # 06h BRT (09h UTC) — pega expiração de origin trial, sitemap velho etc.
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL base para o canário (ex.: preview de deploy)"
+        required: false
+        default: "https://produtoskincare.com.br"
+
+env:
+  PASTA_FERRAMENTAS: _scripts/webmcp
+
+jobs:
+  paridade:
+    name: Manifesto x fontes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Manifesto em dia com as fontes (webmcp.js + form da home)
+        run: node "$PASTA_FERRAMENTAS/gerar-manifesto.mjs" --check
+      - name: Manifesto do repo == manifesto publicado
+        run: |
+          curl -sf --max-time 30 "$BASE/webmcp-tools.json" -o publicado.json
+          diff -u webmcp-tools.json publicado.json \
+            || { echo "ERRO: produção está com webmcp-tools.json desatualizado (deploy esquecido?)"; exit 1; }
+        env:
+          BASE: https://produtoskincare.com.br
+
+  canario:
+    name: Canário de produção
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Invariantes do relatório (WebMCP/SEO/GEO/AEO)
+        run: |
+          chmod +x "$PASTA_FERRAMENTAS/webmcp-check.sh"
+          "$PASTA_FERRAMENTAS/webmcp-check.sh" "${{ github.event.inputs.url || 'https://produtoskincare.com.br' }}"

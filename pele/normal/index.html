@@ -19,7 +19,7 @@ h2{font-size:1.35rem;margin:2em 0 .5em} h3{margin:1.2em 0 .4em;font-size:1.1rem}
 .card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;margin:16px 0}
 .aviso{border-left:4px solid var(--verde)} .aviso.rosa{border-left-color:var(--rosa)}
 .botoes{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
-.btn{font:inherit;font-weight:600;min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--rosa);color:#fff;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none;transition:opacity .15s}
+.btn{font:inherit;font-weight:600;min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;display:inline-flex;align-items:center;text-decoration:none;transition:opacity .15s}
 .btn:hover{opacity:.88}
 .btn.sec{background:var(--papel);color:var(--tinta);border:1px solid var(--linha)}
 .pill{display:inline-block;background:var(--rosa-claro);color:var(--rosa);border-radius:999px;padding:3px 14px;margin:2px;font-weight:600;font-size:.92rem}
@@ -31,7 +31,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 .nav-tipos{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
 .nav-tipos a{padding:10px 18px;border-radius:999px;border:1.5px solid var(--linha);text-decoration:none;color:var(--tinta);font-weight:500;min-height:44px;display:inline-flex;align-items:center;font-size:.92rem}
 .nav-tipos a:hover{border-color:var(--rosa);background:var(--rosa-claro)}
-.nav-tipos a.ativo{background:var(--rosa);color:#fff;border-color:var(--rosa)}
+.nav-tipos a.ativo{background:var(--rosa);color:var(--sobre-rosa,#fff);border-color:var(--rosa)}
 :focus-visible{outline:3px solid var(--verde);outline-offset:2px}
 .ig-meta{font-size:.88rem;color:var(--suave);margin:0 0 8px}
 .ig-fontes ol{font-size:.92rem;padding-left:20px}
@@ -53,29 +53,31 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Pele normal: como cuidar e manter o equilíbrio">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/pele/normal/#pagina", "url": "https://produtoskincare.com.br/pele/normal/", "name": "Pele normal: como cuidar e manter o equilíbrio", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Tudo sobre pele normal: características, rotina de manhã e noite, ingredientes preventivos e produtos recomendados. Faça o quiz e descubra seu tipo.", "dateModified": "2026-11-04", "author": {"@id": "https://produtoskincare.com.br/#equipe"}, "breadcrumb": {"@id": "https://produtoskincare.com.br/pele/normal/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/pele/normal/#artigo"}}, {"@type": "Organization", "@id": "https://produtoskincare.com.br/#equipe", "name": "Equipe Produto Skincare", "url": "https://produtoskincare.com.br/sobre/"}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/pele/normal/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Pele normal: como cuidar e manter o equilíbrio", "item": "https://produtoskincare.com.br/pele/normal/"}]}, {"@type": "Article", "@id": "https://produtoskincare.com.br/pele/normal/#artigo", "headline": "Pele normal: como cuidar e manter o equilíbrio", "url": "https://produtoskincare.com.br/pele/normal/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/pele/normal/#pagina"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Tudo sobre pele normal: características, rotina de manhã e noite, ingredientes preventivos e produtos recomendados. Faça o quiz e descubra seu tipo.", "author": {"@id": "https://produtoskincare.com.br/#equipe"}, "dateModified": "2026-11-04"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/pele/normal/#pagina", "url": "https://produtoskincare.com.br/pele/normal/", "name": "Pele normal: como cuidar e manter o equilíbrio", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Tudo sobre pele normal: características, rotina de manhã e noite, ingredientes preventivos e produtos recomendados. Faça o quiz e descubra seu tipo.", "dateModified": "2026-11-22", "author": {"@id": "https://produtoskincare.com.br/#equipe"}, "breadcrumb": {"@id": "https://produtoskincare.com.br/pele/normal/#trilha"}, "mainEntity": {"@id": "https://produtoskincare.com.br/pele/normal/#artigo"}}, {"@type": "Organization", "@id": "https://produtoskincare.com.br/#equipe", "name": "Equipe Produto Skincare", "url": "https://produtoskincare.com.br/sobre/"}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/pele/normal/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Pele normal: como cuidar e manter o equilíbrio", "item": "https://produtoskincare.com.br/pele/normal/"}]}, {"@type": "Article", "@id": "https://produtoskincare.com.br/pele/normal/#artigo", "headline": "Pele normal: como cuidar e manter o equilíbrio", "url": "https://produtoskincare.com.br/pele/normal/", "mainEntityOfPage": {"@id": "https://produtoskincare.com.br/pele/normal/#pagina"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Tudo sobre pele normal: características, rotina de manhã e noite, ingredientes preventivos e produtos recomendados. Faça o quiz e descubra seu tipo.", "author": {"@id": "https://produtoskincare.com.br/#equipe"}, "dateModified": "2026-11-22"}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
 
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
 <meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <!-- menu:inicio -->
 <div class="ps-shell ps-topo ps-topo-recuo">
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a data-secao="atual" href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a data-secao="atual" href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
 <script src="/premium.js" defer></script>
 <!-- menu:fim -->
-<main>
+<main id="conteudo">
 <div class="marca">Produto <span>Skincare</span> · Guia de tipos de pele</div>
 
 <nav class="nav-tipos" aria-label="Tipos de pele">
@@ -87,7 +89,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 </nav>
 
 <h1>Pele normal: como cuidar e manter o equilíbrio</h1>
-<p class="ig-meta">Por Equipe Produto Skincare · Atualizado em <time datetime="2026-11-04">4 de novembro de 2026</time></p>
+<p class="ig-meta">Por Equipe Produto Skincare, <a href="/sobre/#quem-escreve">texto escrito com IA</a> · Atualizado em <time datetime="2026-11-22">22 de novembro de 2026</time></p>
 <p class="sub">A pele normal está equilibrada: nem muito oleosa, nem seca. Poros finos, tom uniforme e raramente irritações. Vale manter os bons hábitos para preservar esse equilíbrio.</p>
 
 <div class="card aviso">
@@ -109,7 +111,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 
 <h2>Rotina para pele normal</h2>
 
-<h3>☀️ Manhã</h3>
+<h3>Manhã</h3>
 <table class="tabela-guia">
 <tr><th>Passo</th><th>Produto</th><th>Por quê</th></tr>
 <tr><td data-label="Passo"><span class="pill">Limpeza</span></td><td data-label="Produto">Gel de limpeza suave</td><td data-label="Por quê">Limpadores suaves agridem menos a barreira (Ananthapadmanabhan et al., 2004)</td></tr>
@@ -118,7 +120,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <tr><td data-label="Passo"><span class="pill">Protetor</span></td><td data-label="Produto">Protetor solar FPS 50+</td><td data-label="Por quê">Um dos antienvelhecimentos com melhor evidência: num ensaio de 4,5 anos, o uso diário reduziu o envelhecimento da pele (Hughes et al., 2013)</td></tr>
 </table>
 
-<h3>🌙 Noite</h3>
+<h3>Noite</h3>
 <table class="tabela-guia">
 <tr><th>Passo</th><th>Produto</th><th>Por quê</th></tr>
 <tr><td data-label="Passo"><span class="pill">Limpeza</span></td><td data-label="Produto">Gel de limpeza suave</td><td data-label="Por quê">Remove poluição e resíduos</td></tr>
@@ -127,7 +129,7 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 </table>
 
 <div class="card aviso rosa">
-<strong>⚠️ Erros comuns:</strong> não troque de produto toda hora — pele equilibrada não precisa de muita coisa. Não pule o protetor solar. Não use produtos muito potentes "por prevenção": ativos fortes, como os retinoides de receita, podem causar vermelhidão, descamação e ressecamento (Sadick et al., 2023).
+<strong>Erros comuns:</strong> não troque de produto toda hora — pele equilibrada não precisa de muita coisa. Não pule o protetor solar. Não use produtos muito potentes "por prevenção": ativos fortes, como os retinoides de receita, podem causar vermelhidão, descamação e ressecamento (Sadick et al., 2023).
 </div>
 
 <h2>Ingredientes preventivos</h2>
@@ -164,6 +166,21 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 <p>Pode mudar. Nas mulheres, a produção de sebo cai depois da menopausa; nos homens, muda pouco até idades bem avançadas (Pochi et al., 1979). Se a pele ficar mais seca, use um hidratante mais rico e mantenha o protetor solar.</p>
 
 <section class="ig-fontes" aria-labelledby="fontes">
+<section aria-labelledby="comparador-textura">
+<h2 id="comparador-textura">Leve como gel ou denso como creme?</h2>
+<p>Pele normal pode variar a textura pela estação: mais leve no calor, mais densa no frio — o que importa é o conforto depois de aplicar.</p>
+<div class="ps-textura">
+<div class="ps-textura-moldura">
+<svg viewBox="0 0 400 300" role="img" aria-label="Ilustração: textura densa de creme"><defs><filter id="tx-normal-b" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.018 0.05" numOctaves="3" seed="4" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0.90 0 0 0 0 0.83 0 0 0 0 0.68 0 0 0 0.6 0" result="c"/><feGaussianBlur in="c" stdDeviation="4"/></filter></defs><rect width="400" height="300" fill="#ead9be"/><rect width="400" height="300" filter="url(#tx-normal-b)"/><path d="M40 120 C 130 92, 260 148, 372 108" stroke="#d6ba8c" stroke-width="7" fill="none" opacity="0.6"/><path d="M28 196 C 140 168, 250 224, 380 186" stroke="#d6ba8c" stroke-width="9" fill="none" opacity="0.5"/><path d="M60 262 C 160 240, 270 272, 366 250" stroke="#dcc49a" stroke-width="6" fill="none" opacity="0.5"/></svg>
+<div class="ps-textura-cima"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração: textura leve de gel"><defs><filter id="tx-normal-a" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.045 0.11" numOctaves="3" seed="11" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0.70 0 0 0 0 0.86 0 0 0 0 0.92 0 0 0 0.5 0" result="c"/><feGaussianBlur in="c" stdDeviation="3"/></filter></defs><rect width="400" height="300" fill="#bfe0ea"/><rect width="400" height="300" filter="url(#tx-normal-a)"/><circle cx="96" cy="118" r="30" fill="#e4f4f8" opacity="0.5"/><circle cx="212" cy="86" r="17" fill="#e4f4f8" opacity="0.45"/><circle cx="310" cy="176" r="38" fill="#e4f4f8" opacity="0.38"/><circle cx="150" cy="222" r="13" fill="#e4f4f8" opacity="0.5"/><path d="M70 250 C 150 232, 250 232, 330 250" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.35"/></svg></div>
+<div class="ps-textura-alca" aria-hidden="true"></div>
+</div>
+<input type="range" min="0" max="100" value="50" aria-label="Comparar textura leve de gel e densa de creme">
+<p class="ps-textura-rotulos"><span>← Leve (gel): absorve rápido e não pesa</span><span>Densa (creme): sela a hidratação →</span></p>
+<noscript><p class="ig-nota">Sem JavaScript o comparador fica parado na metade — a ilustração já mostra os dois lados. É ilustração, não foto.</p></noscript>
+</div>
+</section>
+
 <h2 id="fontes">Fontes</h2>
 <ol>
 <li>Youn SW, et al. <cite>Regional and seasonal variations in facial sebum secretions: a proposal for the definition of combination skin type</cite>. Skin Res Technol, 2005. <a href="https://pubmed.ncbi.nlm.nih.gov/15998330/">PubMed 15998330</a> · <a href="https://doi.org/10.1111/j.1600-0846.2005.00119.x">DOI</a></li>
@@ -190,7 +207,17 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 </div>
 
 <p class="sub" style="font-size:.82rem;margin-top:30px">Contém links de afiliado. Preços e disponibilidade podem mudar. Última atualização: novembro de 2026.</p>
-<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é pele normal?</h3>
+<p>A pele normal é a que está equilibrada: nem muito oleosa, nem seca, com poros finos, tom uniforme e raras irritações. Vale manter os bons hábitos para preservar esse equilíbrio.</p>
+<h3>Pele normal precisa de rotina completa?</h3>
+<p>Não necessariamente. Uma rotina simples de limpeza, hidratação e protetor já funciona bem, e dá para adicionar vitamina C ou retinol aos poucos. Evite produtos muito agressivos, como ácidos fortes e esfoliantes mecânicos.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é pele normal?", "acceptedAnswer": {"@type": "Answer", "text": "A pele normal é a que está equilibrada: nem muito oleosa, nem seca, com poros finos, tom uniforme e raras irritações. Vale manter os bons hábitos para preservar esse equilíbrio."}}, {"@type": "Question", "name": "Pele normal precisa de rotina completa?", "acceptedAnswer": {"@type": "Answer", "text": "Não necessariamente. Uma rotina simples de limpeza, hidratação e protetor já funciona bem, e dá para adicionar vitamina C ou retinol aos poucos. Evite produtos muito agressivos, como ácidos fortes e esfoliantes mecânicos."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -200,10 +227,10 @@ th{background:var(--rosa-claro);color:var(--rosa);font-weight:600}
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/" aria-current="page">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
-<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript></footer>
 </body>
 </html>

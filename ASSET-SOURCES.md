@@ -39,3 +39,19 @@ No third-party image request is made by visitors. Illustrative only: no testimon
 - Prompts asked for no text, no logos, no brand names, no readable labels and no identifiable faces. Products shown are generic and unbranded, even when the news is about a specific company.
 - Illustrative only: they do not depict any specific product sold or linked on the site, and imply no endorsement or result.
 - Stored locally; no third-party image request is made by visitors.
+
+## Queridinhos pelo mundo — country images, added 2026-11-11
+
+- Files: `img/queridinhos/<country>-480.webp` and `-960.webp` (square) for `eua`, `brasil`, `coreia`, `japao`, `franca`, `canada`, `alemanha`, `espanha`, shown at the top of each country section of `/queridinhos-do-skincare/` with the caption "Imagem ilustrativa, gerada por IA".
+- Origin: AI-generated images. `coreia`, `japao`, `alemanha` and `espanha` were made in ChatGPT (OpenAI image generation, the site owner's account, 1254×1254). `eua`, `brasil`, `franca` and `canada` were supplied by the site owner (1024×1024); the generator was not recorded.
+- They show product packaging of the brands listed in each section as rendered by an AI model. They are illustrations, not photographs of the actual products: packaging, labels and text may differ from the real items. No endorsement by the brands is implied.
+
+## Bio-texturas — section backgrounds and divider ("Ciência Orgânica") — generated 2026-11-16
+
+- Files: `img/textura-emulsao-dourada.jpg` + `.webp`, `img/textura-microbolhas-ha.jpg` + `.webp`, `img/textura-cristais-niacinamida.jpg` + `.webp` (all 1536×1024).
+- Origin: AI-generated images (Xiaomi MiMo image generation service), 2026-11-16, quality "high", native 1536×1024. Converted to `.jpg` (quality 85) and `.webp` (quality 80) with Pillow; PNG masters kept outside the repository.
+- Subjects: abstract macro textures only — creamy emulsion merging with golden oil (warm), hyaluronic gel with microbubbles (cool), niacinamide crystals under polarized light (champagne with faint iridescence). Prompts asked for no text, no logos, no packaging and no people.
+- Usage: `ps-fundo-cristais` on the homepage intro, `ps-fundo-emulsao` on the manifesto section, and `ps-divisor ps-fundo-gel` as the section divider before "E a evolução aparece" (`index.html` + `premium-home.css`).
+- Illustrative only: they do not depict any specific product sold or linked on the site, and imply no endorsement or result.
+
+- Stored locally; no third-party image request is made by visitors.

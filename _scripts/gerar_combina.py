@@ -12,6 +12,7 @@ Para mudar uma resposta, mude a regra em /regras-ativos.js e rode de novo:
     python3 _scripts/seo.py
 """
 import json
+import re
 import shutil
 import subprocess
 
@@ -60,7 +61,7 @@ CSS = """
 .cb-nao{background:#fdf2f4;border-color:#b4546a;color:#5a1d2b}
 .cb-sem{background:#f4f4f4;border-color:#6b6b6b;color:#333}
 .cb-btns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
-.cb-btn{display:inline-flex;align-items:center;min-height:48px;padding:8px 20px;border-radius:999px;background:var(--rosa);color:#fff;font-weight:600;text-decoration:none}
+.cb-btn{display:inline-flex;align-items:center;min-height:48px;padding:8px 20px;border-radius:999px;background:var(--rosa);color:var(--sobre-rosa,#fff);font-weight:600;text-decoration:none}
 .cb-btn.cb-sec{background:transparent;color:inherit;border:1.5px solid currentColor}
 .cb-lista{columns:2;gap:24px}@media(max-width:560px){.cb-lista{columns:1}}
 .cb-tabela{width:100%;border-collapse:collapse;font-size:.95rem;margin:12px 0}
@@ -130,6 +131,25 @@ def lista_produtos(titulo, itens):
     lis = "".join(f'<li><a href="/produtos/{esc(p["id"])}/">{esc(p["nome"])}</a> · {esc(PASSOS.get(p["passo"], p["passo"]))} · '
                   f'{reais(p["preco"])}</li>' for p in itens[:6])
     return f'<h3>{esc(titulo)}</h3><ul>{lis}</ul>'
+
+
+def descricao_par(titulo, rotulo, motivo, limite=160):
+    """Meta description com até `limite` caracteres e só frases inteiras (o Google costuma cortar
+    o trecho perto de 160). Encurta nesta ordem: tira a frase do motivo que repete o rótulo, tira
+    o que está entre parênteses, e por fim deixa só as primeiras frases do motivo que cabem."""
+    frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", motivo.strip()) if f.strip()]
+    frases = [f for f in frases if f.rstrip(".") != rotulo.rstrip(".")] or frases
+    inicio = f"{titulo} {rotulo.rstrip('.')}."
+    for texto in (" ".join(frases), re.sub(r"\s*\([^)]*\)", "", " ".join(frases))):
+        if len(f"{inicio} {texto}") <= limite:
+            return f"{inicio} {texto}"
+    partes = re.split(r"(?<=[.!?])\s+", re.sub(r"\s*\([^)]*\)", "", " ".join(frases)))
+    escolhidas = []
+    for f in partes:
+        if len(" ".join([inicio] + escolhidas + [f])) > limite:
+            break
+        escolhidas.append(f)
+    return " ".join([inicio] + escolhidas)
 
 
 def pagina_par(item, todos, d, produtos):
@@ -203,7 +223,7 @@ def pagina_par(item, todos, d, produtos):
 </section>
 <script type="application/ld+json">{faq_txt}</script>
 </article>"""
-    descricao = f'{titulo} {r["rotulo"]}. {r["motivo"]}'[:300]
+    descricao = descricao_par(titulo, r["rotulo"], r["motivo"])
     trilha_nome = titulo.replace("Posso usar ", "").rstrip("?")
     return pagina(titulo, descricao, f"/combina/{slug_par(a, b)}/",
                   [("/", "Início"), ("/combina/", "Posso usar junto?"), (None, trilha_nome[0].upper() + trilha_nome[1:])],
@@ -226,7 +246,7 @@ def pagina_indice(itens, versao):
 </div>
 <p>Não achou a sua? Monte qualquer combinação no <a href="/ferramentas/ingredientes/">verificador de ingredientes</a> ou cadastre os produtos que você já tem na <a href="/ferramentas/prateleira/">minha prateleira</a>.</p>
 {"".join(grupos)}
-<h2>⛔ Com a pele irritada</h2><ul class="cb-lista">{irr}</ul>
+<h2>Com a pele irritada</h2><ul class="cb-lista">{irr}</ul>
 <p class="ig-nota">Respostas das regras versão {esc(versao)}: orientações de uso comuns em dermatologia cosmética, sem citação de estudo específico e ainda sem revisão de dermatologista. Pares sem regra cadastrada não aparecem aqui, porque não sabemos a resposta. Não é diagnóstico.</p>
 </article>"""
     return pagina("Posso usar junto? Combinações de ativos de skincare",

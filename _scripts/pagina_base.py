@@ -70,6 +70,7 @@ def pagina(titulo, descricao, caminho, trilha, corpo, css_extra="", scripts="", 
 <footer class="ig-foot">
 <p>{esc(aviso)}</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
 </footer>
 </main>
 {rodape}

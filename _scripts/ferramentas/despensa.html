@@ -1,0 +1,222 @@
+<article>
+<div class="ig-cab">
+<h1>Anti-carrinho: o modo despensa</h1>
+<p class="ig-lede">A pergunta que falta antes do "adicionar ao carrinho": o que você já tem em casa? O modo despensa monta a rotina com o que é seu, diz o que NÃO comprar, e conta o que você economizou quando deixou uma compra de fora.</p>
+<p class="ig-meta">Tudo fica neste aparelho. O contador de economia é seu; o contador coletivo só começa quando houver base real — a metodologia está publicada aqui embaixo.</p>
+</div>
+
+<div class="ig-caixa" id="de-prateleira"></div>
+
+<section class="ig-caixa" aria-labelledby="de-rotina-titulo">
+<h2 id="de-rotina-titulo">Sua rotina com o que você já tem</h2>
+<p class="ig-nota">Montada com os produtos da sua <a href="/ferramentas/prateleira/">prateleira</a>. Se está aqui, já é seu — use antes de abrir outro do mesmo passo.</p>
+<div id="de-rotina" aria-live="polite"><p class="ig-nota">Carregando a despensa…</p></div>
+</section>
+
+<section class="ig-caixa" aria-labelledby="de-nao-titulo">
+<h2 id="de-nao-titulo">O que NÃO comprar agora</h2>
+<div id="de-nao" aria-live="polite"></div>
+<p class="ig-nota">Regra de ouro: um entra, um sai. Antes de abrir outro produto do mesmo passo, termine ou passe adiante o que está aberto — é a única forma de saber o que funcionou.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="de-pulo-titulo">
+<h2 id="de-pulo-titulo">Deixei de comprar</h2>
+<p class="ig-nota">Cada compra que você deixou fora do carrinho, anotada aqui. É o seu contador de economia — honesto, porque vem do seu pulso, não de estimativa nossa.</p>
+<label class="ft-rotulo" for="de-nome">O que você deixou de comprar</label>
+<input class="ft-campo" id="de-nome" type="text" placeholder="Ex.: sérum de vitamina C da marca X">
+<label class="ft-rotulo" for="de-preco">Quanto custava (R$, opcional)</label>
+<input class="ft-campo" id="de-preco" type="number" min="0" step="0.01" placeholder="Ex.: 89,90">
+<label class="ft-rotulo" for="de-motivo">Por quê</label>
+<select class="ft-campo" id="de-motivo">
+<option value="ja-tenho">Já tenho um do mesmo passo</option>
+<option value="acabando">O que tenho ainda está acabando de usar</option>
+<option value="adaptando">Estou adaptando a algo novo</option>
+<option value="gatilho">Era promoção / gatilho do momento</option>
+<option value="preco">Não conferi o preço — vou esperar</option>
+<option value="outro">Outro motivo</option>
+</select>
+<button class="ft-btn" type="button" id="de-pular">Anotar o pulo</button>
+<div id="de-pulos" aria-live="polite"></div>
+</section>
+
+<section class="ig-caixa" aria-labelledby="de-coletivo-titulo">
+<h2 id="de-coletivo-titulo">O contador coletivo — e por que ele ainda não tem número</h2>
+<p>Todo site de skincare comemora quando você compra. Este aqui comemora quando você não compra — mas um contador público só vale se o número for real. Por isso:</p>
+<ul class="ft-regras">
+<li><strong>O número hoje é zero</strong> — não coletamos nada de ninguém ainda. Nada de "R$ 1,4 milhão economizados" tirado da cartola.</li>
+<li><strong>Quando existir, a regra é esta:</strong> soma apenas dos pulos opt-in e anônimos (valor declarado pela pessoa, sem nome, sem e-mail, sem foto). Metodologia publicada junto com o número, sempre.</li>
+<li><strong>O que nunca entra:</strong> preços estimados por nós, compras que não aconteceram "por causa do site" e qualquer conta que não possa ser reconferida.</li>
+</ul>
+<p class="ig-nota">Enquanto isso, o contador que vale é o seu — o de cima. Ele é auditável porque você mesmo anotou cada linha.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="de-entra-titulo">
+<h2 id="de-entra-titulo">Um entra, um sai</h2>
+<p class="ig-nota">O placar da regra: quantos produtos entraram e quantos saíram da sua prateleira desde que você começou a contar.</p>
+<div id="de-placar"></div>
+<button class="ft-btn ft-sec" type="button" id="de-entrou">Um produto entrou</button>
+<button class="ft-btn ft-sec" type="button" id="de-saiu">Um produto saiu (terminei/passei adiante)</button>
+</section>
+
+<section aria-labelledby="de-leia-titulo">
+<h2 id="de-leia-titulo">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/anti-impulso/">Anti-impulso: você já tem?</a></li>
+<li><a href="/ferramentas/prateleira/">Minha prateleira</a></li>
+<li><a href="/ferramentas/termometro/">Termômetro de preço</a></li>
+<li><a href="/ferramentas/equivalente/">Equivalente mais barato</a></li>
+<li><a href="/ferramentas/extrato/">Extrato mensal</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="de-fontes-titulo">
+<h2 id="de-fontes-titulo">Fontes e limites</h2>
+<ol>
+<li>As regras de "o que não comprar" vêm da sua prateleira (mesma lógica do <a href="/ferramentas/prateleira/">Minha prateleira</a>): o produto aberto termina antes de abrir outro do mesmo passo, para conseguir atribuir o resultado ao produto certo.</li>
+<li>O contador de economia soma só os valores que você digitar. Se não digitar preço, o pulo conta como 1 — sem valor inventado.</li>
+<li>Regras de consumo — não é recomendação médica nem análise financeira. Conteúdo informativo, não substitui consulta com dermatologista.</li>
+</ol>
+</section>
+
+<p class="ig-foot"><span>Ferramenta informativa, não substitui consulta com dermatologista.</span></p>
+</article>
+<script src="/regras-ativos.js"></script>
+<script src="/prateleira.js"></script>
+<script>
+(function () {
+  "use strict";
+  var P = window.PSPrateleira;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var CHAVE = "ps-despensa-v1";
+  var PASSO_NOME = { limpeza: "Limpeza", tratamento: "Tratamento (sérum)", hidratacao: "Hidratante", protetor: "Protetor solar", outro: "Outro" };
+  var MOTIVO_NOME = {
+    "ja-tenho": "já tem um do mesmo passo", "acabando": "o atual ainda vai durar",
+    "adaptando": "adaptando a algo novo", "gatilho": "promoção/gatilho do momento",
+    "preco": "preço não conferido", "outro": "outro motivo"
+  };
+  var fmt = function (v) { return "R$ " + Number(v).toFixed(2).replace(".", ","); };
+
+  function ler() {
+    try {
+      var d = JSON.parse(localStorage.getItem(CHAVE) || "{}");
+      d.pulos = Array.isArray(d.pulos) ? d.pulos : [];
+      d.entrou = d.entrou || 0; d.saiu = d.saiu || 0;
+      return d;
+    } catch (e) { return { pulos: [], entrou: 0, saiu: 0 }; }
+  }
+  function salvar(d) { try { localStorage.setItem(CHAVE, JSON.stringify(d)); } catch (e) {} }
+
+  function pintarDespensa() {
+    var dados = P ? P.ler() : { itens: [], sensivel: false };
+    var itens = dados.itens || [];
+    var caixa = $("de-prateleira");
+    if (!itens.length) {
+      caixa.innerHTML = '<strong>Sua despensa está vazia — e ótimo.</strong>' +
+        '<p class="ig-nota">Cadastre o que você já tem na <a href="/ferramentas/prateleira/">minha prateleira</a> ' +
+        'e esta página passa a montar a rotina com o que é seu, antes de qualquer compra nova.</p>';
+      $("de-rotina").innerHTML = '<p class="ig-nota">Sem itens na prateleira ainda.</p>';
+      $("de-nao").innerHTML = "";
+      return;
+    }
+    caixa.innerHTML = '<strong>' + itens.length + ' produto(s) na sua despensa</strong>' +
+      '<span class="ft-sub">Isto aqui é o seu: nada do que aparece abaixo precisa ser comprado.</span>';
+
+    // rotina manhã/noite a partir do período de cada item
+    var rot = { manha: [], noite: [] };
+    itens.forEach(function (it) {
+      (it.periodo || []).forEach(function (per) { if (rot[per]) rot[per].push(it); });
+    });
+    $("de-rotina").innerHTML = "";
+    ["manha", "noite"].forEach(function (per) {
+      var lista = rot[per];
+      var div = document.createElement("div");
+      div.innerHTML = '<h3>' + (per === "manha" ? "Manhã" : "Noite") + '</h3>' +
+        (lista.length ? '<ul class="ft-itens">' + lista.map(function (it) {
+          return '<li class="ft-item"><div><span class="pr-passo">' + esc(PASSO_NOME[it.passo] || it.passo) + '</span>' +
+            '<strong>' + esc(it.nome) + '</strong>' +
+            (it.texto ? '<span class="ig-nota">' + esc(it.texto) + '</span>' : '') + '</div></li>';
+        }).join("") + '</ul>' : '<p class="ig-nota">Nada marcado para este período.</p>');
+      $("de-rotina").appendChild(div);
+    });
+
+    var analise = P.analisar(itens, { sensivel: !!dados.sensivel });
+    var passos = {};
+    itens.forEach(function (it) { passos[it.passo] = true; });
+    var cobertos = Object.keys(passos).map(function (p) { return PASSO_NOME[p] || p; });
+    var faltando = (analise.faltando || []).map(function (p) { return PASSO_NOME[p] || p; });
+    var html = '<div class="ft-info"><strong>Passos já cobertos por você:</strong> ' + esc(cobertos.join(", ") || "—") + '</div>';
+    if (faltando.length) {
+      html += '<div class="ft-horarios"><strong>Faltam ' + faltando.length + ' passo(s) essencial(is):</strong> ' +
+        esc(faltando.join(", ")) + '<span class="ft-sub">Estes são os únicos que fazem sentido comprar agora — o resto é repetição.</span></div>';
+    }
+    if (analise.repetidos && analise.repetidos.length) {
+      html += '<div class="ft-nao"><strong>Você tem produtos repetidos do mesmo ativo:</strong> ' +
+        esc(analise.repetidos.map(function (r) { return r.nomeClasse; }).join(", ")) +
+        '<span class="ft-sub">Antes de comprar mais um, termine os que já estão abertos.</span></div>';
+    }
+    if (analise.conflitos && analise.conflitos.length) {
+      html += '<div class="ft-sem"><strong>Há ' + analise.conflitos.length + ' combinação(ões) de atenção na sua prateleira.</strong>' +
+        '<span class="ft-sub">Veja os detalhes na <a href="/ferramentas/prateleira/">minha prateleira</a> — lá cada par tem o motivo e a fonte da regra.</span></div>';
+    }
+    $("de-nao").innerHTML = html;
+  }
+
+  function pintarPulos() {
+    var d = ler();
+    var total = d.pulos.reduce(function (s, p) { return s + (p.preco || 0); }, 0);
+    var semPreco = d.pulos.filter(function (p) { return !p.preco; }).length;
+    var alvo = $("de-pulos");
+    if (!d.pulos.length) {
+      alvo.innerHTML = '<p class="ig-nota">Nenhum pulo anotado ainda. O primeiro aparece aqui.</p>';
+      return;
+    }
+    alvo.innerHTML = '<div class="ft-ok"><strong>Você economizou ' + fmt(total) + '</strong>' +
+      '<span class="ft-sub">' + d.pulos.length + ' compra(s) deixada(s) de fora' +
+      (semPreco ? ' — ' + semPreco + ' sem preço anotado, contando só como 1 pulo' : '') + '. Só no seu aparelho.</span></div>' +
+      '<ul class="ft-itens">' + d.pulos.map(function (p, i) {
+        return '<li class="ft-item"><div><span class="pr-passo">' + esc(p.em) + '</span><strong>' + esc(p.nome) + '</strong>' +
+          '<span class="ig-nota">' + fmt(p.preco || 0) + ' · ' + esc(MOTIVO_NOME[p.motivo] || p.motivo) + '</span></div>' +
+          '<div class="ft-item-acoes"><button class="ft-mini" type="button" data-apagar="' + i + '">apagar</button></div></li>';
+      }).join("") + "</ul>";
+    alvo.addEventListener("click", function (ev) {
+      var b = ev.target.closest("button[data-apagar]");
+      if (!b) return;
+      var dd = ler();
+      dd.pulos.splice(Number(b.getAttribute("data-apagar")), 1);
+      salvar(dd);
+      pintarPulos();
+    }, { once: true });
+  }
+
+  function pintarPlacar() {
+    var d = ler();
+    $("de-placar").innerHTML = '<div class="ft-info"><strong>Entraram: ' + d.entrou + ' · Saíram: ' + d.saiu + '</strong>' +
+      '<span class="ft-sub">A regra é 1:1 — para entrar um novo, um sai. ' +
+      (d.entrou > d.saiu ? 'Hoje está ' + (d.entrou - d.saiu) + ' acima do zero.' : 'Está no azul.') + '</span></div>';
+  }
+
+  $("de-pular").addEventListener("click", function () {
+    var nome = $("de-nome").value.trim();
+    if (!nome) { $("de-nome").focus(); return; }
+    var preco = parseFloat($("de-preco").value);
+    var d = ler();
+    d.pulos.unshift({
+      em: new Date().toISOString().slice(0, 10),
+      nome: nome,
+      preco: isNaN(preco) ? 0 : preco,
+      motivo: $("de-motivo").value
+    });
+    salvar(d);
+    $("de-nome").value = ""; $("de-preco").value = "";
+    pintarPulos();
+  });
+  $("de-entrou").addEventListener("click", function () { var d = ler(); d.entrou += 1; salvar(d); pintarPlacar(); });
+  $("de-saiu").addEventListener("click", function () { var d = ler(); d.saiu += 1; salvar(d); pintarPlacar(); });
+
+  pintarDespensa();
+  pintarPulos();
+  pintarPlacar();
+})();
+</script>

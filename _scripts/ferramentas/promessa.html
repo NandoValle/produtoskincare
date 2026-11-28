@@ -1,0 +1,167 @@
+<article>
+<div class="ig-cab">
+<h1>Selo ANVISA e raio-X de promessa</h1>
+<p class="ig-lede">Duas conferências que um site com patrocinador não faz: o registro do produto na base aberta da ANVISA e, promessa por promessa, o que o texto de marketing consegue sustentar — contra a lista de ingredientes e contra o nosso hub científico.</p>
+<p class="ig-meta">Base ANVISA conferida em 20/11/2026. As comparações são factuais e conferíveis: cada veredito aponta a fonte. Sem alarme e sem promessa nossa.</p>
+</div>
+
+<section class="ig-caixa" aria-labelledby="se-selo-titulo">
+<h2 id="se-selo-titulo">1 · Selo de regularização (ANVISA)</h2>
+<p class="ig-nota">Escolha um produto do catálogo: cruzamos nome e marca com a base de cosméticos regularizados/notificados da ANVISA (dados abertos). O nome exato que a ANVISA registrou aparece no resultado — confira com os olhos.</p>
+<label class="ft-rotulo" for="se-produto">Produto do catálogo</label>
+<select class="ft-campo" id="se-produto"><option value="">Carregando…</option></select>
+<div id="se-resultado" aria-live="polite"></div>
+<p class="ig-nota"><strong>"Não encontrado" não prova irregularidade.</strong> A base cobre produtos regularizados ou notificados pela ANVISA; nomes comerciais mudam e vendas de importado em marketplace podem aparecer de outra forma. Sempre dá para conferir por conta própria no <a href="https://consultas.anvisa.gov.br/" rel="noopener">portal de consultas da ANVISA</a> e nos <a href="https://dados.anvisa.gov.br/dados/CONSULTAS/" rel="noopener">dados abertos</a>.</p>
+</section>
+
+<section class="ig-caixa" aria-labelledby="se-claim-titulo">
+<h2 id="se-claim-titulo">2 · Raio-X de promessa</h2>
+<p class="ig-nota">Cole o texto de marketing da embalagem ou do anúncio. Cada promessa conhecida recebe um veredito com a fonte — do rótulo, das fichas ou do guia de ativos. O que não tem base no nosso hub, dizemos que não tem.</p>
+<label class="ft-rotulo" for="se-texto">Texto de marketing (cola como está na embalagem)</label>
+<textarea class="ft-campo" id="se-texto" rows="5" placeholder="Ex.: Reconstrói o colágeno, remove rugas, hipoalergênico, sem álcool, hidrata por 24 horas…"></textarea>
+<label class="ft-rotulo" for="se-lista">Lista de ingredientes — INCI (opcional, para conferir "sem álcool" e ativos)</label>
+<textarea class="ft-campo" id="se-lista" rows="4" placeholder="Ou cole o que vem depois de INGREDIENTES:"></textarea>
+<button class="ft-btn" type="button" id="se-rodar">Fazer o raio-X das promessas</button>
+<div id="se-promessas" aria-live="polite"></div>
+</section>
+
+<section class="ig-caixa" aria-labelledby="se-vereditos-titulo">
+<h2 id="se-vereditos-titulo">O que cada veredito quer dizer</h2>
+<ul class="ft-regras">
+<li><strong>Conferível:</strong> dá para checar na lista de ingredientes — e a lista faz parte da promessa.</li>
+<li><strong>Não verificável:</strong> a promessa pode até ser verdadeira, mas não tem padrão de teste declarado que permita conferir pelo rótulo (hipoalergênico, não comedogênico, dermatologicamente testado).</li>
+<li><strong>Não sustentado:</strong> o que o nosso hub sustenta é outra coisa — e a diferença importa ("estimular o colágeno do próprio corpo" ≠ "reconstruir colágeno").</li>
+<li><strong>Exagero:</strong> há base para o efeito na aparência, com tempo e uso contínuo; não para o verbo absoluto ("remove", "elimina", "de vez").</li>
+<li><strong>Depende do ativo:</strong> a promessa só se sustenta se a fórmula trouxer o ativo que a ficha estudou.</li>
+</ul>
+</section>
+
+<section aria-labelledby="se-leia-titulo">
+<h2 id="se-leia-titulo">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/raio-x/">Raio-X do rótulo</a></li>
+<li><a href="/ferramentas/ingredientes/">Verificador de ingredientes</a></li>
+<li><a href="/ativos/">Guia de ativos</a></li>
+<li><a href="/ferramentas/extrato-cosmetico/">Extrato do cosmético</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="se-fontes-titulo">
+<h2 id="se-fontes-titulo">Fontes e limites</h2>
+<ol>
+<li>Registro de produtos: dados abertos da ANVISA — <cite>https://dados.anvisa.gov.br/dados/CONSULTAS/PRODUTOS/TA_CONSULTA_COSMETICOS.CSV</cite>, cruzado em 20/11/2026 (1.219.358 linhas na coleta). Correspondência por similaridade de nome + marca: a "confiança" mostra como o match foi forte e o nome registrado aparece sempre.</li>
+<li>Regras de promessa conferível/não verificável: <cite>/ferramentas/raio-x/</cite> (como o raio-x lê a lista).</li>
+<li>Vereditos sobre ativos: fichas de <cite>/ingredientes/</cite> e guia de <cite>/ativos/</cite>, com o nível de evidência de cada um. Sem ficha, não há veredito.</li>
+</ol>
+<p class="ig-nota">A ordem dos ingredientes vem em ordem decrescente de quantidade até os 1% mais baixos, e depois é livre: a lista mostra composição, não concentração. Conteúdo informativo — não é laudo, não é parecer de consumo e não substitui consulta com dermatologista.</p>
+</section>
+
+<p class="ig-foot"><span>Ferramenta informativa, não substitui consulta com dermatologista.</span></p>
+</article>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+
+  var SEM_ALCOOL = /\b(alcohol(\s+denat\.?)?|sd\s+alcohol\s*\d*|ethanol|ethyl\s+alcohol|isopropyl(\s+alcohol)?|isopropanol|benzyl\s+alcohol)\b/i;
+  var ALCOOL_GRAXO = /\b(cetyl\s+alcohol|stearyl\s+alcohol|cetearyl\s+alcohol|behenyl\s+alcohol|lanolin\s+alcohol)\b/i;
+
+  /* ---- 1 · Selo ANVISA ---- */
+  var dadosSelo = null;
+  fetch("/anvisa-cosmeticos.json").then(function (r) { return r.json(); }).then(function (d) {
+    dadosSelo = d;
+    var sel = $("se-produto");
+    sel.innerHTML = '<option value="">— escolha um produto —</option>' + (d.produtos || []).map(function (p) {
+      return '<option value="' + esc(p.id) + '">' + esc(p.nome) + '</option>';
+    }).join("");
+  }).catch(function () {
+    $("se-produto").innerHTML = '<option value="">Não foi possível carregar o catálogo</option>';
+  });
+
+  $("se-produto").addEventListener("change", function () {
+    var alvo = $("se-resultado");
+    var id = this.value;
+    if (!id || !dadosSelo) { alvo.innerHTML = ""; return; }
+    var p = (dadosSelo.produtos || []).filter(function (x) { return x.id === id; })[0];
+    if (!p) { alvo.innerHTML = ""; return; }
+    var r = p.registro || {};
+    if (r.encontrado) {
+      var conf = r.confianca === "forte" ? "correspondência forte" : "correspondência provável — confira o nome";
+      alvo.innerHTML = '<div class="ft-ok"><strong>✔ Encontrado na base da ANVISA · ' + esc(conf) + '</strong>' +
+        '<span class="ft-sub">Nome registrado: ' + esc(r.nome_anvisa) + ' · Empresa: ' + esc(r.empresa) + '</span>' +
+        '<span class="ft-sub">Processo: ' + esc(r.nu_processo || "—") + ' · Situação: ' + esc(r.situacao || "—") +
+        ' · ' + esc(r.tipo_peticao || "") + (r.nu_registro ? ' · Registro: ' + esc(r.nu_registro) : '') + '</span>' +
+        '<span class="ft-sub">Base ANVISA atualizada em ' + esc(r.atualizado_em || "—") + ' · conferido em ' + esc(p.conferido_em) + '</span></div>';
+    } else {
+      var mercado = /shopee|mercadolivre|tiktok/i.test(p.plataforma || "");
+      alvo.innerHTML = '<div class="ft-nao"><strong>Não encontrado nesta base</strong>' +
+        '<span class="ft-sub">Melhor similaridade encontrada: ' + esc(String(r.similaridade)) + ' — abaixo do que aceitamos como correspondência.' +
+        (mercado ? ' Atenção: este produto é vendido em marketplace; vale conferir a embalagem e o portal da ANVISA antes de comprar.' : '') +
+        '</span><span class="ft-sub">Não é prova de irregularidade — confira em ' +
+        '<a href="https://consultas.anvisa.gov.br/" rel="noopener">consultas.anvisa.gov.br</a>.</span></div>';
+    }
+  });
+
+  /* ---- 2 · Raio-X de promessa ---- */
+  var dicionario = null;
+  fetch("/promessas.json").then(function (r) { return r.json(); }).then(function (d) { dicionario = d; });
+
+  var ROTULO = {
+    "conferivel": ["ft-ok", "Conferível pela lista"],
+    "nao-verificavel": ["ft-sem", "Não verificável"],
+    "nao-sustentado": ["ft-nao", "Não se sustenta"],
+    "exagero": ["ft-horarios", "Exagero"],
+    "depende-do-ativo": ["ft-info", "Depende do ativo"]
+  };
+
+  function checarAlcool(lista) {
+    var achados = [];
+    var m;
+    var rx = new RegExp(SEM_ALCOOL.source, "gi");
+    while ((m = rx.exec(lista)) !== null) achados.push(m[0]);
+    var rx2 = new RegExp(ALCOOL_GRAXO.source, "gi");
+    var graxos = [];
+    while ((m = rx2.exec(lista)) !== null) graxos.push(m[0]);
+    return { achados: achados, graxos: graxos };
+  }
+
+  $("se-rodar").addEventListener("click", function () {
+    var alvo = $("se-promessas");
+    var texto = $("se-texto").value.trim();
+    var lista = $("se-lista").value.trim();
+    if (!dicionario) { alvo.innerHTML = '<p class="ig-nota">O dicionário ainda não carregou — tente de novo.</p>'; return; }
+    if (!texto) { alvo.innerHTML = '<p class="ig-nota">Cole o texto de marketing primeiro.</p>'; return; }
+    var t = texto.toLowerCase();
+    var achados = dicionario.promessas.filter(function (pr) {
+      return (pr.padroes || []).some(function (pad) { return t.indexOf(pad.toLowerCase()) >= 0; });
+    });
+    if (!achados.length) {
+      alvo.innerHTML = '<div class="ft-info"><strong>Nenhuma promessa do nosso dicionário neste texto.</strong>' +
+        '<span class="ft-sub">O dicionário cobre as promessas mais comuns (e as que mais confundem). Se a promessa não está aqui, não emitimos veredito — melhor do que inventar um.</span></div>';
+      return;
+    }
+    alvo.innerHTML = achados.map(function (pr) {
+      var rot = ROTULO[pr.veredito] || ["ft-info", pr.veredito];
+      var extra = "";
+      if (pr.checar_lista === "alcool" && lista) {
+        var c = checarAlcool(lista);
+        if (c.achados.length) {
+          extra = '<span class="ft-sub"><strong>Na lista que você colou:</strong> ' + esc(c.achados.join(", ")) +
+            '. Confira se é álcool secante (SD Alcohol, Alcohol Denat., etanol) — álcoois graxos ' +
+            '(cetílico, esteárilico) são outra coisa e não contam para esta promessa.' +
+            (c.graxos.length ? ' Álcoois graxos presentes: ' + esc(c.graxos.join(", ")) + '.' : '') + '</span>';
+        } else {
+          extra = '<span class="ft-sub"><strong>Na lista que você colou:</strong> nenhum álcool secante encontrado' +
+            (c.graxos.length ? ' (há álcoois graxos: ' + esc(c.graxos.join(", ")) + ' — não são o álcool da promessa)' : '') +
+            ' — a promessa se sustenta para o que a lista mostra.</span>';
+        }
+      }
+      return '<div class="' + rot[0] + '"><strong>' + esc(rot[1]) + ' · ' + esc(pr.rotulo) + '</strong>' +
+        '<span class="ft-sub">' + esc(pr.texto) + '</span>' +
+        '<span class="ft-sub">Fonte: ' + esc(pr.fonte) + '</span>' + extra + '</div>';
+    }).join("");
+  });
+})();
+</script>

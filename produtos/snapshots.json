@@ -1,0 +1,517 @@
+{
+ "versao": "1.0",
+ "iniciado_em": "2026-11-20",
+ "_instrucoes": "Histórico datado de preço, volume e fórmula (INCI) por produto. Cada entrada é o estado conhecido na data 'em'. Volume vem de tamanhos.json (nunca estimado); INCI só entra quando alguém registra a lista da embalagem ou de fonte oficial, com a fonte anotada. Mudanças entre entradas viram produtos/mudancas.json (preço, volume, fórmula).",
+ "produtos": {
+  "cerave-gel-limpeza": [
+   {
+    "em": "2026-11-20",
+    "preco": 96.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 454,
+    "volume_fonte": "https://www.amazon.com.br/CeraVe-Limpeza-Facial-Hialur%C3%B4nico-Niacinamida/dp/B07XP6N3BC",
+    "ativos": [
+     "ceramidas",
+     "niacinamida",
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "CeraVe Gel de Limpeza Facial",
+    "marca": "CeraVe"
+   }
+  ],
+  "lrp-effaclar-gel": [
+   {
+    "em": "2026-11-20",
+    "preco": 73.57,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 240,
+    "volume_fonte": "https://www.amazon.com.br/Roche-Posay-Effaclar-Alta-Toler%C3%A2ncia-Refil/dp/B0B3SGCCY5",
+    "ativos": [
+     "PCA de zinco"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "La Roche-Posay Effaclar Gel Alta Tolerância",
+    "marca": "La Roche-Posay"
+   }
+  ],
+  "hada-labo-oil-cleansing": [
+   {
+    "em": "2026-11-20",
+    "preco": 64.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 200,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Gokujyun-Oil-Cleasing-Hada-Labo/dp/B07ZD6R4QK",
+    "ativos": [
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Hada Labo Gokujyun Oil Cleansing",
+    "marca": "Hada Labo"
+   }
+  ],
+  "neutrogena-hydro-boost": [
+   {
+    "em": "2026-11-20",
+    "preco": 55.16,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 50,
+    "volume_fonte": "https://www.amazon.com.br/Hidratante-Facial-Neutrogena-Hydro-Boost/dp/B06XQ27YLL",
+    "ativos": [
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Neutrogena Hydro Boost Water Gel",
+    "marca": "Neutrogena"
+   }
+  ],
+  "lrp-cicaplast-baume": [
+   {
+    "em": "2026-11-20",
+    "preco": 71.52,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 40,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Roche-Posay-Cicaplast-Cuidado-Multirreparador-Calmante/dp/B072MK7BN2",
+    "ativos": [
+     "madecassoside",
+     "pantenol"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "La Roche-Posay Cicaplast Baume B5+",
+    "marca": "La Roche-Posay"
+   }
+  ],
+  "cetaphil-creme-hidratante": [
+   {
+    "em": "2026-11-20",
+    "preco": 85.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 453,
+    "volume_fonte": "https://www.amazon.com.br/Creme-Hidratante-453-G-Cetaphil/dp/B079VXJK79",
+    "ativos": [
+     "glicerina"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Cetaphil Creme Hidratante",
+    "marca": "Cetaphil"
+   }
+  ],
+  "mantecorp-epidrat-calm": [
+   {
+    "em": "2026-11-20",
+    "preco": 83.92,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 50,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/EPIDRAT-CALM-50ML-Mantecorp-Skincare/dp/B09RL3X7RB",
+    "ativos": [
+     "pantenol"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Mantecorp Epidrat Calm B5",
+    "marca": "Mantecorp Skincare"
+   }
+  ],
+  "garnier-uniform-matte": [
+   {
+    "em": "2026-11-20",
+    "preco": 26.61,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 85,
+    "volume_fonte": "https://www.amazon.com.br/Garnier-Uniform-Hidratante-Facial-Antimanchas/dp/B0DP82WCWS",
+    "ativos": [
+     "vitamina C",
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Garnier Uniform & Matte Toque Seco",
+    "marca": "Garnier"
+   }
+  ],
+  "isdin-fusion-water": [
+   {
+    "em": "2026-11-20",
+    "preco": 89.0,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 50,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Fotoprotetor-Isdin-Fusion-Water-ISDIN/dp/B08F864LDD",
+    "ativos": [
+     "filtros UVA/UVB"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "ISDIN Protetor Solar Fusion Water FPS 60",
+    "marca": "ISDIN"
+   }
+  ],
+  "isdin-fusion-water-sem-cor": [
+   {
+    "em": "2026-11-20",
+    "preco": 57.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Protetor-Solar-Facial-ISDIN-Fusion/dp/B09SMBB1KN",
+    "ativos": [
+     "filtros UVA/UVB"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "ISDIN Fusion Water 5 Stars Sem Cor FPS 60",
+    "marca": "ISDIN"
+   }
+  ],
+  "neutrogena-sun-fresh-fps70": [
+   {
+    "em": "2026-11-20",
+    "preco": 47.7,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 40,
+    "volume_fonte": "https://www.amazon.com.br/Protetor-Solar-Facial-Oleosa-NEUTROGENA/dp/B08NVMP2YZ",
+    "ativos": [
+     "filtros UVA/UVB"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Neutrogena Sun Fresh Derm Care FPS 70",
+    "marca": "Neutrogena"
+   }
+  ],
+  "skin-aqua-moisture-milk": [
+   {
+    "em": "2026-11-20",
+    "preco": 50.26,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 40,
+    "volume_fonte": "https://www.amazon.com.br/SKIN-AQUA%C2%AE-Super-Moisture-Milk/dp/B0C9L4ZNZ8",
+    "ativos": [
+     "filtros UVA/UVB",
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Skin Aqua Super Moisture Milk FPS 50",
+    "marca": "Skin Aqua"
+   }
+  ],
+  "lrp-ultra-cover": [
+   {
+    "em": "2026-11-20",
+    "preco": 78.89,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": null,
+    "volume_g": 30,
+    "volume_fonte": "https://www.amazon.com.br/ROCHE-POSAY-ULTRA-COVER-PROTETOR/dp/B0BLZVD5S5",
+    "ativos": [
+     "filtros UVA/UVB",
+     "pigmentos (cor)"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "La Roche-Posay Ultra Cover FPS 60",
+    "marca": "La Roche-Posay"
+   }
+  ],
+  "eucerin-anti-pigment": [
+   {
+    "em": "2026-11-20",
+    "preco": 226.99,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Antimanchas-Anti-Idade-Anti-Pigment-Clareador-Hialur%C3%B4nico/dp/B07SJSZHD7",
+    "ativos": [
+     "thiamidol",
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Eucerin Anti-Pigment Dual Sérum",
+    "marca": "Eucerin"
+   }
+  ],
+  "principia-vc10": [
+   {
+    "em": "2026-11-20",
+    "preco": 49.9,
+    "preco_em": "2026-11-02",
+    "loja": "shopee",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.araujo.com.br/serum-principia-vc-10-vitamina-c-e-acido-ferulico-30ml/96560.html",
+    "ativos": [
+     "vitamina C 10%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Principia VC-10 Vitamina C 10%",
+    "marca": "Principia"
+   }
+  ],
+  "principia-niacinamida": [
+   {
+    "em": "2026-11-20",
+    "preco": 45.9,
+    "preco_em": "2026-11-02",
+    "loja": "shopee",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/S%C3%A9rum-Nc-10-Principia-Niacinamida-Zinco/dp/B08R7RSJFX",
+    "ativos": [
+     "niacinamida 10%",
+     "zinco 1%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Principia Niacinamida NC-10",
+    "marca": "Principia"
+   }
+  ],
+  "principia-ah2": [
+   {
+    "em": "2026-11-20",
+    "preco": 42.9,
+    "preco_em": "2026-11-02",
+    "loja": "shopee",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.principiaskin.com/serum-hidratante-2-acido-hialuronico-1-vitamina-b5.html",
+    "ativos": [
+     "ácido hialurônico 2%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Principia AH-2 Ácido Hialurônico",
+    "marca": "Principia"
+   }
+  ],
+  "principia-rn03": [
+   {
+    "em": "2026-11-20",
+    "preco": 52.9,
+    "preco_em": "2026-11-02",
+    "loja": "shopee",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/S%C3%A9rum-Principia-Retinol-3-Vitamina/dp/B09WB12BKW",
+    "ativos": [
+     "retinol 0,3%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Principia RN-0,3 Retinol",
+    "marca": "Principia"
+   }
+  ],
+  "ordinary-niacinamide": [
+   {
+    "em": "2026-11-20",
+    "preco": 39.9,
+    "preco_em": "2026-11-02",
+    "loja": "mercadolivre",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.mercadolivre.com.br/the-ordinary-niacinamide-10-zinc-1-niacinamida-30ml-tipo-de-pele-todas/p/MLB25108722",
+    "ativos": [
+     "niacinamida 10%",
+     "zinco 1%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "The Ordinary Niacinamide 10% + Zinc 1%",
+    "marca": "The Ordinary"
+   }
+  ],
+  "creamy-calming-cream": [
+   {
+    "em": "2026-11-20",
+    "preco": 55.9,
+    "preco_em": "2026-11-02",
+    "loja": "shopee",
+    "volume_ml": null,
+    "volume_g": 40,
+    "volume_fonte": "https://www.amazon.com.br/Skincare-Sensibilizada-Vermelhid%C3%A3o-Especialmente-Sens%C3%ADveis/dp/B0BXV6V3JC",
+    "ativos": [
+     "Creamy Calming Complex",
+     "Hypskin®",
+     "alfa-bisabolol",
+     "vitamina E"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Creamy Calming Cream",
+    "marca": "Creamy"
+   }
+  ],
+  "creamy-vitamina-c": [
+   {
+    "em": "2026-11-20",
+    "preco": 69.9,
+    "preco_em": "2026-11-02",
+    "loja": "shopee",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.mercadolivre.com.br/creamy-skincare-vitamina-c-30ml-serum-facial-vitamina-c-10-aumenta-firmeza-da-pele-previne-rugas-finas-clareador-de-manchas-todos-os-tipos-de-pele/p/MLB19742247",
+    "ativos": [
+     "vitamina C 10%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Creamy Vitamina C 10%",
+    "marca": "Creamy"
+   }
+  ],
+  "lrp-retinol-b3": [
+   {
+    "em": "2026-11-20",
+    "preco": 149.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Roche-Posay-Antirrugas-concentrado-acentuadas-Vitamina/dp/B07Z9Y4M3C",
+    "ativos": [
+     "niacinamida",
+     "retinol"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "La Roche-Posay Retinol B3",
+    "marca": "La Roche-Posay"
+   }
+  ],
+  "loreal-revitalift-noturno": [
+   {
+    "em": "2026-11-20",
+    "preco": 59.9,
+    "preco_em": "2026-11-02",
+    "loja": "mercadolivre",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.mercadolivre.com.br/serum-noturno-revitalift-retinol-30ml-loreal-paris/up/MLBU3684080327",
+    "ativos": [
+     "retinol"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "L'Oréal Revitalift Sérum Noturno Antissinais",
+    "marca": "L'Oréal Paris"
+   }
+  ],
+  "mantecorp-ivy-c-ferulic": [
+   {
+    "em": "2026-11-20",
+    "preco": 89.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/Mantecorp-Skincare-Rejuvenescedor-Facial-Ferulic/dp/B0B1RVQP3V",
+    "ativos": [
+     "vitamina C",
+     "ácido ferúlico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "Mantecorp Ivy C Ferulic Sérum",
+    "marca": "Mantecorp Skincare"
+   }
+  ],
+  "cerave-pm-locao": [
+   {
+    "em": "2026-11-20",
+    "preco": 62.9,
+    "preco_em": "2026-11-02",
+    "loja": "amazon",
+    "volume_ml": 52,
+    "volume_g": null,
+    "volume_fonte": "https://www.amazon.com.br/CeraVe-Hidratante-Hialur%C3%B4nico-Niacinamida-Textura/dp/B096XPFVLL",
+    "ativos": [
+     "ceramidas",
+     "niacinamida",
+     "ácido hialurônico"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "CeraVe PM Loção Facial",
+    "marca": "CeraVe"
+   }
+  ],
+  "ordinary-azelaic": [
+   {
+    "em": "2026-11-20",
+    "preco": 45.9,
+    "preco_em": "2026-11-02",
+    "loja": "mercadolivre",
+    "volume_ml": 30,
+    "volume_g": null,
+    "volume_fonte": "https://www.mercadolivre.com.br/creme-the-ordinary-azelaic-acid-suspension-10-30ml-melasma-acne-the-ordinary-18-anos/p/MLB24528120",
+    "ativos": [
+     "ácido azelaico 10%"
+    ],
+    "inci": null,
+    "inci_fonte": null,
+    "inci_em": null,
+    "nome": "The Ordinary Azelaic Acid 10%",
+    "marca": "The Ordinary"
+   }
+  ]
+ }
+}

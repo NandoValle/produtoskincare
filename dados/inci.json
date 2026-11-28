@@ -1,0 +1,11 @@
+{
+ "dataset": "Produto Skincare — dados abertos",
+ "arquivo": "inci",
+ "versao": "0.1.0",
+ "dados_ate": "2026-11-02",
+ "licenca": "CC BY 4.0",
+ "licenca_url": "https://creativecommons.org/licenses/by/4.0/deed.pt-br",
+ "fonte": "https://produtoskincare.com.br/dados-abertos/",
+ "linhas": 0,
+ "itens": []
+}

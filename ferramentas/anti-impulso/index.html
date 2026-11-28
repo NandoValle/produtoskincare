@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anti-impulso: você já tem? | Produto Skincare</title>
+<meta name="description" content="Seis perguntas rápidas antes de colocar mais um produto no carrinho: você já tem um igual em casa? Está no meio de um ativo novo? O preço foi conferido?">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/anti-impulso/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}}
+
+/* Anti-impulso */
+.ai-pergunta{border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);padding:16px 18px;margin:0 0 12px}
+.ai-pergunta legend{font-weight:600;padding:0}
+.ai-opcoes{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.ai-opcao{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:8px 10px;border-radius:10px;cursor:pointer}
+.ai-opcao:hover{background:var(--papel-2)}
+.ai-opcao input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--rosa)}
+.ai-veredito{border-radius:var(--raio);padding:18px 20px;margin:14px 0 0;border-left:4px solid var(--linha-2)}
+.ai-veredito.ok{background:var(--verde-claro);border-color:var(--verde)}
+.ai-veredito.espera{background:var(--papel);border-color:var(--linha-2)}
+.ai-veredito.nao{background:var(--rosa-claro);border-color:var(--rosa)}
+.ai-veredito h3{margin:0 0 6px;font-size:1.15rem}
+.ai-veredito p{margin:0 0 8px}
+.ai-veredito p:last-child{margin-bottom:0}
+.ai-motivos{margin:6px 0 0;padding-left:20px}
+.ai-motivos li{margin:4px 0}
+.ai-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;text-decoration:none}
+.ai-btn.tp-sec,.ai-btn.ai-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.ai-btn:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anti-impulso: você já tem?">
+<meta property="og:description" content="Seis perguntas rápidas antes de colocar mais um produto no carrinho — e um veredito honesto sobre comprar agora ou esperar.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/anti-impulso/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-anti-impulso.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Você já tem?">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/anti-impulso/#pagina", "url": "https://produtoskincare.com.br/ferramentas/anti-impulso/", "name": "Você já tem?", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Seis perguntas rápidas antes de colocar mais um produto no carrinho: você já tem um igual em casa? Está no meio de um ativo novo? O preço foi conferido?", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/anti-impulso/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/anti-impulso/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Anti-impulso: você já tem?", "item": "https://produtoskincare.com.br/ferramentas/anti-impulso/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+<meta name="author" content="Equipe Produto Skincare">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a data-secao="atual" href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Anti-impulso: você já tem?</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Você já tem?</h1>
+<p class="ig-lede">A pergunta que falta antes do "adicionar ao carrinho". Seis perguntas curtas separam a compra que resolve um problema da compra que só ocupa mais espaço na prateleira. Responda com honestidade: o veredito não julga você, julga o momento.</p>
+</div>
+
+<section aria-labelledby="ai-como">
+<h2 id="ai-como">Como funciona</h2>
+<div class="ig-caixa ig-resumo">
+<ul>
+<li><strong>Seis perguntas.</strong> Sobre o que já existe na sua prateleira, o que está em uso agora e por que a compra apareceu neste momento.</li>
+<li><strong>Um veredito.</strong> Comprar agora, esperar um pouco ou não comprar — com o motivo escrito, sem sermão.</li>
+<li><strong>Só no seu aparelho.</strong> As respostas não são enviadas nem guardadas depois que você fecha a página.</li>
+</ul>
+</div>
+</section>
+
+<section aria-labelledby="ai-form-t">
+<h2 id="ai-form-t">As seis perguntas</h2>
+<form id="ai-form">
+<fieldset class="ai-pergunta"><legend>1. Que passo é este produto?</legend>
+<div class="ai-opcoes">
+<label class="ai-opcao"><input type="radio" name="passo" value="limpeza"><span>Limpeza (sabonete, gel, óleo)</span></label>
+<label class="ai-opcao"><input type="radio" name="passo" value="ativo"><span>Tratamento (sérum, ativo, ácido, retinol)</span></label>
+<label class="ai-opcao"><input type="radio" name="passo" value="hidratante"><span>Hidratante</span></label>
+<label class="ai-opcao"><input type="radio" name="passo" value="protetor"><span>Protetor solar</span></label>
+<label class="ai-opcao"><input type="radio" name="passo" value="outro" checked><span>Outro (máscara, tônico, olhos…)</span></label>
+</div></fieldset>
+
+<fieldset class="ai-pergunta"><legend>2. Você já tem um produto do mesmo passo em casa?</legend>
+<div class="ai-opcoes">
+<label class="ai-opcao"><input type="radio" name="ja_tem" value="nao"><span>Não, não tenho nada deste passo</span></label>
+<label class="ai-opcao"><input type="radio" name="ja_tem" value="acabando" checked><span>Tenho, e está acabando</span></label>
+<label class="ai-opcao"><input type="radio" name="ja_tem" value="meio"><span>Tenho, e está pela metade</span></label>
+<label class="ai-opcao"><input type="radio" name="ja_tem" value="novo"><span>Tenho, e está lacrado, ainda não usei</span></label>
+</div></fieldset>
+
+<fieldset class="ai-pergunta"><legend>3. Você começou algum produto novo nas últimas 4 semanas?</legend>
+<div class="ai-opcoes">
+<label class="ai-opcao"><input type="radio" name="ativo_novo" value="nao" checked><span>Não</span></label>
+<label class="ai-opcao"><input type="radio" name="ativo_novo" value="sim"><span>Sim, estou adaptando a algo novo</span></label>
+</div></fieldset>
+
+<fieldset class="ai-pergunta"><legend>4. Por que quer comprar agora?</legend>
+<div class="ai-opcoes">
+<label class="ai-opcao"><input type="radio" name="motivo" value="acabou" checked><span>O atual acabou (ou vai acabar esta semana)</span></label>
+<label class="ai-opcao"><input type="radio" name="motivo" value="necessidade"><span>Uma necessidade identificada da minha pele (ex.: ressecamento novo)</span></label>
+<label class="ai-opcao"><input type="radio" name="motivo" value="curiosidade"><span>Quero testar / vi e me deu vontade</span></label>
+<label class="ai-opcao"><input type="radio" name="motivo" value="promocao"><span>Promoção, última unidade ou frete grátis "só hoje"</span></label>
+</div></fieldset>
+
+<fieldset class="ai-pergunta"><legend>5. O preço foi conferido (termômetro ou comparativo)?</legend>
+<div class="ai-opcoes">
+<label class="ai-opcao"><input type="radio" name="preco_ok" value="sim"><span>Sim, comparei ou vi o histórico</span></label>
+<label class="ai-opcao"><input type="radio" name="preco_ok" value="nao" checked><span>Ainda não conferi</span></label>
+</div></fieldset>
+
+<fieldset class="ai-pergunta"><legend>6. O produto que está aberto hoje está irritando ou não servindo para a sua pele?</legend>
+<div class="ai-opcoes">
+<label class="ai-opcao"><input type="radio" name="atual_ruim" value="nao" checked><span>Não, está tudo bem com ele</span></label>
+<label class="ai-opcao"><input type="radio" name="atual_ruim" value="sim"><span>Sim, ele está irritando / piorando</span></label>
+</div></fieldset>
+
+<p><button class="ai-btn" type="submit">Ver o veredito</button> <button class="ai-btn ai-sec" type="reset" id="ai-reset">Recomeçar</button></p>
+</form>
+
+<div class="ai-veredito espera" id="ai-veredito" role="status">
+<h3 id="ai-veredito-t">Responda e veja o veredito</h3>
+<p id="ai-veredito-p">O veredito aparece aqui, com os motivos — sem enrolação e sem culpa.</p>
+<ul class="ai-motivos" id="ai-motivos" hidden></ul>
+<p id="ai-veredito-acao" hidden></p>
+</div>
+</section>
+
+<section aria-labelledby="ai-regras">
+<h2 id="ai-regras">Como o veredito é decidido</h2>
+<div class="ig-rolagem"><table class="ig-tabela">
+<caption>As regras, em ordem de peso</caption>
+<thead><tr><th scope="col">Situação</th><th scope="col">Veredito</th></tr></thead>
+<tbody>
+<tr><td>O mesmo passo está parado, lacrado em casa</td><td><strong>Não compre</strong> — use primeiro o que já é seu</td></tr>
+<tr><td>O mesmo passo está aberto pela metade, e ele está bem na sua pele</td><td><strong>Espere</strong> — termine o que está aberto</td></tr>
+<tr><td>Está adaptando a um produto novo há menos de 4 semanas</td><td><strong>Espere</strong> — mudar duas coisas juntas impede de saber o que funcionou</td></tr>
+<tr><td>O gatilho é promoção, última unidade ou recompensa de rede social</td><td><strong>Não compre agora</strong> — o desconto só é desconto se a compra fosse acontecer sem ele</td></tr>
+<tr><td>O atual acabou (ou está irritando), e você conferiu o preço</td><td><strong>Pode comprar</strong> — a reposição tem motivo e preço checado</td></tr>
+</tbody>
+</table></div>
+<p class="ig-nota">Compre o que quer que esteja com desconto só quando o gatilho for a necessidade — o contrário é o caminho mais curto para uma prateleira cheia de frascos pela metade.</p>
+</section>
+
+<section aria-labelledby="ai-rel">
+<h2 id="ai-rel">Leia também</h2>
+<ul class="ig-rel">
+<li><a href="/ferramentas/termometro/">Termômetro de preço</a></li>
+<li><a href="/ferramentas/prateleira/">Minha prateleira</a></li>
+<li><a href="/ferramentas/despensa/">Modo despensa: o que você já tem</a></li>
+<li><a href="/ferramentas/expectativa/">Quando o resultado aparece</a></li>
+<li><a href="/ferramentas/matematica/">A matemática do frasco</a></li>
+</ul>
+</section>
+
+<section class="ig-fontes" aria-labelledby="ai-fontes">
+<h2 id="ai-fontes">Fontes e limites</h2>
+<ol>
+<li>As regras desta página são bom senso de consumo — a mesma leitura que um consultor de organização faria da sua prateleira —, não uma recomendação médica nem uma análise financeira. Este conteúdo é informativo e não substitui consulta com dermatologista.</li>
+<li>A coluna "o que já existe em casa" usa a mesma lógica do <a href="/ferramentas/prateleira/">Minha prateleira</a>: regra de uso do produto aberto antes de abrir outro do mesmo passo, para conseguir atribuir o resultado ao produto certo.</li>
+<li>As respostas ficam no seu aparelho, na memória da página: nada é enviado para o site, e nada sobrevive ao fechamento da aba.</li>
+</ol>
+</section>
+</article>
+<footer class="ig-foot">
+<p>Conteúdo informativo, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-24">24 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. A tabela "Como o veredito é decidido" desta página segue legível como texto — as perguntas e o veredito calculado precisam do script.</p></noscript></main>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  function valor(nome) {
+    var el = document.querySelector('input[name="' + nome + '"]:checked');
+    return el ? el.value : null;
+  }
+
+  function julgar() {
+    var passo = valor("passo");
+    var jaTem = valor("ja_tem");
+    var ativoNovo = valor("ativo_novo");
+    var motivo = valor("motivo");
+    var precoOk = valor("preco_ok");
+    var atualRuim = valor("atual_ruim");
+    var motivos = [];
+    var nivel = "ok"; // ok | espera | nao
+
+    if (jaTem === "novo") {
+      nivel = "nao";
+      motivos.push("Você já tem um produto deste passo lacrado em casa — abrir outro agora só cria duplicata e confusão de resultado.");
+    }
+    if (jaTem === "meio" && atualRuim !== "sim") {
+      if (nivel === "ok") nivel = "espera";
+      motivos.push("O mesmo passo está aberto pela metade e funcionando bem: termine antes de abrir outro, para dar tempo de julgar o efeito de cada um.");
+    }
+    if (ativoNovo === "sim" && passo === "ativo" && atualRuim !== "sim") {
+      if (nivel === "ok") nivel = "espera";
+      motivos.push("Você está adaptando a algo novo: trocar duas variáveis junto impede de saber o que causou qualquer mudança na pele.");
+    }
+    if (motivo === "promocao") {
+      if (nivel !== "nao") nivel = "nao";
+      motivos.push("O gatilho foi a promoção (ou a pressa dela). Desconto só é desconto quando a compra aconteceria mesmo sem ele.");
+    }
+    if (motivo === "curiosidade" && jaTem !== "nao" && jaTem !== "acabando") {
+      if (nivel === "ok") nivel = "espera";
+      motivos.push("Vontade de testar, com o passo já suprido em casa: guarde na lista de desejos e volte quando o atual terminar.");
+    }
+    if (precoOk !== "sim") {
+      if (nivel === "ok") nivel = "espera";
+      motivos.push("O preço ainda não foi conferido: dois minutos no termômetro separam uma compra justa de uma compra só porque apareceu.");
+    }
+    if (atualRuim === "sim") {
+      motivos.push("Se o atual está irritando, a troca tem motivo — pare o uso, dê um tempo na pele e, se a irritação persistir, procure um dermatologista.");
+    }
+    if (!motivos.length) {
+      motivos.push("A reposição tem motivo (o atual acabou ou vai acabar) e o preço foi conferido: este é o cenário de compra justa.");
+    }
+
+    var titulo, texto, classe = nivel, acao = "";
+    if (nivel === "ok") {
+      titulo = "Pode comprar";
+      texto = "Os sinais apontam para reposição com motivo, não para impulso.";
+    } else if (nivel === "espera") {
+      titulo = "Espere um pouco";
+      texto = "Não é um nunca — é um ainda não. As razões estão abaixo.";
+    } else {
+      titulo = "Não compre agora";
+      texto = "O momento não fecha a conta. As razões estão abaixo.";
+    }
+    if (nivel !== "ok") {
+      acao = 'Quando a hora chegar, confira o preço no <a href="/ferramentas/termometro/">termômetro</a> e o custo por dia na <a href="/ferramentas/matematica/">matemática do frasco</a>.';
+    } else {
+      acao = 'Antes de fechar o carrinho, um último olhar: <a href="/ferramentas/termometro/">termômetro de preço</a>.';
+    }
+
+    var box = $("ai-veredito");
+    box.className = "ai-veredito " + classe;
+    $("ai-veredito-t").textContent = titulo;
+    $("ai-veredito-p").textContent = texto;
+    var ul = $("ai-motivos");
+    ul.innerHTML = motivos.map(function (m) { return "<li>" + m + "</li>"; }).join("");
+    ul.hidden = false;
+    var p = $("ai-veredito-acao");
+    p.innerHTML = acao;
+    p.hidden = false;
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("anti-impulso-veredito"); } catch (e) {}
+  }
+
+  function iniciar() {
+    var form = $("ai-form");
+    if (form) form.addEventListener("submit", function (e) { e.preventDefault(); julgar(); });
+    var reset = $("ai-reset");
+    if (reset) reset.addEventListener("click", function () {
+      var box = $("ai-veredito");
+      box.className = "ai-veredito espera";
+      $("ai-veredito-t").textContent = "Responda e veja o veredito";
+      $("ai-veredito-p").textContent = "O veredito aparece aqui, com os motivos — sem enrolação e sem culpa.";
+      $("ai-motivos").hidden = true;
+      $("ai-veredito-acao").hidden = true;
+    });
+    try { if (window.PSAnalytics) window.PSAnalytics.evento("ferramentas-anti-impulso"); } catch (e) {}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+})();
+</script>
+</body>
+</html>

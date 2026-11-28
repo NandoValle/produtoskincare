@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rever minha rotina: menos passos, menos gasto | Produto Skincare</title>
+<meta name="description" content="Sua rotina de skincare ficou cara, tem passos demais ou um produto incomodou a pele? Veja o que tirar, o que manter e quando procurar um dermatologista.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://produtoskincare.com.br/ferramentas/rever-rotina/">
+<link rel="stylesheet" href="/premium.css">
+<style>
+/* Usa os tokens de cor e fonte do premium.css (claro e escuro). */
+.ig{max-width:720px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:28px}
+.ig.ig-larga{max-width:920px}
+.ig h1{font-size:clamp(2rem,7vw,2.9rem);margin:0;text-wrap:balance}
+.ig h2{font-size:clamp(1.45rem,4.6vw,1.85rem);margin:0 0 12px}
+.ig h3{font-size:1.2rem;margin:18px 0 6px}
+.ig p{margin:0 0 12px}
+.ig ul,.ig ol{margin:0 0 12px;padding-left:22px}
+.ig li{margin:6px 0}
+.ig article{display:flex;flex-direction:column;gap:30px;min-width:0}
+.ig section{min-width:0}
+.ig-top{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
+.ig-marca{font-family:var(--fonte-display);font-weight:500;font-size:1.1rem;color:var(--tinta);text-decoration:none;align-self:flex-start}
+.ig-marca span{color:var(--rosa)}
+.ig-trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:.88rem;color:var(--suave)}
+.ig-trilha li{margin:0}
+.ig-trilha li+li::before{content:"\203A";margin-right:8px}
+.ig-trilha a{color:var(--suave)}
+.ig-trilha [aria-current]{color:var(--tinta)}
+.ig-cab{display:flex;flex-direction:column;gap:10px}
+.ig-meta{font-size:.88rem;color:var(--suave);margin:0}
+.ig-lede{font-size:1.07rem;color:var(--tinta-2)}
+.ig-caixa{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 18px}
+.ig-caixa> :last-child{margin-bottom:0}
+.ig-resumo ul{margin:0;padding-left:20px}
+.ig-rotulo{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700;margin:0 0 8px}
+.ig-evid{border-left:4px solid var(--verde)}
+.ig-evid.moderada{border-left-color:var(--linha-2)}
+.ig-evid.emergente{border-left-color:var(--rosa)}
+.ig-selo{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--verde-claro);color:var(--verde);margin:0 0 10px}
+.ig-selo.moderada{background:var(--papel-2);color:var(--tinta)}
+.ig-selo.emergente{background:var(--rosa-claro);color:var(--rosa)}
+.ig-nota{font-size:.88rem;color:var(--suave)}
+.ig-alerta{border-left:4px solid var(--rosa)}
+.ig-rel{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ig-rel li{margin:0}
+.ig-rel a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--linha-2);border-radius:999px;text-decoration:none;font-size:.92rem}
+.ig-rel a:hover{border-color:var(--rosa)}
+.ig-fontes ol{font-size:.92rem;padding-left:20px}
+.ig-fontes li{overflow-wrap:anywhere}
+.ig-fontes cite{font-style:normal}
+.ig-grade{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:12px}
+.ig-grade li{margin:0}
+.ig-card{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);color:var(--tinta);text-decoration:none}
+.ig-card:hover{border-color:var(--rosa)}
+.ig-card h2{font-size:1.35rem;margin:0}
+.ig-card p{color:var(--suave);font-size:.95rem;margin:0}
+.ig-card .ig-selo{align-self:flex-start;margin:4px 0 0}
+.ig-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ig-tabela caption{text-align:left;font-weight:600;padding:0 0 8px}
+.ig-tabela th,.ig-tabela td{padding:10px 12px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ig-tabela th{background:var(--papel-2);color:var(--tinta);font-weight:600}
+.pr-lista{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+.pr-lista li{margin:0;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio-md);background:var(--papel)}
+.pr-passo{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.pr-preco{display:block;font-size:.92rem;color:var(--tinta-2)}
+.pr-total{font-weight:700}
+.ig-foot{display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--suave);border-top:1px solid var(--linha);padding-top:18px}
+.ig-foot p{margin:0}
+@media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
+.pin-salvar{margin:-14px 0 24px;font-size:.88rem}.pin-salvar a{color:var(--suave)}.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.video-wrap{margin:28px 0}.video-wrap h2{margin-top:0}.video-wrap video{display:block;margin:0 auto;width:auto;max-width:100%;max-height:70vh;height:auto;aspect-ratio:9/16;border-radius:var(--raio);background:#faf7f2;border:1px solid var(--linha)}.video-wrap details{margin-top:14px}.video-wrap summary{cursor:pointer;color:var(--rosa);font-weight:600}.video-wrap details p{margin:.6em 0}
+
+.ft-rotulo{display:block;font-weight:600;margin:14px 0 6px}
+.ft-campo{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
+textarea.ft-campo{resize:vertical;min-height:96px}
+.ft-campo:focus{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
+.ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
+.ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn[hidden],.ex-form[hidden]{display:none}
+.ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
+.ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.ft-cards-acoes{display:flex;flex-wrap:wrap;gap:0 12px;align-items:center}
+.ft-outro{margin-top:14px}.ft-outro summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.ft-periodo{border:0;padding:0;margin:0;display:flex;gap:18px;flex-wrap:wrap}.ft-periodo legend{padding:0}
+.ft-periodo label,.ft-check{display:flex;gap:8px;align-items:center;min-height:44px;cursor:pointer}
+.ft-sugestoes{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
+.ft-sugestoes li{margin:0}
+.ft-sugestao{font:inherit;width:100%;text-align:left;display:flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel);color:var(--tinta);cursor:pointer}
+.ft-sugestao span{font-size:.86rem;color:var(--suave)}
+.ft-sugestao:hover{border-color:var(--rosa)}
+.ft-itens{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.ft-item{margin:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding:12px 14px;border:1px solid var(--linha);border-radius:12px;background:var(--papel)}
+.ft-item>div:first-child{display:flex;flex-direction:column;min-width:0;flex:1 1 240px}
+.ft-item .ig-nota{margin:0}
+.ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
+.ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-loja{border-color:var(--rosa);color:var(--rosa);font-weight:600}
+.ft-compra{display:block;margin-top:8px}
+.ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
+.ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
+.ft-ok{background:var(--verde-claro);border-color:var(--verde)}
+.ft-nao{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-horarios{background:#fff4dd;border-color:#b7791f;color:#5c3d00}
+.ft-sem{background:var(--papel);border:1.5px dashed var(--linha-2,var(--linha));border-left:4px solid #6b6b6b}
+.ft-info{background:var(--papel);border-color:var(--linha-2,var(--linha))}
+.ft-ok ul,.ft-nao ul,.ft-info ul{margin:6px 0 0}
+.ft-sub{display:block;font-size:.88rem;opacity:.85;margin:4px 0}
+.ft-tabela{width:100%;border-collapse:collapse;font-size:.94rem}
+.ft-tabela th,.ft-tabela td{padding:9px 10px;border-bottom:1px solid var(--linha);text-align:left;vertical-align:top}
+.ft-tabela tr.ft-agora{background:var(--rosa-claro)}
+.ft-rolagem{overflow-x:auto}
+.ft-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;list-style:none;padding:0;margin:10px 0}
+.ft-grade li{margin:0}
+.ft-foto{font:inherit;width:100%;padding:0;border:2px solid transparent;border-radius:12px;background:var(--papel);overflow:hidden;cursor:pointer;color:var(--tinta);text-align:left}
+.ft-foto[aria-pressed="true"]{border-color:var(--rosa)}
+.ft-foto img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.ft-foto span{display:block;padding:6px 8px;font-size:.84rem}
+.ft-camera{position:relative;max-width:420px;border-radius:16px;overflow:hidden;background:#111;aspect-ratio:3/4}
+.ft-camera video,.ft-camera img.ft-fantasma{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.ft-camera img.ft-fantasma{opacity:.35;pointer-events:none}
+.ft-oval{position:absolute;inset:12% 18%;border:2px dashed rgba(255,255,255,.75);border-radius:50%;pointer-events:none}
+.ft-lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ft-lado figure{margin:0}.ft-lado img{width:100%;border-radius:12px;display:block}
+.ft-lado figcaption{font-size:.88rem;color:var(--suave);margin-top:4px}
+.ft-cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.ft-cards li{margin:0}
+.ft-cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 18px;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel);text-decoration:none;color:var(--tinta)}
+.ft-cards a:hover{border-color:var(--rosa)}
+.ft-cards strong{font-family:var(--fonte-display);font-size:1.15rem;font-weight:500}
+.ft-cards span{font-size:.92rem;color:var(--suave)}
+@media(prefers-color-scheme:dark){.ft-horarios{color:#5c3d00}}
+.ft-regras{margin:8px 0 0;padding-left:1.1em}
+.ft-regras li{margin:.45em 0}
+.ft-banner{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid;font-weight:600}
+.ft-banner.base{background:var(--papel);border-color:var(--linha-2,var(--linha));border-left-color:#6b6b6b}
+.ft-banner.inter{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-banner.fim{background:var(--verde-claro);border-color:var(--verde)}
+.ft-escalas{margin:10px 0 0;display:flex;flex-direction:column;gap:12px}
+.ft-escala-item{margin:0}
+.ft-escala-item .rot{margin:0 0 4px;font-weight:600}
+.ft-escala-item .rot small{display:block;font-weight:400;font-size:.84rem;color:var(--suave)}
+.ft-escala{display:flex;gap:6px}
+.ft-escala button{flex:1;min-height:40px;border:1px solid var(--linha);border-radius:9px;background:var(--papel);color:var(--suave);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
+.ft-escala button[aria-checked=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.ft-escala button:hover{border-color:var(--rosa)}
+.rr-escolha ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.rr-escolha li{margin:0}
+.rr-escolha a{display:flex;flex-direction:column;gap:2px;padding:14px 16px;min-height:48px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--fundo);color:var(--tinta);text-decoration:none}
+.rr-escolha a:hover{border-color:var(--rosa)}
+.rr-escolha a strong{text-decoration:underline;text-underline-offset:3px}
+.rr-escolha a span{font-size:.92rem;color:var(--suave)}
+.ig section[id]:focus{outline:none}
+.rr-form{display:flex;flex-direction:column;gap:18px}
+.rr-form fieldset{border:0;padding:0;margin:0;min-width:0}
+.rr-form legend{padding:0;font-weight:700;margin-bottom:4px}
+.rr-form .ft-check{align-items:flex-start;padding:10px 0;line-height:1.45}
+.rr-form .ft-check input{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.rr-form .ft-btn{align-self:flex-start;margin:0}
+.rr-saida:empty{display:none}
+.rr-saida{display:flex;flex-direction:column;gap:4px}
+.rr-saida:focus{outline:3px solid var(--rosa);outline-offset:4px;border-radius:12px}
+.rr-saida h3{margin:0 0 6px}
+.rr-saida ul,.rr-lista{margin:6px 0 0;padding-left:1.2em}
+.rr-saida li,.rr-lista li{margin:.5em 0}
+.rr-conta{font-weight:700}
+.rr-saida li strong,.rr-saida p strong{display:inline;margin:0}
+.rr-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rr-acoes .ft-btn{margin:0}
+
+</style>
+<!-- seo:inicio -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rever minha rotina: menos passos, menos gasto">
+<meta property="og:description" content="Sua rotina de skincare ficou cara, tem passos demais ou um produto incomodou a pele? Veja o que tirar, o que manter e quando procurar um dermatologista.">
+<meta property="og:url" content="https://produtoskincare.com.br/ferramentas/rever-rotina/">
+<meta property="og:site_name" content="Produto Skincare">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://produtoskincare.com.br/img/og/ferramentas-rever-rotina.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rever minha rotina">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/rever-rotina/#pagina", "url": "https://produtoskincare.com.br/ferramentas/rever-rotina/", "name": "Rever minha rotina", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Sua rotina de skincare ficou cara, tem passos demais ou um produto incomodou a pele? Veja o que tirar, o que manter e quando procurar um dermatologista.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/rever-rotina/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/rever-rotina/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Rever minha rotina", "item": "https://produtoskincare.com.br/ferramentas/rever-rotina/"}]}]}</script>
+<script src="/analytics.js" defer></script>
+<script src="/canais.js" defer></script>
+<!-- seo:fim -->
+<meta name="author" content="Equipe Produto Skincare">
+<!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
+<meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
+<script src="/webmcp.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<!-- menu:inicio -->
+<div class="ps-shell ps-topo">
+<header class="ps-header">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a data-secao="atual" href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
+</header>
+</div>
+<script src="/premium.js" defer></script>
+<!-- menu:fim -->
+<main class="ig" id="conteudo">
+<header class="ig-top">
+<a class="ig-marca" href="/">Produto <span>Skincare</span></a>
+<nav class="ig-trilha" aria-label="Trilha">
+<ol>
+<li><a href="/">Início</a></li>
+<li><a href="/ferramentas/">Ferramentas</a></li>
+<li aria-current="page">Rever minha rotina</li>
+</ol>
+</nav>
+</header>
+<article>
+<div class="ig-cab">
+<h1>Rever minha rotina</h1>
+<p class="ig-lede">Para quem já tem uma rotina e ela não está dando certo: ficou cara, tem passos demais ou um produto incomodou a pele. Aqui a conversa é sobre o que tirar e o que manter, não sobre o que comprar.</p>
+<p class="ig-meta">Nada do que você marcar sai deste aparelho. Esta página não faz diagnóstico.</p>
+</div>
+
+<nav class="ig-caixa rr-escolha" aria-labelledby="rr-escolha-titulo">
+<h2 id="rr-escolha-titulo">O que está acontecendo?</h2>
+<ul>
+<li><a href="#passos"><strong>Não consigo manter tantos passos</strong><span>Reduzir ao que precisa ficar todo dia.</span></a></li>
+<li><a href="#cara"><strong>Minha rotina ficou cara</strong><span>Onde cortar primeiro e onde não cortar.</span></a></li>
+<li><a href="#desconforto"><strong>Senti desconforto com um produto</strong><span>O que fazer agora e quando procurar um médico.</span></a></li>
+</ul>
+</nav>
+
+<section id="passos" aria-labelledby="rr-passos-titulo" tabindex="-1">
+<h2 id="rr-passos-titulo">Não consigo manter tantos passos</h2>
+<p>Rotina que fica na prateleira não faz nada pela pele. A que você consegue repetir todo dia vale mais que a completa feita de vez em quando. O básico tem três passos: limpar, hidratar e proteger do sol.</p>
+
+<form class="ig-caixa rr-form" id="rr-form-passos" hidden>
+<fieldset>
+<legend>O que você usa hoje?</legend>
+<p class="ig-nota">Marque tudo o que está na sua rotina, mesmo o que você anda pulando.</p>
+<div data-rr-itens="passos"></div>
+</fieldset>
+<fieldset>
+<legend>Quando você mais pula a rotina?</legend>
+<label class="ft-check"><input type="radio" name="rr-quando" value="manha"> De manhã</label>
+<label class="ft-check"><input type="radio" name="rr-quando" value="noite"> À noite</label>
+<label class="ft-check"><input type="radio" name="rr-quando" value="ambos" checked> Nos dois, ou não sei dizer</label>
+</fieldset>
+<button class="ft-btn" type="submit">Ver minha rotina mínima</button>
+</form>
+<div id="rr-saida-passos" class="rr-saida" tabindex="-1"></div>
+
+<div class="ig-caixa">
+<h3>O caminho, em resumo</h3>
+<ol class="rr-lista">
+<li><strong>Fica todo dia:</strong> limpeza, hidratante e, de manhã, protetor solar. O que um dermatologista receitou também fica, do jeito que ele orientou.</li>
+<li><strong>Espera na prateleira por duas semanas:</strong> tônico, essência, bruma, máscara, esfoliante, creme para os olhos e séruns além de um. Guardar não é jogar fora.</li>
+<li><strong>No máximo um tratamento:</strong> se você usa um sérum ou um ativo, fique só com o do objetivo que mais importa agora, e só se não for ele que faz você desistir.</li>
+<li><strong>Depois das duas semanas:</strong> se sentir falta de alguma coisa, ela volta sozinha, uma de cada vez, com umas duas semanas até a próxima. O que não fez falta pode continuar de fora.</li>
+</ol>
+<p class="ig-nota">Para marcar os dias feitos, use o <a href="/ferramentas/rotina/">tracker de rotina</a>. Para ver o que já tem em casa antes de qualquer compra, o <a href="/ferramentas/despensa/">modo despensa</a>.</p>
+</div>
+</section>
+
+<section id="cara" aria-labelledby="rr-cara-titulo" tabindex="-1">
+<h2 id="rr-cara-titulo">Minha rotina ficou cara</h2>
+<p>Rotina cara quase sempre é rotina com produto demais, não com produto errado. Antes de trocar um frasco por outro mais barato, vale ver o que dá para parar de repor.</p>
+
+<form class="ig-caixa rr-form" id="rr-form-cara" hidden>
+<fieldset>
+<legend>O que mais pesa?</legend>
+<label class="ft-check"><input type="radio" name="rr-peso" value="muitos" checked> São muitos produtos ao mesmo tempo</label>
+<label class="ft-check"><input type="radio" name="rr-peso" value="um-caro"> Um produto só custa caro demais</label>
+<label class="ft-check"><input type="radio" name="rr-peso" value="acaba"> Os produtos acabam rápido</label>
+<label class="ft-check"><input type="radio" name="rr-peso" value="impulso"> Compro em promoção e acumulo</label>
+</fieldset>
+<fieldset>
+<legend>O que você usa hoje?</legend>
+<p class="ig-nota">Marque tudo o que você compra ou repõe.</p>
+<div data-rr-itens="cara"></div>
+</fieldset>
+<button class="ft-btn" type="submit">Ver onde cortar</button>
+</form>
+<div id="rr-saida-cara" class="rr-saida" tabindex="-1"></div>
+
+<div class="ig-caixa">
+<h3>O caminho, em resumo</h3>
+<ol class="rr-lista">
+<li><strong>Termine o que está aberto.</strong> Um entra, um sai: não abra outro produto do mesmo passo antes de acabar o atual.</li>
+<li><strong>Corte primeiro os extras:</strong> tônico, essência, bruma, máscara, esfoliante e creme para os olhos. Quando acabarem, não reponha e veja se fazem falta.</li>
+<li><strong>Depois, o que se repete:</strong> dois séruns para o mesmo objetivo viram um.</li>
+<li><strong>Onde não cortar:</strong> a quantidade de protetor solar (com menos produto, a proteção fica abaixo da do rótulo) e o que um dermatologista receitou.</li>
+<li><strong>Só então, o preço do frasco:</strong> a <a href="/ferramentas/matematica/">matemática do frasco</a> mostra o custo por dia, que é o número que importa.</li>
+</ol>
+<p class="ig-nota">Quando um produto que fica acabar, o <a href="/ferramentas/equivalente/">equivalente mais barato</a> procura no catálogo os mesmos ativos por outro preço. Antes de uma promoção, as seis perguntas do <a href="/ferramentas/anti-impulso/">anti-impulso</a>.</p>
+</div>
+</section>
+
+<section id="desconforto" aria-labelledby="rr-desc-titulo" tabindex="-1">
+<h2 id="rr-desc-titulo">Senti desconforto com um produto</h2>
+<p>Um site não consegue ver a sua pele nem dizer o que ela tem. O que dá para fazer aqui é organizar os próximos passos com cautela. Na dúvida, o caminho é sempre parar o produto e procurar um médico.</p>
+
+<div class="ft-nao" role="note">
+<strong>Procure atendimento médico agora, sem esperar, se houver:</strong>
+<ul>
+<li>inchaço no rosto, nos lábios, na língua ou nas pálpebras;</li>
+<li>falta de ar, chiado, tontura ou sensação de garganta fechando (ligue 192, SAMU);</li>
+<li>bolhas, feridas, dor forte ou pele que solta;</li>
+<li>produto que entrou nos olhos e a ardência ou a visão embaçada não passam depois de lavar com água;</li>
+<li>vermelhidão ou coceira que se espalham para fora de onde o produto foi passado.</li>
+</ul>
+</div>
+
+<form class="ig-caixa rr-form" id="rr-form-desc" hidden>
+<fieldset>
+<legend>O que você sentiu?</legend>
+<p class="ig-nota">Marque tudo o que aconteceu.</p>
+<label class="ft-check"><input type="checkbox" name="rr-sinal" value="ardor"> Ardência ou queimação</label>
+<label class="ft-check"><input type="checkbox" name="rr-sinal" value="vermelho"> Vermelhidão</label>
+<label class="ft-check"><input type="checkbox" name="rr-sinal" value="coceira"> Coceira</label>
+<label class="ft-check"><input type="checkbox" name="rr-sinal" value="seca"> Ressecamento ou descamação</label>
+<label class="ft-check"><input type="checkbox" name="rr-sinal" value="espinhas"> Espinhas ou bolinhas que não tinha</label>
+<label class="ft-check"><input type="checkbox" name="rr-sinal" value="grave"> Algum item da lista de atendimento médico acima</label>
+</fieldset>
+<fieldset>
+<legend>Há quanto tempo?</legend>
+<label class="ft-check"><input type="radio" name="rr-tempo" value="hoje" checked> Começou hoje ou ontem</label>
+<label class="ft-check"><input type="radio" name="rr-tempo" value="dias"> Faz alguns dias</label>
+<label class="ft-check"><input type="radio" name="rr-tempo" value="semanas"> Faz duas semanas ou mais</label>
+</fieldset>
+<fieldset>
+<legend>Você começou algum produto novo há pouco tempo?</legend>
+<label class="ft-check"><input type="radio" name="rr-novo" value="um" checked> Sim, um produto</label>
+<label class="ft-check"><input type="radio" name="rr-novo" value="varios"> Sim, mais de um ao mesmo tempo</label>
+<label class="ft-check"><input type="radio" name="rr-novo" value="nenhum"> Não mudei nada</label>
+</fieldset>
+<button class="ft-btn" type="submit">Ver o que fazer agora</button>
+</form>
+<div id="rr-saida-desc" class="rr-saida" tabindex="-1"></div>
+
+<div class="ig-caixa">
+<h3>O caminho, em resumo</h3>
+<ol class="rr-lista">
+<li><strong>Pare o produto suspeito.</strong> Não insista para "ver se a pele acostuma". Daqui não dá para saber se é adaptação a um ativo ou reação: trate como reação.</li>
+<li><strong>Volte ao básico</strong> com o que você já usava sem problema: limpeza suave, hidratante simples e protetor solar. Sem ácidos, esfoliantes, retinol ou vitamina C até a pele ficar confortável de novo.</li>
+<li><strong>Não teste outro produto novo agora.</strong> Trocar um pelo outro no meio do desconforto só dificulta saber o que causou.</li>
+<li><strong>Guarde a embalagem</strong> e anote o nome, o lote, a data em que começou a usar e o que sentiu. Isso ajuda na consulta.</li>
+<li><strong>Procure um dermatologista</strong> se não melhorar em poucos dias depois de parar, se piorar, ou se o desconforto já dura duas semanas ou mais.</li>
+</ol>
+<p class="ig-nota">Reação a cosmético pode ser comunicada à Anvisa e ao fabricante: o post sobre <a href="/blog/anvisa-cosmetovigilancia-notificacoes-130-2026/">cosmetovigilância</a> explica como. Para achar um médico, a <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca da Sociedade Brasileira de Dermatologia</a>.</p>
+</div>
+</section>
+
+<noscript><p class="ig-nota">Sem JavaScript, as perguntas não aparecem, e nada se perde: o resumo de cada caminho acima traz a mesma orientação.</p></noscript>
+</article>
+
+<script>
+(function () {
+  "use strict";
+  var ITENS = [
+    { id: "limpeza", nome: "Sabonete ou gel de limpeza", tipo: "base" },
+    { id: "hidratante", nome: "Hidratante", tipo: "base" },
+    { id: "protetor", nome: "Protetor solar", tipo: "base" },
+    { id: "receita", nome: "Algo receitado por dermatologista", tipo: "receita" },
+    { id: "serum", nome: "Um sérum ou tratamento (vitamina C, niacinamida, retinol, ácido)", tipo: "tratamento" },
+    { id: "serum2", nome: "Dois ou mais séruns ou tratamentos", tipo: "tratamento" },
+    { id: "demaquilante", nome: "Demaquilante ou óleo de limpeza", tipo: "extra", curto: "demaquilante ou óleo de limpeza" },
+    { id: "tonico", nome: "Tônico, essência ou bruma", tipo: "extra", curto: "tônico, essência ou bruma" },
+    { id: "esfoliante", nome: "Esfoliante ou máscara", tipo: "extra", curto: "esfoliante ou máscara" },
+    { id: "olhos", nome: "Creme para a área dos olhos", tipo: "extra", curto: "creme para a área dos olhos" }
+  ];
+  var BASE = { limpeza: "limpeza", hidratante: "hidratante", protetor: "protetor solar" };
+
+  function $(id) { return document.getElementById(id); }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function contar(nome) { try { if (window.PSAnalytics) window.PSAnalytics.evento(nome); } catch (e) {} }
+  function lista(itens) { return "<ul>" + itens.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>"; }
+  function juntar(a) { return a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " e " + a[a.length - 1]; }
+
+  [].forEach.call(document.querySelectorAll("[data-rr-itens]"), function (alvo) {
+    var grupo = alvo.getAttribute("data-rr-itens");
+    alvo.innerHTML = ITENS.map(function (i) {
+      return '<label class="ft-check"><input type="checkbox" name="rr-' + grupo + '" value="' + i.id + '"> ' + esc(i.nome) + "</label>";
+    }).join("");
+  });
+
+  function marcados(form, nome) {
+    return [].map.call(form.querySelectorAll('input[name="' + nome + '"]:checked'), function (i) { return i.value; });
+  }
+  function radio(form, nome) {
+    var r = form.querySelector('input[name="' + nome + '"]:checked');
+    return r ? r.value : "";
+  }
+  function separar(ids) {
+    var tem = function (id) { return ids.indexOf(id) >= 0; };
+    return {
+      tem: tem,
+      base: Object.keys(BASE).filter(tem),
+      falta: Object.keys(BASE).filter(function (id) { return !tem(id); }),
+      extras: ITENS.filter(function (i) { return i.tipo === "extra" && tem(i.id); }),
+      varios: tem("serum2"),
+      um: tem("serum") && !tem("serum2"),
+      receita: tem("receita")
+    };
+  }
+  // Conta frascos: "dois ou mais" entra como 2, o mínimo que a resposta garante.
+  function total(s) { return s.base.length + s.extras.length + (s.varios ? 2 : s.um ? 1 : 0) + (s.receita ? 1 : 0); }
+
+  function mostrar(saida, html, evento) {
+    saida.innerHTML = html;
+    saida.focus();
+    saida.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    contar(evento);
+  }
+  function semMarcar(saida) {
+    saida.innerHTML = '<div class="ft-sem" role="alert"><strong>Marque pelo menos um item.</strong>Sem saber o que você usa, vale o resumo logo abaixo.</div>';
+    saida.focus();
+  }
+  function faltaTxt(s) {
+    if (!s.falta.length) return "";
+    var nomes = s.falta.map(function (id) { return BASE[id]; });
+    return '<div class="ft-info"><strong>Você não marcou: ' + esc(juntar(nomes)) + ".</strong>" +
+      (s.falta.length === 1 ? "É o único" : "São os") + " dos três passos básicos que " + (s.falta.length === 1 ? "falta" : "faltam") +
+      ". Não precisa resolver hoje nem comprar nada agora: o guia de <a href=\"/rotina-de-skincare/\">rotina passo a passo</a> explica o papel de cada um.</div>";
+  }
+  function receitaTxt(s) {
+    return s.receita ? '<div class="ft-horarios"><strong>O que foi receitado não entra no corte.</strong>Continue como o dermatologista orientou. Se é esse o passo difícil de manter ou de pagar, conte isso na consulta: costuma haver alternativa.</div>' : "";
+  }
+
+  var fPassos = $("rr-form-passos"), fCara = $("rr-form-cara"), fDesc = $("rr-form-desc");
+  [fPassos, fCara, fDesc].forEach(function (f) { f.hidden = false; });
+
+  fPassos.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var saida = $("rr-saida-passos"), ids = marcados(fPassos, "rr-passos");
+    if (!ids.length) return semMarcar(saida);
+    var s = separar(ids), quando = radio(fPassos, "rr-quando");
+    var manha = [], noite = [];
+    if (s.tem("limpeza")) { manha.push("limpeza"); noite.push("limpeza"); }
+    if (s.tem("hidratante")) { manha.push("hidratante"); noite.push("hidratante"); }
+    if (s.tem("protetor")) manha.push("protetor solar");
+    var fica = [];
+    if (manha.length) fica.push("<strong>De manhã:</strong> " + esc(juntar(manha)) + ".");
+    if (noite.length) fica.push("<strong>À noite:</strong> " + esc(juntar(noite)) + ".");
+    if (s.receita) fica.push("<strong>O que foi receitado,</strong> no horário que o dermatologista orientou.");
+    var espera = s.extras.map(function (i) { return esc(i.curto.charAt(0).toUpperCase() + i.curto.slice(1)) + "."; });
+    if (s.varios) espera.push("Os séruns e tratamentos além de um. Fique só com o do objetivo que mais importa agora; os outros esperam.");
+    var antes = total(s), depois = s.base.length + (s.receita ? 1 : 0) + (s.varios || s.um ? 1 : 0);
+    var html = '<div class="ft-ok"><h3>Sua rotina mínima pelas próximas duas semanas</h3>' +
+      (fica.length ? lista(fica) : "<p>Você não marcou nenhum dos três passos básicos.</p>") +
+      (s.varios || s.um ? "<p><strong>Um tratamento pode ficar,</strong> à noite, se não for ele que faz você desistir. Se for, ele também espera.</p>" : "") +
+      (antes > depois ? '<p class="rr-conta">De ' + antes + " produtos para " + depois + ".</p>" : "") + "</div>";
+    if (espera.length) {
+      html += '<div class="ft-info"><h3>Espera na prateleira</h3>' + lista(espera) +
+        "<p>Guardar não é jogar fora. Em duas semanas, o que fizer falta volta, um de cada vez.</p></div>";
+    } else if (antes <= depois) {
+      html += '<div class="ft-info"><strong>Sua rotina já está no mínimo.</strong>Se mesmo assim está difícil manter, o problema pode ser o horário, não o número de passos.</div>';
+    }
+    html += receitaTxt(s) + faltaTxt(s);
+    var dica = {
+      manha: "De manhã, deixe os produtos ao lado da escova de dentes e faça a rotina logo depois de escovar. São dois ou três produtos, na ordem: limpeza, hidratante, protetor.",
+      noite: "À noite, não deixe para a hora de dormir: faça ao chegar em casa ou depois do banho. Em noite de cansaço, lavar o rosto e hidratar já é a rotina inteira.",
+      ambos: "Amarre a rotina a algo que você já faz todo dia, como escovar os dentes. Em dia ruim, lavar o rosto e hidratar já conta."
+    }[quando];
+    html += '<div class="ft-info"><strong>Para não pular</strong>' + esc(dica) + "</div>";
+    mostrar(saida, html, "rever-rotina/passos");
+  });
+
+  fCara.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var saida = $("rr-saida-cara"), ids = marcados(fCara, "rr-cara");
+    if (!ids.length) return semMarcar(saida);
+    var s = separar(ids), peso = radio(fCara, "rr-peso");
+    var cortar = s.extras.map(function (i) { return esc(i.curto.charAt(0).toUpperCase() + i.curto.slice(1)) + ": quando acabar, não reponha e veja se faz falta."; });
+    if (s.varios) cortar.push("Séruns e tratamentos além de um: termine os que estão abertos e reponha só o do objetivo que mais importa.");
+    var html = '<div class="ft-ok"><h3>Onde cortar primeiro</h3>' +
+      (cortar.length ? lista(cortar) + '<p class="rr-conta">' + (s.extras.length + (s.varios ? 1 : 0)) + (s.extras.length + (s.varios ? 1 : 0) === 1 ? " item" : " itens") + " a menos para repor.</p>"
+        : "<p>Você não marcou nenhum extra: sua rotina já está perto do básico. O que resta rever é o preço de cada frasco, não a quantidade de produtos.</p>") +
+      "</div>";
+    var manter = [];
+    if (s.tem("protetor")) manter.push("<strong>Protetor solar:</strong> dá para trocar por um mais barato, mas não para usar menos. Com menos produto, a proteção fica abaixo da que o rótulo informa.");
+    if (s.receita) manter.push("<strong>O que foi receitado:</strong> se o preço pesa, peça uma alternativa na consulta em vez de parar por conta própria.");
+    if (manter.length) html += '<div class="ft-horarios"><h3>Onde não cortar</h3>' + lista(manter) + "</div>";
+    var especifico = {
+      muitos: "<strong>Muitos produtos ao mesmo tempo</strong>Termine o que está aberto antes de abrir outro do mesmo passo. O <a href=\"/ferramentas/despensa/\">modo despensa</a> monta a rotina só com o que você já tem em casa.",
+      "um-caro": "<strong>Um produto caro</strong>Antes de decidir, veja o custo por dia na <a href=\"/ferramentas/matematica/\">matemática do frasco</a>: frasco caro que dura quatro meses pode sair mais barato que um que dura um. Quando ele acabar, o <a href=\"/ferramentas/equivalente/\">equivalente mais barato</a> procura os mesmos ativos por outro preço.",
+      acaba: "<strong>Produtos que acabam rápido</strong>Anote o dia em que abrir cada frasco para saber quanto ele dura de verdade: o <a href=\"/ferramentas/reposicao/\">lembrete de reposição</a> faz essa conta. Limpeza e hidratante costumam render mais com pouca quantidade; o protetor solar é a exceção, e nele não se economiza.",
+      impulso: "<strong>Compras em promoção</strong>Desconto em algo que você não ia usar não é economia. Antes da próxima, passe pelas seis perguntas do <a href=\"/ferramentas/anti-impulso/\">anti-impulso</a> e anote no <a href=\"/ferramentas/despensa/\">modo despensa</a> o que deixou de comprar."
+    }[peso];
+    html += '<div class="ft-info">' + especifico + "</div>" + faltaTxt(s);
+    mostrar(saida, html, "rever-rotina/cara");
+  });
+
+  fDesc.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var saida = $("rr-saida-desc"), sinais = marcados(fDesc, "rr-sinal");
+    if (!sinais.length) return semMarcar(saida);
+    var tempo = radio(fDesc, "rr-tempo"), novo = radio(fDesc, "rr-novo");
+    if (sinais.indexOf("grave") >= 0) {
+      return mostrar(saida, '<div class="ft-nao" role="alert"><h3>Procure atendimento médico agora</h3>' +
+        "<p>Pare de usar o produto e não espere para ver se melhora. Com falta de ar, inchaço nos lábios, na língua ou na garganta, ligue 192 (SAMU) ou vá a um pronto-socorro.</p>" +
+        "<p>Leve a embalagem do produto, se puder.</p></div>", "rever-rotina/desconforto-urgente");
+    }
+    var agora = [];
+    if (novo === "um") agora.push("<strong>Pare o produto novo.</strong> Não insista para ver se a pele acostuma.");
+    else if (novo === "varios") agora.push("<strong>Pare todos os produtos novos de uma vez.</strong> Com vários começando juntos, não dá para saber qual incomodou.");
+    else agora.push("<strong>Você não mudou nada, então não há um suspeito claro.</strong> Fórmula pode mudar sem aviso, e a pele também muda. Pare o que arde ou incomoda na hora de passar.");
+    agora.push("<strong>Fique no básico</strong> que você já usava sem problema: limpeza suave, hidratante simples e protetor solar.");
+    agora.push("<strong>Pause ácidos, esfoliantes, retinol e vitamina C</strong> até a pele ficar confortável de novo.");
+    agora.push("<strong>Não teste outro produto novo agora.</strong>");
+    agora.push("<strong>Guarde a embalagem</strong> e anote nome, lote, quando começou a usar e o que sentiu.");
+    var html = '<div class="ft-ok"><h3>O que fazer agora</h3>' + lista(agora) + "</div>";
+    var medico = {
+      hoje: "<strong>Quando procurar um dermatologista</strong>Se não melhorar em poucos dias depois de parar o produto, se piorar, ou se aparecer qualquer item da lista de atendimento médico acima.",
+      dias: "<strong>Quando procurar um dermatologista</strong>Já são alguns dias. Se você parou o produto e não está melhorando, ou se ainda não parou e o incômodo continua, marque uma consulta.",
+      semanas: "<strong>Marque uma consulta com um dermatologista</strong>Duas semanas ou mais de desconforto é tempo demais para resolver sozinho. Leve a embalagem e as suas anotações."
+    }[tempo];
+    html += '<div class="' + (tempo === "semanas" ? "ft-nao" : "ft-horarios") + '">' + medico + "</div>";
+    html += '<div class="ft-info"><strong>O que esta página não sabe dizer</strong>Se é alergia, irritação, adaptação a um ativo ou outra coisa. Isso é diagnóstico, e só um médico que examine a sua pele pode dar.' +
+      (sinais.indexOf("espinhas") >= 0 ? " Vale também para espinhas novas: não dá para afirmar daqui que \"é a pele limpando\"." : "") + "</div>";
+    if (novo !== "nenhum") {
+      html += '<div class="ft-info"><strong>Depois que a pele estiver confortável</strong>Se quiser tentar de novo algum dos produtos, volte com um só de cada vez, primeiro numa área pequena, e espere alguns dias antes de usar no rosto todo. Se o desconforto voltar, esse produto não é para você.</div>';
+    }
+    mostrar(saida, html, "rever-rotina/desconforto");
+  });
+
+  // Entrada direta: /ferramentas/rever-rotina/?caminho=passos|cara|desconforto leva o foco à seção.
+  var caminho = (location.search.match(/[?&]caminho=([a-z]+)/) || [])[1];
+  var secao = caminho && document.getElementById(caminho);
+  if (secao && secao.tagName === "SECTION") { secao.scrollIntoView(); secao.focus(); }
+})();
+</script>
+
+<footer class="ig-foot">
+<p>Ferramenta informativa, não substitui consulta com dermatologista.</p>
+<p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que fazer quando a rotina de skincare tem passos demais ou ficou cara?</h3>
+<p>A página Rever minha rotina orienta a manter todo dia limpeza, hidratante e protetor solar, guardar os extras por duas semanas e ficar com no máximo um tratamento. Para gastar menos, o primeiro corte são os extras, sem reduzir a quantidade de protetor solar nem o que foi receitado.</p>
+<h3>Senti desconforto com um produto de skincare: o que o site orienta?</h3>
+<p>Parar o produto suspeito, voltar ao básico que já era usado sem problema, não testar outro produto novo e guardar a embalagem. A página não faz diagnóstico: com inchaço, falta de ar, bolhas ou dor forte, o caminho é atendimento médico imediato; sem melhora em poucos dias, um dermatologista.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que fazer quando a rotina de skincare tem passos demais ou ficou cara?", "acceptedAnswer": {"@type": "Answer", "text": "A página Rever minha rotina orienta a manter todo dia limpeza, hidratante e protetor solar, guardar os extras por duas semanas e ficar com no máximo um tratamento. Para gastar menos, o primeiro corte são os extras, sem reduzir a quantidade de protetor solar nem o que foi receitado."}}, {"@type": "Question", "name": "Senti desconforto com um produto de skincare: o que o site orienta?", "acceptedAnswer": {"@type": "Answer", "text": "Parar o produto suspeito, voltar ao básico que já era usado sem problema, não testar outro produto novo e guardar a embalagem. A página não faz diagnóstico: com inchaço, falta de ar, bolhas ou dor forte, o caminho é atendimento médico imediato; sem melhora em poucos dias, um dermatologista."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-26">26 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
+<footer class="ps-rodape">
+<div class="ps-shell ps-rodape-grid">
+<div class="ps-rodape-marca">
+<a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<p>Curadoria de skincare para todos os tipos de pele, com preço datado e link.</p>
+<ul class="ps-rodape-numeros"><li><strong>4</strong>guias por tipo de pele</li><li><strong>5</strong>condições explicadas</li></ul>
+</div>
+<nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
+<nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+</div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
+<script src="/rodape.js" defer></script>
+</footer>
+
+</body>
+</html>

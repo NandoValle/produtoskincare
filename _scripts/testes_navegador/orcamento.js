@@ -52,11 +52,11 @@ async function lerRotina(page) {
     checar(`[${f}] nenhum produto acima do teto`, comProduto.every(x => x.preco !== null && x.preco <= TETO[f]));
     checar(`[${f}] todo item mostra o papel na rotina`, r.every(x => x.papel.length > 10));
     checar(`[${f}] todo item com preço mostra a faixa do item`, comProduto.every(x => x.faixaItem));
-    checar(`[${f}] endereço atualizado com a faixa`, new URL(p.url()).searchParams.get("preco") === f);
+    checar(`[${f}] endereço atualizado com a faixa`, new URLSearchParams(new URL(p.url()).hash.slice(1)).get("preco") === f);
     for (const x of comProduto) {
       const u = new URL(x.href);
       const amazonAfiliado = /amazon\.com\.br$/.test(u.hostname) && u.searchParams.has("tag");
-      if (!/^(www\.)?(amazon\.com\.br|shopee\.com\.br|lista\.mercadolivre\.com\.br|produto\.mercadolivre\.com\.br)$/.test(u.hostname) || u.protocol !== "https:" || x.alvo !== "_blank")
+      if (!/^(www\.)?(amazon\.com\.br|shopee\.com\.br|mercadolivre\.com\.br|lista\.mercadolivre\.com\.br|produto\.mercadolivre\.com\.br)$/.test(u.hostname) || u.protocol !== "https:" || x.alvo !== "_blank")
         checar(`[${f}] link válido: ${x.nome}`, false, x.href);
       if (amazonAfiliado !== /link de afiliado/.test(x.nota)) checar(`[${f}] rótulo de afiliado correto: ${x.nome}`, false, x.nota + " " + x.href);
       if (amazonAfiliado !== /sponsored/.test(x.rel)) checar(`[${f}] rel=sponsored só em afiliado: ${x.nome}`, false, x.rel);

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Modo 12 semanas: comece um ativo novo aos poucos | Produto Skincare</title>
-<meta name="description" content="Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho.">
+<title>Modo 12 semanas: comece um ativo novo aos poucos</title>
+<meta name="description" content="Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e diário de fotos só no seu aparelho.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://produtoskincare.com.br/ferramentas/12-semanas/">
 <link rel="stylesheet" href="/premium.css">
@@ -70,15 +70,17 @@
 .ig-foot p{margin:0}
 @media(min-width:600px){.ig{padding:32px 24px 72px}.ig-grade{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:900px){.ig-larga .ig-grade{grid-template-columns:repeat(3,1fr)}}
-.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.pin-salvar{margin:-14px 0 24px;font-size:.88rem}.pin-salvar a{color:var(--suave)}.capa-artigo{margin:22px 0 28px}.capa-artigo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--raio);background:var(--rosa-claro)}
+.video-wrap{margin:28px 0}.video-wrap h2{margin-top:0}.video-wrap video{display:block;margin:0 auto;width:auto;max-width:100%;max-height:70vh;height:auto;aspect-ratio:9/16;border-radius:var(--raio);background:#faf7f2;border:1px solid var(--linha)}.video-wrap details{margin-top:14px}.video-wrap summary{cursor:pointer;color:var(--rosa);font-weight:600}.video-wrap details p{margin:.6em 0}
 
 .ft-rotulo{display:block;font-weight:600;margin:14px 0 6px}
 .ft-campo{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--papel);color:var(--tinta)}
 textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-campo:focus{outline:3px solid var(--rosa);outline-offset:2px}
-.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:#fff;cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
+.ft-btn{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 22px;border-radius:999px;border:0;background:var(--rosa);color:var(--sobre-rosa,#fff);cursor:pointer;text-decoration:none;margin:14px 0 0;position:relative}
 .ft-btn.ft-sec{background:transparent;color:var(--tinta);border:1.5px solid var(--linha-2,var(--linha))}
 .ft-btn:disabled{opacity:.5;cursor:default}
+.ft-btn[hidden],.ex-form[hidden]{display:none}
 .ft-btn:focus-within{outline:3px solid var(--rosa);outline-offset:2px}
 .ft-arquivo{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .ft-ocr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
@@ -98,6 +100,8 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-item-acoes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .ft-item-acoes label{display:flex;gap:6px;align-items:center;min-height:40px}
 .ft-mini{font:inherit;font-size:.88rem;background:none;border:1px solid var(--linha-2,var(--linha));border-radius:999px;padding:6px 12px;min-height:36px;color:var(--tinta);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.ft-loja{border-color:var(--rosa);color:var(--rosa);font-weight:600}
+.ft-compra{display:block;margin-top:8px}
 .ft-ok,.ft-nao,.ft-horarios,.ft-sem,.ft-info{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid}
 .ft-ok strong,.ft-nao strong,.ft-horarios strong,.ft-sem strong,.ft-info strong{display:block;margin-bottom:4px}
 .ft-ok{background:var(--verde-claro);border-color:var(--verde)}
@@ -131,12 +135,49 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 .ft-cards strong{font-family:var(--fonte-display);font-size:1.15rem;font-weight:500}
 .ft-cards span{font-size:.92rem;color:var(--suave)}
 @media(prefers-color-scheme:dark){.ft-horarios{color:#5c3d00}}
+.ft-regras{margin:8px 0 0;padding-left:1.1em}
+.ft-regras li{margin:.45em 0}
+.ft-banner{border-radius:0 12px 12px 0;padding:14px 16px;margin:10px 0;border-left:4px solid;font-weight:600}
+.ft-banner.base{background:var(--papel);border-color:var(--linha-2,var(--linha));border-left-color:#6b6b6b}
+.ft-banner.inter{background:var(--rosa-claro);border-color:var(--rosa)}
+.ft-banner.fim{background:var(--verde-claro);border-color:var(--verde)}
+.ft-escalas{margin:10px 0 0;display:flex;flex-direction:column;gap:12px}
+.ft-escala-item{margin:0}
+.ft-escala-item .rot{margin:0 0 4px;font-weight:600}
+.ft-escala-item .rot small{display:block;font-weight:400;font-size:.84rem;color:var(--suave)}
+.ft-escala{display:flex;gap:6px}
+.ft-escala button{flex:1;min-height:40px;border:1px solid var(--linha);border-radius:9px;background:var(--papel);color:var(--suave);font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
+.ft-escala button[aria-checked=true]{background:var(--tinta);border-color:var(--tinta);color:var(--fundo)}
+.ft-escala button:hover{border-color:var(--rosa)}
+.rr-escolha ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.rr-escolha li{margin:0}
+.rr-escolha a{display:flex;flex-direction:column;gap:2px;padding:14px 16px;min-height:48px;border:1.5px solid var(--linha-2,var(--linha));border-radius:12px;background:var(--fundo);color:var(--tinta);text-decoration:none}
+.rr-escolha a:hover{border-color:var(--rosa)}
+.rr-escolha a strong{text-decoration:underline;text-underline-offset:3px}
+.rr-escolha a span{font-size:.92rem;color:var(--suave)}
+.ig section[id]:focus{outline:none}
+.rr-form{display:flex;flex-direction:column;gap:18px}
+.rr-form fieldset{border:0;padding:0;margin:0;min-width:0}
+.rr-form legend{padding:0;font-weight:700;margin-bottom:4px}
+.rr-form .ft-check{align-items:flex-start;padding:10px 0;line-height:1.45}
+.rr-form .ft-check input{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--rosa)}
+.rr-form .ft-btn{align-self:flex-start;margin:0}
+.rr-saida:empty{display:none}
+.rr-saida{display:flex;flex-direction:column;gap:4px}
+.rr-saida:focus{outline:3px solid var(--rosa);outline-offset:4px;border-radius:12px}
+.rr-saida h3{margin:0 0 6px}
+.rr-saida ul,.rr-lista{margin:6px 0 0;padding-left:1.2em}
+.rr-saida li,.rr-lista li{margin:.5em 0}
+.rr-conta{font-weight:700}
+.rr-saida li strong,.rr-saida p strong{display:inline;margin:0}
+.rr-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rr-acoes .ft-btn{margin:0}
 
 </style>
 <!-- seo:inicio -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Modo 12 semanas: comece um ativo novo aos poucos">
-<meta property="og:description" content="Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho.">
+<meta property="og:description" content="Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e diário de fotos só no seu aparelho.">
 <meta property="og:url" content="https://produtoskincare.com.br/ferramentas/12-semanas/">
 <meta property="og:site_name" content="Produto Skincare">
 <meta property="og:locale" content="pt_BR">
@@ -145,15 +186,15 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Modo 12 semanas">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/12-semanas/#pagina", "url": "https://produtoskincare.com.br/ferramentas/12-semanas/", "name": "Modo 12 semanas", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e um diário de fotos que fica só no seu aparelho.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/12-semanas/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/12-semanas/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Modo 12 semanas", "item": "https://produtoskincare.com.br/ferramentas/12-semanas/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/ferramentas/12-semanas/#pagina", "url": "https://produtoskincare.com.br/ferramentas/12-semanas/", "name": "Modo 12 semanas", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "pt-BR", "description": "Plano semana a semana para começar retinol, ácidos, vitamina C ou ácido azelaico devagar, com lembretes na agenda e diário de fotos só no seu aparelho.", "breadcrumb": {"@id": "https://produtoskincare.com.br/ferramentas/12-semanas/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/ferramentas/12-semanas/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://produtoskincare.com.br/ferramentas/"}, {"@type": "ListItem", "position": 3, "name": "Modo 12 semanas", "item": "https://produtoskincare.com.br/ferramentas/12-semanas/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
-
+<meta name="author" content="Equipe Produto Skincare">
 <!-- WebMCP Origin Trial do Chrome: token só desta origem (https://produtoskincare.com.br), expira em 2027-03-30. Não copiar para outro domínio. Renovar em developer.chrome.com/origintrials. -->
 <meta http-equiv="origin-trial" content="Ak5qPkgtd5sgtYyIu8439YjT31z1JWYXL4bl6/06vNOtAebLOKPIHW8gfengjrpbs3eaX69wvQ5kN6d+SoRDiAIAAABWeyJvcmlnaW4iOiJodHRwczovL3Byb2R1dG9za2luY2FyZS5jb20uYnI6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTgwNjM2NDgwMH0=">
+<script src="/webmcp-polyfill.js" defer></script>
 <script src="/webmcp.js" defer></script>
-<meta name="author" content="Equipe Produto Skincare">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -162,7 +203,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 <header class="ps-header">
 <a href="/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
 <button class="ps-menu" type="button" aria-controls="site-navigation" aria-expanded="false" hidden><span>Menu</span><span class="ps-menu-lines" aria-hidden="true"></span></button>
-<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><a href="/#tipos">Tipos</a><a href="/rotina-de-skincare/">Rotina</a><a href="/blog/">Blog</a><a href="/achados/">Achados</a><details class="ps-mais"><summary class="ps-mais-btn" data-secao="atual">Mais</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a data-secao="atual" href="/ferramentas/">Ferramentas</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></details></nav>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegação principal"><a href="/provador/">Provador</a><details class="ps-mais"><summary class="ps-mais-btn">Guias</summary><ul class="ps-mais-panel" id="menu-mais"><li><a href="/#tipos">Tipos de pele</a></li><li><a href="/rotina-de-skincare/">Rotina</a></li><li><a href="/condicoes/">Condições</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Ciência</a></li></ul></details><a data-secao="atual" href="/ferramentas/">Ferramentas</a><a href="/achados/">Produtos</a><a href="/skincare-premium/">Skincare Premium</a><a href="/blog/">Blog</a></nav>
 <nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português" aria-current="true">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español">ES</a></nav></div>
 </header>
 </div>
@@ -209,7 +250,8 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 <p id="sm-agora"></p>
 <p id="sm-antes"></p>
 <div class="ft-rolagem"><table class="ft-tabela"><thead><tr><th scope="col">Semanas</th><th scope="col">Datas</th><th scope="col">Quantas vezes</th></tr></thead><tbody id="sm-tabela"></tbody></table></div>
-<button class="ft-btn ft-sec" type="button" id="sm-ics">📅 Lembretes semanais na agenda (.ics)</button>
+<button class="ft-btn ft-sec" type="button" id="sm-ics">Lembretes semanais na agenda (.ics)</button>
+<div id="sm-cartao"></div>
 <p class="ig-nota">O arquivo cria 12 lembretes, um por semana, com a frequência daquela semana e o aviso para tirar a foto do diário. Abre no Google Agenda, no Calendário do iPhone e no Outlook.</p>
 </section>
 
@@ -222,9 +264,9 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 <div class="ft-oval" aria-hidden="true"></div>
 </div>
 <div class="ft-cards-acoes">
-<button class="ft-btn" type="button" id="sm-abrir">📷 Abrir a câmera</button>
+<button class="ft-btn" type="button" id="sm-abrir">Abrir a câmera</button>
 <button class="ft-btn" type="button" id="sm-tirar" hidden>Tirar a foto</button>
-<label class="ft-btn ft-sec">🖼️ Escolher uma foto<input type="file" id="sm-arquivo" accept="image/*" capture="user" class="ft-arquivo"></label>
+<label class="ft-btn ft-sec">Escolher uma foto<input type="file" id="sm-arquivo" accept="image/*" capture="user" class="ft-arquivo"></label>
 </div>
 <label class="ft-rotulo" for="sm-reacao">Como a pele reagiu nesta semana?</label>
 <select class="ft-campo" id="sm-reacao">
@@ -247,6 +289,7 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 </article>
 <script src="/plano-ativos.js"></script>
 <script src="/compartilhar.js"></script>
+<script src="/cartao-story.js"></script>
 <script>
 (function () {
   "use strict";
@@ -292,6 +335,18 @@ textarea.ft-campo{resize:vertical;min-height:96px}
         fmt(addDias(inicio, (e.de - 1) * 7)) + " a " + fmt(addDias(inicio, e.ate * 7 - 1)) + "</td><td>" + esc(c.sensivel ? e.sensivel : e.normal) + "</td></tr>";
     }).join("");
   }
+
+  if (window.PSCartao) PSCartao.montar($("sm-cartao"), function () {
+    var c = ler();
+    if (!c || !PL.PLANOS[c.plano]) return null;
+    var p = PL.PLANOS[c.plano], sem = semanaAtual(c), nome = p.nome.replace(/\s*\(.*\)/, "").toLowerCase();
+    var titulo = sem === 0 ? "Vou começar " + nome + " do jeito certo"
+      : sem > 12 ? "Terminei doze semanas de " + nome
+      : "Semana " + PSCartao.extenso(sem) + " de doze com " + nome;
+    var linhas = ["Começo devagar e aumento aos poucos, semana a semana.", "Uma foto por semana, com a mesma luz, para comparar.", "Protetor solar todos os dias."];
+    return { rotulo: "Modo 12 semanas", titulo: titulo, linhas: linhas, caminho: "/ferramentas/12-semanas",
+      rodape: "Monte o seu plano grátis. Fica só no seu aparelho.", arquivo: "12-semanas" };
+  }, { evento: "12semanas/cartao" });
 
   $("sm-inicio").value = hojeISO();
   $("sm-salvar").addEventListener("click", function () {
@@ -443,8 +498,23 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 <footer class="ig-foot">
 <p>Ferramenta informativa, não substitui consulta com dermatologista.</p>
 <p><a href="/privacidade/">Privacidade</a> · <a href="/sobre/">Sobre o Produto Skincare</a></p>
-<p class="ps-rodape-nota">Fallback sem JavaScript: com o script desligado as ferramentas de IA não rodam e nada se perde — o site inteiro continua funcionando como site comum. Esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p><noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual.</p></noscript></footer>
-<p class="fallback" id="fallback-manual"><strong>Fallback sem JavaScript.</strong> Com o script desligado as ferramentas de IA não rodam e nada se perde: o catálogo inteiro está em <a href="/produtos/">Produtos</a>, os guias de cada tipo de pele em <a href="/pele/oleosa/">Pele</a> e as rotinas por condição em <a href="/rotinas/">Rotinas</a>, tudo como HTML comum. Esse é o caminho manual. Uma chamada em curso também pode ser cancelada a qualquer momento pelo agente.</p><noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum.</p></noscript></main>
+<noscript><p class="ps-rodape-nota">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: todo o conteúdo segue funcionando como HTML comum — esse é o caminho manual. Uma chamada em curso pode ser cancelada pelo agente a qualquer momento.</p></noscript>
+</footer>
+<!-- perguntas:inicio -->
+<section class="ps-perguntas" aria-labelledby="perguntas-pagina">
+<h2 id="perguntas-pagina">Perguntas frequentes</h2>
+<h3>O que é o Modo 12 semanas do Produto Skincare?</h3>
+<p>O Modo 12 semanas é uma ferramenta gratuita para começar um ativo novo devagar. Ela monta um plano semana a semana, gera lembretes para a agenda e traz um diário de fotos para comparar a pele com a mesma luz e o mesmo enquadramento.</p>
+<h3>As fotos do diário do Modo 12 semanas ficam guardadas onde?</h3>
+<p>O plano e as fotos ficam só no aparelho da pessoa, no navegador, e nada é enviado ao site. Se os dados do navegador forem limpos, as fotos somem, por isso a página pede para baixar as que você quiser guardar.</p>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Modo 12 semanas do Produto Skincare?", "acceptedAnswer": {"@type": "Answer", "text": "O Modo 12 semanas é uma ferramenta gratuita para começar um ativo novo devagar. Ela monta um plano semana a semana, gera lembretes para a agenda e traz um diário de fotos para comparar a pele com a mesma luz e o mesmo enquadramento."}}, {"@type": "Question", "name": "As fotos do diário do Modo 12 semanas ficam guardadas onde?", "acceptedAnswer": {"@type": "Answer", "text": "O plano e as fotos ficam só no aparelho da pessoa, no navegador, e nada é enviado ao site. Se os dados do navegador forem limpos, as fotos somem, por isso a página pede para baixar as que você quiser guardar."}}]}</script>
+</section>
+<!-- perguntas:fim -->
+<!-- nota-pagina:inicio -->
+<p class="ps-nota-pagina">Página atualizada em <time datetime="2026-11-27">27 de novembro de 2026</time>. Conteúdo informativo, não é diagnóstico. Regras de cosméticos no Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico e tratamento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">encontre um dermatologista pela SBD</a>.</p>
+<!-- nota-pagina:fim -->
+</main>
+<noscript><p class="fallback">Sem JavaScript, as ferramentas para assistentes não rodam, e nada se perde: os guias, o catálogo de produtos e as rotinas seguem abertos como HTML comum. Esse é o caminho manual.</p></noscript>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">
@@ -454,9 +524,9 @@ textarea.ft-campo{resize:vertical;min-height:96px}
 </div>
 <nav aria-label="Rodapé: Tipos de pele"><p class="ps-rodape-titulo">Tipos de pele</p><ul><li><a href="/pele/oleosa/">Pele oleosa</a></li><li><a href="/pele/seca/">Pele seca</a></li><li><a href="/pele/mista/">Pele mista</a></li><li><a href="/pele/normal/">Pele normal</a></li></ul></nav>
 <nav aria-label="Rodapé: Condições"><p class="ps-rodape-titulo">Condições</p><ul><li><a href="/condicoes/acne/">Acne</a></li><li><a href="/condicoes/melasma/">Melasma</a></li><li><a href="/condicoes/rosacea/">Rosácea</a></li><li><a href="/condicoes/olheiras/">Olheiras</a></li><li><a href="/condicoes/desidratacao/">Desidratação</a></li><li><a href="/condicoes/">Todas as condições</a></li></ul></nav>
-<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
+<nav aria-label="Rodapé: Ferramentas"><p class="ps-rodape-titulo">Ferramentas</p><ul><li><a href="/provador/">Provador</a></li><li><a href="/ferramentas/comparar/">Comparar produtos</a></li><li><a href="/ferramentas/ingredientes/">Verificar ingredientes</a></li><li><a href="/ferramentas/ativos/">Guia de ativos</a></li><li><a href="/ferramentas/rotina/">Tracker de rotina</a></li><li><a href="/ferramentas/reposicao/">Lembrete de reposição</a></li><li><a href="/ferramentas/precos/">Histórico de preços</a></li><li><a href="/ferramentas/clima/">Índice UV de hoje</a></li><li><a href="/ferramentas/prateleira/">Minha prateleira</a></li><li><a href="/combina/">Posso usar junto?</a></li><li><a href="/ferramentas/">Todas as ferramentas</a></li></ul></nav><nav aria-label="Rodapé: Conteúdo"><p class="ps-rodape-titulo">Conteúdo</p><ul><li><a href="/achados/">Achados</a></li><li><a href="/rotina-de-skincare/">Rotina de skincare</a></li><li><a href="/rotinas/">Rotinas por faixa de preço</a></li><li><a href="/blog/">Blog</a></li><li><a href="/ingredientes/">Ingredientes</a></li><li><a href="/ciencia/">Hub científico</a></li><li><a href="/pergunte/">Pergunte à IA</a></li><li><a href="/newsletter/">Newsletter</a></li></ul></nav><nav aria-label="Rodapé: Curadoria"><p class="ps-rodape-titulo">Curadoria</p><ul><li><a href="/produtos/">Produtos</a></li><li><a href="/mais-vendidos/">Mais vendidos</a></li><li><a href="/skincare-premium/">Skincare Premium</a></li><li><a href="/queridinhos-do-skincare/">Queridinhos pelo mundo</a></li><li><a href="/mercado-skincare-brasil/">Mercado de skincare</a></li></ul></nav>
 </div>
-<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (35.878.957 FERNANDO ANTONIO VALE RODRIGUES, CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a></span></div>
+<div class="ps-shell ps-rodape-base"><span>© 2026 Produto Skincare (CNPJ 35.878.957/0001-10). Contém links de afiliado. Não é diagnóstico médico.</span><span class="ps-rodape-links"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos</a></span></div>
 <script src="/rodape.js" defer></script>
 </footer>
 
