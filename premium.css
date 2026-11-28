@@ -594,7 +594,7 @@ body:has(> .ps-topo) .btn-tema{top:100px}
 .tool-fallback code,.ps-pergunta code{font:inherit;font-weight:600;color:var(--tinta)}
 .ps-home .tool-fallback{margin-top:18px}
 /* ============================================================
-   Camada de sonho — atmosfera lúcida (09/11/2026)
+   Camada de sonho — atmosfera lúcida (09/11/2026; cores em ouro e areia desde 28/11/2026)
    luz que respira + grão de filme + foco revelado + transições.
    As fotos já têm moldura orgânica própria; nada aqui as toca.
    ============================================================ */
@@ -607,9 +607,9 @@ body::before{
   z-index:60;
   pointer-events:none;
   background:
-    radial-gradient(42% 34% at 22% 26%, rgba(243,220,223,.55), transparent 70%),
-    radial-gradient(38% 30% at 78% 64%, rgba(232,218,209,.5), transparent 70%),
-    radial-gradient(30% 26% at 55% 12%, rgba(243,234,227,.6), transparent 70%);
+    radial-gradient(42% 34% at 22% 26%, rgba(237,226,211,.55), transparent 70%),
+    radial-gradient(38% 30% at 78% 64%, rgba(223,207,185,.5), transparent 70%),
+    radial-gradient(30% 26% at 55% 12%, rgba(217,190,142,.4), transparent 70%);
   mix-blend-mode:soft-light;
   opacity:.75;
   animation:sonho-luz 38s ease-in-out infinite alternate;
@@ -638,11 +638,11 @@ body::after{
   .ps-section,.mk-sec,.ig article > section{
     animation:sonho-foco linear both;
     animation-timeline:view();
-    animation-range:entry 0% entry 65%;
+    animation-range:entry 0px entry 240px;
   }
 }
 @keyframes sonho-foco{
-  from{opacity:0;filter:blur(8px);transform:translateY(16px)}
+  from{opacity:0;filter:blur(5px);transform:translateY(16px)}
   to{opacity:1;filter:blur(0);transform:none}
 }
 
@@ -679,7 +679,7 @@ body::after{
 @media (prefers-color-scheme:dark){
   body::before{
     background:
-      radial-gradient(42% 34% at 22% 26%, rgba(239,165,186,.14), transparent 70%),
+      radial-gradient(42% 34% at 22% 26%, rgba(217,185,138,.14), transparent 70%),
       radial-gradient(38% 30% at 78% 64%, rgba(162,203,179,.10), transparent 70%);
     opacity:.9;
   }
@@ -703,14 +703,14 @@ body::after{
 body::after{
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
-    radial-gradient(125% 110% at 50% 42%, transparent 52%, rgba(69,29,43,.20) 100%);
+    radial-gradient(125% 110% at 50% 42%, transparent 52%, rgba(27,20,16,.20) 100%);
   background-size:180px 180px, cover;
 }
 
 /* brilho suave — as fotos respiram luz propria */
 .ps-photo img,.ps-portrait,.ps-journey-photo{
   filter:saturate(1.04);
-  box-shadow:0 0 70px rgba(243,220,223,.42);
+  box-shadow:0 0 70px rgba(217,190,142,.32);
 }
 
 /* entrada coreografada do hero — o sonho se abre */
@@ -729,7 +729,7 @@ body::after{
   margin:-170px 0 0 -170px;
   border-radius:50%;
   pointer-events:none;
-  background:radial-gradient(circle, rgba(243,220,223,.32), rgba(243,220,223,0) 68%);
+  background:radial-gradient(circle, rgba(217,190,142,.28), rgba(217,190,142,0) 68%);
   mix-blend-mode:soft-light;
   opacity:0;
   transition:opacity .6s ease;
@@ -744,7 +744,7 @@ body::after{
   bottom:-12px;
   width:6px;height:6px;
   border-radius:50%;
-  background:radial-gradient(circle, rgba(255,236,240,.9), rgba(243,220,223,0) 70%);
+  background:radial-gradient(circle, rgba(255,244,224,.9), rgba(217,190,142,0) 70%);
   opacity:0;
   animation:sonho-mote linear infinite;
 }
@@ -764,9 +764,9 @@ body::after{
     opacity:.1;
     mix-blend-mode:overlay;
   }
-  .ps-photo img,.ps-portrait,.ps-journey-photo{box-shadow:0 0 70px rgba(239,165,186,.16)}
-  .sonho-lente{background:radial-gradient(circle, rgba(239,165,186,.18), rgba(239,165,186,0) 68%)}
-  .sonho-motes i{background:radial-gradient(circle, rgba(239,165,186,.75), rgba(239,165,186,0) 70%)}
+  .ps-photo img,.ps-portrait,.ps-journey-photo{box-shadow:0 0 70px rgba(217,185,138,.16)}
+  .sonho-lente{background:radial-gradient(circle, rgba(217,185,138,.18), rgba(217,185,138,0) 68%)}
+  .sonho-motes i{background:radial-gradient(circle, rgba(217,185,138,.75), rgba(217,185,138,0) 70%)}
 }
 
 @media (prefers-reduced-motion:reduce){
