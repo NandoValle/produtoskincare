@@ -55,3 +55,9 @@ No third-party image request is made by visitors. Illustrative only: no testimon
 - Illustrative only: they do not depict any specific product sold or linked on the site, and imply no endorsement or result.
 
 - Stored locally; no third-party image request is made by visitors.
+
+## Top-of-post cover animations — added 2026-11-28
+
+- Files: `blog/<slug>/capa.mp4` (1280×720, H.264, no audio, 10 s loop) for `anvisa-cosmetovigilancia-notificacoes-130-2026`, `revisao-antioxidantes-topicos-fotoenvelhecimento-2026` and `skincare-brasileiro-biodiversidade-identidade-2026`.
+- Origin: a slow zoom in and back out of each article's own cover photo (`img/blog/<slug>-3840.webp`, listed above), rendered frame by frame with sub-pixel cropping; no new image content was generated. The cover photo stays as the video's poster.
+- Stored locally; no third-party video request is made by visitors.
