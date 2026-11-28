@@ -204,7 +204,7 @@ def pagina_rotina(slug, r):
     if v:
         p = extras[v["extra"]]
         loja = LOJAS.get(p.get("plataforma"), "loja")
-        partes.append(f'''<h2>🔥 Viral do momento</h2>
+        partes.append(f'''<h2>Viral do momento</h2>
 <div class="card"><div class="nome">{e(p["nome"])} <span class="pill {COR_EVID.get(v["evidencia"], "")}">Evidência {v["evidencia"].lower()}</span></div>
 <div class="porque">{e(p["porque"])}</div>
 <p class="sub" style="font-size:.9rem;margin-top:6px">{e(v["texto"])}</p>

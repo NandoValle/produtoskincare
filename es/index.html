@@ -6,40 +6,10 @@
 <title>Producto Skincare — Descubre Tu Tipo de Piel y Rutina Ideal</title>
 <meta name="description" content="Descubre tu tipo de piel y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.">
 
-<style>
-:root{--fundo:#faf7f2;--papel:#fff;--tinta:#1a1614;--suave:#7a6e65;--linha:rgba(26,22,20,0.08);--rosa:#b4546a;--rosa-claro:#fdf2f4;--verde:#3f6b55;--verde-claro:#eef4f0;--raio:14px;--fonte-display:'Fraunces',Georgia,serif;--fonte-corpo:'Inter',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--fundo);color:var(--tinta);font:16px/1.7 var(--fonte-corpo);padding:0 18px}
-main{max-width:780px;margin:0 auto;padding:28px 0 60px}
-h1{font-family:var(--fonte-display);font-size:clamp(2.2rem,6vw,3.5rem);font-weight:300;line-height:1.05;letter-spacing:-0.03em;margin:.3em 0}
-h1 em{font-style:italic;color:var(--rosa)}
-h2{font-family:var(--fonte-display);font-size:clamp(1.5rem,4vw,2rem);margin:2em 0 .5em}
-.marca{font-family:var(--fonte-display);font-weight:500;font-size:1.05rem;display:flex;align-items:center;gap:10px}
-.marca-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--rosa),#c96b80);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:.75rem;font-weight:600}
-.marca span{color:var(--rosa);font-weight:600}
-.sub{color:var(--suave)}
-.lead{font-size:1.15rem;line-height:1.7;color:var(--suave);max-width:540px;margin:0 auto 24px;font-weight:300}
-.btn{font:inherit;font-weight:600;min-height:52px;padding:0 32px;border-radius:12px;border:0;background:var(--tinta);color:var(--fundo);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .2s;font-size:1rem}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,22,20,0.15)}
-.btn.sec{background:var(--papel);color:var(--tinta);border:1.5px solid var(--linha)}
-.hero{text-align:center;padding:40px 0}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--papel);border:1px solid var(--linha);border-radius:999px;padding:8px 20px;font-size:.85rem;font-weight:500;color:var(--suave);margin-bottom:24px}
-.hero-badge .dot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
-.card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:24px}
-.tipo-card{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;text-align:center;text-decoration:none;color:var(--tinta);transition:all .3s}
-.tipo-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(26,22,20,0.1)}
-.tipo-card .emoji{font-size:2rem;margin-bottom:8px;display:block}
-.tipo-card strong{display:block;font-family:var(--fonte-display);font-size:1.1rem;margin-bottom:4px}
-.tipo-card span{font-size:.85rem;color:var(--suave)}
-.lang-switch{display:flex;gap:8px;justify-content:center;margin:20px 0}
-.lang-switch a{padding:8px 16px;border-radius:999px;border:1px solid var(--linha);text-decoration:none;color:var(--suave);font-size:.88rem;font-weight:500}
-.lang-switch a.ativo{background:var(--tinta);color:var(--fundo);border-color:var(--tinta)}
-:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
-footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin-top:40px}
-</style>
-<link rel="stylesheet" href="/premium.css">
+<link rel="preload" href="/fonts/cormorant-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/premium-home.css?v=20261127-lumiere">
+<link rel="stylesheet" href="/lumiere-home.css?v=20261127-lumiere">
+<script src="/lumiere-home.js?v=20261116-carta" defer></script>
 <!-- seo:inicio -->
 <link rel="canonical" href="https://produtoskincare.com.br/es/">
 <link rel="alternate" hreflang="pt-BR" href="https://produtoskincare.com.br/">
@@ -55,9 +25,9 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <meta property="og:image" content="https://produtoskincare.com.br/img/og/es.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Descubre tu tipo de piel y la rutina ideal">
+<meta property="og:image:alt" content="Descubre tu tipo de piel y la rutina ideal.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/#pagina", "url": "https://produtoskincare.com.br/es/", "name": "Descubre tu tipo de piel y la rutina ideal", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Descubre tu tipo de piel y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubre tu tipo de piel y la rutina ideal", "item": "https://produtoskincare.com.br/es/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://produtoskincare.com.br/#org", "name": "Produto Skincare", "url": "https://produtoskincare.com.br/"}, {"@type": "WebSite", "@id": "https://produtoskincare.com.br/#site", "url": "https://produtoskincare.com.br/", "name": "Produto Skincare", "publisher": {"@id": "https://produtoskincare.com.br/#org"}}, {"@type": "WebPage", "@id": "https://produtoskincare.com.br/es/#pagina", "url": "https://produtoskincare.com.br/es/", "name": "Descubre tu tipo de piel y la rutina ideal.", "isPartOf": {"@id": "https://produtoskincare.com.br/#site"}, "publisher": {"@id": "https://produtoskincare.com.br/#org"}, "inLanguage": "es", "description": "Descubre tu tipo de piel y recibe una rutina de skincare personalizada con productos reales. Cuestionario gratuito.", "breadcrumb": {"@id": "https://produtoskincare.com.br/es/#trilha"}}, {"@type": "BreadcrumbList", "@id": "https://produtoskincare.com.br/es/#trilha", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Produto Skincare", "item": "https://produtoskincare.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Descubre tu tipo de piel y la rutina ideal.", "item": "https://produtoskincare.com.br/es/"}]}]}</script>
 <script src="/analytics.js" defer></script>
 <script src="/canais.js" defer></script>
 <!-- seo:fim -->
@@ -68,63 +38,92 @@ footer{text-align:center;padding:40px 0;border-top:1px solid var(--linha);margin
 <script src="/webmcp.js" defer></script>
 <meta name="author" content="Equipe Produto Skincare">
 </head>
-<body>
+<body class="ps-home">
 <a class="skip-link" href="#conteudo">Saltar al contenido</a>
-<main id="conteudo">
-<div class="marca"><div class="marca-icon">PS</div>Producto <span>Skincare</span></div>
-
-<div class="lang-switch">
-<a href="/">Português</a>
-<a href="/en/">English</a>
-<a href="/es/" class="ativo">Español</a>
+<div class="ps-topo ps-topo-home">
+<div class="ps-shell">
+<header class="ps-header">
+<a href="/es/" class="ps-brand"><span class="ps-monogram" aria-hidden="true">PS</span><span>Produto <b>Skincare</b></span></a>
+<div class="ps-navigation" id="site-navigation"><nav class="ps-nav" aria-label="Navegación principal"><a href="/provador/">Quiz</a><a href="#tipos">Tipos de piel</a><a href="#guides">Guías</a><a href="#herramientas">Herramientas</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español" aria-current="page">ES</a></nav></div>
+<details class="ps-mobile-menu"><summary>Menú</summary><div class="ps-mobile-panel"><nav class="ps-nav" aria-label="Navegación principal"><a href="/provador/">Quiz</a><a href="#tipos">Tipos de piel</a><a href="#guides">Guías</a><a href="#herramientas">Herramientas</a></nav>
+<nav class="ps-langs" aria-label="Idioma"><a href="/" lang="pt-BR" aria-label="PT - Português">PT</a><a href="/en/" lang="en" aria-label="EN - English">EN</a><a href="/es/" lang="es" aria-label="ES - Español" aria-current="page">ES</a></nav></div></details>
+</header>
 </div>
-
-<section class="hero">
-<div class="hero-badge"><div class="dot"></div>Cuestionario gratis · 10 preguntas</div>
-<h1>Descubre tu tipo de piel<br>y la <em>rutina ideal</em></h1>
-<p class="lead">Responde 5 preguntas rápidas y recibe una rutina de skincare personalizada — con productos reales, enlaces directos y sin relleno.</p>
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<a href="/provador/" class="btn">Comenzar el quiz →</a>
-<a href="#tipos" class="btn sec">Explorar por tipo</a>
 </div>
-</section>
+<main id="conteudo" class="lm">
+<div class="lm-faixa" aria-hidden="true"><div class="lm-faixa-trilho"><span>Quiz gratis, sin registro <i>✦</i> Rutina personalizada, mañana y noche <i>✦</i> Guías por tipo de piel <i>✦</i> Los registros se quedan en este dispositivo <i>✦</i> Contenido informativo, no es un diagnóstico <i>✦</i></span><span>Quiz gratis, sin registro <i>✦</i> Rutina personalizada, mañana y noche <i>✦</i> Guías por tipo de piel <i>✦</i> Los registros se quedan en este dispositivo <i>✦</i> Contenido informativo, no es un diagnóstico <i>✦</i></span></div></div>
 
-<section id="tipos">
-<h2>¿Cuál es tu tipo de piel?</h2>
-<div class="grade">
-<a href="/pele/oleosa/" class="tipo-card"><span class="emoji">💧</span><strong>Grasa</strong><span>Brillo, poros dilatados, granitos frecuentes</span></a>
-<a href="/pele/seca/" class="tipo-card"><span class="emoji">🍂</span><strong>Seca</strong><span>Tirantez, descamación, líneas finas</span></a>
-<a href="/pele/mista/" class="tipo-card"><span class="emoji">🌗</span><strong>Mixta</strong><span>Zona T grasa, mejillas secas</span></a>
-<a href="/pele/normal/" class="tipo-card"><span class="emoji">✨</span><strong>Normal</strong><span>Equilibrada, poros finos</span></a>
+<section class="lm-hero lm-grao" aria-labelledby="hero-title">
+<div class="lm-wrap lm-hero-grade">
+<div class="lm-hero-texto">
+<p class="lm-olho">Cuestionario gratis · 10 preguntas</p>
+<h1 id="hero-title">Descubre tu tipo de piel <span>y la rutina ideal.</span></h1>
+<p class="lm-lead">Responde 5 preguntas rápidas y recibe una rutina de skincare personalizada — con productos reales, enlaces directos y sin relleno.</p>
+<div class="lm-hero-acoes"><a class="lm-btn" href="/provador/">Comenzar el quiz <span aria-hidden="true">↗</span></a><a class="lm-btn lm-btn-fio" href="#tipos">Explorar por tipo</a></div>
+<ul class="lm-hero-numeros"><li><a href="#tipos"><b>4</b>guías por tipo de piel</a></li><li><b>5</b>condiciones explicadas</li><li><a href="#guides"><b>8</b>guías en español</a></li></ul>
 </div>
-</section>
-
-<section>
-<h2>Qué encontrarás aquí</h2>
-<div class="grade">
-<div class="card">🎯 <strong>Quiz inteligente</strong><br><span class="sub">5 preguntas indirectas + test de piel limpia</span></div>
-<div class="card">🧴 <strong>Rutina personalizada</strong><br><span class="sub">Mañana y noche, 1 producto por paso</span></div>
-<div class="card">🧬 <strong>Código Baumann</strong><br><span class="sub">Análisis de piel en 4 ejes</span></div>
-<div class="card">📚 <strong>Guías por tipo</strong><br><span class="sub">Causas, señales, ingredientes, productos</span></div>
+<figure class="lm-halo">
+<span class="lm-halo-fundo" aria-hidden="true"></span>
+<svg class="lm-anel" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><path id="lm-anel-caminho" d="M100,100 m-91,0 a91,91 0 1,1 182,0 a91,91 0 1,1 -182,0"/></defs><text><textPath href="#lm-anel-caminho" startOffset="0" textLength="566" lengthAdjust="spacing">· Tipo de piel · Mañana y noche · Un producto por paso </textPath></text></svg>
+<span class="lm-halo-foto"><img src="/img/ritual-face.webp" alt="Mujer sonriendo mientras aplica sérum en el rostro durante su ritual de cuidado" width="1000" height="1333" fetchpriority="high"></span>
+<span class="lm-orb"><span><b>Gratis</b><small>sin registro</small></span></span>
+<span class="lm-selo"><b aria-hidden="true">✦</b> Los registros se quedan en tu dispositivo</span>
+</figure>
 </div>
 </section>
+
+<div class="lm-confianca" aria-label="Qué encontrarás aquí"><ul>
+<li><strong>Quiz inteligente</strong><span>5 preguntas indirectas + test de piel limpia</span></li>
+<li><strong>Rutina personalizada</strong><span>Mañana y noche, 1 producto por paso</span></li>
+<li><strong>Código Baumann</strong><span>Análisis de piel en 4 ejes</span></li>
+<li><strong>Guías por tipo</strong><span>Causas, señales, ingredientes, productos</span></li>
+</ul></div>
+
+<section class="lm-sec" id="tipos" aria-labelledby="tipos-titulo"><div class="lm-wrap">
+<div class="lm-cabeca lm-revela"><div><p class="lm-olho">Por tipo de piel</p><h2 class="lm-titulo" id="tipos-titulo">¿Cuál es tu tipo de piel?</h2></div></div>
+<div class="lm-cartoes">
+<a class="lm-cartao lm-revela" href="/pele/oleosa/" hreflang="pt-BR"><div class="lm-cartao-foto"><img src="/img/tipo-oleosa.webp" alt="Textura de gel ligero sobre piel luminosa" width="1152" height="864" loading="lazy"><span class="lm-etiqueta">Grasa</span></div><div class="lm-cartao-corpo"><h3>Grasa</h3><p>Brillo, poros dilatados, granitos frecuentes</p><span class="lm-cartao-pe">Leer la guía <span aria-hidden="true">→</span></span></div></a>
+<a class="lm-cartao lm-revela" href="/pele/seca/" hreflang="pt-BR"><div class="lm-cartao-foto"><img src="/img/tipo-seca.webp" alt="Textura de crema espesa y mate" width="1152" height="864" loading="lazy"><span class="lm-etiqueta">Seca</span></div><div class="lm-cartao-corpo"><h3>Seca</h3><p>Tirantez, descamación, líneas finas</p><span class="lm-cartao-pe">Leer la guía <span aria-hidden="true">→</span></span></div></a>
+<a class="lm-cartao lm-revela" href="/pele/mista/" hreflang="pt-BR"><div class="lm-cartao-foto"><img src="/img/tipo-mista.webp" alt="Texturas ligera y rica lado a lado" width="1152" height="864" loading="lazy"><span class="lm-etiqueta">Mixta</span></div><div class="lm-cartao-corpo"><h3>Mixta</h3><p>Zona T grasa, mejillas secas</p><span class="lm-cartao-pe">Leer la guía <span aria-hidden="true">→</span></span></div></a>
+<a class="lm-cartao lm-revela" href="/pele/normal/" hreflang="pt-BR"><div class="lm-cartao-foto"><img src="/img/tipo-normal.webp" alt="Textura de loción suave y equilibrada" width="1152" height="864" loading="lazy"><span class="lm-etiqueta">Normal</span></div><div class="lm-cartao-corpo"><h3>Normal</h3><p>Equilibrada, poros finos</p><span class="lm-cartao-pe">Leer la guía <span aria-hidden="true">→</span></span></div></a>
+</div>
+</div></section>
 
 <style>
-.evo-faixa .evo-num{font-family:var(--fonte-display);font-size:2.6rem;font-weight:300;line-height:1;margin:0}
-.evo-faixa .evo-num-leg{font-size:.82rem;color:var(--suave);font-weight:400}
-.evo-faixa .evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
-.evo-faixa .evo-chip{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--rosa-claro);color:var(--rosa)}
-.evo-faixa .evo-chip-legenda{background:transparent;border:1px dashed var(--linha);color:var(--suave)}
-.evo-faixa .evo-marco{font-size:.86rem;color:var(--verde);margin:10px 0 0}
-.evo-faixa .evo-sem{color:var(--suave);margin:0;font-size:.95rem}
-.evo-faixa .evo-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.ps-evo-bloco{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;background:var(--champagne);padding:66px;margin:60px 0}
+@media(max-width:900px){.ps-evo-bloco{grid-template-columns:1fr;padding:34px;gap:30px}}
+.ps-evo-texto{color:var(--muted);font-size:13px;line-height:1.9;max-width:430px;margin:24px 0}
+.ps-evo-acoes{display:flex;flex-wrap:wrap;gap:18px;align-items:center;min-height:58px}
+.ps-evo-nota{font-size:10px;letter-spacing:.035em;color:var(--muted);margin-top:22px;line-height:1.8}
+.ps-evo-dados{background:var(--white);border:1px solid var(--line);padding:36px}
+.evo-num{font-family:var(--serif);font-size:66px;line-height:1;margin:0 0 4px;color:var(--ink)}
+.evo-num-leg{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.evo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.evo-chip{font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--ink)}
+.evo-chip-legenda{color:var(--muted);border-style:dashed}
+.evo-marco{font-size:11px;color:var(--gold);letter-spacing:.05em;margin:12px 0 0}
+.evo-sem{color:var(--muted);font-size:13px;line-height:1.9;margin:0}
+.ps-evo-acoes .btn{display:inline-flex;align-items:center;min-height:52px;padding:15px 28px;border:1px solid var(--ink);background:var(--ink);color:var(--white);font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:2px}
+.ps-evo-acoes .btn.sec{background:transparent;color:var(--ink);border-color:#BDB0A0}
+.lm-internacional{max-width:52rem}
+.lm-internacional h2{font-size:clamp(32px,4vw,52px);margin:0 0 26px}
+.lm-internacional h3{font-size:clamp(22px,2.2vw,28px);margin:30px 0 8px;padding-top:26px;border-top:1px solid var(--line)}
+.lm-internacional p{color:var(--muted);margin:0}
+.lm-internacional .ps-nota-pagina{margin-top:44px;font-size:12px}
+.lm-internacional a{color:var(--gold)}
 </style>
-<section id="progreso">
-<h2>Y la evolución se hace visible.</h2>
-<p class="lead">La piel responde en ciclos, no en días. Registra cómo está — con o sin foto — y mira tu propia curva con el tiempo, con marcos de 28 días por el camino.</p>
-<div class="card evo-faixa" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Leyendo tus registros en este dispositivo…</p></div>
-<div class="evo-faixa"><div class="evo-acoes" id="evo-home-acoes"></div></div>
-<p class="sub" style="margin-top:16px">Los registros se quedan solo en este dispositivo. Acompañamiento personal: no es medición clínica.</p>
+<section class="lm-sec lm-evolucao" id="progreso" aria-labelledby="evo-titulo"><div class="lm-wrap">
+<div class="ps-evo-bloco">
+<div>
+<p class="lm-olho">Seguimiento</p>
+<h2 id="evo-titulo">Y la evolución se hace visible.</h2>
+<p class="ps-evo-texto">La piel responde en ciclos, no en días. Registra cómo está — con o sin foto — y mira tu propia curva con el tiempo, con marcos de 28 días por el camino.</p>
+<div class="ps-evo-acoes" id="evo-home-acoes"></div>
+<p class="ps-evo-nota">Los registros se quedan solo en este dispositivo. Acompañamiento personal: no es medición clínica.</p>
+</div>
+<div class="ps-evo-dados" id="evo-home-dados" aria-live="polite"><p class="evo-sem">Leyendo tus registros en este dispositivo…</p></div>
+</div>
 <script src="/evolucao.js" defer></script>
 <script>
 window.addEventListener("DOMContentLoaded", function () {
@@ -141,23 +140,40 @@ window.addEventListener("DOMContentLoaded", function () {
   }).catch(function () {});
 });
 </script>
-</section>
+</div></section>
 
-<section id="guides">
-<h2>Guías en español</h2>
-<div class="grade">
-<a href="/es/blog/protector-solar-por-que-importa/" class="tipo-card"><strong>Protector solar: el paso más importante del skincare</strong></a><a href="/es/blog/retinol-como-empezar/" class="tipo-card"><strong>Retinol: cómo empezar sin irritar la piel</strong></a><a href="/es/blog/vitamina-c-skincare/" class="tipo-card"><strong>Vitamina C: para qué sirve y cómo usarla</strong></a><a href="/es/blog/mito-regla-ardencia/" class="tipo-card"><strong>Mito × regla: el escozor no indica que el producto funciona</strong></a><a href="/es/blog/mito-regla-resistente-agua/" class="tipo-card"><strong>Mito × regla: “resistente al agua” no evita la reaplicación</strong></a><a href="/es/blog/mito-regla-sunblock-100/" class="tipo-card"><strong>Mito × regla: ni «sunblock» ni «100% de protección»</strong></a><a href="/es/ingredientes/acido-ferulico/" class="tipo-card"><strong>Ácido ferúlico: para qué sirve y cómo usarlo</strong></a><a href="/es/ingredientes/acido-mandelico/" class="tipo-card"><strong>Ácido mandélico: para qué sirve y cómo usarlo</strong></a>
+<section class="lm-sec lm-ativos" id="guides" aria-labelledby="guias-titulo"><div class="lm-wrap">
+<div class="lm-cabeca lm-revela"><div><p class="lm-olho">Lectura</p><h2 class="lm-titulo" id="guias-titulo">Guías en español</h2></div></div>
+<ol class="lm-ativos-lista">
+<li><a class="lm-ativo" href="/es/blog/protector-solar-por-que-importa/"><span class="lm-ativo-idx">01</span><h3>Protector solar</h3><p>El paso más importante del skincare</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/blog/retinol-como-empezar/"><span class="lm-ativo-idx">02</span><h3>Retinol</h3><p>Cómo empezar sin irritar la piel</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/blog/vitamina-c-skincare/"><span class="lm-ativo-idx">03</span><h3>Vitamina C</h3><p>Para qué sirve y cómo usarla</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/blog/mito-regla-ardencia/"><span class="lm-ativo-idx">04</span><h3>Mito × regla</h3><p>El escozor no indica que el producto funciona</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/blog/mito-regla-resistente-agua/"><span class="lm-ativo-idx">05</span><h3>Mito × regla</h3><p>“resistente al agua” no evita la reaplicación</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/blog/mito-regla-sunblock-100/"><span class="lm-ativo-idx">06</span><h3>Mito × regla</h3><p>Ni «sunblock» ni «100% de protección»</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/ingredientes/acido-ferulico/"><span class="lm-ativo-idx">07</span><h3>Ácido ferúlico</h3><p>Para qué sirve y cómo usarlo</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+<li><a class="lm-ativo" href="/es/ingredientes/acido-mandelico/"><span class="lm-ativo-idx">08</span><h3>Ácido mandélico</h3><p>Para qué sirve y cómo usarlo</p><span class="lm-ativo-ver">Leer <span aria-hidden="true">→</span></span></a></li>
+</ol>
+</div></section>
+
+<section class="lm-sec" id="herramientas" aria-labelledby="ferramentas-titulo"><div class="lm-wrap">
+<div class="lm-cabeca lm-revela"><div><p class="lm-olho">Herramientas</p><h2 class="lm-titulo" id="ferramentas-titulo">Herramientas gratuitas</h2></div><p class="lm-lead">Tus registros se quedan en tu navegador.</p></div>
+<div class="lm-ferramentas">
+<a class="lm-ferramenta lm-revela" href="/es/ferramentas/diario/"><h3>Diario de la piel</h3><p>Tu evolución en el tiempo</p><span>Abrir <span aria-hidden="true">→</span></span></a>
+<a class="lm-ferramenta lm-revela" href="/es/ferramentas/ritual/"><h3>Ritual guiado</h3><p>Un paso a la vez</p><span>Abrir <span aria-hidden="true">→</span></span></a>
+<a class="lm-ferramenta lm-revela" href="/es/ferramentas/informe/"><h3>Informe para la consulta dermatológica</h3><p></p><span>Abrir <span aria-hidden="true">→</span></span></a>
+<a class="lm-ferramenta lm-revela" href="/es/ferramentas/respaldo/"><h3>Respaldo de tus datos</h3><p></p><span>Abrir <span aria-hidden="true">→</span></span></a>
 </div>
-</section>
+</div></section>
 
-<section id="herramientas">
-<h2>Herramientas gratuitas</h2>
-<p class="sub">Tus registros se quedan en tu navegador.</p>
-<div class="grade">
-<a href="/es/ferramentas/diario/" class="tipo-card"><strong>Diario de la piel: tu evolución en el tiempo</strong></a><a href="/es/ferramentas/ritual/" class="tipo-card"><strong>Ritual guiado: un paso a la vez</strong></a><a href="/es/ferramentas/informe/" class="tipo-card"><strong>Informe para la consulta dermatológica</strong></a><a href="/es/ferramentas/respaldo/" class="tipo-card"><strong>Respaldo de tus datos</strong></a>
-</div>
-</section>
+<section class="lm-sec lm-escura lm-convite" aria-labelledby="convite-titulo"><div class="lm-wrap">
+<p class="lm-olho centro">Cuestionario gratis · 10 preguntas</p>
+<h2 class="lm-titulo" id="convite-titulo">Descubre tu tipo de piel <span class="lm-ouro">y la rutina ideal.</span></h2>
+<div class="lm-convite-acoes"><a class="lm-btn lm-btn-ouro" href="/provador/">Comenzar el quiz <span aria-hidden="true">↗</span></a><a class="lm-btn lm-btn-claro" href="#tipos">Explorar por tipo</a></div>
+<p class="lm-convite-nota">Contenido informativo, no es un diagnóstico</p>
+</div></section>
 
+<div class="lm-sec"><div class="lm-wrap lm-internacional">
 <!-- perguntas:inicio -->
 <section class="ps-perguntas" aria-labelledby="perguntas-pagina">
 <h2 id="perguntas-pagina">Preguntas frecuentes</h2>
@@ -169,9 +185,11 @@ window.addEventListener("DOMContentLoaded", function () {
 </section>
 <!-- perguntas:fim -->
 <!-- nota-pagina:inicio -->
-<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-24">24 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
+<p class="ps-nota-pagina">Página actualizada el <time datetime="2026-11-27">27 de noviembre de 2026</time>. Contenido informativo, no es un diagnóstico. Normas de cosméticos en Brasil: <a href="https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos" rel="noopener">Anvisa</a>. Para diagnóstico y tratamiento: <a href="https://www.sbd.org.br/encontre-um-dermatologista/" rel="noopener">busca un dermatólogo en la Sociedad Brasileña de Dermatología</a>.</p>
 <!-- nota-pagina:fim -->
-<noscript><p class="fallback">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertas como HTML común.</p></noscript></main>
+<noscript><p class="fallback">Sin JavaScript las herramientas para asistentes no funcionan y no se pierde nada: las guías, el catálogo de productos y las rutinas siguen abiertas como HTML común.</p></noscript>
+</div></div>
+</main>
 <footer class="ps-rodape">
 <div class="ps-shell ps-rodape-grid">
 <div class="ps-rodape-marca">

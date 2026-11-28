@@ -461,3 +461,6 @@ html, body { overflow-x: clip; }
   .lm-carta-escolha li a { align-items: flex-start; }
   .lm img { max-width: 100%; height: auto; }
 }
+/* Monograma desenhado: sem borda própria, o anel já está no arquivo. */
+.ps-monogram { border: 0; }
+.lm em, .lm i:not([class]) { font-style: italic; }

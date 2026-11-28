@@ -183,8 +183,8 @@ writeFileSync(join(RAIZ, "precos.json"), JSON.stringify(saida, null, 1) + "\n");
 // Atualiza a tabela da página ferramentas/precos/index.html entre os marcadores.
 // Assim a página é estática (funciona sem JS) e sempre atual no build.
 const ROTULO_BADGE = {
-  "otimo": "🟢 ótimo", "bom": "🔵 bom", "justo": "⚪ justo", "alto": "🔴 alto",
-  "sem-historico": "➖ em construção", "desatualizado": "⏸ desatualizado",
+  "otimo": "ótimo", "bom": "bom", "justo": "justo", "alto": "alto",
+  "sem-historico": "em construção", "desatualizado": "desatualizado",
 };
 function brl(cents) {
   return cents == null ? "—" : "R$ " + (cents / 100).toFixed(2).replace(".", ",");
