@@ -61,7 +61,7 @@ async function fluxo(browser, faixa, erros) {
     checar(`${rotulo} [1] T nunca descrito como tendência a rugas`, !(/T$/.test(r.codigo) && /rugas/.test(r.titulo)));
 
     // 2. Subtom sem selfie
-    checar(`${rotulo} [2] subtom não avaliado (sem Neutro/Quente/Frio inventado)`, /Subtom: não avaliado/.test(t) && !/Subtom estimado/.test(t));
+    checar(`${rotulo} [2] subtom não avaliado (sem Neutro/Quente/Frio inventado)`, /Subtom: não avaliado/i.test(t) && !/Subtom estimado/i.test(t));
 
     // 5. CTA
     checar(`${rotulo} [5] "Ver todos os produtos" vai para /produtos/`, r.cta === "/produtos/", r.cta);

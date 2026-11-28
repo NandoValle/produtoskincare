@@ -14,7 +14,7 @@ import shutil
 
 from gerar_produtos import (CATALOGO, LOJAS, PASSOS, PERIODO, TEXTURA, TIPOS, criterio, data_curta, eh_busca, esc, juntar, link_loja, nao_vale,
                             milhar, reais, sem_acento)
-from pagina_base import RAIZ, pagina
+from pagina_base import RAIZ, SITE, pagina
 
 PARES = RAIZ / "_scripts" / "comparativos.json"
 DESTINO = RAIZ / "comparativos"
@@ -99,6 +99,15 @@ def resumo(a, b):
     return linhas
 
 
+def lista_ld(nome, itens):
+    """ItemList (schema.org) só com o que a página mostra: nome e link interno, na ordem em que aparecem.
+    Sem preço nem nota: a nota é de quem comprou na loja, não uma avaliação do site."""
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": nome, "numberOfItems": len(itens),
+          "itemListElement": [{"@type": "ListItem", "position": i, "name": n, "url": SITE + caminho}
+                              for i, (n, caminho) in enumerate(itens, 1)]}
+    return '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
 def pagina_par(a, b):
     titulo = f"{a['nome']} ou {b['nome']}?"
     linhas = [
@@ -150,6 +159,7 @@ def pagina_par(a, b):
 <section aria-labelledby="antes"><h2 id="antes">Antes de comprar</h2>
 <div class="cp-btns">{btns}</div></section>
 <p class="ig-nota">Links de afiliado: se você comprar por eles, posso receber comissão, sem custo extra. O preço muda: vale o mostrado na loja na hora da compra.</p>
+<div data-ps-ebook></div>
 <section aria-labelledby="relacionados">
 <h2 id="relacionados">Leia também</h2>
 <ul class="ig-rel">
@@ -160,6 +170,7 @@ def pagina_par(a, b):
 <li><a href="/provador/">Quiz do tipo de pele</a></li>
 </ul>
 </section>
+{lista_ld(titulo, [(a["nome"], f"/produtos/{a['id']}/"), (b["nome"], f"/produtos/{b['id']}/")])}
 </article>"""
     # Até ~140 caracteres com os nomes mais longos do catálogo; o Google costuma cortar perto de 160.
     descricao = f"{a['nome']} ou {b['nome']}: preço, ativos, textura e tipos de pele lado a lado."
@@ -178,6 +189,7 @@ def pagina_indice(itens):
 </div>
 <ul class="ig-grade">{cards}</ul>
 <p class="ig-nota">Contém links de afiliado. Veja <a href="/sobre/">como escolhemos os produtos</a>.</p>
+{lista_ld("Comparativos de produtos de skincare", [(f"{a['nome']} ou {b['nome']}", f"/comparativos/{slug(a['id'], b['id'])}/") for a, b in itens])}
 </article>"""
     return pagina("Comparativos de produtos de skincare: qual dos dois?",
                   "Produtos de skincare parecidos lado a lado: preço conferido, ativos em destaque, textura e tipos de pele, com dados do catálogo.",
